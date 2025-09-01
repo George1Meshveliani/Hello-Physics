@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics: Electricity & Magnetism Summary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // MathJax configuration for LaTeX rendering
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #1F2937;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        h1, h2, h3 {
+            font-weight: bold;
+            color: #3B82F6;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #D1D5DB;
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .formula-box {
+            background-color: #E5E7EB;
+            border-left: 5px solid #6366F1;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 2rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Physics: Electricity & Magnetism Summary</h1>
+        <p>This document provides a concise summary of all the key concepts, formulas, and principles from our discussions on electricity and magnetism.</p>
+
+        <!-- --- Electrical Fundamentals --- -->
+        <h2>Electrical Fundamentals</h2>
+        <p>These concepts are the building blocks of electricity:</p>
+        <ul>
+            <li><strong>Electric Charge ($q$)</strong>: The fundamental property of matter that causes it to experience a force in an electric field.
+                <ul>
+                    <li>Unit: <strong>Coulomb (C)</strong>. A base SI unit derived from Ampere and second: $1 \, \text{C} = 1 \, \text{A} \cdot \text{s}$.</li>
+                </ul>
+            </li>
+            <li><strong>Electric Current ($I$)</strong>: The rate of flow of electric charge.
+                <ul>
+                    <li>Unit: <strong>Ampere (A)</strong>. This is a base SI unit.</li>
+                </ul>
+            </li>
+            <li><strong>Voltage ($V$)</strong>: The electric potential energy per unit charge. It's the "push" that makes current flow.
+                <ul>
+                    <li>Unit: <strong>Volt (V)</strong>. A derived unit: $1 \, \text{V} = 1 \, \text{J/C} = 1 \, \frac{\text{kg} \cdot \text{m}^2}{\text{A} \cdot \text{s}^3}$.</li>
+                </ul>
+            </li>
+            <li><strong>Resistance ($R$)</strong>: The opposition to the flow of electric current.
+                <ul>
+                    <li>Unit: <strong>Ohm ($\Omega$)</strong>. A derived unit: $1 \, \Omega = 1 \, \text{V/A} = 1 \, \frac{\text{kg} \cdot \text{m}^2}{\text{A}^2 \cdot \text{s}^3}$.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Key Formulas</h3>
+        <p>These formulas describe the fundamental relationships between the electrical quantities.</p>
+        <div class="formula-box">
+            <p><strong>Ohm's Law:</strong></p>
+            <p>$$V = IR$$</p>
+        </div>
+
+        <h3>Electrical Power & Energy</h3>
+        <ul>
+            <li><strong>Electrical Power ($P$)</strong>: The rate at which electrical energy is transferred or used.
+                <ul>
+                    <li>Unit: <strong>Watt (W)</strong>. A derived unit: $1 \, \text{W} = 1 \, \text{J/s} = 1 \, \frac{\text{kg} \cdot \text{m}^2}{\text{s}^3}$.</li>
+                </ul>
+            </li>
+            <li><strong>Electrical Energy ($E$)</strong>: The total work done by an electric current.
+                <ul>
+                    <li>Unit: <strong>Joule (J)</strong>. A derived unit: $1 \, \text{J} = 1 \, \text{N} \cdot \text{m} = 1 \, \frac{\text{kg} \cdot \text{m}^2}{\text{s}^2}$.</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="formula-box">
+            <p><strong>Power Formulas:</strong></p>
+            <p>$$P = VI$$</p>
+            <p>$$P = I^2 R$$</p>
+            <p>$$P = \frac{V^2}{R}$$</p>
+            <p><strong>Energy Formula:</strong></p>
+            <p>$$E = Pt$$</p>
+        </div>
+
+        <!-- --- Magnetism --- -->
+        <h2>Magnetism</h2>
+        <p>This is the force that arises from moving electric charges.</p>
+        <ul>
+            <li><strong>Magnetic Field ($B$)</strong>: The area of force surrounding a magnet or a moving charge.
+                <ul>
+                    <li>Unit: <strong>Tesla (T)</strong>. A derived unit: $1 \, \text{T} = 1 \, \frac{\text{N}}{\text{A} \cdot \text{m}} = 1 \, \frac{\text{kg}}{\text{A} \cdot \text{s}^2}$.</li>
+                </ul>
+            </li>
+            <li><strong>Right-Hand Rules</strong>: Mnemonic devices to determine the direction of magnetic fields and forces.</li>
+            <li><strong>Electromagnetism</strong>: The unified theory linking electricity and magnetism.</li>
+        </ul>
+        
+        <h3>Key Formulas</h3>
+        <div class="formula-box">
+            <p><strong>Magnetic Field of a Long, Straight Wire:</strong></p>
+            <p>$$B = \frac{\mu_0 I}{2\pi r}$$</p>
+            <p>where $\mu_0$ is the permeability of free space ($4\pi \times 10^{-7} \, \text{T} \cdot \text{m/A}$).</p>
+        </div>
+        <div class="formula-box">
+            <p><strong>Lorentz Force on a Moving Charge:</strong></p>
+            <p>$$F = |q|vB \sin\theta$$</p>
+        </div>
+        
+        <h3>Maxwell's Equations</h3>
+        <p>These four fundamental equations describe the behavior of electric and magnetic fields:</p>
+        <div class="formula-box">
+            <p>$$\nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}$$</p>
+            <p>$$\nabla \cdot \mathbf{B} = 0$$</p>
+            <p>$$\nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t}$$</p>
+            <p>$$\nabla \times \mathbf{B} = \mu_0 \left( \mathbf{J} + \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t} \right)$$</p>
+        </div>
+
+        <!-- --- Unit Transformations --- -->
+        <h2>Unit Transformations to Base SI Units</h2>
+        <p>Here are the step-by-step proofs for how each derived unit is expressed in terms of the four base units: kilogram (kg), meter (m), second (s), and ampere (A).</p>
+        
+        <h3>Volt (V)</h3>
+        <div class="formula-box">
+            <p><strong>1 V</strong> is defined as 1 Joule per Coulomb ($1 \, \text{J/C}$).</p>
+            <p>$$1 \, \text{V} = \frac{1 \, \text{J}}{1 \, \text{C}}$$</p>
+            <p>Since $1 \, \text{J} = 1 \, \text{N} \cdot \text{m}$ and $1 \, \text{C} = 1 \, \text{A} \cdot \text{s}$, we can substitute:</p>
+            <p>$$1 \, \text{V} = \frac{1 \, \text{N} \cdot \text{m}}{1 \, \text{A} \cdot \text{s}}$$</p>
+            <p>Since $1 \, \text{N} = 1 \, \frac{\text{kg} \cdot \text{m}}{\text{s}^2}$:</p>
+            <p>$$1 \, \text{V} = \frac{\left( \frac{\text{kg} \cdot \text{m}}{\text{s}^2} \right) \cdot \text{m}}{\text{A} \cdot \text{s}} = \frac{\text{kg} \cdot \text{m}^2}{\text{A} \cdot \text{s}^3}$$</p>
+        </div>
+
+        <h3>Ohm ($\Omega$)</h3>
+        <div class="formula-box">
+            <p><strong>1 $\Omega$</strong> is defined as 1 Volt per Ampere ($1 \, \text{V/A}$).</p>
+            <p>$$1 \, \Omega = \frac{1 \, \text{V}}{1 \, \text{A}}$$</p>
+            <p>Using the derived base units for the Volt ($1 \, \text{V} = 1 \, \frac{\text{kg} \cdot \text{m}^2}{\text{A} \cdot \text{s}^3}$):</p>
+            <p>$$1 \, \Omega = \frac{\left( \frac{\text{kg} \cdot \text{m}^2}{\text{A} \cdot \text{s}^3} \right)}{\text{A}} = \frac{\text{kg} \cdot \text{m}^2}{\text{A}^2 \cdot \text{s}^3}$$</p>
+        </div>
+
+        <h3>Watt (W)</h3>
+        <div class="formula-box">
+            <p><strong>1 W</strong> is defined as 1 Joule per second ($1 \, \text{J/s}$).</p>
+            <p>$$1 \, \text{W} = \frac{1 \, \text{J}}{1 \, \text{s}}$$</p>
+            <p>Using the base units for the Joule ($1 \, \text{J} = 1 \, \frac{\text{kg} \cdot \text{m}^2}{\text{s}^2}$):</p>
+            <p>$$1 \, \text{W} = \frac{\left( \frac{\text{kg} \cdot \text{m}^2}{\text{s}^2} \right)}{\text{s}} = \frac{\text{kg} \cdot \text{m}^2}{\text{s}^3}$$</p>
+        </div>
+
+        <h3>Joule (J)</h3>
+        <div class="formula-box">
+            <p><strong>1 J</strong> is defined as 1 Newton-meter ($1 \, \text{N} \cdot \text{m}$).</p>
+            <p>$$1 \, \text{J} = 1 \, \text{N} \cdot \text{m}$$</p>
+            <p>Using the base units for the Newton ($1 \, \text{N} = 1 \, \frac{\text{kg} \cdot \text{m}}{\text{s}^2}$):</p>
+            <p>$$1 \, \text{J} = \left( \frac{\text{kg} \cdot \text{m}}{\text{s}^2} \right) \cdot \text{m} = \frac{\text{kg} \cdot \text{m}^2}{\text{s}^2}$$</p>
+        </div>
+
+        <h3>Tesla (T)</h3>
+        <div class="formula-box">
+            <p><strong>1 T</strong> is defined as 1 Newton per Ampere-meter ($1 \, \frac{\text{N}}{\text{A} \cdot \text{m}}$).</p>
+            <p>$$1 \, \text{T} = \frac{1 \, \text{N}}{1 \, \text{A} \cdot \text{m}}$$</p>
+            <p>Using the base units for the Newton ($1 \, \text{N} = 1 \, \frac{\text{kg} \cdot \text{m}}{\text{s}^2}$):</p>
+            <p>$$1 \, \text{T} = \frac{\left( \frac{\text{kg} \cdot \text{m}}{\text{s}^2} \right)}{\text{A} \cdot \text{m}} = \frac{\text{kg}}{\text{A} \cdot \text{s}^2}$$</p>
+        </div>
+
+        <!-- --- Interactive Implementations & Problems --- -->
+        <h2>Interactive Implementations & Problems</h2>
+        
+        <h3>Interactive Simulations</h3>
+        <p>The presentations included several interactive visualizations to help understand these concepts:</p>
+        <ul>
+            <li><strong>Electric Current Animation:</strong> Shows electrons flowing through a wire.</li>
+            <li><strong>V-I Graph:</strong> Demonstrates the linear relationship in Ohm's Law.</li>
+            <li><strong>Power & Energy Meter:</strong> Visualizes energy accumulation over time.</li>
+            <li><strong>Magnetic Induction:</strong> A simulation showing how a moving magnet creates a current.</li>
+            <li><strong>Lorentz Force Simulation:</strong> Visualizes the path of a charged particle in a magnetic field.</li>
+            <li><strong>Earth's Magnetic Field:</strong> An interactive 3D model of the Earth's protective magnetosphere.</li>
+        </ul>
+
+        <h3>Practice Problems</h3>
+        <ul>
+            <li><strong>Ohm's Law:</strong> A light bulb with a resistance of 150 $\Omega$ is connected to a 120 V power source. What is the current flowing through it?</li>
+            <li><strong>Circuit Analysis (Parallel):</strong> Three resistors, $R_1=20 \, \Omega$, $R_2=30 \, \Omega$, and $R_3=60 \, \Omega$, are connected in parallel. What is the total resistance? If a voltage of $12 \, \text{V}$ is applied across the combination, what is the total current and the current through each resistor?</li>
+            <li><strong>Circuit Analysis (Combined):</strong> A circuit has a $10 \, \Omega$ resistor in series with a parallel combination of a $20 \, \Omega$ and a $30 \, \Omega$ resistor. If the total voltage is $24 \, \text{V}$, what is the total resistance and the current from the source?</li>
+            <li><strong>Electrical Power:</strong> An electric heater draws a current of 12.5 A from a 240 V outlet. What is its power consumption in Watts? How much energy does it consume in 30 minutes (in Joules and kWh)?</li>
+            <li><strong>Magnetism:</strong> An electron moves at a velocity of $5 \times 10^5 \, \text{m/s}$ to the east. It enters a magnetic field of $2 \, \text{T}$ directed vertically downward. What is the magnitude and direction of the magnetic force on the electron? (The charge of an electron is $-1.6 \times 10^{-19} \, \text{C}$.)</li>
+            <li><strong>Advanced Combined Problem:</strong> A wire of length $0.75 \, \text{m}$ carries a current of $8 \, \text{A}$. If the wire is placed in a uniform magnetic field and experiences a maximum force of $2.4 \, \text{N}$, what is the strength of the magnetic field? How much power is consumed if the wire has a resistance of $0.5 \, \Omega$?</li>
+        </ul>
+    </div>
+
+</body>
+</html>
