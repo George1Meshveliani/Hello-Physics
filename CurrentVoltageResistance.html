@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-Based Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // MathJax configuration for LaTeX rendering
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .slide {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            transition: opacity 0.5s ease-in-out;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            padding: 4rem;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+        .active-slide {
+            display: flex;
+        }
+        .fade-in {
+            animation-name: fadein;
+            animation-duration: 1.5s;
+        }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        .answer-choice {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .answer-choice:hover {
+            background-color: #3f51b5;
+            transform: scale(1.02);
+        }
+        .correct-answer {
+            background-color: #4caf50;
+        }
+        .incorrect-answer {
+            background-color: #f44336;
+        }
+        .pulse {
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* --- Animations for moving illustrations --- */
+        @keyframes flow-electrons {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(100px); }
+        }
+        .electron {
+            animation: flow-electrons 2s linear infinite;
+        }
+        .electron:nth-child(2) { animation-delay: 0.5s; }
+        .electron:nth-child(3) { animation-delay: 1s; }
+        .electron:nth-child(4) { animation-delay: 1.5s; }
+        
+        @keyframes pulse-voltage {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+        .voltage-source {
+            animation: pulse-voltage 1.5s ease-in-out infinite;
+        }
+
+        @keyframes resistance-flow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(250px); }
+        }
+        .resistor-flow-slow {
+            animation: resistance-flow 4s linear infinite;
+        }
+        .resistor-flow-fast {
+            animation: resistance-flow 2s linear infinite;
+        }
+
+        @keyframes current-path-series {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: 1400; }
+        }
+        @keyframes current-path-parallel {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: 800; }
+        }
+
+    </style>
+</head>
+<body class="overflow-hidden">
+
+<!-- Main Slideshow Container -->
+<div id="slideshow-container" class="relative w-full h-full">
+
+    <!-- Vertical Navigation -->
+    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center space-y-4">
+        <div class="h-full w-0.5 bg-gray-600 absolute top-0 left-1/2 -translate-x-1/2 rounded-full"></div>
+        <div id="nav-dots-container" class="relative flex flex-col items-center">
+        </div>
+    </div>
+
+    <!-- Slide 1: Title Slide -->
+    <div class="slide fade-in active-slide flex items-center justify-center">
+        <div class="max-w-3xl text-center">
+            <h1 class="text-6xl font-bold mb-4">Current, voltage, and resistance</h1>
+            <p class="text-2xl text-gray-400">George Meshveliani</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: Lesson Plan -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Lesson Plan</h2>
+            <ul class="list-disc list-inside space-y-4 text-2xl md:text-3xl">
+                <li>What is Electric Current?</li>
+                <li>Understanding Voltage and Resistance.</li>
+                <li>Ohm's Law: The fundamental relationship.</li>
+                <li>Series and Parallel circuits.</li>
+                <li>Analyzing V-I graphs.</li>
+                <li>Practice Problems.</li>
+                <li>Interactive Quiz.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 3: What is Electric Current? -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">What is Electric Current?</h2>
+            <p class="text-2xl mb-4">Electric current ($I$) is the rate of flow of electric charge. Think of it as the volume of water flowing through a pipe per second.</p>
+            <div class="mt-8 relative w-96 h-12 bg-blue-500 rounded-full flex items-center justify-between px-4 overflow-hidden shadow-xl">
+                <div class="electron absolute w-4 h-4 bg-yellow-300 rounded-full shadow-lg"></div>
+                <div class="electron absolute w-4 h-4 bg-yellow-300 rounded-full shadow-lg"></div>
+                <div class="electron absolute w-4 h-4 bg-yellow-300 rounded-full shadow-lg"></div>
+                <div class="electron absolute w-4 h-4 bg-yellow-300 rounded-full shadow-lg"></div>
+            </div>
+            <p class="text-2xl font-bold mb-4 mt-8">Formula: $I = \frac{\Delta Q}{\Delta t}$</p>
+            <p class="text-2xl">Unit: Ampere (A), where $1 \, \text{A} = 1 \, \text{C}/\text{s}$.</p>
+        </div>
+    </div>
+
+    <!-- Slide 4: What is Voltage? -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">What is Voltage?</h2>
+            <p class="text-2xl mb-4">Voltage ($V$), or potential difference, is the energy per unit charge. It's the "push" that makes current flow, like the pressure difference in a water pipe.</p>
+            <div class="mt-8 relative w-96 h-12 bg-gray-700 rounded-lg flex items-center justify-center shadow-xl">
+                <div class="absolute w-6 h-6 bg-red-500 rounded-full voltage-source"></div>
+                <div class="w-1/2 h-full absolute left-0 flex items-center justify-end pr-4">
+                    <span class="text-4xl">Push</span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-yellow-300" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12l-18 12v-24z"/>
+                </svg>
+            </div>
+            <p class="text-2xl font-bold mb-4 mt-8">Formula: $V = \frac{\Delta E}{\Delta Q}$</p>
+            <p class="text-2xl">Unit: Volt (V), where $1 \, \text{V} = 1 \, \text{J}/\text{C}$.</p>
+        </div>
+    </div>
+
+    <!-- Slide 5: What is Resistance? -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">What is Resistance?</h2>
+            <p class="text-2xl mb-4">Resistance ($R$) is the opposition to the flow of electric current. In a water pipe, a narrower section offers more resistance to the water flow.</p>
+            <div class="mt-8 flex items-center justify-center space-x-2 w-96">
+                <div class="w-20 h-8 bg-blue-500 rounded-full relative overflow-hidden flex items-center justify-center">
+                    <div class="w-4 h-4 bg-yellow-300 rounded-full absolute resistor-flow-fast"></div>
+                </div>
+                <div class="w-20 h-4 bg-red-500 rounded-full relative overflow-hidden flex items-center justify-center">
+                    <div class="w-3 h-3 bg-yellow-300 rounded-full absolute resistor-flow-slow"></div>
+                </div>
+                <div class="w-20 h-8 bg-blue-500 rounded-full relative overflow-hidden flex items-center justify-center">
+                    <div class="w-4 h-4 bg-yellow-300 rounded-full absolute resistor-flow-fast"></div>
+                </div>
+            </div>
+            <p class="text-2xl font-bold mb-4 mt-8">Formula: $R = \rho \frac{L}{A}$</p>
+            <p class="text-2xl">Unit: Ohm ($\Omega$).</p>
+        </div>
+    </div>
+    
+    <!-- Slide 6: Ohm's Law -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Ohm's Law</h2>
+            <p class="text-2xl mb-4">Ohm's Law describes the relationship between voltage, current, and resistance in a circuit.</p>
+            <p class="text-4xl text-yellow-300 text-center my-8 pulse">$$V = IR$$</p>
+            <p class="text-2xl text-yellow-300">This can be rearranged to solve for any variable:</p>
+            <ul class="list-disc list-inside space-y-2 text-xl md:text-2xl text-left my-4">
+                <li>Current: $I = V/R$</li>
+                <li>Resistance: $R = V/I$</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Slide 7: Series Circuits -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Series Circuits</h2>
+            <p class="text-2xl mb-4">Components are connected one after another, forming a single path for current to flow.</p>
+            <svg class="w-full h-80 my-8" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                <style>
+                    .series-path {
+                        stroke-dasharray: 50 50;
+                        stroke-dashoffset: 0;
+                        animation: current-path-series 5s linear infinite;
+                    }
+                </style>
+                <path d="M50 100 L200 100" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+                <path d="M300 100 L450 100" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+                <path d="M200 100 L200 80 L300 80 L300 100" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+                <circle cx="250" cy="80" r="10" fill="#e2e8f0" />
+                <text x="250" y="70" text-anchor="middle" fill="#e2e8f0" font-size="16">R1</text>
+                <path d="M50 100 L450 100" fill="none" stroke="#4caf50" stroke-width="6" class="series-path" />
+            </svg>
+            <ul class="list-disc list-inside space-y-2 text-xl md:text-2xl text-left my-4">
+                <li>Current is the same: $I_{total} = I_1 = I_2 = \dots$</li>
+                <li>Voltage divides: $V_{total} = V_1 + V_2 + \dots$</li>
+                <li>Total Resistance: $R_{total} = R_1 + R_2 + \dots$</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 8: Parallel Circuits -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Parallel Circuits</h2>
+            <p class="text-2xl mb-4">Components are connected across the same two points, creating multiple paths for current.</p>
+            <svg class="w-full h-80 my-8" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                <style>
+                    .parallel-path-1, .parallel-path-2 {
+                        stroke-dasharray: 50 50;
+                    }
+                    .parallel-path-1 {
+                        stroke-dashoffset: 0;
+                        animation: current-path-parallel 5s linear infinite;
+                    }
+                    .parallel-path-2 {
+                        stroke-dashoffset: 0;
+                        animation: current-path-parallel 5s linear infinite;
+                        animation-delay: 2.5s; /* Stagger the animation */
+                    }
+                </style>
+                <path d="M50 50 L100 50 L100 150 L50 150" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+                <path d="M450 50 L400 50 L400 150 L450 150" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+                <path d="M100 50 L400 50" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+                <path d="M100 150 L400 150" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+                
+                <!-- Resistors -->
+                <path d="M100 100 L400 100" fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" />
+                <circle cx="250" cy="100" r="10" fill="#e2e8f0" />
+                <text x="250" y="90" text-anchor="middle" fill="#e2e8f0" font-size="16">R1</text>
+
+                <!-- Current paths -->
+                <path d="M100 50 L400 50" fill="none" stroke="#4caf50" stroke-width="6" class="parallel-path-1" />
+                <path d="M100 150 L400 150" fill="none" stroke="#4caf50" stroke-width="6" class="parallel-path-2" />
+            </svg>
+            <ul class="list-disc list-inside space-y-2 text-xl md:text-2xl text-left my-4">
+                <li>Voltage is the same: $V_{total} = V_1 = V_2 = \dots$</li>
+                <li>Current divides: $I_{total} = I_1 + I_2 + \dots$</li>
+                <li>Total Resistance: $\frac{1}{R_{total}} = \frac{1}{R_1} + \frac{1}{R_2} + \dots$</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 9: Analyzing V-I Graphs -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Analyzing V-I Graphs</h2>
+            <p class="text-2xl mb-4">The slope of a V-I graph represents the resistance of the component. A steeper slope means higher resistance.</p>
+            <canvas id="vi-graph-canvas" class="bg-white rounded-lg shadow-xl" width="600" height="400"></canvas>
+        </div>
+    </div>
+    
+    <!-- Slide 10: Practice Problem (Series) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Practice Problem 1 (Series)</h2>
+            <p class="text-2xl mb-4">A series circuit has a $12 \, \text{V}$ battery and two resistors with values of $4 \, \Omega$ and $2 \, \Omega$. Calculate the total resistance of the circuit and the current flowing through it.</p>
+            <div class="p-4 bg-gray-800 rounded-lg shadow-xl mt-8">
+                <p class="text-xl text-gray-400">Hint: Remember to add resistances in series, then use Ohm's Law.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Solution to Practice Problem (Series) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Solution to Problem 1</h2>
+            <p class="text-2xl mb-4">First, find the total resistance ($R_{total}$):</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$R_{total} = R_1 + R_2 = 4 + 2 = 6 \, \Omega$$</p>
+            <p class="text-2xl mb-4">Now, use Ohm's Law to find the total current ($I_{total}$):</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$I_{total} = \frac{V_{total}}{R_{total}} = \frac{12 \, \text{V}}{6 \, \Omega} = 2 \, \text{A}$$</p>
+        </div>
+    </div>
+
+    <!-- Slide 12: Practice Problem (Parallel) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Practice Problem 2 (Parallel)</h2>
+            <p class="text-2xl mb-4">A parallel circuit has a $12 \, \text{V}$ battery and two resistors with values of $3 \, \Omega$ and $6 \, \Omega$. Calculate the total resistance of the circuit and the total current flowing through the circuit.</p>
+            <div class="p-4 bg-gray-800 rounded-lg shadow-xl mt-8">
+                <p class="text-xl text-gray-400">Hint: Use the reciprocal formula for parallel resistance, then use Ohm's Law.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Solution to Practice Problem (Parallel) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Solution to Problem 2</h2>
+            <p class="text-2xl mb-4">First, find the total resistance ($R_{total}$):</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$\frac{1}{R_{total}} = \frac{1}{R_1} + \frac{1}{R_2} = \frac{1}{3} + \frac{1}{6} = \frac{2}{6} + \frac{1}{6} = \frac{3}{6} = \frac{1}{2}$$</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$R_{total} = 2 \, \Omega$$</p>
+            <p class="text-2xl mb-4">Now, use Ohm's Law to find the total current ($I_{total}$):</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$I_{total} = \frac{V_{total}}{R_{total}} = \frac{12 \, \text{V}}{2 \, \Omega} = 6 \, \text{A}$$</p>
+        </div>
+    </div>
+
+    <!-- Slide 14: Intermediate Practice Problem -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Intermediate Problem (Combination Circuit)</h2>
+            <p class="text-2xl mb-4">A circuit has a $20 \, \text{V}$ battery. The circuit contains a $5 \, \Omega$ resistor in series with a parallel combination of two $10 \, \Omega$ resistors. Find the total resistance and the total current flowing from the battery. </p>
+            <div class="p-4 bg-gray-800 rounded-lg shadow-xl mt-8">
+                <p class="text-xl text-gray-400">Hint: Simplify the parallel part of the circuit first, then add the series resistance.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Solution to Intermediate Problem -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Solution to Intermediate Problem</h2>
+            <p class="text-2xl mb-4">First, find the equivalent resistance of the two parallel resistors ($R_p$):</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$\frac{1}{R_{p}} = \frac{1}{10} + \frac{1}{10} = \frac{2}{10} = \frac{1}{5}$$</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$R_p = 5 \, \Omega$$</p>
+            <p class="text-2xl mb-4">Now, add this parallel resistance to the series resistor to find the total resistance ($R_{total}$):</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$R_{total} = R_{series} + R_p = 5 + 5 = 10 \, \Omega$$</p>
+            <p class="text-2xl mb-4">Finally, use Ohm's Law to find the total current ($I_{total}$):</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$I_{total} = \frac{V_{total}}{R_{total}} = \frac{20 \, \text{V}}{10 \, \Omega} = 2 \, \text{A}$$</p>
+        </div>
+    </div>
+
+    <!-- Slide 16: Interactive Quiz -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Interactive Quiz</h2>
+            <div id="quiz-question-container" class="bg-gray-800 p-8 rounded-lg shadow-xl w-full">
+                <p id="quiz-question" class="text-3xl mb-8"></p>
+                <div id="quiz-answers" class="flex flex-col space-y-4"></div>
+                <p id="quiz-feedback" class="text-xl mt-4 h-8"></p>
+                <button id="next-button" class="mt-8 px-6 py-3 bg-gray-700 text-white rounded-lg hidden">Next Question</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 17: Summary -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Summary</h2>
+            <ul class="list-disc list-inside space-y-4 text-2xl">
+                <li><strong>Current ($I$)</strong> is the flow of charge.</li>
+                <li><strong>Voltage ($V$)</strong> is the push or potential difference.</li>
+                <li><strong>Resistance ($R$)</strong> is the opposition to flow.</li>
+                <li><strong>Ohm's Law:</strong> $V = IR$.</li>
+                <li><strong>Series circuits</strong> have one path, so current is constant.</li>
+                <li><strong>Parallel circuits</strong> have multiple paths, so voltage is constant.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 18: Final Slide -->
+    <div class="slide fade-in flex items-center justify-center">
+        <div class="max-w-3xl text-center">
+            <h2 class="text-5xl font-bold mb-4">Thank You</h2>
+            <p class="text-2xl text-gray-400">Any questions?</p>
+        </div>
+    </div>
+    
+    <!-- Navigation buttons -->
+    <button class="absolute top-1/2 left-8 -translate-y-1/2 bg-gray-800 text-white p-4 rounded-full opacity-70 hover:opacity-100 transition-opacity duration-300 z-10" onclick="plusSlides(-1)">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <button class="absolute top-1/2 right-8 -translate-y-1/2 bg-gray-800 text-white p-4 rounded-full opacity-70 hover:opacity-100 transition-opacity duration-300 z-10" onclick="plusSlides(1)">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+</div>
+
+<script>
+    let slideIndex = 1;
+    let totalSlides;
+    const navDotsContainer = document.getElementById("nav-dots-container");
+    const quizQuestions = [
+        {
+            question: "What is the unit of electric current?",
+            answers: ["Volt", "Ohm", "Ampere"],
+            correct: 2
+        },
+        {
+            question: "In a series circuit, what property is the same across all components?",
+            answers: ["Voltage", "Current", "Resistance"],
+            correct: 1
+        },
+        {
+            question: "According to Ohm's Law, what is the formula for current?",
+            answers: ["$I = V \\times R$", "$I = V/R$", "$I = R/V$"],
+            correct: 1
+        },
+        {
+            question: "What is the total resistance of two resistors ($2 \, \\Omega$ and $4 \, \\Omega$) connected in series?",
+            answers: ["$2.0 \, \\Omega$", "$6.0 \, \\Omega$", "$1.33 \, \\Omega$"],
+            correct: 1
+        },
+        {
+            question: "What is resistance?",
+            answers: ["The rate of charge flow", "The 'push' for charge flow", "The opposition to charge flow"],
+            correct: 2
+        }
+    ];
+    let currentQuizQuestion = 0;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        totalSlides = document.getElementsByClassName("slide").length;
+        createNavDots();
+        showSlides(slideIndex);
+    });
+
+    // Create navigation dots
+    function createNavDots() {
+        navDotsContainer.innerHTML = '';
+        for (let i = 1; i <= totalSlides; i++) {
+            const dot = document.createElement("div");
+            dot.classList.add("w-3", "h-3", "bg-gray-600", "rounded-full", "transition-all", "duration-300", "cursor-pointer", "z-30", "relative", "my-2");
+            dot.onclick = () => currentSlide(i);
+            navDotsContainer.appendChild(dot);
+        }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight') {
+            plusSlides(1);
+        } else if (event.key === 'ArrowLeft') {
+            plusSlides(-1);
+        }
+    });
+
+    // Function to change slides based on n (1 for next, -1 for previous)
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Function to set the current slide
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    // Main function to display the slides
+    function showSlides(n) {
+        let slides = document.getElementsByClassName("slide");
+        let dots = navDotsContainer.getElementsByTagName("div");
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            slides[i].classList.remove('active-slide');
+            dots[i].classList.remove('bg-yellow-300', 'scale-125');
+            dots[i].classList.add('bg-gray-600');
+        }
+        slides[slideIndex - 1].style.display = "flex";
+        slides[slideIndex - 1].classList.add('active-slide');
+        dots[slideIndex - 1].classList.remove('bg-gray-600');
+        dots[slideIndex - 1].classList.add('bg-yellow-300', 'scale-125');
+
+        // Check for the canvas slide and draw the graph
+        if (slides[slideIndex - 1].querySelector('#vi-graph-canvas')) {
+            drawVIGraph();
+        }
+        
+        // Check for the quiz slide and load content
+        if (slides[slideIndex - 1].querySelector('#quiz-question-container')) {
+            loadQuizQuestion();
+        }
+        
+        // This is the fix: tell MathJax to re-render the content
+        if (typeof MathJax !== 'undefined') {
+            MathJax.typeset();
+        }
+    }
+
+    // Function to draw the V-I graph on the canvas
+    function drawVIGraph() {
+        const canvas = document.getElementById('vi-graph-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+        const padding = 50;
+
+        // Clear the canvas
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#1a202c'; // Dark background
+        ctx.fillRect(0, 0, width, height);
+
+        // Draw axes
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(padding, height - padding);
+        ctx.lineTo(width - padding, height - padding); // X-axis
+        ctx.moveTo(padding, height - padding);
+        ctx.lineTo(padding, padding); // Y-axis
+        ctx.stroke();
+
+        // Draw arrowheads
+        ctx.beginPath();
+        ctx.moveTo(width - padding - 10, height - padding - 5);
+        ctx.lineTo(width - padding, height - padding);
+        ctx.lineTo(width - padding - 10, height - padding + 5);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(padding - 5, padding + 10);
+        ctx.lineTo(padding, padding);
+        ctx.lineTo(padding + 5, padding + 10);
+        ctx.fill();
+
+        // Label axes
+        ctx.font = '24px Inter';
+        ctx.fillStyle = '#e2e8f0';
+        ctx.textAlign = 'center';
+        ctx.fillText('Current (I)', width - padding, height - padding + 30);
+        ctx.save();
+        ctx.translate(padding - 30, height / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('Voltage (V)', 0, 0);
+        ctx.restore();
+
+        // Draw the data points and lines
+        const data1 = [
+            {v: 0, i: 0}, {v: 2, i: 1}, {v: 4, i: 2}, {v: 6, i: 3}
+        ];
+        const data2 = [
+            {v: 0, i: 0}, {v: 4, i: 1}, {v: 8, i: 2}, {v: 12, i: 3}
+        ];
+        const xScale = (width - 2 * padding) / 4;
+        const yScale = (height - 2 * padding) / 12;
+
+        // Draw the first line (low resistance)
+        ctx.strokeStyle = '#4caf50'; // Green line
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(padding, height - padding);
+        data1.forEach(point => {
+            const x = padding + point.i * xScale;
+            const y = height - padding - point.v * yScale;
+            ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+
+        // Draw the second line (high resistance)
+        ctx.strokeStyle = '#f44336'; // Red line
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(padding, height - padding);
+        data2.forEach(point => {
+            const x = padding + point.i * xScale;
+            const y = height - padding - point.v * yScale;
+            ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+
+        // Add labels to the lines
+        ctx.font = '16px Inter';
+        ctx.fillStyle = '#4caf50';
+        ctx.textAlign = 'right';
+        ctx.fillText('Low Resistance', width - padding - 10, height - padding - 200);
+        ctx.fillStyle = '#f44336';
+        ctx.fillText('High Resistance', width - padding - 10, height - padding - 100);
+    }
+
+    // Quiz functions
+    function loadQuizQuestion() {
+        const questionData = quizQuestions[currentQuizQuestion];
+        const questionElement = document.getElementById('quiz-question');
+        const answersElement = document.getElementById('quiz-answers');
+        const feedbackElement = document.getElementById('quiz-feedback');
+        const nextButton = document.getElementById('next-button');
+        
+        questionElement.innerHTML = questionData.question;
+        answersElement.innerHTML = '';
+        feedbackElement.textContent = '';
+        nextButton.classList.add('hidden');
+
+        questionData.answers.forEach((answer, index) => {
+            const button = document.createElement('button');
+            button.textContent = answer;
+            button.classList.add('answer-choice', 'p-4', 'bg-gray-700', 'rounded-lg', 'text-xl', 'text-white');
+            button.onclick = () => checkAnswer(index, questionData.correct);
+            answersElement.appendChild(button);
+        });
+        
+        if (typeof MathJax !== 'undefined') {
+            MathJax.typesetPromise([questionElement, answersElement]);
+        }
+    }
+
+    function checkAnswer(selectedIndex, correctAnswerIndex) {
+        const answers = document.getElementById('quiz-answers').children;
+        const feedbackElement = document.getElementById('quiz-feedback');
+        const nextButton = document.getElementById('next-button');
+
+        // Disable all buttons to prevent multiple answers
+        Array.from(answers).forEach((button, index) => {
+            button.disabled = true;
+            if (index === correctAnswerIndex) {
+                button.classList.add('correct-answer');
+            } else {
+                button.classList.add('incorrect-answer');
+            }
+        });
+
+        if (selectedIndex === correctAnswerIndex) {
+            feedbackElement.textContent = "Correct! Well done.";
+            feedbackElement.classList.remove('text-red-400');
+            feedbackElement.classList.add('text-green-400');
+        } else {
+            feedbackElement.textContent = "Incorrect.";
+            feedbackElement.classList.remove('text-green-400');
+            feedbackElement.classList.add('text-red-400');
+        }
+        
+        // Show the next question button
+        nextButton.classList.remove('hidden');
+        nextButton.onclick = () => {
+            currentQuizQuestion = (currentQuizQuestion + 1) % quizQuestions.length;
+            loadQuizQuestion();
+        };
+    }
+</script>
+
+</body>
+</html>
