@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Measuring Time</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e2e8f0;
+        }
+        .slide {
+            display: none;
+            transition: opacity 0.6s ease-in-out;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+        }
+        .fade-in {
+            animation-name: fadeIn;
+            animation-duration: 1.2s;
+        }
+        .scale-up {
+            animation-name: scaleUp;
+            animation-duration: 0.8s;
+            animation-delay: 0.4s;
+            animation-fill-mode: both;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scaleUp {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .container {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .game-input {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #94a3b8;
+            width: 100%;
+            max-width: 300px;
+            font-size: 1.125rem;
+            text-align: center;
+        }
+        .feedback {
+            font-weight: 600;
+            margin-top: 1rem;
+            min-height: 2rem;
+        }
+        .svg-drawing {
+            max-width: 400px;
+            height: auto;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    <!-- Main container for the presentation -->
+    <div class="relative w-full max-w-4xl mx-auto bg-slate-100 rounded-none shadow-none container">
+
+        <!-- All Slides -->
+        <div class="slideshow-container w-full h-full">
+
+            <!-- Slide 1: Title Slide -->
+            <div class="slide fade-in p-8">
+                <h1 class="text-4xl font-extrabold text-indigo-700 mb-4 scale-up">The Rhythm of Existence</h1>
+                <h2 class="text-2xl font-semibold text-gray-800 scale-up">A Journey Through Measuring Time</h2>
+                <div class="svg-drawing mt-12">
+                    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="95" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+                        <circle cx="100" cy="100" r="85" fill="#f1f5f9"/>
+                        <line x1="100" y1="100" x2="100" y2="25" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" id="minute-hand"/>
+                        <line x1="100" y1="100" x2="100" y2="45" stroke="#ef4444" stroke-width="6" stroke-linecap="round" id="hour-hand"/>
+                        <circle cx="100" cy="100" r="5" fill="#334155"/>
+                        <text x="100" y="20" text-anchor="middle" font-size="16" fill="#334155" font-weight="bold">12</text>
+                        <text x="185" y="105" text-anchor="middle" font-size="16" fill="#334155" font-weight="bold">3</text>
+                        <text x="100" y="190" text-anchor="middle" font-size="16" fill="#334155" font-weight="bold">6</text>
+                        <text x="15" y="105" text-anchor="middle" font-size="16" fill="#334155" font-weight="bold">9</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 2: What is Time? -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">What is Time?</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Time is a fundamental dimension that allows us to sequence events, measure their duration, and understand the flow of existence from the past to the future. It's not just a number; it's the framework of our lives.
+                </p>
+            </div>
+
+            <!-- Slide 3: Ancient Timekeeping -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Ancient Timekeeping</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    For centuries, humanity relied on natural cycles to track time. The sun's position gave us days, the moon's phases gave us months, and the changing seasons gave us years. The **sundial** was one of the earliest tools to formalize this process. 
+                </p>
+            </div>
+
+            <!-- Slide 4: The Rise of the Clock -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">The Rise of the Clock</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    As societies grew more complex, we needed more precise measurements. Mechanical clocks and watches revolutionized our ability to measure and manage time, leading to industrialization and global coordination. 
+                </p>
+                <div class="svg-drawing mt-8">
+                    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="95" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>
+                        <circle cx="100" cy="100" r="85" fill="#fff"/>
+                        <g id="clock-hands">
+                            <line x1="100" y1="100" x2="100" y2="45" stroke="#3b82f6" stroke-width="6" stroke-linecap="round" transform="rotate(270 100 100)" id="hour-hand-static"/>
+                            <line x1="100" y1="100" x2="100" y2="25" stroke="#ef4444" stroke-width="4" stroke-linecap="round" transform="rotate(30 100 100)" id="minute-hand-static"/>
+                            <circle cx="100" cy="100" r="5" fill="#334155"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 5: Units of Time -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Units of Time</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Our system of time is built on a simple hierarchy.
+                </p>
+                <div class="overflow-x-auto scale-up mt-8">
+                    <table class="w-full table-auto border-collapse rounded-lg overflow-hidden shadow-lg">
+                        <thead class="bg-indigo-600 text-white">
+                            <tr>
+                                <th class="p-4">Unit</th>
+                                <th class="p-4">Equals</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-indigo-50 text-gray-800">
+                            <tr><td class="p-4 font-semibold">1 Minute</td><td class="p-4">60 Seconds</td></tr>
+                            <tr><td class="p-4 font-semibold">1 Hour</td><td class="p-4">60 Minutes</td></tr>
+                            <tr><td class="p-4 font-semibold">1 Day</td><td class="p-4">24 Hours</td></tr>
+                            <tr><td class="p-4 font-semibold">1 Year</td><td class="p-4">365 Days</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Slide 6: Simple Problem -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 scale-up">Time Conversion</h2>
+                <div id="simple-problem" class="w-full max-w-xl text-center scale-up">
+                    <div class="text-xl font-medium text-gray-800 mb-4">
+                        A movie is <strong>150 minutes</strong> long. How many hours and minutes is this?
+                    </div>
+                    <div class="flex items-center justify-center space-x-2">
+                        <input type="number" id="simple-hours-input" class="game-input mb-4" placeholder="Hours">
+                        <input type="number" id="simple-minutes-input" class="game-input mb-4" placeholder="Minutes">
+                        <button id="simple-submit" class="w-1/3 py-3 px-4 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition-colors">Check</button>
+                    </div>
+                    <div id="simple-feedback" class="feedback text-lg"></div>
+                </div>
+            </div>
+            
+            <!-- Slide 7: Hard Problem -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 scale-up">Elapsed Time</h2>
+                <div id="intermediate-problem" class="w-full max-w-xl text-center scale-up">
+                    <div class="text-xl font-medium text-gray-800 mb-4">
+                        If you start an experiment at <strong>2:30 PM</strong> and finish at <strong>5:15 PM</strong>, how many minutes did the experiment last?
+                    </div>
+                    <div class="flex items-center justify-center space-x-2">
+                        <input type="number" id="hard-input" class="game-input mb-4" placeholder="Enter minutes">
+                        <button id="hard-submit" class="w-1/3 py-3 px-4 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition-colors">Check</button>
+                    </div>
+                    <div id="hard-feedback" class="feedback text-lg"></div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Time Trial Game -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 scale-up">Time Trial: What's the Time?</h2>
+                <p class="text-lg text-gray-700 mb-4 scale-up">Look at the clock and enter the time!</p>
+                <div id="game-container" class="w-full max-w-xl text-center scale-up">
+                    <div class="svg-drawing mt-4">
+                        <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="95" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+                            <circle cx="100" cy="100" r="85" fill="#f1f5f9"/>
+                            <line x1="100" y1="100" x2="100" y2="25" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" id="game-minute-hand"/>
+                            <line x1="100" y1="100" x2="100" y2="45" stroke="#ef4444" stroke-width="6" stroke-linecap="round" id="game-hour-hand"/>
+                            <circle cx="100" cy="100" r="5" fill="#334155"/>
+                            <text x="100" y="20" text-anchor="middle" font-size="16" fill="#334155" font-weight="bold">12</text>
+                            <text x="185" y="105" text-anchor="middle" font-size="16" fill="#334155" font-weight="bold">3</text>
+                            <text x="100" y="190" text-anchor="middle" font-size="16" fill="#334155" font-weight="bold">6</text>
+                            <text x="15" y="105" text-anchor="middle" font-size="16" fill="#334155" font-weight="bold">9</text>
+                        </svg>
+                    </div>
+                    <div class="flex items-center justify-center space-x-2 mt-4">
+                        <input type="text" id="game-input" class="game-input mb-4" placeholder="e.g., 3:45">
+                        <button id="game-submit" class="w-1/3 py-3 px-4 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition-colors">Check</button>
+                    </div>
+                    <div id="game-feedback" class="feedback text-lg"></div>
+                    <div id="game-score" class="text-xl font-bold mt-4">Score: 0</div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Inspirational Quote -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">A Word on Time</h2>
+                <p class="text-xl font-medium text-gray-700 max-w-2xl italic scale-up">
+                    "The bad news is time flies. The good news is you're the pilot."
+                </p>
+                <p class="text-lg font-semibold text-gray-500 mt-4 scale-up">- Michael Altshuler</p>
+            </div>
+
+            <!-- Slide 10: Conclusion/Summary -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">The Power of a Moment</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Whether we measure it by the sun or an atomic clock, time is our most precious resource. Every second, minute, and hour is an opportunity to create, learn, and grow. The way we measure time tells us about our past, but the way we use it determines our future.
+                </p>
+            </div>
+
+            <!-- Slide 11: Final Quote -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Embrace Every Second</h2>
+                <p class="text-xl font-semibold text-indigo-700 scale-up">Make your time count.</p>
+                <div class="svg-drawing mt-8">
+                    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 100 150 C 120 180, 180 180, 200 150 L 200 50 L 100 50 Z" fill="#a5f3fc" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 220 150 L 300 150" stroke="#6b7280" stroke-width="2"/>
+                        <circle cx="260" cy="150" r="5" fill="#4b5563"/>
+                        <text x="240" y="165" font-size="12" fill="#4b5563">10 cm</text>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation buttons -->
+        <button id="prevBtn" class="absolute top-1/2 left-4 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full opacity-70 hover:opacity-100 transition-opacity duration-300 z-10 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <button id="nextBtn" class="absolute top-1/2 right-4 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full opacity-70 hover:opacity-100 transition-opacity duration-300 z-10 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+
+        <!-- Dot indicators -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+            <!-- JavaScript will generate these dots -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let slideIndex = 1;
+            const slides = document.getElementsByClassName("slide");
+            const dotsContainer = document.querySelector(".absolute.bottom-4");
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+
+            const gameProblems = [
+                "1:45", "7:30", "11:00", "4:15"
+            ];
+            let currentGameProblemIndex = 0;
+            let gameScore = 0;
+
+            function createDots() {
+                for (let i = 0; i < slides.length; i++) {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot', 'inline-block', 'h-3', 'w-3', 'rounded-full', 'bg-gray-400', 'cursor-pointer', 'transition-colors', 'duration-300');
+                    dot.setAttribute('data-slide-index', i + 1);
+                    dot.addEventListener('click', () => currentSlide(i + 1));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function showSlides(n) {
+                let i;
+                const dots = document.getElementsByClassName("dot");
+
+                if (n > slides.length) { slideIndex = 1; }
+                if (n < 1) { slideIndex = slides.length; }
+
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].classList.remove('bg-indigo-600');
+                    dots[i].classList.add('bg-gray-400');
+                }
+
+                slides[slideIndex - 1].style.display = "flex";
+                dots[slideIndex - 1].classList.remove('bg-gray-400');
+                dots[slideIndex - 1].classList.add('bg-indigo-600');
+                
+                if (slideIndex === 8) {
+                    loadGameProblem();
+                }
+            }
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+            
+            document.getElementById('simple-submit').addEventListener('click', () => {
+                const hoursInput = document.getElementById('simple-hours-input').value;
+                const minutesInput = document.getElementById('simple-minutes-input').value;
+                const feedback = document.getElementById('simple-feedback');
+                const correctHours = Math.floor(150 / 60);
+                const correctMinutes = 150 % 60;
+
+                if (parseInt(hoursInput) === correctHours && parseInt(minutesInput) === correctMinutes) {
+                    feedback.textContent = `Correct! 150 minutes is ${correctHours} hours and ${correctMinutes} minutes.`;
+                    feedback.style.color = '#10b981';
+                } else {
+                    feedback.textContent = "Incorrect. Remember that there are 60 minutes in an hour.";
+                    feedback.style.color = '#ef4444';
+                }
+            });
+
+            document.getElementById('hard-submit').addEventListener('click', () => {
+                const input = document.getElementById('hard-input').value;
+                const feedback = document.getElementById('hard-feedback');
+                const startMinutes = 14 * 60 + 30; // 2:30 PM is 14:30 in 24-hour format
+                const endMinutes = 17 * 60 + 15; // 5:15 PM is 17:15
+                const elapsedMinutes = endMinutes - startMinutes;
+
+                if (parseInt(input) === elapsedMinutes) {
+                    feedback.textContent = `Correct! The experiment lasted ${elapsedMinutes} minutes.`;
+                    feedback.style.color = '#10b981';
+                } else {
+                    feedback.textContent = "Incorrect. Double-check your calculation.";
+                    feedback.style.color = '#ef4444';
+                }
+            });
+
+            function loadGameProblem() {
+                if (currentGameProblemIndex >= gameProblems.length) {
+                    document.getElementById('game-input').disabled = true;
+                    document.getElementById('game-submit').disabled = true;
+                    document.getElementById('game-feedback').textContent = "Game Over! You finished the game.";
+                    return;
+                }
+
+                const timeString = gameProblems[currentGameProblemIndex];
+                const [hours, minutes] = timeString.split(':').map(Number);
+                
+                const hourHand = document.getElementById('game-hour-hand');
+                const minuteHand = document.getElementById('game-minute-hand');
+                
+                const minuteRotation = minutes * 6;
+                const hourRotation = (hours % 12) * 30 + (minutes * 0.5);
+
+                hourHand.setAttribute('transform', `rotate(${hourRotation} 100 100)`);
+                minuteHand.setAttribute('transform', `rotate(${minuteRotation} 100 100)`);
+                
+                document.getElementById('game-input').value = '';
+                document.getElementById('game-feedback').textContent = '';
+            }
+
+            document.getElementById('game-submit').addEventListener('click', () => {
+                const input = document.getElementById('game-input').value.trim();
+                const feedback = document.getElementById('game-feedback');
+                const scoreEl = document.getElementById('game-score');
+                const correctTimeString = gameProblems[currentGameProblemIndex];
+                
+                // Use a regular expression to handle different separators
+                const timeMatch = input.match(/^(\d{1,2})[:.](\d{2})$/);
+                let isCorrect = false;
+
+                if (timeMatch) {
+                    const inputHours = parseInt(timeMatch[1], 10);
+                    const inputMinutes = parseInt(timeMatch[2], 10);
+                    const [correctHours, correctMinutes] = correctTimeString.split(':').map(Number);
+                    
+                    if (inputHours === correctHours && inputMinutes === correctMinutes) {
+                        isCorrect = true;
+                    }
+                }
+
+                if (isCorrect) {
+                    feedback.textContent = "Correct!";
+                    feedback.style.color = '#10b981';
+                    gameScore++;
+                    scoreEl.textContent = `Score: ${gameScore}`;
+                } else {
+                    feedback.textContent = `Incorrect. The correct time was ${correctTimeString}.`;
+                    feedback.style.color = '#ef4444';
+                }
+                
+                setTimeout(() => {
+                    currentGameProblemIndex++;
+                    loadGameProblem();
+                }, 1500);
+            });
+
+            prevBtn.addEventListener('click', () => plusSlides(-1));
+            nextBtn.addEventListener('click', () => plusSlides(1));
+
+            createDots();
+            showSlides(slideIndex);
+        });
+    </script>
+</body>
+</html>
