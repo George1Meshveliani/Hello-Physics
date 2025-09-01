@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnetism: The Invisible Force</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // MathJax configuration for LaTeX rendering
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            overflow: hidden;
+        }
+        .slide {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            transition: opacity 0.7s ease-in-out;
+            background-color: #121212;
+            padding: 4rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+        .active-slide {
+            display: flex;
+        }
+        .fade-in {
+            animation-name: fadein;
+            animation-duration: 1.5s;
+        }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        .answer-choice {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .answer-choice:hover {
+            background-color: #3f51b5;
+            transform: scale(1.02);
+        }
+        .correct-answer {
+            background-color: #4caf50;
+        }
+        .incorrect-answer {
+            background-color: #f44336;
+        }
+
+        /* Canvas Styles */
+        .simulation-canvas {
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            background-color: #1E1E1E;
+        }
+        #earth-canvas-container {
+            width: 80%;
+            max-width: 800px;
+            height: 500px;
+            position: relative;
+        }
+        #earth-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .info-box {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            max-width: 300px;
+            pointer-events: none; /* Allows mouse events to pass through to the canvas */
+        }
+
+        /* Custom scrollbar for better styling */
+        .slide::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .slide::-webkit-scrollbar-track {
+            background: #1E1E1E;
+            border-radius: 10px;
+        }
+
+        .slide::-webkit-scrollbar-thumb {
+            background-color: #383838;
+            border-radius: 10px;
+            border: 2px solid #121212;
+        }
+        .pole-label {
+            position: absolute;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: white; /* Default color */
+            transition: color 0.5s ease;
+        }
+        .pole-label.north {
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .pole-label.south {
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .pole-label.north.attract {
+            color: #ef4444; /* Red for attract */
+        }
+        .pole-label.south.attract {
+            color: #3b82f6; /* Blue for attract */
+        }
+        .pole-label.north.repel {
+            color: #3b82f6; /* Blue for repel */
+        }
+        .pole-label.south.repel {
+            color: #ef4444; /* Red for repel */
+        }
+        .magnet {
+            transition: all 0.5s ease;
+        }
+        .card {
+            background-color: #1E1E1E;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            padding: 2.5rem;
+        }
+        .formula {
+            background-color: #282828;
+            padding: 1.5rem 2rem;
+            border-left: 5px solid #6366F1;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+
+<!-- Main Slideshow Container -->
+<div id="slideshow-container" class="relative w-full h-full">
+
+    <!-- Vertical Navigation -->
+    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center space-y-2">
+        <div class="h-full w-0.5 bg-gray-700 absolute top-0 left-1/2 -translate-x-1/2 rounded-full"></div>
+        <div id="nav-dots-container" class="relative flex flex-col items-center">
+        </div>
+    </div>
+
+    <!-- Slide 1: Title Slide -->
+    <div class="slide fade-in active-slide flex items-center justify-center">
+        <div class="max-w-4xl text-center card">
+            <h1 class="text-6xl md:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">Magnetism</h1>
+            <h2 class="text-4xl md:text-5xl font-semibold text-gray-300">The Invisible Force</h2>
+        </div>
+    </div>
+
+    <!-- Slide 2: Lesson Plan -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Lesson Plan</h2>
+            <ul class="list-disc list-inside space-y-4 text-2xl md:text-3xl font-light">
+                <li>What is Magnetism?</li>
+                <li><strong>Magnetic Poles</strong> & <strong>Fields</strong></li>
+                <li><strong>Electromagnetism</strong></li>
+                <li><strong>Magnetic Force</strong> on Charges (Lorentz Force)</li>
+                <li>Magnetic <strong>Induction</strong></li>
+                <li>Maxwell's Equations</li>
+                <li>Applications & Problems</li>
+                <li>Interactive Quiz</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 3: Introduction -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">What is Magnetism?</h2>
+            <p class="text-2xl font-light leading-relaxed"><strong>Magnetism</strong> is a fundamental force of nature produced by moving electric charges. It is responsible for the forces of attraction or repulsion between objects.</p>
+        </div>
+    </div>
+
+    <!-- Slide 4: Simple Examples -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Simple Examples</h2>
+            <div class="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-16 items-center">
+                <div class="flex flex-col items-center">
+                    <svg class="w-24 h-24 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1.5 8.5L12 11.25l1.5 3.25L12 18l-1.5-3.25z"/>
+                        <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 7v5h5" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <p class="mt-4 text-xl">A fridge magnet sticking to your refrigerator and a <strong>compass</strong> needle pointing North.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Magnetic Poles -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Magnetic Poles</h2>
+            <p class="text-2xl font-light mb-8">Every magnet has two ends called <strong>poles</strong>: a <strong>North pole</strong> (N) and a <strong>South pole</strong> (S).</p>
+            <div class="flex items-center justify-center space-x-8">
+                <div class="flex flex-col items-center">
+                    <div class="w-24 h-48 rounded-lg shadow-xl bg-gradient-to-t from-red-500 to-blue-500 flex flex-col justify-between items-center py-4 text-xl font-bold">
+                        <span class="text-white">N</span>
+                        <span class="text-white">S</span>
+                    </div>
+                    <p class="mt-4 text-xl">Bar Magnet</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-48 h-24 rounded-lg shadow-xl bg-gradient-to-r from-blue-500 to-red-500 flex justify-between items-center px-4 text-xl font-bold">
+                        <span class="text-white">S</span>
+                        <span class="text-white">N</span>
+                    </div>
+                    <p class="mt-4 text-xl">Another example</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Rule of Poles -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">The Rule of Magnetic Poles</h2>
+            <p class="text-2xl font-light mb-8">This is one of the most fundamental rules of magnetism:</p>
+            <ul class="list-disc list-inside space-y-4 text-2xl text-left mx-auto max-w-lg font-light">
+                <li><strong>Like poles repel:</strong> North repels North, and South repels South.</li>
+                <li><strong>Unlike poles attract:</strong> North attracts South.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 7: Interactive Pole Simulation -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Interactive: Pole Interaction</h2>
+            <p class="text-2xl font-light mb-8">Observe the behavior of two magnets as you change their polarity.</p>
+            <div class="flex items-center justify-center space-x-12">
+                <div id="magnet1-container" class="relative">
+                    <div id="magnet1" class="w-32 h-64 rounded-lg shadow-xl magnet transition-transform duration-1000">
+                         <span id="magnet1-N" class="pole-label north">N</span>
+                         <span id="magnet1-S" class="pole-label south">S</span>
+                    </div>
+                </div>
+                <div id="magnet2-container" class="relative">
+                    <div id="magnet2" class="w-32 h-64 rounded-lg shadow-xl magnet transition-transform duration-1000">
+                         <span id="magnet2-N" class="pole-label north">N</span>
+                         <span id="magnet2-S" class="pole-label south">S</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 space-x-4">
+                <button onclick="setMagnets('attract')" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:scale-105 transition-transform">Attract</button>
+                <button onclick="setMagnets('repel')" class="px-6 py-3 bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-full font-semibold hover:scale-105 transition-transform">Repel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Magnetic Field -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">The Magnetic Field</h2>
+            <p class="text-2xl font-light">A <strong>magnetic field</strong> is the area of magnetic force around a magnet. It is an invisible field that can exert a force on other magnetic materials.</p>
+        </div>
+    </div>
+
+    <!-- Slide 9: Magnetic Field Lines -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Magnetic Field Lines</h2>
+            <p class="text-2xl font-light mb-8">We visualize magnetic fields using <strong>magnetic field lines</strong>. These lines:
+            <ul class="list-disc list-inside space-y-2 text-2xl text-left mx-auto max-w-xl mt-4 font-light">
+                <li>Always point away from the North pole.</li>
+                <li>Always point towards the South pole.</li>
+                <li>Never cross each other.</li>
+                <li>The density of the lines indicates the strength of the field.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 10: Interactive Field Lines -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Simulation: Magnetic Field Lines</h2>
+            <p class="text-2xl font-light mb-8">Watch how iron filings (particles) trace out the invisible field lines around a bar magnet.</p>
+            <canvas id="fieldCanvas" width="500" height="300" class="simulation-canvas"></canvas>
+        </div>
+    </div>
+
+    <!-- Slide 11: Earth's Magnetic Field (Updated with 3D Canvas) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Earth: A Giant Magnet</h2>
+            <p class="text-2xl font-light mb-8">The Earth has its own magnetic field, generated by molten iron in its core. This field protects us from harmful <strong>solar radiation</strong>, creating a protective "shield" called the <strong>magnetosphere</strong>. Interact with the 3D model below.</p>
+            <div id="earth-canvas-container" class="relative">
+                <canvas id="earth-canvas" class="rounded-lg shadow-xl"></canvas>
+                <div class="info-box text-sm">
+                    <p class="mb-2 font-bold">Interactive 3D Model</p>
+                    <p class="mb-1">Click and drag to rotate.</p>
+                    <p>Scroll to zoom in/out.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: What Causes Magnetism? -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">What Causes Magnetism?</h2>
+            <p class="text-2xl font-light">Magnetism is fundamentally caused by moving electric charges. In magnetic materials, groups of atoms form <strong>magnetic domains</strong> that act like tiny magnets.</p>
+            <div class="flex justify-center space-x-12 mt-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Unmagnetized</h3>
+                    <svg width="200" height="200" viewBox="0 0 200 200" class="rounded-lg shadow-xl bg-gray-900">
+                        <rect x="0" y="0" width="200" height="200" fill="#1e1e1e" rx="10"/>
+                        <!-- Randomly oriented domains -->
+                        <path d="M50 50 L80 50 M65 50 L65 70" stroke="#fff" stroke-width="2" transform="rotate(30, 65, 60)" />
+                        <path d="M120 120 L150 120 M135 120 L135 140" stroke="#fff" stroke-width="2" transform="rotate(120, 135, 130)" />
+                        <path d="M150 40 L180 40 M165 40 L165 60" stroke="#fff" stroke-width="2" transform="rotate(210, 165, 50)" />
+                        <path d="M30 140 L60 140 M45 140 L45 160" stroke="#fff" stroke-width="2" transform="rotate(270, 45, 150)" />
+                        <path d="M80 180 L110 180 M95 180 L95 200" stroke="#fff" stroke-width="2" transform="rotate(90, 95, 190)" />
+                        <text x="65" y="70" font-size="10" fill="red" text-anchor="middle">N</text>
+                        <text x="135" y="140" font-size="10" fill="red" text-anchor="middle">N</text>
+                        <text x="165" y="60" font-size="10" fill="red" text-anchor="middle">N</text>
+                        <text x="45" y="160" font-size="10" fill="red" text-anchor="middle">N</text>
+                        <text x="95" y="200" font-size="10" fill="red" text-anchor="middle">N</text>
+                    </svg>
+                    <p class="text-sm mt-2 font-light">Domains are randomly oriented.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Magnetized</h3>
+                    <svg width="200" height="200" viewBox="0 0 200 200" class="rounded-lg shadow-xl bg-gray-900">
+                        <rect x="0" y="0" width="200" height="200" fill="#1e1e1e" rx="10"/>
+                        <!-- Aligned domains -->
+                        <path d="M20 20 L50 20 M35 20 L35 40" stroke="#fff" stroke-width="2" transform="rotate(90, 35, 30)" />
+                        <path d="M60 60 L90 60 M75 60 L75 80" stroke="#fff" stroke-width="2" transform="rotate(90, 75, 70)" />
+                        <path d="M100 100 L130 100 M115 100 L115 120" stroke="#fff" stroke-width="2" transform="rotate(90, 115, 110)" />
+                        <path d="M140 140 L170 140 M155 140 L155 160" stroke="#fff" stroke-width="2" transform="rotate(90, 155, 150)" />
+                        <path d="M120 20 L150 20 M135 20 L135 40" stroke="#fff" stroke-width="2" transform="rotate(90, 135, 30)" />
+                        <text x="35" y="40" font-size="10" fill="red" text-anchor="middle">N</text>
+                        <text x="75" y="80" font-size="10" fill="red" text-anchor="middle">N</text>
+                        <text x="115" y="120" font-size="10" fill="red" text-anchor="middle">N</text>
+                        <text x="155" y="160" font-size="10" fill="red" text-anchor="middle">N</text>
+                        <text x="135" y="40" font-size="10" fill="red" text-anchor="middle">N</text>
+                    </svg>
+                    <p class="text-sm mt-2 font-light">Domains are aligned, creating a strong field.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Ferromagnetic Materials -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Ferromagnetic Materials</h2>
+            <p class="text-2xl font-light">These are materials that can be strongly magnetized. They have a high concentration of aligned magnetic domains. Examples include:</p>
+            <div class="mt-8">
+                <ul class="list-disc list-inside space-y-2 text-2xl font-light">
+                    <li>Iron</li>
+                    <li>Nickel</li>
+                    <li>Cobalt</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Electromagnetism -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Electromagnetism</h2>
+            <p class="text-2xl font-light">The link between electricity and magnetism. When electric charge flows (a current), it creates a <strong>magnetic field</strong>. This is the basis of <strong>electromagnets</strong>.</p>
+        </div>
+    </div>
+
+    <!-- Slide 15: Oersted's Discovery -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Oersted's Discovery</h2>
+            <p class="text-2xl font-light">In 1820, Hans Christian Ørsted discovered that a compass needle deflects when placed near a current-carrying wire, proving that electricity and magnetism are related.</p>
+        </div>
+    </div>
+
+    <!-- Slide 16: Simple Wire Field -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">The Magnetic Field of a Wire</h2>
+            <p class="text-2xl font-light mb-8">A current-carrying wire produces a circular magnetic field around it. The strength decreases with distance from the wire.</p>
+            <canvas id="wireCanvas" width="500" height="300" class="simulation-canvas"></canvas>
+        </div>
+    </div>
+
+    <!-- Slide 17: Right-Hand Rule (for wire) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Right-Hand Rule (for a wire)</h2>
+            <p class="text-2xl font-light mb-8">To determine the direction of the <strong>magnetic field</strong> around a wire, imagine grasping the wire with your right hand:</p>
+            <ul class="list-disc list-inside space-y-2 text-2xl text-left mx-auto max-w-xl font-light">
+                <li>Point your thumb in the direction of the <strong>current</strong> ($I$).</li>
+                <li>Your curled fingers will point in the direction of the <strong>magnetic field</strong> ($B$).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 18: Magnetic Field Strength Formula -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Magnetic Field Strength</h2>
+            <p class="text-2xl font-light">For a long, straight current-carrying wire, the magnetic field strength ($B$) is given by:</p>
+            <div class="formula my-8">
+                <p class="text-3xl text-purple-300 font-bold my-2">$$B = \frac{\mu_0 I}{2\pi r}$$</p>
+            </div>
+            <ul class="list-disc list-inside space-y-2 text-xl text-left mx-auto max-w-lg font-light">
+                <li>$B$ is the <strong>magnetic field strength</strong> (Tesla, T).</li>
+                <li>$\mu_0$ is the <strong>permeability of free space</strong> ($4\pi \times 10^{-7} \, \text{T} \cdot \text{m/A}$).</li>
+                <li>$I$ is the <strong>current</strong> (Amperes, A).</li>
+                <li>$r$ is the <strong>distance</strong> from the wire (meters, m).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 19: Practice Problem 1 -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Practice Problem 1</h2>
+            <p class="text-2xl font-light mb-4">A long wire carries a current of $5 \, \text{A}$. What is the <strong>magnetic field strength</strong> at a distance of $0.1 \, \text{m}$ from the wire?</p>
+            <div class="p-4 bg-gray-800 rounded-lg shadow-xl mt-8">
+                <p class="text-xl text-gray-400">Hint: Use the formula $B = \frac{\mu_0 I}{2\pi r}$.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 20: Solution to Problem 1 -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Solution to Problem 1</h2>
+            <p class="text-2xl font-light mb-4">Using the formula:</p>
+            <div class="formula my-4 text-center">
+                <p class="text-2xl font-bold text-purple-300">$$B = \frac{(4\pi \times 10^{-7} \, \text{T} \cdot \text{m/A}) \times 5 \, \text{A}}{2\pi \times 0.1 \, \text{m}}$$</p>
+                <p class="text-2xl font-bold text-purple-300">$$B = \frac{20\pi \times 10^{-7}}{0.2\pi} = 1.0 \times 10^{-5} \, \text{T}$$</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 21: Force on a Moving Charge (Lorentz Force) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Magnetic Force on a Moving Charge</h2>
+            <p class="text-2xl font-light">A magnetic field exerts a force on a moving electric charge. This force is known as the <strong>Lorentz force</strong>.</p>
+        </div>
+    </div>
+
+    <!-- Slide 22: Lorentz Force Formula -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">The Lorentz Force Formula</h2>
+            <p class="text-2xl font-light">The magnitude of the force ($F$) on a charge ($q$) moving with velocity ($v$) in a magnetic field ($B$) is:</p>
+            <div class="formula my-8">
+                <p class="text-3xl font-bold text-purple-300">$$F = |q|vB \sin\theta$$</p>
+            </div>
+            <ul class="list-disc list-inside space-y-2 text-xl text-left mx-auto max-w-lg font-light">
+                <li>$F$ is the <strong>magnetic force</strong> (Newtons, N).</li>
+                <li>$q$ is the magnitude of the <strong>charge</strong> (Coulombs, C).</li>
+                <li>$v$ is the <strong>speed</strong> of the charge (m/s).</li>
+                <li>$B$ is the <strong>magnetic field strength</strong> (Tesla, T).</li>
+                <li>$\theta$ is the angle between the velocity vector and the magnetic field vector.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 23: Right-Hand Rule (for force) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Right-Hand Rule (for force)</h2>
+            <p class="text-2xl font-light">To determine the direction of the <strong>magnetic force</strong> on a <strong>positive</strong> charge:</p>
+            <ul class="list-disc list-inside space-y-2 text-2xl text-left mx-auto max-w-xl font-light">
+                <li>Point your thumb in the direction of the <strong>velocity</strong> ($v$).</li>
+                <li>Point your fingers in the direction of the <strong>magnetic field</strong> ($B$).</li>
+                <li>Your palm will push in the direction of the <strong>force</strong> ($F$).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 24: Charge in Magnetic Field Simulation -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Simulation: Charged Particle Motion</h2>
+            <p class="text-2xl font-light mb-8">A positive charge entering a uniform magnetic field will experience a force causing it to move in a circular path. Click to reset.</p>
+            <canvas id="lorentzCanvas" width="500" height="400" class="simulation-canvas"></canvas>
+        </div>
+    </div>
+
+    <!-- Slide 25: Problem 2 -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Practice Problem 2</h2>
+            <p class="text-2xl font-light mb-4">A proton (a positively charged particle) is moving from left to right. It enters a uniform <strong>magnetic field</strong> that is directed <strong>out of the page</strong>. What is the initial direction of the <strong>magnetic force</strong> on the proton?</p>
+            <div class="p-4 bg-gray-800 rounded-lg shadow-xl mt-8">
+                <p class="text-xl text-gray-400">Hint: Apply the Right-Hand Rule.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 26: Solution to Problem 2 -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Solution to Problem 2</h2>
+            <p class="text-2xl font-light mb-4">Using the <strong>Right-Hand Rule</strong>:</p>
+            <ul class="list-disc list-inside space-y-2 text-2xl font-light">
+                <li>Your thumb points right (direction of velocity).</li>
+                <li>Your fingers point out of the page (direction of the <strong>magnetic field</strong>).</li>
+                <li>Your palm pushes <strong>upwards</strong>.</li>
+            </ul>
+            <p class="text-2xl font-light mt-4">The initial <strong>magnetic force</strong> on the proton is <strong>upwards</strong>, perpendicular to both its velocity and the magnetic field.</p>
+        </div>
+    </div>
+
+    <!-- Slide 27: Magnetic Induction -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Magnetic Induction</h2>
+            <p class="text-2xl font-light">A changing <strong>magnetic field</strong> through a coil of wire induces an electric current. This is the principle behind <strong>Faraday's Law of Induction</strong> and the operation of electric generators.</p>
+        </div>
+    </div>
+
+    <!-- Slide 28: Induction Simulation -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Simulation: Induction Experiment</h2>
+            <p class="text-2xl font-light mb-8">Move the magnet in and out of the coil to see the induced current light up the bulb.</p>
+            <div class="flex flex-col items-center">
+                <canvas id="inductionCanvas" width="500" height="300" class="simulation-canvas"></canvas>
+                <div class="flex space-x-4 mt-4">
+                    <button onclick="moveMagnet('in')" class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-sky-600 text-white rounded-full font-semibold hover:scale-105 transition-transform">Move In</button>
+                    <button onclick="moveMagnet('out')" class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-sky-600 text-white rounded-full font-semibold hover:scale-105 transition-transform">Move Out</button>
+                    <button onclick="moveMagnet('stop')" class="px-6 py-3 bg-gray-600 text-white rounded-full font-semibold hover:scale-105 transition-transform">Stop</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 29: Maxwell's Equations -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Maxwell's Equations</h2>
+            <p class="text-2xl font-light">These four equations are the foundation of classical electromagnetism, uniting electricity, magnetism, and optics. They describe how electric and magnetic fields are generated by charges, currents, and by each other.</p>
+        </div>
+    </div>
+
+    <!-- Slide 30: Gauss's Law & Gauss's Law for Magnetism -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Gauss's Law & Magnetic Gauss's Law</h2>
+            <p class="text-2xl font-bold mb-4">1. Gauss's Law for Electricity:</p>
+            <div class="formula my-4">
+                <p class="text-3xl font-bold text-purple-300 text-center">$$\nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}$$</p>
+            </div>
+            <p class="text-xl font-light">This equation states that electric fields originate from electric charges. The divergence of the electric field ($\nabla \cdot \mathbf{E}$) is proportional to the electric charge density ($\rho$).</p>
+            <p class="text-2xl font-bold mt-8 mb-4">2. Gauss's Law for Magnetism:</p>
+            <div class="formula my-4">
+                <p class="text-3xl font-bold text-purple-300 text-center">$$\nabla \cdot \mathbf{B} = 0$$</p>
+            </div>
+            <p class="text-xl font-light">This states that there are no magnetic monopoles. The <strong>magnetic field</strong> lines always form closed loops, and the net magnetic flux through any closed surface is zero.</p>
+        </div>
+    </div>
+
+    <!-- Slide 31: Faraday's Law & Ampere-Maxwell Law -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left card">
+            <h2 class="text-5xl font-bold mb-8 text-blue-400">Faraday's & Ampere's Laws</h2>
+            <p class="text-2xl font-bold mb-4">3. Faraday's Law of Induction:</p>
+            <div class="formula my-4">
+                <p class="text-3xl font-bold text-purple-300 text-center">$$\nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t}$$</p>
+            </div>
+            <p class="text-xl font-light">A changing <strong>magnetic field</strong> ($\frac{\partial \mathbf{B}}{\partial t}$) creates a circulating electric field ($\nabla \times \mathbf{E}$). This is the principle of induced current.</p>
+            <p class="text-2xl font-bold mt-8 mb-4">4. Ampere-Maxwell's Law:</p>
+            <div class="formula my-4">
+                <p class="text-3xl font-bold text-purple-300 text-center">$$\nabla \times \mathbf{B} = \mu_0 \left( \mathbf{J} + \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t} \right)$$</p>
+            </div>
+            <p class="text-xl font-light">A <strong>magnetic field</strong> ($\nabla \times \mathbf{B}$) can be generated by an electric current density ($\mathbf{J}$) or by a changing electric field ($\frac{\partial \mathbf{E}}{\partial t}$). The latter term was Maxwell's crucial addition.</p>
+        </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <button class="absolute top-1/2 left-8 -translate-y-1/2 bg-gray-800 text-white p-4 rounded-full opacity-70 hover:opacity-100 transition-opacity duration-300 z-10" onclick="plusSlides(-1)">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <button class="absolute top-1/2 right-8 -translate-y-1/2 bg-gray-800 text-white p-4 rounded-full opacity-70 hover:opacity-100 transition-opacity duration-300 z-10" onclick="plusSlides(1)">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+</div>
+
+<script>
+    let slideIndex = 1;
+    let totalSlides;
+    const navDotsContainer = document.getElementById("nav-dots-container");
+
+    document.addEventListener('DOMContentLoaded', () => {
+        totalSlides = document.getElementsByClassName("slide").length;
+        createNavDots();
+        showSlides(slideIndex);
+    });
+
+    // Create navigation dots
+    function createNavDots() {
+        navDotsContainer.innerHTML = '';
+        for (let i = 1; i <= totalSlides; i++) {
+            const dot = document.createElement("div");
+            dot.classList.add("w-3", "h-3", "bg-gray-700", "rounded-full", "transition-all", "duration-300", "cursor-pointer", "z-30", "relative", "my-2");
+            dot.onclick = () => currentSlide(i);
+            navDotsContainer.appendChild(dot);
+        }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight') {
+            plusSlides(1);
+        } else if (event.key === 'ArrowLeft') {
+            plusSlides(-1);
+        }
+    });
+
+    // Function to change slides based on n (1 for next, -1 for previous)
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Function to set the current slide
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    // Main function to display the slides
+    function showSlides(n) {
+        let slides = document.getElementsByClassName("slide");
+        let dots = navDotsContainer.getElementsByTagName("div");
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            slides[i].classList.remove('active-slide');
+            dots[i].classList.remove('bg-purple-400', 'scale-125');
+            dots[i].classList.add('bg-gray-700');
+        }
+        slides[slideIndex - 1].style.display = "flex";
+        slides[slideIndex - 1].classList.add('active-slide');
+        dots[slideIndex - 1].classList.remove('bg-gray-700');
+        dots[slideIndex - 1].classList.add('bg-purple-400', 'scale-125');
+
+        if (typeof MathJax !== 'undefined') {
+            MathJax.typeset();
+        }
+
+        // Trigger specific slide logic
+        const event = new CustomEvent('slideChange', { detail: { slideIndex: slideIndex } });
+        document.dispatchEvent(event);
+    }
+
+    // Pole Interaction Simulation Logic (Slide 7)
+    function setMagnets(type) {
+        const magnet1 = document.getElementById('magnet1');
+        const magnet2 = document.getElementById('magnet2');
+        const magnet1N = document.getElementById('magnet1-N');
+        const magnet1S = document.getElementById('magnet1-S');
+        const magnet2N = document.getElementById('magnet2-N');
+        const magnet2S = document.getElementById('magnet2-S');
+        const magnet1Container = document.getElementById('magnet1-container');
+        const magnet2Container = document.getElementById('magnet2-container');
+
+        // Reset positions
+        magnet1Container.style.transform = 'translateX(0)';
+        magnet2Container.style.transform = 'translateX(0)';
+
+        // Remove previous pole color classes
+        magnet1N.classList.remove('attract', 'repel');
+        magnet1S.classList.remove('attract', 'repel');
+        magnet2N.classList.remove('attract', 'repel');
+        magnet2S.classList.remove('attract', 'repel');
+
+        if (type === 'attract') {
+            magnet1.style.background = 'linear-gradient(to bottom, #ef4444 50%, #3b82f6 50%)';
+            magnet2.style.background = 'linear-gradient(to bottom, #3b82f6 50%, #ef4444 50%)';
+            magnet1N.classList.add('attract');
+            magnet1S.classList.add('attract');
+            magnet2N.classList.add('attract');
+            magnet2S.classList.add('attract');
+
+            setTimeout(() => {
+                magnet1Container.style.transform = 'translateX(60px)';
+                magnet2Container.style.transform = 'translateX(-60px)';
+            }, 100);
+        } else { // repel
+            magnet1.style.background = 'linear-gradient(to bottom, #ef4444 50%, #3b82f6 50%)';
+            magnet2.style.background = 'linear-gradient(to bottom, #ef4444 50%, #3b82f6 50%)';
+            magnet1N.classList.add('repel');
+            magnet1S.classList.add('repel');
+            magnet2N.classList.add('repel');
+            magnet2S.classList.add('repel');
+
+            setTimeout(() => {
+                magnet1Container.style.transform = 'translateX(-60px)';
+                magnet2Container.style.transform = 'translateX(60px)';
+            }, 100);
+        }
+    }
+
+    // Magnetic Field Line Canvas Simulation (Slide 10)
+    let fieldCanvas, fieldCtx;
+    let particles = [];
+    const numParticles = 300;
+    const barMagnet = { x: 250, y: 150, width: 25, height: 150 };
+
+    function initFieldCanvas() {
+        fieldCanvas = document.getElementById('fieldCanvas');
+        fieldCtx = fieldCanvas.getContext('2d');
+        particles = []; // Reset particles on re-init
+        for (let i = 0; i < numParticles; i++) {
+            particles.push({
+                x: Math.random() * fieldCanvas.width,
+                y: Math.random() * fieldCanvas.height,
+                size: Math.random() * 1.5 + 0.5,
+                opacity: Math.random() * 0.7 + 0.3
+            });
+        }
+        fieldLoop();
+    }
+
+    function fieldLoop() {
+        fieldCtx.fillStyle = '#1e1e1e';
+        fieldCtx.fillRect(0, 0, fieldCanvas.width, fieldCanvas.height);
+
+        // Draw the magnet
+        fieldCtx.fillStyle = '#ef4444'; // Red for North
+        fieldCtx.fillRect(barMagnet.x - barMagnet.width / 2, barMagnet.y - barMagnet.height / 2, barMagnet.width, barMagnet.height / 2);
+        fieldCtx.fillStyle = '#3b82f6'; // Blue for South
+        fieldCtx.fillRect(barMagnet.x - barMagnet.width / 2, barMagnet.y, barMagnet.width, barMagnet.height / 2);
+        
+        // Draw particles
+        particles.forEach(p => {
+            const dx_N = p.x - barMagnet.x;
+            const dy_N = p.y - (barMagnet.y - barMagnet.height / 2);
+            const r_N = Math.sqrt(dx_N * dx_N + dy_N * dy_N) + 1e-6; // Add small epsilon to prevent division by zero
+
+            const dx_S = p.x - barMagnet.x;
+            const dy_S = p.y - (barMagnet.y + barMagnet.height / 2);
+            const r_S = Math.sqrt(dx_S * dx_S + dy_S * dy_S) + 1e-6;
+
+            // Simple approximation of field force
+            // Repulsive force from North, attractive force to South
+            const forceX = (dx_N / (r_N * r_N)) - (dx_S / (r_S * r_S));
+            const forceY = (dy_N / (r_N * r_N)) - (dy_S / (r_S * r_S));
+            
+            p.x += forceX * 10;
+            p.y += forceY * 10;
+            
+            // Reposition if out of bounds
+            if (p.x < 0 || p.x > fieldCanvas.width || p.y < 0 || p.y > fieldCanvas.height) {
+                p.x = Math.random() * fieldCanvas.width;
+                p.y = Math.random() * fieldCanvas.height;
+            }
+
+            fieldCtx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+            fieldCtx.beginPath();
+            fieldCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            fieldCtx.fill();
+        });
+
+        requestAnimationFrame(fieldLoop);
+    }
+
+    // Wire Field Canvas Simulation (Slide 16)
+    let wireCanvas, wireCtx, wireAnimFrame;
+    const wire = { x: 250, y: 0, height: 300 };
+    const fieldLines = [];
+    const numLines = 5;
+
+    function initWireCanvas() {
+        wireCanvas = document.getElementById('wireCanvas');
+        wireCtx = wireCanvas.getContext('2d');
+
+        // Stop any previous animation
+        if (wireAnimFrame) cancelAnimationFrame(wireAnimFrame);
+
+        // Initialize field lines
+        fieldLines.length = 0;
+        for (let i = 1; i <= numLines; i++) {
+            fieldLines.push({
+                radius: i * 30,
+                angle: 0,
+                speed: 0.05 / i, // Slower speed for larger circles
+                particles: []
+            });
+        }
+        wireLoop();
+    }
+
+    function wireLoop() {
+        wireCtx.fillStyle = '#1e1e1e';
+        wireCtx.fillRect(0, 0, wireCanvas.width, wireCanvas.height);
+
+        // Draw the wire
+        wireCtx.fillStyle = '#E0E0E0';
+        wireCtx.fillRect(wire.x - 2, 0, 4, wire.height);
+        wireCtx.fillStyle = '#3b82f6';
+        wireCtx.beginPath();
+        wireCtx.arc(wire.x, wire.height, 10, 0, Math.PI * 2);
+        wireCtx.fill();
+        wireCtx.fillStyle = '#E0E0E0';
+        wireCtx.fillText('I', wire.x + 15, wire.height - 10);
+        
+        // Draw field lines with arrows
+        fieldLines.forEach(line => {
+            wireCtx.strokeStyle = '#6366F1';
+            wireCtx.beginPath();
+            wireCtx.arc(wire.x, wire.height / 2, line.radius, 0, Math.PI * 2);
+            wireCtx.stroke();
+            
+            // Draw arrows on the circle
+            const arrowAngle = line.angle + Math.PI / 4;
+            const arrowX = wire.x + line.radius * Math.cos(arrowAngle);
+            const arrowY = wire.height / 2 + line.radius * Math.sin(arrowAngle);
+            
+            wireCtx.fillStyle = '#6366F1';
+            wireCtx.beginPath();
+            wireCtx.moveTo(arrowX, arrowY);
+            wireCtx.lineTo(arrowX - 5 * Math.cos(arrowAngle - Math.PI / 6), arrowY - 5 * Math.sin(arrowAngle - Math.PI / 6));
+            wireCtx.lineTo(arrowX - 5 * Math.cos(arrowAngle + Math.PI / 6), arrowY - 5 * Math.sin(arrowAngle + Math.PI / 6));
+            wireCtx.closePath();
+            wireCtx.fill();
+
+            line.angle -= line.speed; // Animate rotation
+        });
+
+        wireAnimFrame = requestAnimationFrame(wireLoop);
+    }
+    
+    // Lorentz Force Canvas Simulation (Slide 24)
+    let lorentzCanvas, lorentzCtx;
+    let particle = { x: 250, y: 350, vx: 5, vy: 0, charge: 1, radius: 5 };
+    const magneticField = 0.05; // T, points into the screen
+    
+    function initLorentzCanvas() {
+        lorentzCanvas = document.getElementById('lorentzCanvas');
+        lorentzCtx = lorentzCanvas.getContext('2d');
+        lorentzCanvas.onclick = () => {
+            particle = { x: 250, y: 350, vx: 5, vy: 0, charge: 1, radius: 5 };
+        };
+        lorentzLoop();
+    }
+
+    function lorentzLoop() {
+        lorentzCtx.fillStyle = '#1e1e1e';
+        lorentzCtx.fillRect(0, 0, lorentzCanvas.width, lorentzCanvas.height);
+
+        // Draw magnetic field lines (dots)
+        for (let x = 20; x < lorentzCanvas.width; x += 20) {
+            for (let y = 20; y < lorentzCanvas.height; y += 20) {
+                lorentzCtx.fillStyle = '#383838';
+                lorentzCtx.beginPath();
+                lorentzCtx.arc(x, y, 1, 0, Math.PI * 2);
+                lorentzCtx.fill();
+            }
+        }
+        
+        // Calculate force components (F = q(v x B))
+        const Fx = particle.charge * particle.vy * magneticField;
+        const Fy = -particle.charge * particle.vx * magneticField;
+
+        // Use a small time step for smoother update
+        const dt = 0.05;
+
+        // Update velocity components with force, then normalize to maintain constant speed
+        const newVx = particle.vx + Fx * dt;
+        const newVy = particle.vy + Fy * dt;
+        const speed = Math.sqrt(newVx * newVx + newVy * newVy);
+
+        particle.vx = (newVx / speed) * 5;
+        particle.vy = (newVy / speed) * 5;
+
+        // Update position
+        particle.x += particle.vx * dt;
+        particle.y += particle.vy * dt;
+
+        // Draw particle
+        lorentzCtx.fillStyle = '#6366F1';
+        lorentzCtx.beginPath();
+        lorentzCtx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        lorentzCtx.fill();
+
+        requestAnimationFrame(lorentzLoop);
+    }
+
+    // Induction Canvas Simulation (Slide 26)
+    let inductionCanvas, inductionCtx;
+    let magnetPosition = { x: 250, y: 250 };
+    let magnetTargetY = magnetPosition.y;
+    let movingSpeed = 2;
+
+    function initInductionCanvas() {
+        inductionCanvas = document.getElementById('inductionCanvas');
+        inductionCtx = inductionCanvas.getContext('2d');
+        inductionLoop();
+    }
+
+    function inductionLoop() {
+        inductionCtx.fillStyle = '#1e1e1e';
+        inductionCtx.fillRect(0, 0, inductionCanvas.width, inductionCanvas.height);
+
+        // Draw the coil
+        inductionCtx.strokeStyle = '#E0E0E0';
+        inductionCtx.lineWidth = 5;
+        inductionCtx.beginPath();
+        for (let i = 0; i < 10; i++) {
+            inductionCtx.moveTo(200, 100 + i * 10);
+            inductionCtx.lineTo(300, 100 + i * 10);
+            if (i > 0) {
+                inductionCtx.moveTo(200, 100 + (i - 1) * 10);
+                inductionCtx.lineTo(200, 100 + i * 10);
+                inductionCtx.moveTo(300, 100 + (i - 1) * 10);
+                inductionCtx.lineTo(300, 100 + i * 10);
+            }
+        }
+        inductionCtx.stroke();
+
+        // Draw the light bulb
+        const bulb = { x: 250, y: 50, radius: 20 };
+        let inducedCurrent = 0;
+        
+        // Move the magnet if it's not at the target
+        if (Math.abs(magnetTargetY - magnetPosition.y) > 1) {
+            const direction = Math.sign(magnetTargetY - magnetPosition.y);
+            magnetPosition.y += direction * movingSpeed;
+            inducedCurrent = 1; // Induced current while moving
+        } else {
+            inducedCurrent = 0;
+        }
+
+        // Light up the bulb based on induced current
+        if (inducedCurrent > 0) {
+            inductionCtx.fillStyle = `rgba(255, 255, 0, 0.8)`;
+            inductionCtx.beginPath();
+            inductionCtx.arc(bulb.x, bulb.y, bulb.radius, 0, Math.PI * 2);
+            inductionCtx.fill();
+        }
+
+        inductionCtx.beginPath();
+        inductionCtx.arc(bulb.x, bulb.y, bulb.radius, 0, Math.PI * 2);
+        inductionCtx.strokeStyle = '#E0E0E0';
+        inductionCtx.stroke();
+
+
+        // Draw the magnet
+        const magnetWidth = 50, magnetHeight = 100;
+        inductionCtx.fillStyle = '#ef4444'; // Red for North
+        inductionCtx.fillRect(magnetPosition.x - magnetWidth / 2, magnetPosition.y - magnetHeight / 2, magnetWidth, magnetHeight / 2);
+        inductionCtx.fillStyle = '#3b82f6'; // Blue for South
+        inductionCtx.fillRect(magnetPosition.x - magnetWidth / 2, magnetPosition.y, magnetWidth, magnetHeight / 2);
+        
+        requestAnimationFrame(inductionLoop);
+    }
+
+    function moveMagnet(direction) {
+        if (direction === 'in') {
+            magnetTargetY = 150;
+        } else if (direction === 'out') {
+            magnetTargetY = 250;
+        } else if (direction === 'stop') {
+            magnetTargetY = magnetPosition.y;
+        }
+    }
+    
+    // --- 3D Earth Magnetic Field Simulation Logic (Slide 11) ---
+    let earthCanvas, earthRenderer, earthScene, earthCamera;
+    let earthMesh;
+    let earthIsDragging = false;
+    let earthPreviousMousePosition = { x: 0, y: 0 };
+    let earthAnimationId = null;
+
+    function initEarthCanvas() {
+        const container = document.getElementById('earth-canvas-container');
+        if (!container) return;
+        const canvas = document.getElementById('earth-canvas');
+        if (!canvas) return;
+
+        earthCanvas = canvas;
+        
+        // Remove old renderer if it exists
+        if (earthRenderer) {
+            earthRenderer.dispose();
+            if (earthAnimationId) cancelAnimationFrame(earthAnimationId);
+            const oldCanvas = document.getElementById('earth-canvas');
+            if (oldCanvas) oldCanvas.remove();
+        }
+
+        earthScene = new THREE.Scene();
+        earthCamera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        earthRenderer = new THREE.WebGLRenderer({ antialias: true, canvas: earthCanvas, alpha: true });
+        earthRenderer.setSize(container.clientWidth, container.clientHeight);
+        earthRenderer.setClearColor(0x000000, 0);
+
+        earthCamera.position.z = 3;
+
+        const ambientLight = new THREE.AmbientLight(0x404040, 5);
+        earthScene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(5, 5, 5).normalize();
+        earthScene.add(directionalLight);
+
+        const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
+        const earthMaterial = new THREE.MeshLambertMaterial({ color: 0x0047AB });
+        earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
+        earthScene.add(earthMesh);
+        
+        // Function to create a single magnetic field line
+        function createMagneticFieldLine(startAngle, endAngle, radius, lineColor) {
+            const curve = new THREE.CatmullRomCurve3([
+                new THREE.Vector3(0, 0, 0),
+                new THREE.Vector3(
+                    Math.cos(startAngle) * radius,
+                    0,
+                    Math.sin(startAngle) * radius
+                ),
+                new THREE.Vector3(
+                    Math.cos(endAngle) * radius,
+                    0,
+                    Math.sin(endAngle) * radius
+                ),
+                new THREE.Vector3(0, 0, 0)
+            ]);
+
+            const points = curve.getPoints(50);
+            const geometry = new THREE.BufferGeometry().setFromPoints(points);
+            const material = new THREE.LineBasicMaterial({
+                color: lineColor,
+                transparent: true,
+                opacity: 0.7
+            });
+            const line = new THREE.Line(geometry, material);
+            return line;
+        }
+
+        // Add multiple magnetic field lines
+        const lineCount = 20;
+        const fieldColor = 0xFF5733; // A vibrant orange
+        for (let i = 0; i < lineCount; i++) {
+            const line = createMagneticFieldLine(0, Math.PI, 1.5 + (i * 0.1), fieldColor);
+            line.rotation.y = (i * Math.PI) / lineCount;
+            earthScene.add(line);
+        }
+
+        for (let i = 0; i < lineCount; i++) {
+            const line = createMagneticFieldLine(0, Math.PI, 1.5 + (i * 0.1), fieldColor);
+            line.rotation.x = (i * Math.PI) / lineCount;
+            earthScene.add(line);
+        }
+
+        // Mouse controls
+        canvas.addEventListener('mousedown', (event) => {
+            earthIsDragging = true;
+            earthPreviousMousePosition = { x: event.clientX, y: event.clientY };
+        });
+
+        canvas.addEventListener('mousemove', (event) => {
+            if (!earthIsDragging) return;
+            const deltaMove = {
+                x: event.clientX - earthPreviousMousePosition.x,
+                y: event.clientY - earthPreviousMousePosition.y
+            };
+
+            const rotationSpeed = 0.005;
+            earthScene.rotation.y += deltaMove.x * rotationSpeed;
+            earthScene.rotation.x += deltaMove.y * rotationSpeed;
+
+            earthPreviousMousePosition = { x: event.clientX, y: event.clientY };
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            earthIsDragging = false;
+        });
+
+        canvas.addEventListener('wheel', (event) => {
+            const zoomSpeed = 0.01;
+            earthCamera.position.z += event.deltaY * zoomSpeed;
+        });
+
+        window.addEventListener('resize', () => {
+            if (earthCamera && earthRenderer) {
+                earthCamera.aspect = container.clientWidth / container.clientHeight;
+                earthCamera.updateProjectionMatrix();
+                earthRenderer.setSize(container.clientWidth, container.clientHeight);
+            }
+        });
+        
+        // Start animation loop
+        earthAnimationId = requestAnimationFrame(animateEarth);
+    }
+    
+    function animateEarth() {
+        earthAnimationId = requestAnimationFrame(animateEarth);
+        if (earthRenderer && earthScene && earthCamera) {
+            earthRenderer.render(earthScene, earthCamera);
+        }
+    }
+
+    // Event listeners to handle canvas initialization
+    document.addEventListener('slideChange', (e) => {
+        if (e.detail.slideIndex === 10) {
+            initFieldCanvas();
+        } else if (e.detail.slideIndex === 16) {
+            initWireCanvas();
+        } else if (e.detail.slideIndex === 24) {
+            initLorentzCanvas();
+        } else if (e.detail.slideIndex === 28) {
+            initInductionCanvas();
+        } else if (e.detail.slideIndex === 11) {
+            initEarthCanvas();
+        } else {
+            // Optional: Clean up canvas-specific resources when leaving a slide
+        }
+    });
+
+</script>
+
+</body>
+</html>
