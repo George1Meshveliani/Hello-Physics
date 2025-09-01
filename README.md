@@ -5,3 +5,4 @@ Click the topic and Enjoy!
 - [`Current, voltage and resistance`](https://george1meshveliani.github.io/Hello-Physics/CurrentVoltageResistance)
 - [`Electrical energy and electrical power`](https://george1meshveliani.github.io/Hello-Physics/ElectricalEnergyElectricalPower)
 - [`Magnetism`](https://george1meshveliani.github.io/Hello-Physics/Magnetism)
+- [`Magnetism`](https://george1meshveliani.github.io/Hello-Physics/EMSummary)
