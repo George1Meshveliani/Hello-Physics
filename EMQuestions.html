@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Work Papers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // MathJax configuration for LaTeX rendering
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .section-header {
+            margin-top: 2rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .problem-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .problem-list li {
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 md:p-12">
+    <div class="container">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-center mb-6">Physics Work Papers: Electricity and Magnetism</h1>
+        <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">This document contains a series of practice problems designed to help you master the key concepts of electricity and magnetism. The problems are organized by topic and difficulty to provide a comprehensive review.</p>
+
+        <div id="content"></div>
+    </div>
+
+    <script>
+        const sections = [
+            {
+                title: "1. Electric Charge",
+                subsections: [
+                    {
+                        title: "Question Work Papers (15 problems)",
+                        problems: [
+                            "What is the fundamental unit of electric charge?",
+                            "Explain the difference between a conductor and an insulator.",
+                            "Two point charges, $q_1$ and $q_2$, attract each other. What can you say about their charges?",
+                            "If a glass rod becomes positively charged by rubbing, what happens to the electrons on the rod?",
+                            "What is the magnitude of the electrostatic force between a proton ($q = 1.6 \\times 10^{-19} \, \\text{C}$) and an electron ($q = -1.6 \\times 10^{-19} \, \\text{C}$) separated by $5.29 \\times 10^{-11} \, \\text{m}$?",
+                            "An object has a net charge of $+8.0 \\times 10^{-19} \, \\text{C}$. How many protons are in excess?",
+                            "A charge of $3.0 \, \\text{C}$ is placed in an electric field of $500 \, \\text{N/C}$. What is the magnitude of the electric force on the charge?",
+                            "Draw the electric field lines around a single positive point charge.",
+                            "A charge of $-2.0 \, \\text{C}$ is in an electric field. The electric force on it is $8.0 \, \\text{N}$ to the left. What is the magnitude and direction of the electric field?",
+                            "Two charges, $+4.0 \, \\mu\\text{C}$ and $-6.0 \, \\mu\\text{C}$, are $0.20 \, \\text{m}$ apart. Find the magnitude of the force between them.",
+                            "What is the electric field strength at a point $0.15 \, \\text{m}$ from a charge of $5.0 \\times 10^{-9} \, \\text{C}$?",
+                            "Why do electric field lines never cross?",
+                            "How does the electrostatic force between two charges change if the distance between them is doubled?",
+                            "What is the direction of the electric field at a point midway between a positive and a negative charge?",
+                            "If a neutral atom gains an electron, what is its charge?"
+                        ]
+                    },
+                    {
+                        title: "Tests (5 problems)",
+                        problems: [
+                            "A $5.0 \, \\text{C}$ charge is at the origin and a $-2.0 \, \\text{C}$ charge is at $x=3.0 \, \\text{m}$. What is the net electric field at the point $x=1.0 \, \\text{m}$?",
+                            "A point charge of $1.0 \\times 10^{-6} \, \\text{C}$ is placed at a point where the electric field is $2000 \, \\text{N/C}$. What is the magnitude of the force acting on the charge?",
+                            "Three point charges are arranged in a triangle. $q_1 = 2.0 \, \\text{C}$ at $(0, 0)$, $q_2 = -3.0 \, \\text{C}$ at $(4, 0)$, and $q_3 = 5.0 \, \\text{C}$ at $(0, 3)$. Calculate the net force on $q_1$.",
+                            "Two identical small spheres are charged to $+5.0 \, \\text{C}$ each and are $0.50 \, \\text{m}$ apart. They are then touched together and separated again to the same distance. What is the new force between them?",
+                            "What is the acceleration of an electron ($m_e = 9.11 \\times 10^{-31} \, \\text{kg}$) in a uniform electric field of $2.0 \\times 10^4 \, \\text{N/C}$?"
+                        ]
+                    },
+                    {
+                        title: "Open Problems (5 problems)",
+                        problems: [
+                            "Describe the motion of a positive charge released from rest in a uniform electric field. What happens if the charge is negative?",
+                            "Explain, in your own words, what an electric field is and how it relates to electric force. Use an analogy to make your explanation clear.",
+                            "Draw the electric field lines for a dipole (a positive and a negative charge of equal magnitude).",
+                            "Design a simple experiment to demonstrate static electricity using common household objects.",
+                            "Describe the process of charging an object by induction. What is the difference between charging by induction and charging by conduction?"
+                        ]
+                    },
+                    {
+                        title: "Hard Problems (5 problems)",
+                        problems: [
+                            "A uniformly charged ring with total charge $Q$ and radius $R$ lies in the $xy$-plane, centered at the origin. Derive the formula for the electric field at a point $(0, 0, z)$ on the $z$-axis.",
+                            "An electron is shot from the origin with an initial velocity of $v_0$ along the positive x-axis into a uniform electric field $E$ that points in the negative y-direction. Derive an expression for the trajectory of the electron.",
+                            "A spherical conductor with radius $R_1$ has a total charge of $+Q$. It is concentric with a larger spherical shell of inner radius $R_2$ and outer radius $R_3$, which has a total charge of $-2Q$. Find the electric field for all regions: $r < R_1$, $R_1 < r < R_2$, $R_2 < r < R_3$, and $r > R_3$.",
+                            "A particle with charge $q_1$ is at the origin. Two other charges, $q_2 = -2q_1$ and $q_3 = 3q_1$, are placed at a distance $L$ from the origin along the positive x-axis. Find the position along the x-axis where a test charge would experience zero net force.",
+                            "What is the electrostatic potential energy of a system of four charges placed at the corners of a square with side length $L$? All charges are identical with value $q$."
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "2. Current, Voltage, and Resistance",
+                subsections: [
+                    {
+                        title: "Question Work Papers (15 problems)",
+                        problems: [
+                            "Define electric current. What is its unit?",
+                            "What is voltage? How does it relate to electric potential?",
+                            "State Ohm's Law in words and in its mathematical form.",
+                            "What is the resistance of a circuit if a voltage of $24 \, \\text{V}$ produces a current of $3 \, \\text{A}$?",
+                            "A lamp has a resistance of $150 \, \\Omega$ and is connected to a $120 \, \\text{V}$ power source. What is the current flowing through it?",
+                            "Draw a simple circuit diagram with a battery, a switch, and a resistor in series.",
+                            "How is total resistance calculated in a series circuit?",
+                            "How is total resistance calculated in a parallel circuit?",
+                            "Three resistors with values $10 \, \\Omega$, $20 \, \\Omega$, and $30 \, \\Omega$ are connected in series. What is the equivalent resistance?",
+                            "What is the equivalent resistance if the same three resistors are connected in parallel?",
+                            "A circuit has a $12 \, \\text{V}$ battery. If a $4 \, \\Omega$ resistor is connected, what is the current?",
+                            "What is the voltage across a $5 \, \\Omega$ resistor if a current of $2.5 \, \\text{A}$ flows through it?",
+                            "Describe the difference between a series and a parallel circuit in terms of current and voltage.",
+                            "Explain what a short circuit is and why it can be dangerous.",
+                            "What is the relationship between resistance and the length and cross-sectional area of a wire?"
+                        ]
+                    },
+                    {
+                        title: "Tests (5 problems)",
+                        problems: [
+                            "A circuit has a $12 \, \\text{V}$ battery. If a $2 \, \\Omega$ resistor is in series with a parallel combination of a $4 \, \\Omega$ and a $4 \, \\Omega$ resistor, what is the total resistance of the circuit?",
+                            "In the circuit from the previous problem, what is the current flowing from the battery?",
+                            "A household outlet supplies $120 \, \\text{V}$. If you plug in a toaster with a resistance of $15 \, \\Omega$, what is the current it draws?",
+                            "You have a set of identical $10 \, \\Omega$ resistors. How many must you connect in parallel to achieve a total resistance of $2 \, \\Omega$?",
+                            "A potentiometer is used to vary the resistance in a circuit from $0$ to $100 \, \\Omega$. If a $9 \, \\text{V}$ battery is connected, what is the range of current that can be drawn from the circuit?"
+                        ]
+                    },
+                    {
+                        title: "Open Problems (5 problems)",
+                        problems: [
+                            "In your own words, describe the relationship between voltage, current, and resistance. Use a water pipe analogy to illustrate your point.",
+                            "Design a circuit using a battery and at least three resistors (in a combination of series and parallel) that has a total equivalent resistance of $20 \, \\Omega$.",
+                            "Explain why a light bulb's filament glows when electricity passes through it.",
+                            "If a string of old-fashioned Christmas lights is connected in series, and one light bulb burns out, why do they all go out? How is this different from modern lights?",
+                            "Describe the properties of a superconductor and explain why they have great potential for future technology."
+                        ]
+                    },
+                    {
+                        title: "Hard Problems (5 problems)",
+                        problems: [
+                            "Derive the formula for equivalent resistance in a parallel circuit with $n$ resistors.",
+                            "For a voltage divider circuit with two resistors, $R_1$ and $R_2$, in series with a voltage source $V_{in}$, derive the formula for the voltage across $R_2$, $V_{out}$.",
+                            "A circuit has a $15 \, \\text{V}$ battery and four resistors: $R_1 = 5 \, \\Omega$, $R_2 = 10 \, \\Omega$, $R_3 = 10 \, \\Omega$, and $R_4 = 20 \, \\Omega$. $R_1$ is in series with a parallel combination of $R_2$ and $R_3$. The series combination is in parallel with $R_4$. Find the current through each resistor.",
+                            "A copper wire with a cross-sectional area of $2.0 \\times 10^{-6} \, \\text{m}^2$ and a length of $10 \, \\text{m}$ is used in a circuit. If the resistivity of copper is $1.7 \\times 10^{-8} \, \\Omega \\cdot \\text{m}$, what is the wire's resistance?",
+                            "Using Kirchhoff's Rules, solve the following circuit to find the current through each resistor. The circuit has two batteries and two loops."
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "3. Electrical Energy and Electrical Power",
+                subsections: [
+                    {
+                        title: "Question Work Papers (15 problems)",
+                        problems: [
+                            "Define electrical power. What is its unit?",
+                            "What is electrical energy? What is the standard unit for it?",
+                            "State the formula for power in terms of voltage and current.",
+                            "How much power is consumed by a device that draws a current of $2.0 \, \\text{A}$ at a voltage of $120 \, \\text{V}$?",
+                            "A light bulb with a resistance of $50 \, \\Omega$ is connected to a $10 \, \\text{V}$ battery. What is the power consumed by the bulb?",
+                            "An electric heater consumes $1500 \, \\text{W}$ of power. How much energy does it consume in 2 hours? Give your answer in Joules and kilowatt-hours (kWh).",
+                            "A television set is rated at $150 \, \\text{W}$. If it is on for 4 hours, what is the cost of electricity if the rate is $0.15 \, \\$ / \\text{kWh}$?",
+                            "Which of the following consumes more power: a $120 \, \\text{V}$ hair dryer with a resistance of $10 \, \\Omega$ or a $120 \, \\text{V}$ refrigerator that draws $1.5 \, \\text{A}$ of current?",
+                            "A battery has a voltage of $9 \, \\text{V}$ and provides a current of $0.5 \, \\text{A}$. What is the total energy stored in the battery if it can run for 10 hours?",
+                            "What is the formula for power in terms of current and resistance?",
+                            "What is the formula for power in terms of voltage and resistance?",
+                            "Why do power companies sell energy in kilowatt-hours and not Joules?",
+                            "If you double the voltage across a resistor, how does the power consumed change?",
+                            "A fuse is a safety device. Explain how it works using the concept of electrical power.",
+                            "An LED lightbulb consumes less energy than an incandescent bulb. Why is this important from an environmental perspective?"
+                        ]
+                    },
+                    {
+                        title: "Tests (5 problems)",
+                        problems: [
+                            "A circuit consists of a $12 \, \\text{V}$ battery and three resistors in series: $2 \, \\Omega$, $4 \, \\Omega$, and $6 \, \\Omega$. What is the total power delivered by the battery?",
+                            "A device has a power rating of $1000 \, \\text{W}$. If it runs for 15 minutes, what is the energy consumed in Joules?",
+                            "A $60 \, \\text{W}$ light bulb operates on a $120 \, \\text{V}$ line. What is the current flowing through the bulb? What is the resistance of the bulb?",
+                            "A generator produces $50 \, \\text{kW}$ of power. If it can provide a maximum voltage of $2500 \, \\text{V}$, what is the maximum current it can supply?",
+                            "A parallel circuit has two resistors, $R_1 = 10 \, \\Omega$ and $R_2 = 20 \, \\Omega$, connected to a $12 \, \\text{V}$ battery. What is the power consumed by each resistor, and what is the total power consumed by the circuit?"
+                        ]
+                    },
+                    {
+                        title: "Open Problems (5 problems)",
+                        problems: [
+                            "Explain how a simple electrical circuit converts electrical energy into other forms of energy (e.g., light, heat, or motion). Give an example of each.",
+                            "Research and explain the concept of power factor in AC circuits. Why is it important for utilities and consumers?",
+                            "If you have two light bulbs, a $60 \, \\text{W}$ and a $100 \, \\text{W}$ bulb, and you connect them in series, which one will be brighter? Explain your reasoning.",
+                            "Explain why it is more efficient to transmit electrical power at high voltages over long distances.",
+                            "Describe the difference between energy and power, providing an analogy to make the concepts clear."
+                        ]
+                    },
+                    {
+                        title: "Hard Problems (5 problems)",
+                        problems: [
+                            "Derive the relationship $P = V^2 / R$ from the basic formulas of power and Ohm's Law.",
+                            "A variable resistor is used to control the brightness of a light bulb. The light bulb has a resistance of $15 \, \\Omega$ and is rated at $12 \, \\text{V}$. The variable resistor is in series with a $15 \, \\text{V}$ battery. What should the resistance of the variable resistor be to make the bulb operate at its rated power?",
+                            "A battery with an electromotive force (EMF) of $12 \, \\text{V}$ and an internal resistance of $0.5 \, \\Omega$ is connected to a $5.5 \, \\Omega$ resistor. What is the terminal voltage of the battery, and what is the power dissipated by the external resistor?",
+                            "An electric motor has a power output of $500 \, \\text{W}$ and is 90% efficient. If it operates on a $120 \, \\text{V}$ line, what is the current drawn by the motor?",
+                            "A circuit has a $12 \, \\text{V}$ battery and two resistors, $R_1=4 \, \\Omega$ and $R_2=8 \, \\Omega$, in series. What is the power dissipated by each resistor?"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "4. Magnetism",
+                subsections: [
+                    {
+                        title: "Question Work Papers (15 problems)",
+                        problems: [
+                            "What is a magnetic field?",
+                            "How do a magnet's like poles and unlike poles interact?",
+                            "Draw the magnetic field lines around a bar magnet.",
+                            "What is the right-hand rule used for?",
+                            "What happens to a compass needle when it is placed near a current-carrying wire?",
+                            "How can you make an electromagnet stronger?",
+                            "A current of $2.0 \, \\text{A}$ flows through a long, straight wire. What is the magnitude of the magnetic field at a distance of $0.05 \, \\text{m}$ from the wire?",
+                            "A charge of $1.6 \\times 10^{-19} \, \\text{C}$ moves at $5.0 \\times 10^6 \, \\text{m/s}$ through a magnetic field of $1.5 \, \\text{T}$ at an angle of $90^{\\circ}$. What is the magnitude of the magnetic force on the charge?",
+                            "Explain the principle of electromagnetic induction.",
+                            "What is the SI unit of magnetic field strength?",
+                            "What causes the Earth's magnetic field?",
+                            "Why does a magnetic force do no work on a charged particle?",
+                            "Describe the relationship between the electric field and the magnetic field in a changing system, as described by Maxwell's equations.",
+                            "A charged particle moving parallel to a magnetic field experiences a force of what magnitude?",
+                            "What are magnetic domains?"
+                        ]
+                    },
+                    {
+                        title: "Tests (5 problems)",
+                        problems: [
+                            "A proton moves with a velocity of $2.5 \\times 10^5 \, \\text{m/s}$ at an angle of $60^{\\circ}$ to a uniform magnetic field of $0.8 \, \\text{T}$. What is the magnitude of the magnetic force on the proton?",
+                            "A straight wire with a current of $10 \, \\text{A}$ passes through a uniform magnetic field of $0.5 \, \\text{T}$ at an angle of $45^{\\circ}$. If the length of the wire in the field is $0.25 \, \\text{m}$, what is the magnitude of the magnetic force on the wire?",
+                            "A charged particle moves in a circle of radius $2.0 \, \\text{cm}$ in a uniform magnetic field of $0.15 \, \\text{T}$. If the particle has a velocity of $1.2 \\times 10^5 \, \\text{m/s}$, what is the charge-to-mass ratio ($q/m$) of the particle?",
+                            "An electron is shot into a uniform magnetic field and experiences a force of $1.5 \\times 10^{-17} \, \\text{N}$. If the magnetic field strength is $0.1 \, \\text{T}$ and the angle is $90^{\\circ}$, what is the velocity of the electron?",
+                            "Explain the difference between a permanent magnet and a temporary magnet."
+                        ]
+                    },
+                    {
+                        title: "Open Problems (5 problems)",
+                        problems: [
+                            "In your own words, explain how a speaker uses the principles of electricity and magnetism to produce sound.",
+                            "Describe how a changing magnetic field can induce an electric current in a wire. What factors affect the magnitude of this current?",
+                            "Explain how a motor works using the concepts of current, magnetic fields, and force.",
+                            "Describe the Earth's magnetic field and its significance for navigation and for protecting our planet from solar winds.",
+                            "Explain the concept of magnetic flux and its relationship to electromagnetic induction."
+                        ]
+                    },
+                    {
+                        title: "Hard Problems (5 problems)",
+                        problems: [
+                            "Derive the formula for the magnetic force on a current-carrying wire.",
+                            "An electron moving in a uniform magnetic field follows a helical path. Explain why this happens and derive the radius and pitch of the helix.",
+                            "A square loop with side length $L$ carries a current $I$. It is placed in a uniform magnetic field $B$. Derive the formula for the magnetic torque on the loop.",
+                            "An infinitely long solenoid has $n$ turns per unit length and carries a current $I$. Derive the formula for the magnetic field inside the solenoid.",
+                            "A particle with charge $q$ and mass $m$ is moving at speed $v$ in a uniform magnetic field $B$. What is the frequency of its circular motion, and what is its period?"
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "5. All Topics",
+                subsections: [
+                    {
+                        title: "Question Work Papers (15 problems)",
+                        problems: [
+                            "What is the relationship between electric current and the movement of charged particles?",
+                            "How is voltage related to electric potential energy?",
+                            "A circuit has a $10 \, \\text{V}$ battery and a $5 \, \\Omega$ resistor. What is the current and the power consumed?",
+                            "A $60 \, \\text{W}$ light bulb is connected to a $120 \, \\text{V}$ power source. What is its resistance?",
+                            "If a proton moves perpendicular to a magnetic field, what is the direction of the force on it?",
+                            "Explain what a transformer is and how it works.",
+                            "A $10 \, \\Omega$ and a $15 \, \\Omega$ resistor are connected in series. What is the total voltage if the current is $0.5 \, \\text{A}$?",
+                            "How much energy, in Joules, does a $2000 \, \\text{W}$ air conditioner use in 30 minutes?",
+                            "A compass needle is a small magnet. Why does it align with the Earth's magnetic field?",
+                            "Describe one way to increase the power of an electric circuit.",
+                            "What is the difference between a magnetic field and an electric field?",
+                            "Why is voltage called \"potential difference\"?",
+                            "How does the total power of a parallel circuit compare to the sum of the power consumed by each resistor?",
+                            "A charged particle moves parallel to an electric field. What happens to its speed?",
+                            "If you double the current in a circuit, how does the power change?"
+                        ]
+                    },
+                    {
+                        title: "Tests (5 problems)",
+                        problems: [
+                            "A circuit has a $12 \, \\text{V}$ battery and a combination of resistors. A $4 \, \\Omega$ resistor is in series with two resistors, $3 \, \\Omega$ and $6 \, \\Omega$, connected in parallel. What is the total current flowing from the battery, and what is the power dissipated by the $4 \, \\Omega$ resistor?",
+                            "A particle with a charge of $3.2 \\times 10^{-19} \, \\text{C}$ moves through a uniform magnetic field of $1.5 \, \\text{T}$ with a velocity of $2.0 \\times 10^4 \, \\text{m/s}$. What is the magnetic force on the particle?",
+                            "A motor with a resistance of $2.0 \, \\Omega$ operates on a $120 \, \\text{V}$ line. The motor is 85% efficient. What is the power output of the motor, and how much energy does it consume in 1 hour?",
+                            "An electron is accelerated from rest through a potential difference of $250 \, \\text{V}$. What is the final speed of the electron?",
+                            "A square loop of wire with a side length of $5 \, \\text{cm}$ and a resistance of $0.1 \, \\Omega$ is placed in a uniform magnetic field of $0.5 \, \\text{T}$. If the loop is pulled out of the field in $0.1 \, \\text{s}$, what is the induced current?"
+                        ]
+                    },
+                    {
+                        title: "Open Problems (5 problems)",
+                        problems: [
+                            "Describe the operation of a simple DC motor, detailing how electrical energy is converted into mechanical energy.",
+                            "A television screen (CRT type) uses an electron gun to fire electrons toward the screen. Explain how a combination of electric and magnetic fields can be used to steer these electrons to the correct spot on the screen to form an image.",
+                            "Explain how a simple electrical generator works. How does it use the principles of both electricity and magnetism to produce an electric current?",
+                            "In a circuit with both resistors and a motor, explain where the electrical energy goes. How is it transformed into different forms?",
+                            "Research and describe the concept of magnetic levitation (maglev) trains. Explain the role of both magnetic attraction and repulsion in their operation."
+                        ]
+                    },
+                    {
+                        title: "Hard Problems (5 problems)",
+                        problems: [
+                            "An electric heater with a resistance of $15 \, \\Omega$ and an electric motor with a resistance of $2 \, \\Omega$ are connected in series to a $120 \, \\text{V}$ source. The motor has a back EMF of $80 \, \\text{V}$. Find the current in the circuit and the power dissipated by the heater.",
+                            "A proton is at rest at a distance of $5.0 \\times 10^{-10} \, \\text{m}$ from another proton. The first proton is then released. What will be its speed when it is at a distance of $1.0 \\times 10^{-9} \, \\text{m}$ from the other proton?",
+                            "A particle with charge $q$ and mass $m$ is released from rest in a uniform electric field $E$. Derive an expression for its velocity as a function of time. If the field is then replaced by a uniform magnetic field $B$, describe the particle's subsequent motion.",
+                            "A circuit contains a power source, a resistor $R$, and a switch. When the switch is closed, a current of $I$ flows. If a second, identical resistor is added in series, how does the power consumed by the first resistor change?",
+                            "A straight, horizontal wire of length $L$ and mass $m$ is placed in a uniform magnetic field $B$ pointing horizontally, perpendicular to the wire. The wire is connected in a circuit such that it is levitating (suspended in the air). Find the current $I$ that must flow through the wire."
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        const contentDiv = document.getElementById('content');
+
+        function renderContent() {
+            let html = "";
+            sections.forEach(section => {
+                html += `<div class="mb-8">`;
+                html += `<h2 class="text-2xl font-bold section-header">${section.title}</h2>`;
+                section.subsections.forEach(subsection => {
+                    html += `<div class="mt-6 mb-4">`;
+                    html += `<h3 class="text-xl font-semibold text-gray-700">${subsection.title}</h3>`;
+                    html += `<ol class="problem-list list-decimal pl-6 mt-2">`;
+                    subsection.problems.forEach(problem => {
+                        html += `<li class="text-gray-800">${problem}</li>`;
+                    });
+                    html += `</ol></div>`;
+                });
+                html += `</div>`;
+            });
+            contentDiv.innerHTML = html;
+        }
+
+        window.onload = () => {
+            renderContent();
+            // This is a necessary step to re-render the math expressions after the HTML has been inserted.
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        };
+    </script>
+</body>
+</html>
