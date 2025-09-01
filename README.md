@@ -2,6 +2,8 @@ Click the topic and Enjoy!
 #### Motion
 - [`Measuring length and volume`](https://george1meshveliani.github.io/Hello-Physics/LengthAndVolume)
 - [`Density`](https://george1meshveliani.github.io/Hello-Physics/Density)
+- [`Measuring time`](https://george1meshveliani.github.io/Hello-Physics/MeasuringTime)
+
 #### Electricity and magnetism
 - [`Electric charge`](https://george1meshveliani.github.io/Hello-Physics/ElectricCharge)
 - [`Current, voltage and resistance`](https://george1meshveliani.github.io/Hello-Physics/CurrentVoltageResistance)
