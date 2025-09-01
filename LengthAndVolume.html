@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Measurement Presentation</title>
+    <!-- Use Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MathJax for rendering LaTeX math symbols -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .slide {
+            display: none;
+            transition: opacity 0.6s ease-in-out;
+        }
+        .fade-in {
+            animation-name: fadeIn;
+            animation-duration: 1.2s;
+        }
+        .scale-up {
+            animation-name: scaleUp;
+            animation-duration: 0.8s;
+            animation-delay: 0.4s;
+            animation-fill-mode: both;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scaleUp {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .container {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .problem-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            width: 100%;
+        }
+        .problem-card {
+            background-color: #f8fafc;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+        .quiz-option {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .quiz-option:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+        }
+        .quiz-option.correct {
+            background-color: #d1fae5;
+            box-shadow: 0 0 0 4px #34d399;
+        }
+        .quiz-option.incorrect {
+            background-color: #fee2e2;
+            box-shadow: 0 0 0 4px #f87171;
+        }
+        .game-input {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            width: 100%;
+            max-width: 300px;
+            font-size: 1.125rem;
+            text-align: center;
+        }
+        .feedback {
+            font-weight: 600;
+            margin-top: 1rem;
+            min-height: 2rem;
+        }
+        .svg-drawing {
+            max-width: 400px;
+            height: auto;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <!-- Main container for the presentation -->
+    <div class="relative w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl p-8 container">
+
+        <!-- All Slides -->
+        <div class="slideshow-container w-full h-full">
+
+            <!-- Slide 1: Title Slide -->
+            <div class="slide slide-content fade-in p-8">
+                <h1 class="text-4xl font-extrabold text-indigo-700 mb-4 scale-up">The Science of Measurement</h1>
+                <h2 class="text-2xl font-semibold text-gray-800 scale-up">Length and Volume</h2>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Ruler -->
+                        <rect x="50" y="100" width="200" height="20" fill="none" stroke="#6b7280" stroke-width="2" rx="5"/>
+                        <line x1="50" y1="110" x2="250" y2="110" stroke="#6b7280" stroke-width="1"/>
+                        <text x="60" y="118" font-size="8" fill="#6b7280">1</text>
+                        <text x="100" y="118" font-size="8" fill="#6b7280">2</text>
+                        <text x="140" y="118" font-size="8" fill="#6b7280">3</text>
+                        <text x="180" y="118" font-size="8" fill="#6b7280">4</text>
+                        <text x="220" y="118" font-size="8" fill="#6b7280">5</text>
+                        <line x1="50" y1="120" x2="50" y2="100" stroke="#6b7280" stroke-width="1"/>
+                        <line x1="100" y1="120" x2="100" y2="100" stroke="#6b7280" stroke-width="1"/>
+                        <line x1="150" y1="120" x2="150" y2="100" stroke="#6b7280" stroke-width="1"/>
+                        <line x1="200" y1="120" x2="200" y2="100" stroke="#6b7280" stroke-width="1"/>
+                        <line x1="250" y1="120" x2="250" y2="100" stroke="#6b7280" stroke-width="1"/>
+                        <!-- Beaker -->
+                        <path d="M 280 150 C 280 180, 350 180, 350 150 L 350 50 L 280 50 Z" fill="#e2e8f0" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 280 150 C 280 180, 350 180, 350 150" fill="none" stroke="#6b7280" stroke-width="2"/>
+                        <rect x="290" y="100" width="50" height="40" fill="#a5f3fc" opacity="0.6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 2: Lesson Plan -->
+            <div class="slide slide-content fade-in p-8 text-left">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 scale-up">Lesson Plan Overview</h2>
+                <ul class="list-disc list-inside space-y-2 text-lg text-gray-700 scale-up">
+                    <li>Introduction to Measurement</li>
+                    <li>Measuring Length: Units and Conversions</li>
+                    <li>Measuring Volume: Formulas and Units</li>
+                    <li>Significant Figures and Scientific Notation</li>
+                    <li>Practical Applications and Importance</li>
+                    <li>Review and Summary</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3: What is Measurement? -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">What is Measurement?</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Measurement is the process of assigning a numerical value to a physical quantity, such as length, mass, or time, by comparing it to a standard unit. It's the foundation of science and engineering.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Box -->
+                        <rect x="150" y="100" width="100" height="80" fill="#e2e8f0" stroke="#6b7280" stroke-width="2" rx="5"/>
+                        <!-- Ruler -->
+                        <rect x="250" y="140" width="80" height="15" fill="#f8fafc" stroke="#6b7280" stroke-width="1" rx="3"/>
+                        <text x="260" y="150" font-size="8" fill="#6b7280">1</text>
+                        <text x="280" y="150" font-size="8" fill="#6b7280">2</text>
+                        <text x="300" y="150" font-size="8" fill="#6b7280">3</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 4: Why is Measurement Important? -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Why is it Important?</h2>
+                <ul class="list-disc list-inside space-y-2 text-lg text-gray-700 max-w-2xl text-left scale-up">
+                    <li>Ensures accuracy in science and medicine.</li>
+                    <li>Essential for trade and commerce.</li>
+                    <li>Critical for engineering and construction.</li>
+                    <li>Helps us understand the world around us.</li>
+                </ul>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Scientist figure -->
+                        <circle cx="200" cy="80" r="15" fill="#a5f3fc" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 200 95 L 200 150" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 180 120 L 220 120" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 180 150 L 170 180 M 220 150 L 230 180" stroke="#6b7280" stroke-width="2"/>
+                        <!-- Lab equipment -->
+                        <path d="M 100 150 Q 110 120, 120 150 C 120 170, 100 170, 100 150" fill="#f8fafc" stroke="#6b7280" stroke-width="2"/>
+                        <rect x="250" y="140" width="40" height="30" fill="#f8fafc" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="270" y1="140" x2="270" y2="100" stroke="#6b7280" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 5: Simple Measurement -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Simple Measurement</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mb-4 scale-up">
+                    The simplest way to measure length is with a ruler or measuring tape. We use these tools to find the distance between two points.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="100" y1="150" x2="300" y2="150" stroke="#374151" stroke-width="1"/>
+                        <rect x="100" y="140" width="200" height="20" fill="#f1f5f9" stroke="#374151" stroke-width="2" rx="5"/>
+                        <line x1="100" y1="150" x2="100" y2="140" stroke="#374151" stroke-width="1"/>
+                        <line x1="150" y1="150" x2="150" y2="140" stroke="#374151" stroke-width="1"/>
+                        <line x1="200" y1="150" x2="200" y2="140" stroke="#374151" stroke-width="1"/>
+                        <line x1="250" y1="150" x2="250" y2="140" stroke="#374151" stroke-width="1"/>
+                        <line x1="300" y1="150" x2="300" y2="140" stroke="#374151" stroke-width="1"/>
+                        <text x="105" y="155" font-size="10" fill="#374151">1</text>
+                        <text x="155" y="155" font-size="10" fill="#374151">2</text>
+                        <text x="205" y="155" font-size="10" fill="#374151">3</text>
+                        <text x="255" y="155" font-size="10" fill="#374151">4</text>
+                        <rect x="250" y="120" width="5" height="30" fill="#6b7280" stroke="#374151" stroke-width="1" rx="2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 6: Advanced Measurement -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Advanced Measurement</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mb-4 scale-up">
+                    For highly precise measurements, scientists and engineers use tools like micrometers, calipers, and even laser distance meters.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Micrometer -->
+                        <rect x="100" y="100" width="180" height="30" fill="#e2e8f0" stroke="#6b7280" stroke-width="2" rx="5"/>
+                        <circle cx="280" cy="115" r="15" fill="#cbd5e1" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="280" y1="115" x2="350" y2="115" stroke="#6b7280" stroke-width="2"/>
+                        <rect x="350" y="100" width="10" height="30" fill="#cbd5e1" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="100" y1="115" x2="150" y2="115" stroke="#6b7280" stroke-width="2"/>
+                        <text x="180" y="120" font-size="12" fill="#6b7280">0.02mm</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 7: Introduction to Length -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Introduction to Length</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Length is the measurement of the distance between two points. It is a fundamental physical quantity.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="150" y="80" width="100" height="80" fill="#f8fafc" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 250 80 L 280 80 A 10 10 0 0 1 290 90 L 290 150 A 10 10 0 0 1 280 160 L 250 160" fill="#e2e8f0" stroke="#6b7280" stroke-width="2"/>
+                        <text x="170" y="120" font-size="16" fill="#6b7280">Length</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 8: Base Unit of Length -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Base Unit of Length</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    The base unit of length in the International System of Units (SI) is the <span class="font-bold">meter ($m$)</span>.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="50" y="90" width="300" height="20" fill="#d1d5db" stroke="#6b7280" stroke-width="2" rx="5"/>
+                        <line x1="50" y1="100" x2="350" y2="100" stroke="#6b7280" stroke-width="1"/>
+                        <text x="60" y="108" font-size="10" fill="#6b7280">0m</text>
+                        <text x="310" y="108" font-size="10" fill="#6b7280">1m</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 9: Other Common Units -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Other Common Units</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Other commonly used units of length include inches, feet, yards, and miles.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="50" y="100" width="300" height="20" fill="#e2e8f0" stroke="#6b7280" stroke-width="2" rx="5"/>
+                        <line x1="50" y1="110" x2="350" y2="110" stroke="#6b7280" stroke-width="1"/>
+                        <text x="60" y="118" font-size="10" fill="#6b7280">in</text>
+                        <text x="120" y="118" font-size="10" fill="#6b7280">ft</text>
+                        <text x="180" y="118" font-size="10" fill="#6b7280">yd</text>
+                        <text x="280" y="118" font-size="10" fill="#6b7280">mi</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 10: The Metric System -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">The Metric System</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    The metric system is a decimal-based system of measurement. All units are related by factors of $10$.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="50" font-size="16" fill="#4b5563">mm</text>
+                        <text x="200" y="50" font-size="16" fill="#4b5563">cm</text>
+                        <text x="300" y="50" font-size="16" fill="#4b5563">m</text>
+                        <line x1="120" y1="60" x2="180" y2="60" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <line x1="220" y1="60" x2="280" y2="60" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <text x="150" y="55" font-size="10" fill="#4b5563">/10</text>
+                        <text x="250" y="55" font-size="10" fill="#4b5563">/100</text>
+                        <defs>
+                            <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#4b5563" stroke="none"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 11: Prefixes and Factors Table -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center scale-up">Prefixes and Factors</h2>
+                <div class="overflow-x-auto scale-up">
+                    <table class="w-full table-auto border-collapse rounded-lg overflow-hidden shadow-lg">
+                        <thead class="bg-indigo-600 text-white">
+                            <tr>
+                                <th class="p-4">Prefix</th>
+                                <th class="p-4">Symbol</th>
+                                <th class="p-4">Factor</th>
+                                <th class="p-4">Power of 10</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-indigo-50 text-gray-800">
+                            <tr><td class="p-4 font-semibold">Mega</td><td class="p-4">M</td><td class="p-4">1,000,000</td><td class="p-4">$10^6$</td></tr>
+                            <tr><td class="p-4 font-semibold">Kilo</td><td class="p-4">k</td><td class="p-4">1,000</td><td class="p-4">$10^3$</td></tr>
+                            <tr><td class="p-4 font-semibold">Hecto</td><td class="p-4">h</td><td class="p-4">100</td><td class="p-4">$10^2$</td></tr>
+                            <tr><td class="p-4 font-semibold">Deca</td><td class="p-4">da</td><td class="p-4">10</td><td class="p-4">$10^1$</td></tr>
+                            <tr><td class="p-4 font-semibold">Base Unit</td><td class="p-4">-</td><td class="p-4">1</td><td class="p-4">$10^0$</td></tr>
+                            <tr><td class="p-4 font-semibold">Deci</td><td class="p-4">d</td><td class="p-4">0.1</td><td class="p-4">$10^{-1}$</td></tr>
+                            <tr><td class="p-4 font-semibold">Centi</td><td class="p-4">c</td><td class="p-4">0.01</td><td class="p-4">$10^{-2}$</td></tr>
+                            <tr><td class="p-4 font-semibold">Milli</td><td class="p-4">m</td><td class="p-4">0.001</td><td class="p-4">$10^{-3}$</td></tr>
+                            <tr><td class="p-4 font-semibold">Micro</td><td class="p-4">μ</td><td class="p-4">0.000001</td><td class="p-4">$10^{-6}$</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Slide 12: Interactive Quiz -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 scale-up">Quiz Time!</h2>
+                <div id="quiz-container" class="w-full max-w-xl text-left scale-up">
+                    <div id="quiz-question" class="text-xl font-medium text-gray-800 mb-4"></div>
+                    <div id="quiz-options" class="flex flex-col space-y-4"></div>
+                    <button id="quiz-submit" class="mt-6 w-full py-3 px-4 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition-colors">Submit Answer</button>
+                    <div id="quiz-feedback" class="feedback text-center text-lg"></div>
+                </div>
+            </div>
+
+            <!-- Slide 13: Introduction to Volume -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Introduction to Volume</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Volume is the amount of three-dimensional space an object occupies.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="150" y="100" width="100" height="80" fill="#e2e8f0" stroke="#6b7280" stroke-width="2"/>
+                        <circle cx="200" cy="180" r="10" fill="#4b5563"/>
+                        <path d="M 150 180 C 150 200, 250 200, 250 180" fill="none" stroke="#6b7280" stroke-width="2"/>
+                        <rect x="160" y="120" width="80" height="60" fill="#a5f3fc" opacity="0.6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 14: Base Unit of Volume -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Base Unit of Volume</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    The base unit of volume in the SI is the <span class="font-bold">cubic meter ($m^3$)</span>. However, the <span class="font-bold">liter ($L$)</span> is also very common.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="50" y="50" width="100" height="100" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 50 50 L 100 20 L 200 20 L 150 50 Z" stroke="#6b7280" stroke-width="2" fill="#d1d5db"/>
+                        <path d="M 150 50 L 150 150 L 200 120 L 200 20 Z" stroke="#6b7280" stroke-width="2" fill="#d1d5db"/>
+                        <text x="70" y="100" font-size="12" fill="#4b5563">1 $m^3$</text>
+                        <rect x="250" y="70" width="50" height="80" fill="#a5f3fc" stroke="#6b7280" stroke-width="2"/>
+                        <text x="260" y="110" font-size="12" fill="#4b5563">1 L</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 15: Other Volume Units -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Other Volume Units</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Common units for liquid volume include milliliters ($mL$), gallons, and quarts.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 100 150 C 100 180, 150 180, 150 150 L 150 50 L 100 50 Z" fill="#a5f3fc" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 200 150 C 200 180, 250 180, 250 150 L 250 50 L 200 50 Z" fill="#a5f3fc" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 300 150 C 300 180, 350 180, 350 150 L 350 50 L 300 50 Z" fill="#a5f3fc" stroke="#6b7280" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 16: Volume Formula - Rectangular Prism -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Volume: Rectangular Prism</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    The volume of a rectangular prism is given by the formula:
+                </p>
+                <div class="text-3xl font-bold text-indigo-700 mt-4 scale-up">
+                    $$V = \text{length} \times \text{width} \times \text{height}$$
+                </div>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 100 150 L 300 150 L 300 50 L 100 50 Z" fill="#e2e8f0" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 100 50 L 150 20 L 350 20 L 300 50" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,5"/>
+                        <path d="M 300 50 L 350 20 L 350 120 L 300 150" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,5"/>
+                        <path d="M 150 20 L 150 120 L 100 150" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="200" y="165" font-size="12" fill="#4b5563">width</text>
+                        <text x="310" y="80" font-size="12" fill="#4b5563">height</text>
+                        <text x="100" y="40" font-size="12" fill="#4b5563">length</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 17: Volume Formula - Cylinder -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Volume: Cylinder</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    The volume of a cylinder is given by the formula:
+                </p>
+                <div class="text-3xl font-bold text-indigo-700 mt-4 scale-up">
+                    $$V = \pi r^2 h$$
+                </div>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="200" cy="50" rx="50" ry="20" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+                        <ellipse cx="200" cy="150" rx="50" ry="20" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="150" y1="50" x2="150" y2="150" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="250" y1="50" x2="250" y2="150" stroke="#6b7280" stroke-width="2"/>
+                        <text x="260" y="100" font-size="12" fill="#4b5563">h</text>
+                        <line x1="200" y1="150" x2="250" y2="150" stroke="#4b5563" stroke-width="1" stroke-dasharray="3,3"/>
+                        <text x="225" y="160" font-size="12" fill="#4b5563">r</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 18: Volume Formula - Sphere -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Volume: Sphere</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    The volume of a sphere is given by the formula:
+                </p>
+                <div class="text-3xl font-bold text-indigo-700 mt-4 scale-up">
+                    $$V = \frac{4}{3}\pi r^3$$
+                </div>
+                <div class="svg-drawing">
+                    
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="200" cy="100" r="70" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="200" y1="100" x2="270" y2="100" stroke="#4b5563" stroke-width="1"/>
+                        <text x="235" y="90" font-size="12" fill="#4b5563">r</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 19: Volume Formula - Cone -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Volume: Cone</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    The volume of a cone is given by the formula:
+                </p>
+                <div class="text-3xl font-bold text-indigo-700 mt-4 scale-up">
+                    $$V = \frac{1}{3}\pi r^2 h$$
+                </div>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="200" y1="20" x2="150" y2="180" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="200" y1="20" x2="250" y2="180" stroke="#6b7280" stroke-width="2"/>
+                        <ellipse cx="200" cy="180" rx="50" ry="10" fill="#d1d5db" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="200" y1="20" x2="200" y2="180" stroke="#4b5563" stroke-width="1" stroke-dasharray="3,3"/>
+                        <text x="210" y="100" font-size="12" fill="#4b5563">h</text>
+                        <line x1="200" y1="180" x2="250" y2="180" stroke="#4b5563" stroke-width="1" stroke-dasharray="3,3"/>
+                        <text x="225" y="170" font-size="12" fill="#4b5563">r</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 20: Units for Volume -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Units for Volume</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Units for volume are usually "cubed" units, such as cubic centimeters ($cm^3$) or cubic inches ($in^3$).
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="150" y="80" width="100" height="100" fill="#e2e8f0" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 150 80 L 200 50 L 300 50 L 250 80" stroke="#6b7280" stroke-width="2" fill="#cbd5e1"/>
+                        <path d="M 250 80 L 250 180 L 200 150 L 150 180" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="200" y1="50" x2="200" y2="150" stroke="#6b7280" stroke-width="2" stroke-dasharray="5,5"/>
+                        <line x1="150" y1="180" x2="250" y2="180" stroke="#6b7280" stroke-width="2"/>
+                        <text x="170" y="130" font-size="16" fill="#4b5563">1 $cm^3$</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 21: Volume Unit Transformations -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Volume Unit Transformations</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    The relationship between volume units is not a simple factor of $10$. For example, $1 \, \text{L} = 1000 \, \text{mL} = 1000 \, \text{cm}^3$.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <text x="50" y="100" font-size="16" fill="#4b5563">L</text>
+                        <text x="180" y="100" font-size="16" fill="#4b5563">mL</text>
+                        <text x="300" y="100" font-size="16" fill="#4b5563">cm$^3$</text>
+                        <line x1="70" y1="105" x2="160" y2="105" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <text x="100" y="115" font-size="10" fill="#4b5563">x1000</text>
+                        <line x1="200" y1="105" x2="280" y2="105" stroke="#4b5563" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <text x="230" y="115" font-size="10" fill="#4b5563">x1</text>
+                        <defs>
+                            <marker id="arrowhead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#4b5563" stroke="none"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 22: Unit Conversion Game -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 scale-up">Unit Conversion Game</h2>
+                <div id="game-container" class="w-full max-w-xl text-center scale-up">
+                    <div id="game-problem" class="text-xl font-medium text-gray-800 mb-4"></div>
+                    <input type="number" id="game-input" class="game-input mb-4" placeholder="Enter your answer">
+                    <button id="game-submit" class="w-full py-3 px-4 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition-colors">Check Answer</button>
+                    <div id="game-feedback" class="feedback text-lg"></div>
+                    <div id="game-score" class="text-xl font-bold mt-4">Score: 0</div>
+                </div>
+            </div>
+
+            <!-- Slide 23: Significant Figures -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Significant Figures</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Significant figures are the digits in a number that carry meaningful information about its precision. They are crucial for scientific accuracy.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <text x="150" y="100" font-size="24" fill="#4b5563">5<tspan fill="#f59e0b" font-weight="bold">.0</tspan>3<tspan fill="#f59e0b" font-weight="bold">0</tspan></text>
+                        <rect x="198" y="80" width="40" height="25" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 24: Rules for Significant Figures -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Rules for Significant Figures</h2>
+                <ul class="list-disc list-inside space-y-2 text-lg text-gray-700 max-w-2xl text-left scale-up">
+                    <li>Non-zero digits are always significant.</li>
+                    <li>Leading zeros are never significant.</li>
+                    <li>Captive zeros are always significant.</li>
+                    <li>Trailing zeros are significant only if the number contains a decimal point.</li>
+                </ul>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="150" y="80" width="100" height="80" fill="#e2e8f0" stroke="#6b7280" stroke-width="2"/>
+                        <line x1="150" y1="120" x2="250" y2="120" stroke="#6b7280" stroke-width="1"/>
+                        <text x="210" y="115" font-size="10" fill="#4b5563">5.0 mL</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 25: Scientific Notation -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Scientific Notation</h2>
+                <p class="text-lg text-gray-700 max-w-2xl scale-up">
+                    Scientific notation is a way to express very large or very small numbers using powers of $10$.
+                </p>
+                <p class="text-xl font-semibold text-gray-700 mt-4 scale-up">
+                    Example: $3,000,000$ is written as $3 \times 10^6$.
+                </p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <text x="100" y="100" font-size="24" fill="#4b5563">3,000,000</text>
+                        <path d="M 220 100 L 250 100" stroke="#4b5563" stroke-width="2"/>
+                        <text x="270" y="100" font-size="24" fill="#4b5563">3 x 10$^6$</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 26: List of 10 Powers -->
+            <div class="slide fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center scale-up">Powers of 10</h2>
+                <ul class="list-disc list-inside space-y-2 text-lg text-gray-700 max-w-2xl text-left scale-up">
+                    <li>$10^1 = 10$</li>
+                    <li>$10^2 = 100$</li>
+                    <li>$10^3 = 1,000$</li>
+                    <li>$10^4 = 10,000$</li>
+                    <li>$10^5 = 100,000$</li>
+                    <li>$10^6 = 1,000,000$</li>
+                    <li>$10^{-1} = 0.1$</li>
+                    <li>$10^{-2} = 0.01$</li>
+                    <li>$10^{-3} = 0.001$</li>
+                    <li>$10^{-6} = 0.000001$</li>
+                </ul>
+            </div>
+
+            <!-- Slide 27: Measuring Different Objects -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Measuring Different Objects</h2>
+                <ul class="list-disc list-inside space-y-2 text-lg text-gray-700 max-w-2xl text-left scale-up">
+                    <li><span class="font-semibold">Simple solids:</span> Use a ruler or measuring tape.</li>
+                    <li><span class="font-semibold">Irregular solids:</span> Use water displacement.</li>
+                    <li><span class="font-semibold">Liquids:</span> Use a graduated cylinder or measuring cup.</li>
+                    <li><span class="font-semibold">Gases:</span> Measure volume by the container they occupy.</li>
+                </ul>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="50" y="100" width="100" height="20" fill="#e2e8f0" stroke="#6b7280" stroke-width="2" rx="5"/>
+                        <path d="M 200 150 C 200 180, 250 180, 250 150 L 250 50 L 200 50 Z" fill="#a5f3fc" stroke="#6b7280" stroke-width="2"/>
+                        <rect x="300" y="120" width="80" height="60" fill="#d1d5db" stroke="#6b7280" stroke-width="2" rx="5"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 28: Summary and Conclusion -->
+            <div class="slide slide-content fade-in p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 scale-up">Summary</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mb-4 scale-up">
+                    Measurement is a powerful tool for understanding the physical world. By mastering units, formulas, and conversions, you can accurately describe the size and shape of any object.
+                </p>
+                <p class="text-xl font-semibold text-indigo-700 scale-up">Thank you!</p>
+                <div class="svg-drawing">
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 100 150 C 120 180, 180 180, 200 150 L 200 50 L 100 50 Z" fill="#a5f3fc" stroke="#6b7280" stroke-width="2"/>
+                        <path d="M 220 150 L 300 150" stroke="#6b7280" stroke-width="2"/>
+                        <circle cx="260" cy="150" r="5" fill="#4b5563"/>
+                        <text x="240" y="165" font-size="12" fill="#4b5563">10 cm</text>
+                    </svg>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Navigation buttons -->
+        <button id="prevBtn" class="absolute top-1/2 left-4 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full opacity-70 hover:opacity-100 transition-opacity duration-300 z-10 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <button id="nextBtn" class="absolute top-1/2 right-4 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full opacity-70 hover:opacity-100 transition-opacity duration-300 z-10 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+
+        <!-- Dot indicators -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+            <!-- JavaScript will generate these dots -->
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let slideIndex = 1;
+            const slides = document.getElementsByClassName("slide");
+            const dotsContainer = document.querySelector(".absolute.bottom-4");
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+
+            // Quiz data
+            const quizQuestions = [
+                {
+                    question: "What is the factor for the prefix 'kilo'?",
+                    options: ["10", "100", "1,000", "0.01"],
+                    answer: "1,000"
+                },
+                {
+                    question: "A micrometer is equal to what power of 10?",
+                    options: ["$10^3$", "$10^{-3}$", "$10^{-6}$", "$10^6$"],
+                    answer: "$10^{-6}$"
+                },
+                {
+                    question: "How many centimeters are in one meter?",
+                    options: ["10", "100", "1,000", "0.1"],
+                    answer: "100"
+                }
+            ];
+            let currentQuizQuestionIndex = 0;
+
+            // Game data
+            const gameProblems = [
+                {
+                    problem: "Convert 2 meters to centimeters",
+                    answer: 200
+                },
+                {
+                    problem: "Convert 5 kilometers to meters",
+                    answer: 5000
+                },
+                {
+                    problem: "Convert 500 milliliters to liters",
+                    answer: 0.5
+                }
+            ];
+            let currentGameProblemIndex = 0;
+            let gameScore = 0;
+
+            // Function to create dots
+            function createDots() {
+                for (let i = 0; i < slides.length; i++) {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot', 'inline-block', 'h-3', 'w-3', 'rounded-full', 'bg-gray-400', 'cursor-pointer', 'transition-colors', 'duration-300');
+                    dot.setAttribute('data-slide-index', i + 1);
+                    dot.addEventListener('click', () => currentSlide(i + 1));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            // Function to show a specific slide
+            function showSlides(n) {
+                let i;
+                const dots = document.getElementsByClassName("dot");
+
+                if (n > slides.length) { slideIndex = 1; }
+                if (n < 1) { slideIndex = slides.length; }
+
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].classList.remove('bg-indigo-600');
+                    dots[i].classList.add('bg-gray-400');
+                }
+
+                slides[slideIndex - 1].style.display = "flex";
+                dots[slideIndex - 1].classList.remove('bg-gray-400');
+                dots[slideIndex - 1].classList.add('bg-indigo-600');
+            }
+
+            // Function to change slides based on a number (n)
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+                if (slideIndex === 12) {
+                    loadQuizQuestion();
+                }
+                if (slideIndex === 22) {
+                    loadGameProblem();
+                }
+            }
+
+            // Function to go to a specific slide
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+            
+            // Quiz Logic
+            function loadQuizQuestion() {
+                const quizQuestionEl = document.getElementById('quiz-question');
+                const quizOptionsEl = document.getElementById('quiz-options');
+                const quizSubmitBtn = document.getElementById('quiz-submit');
+                const quizFeedbackEl = document.getElementById('quiz-feedback');
+
+                const questionData = quizQuestions[currentQuizQuestionIndex];
+
+                if (!questionData) {
+                    quizQuestionEl.textContent = "Quiz complete!";
+                    quizOptionsEl.innerHTML = "";
+                    quizSubmitBtn.style.display = 'none';
+                    quizFeedbackEl.textContent = "Great job!";
+                    return;
+                }
+
+                quizQuestionEl.textContent = questionData.question;
+                quizOptionsEl.innerHTML = '';
+                quizFeedbackEl.textContent = '';
+                quizSubmitBtn.style.display = 'block';
+
+                questionData.options.forEach(option => {
+                    const optionEl = document.createElement('div');
+                    optionEl.classList.add('quiz-option');
+                    optionEl.textContent = option;
+                    optionEl.addEventListener('click', () => {
+                        document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+                        optionEl.classList.add('selected');
+                    });
+                    quizOptionsEl.appendChild(optionEl);
+                });
+            }
+
+            function checkQuizAnswer() {
+                const selectedOption = document.querySelector('.quiz-option.selected');
+                const quizFeedbackEl = document.getElementById('quiz-feedback');
+                const questionData = quizQuestions[currentQuizQuestionIndex];
+
+                if (!selectedOption) {
+                    quizFeedbackEl.textContent = "Please select an answer.";
+                    quizFeedbackEl.style.color = '#ef4444';
+                    return;
+                }
+
+                document.getElementById('quiz-submit').style.display = 'none';
+
+                if (selectedOption.textContent === questionData.answer) {
+                    selectedOption.classList.add('correct');
+                    quizFeedbackEl.textContent = "Correct! Well done.";
+                    quizFeedbackEl.style.color = '#10b981';
+                    setTimeout(() => {
+                        currentQuizQuestionIndex++;
+                        loadQuizQuestion();
+                    }, 1500);
+                } else {
+                    selectedOption.classList.add('incorrect');
+                    quizFeedbackEl.textContent = "Incorrect. The correct answer is " + questionData.answer + ".";
+                    quizFeedbackEl.style.color = '#ef4444';
+                }
+            }
+
+            // Game Logic
+            function loadGameProblem() {
+                const gameProblemEl = document.getElementById('game-problem');
+                const gameInputEl = document.getElementById('game-input');
+                const gameFeedbackEl = document.getElementById('game-feedback');
+                
+                const problemData = gameProblems[currentGameProblemIndex];
+
+                if (!problemData) {
+                    gameProblemEl.textContent = "Game Complete!";
+                    gameInputEl.style.display = 'none';
+                    document.getElementById('game-submit').style.display = 'none';
+                    gameFeedbackEl.textContent = "You finished the game!";
+                    return;
+                }
+
+                gameProblemEl.textContent = problemData.problem;
+                gameInputEl.value = '';
+                gameFeedbackEl.textContent = '';
+            }
+
+            function checkGameAnswer() {
+                const gameInputEl = document.getElementById('game-input');
+                const gameFeedbackEl = document.getElementById('game-feedback');
+                const gameScoreEl = document.getElementById('game-score');
+                const problemData = gameProblems[currentGameProblemIndex];
+                const userAnswer = parseFloat(gameInputEl.value);
+
+                if (isNaN(userAnswer)) {
+                    gameFeedbackEl.textContent = "Please enter a number.";
+                    gameFeedbackEl.style.color = '#ef4444';
+                    return;
+                }
+                
+                if (userAnswer === problemData.answer) {
+                    gameFeedbackEl.textContent = "Correct! You got it.";
+                    gameFeedbackEl.style.color = '#10b981';
+                    gameScore++;
+                    gameScoreEl.textContent = `Score: ${gameScore}`;
+                    setTimeout(() => {
+                        currentGameProblemIndex++;
+                        loadGameProblem();
+                    }, 1500);
+                } else {
+                    gameFeedbackEl.textContent = "That's not right. Try again!";
+                    gameFeedbackEl.style.color = '#ef4444';
+                }
+            }
+
+
+            prevBtn.addEventListener('click', () => plusSlides(-1));
+            nextBtn.addEventListener('click', () => plusSlides(1));
+            document.getElementById('quiz-submit').addEventListener('click', checkQuizAnswer);
+            document.getElementById('game-submit').addEventListener('click', checkGameAnswer);
+
+            // Initialize the presentation
+            createDots();
+            showSlides(slideIndex);
+        });
+    </script>
+</body>
+</html>
