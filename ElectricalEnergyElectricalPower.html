@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical Energy & Power</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // MathJax configuration for LaTeX rendering
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .slide {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            transition: opacity 0.5s ease-in-out;
+            background-color: #1a202c;
+            color: #e2e8f0;
+            padding: 4rem;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+        .active-slide {
+            display: flex;
+        }
+        .fade-in {
+            animation-name: fadein;
+            animation-duration: 1.5s;
+        }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        .answer-choice {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .answer-choice:hover {
+            background-color: #3f51b5;
+            transform: scale(1.02);
+        }
+        .correct-answer {
+            background-color: #4caf50;
+        }
+        .incorrect-answer {
+            background-color: #f44336;
+        }
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        /* Power meter animation */
+        .power-meter-needle {
+            transform-origin: bottom center;
+            transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .power-meter-bar {
+            animation: fill-power 2s ease-in-out forwards;
+        }
+        @keyframes fill-power {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        /* Heat loss animation */
+        .power-line-spark {
+            animation: spark-flash 1s infinite;
+        }
+        @keyframes spark-flash {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Power triangle 3D effect */
+        .power-triangle {
+            transform: rotateX(20deg) rotateY(0deg) scale(0.9);
+            transform-style: preserve-3d;
+            animation: rotate-triangle 10s infinite linear;
+        }
+        @keyframes rotate-triangle {
+            0% { transform: rotateX(20deg) rotateY(0deg) scale(0.9); }
+            100% { transform: rotateX(20deg) rotateY(360deg) scale(0.9); }
+        }
+
+        /* Energy meter animation */
+        .energy-bar-fill {
+            animation: fill-bar 5s ease-out forwards;
+        }
+        @keyframes fill-bar {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* New Light bulb illustration for Power */
+        .bulb-container {
+            position: relative;
+            width: 150px;
+            height: 200px;
+            transform-origin: bottom;
+            animation: float 3s ease-in-out infinite;
+        }
+        .bulb {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #facc15, #f59e0b 80%, #d97706 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 0 0px 0px rgba(255, 255, 0, 0.7);
+            transition: box-shadow 1s ease-in-out;
+            filter: brightness(0.5);
+        }
+        .filament {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #8d785a;
+            transform: translate(-50%, -50%);
+        }
+        .socket {
+            width: 60px;
+            height: 40px;
+            background-color: #3b4252;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .glow {
+            animation: glow 3s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.3), 0 0 20px 10px rgba(255, 255, 0, 0.2); filter: brightness(1); }
+            50% { box-shadow: 0 0 30px 15px rgba(255, 255, 0, 0.6), 0 0 60px 30px rgba(255, 255, 0, 0.5); filter: brightness(1.2); }
+            100% { box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.3), 0 0 20px 10px rgba(255, 255, 0, 0.2); filter: brightness(1); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* New Energy Illustration */
+        .energy-path-container {
+            position: relative;
+            width: 80%;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .energy-path {
+            width: 100%;
+            height: 10px;
+            background-color: #3f424b;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+        }
+        .energy-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 5s ease-in-out;
+            position: relative; /* Add this to contain the icon */
+        }
+        .energy-icon {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #facc15;
+            border-radius: 50%;
+            top: 50%;
+            right: 0; /* Position relative to the right edge of its parent */
+            transform: translateY(-50%); /* Only translate vertically */
+        }
+
+        /* New Heat Loss Illustration */
+        .wire-container {
+            position: relative;
+            width: 80%;
+            height: 100px;
+        }
+        .power-source {
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: #f59e0b;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #f59e0b;
+        }
+        .wire {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 5px;
+            background: #e2e8f0;
+            border-radius: 3px;
+        }
+        .heat-glow {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 20px;
+            transform: translateY(-50%);
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(239, 68, 68, 0),
+                rgba(239, 68, 68, 0.3) 5px,
+                rgba(239, 68, 68, 0) 10px
+            );
+            animation: heat-shimmer 2s linear infinite;
+        }
+        @keyframes heat-shimmer {
+            0% { transform: translateY(-50%) scale(1, 0.5); opacity: 0.5; }
+            50% { transform: translateY(-50%) scale(1, 1); opacity: 1; }
+            100% { transform: translateY(-50%) scale(1, 0.5); opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+
+<!-- Main Slideshow Container -->
+<div id="slideshow-container" class="relative w-full h-full">
+
+    <!-- Vertical Navigation -->
+    <div class="fixed left-8 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center space-y-4">
+        <div class="h-full w-0.5 bg-gray-600 absolute top-0 left-1/2 -translate-x-1/2 rounded-full"></div>
+        <div id="nav-dots-container" class="relative flex flex-col items-center">
+        </div>
+    </div>
+
+    <!-- Slide 1: Title Slide -->
+    <div class="slide fade-in active-slide flex items-center justify-center">
+        <div class="max-w-3xl text-center">
+            <h1 class="text-6xl font-bold mb-4">Electrical Energy & Power</h1>
+            <p class="text-2xl text-gray-400">George Meshveliani</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: Lesson Plan -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Lesson Plan</h2>
+            <ul class="list-disc list-inside space-y-4 text-2xl md:text-3xl">
+                <li>What is Electrical Power?</li>
+                <li>What is Electrical Energy?</li>
+                <li>The Problem of Energy Transfer.</li>
+                <li>The Power Triangle.</li>
+                <li>Units of Measurement: Watt & kWh.</li>
+                <li>Calculating the Cost of Electricity.</li>
+                <li>Common Appliance Costs.</li>
+                <li>Energy Consumption Graphs.</li>
+                <li>Practice Problems.</li>
+                <li>Interactive Quiz.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 3: What is Electrical Power? (New Illustration) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">What is Electrical Power?</h2>
+            <p class="text-2xl mb-8">Power ($P$) is the rate at which electrical energy is transferred or used. It's how "fast" a device works. Think of a light bulb's brightness. </p>
+            <div class="flex items-center justify-center w-full">
+                <div class="bulb-container">
+                    <div class="bulb glow">
+                        <div class="filament"></div>
+                    </div>
+                    <div class="socket"></div>
+                </div>
+            </div>
+            <p class="text-3xl text-yellow-300 font-bold mb-4 mt-8">$$P = VI$$</p>
+            <p class="text-2xl">Unit: Watt (W).</p>
+        </div>
+    </div>
+
+    <!-- Slide 4: What is Electrical Energy? (New Illustration) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">What is Electrical Energy?</h2>
+            <p class="text-2xl mb-8">Energy ($E$) is the total amount of power consumed over a period of time. It's what you pay for on your electricity bill.</p>
+            <div class="flex flex-col items-center justify-center space-y-4">
+                <div class="energy-path-container">
+                    <div id="energy-fill" class="energy-fill">
+                        <div id="energy-icon" class="energy-icon"></div>
+                    </div>
+                </div>
+                <p id="energy-counter" class="text-3xl font-bold text-green-400">0.00 kWh</p>
+            </div>
+            <p class="text-3xl text-yellow-300 font-bold mb-4 mt-8">$$E = Pt$$</p>
+            <p class="text-2xl">Unit: Joule (J) or Kilowatt-hour (kWh).</p>
+        </div>
+    </div>
+
+    <!-- Slide 5: The Problem of Energy Transfer: Heat Loss (New Illustration) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">The Problem of Energy Transfer</h2>
+            <p class="text-2xl mb-8">When electrical energy is transferred, some of it is lost as heat due to the resistance ($R$) of the wires. This is called **Joule heating**.</p>
+            <div class="flex items-center justify-center">
+                <div class="relative w-96 h-24">
+                    <div class="power-source"></div>
+                    <div class="wire"></div>
+                    <div class="heat-glow"></div>
+                </div>
+            </div>
+            <p class="text-3xl text-yellow-300 font-bold mb-4 mt-8">$$P_{loss} = I^2R$$</p>
+            <p class="text-2xl">The higher the current or resistance, the more power is lost.</p>
+        </div>
+    </div>
+
+    <!-- Slide 6: The Power Triangle -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">The Power Triangle</h2>
+            <p class="text-2xl mb-8">Just like Ohm's Law, there are multiple ways to calculate power.</p>
+            <div class="relative w-64 h-64 mx-auto my-8 transform-gpu perspective-1000">
+                <div class="relative w-full h-full power-triangle">
+                    <div class="absolute inset-0 border-4 border-yellow-400 rounded-md"></div>
+                    <div class="absolute w-1/2 h-1/2 bg-gray-700 top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 rotate-45"></div>
+                    <p class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-bold text-yellow-300 drop-shadow-lg" style="text-shadow: 0 0 10px #facc15;">P</p>
+                    <p class="absolute bottom-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 text-4xl font-bold text-blue-400 drop-shadow-lg" style="text-shadow: 0 0 10px #60a5fa;">V</p>
+                    <p class="absolute bottom-1/4 right-1/4 -translate-x-1/2 -translate-y-1/2 text-4xl font-bold text-red-400 drop-shadow-lg" style="text-shadow: 0 0 10px #f87171;">I</p>
+                </div>
+            </div>
+            <ul class="list-disc list-inside space-y-2 text-xl md:text-2xl text-left my-4">
+                <li>$P = VI$</li>
+                <li>$P = I^2R$</li>
+                <li>$P = \frac{V^2}{R}$</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 7: Units of Measurement -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Units of Measurement</h2>
+            <p class="text-2xl mb-4"><strong>Power</strong> is measured in <strong>Watts (W)</strong>. A kilowatt (kW) is 1,000 W.</p>
+            <p class="text-2xl mb-8"><strong>Energy</strong> is measured in <strong>Joules (J)</strong> or, more commonly for billing, <strong>Kilowatt-hours (kWh)</strong>.</p>
+            <div class="p-8 bg-gray-800 rounded-lg shadow-xl mt-8">
+                <p class="text-xl text-gray-400"><strong>Conversion:</strong> $1 \, \text{kWh} = 3.6 \times 10^6 \, \text{J}$</p>
+                <p class="text-xl text-gray-400">A 1,000 W appliance running for 1 hour uses 1 kWh of energy.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Calculating Electricity Cost -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Calculating the Cost of Electricity</h2>
+            <p class="text-2xl mb-8">To find the cost, you need three things:</p>
+            <ul class="list-disc list-inside space-y-4 text-2xl text-left mx-auto max-w-lg">
+                <li><strong>Power</strong> of the appliance (in kW).</li>
+                <li><strong>Time</strong> it is used (in hours).</li>
+                <li><strong>Rate</strong> from your electricity provider ($/kWh).</li>
+            </ul>
+            <p class="text-3xl text-yellow-300 font-bold mb-4 mt-8">$$Cost = \text{Energy (kWh)} \times \text{Rate ($/kWh$)}$$</p>
+        </div>
+    </div>
+
+    <!-- Slide 9: Common Appliance Costs Table -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-5xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Common Appliance Costs</h2>
+            <p class="text-2xl mb-8">This table shows the approximate daily cost of running common household appliances, based on a rate of $0.15/kWh$.</p>
+            <div class="overflow-x-auto rounded-lg shadow-xl">
+                <table class="min-w-full bg-gray-800 text-white">
+                    <thead>
+                        <tr class="bg-gray-700 text-lg">
+                            <th class="py-3 px-6 text-left">Appliance</th>
+                            <th class="py-3 px-6 text-center">Power (W)</th>
+                            <th class="py-3 px-6 text-center">Time Used/Day (h)</th>
+                            <th class="py-3 px-6 text-center">Daily Energy (kWh)</th>
+                            <th class="py-3 px-6 text-right">Daily Cost ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t border-gray-600">
+                            <td class="py-4 px-6 text-left">Television</td>
+                            <td class="py-4 px-6 text-center">200</td>
+                            <td class="py-4 px-6 text-center">4</td>
+                            <td class="py-4 px-6 text-center">0.8</td>
+                            <td class="py-4 px-6 text-right">0.12</td>
+                        </tr>
+                        <tr class="border-t border-gray-600 bg-gray-700">
+                            <td class="py-4 px-6 text-left">Refrigerator</td>
+                            <td class="py-4 px-6 text-center">150</td>
+                            <td class="py-4 px-6 text-center">24</td>
+                            <td class="py-4 px-6 text-center">3.6</td>
+                            <td class="py-4 px-6 text-right">0.54</td>
+                        </tr>
+                        <tr class="border-t border-gray-600">
+                            <td class="py-4 px-6 text-left">Microwave</td>
+                            <td class="py-4 px-6 text-center">1200</td>
+                            <td class="py-4 px-6 text-center">0.25</td>
+                            <td class="py-4 px-6 text-center">0.3</td>
+                            <td class="py-4 px-6 text-right">0.05</td>
+                        </tr>
+                        <tr class="border-t border-gray-600 bg-gray-700">
+                            <td class="py-4 px-6 text-left">Laptop Charger</td>
+                            <td class="py-4 px-6 text-center">50</td>
+                            <td class="py-4 px-6 text-center">8</td>
+                            <td class="py-4 px-6 text-center">0.4</td>
+                            <td class="py-4 px-6 text-right">0.06</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 10: Appliance Power Comparison (Bar Chart) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Appliance Power Comparison</h2>
+            <p class="text-2xl mb-8">A bar chart showing the power consumption of different appliances.</p>
+            <div class="w-full h-96">
+                <canvas id="powerChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Energy Consumption Over Time (Line Graph) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Energy Consumption Over Time</h2>
+            <p class="text-2xl mb-8">A line graph showing how total energy (kWh) accumulates as a device runs.</p>
+            <div class="w-full h-96">
+                <canvas id="energyChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Practice Problem 1 (Power) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Practice Problem 1 (Power)</h2>
+            <p class="text-2xl mb-4">A television draws $2 \, \text{A}$ of current from a standard $120 \, \text{V}$ outlet. What is the power consumed by the television?</p>
+            <div class="p-4 bg-gray-800 rounded-lg shadow-xl mt-8">
+                <p class="text-xl text-gray-400">Hint: Use the formula $P = VI$.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Solution to Problem 1 -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Solution to Problem 1</h2>
+            <p class="text-2xl mb-4">Using the power formula:</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$P = V \times I$$</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$P = 120 \, \text{V} \times 2 \, \text{A} = 240 \, \text{W}$$</p>
+            <p class="text-2xl text-white">The television consumes $240 \, \text{W}$ of power.</p>
+        </div>
+    </div>
+
+    <!-- Slide 14: Practice Problem 2 (Energy & Cost) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Practice Problem 2 (Energy & Cost)</h2>
+            <p class="text-2xl mb-4">An air conditioner has a power rating of $1500 \, \text{W}$. If it runs for 8 hours a day, and the electricity rate is $0.15$ per kWh, what is the cost to run it for one day?</p>
+            <div class="p-4 bg-gray-800 rounded-lg shadow-xl mt-8">
+                <p class="text-xl text-gray-400">Hint: Convert Watts to kilowatts, then calculate energy and cost.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Solution to Problem 2 -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Solution to Problem 2</h2>
+            <p class="text-2xl mb-4">Step 1: Convert power to kW.</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$P(\text{kW}) = \frac{1500 \, \text{W}}{1000} = 1.5 \, \text{kW}$$</p>
+            <p class="text-2xl mb-4">Step 2: Calculate the total energy consumed.</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$E = P \times t = 1.5 \, \text{kW} \times 8 \, \text{h} = 12 \, \text{kWh}$$</p>
+            <p class="text-2xl mb-4">Step 3: Calculate the cost.</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$Cost = 12 \, \text{kWh} \times 0.15 \, \text{$ /kWh} = 1.80 \, \text{$}$$</p>
+        </div>
+    </div>
+    
+    <!-- Slide 16: Practice Problem 3 (Power Loss) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Practice Problem 3 (Power Loss)</h2>
+            <p class="text-2xl mb-4">A power line has a resistance of $0.5 \, \Omega$ and carries a current of $20 \, \text{A}$. How much power is lost as heat in the wire?</p>
+            <div class="p-4 bg-gray-800 rounded-lg shadow-xl mt-8">
+                <p class="text-xl text-gray-400">Hint: Use the formula for power loss, $P_{loss} = I^2R$.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 17: Solution to Problem 3 -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Solution to Problem 3</h2>
+            <p class="text-2xl mb-4">Using the power loss formula:</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$P_{loss} = I^2 \times R$$</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$P_{loss} = (20 \, \text{A})^2 \times 0.5 \, \Omega$$</p>
+            <p class="text-2xl text-yellow-300 text-center my-4">$$P_{loss} = 400 \times 0.5 = 200 \, \text{W}$$</p>
+            <p class="text-2xl text-white">The power lost as heat is $200 \, \text{W}$.</p>
+        </div>
+    </div>
+
+    <!-- Slide 18: Interactive Quiz (Shortened and Simplified) -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-center">
+            <h2 class="text-5xl font-semibold mb-8">Interactive Quiz</h2>
+            <div id="quiz-container" class="bg-gray-800 p-8 rounded-lg shadow-xl w-full">
+                <div id="quiz-content" class="">
+                    <p id="quiz-question" class="text-3xl mb-8"></p>
+                    <div id="quiz-answers" class="flex flex-col space-y-4"></div>
+                    <p id="quiz-feedback" class="text-xl mt-4 h-8"></p>
+                </div>
+                <div id="quiz-complete" class="hidden flex flex-col items-center">
+                    <h3 class="text-4xl font-bold mb-4">Quiz Complete!</h3>
+                    <p id="final-score" class="text-2xl mb-8"></p>
+                    <button id="restart-button" class="px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors">Restart Quiz</button>
+                </div>
+                <button id="next-button" class="mt-8 px-6 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors hidden">Next Question</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 19: Summary -->
+    <div class="slide fade-in flex flex-col justify-center items-center">
+        <div class="max-w-4xl w-full text-left">
+            <h2 class="text-5xl font-semibold mb-8">Summary</h2>
+            <ul class="list-disc list-inside space-y-4 text-2xl">
+                <li><strong>Power ($P$)</strong> is the rate of energy transfer, measured in Watts (W).</li>
+                <li><strong>Energy ($E$)</strong> is the total power used over time, measured in Joules (J) or Kilowatt-hours (kWh).</li>
+                <li><strong>Heat Loss:</strong> Some energy is lost as heat due to resistance, calculated by $P_{loss} = I^2R$.</li>
+                <li><strong>Formulas:</strong> $P = VI$ and $E = Pt$.</li>
+                <li><strong>Cost:</strong> Calculated by multiplying energy (kWh) by the rate ($/kWh$).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Slide 20: Final Slide -->
+    <div class="slide fade-in flex items-center justify-center">
+        <div class="max-w-3xl text-center">
+            <h2 class="text-5xl font-bold mb-4">Thank You</h2>
+            <p class="text-2xl text-gray-400">Any questions?</p>
+        </div>
+    </div>
+    
+    <!-- Navigation buttons -->
+    <button class="absolute top-1/2 left-8 -translate-y-1/2 bg-gray-800 text-white p-4 rounded-full opacity-70 hover:opacity-100 transition-opacity duration-300 z-10" onclick="plusSlides(-1)">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <button class="absolute top-1/2 right-8 -translate-y-1/2 bg-gray-800 text-white p-4 rounded-full opacity-70 hover:opacity-100 transition-opacity duration-300 z-10" onclick="plusSlides(1)">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+</div>
+
+<script>
+    let slideIndex = 1;
+    let totalSlides;
+    const navDotsContainer = document.getElementById("nav-dots-container");
+    const quizQuestions = [
+        {
+            question: "What is the unit of electrical power?",
+            answers: ["Ohm", "Watt", "Ampere"],
+            correct: 1
+        },
+        {
+            question: "What is the commercial unit of electrical energy?",
+            answers: ["Joule", "Watt", "Kilowatt-hour"],
+            correct: 2
+        },
+        {
+            question: "How do you calculate electrical energy?",
+            answers: ["Power divided by time", "Power times voltage", "Power times time"],
+            correct: 2
+        },
+        {
+            question: "An electric heater has a power of 2000 W. What is its power in kW?",
+            answers: ["20 kW", "2 kW", "0.2 kW"],
+            correct: 1
+        },
+        {
+            question: "Which of these formulas is used to calculate heat loss?",
+            answers: ["$P = VI$", "$E = Pt$", "$P_{loss} = I^2R$"],
+            correct: 2
+        }
+    ];
+    let currentQuizQuestion = 0;
+    let score = 0;
+    let energyIntervalId;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        totalSlides = document.getElementsByClassName("slide").length;
+        createNavDots();
+        showSlides(slideIndex);
+        
+        // Initialize charts when the DOM is ready
+        createPowerChart();
+        createEnergyChart();
+    });
+
+    // Create navigation dots
+    function createNavDots() {
+        navDotsContainer.innerHTML = '';
+        for (let i = 1; i <= totalSlides; i++) {
+            const dot = document.createElement("div");
+            dot.classList.add("w-3", "h-3", "bg-gray-600", "rounded-full", "transition-all", "duration-300", "cursor-pointer", "z-30", "relative", "my-2");
+            dot.onclick = () => currentSlide(i);
+            navDotsContainer.appendChild(dot);
+        }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowRight') {
+            plusSlides(1);
+        } else if (event.key === 'ArrowLeft') {
+            plusSlides(-1);
+        }
+    });
+
+    // Function to change slides based on n (1 for next, -1 for previous)
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Function to set the current slide
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    // Main function to display the slides
+    function showSlides(n) {
+        let slides = document.getElementsByClassName("slide");
+        let dots = navDotsContainer.getElementsByTagName("div");
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+
+        // Clear any ongoing animations
+        clearInterval(energyIntervalId);
+        const energyFill = document.getElementById('energy-fill');
+        const energyCounter = document.getElementById('energy-counter');
+        if (energyFill && energyCounter) {
+            energyFill.style.width = '0%';
+            energyCounter.textContent = '0.00 kWh';
+        }
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            slides[i].classList.remove('active-slide');
+            dots[i].classList.remove('bg-yellow-300', 'scale-125');
+            dots[i].classList.add('bg-gray-600');
+        }
+        slides[slideIndex - 1].style.display = "flex";
+        slides[slideIndex - 1].classList.add('active-slide');
+        dots[slideIndex - 1].classList.remove('bg-gray-600');
+        dots[slideIndex - 1].classList.add('bg-yellow-300', 'scale-125');
+        
+        // Start animations for specific slides
+        if (slideIndex === 4) {
+            startEnergyAnimation();
+        } else if (slideIndex === 18) {
+            loadQuizQuestion();
+        }
+        
+        // This is the fix: tell MathJax to re-render the content
+        if (typeof MathJax !== 'undefined') {
+            MathJax.typeset();
+        }
+    }
+
+    // Function to start the energy meter animation
+    function startEnergyAnimation() {
+        const energyFill = document.getElementById('energy-fill');
+        const energyCounter = document.getElementById('energy-counter');
+
+        // Reset the animation to its starting point
+        energyFill.style.width = '0%';
+        energyCounter.textContent = '0.00 kWh';
+
+        // Use a short delay to allow the browser to register the initial state
+        setTimeout(() => {
+            // Now, set the final state to trigger the CSS transition
+            energyFill.style.width = '100%';
+
+            let currentKwh = 0;
+            const targetKwh = 1.00; // Example target for a 5-second animation
+            const duration = 5000; // 5 seconds in milliseconds
+            const steps = 100;
+            const increment = targetKwh / steps;
+            let stepCount = 0;
+
+            energyIntervalId = setInterval(() => {
+                if (stepCount >= steps) {
+                    clearInterval(energyIntervalId);
+                    return;
+                }
+                currentKwh += increment;
+                energyCounter.textContent = currentKwh.toFixed(2) + ' kWh';
+                stepCount++;
+            }, duration / steps);
+        }, 50); // Small delay
+    }
+
+    // Quiz functions
+    function loadQuizQuestion() {
+        const quizContent = document.getElementById('quiz-content');
+        const quizComplete = document.getElementById('quiz-complete');
+        const nextButton = document.getElementById('next-button');
+        const restartButton = document.getElementById('restart-button');
+
+        quizComplete.classList.add('hidden');
+        quizContent.classList.remove('hidden');
+        nextButton.classList.add('hidden');
+
+        if (currentQuizQuestion >= quizQuestions.length) {
+            // Quiz is complete
+            quizContent.classList.add('hidden');
+            quizComplete.classList.remove('hidden');
+            document.getElementById('final-score').textContent = `You scored ${score} out of ${quizQuestions.length}!`;
+            restartButton.onclick = () => {
+                currentQuizQuestion = 0;
+                score = 0;
+                loadQuizQuestion();
+            };
+            return;
+        }
+
+        const questionData = quizQuestions[currentQuizQuestion];
+        const questionElement = document.getElementById('quiz-question');
+        const answersElement = document.getElementById('quiz-answers');
+        const feedbackElement = document.getElementById('quiz-feedback');
+        
+        questionElement.innerHTML = questionData.question;
+        answersElement.innerHTML = '';
+        feedbackElement.textContent = '';
+        
+        questionData.answers.forEach((answer, index) => {
+            const button = document.createElement('button');
+            button.innerHTML = answer;
+            button.classList.add('answer-choice', 'p-4', 'bg-gray-700', 'rounded-lg', 'text-xl', 'text-white', 'hover:bg-gray-600', 'transition-colors');
+            button.onclick = () => checkAnswer(index, questionData.correct);
+            answersElement.appendChild(button);
+        });
+        
+        if (typeof MathJax !== 'undefined') {
+            MathJax.typesetPromise([questionElement, answersElement]);
+        }
+    }
+
+    function checkAnswer(selectedIndex, correctAnswerIndex) {
+        const answers = document.getElementById('quiz-answers').children;
+        const feedbackElement = document.getElementById('quiz-feedback');
+        const nextButton = document.getElementById('next-button');
+
+        // Disable all buttons to prevent multiple answers
+        Array.from(answers).forEach((button, index) => {
+            button.disabled = true;
+            if (index === correctAnswerIndex) {
+                button.classList.add('correct-answer');
+                button.classList.remove('hover:bg-gray-600');
+            } else {
+                button.classList.add('incorrect-answer');
+                button.classList.remove('hover:bg-gray-600');
+            }
+        });
+
+        if (selectedIndex === correctAnswerIndex) {
+            feedbackElement.textContent = "Correct! Well done.";
+            feedbackElement.classList.remove('text-red-400');
+            feedbackElement.classList.add('text-green-400');
+            score++;
+        } else {
+            feedbackElement.textContent = "Incorrect.";
+            feedbackElement.classList.remove('text-green-400');
+            feedbackElement.classList.add('text-red-400');
+        }
+        
+        // Show the next question button
+        nextButton.classList.remove('hidden');
+        nextButton.onclick = () => {
+            currentQuizQuestion++;
+            loadQuizQuestion();
+        };
+    }
+    
+    // Chart functions
+    function createPowerChart() {
+        const ctx = document.getElementById('powerChart').getContext('2d');
+        const powerChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Television', 'Refrigerator', 'Microwave', 'Laptop Charger'],
+                datasets: [{
+                    label: 'Power (W)',
+                    data: [200, 150, 1200, 50],
+                    backgroundColor: [
+                        '#4f46e5',
+                        '#2563eb',
+                        '#3b82f6',
+                        '#60a5fa'
+                    ],
+                    borderColor: [
+                        '#4338ca',
+                        '#1e40af',
+                        '#2563eb',
+                        '#3b82f6'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#4b5563'
+                        },
+                        ticks: {
+                            color: '#e5e7eb'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#4b5563'
+                        },
+                        ticks: {
+                            color: '#e5e7eb'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    }
+
+    function createEnergyChart() {
+        const ctx = document.getElementById('energyChart').getContext('2d');
+        const energyChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['0h', '1h', '2h', '3h', '4h', '5h'],
+                datasets: [{
+                    label: 'Energy Consumption (kWh)',
+                    data: [0, 0.2, 0.4, 0.6, 0.8, 1.0], // Example data for a 200W device
+                    fill: true,
+                    backgroundColor: 'rgba(251, 191, 36, 0.2)',
+                    borderColor: '#facc15',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#4b5563'
+                        },
+                        ticks: {
+                            color: '#e5e7eb'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Energy (kWh)',
+                            color: '#e5e7eb'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: '#4b5563'
+                        },
+                        ticks: {
+                            color: '#e5e7eb'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time',
+                            color: '#e2e7eb'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#e5e7eb'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>
