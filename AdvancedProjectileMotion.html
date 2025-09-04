@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projectile and Planar Motion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMea+pfKj3hveLNCOD8UNi9oapjg4pzxnGMwdLmgvKNYI6mkQ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzYCcm2KEPZ4ylvc7Y3kda3KGktIErv5fYk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5em;
+            margin-top: 1.5em;
+        }
+        h2, h3 {
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.3em;
+        }
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 2em; }
+        h3 { font-size: 1.5em; }
+        h4 { font-size: 1.25em; }
+        .katex-display {
+            margin: 1em 0;
+            padding: 1em;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .solution-container {
+            display: none;
+            border-left: 4px solid #3b82f6;
+            background-color: #eff6ff;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .problem-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Projectile and Planar Motion</h1>
+            <p class="text-lg text-slate-600 mt-2">A Calculus-Based Analysis of Two-Dimensional Kinematics</p>
+        </header>
+
+        <main>
+            <section id="vector-kinematics">
+                <h2 class="text-3xl font-bold">1. Kinematics in Vector Form</h2>
+                <p>Motion in a plane (2D) is described using vectors, which elegantly capture both magnitude and direction. The foundational principle for analyzing 2D motion is the **independence of components**: motion along the horizontal (x-axis) and vertical (y-axis) are completely independent of one another. Their only connection is that they occur simultaneously over the same time interval.</p>
+                <ul class="list-disc list-inside ml-4 space-y-2">
+                    <li><strong>Position Vector:</strong> The instantaneous location of a particle is given by $\vec{r}(t) = x(t)\hat{i} + y(t)\hat{j}$.</li>
+                    <li><strong>Velocity Vector:</strong> The instantaneous rate of change of position. It is always tangent to the particle's path. $\vec{v}(t) = \frac{d\vec{r}}{dt} = \frac{dx}{dt}\hat{i} + \frac{dy}{dt}\hat{j} = v_x(t)\hat{i} + v_y(t)\hat{j}$.</li>
+                    <li><strong>Acceleration Vector:</strong> The instantaneous rate of change of velocity. $\vec{a}(t) = \frac{d\vec{v}}{dt} = \frac{d^2\vec{r}}{dt^2} = a_x(t)\hat{i} + a_y(t)\hat{j}$.</li>
+                </ul>
+                <p>By rearranging the definitions, we can express the kinematic relationships in integral form. To find the change in velocity, we integrate acceleration over time. To find the change in position, we integrate velocity over time:</p>
+                $$ \vec{v}(t) = \vec{v}_0 + \int_0^t \vec{a}(t') dt' \quad \text{and} \quad \vec{r}(t) = \vec{r}_0 + \int_0^t \vec{v}(t') dt' $$
+            </section>
+
+            <section id="projectile-motion" class="mt-10">
+                <h2 class="text-3xl font-bold">2. Projectile Motion: A Case Study</h2>
+                <p>Projectile motion is the quintessential example of 2D kinematics. It describes an object (the projectile) moving in a vertical plane under the sole influence of Earth's gravitational force. To build our model, we make two key idealizations: the acceleration due to gravity, $g$, is constant and directed downwards, and air resistance is negligible.</p>
+                
+                <h3 class="text-2xl mt-6">Initial Conditions and Setup</h3>
+                <p>Consider a projectile launched from the origin $(x_0=0, y_0=0)$ with an initial speed $v_0$ at an angle $\theta$ above the horizontal. We establish a standard Cartesian coordinate system with the x-axis horizontal and the y-axis vertical.</p>
+                
+                <div class="my-6">
+                    <svg width="600" height="300" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" class="bg-slate-100 rounded-lg w-full h-auto">
+                        <style>
+                            .label{font-family:serif; font-style:italic; font-size:24px;}
+                            .axis-label{alignment-baseline: middle; font-family:sans-serif; font-size:20px;}
+                        </style>
+                        <!-- Axes -->
+                        <path stroke="#475569" stroke-width="2" d="M 30 270 H 570" />
+                        <path stroke="#475569" stroke-width="2" d="M 30 270 V 30" />
+                        <text x="575" y="275" class="axis-label">x</text>
+                        <text x="10" y="35" class="axis-label">y</text>
+
+                        <!-- Initial Velocity Vector -->
+                        <line x1="30" y1="270" x2="400" y2="100" stroke="#ef4444" stroke-width="4" marker-end="url(#arrowhead_red)" />
+                        <text x="210" y="170" class="label" fill="#ef4444">v&#x2080;</text>
+                        
+                        <!-- Components -->
+                        <line x1="30" y1="270" x2="400" y2="270" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5" />
+                        <text x="200" y="295" class="label" fill="#3b82f6">v&#x2080;&#x2093; = v&#x2080;cos&#x3B8;</text>
+                        <line x1="400" y1="270" x2="400" y2="100" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5" />
+                        <text x="410" y="185" class="label" fill="#3b82f6">v&#x2080;&#x1D67; = v&#x2080;sin&#x3B8;</text>
+
+                        <!-- Angle -->
+                        <path d="M 90 270 A 60 60 0 0 1 139.28 232.06" stroke="#16a34a" stroke-width="2" fill="none" />
+                        <text x="125" y="250" class="label" fill="#16a34a">&#x3B8;</text>
+                        
+                        <!-- Gravity Vector -->
+                        <line x1="100" y1="100" x2="100" y2="150" stroke="#8b5cf6" stroke-width="3" marker-end="url(#arrowhead_purple)" />
+                        <text x="80" y="125" class="label" fill="#8b5cf6">g</text>
+
+                        <defs>
+                            <marker id="arrowhead_red" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444" />
+                            </marker>
+                            <marker id="arrowhead_purple" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#8b5cf6" />
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+                <p>The constant acceleration vector is purely vertical because gravity is the only force acting: $\vec{a} = 0\hat{i} - g\hat{j}$.</p>
+                <p>The initial velocity vector is resolved into its components: $\vec{v}_0 = (v_0 \cos\theta)\hat{i} + (v_0 \sin\theta)\hat{j}$.</p>
+
+                <h3 class="text-2xl mt-6">Derivation of Kinematic Equations via Integration</h3>
+                <p>We apply the integral forms of the kinematic equations separately for each component, which is possible because the motions are independent.</p>
+                
+                <h4 class="text-xl mt-4">Step 1: Horizontal Motion (Zero Acceleration)</h4>
+                <p>Because we neglect air resistance, there are no forces acting in the horizontal direction. By Newton's Second Law ($\sum F_x = ma_x$), this means the horizontal acceleration $a_x$ is zero.
+                <br><strong>Velocity:</strong> We integrate $a_x$ to find $v_x(t)$.
+                <br>$v_x(t) = v_{0x} + \int_0^t a_x dt' = v_0\cos\theta + \int_0^t 0 \, dt' = v_0\cos\theta$. As expected, the horizontal velocity is constant throughout the motion.
+                <br><strong>Position:</strong> We integrate the constant horizontal velocity $v_x(t)$ to find $x(t)$.
+                <br>$x(t) = x_0 + \int_0^t v_x(t') dt' = 0 + \int_0^t (v_0\cos\theta) dt' = v_0\cos\theta \int_0^t dt' = (v_0\cos\theta)t$. The horizontal position increases linearly with time.</p>
+                
+                <h4 class="text-xl mt-4">Step 2: Vertical Motion (Constant Acceleration)</h4>
+                <p>The only force acting on the projectile is gravity, so the acceleration is constant and directed downwards, $a_y=-g$.
+                <br><strong>Velocity:</strong> We integrate $a_y$ to find $v_y(t)$.
+                <br>$v_y(t) = v_{0y} + \int_0^t a_y dt' = v_0\sin\theta + \int_0^t (-g) dt' = v_0\sin\theta - g\int_0^t dt' = v_0\sin\theta - gt$. The vertical velocity decreases linearly with time.
+                <br><strong>Position:</strong> We integrate $v_y(t)$ to find $y(t)$.
+                <br>$y(t) = y_0 + \int_0^t v_y(t') dt' = 0 + \int_0^t (v_0\sin\theta - gt') dt' = (v_0\sin\theta)t - \frac{1}{2}gt^2$.</p>
+                
+                <h3 class="text-2xl mt-6">Step 3: The Trajectory Equation (Proof of Parabolic Path)</h3>
+                <p>While the parametric equations $x(t)$ and $y(t)$ fully describe the motion, they don't immediately show the geometric shape of the path. To find the trajectory, we create an equation that relates $y$ directly to $x$ by eliminating the time variable, $t$.</p>
+                
+                <div class="my-6">
+                    <svg width="600" height="300" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" class="bg-slate-100 rounded-lg w-full h-auto">
+                        <style>.label{font-family:serif;font-style:italic;font-size:18px;}.small-label{font-family:serif;font-style:italic;font-size:14px;}</style>
+                        <defs>
+                            <marker id="arr_r" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#ef4444"/></marker>
+                            <marker id="arr_b" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#3b82f6"/></marker>
+                            <marker id="arr_p" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#8b5cf6"/></marker>
+                        </defs>
+                        <!-- Axes and Path -->
+                        <path stroke="#475569" stroke-width="1" d="M 20 280 H 580"/>
+                        <path stroke="#475569" stroke-width="1" d="M 20 280 V 20"/>
+                        <path d="M 20 280 Q 300 30, 580 280" stroke="#ef4444" stroke-width="3" fill="none"/>
+                        <!-- Point 1: Launch -->
+                        <circle cx="20" cy="280" r="4" fill="#ef4444"/>
+                        <line x1="20" y1="280" x2="100" y2="200" stroke="#ef4444" stroke-width="2" marker-end="url(#arr_r)"/>
+                        <line x1="20" y1="280" x2="100" y2="280" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr_b)"/>
+                        <line x1="100" y1="280" x2="100" y2="200" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr_b)" stroke-dasharray="3"/>
+                        <line x1="60" y1="240" x2="60" y2="270" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arr_p)"/>
+                        <text x="65" y="255" class="label" fill="#8b5cf6">g</text>
+                        <text x="65" y="215" class="label" fill="#ef4444">v&#x2080;</text>
+                        <text x="55" y="295" class="small-label" fill="#3b82f6">v&#x2093;</text>
+                        <text x="105" y="240" class="small-label" fill="#3b82f6">v&#x1D67;</text>
+                        <!-- Point 2: Ascent -->
+                        <circle cx="180" cy="135" r="4" fill="#ef4444"/>
+                        <line x1="180" y1="135" x2="260" y2="105" stroke="#ef4444" stroke-width="2" marker-end="url(#arr_r)"/>
+                        <line x1="180" y1="135" x2="260" y2="135" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr_b)"/>
+                        <line x1="260" y1="135" x2="260" y2="105" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr_b)" stroke-dasharray="3"/>
+                        <line x1="220" y1="120" x2="220" y2="150" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arr_p)"/>
+                        <!-- Point 3: Peak -->
+                        <circle cx="300" cy="80" r="4" fill="#ef4444"/>
+                        <line x1="300" y1="80" x2="380" y2="80" stroke="#ef4444" stroke-width="2" marker-end="url(#arr_r)"/>
+                        <line x1="340" y1="65" x2="340" y2="95" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arr_p)"/>
+                        <text x="385" y="85" class="small-label" fill="#3b82f6">v=v&#x2093;</text>
+                        <text x="310" y="60" class="small-label" fill="#3b82f6">v&#x1D67;=0</text>
+                        <!-- Point 4: Descent -->
+                        <circle cx="420" cy="135" r="4" fill="#ef4444"/>
+                        <line x1="420" y1="135" x2="500" y2="165" stroke="#ef4444" stroke-width="2" marker-end="url(#arr_r)"/>
+                        <line x1="420" y1="135" x2="500" y2="135" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr_b)"/>
+                        <line x1="500" y1="135" x2="500" y2="165" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr_b)" stroke-dasharray="3"/>
+                        <line x1="460" y1="120" x2="460" y2="150" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arr_p)"/>
+                    </svg>
+                </div>
+                <p><strong>Isolate Time:</strong> From the simplest equation, the horizontal position, $x = (v_0\cos\theta)t$, we solve for time:</p>
+                $$ t = \frac{x}{v_0\cos\theta} $$
+                <p><strong>Substitute into Vertical Equation:</strong> Now, we substitute this expression for $t$ into the vertical position equation, $y = (v_0\sin\theta)t - \frac{1}{2}gt^2$:</p>
+                $$ y = (v_0\sin\theta)\left(\frac{x}{v_0\cos\theta}\right) - \frac{1}{2}g\left(\frac{x}{v_0\cos\theta}\right)^2 $$
+                <p><strong>Simplify:</strong> The $v_0$ terms cancel in the first term, and we use the identity $\frac{\sin\theta}{\cos\theta} = \tan\theta$.</p>
+                $$ y(x) = (\tan\theta)x - \left(\frac{g}{2v_0^2\cos^2\theta}\right)x^2 $$
+                <p>This equation is in the form $y = Ax - Bx^2$, where $A = \tan\theta$ and $B = \frac{g}{2v_0^2\cos^2\theta}$ are constants for a given launch. This is the standard form for a downward-opening parabola, providing a rigorous proof that the trajectory of an ideal projectile is parabolic.</p>
+            </section>
+            
+            <section id="characteristics" class="mt-10">
+                <h2 class="text-3xl font-bold">3. Key Characteristics of Projectile Motion</h2>
+                <h3 class="text-2xl mt-6">Time of Flight ($T$)</h3>
+                <p>The time of flight is the total duration the projectile spends in the air. Assuming it starts and lands at the same vertical level (i.e., it starts at $y=0$ and lands at $y=0$), we can set the vertical position equation to zero and solve for the time $t=T$.</p>
+                $$ y(T) = (v_0\sin\theta)T - \frac{1}{2}gT^2 = 0 $$
+                <p>We can factor out $T$: $T(v_0\sin\theta - \frac{1}{2}gT) = 0$. This equation gives two solutions for time. The first is $T=0$, which is the trivial solution representing the moment of launch. The meaningful solution comes from setting the second factor to zero:</p>
+                $$ v_0\sin\theta - \frac{1}{2}gT = 0 \implies \frac{1}{2}gT = v_0\sin\theta \implies T = \frac{2v_0\sin\theta}{g} $$
+                
+                <h3 class="text-2xl mt-6">Maximum Height ($H$)</h3>
+                <p>The peak of the trajectory is the point where the projectile stops moving upward and begins to move downward. At this exact instant, its vertical component of velocity is momentarily zero. Let's call the time to reach this peak $t_p$.</p>
+                <p><strong>Find Time to Peak:</strong> We set the vertical velocity equation $v_y(t)$ to zero: $v_y(t_p) = v_0\sin\theta - gt_p = 0$. Solving for $t_p$ gives $t_p = \frac{v_0\sin\theta}{g}$. Notice this is exactly half the total time of flight, $t_p = T/2$, which makes intuitive sense for a symmetric parabola.</p>
+                <p><strong>Calculate Height at $t_p$:</strong> To find the maximum height $H$, we substitute this time back into the vertical position equation $y(t)$:</p>
+                $$ H = y(t_p) = (v_0\sin\theta)\left(\frac{v_0\sin\theta}{g}\right) - \frac{1}{2}g\left(\frac{v_0\sin\theta}{g}\right)^2 = \frac{v_0^2\sin^2\theta}{g} - \frac{1}{2}g\frac{v_0^2\sin^2\theta}{g^2} = \frac{v_0^2\sin^2\theta}{g} - \frac{v_0^2\sin^2\theta}{2g} $$
+                $$ H = \frac{v_0^2\sin^2\theta}{2g} $$
+                
+                <h3 class="text-2xl mt-6">Horizontal Range ($R$)</h3>
+                <p>The range is the total horizontal distance traveled during the time of flight $T$. Since the horizontal velocity is constant, this is a simple calculation using $d=vt$.</p>
+                <p><strong>Calculate Range:</strong> $R = x(T) = (v_0\cos\theta)T$. Now we substitute the full expression for $T$: </p>
+                $$R = (v_0\cos\theta)\left(\frac{2v_0\sin\theta}{g}\right) = \frac{v_0^2(2\sin\theta\cos\theta)}{g} $$
+                <p>Using the double-angle trigonometric identity $\sin(2\theta) = 2\sin\theta\cos\theta$, we can write this in a more compact and elegant form:</p>
+                $$ R = \frac{v_0^2\sin(2\theta)}{g} $$
+                <p>From this equation, we can see that for a fixed initial speed $v_0$, the maximum range is achieved when the term $\sin(2\theta)$ is maximum, which is 1. This occurs when $2\theta=90^\circ$, meaning the optimal launch angle for maximum range is $\theta=45^\circ$.</p>
+            </section>
+
+            <section id="general-curvy-motion" class="mt-10">
+                <h2 class="text-3xl font-bold">4. General Curvilinear Motion</h2>
+                <p>While projectile motion involves constant acceleration, an object can follow any curved path. For such general motion, it's often more intuitive to analyze the acceleration vector in a coordinate system that moves with the particle. This system is defined by unit vectors tangent ($\hat{u}_t$) and normal ($\hat{u}_n$) to the path.</p>
+                
+                <div class="my-6">
+                    <svg width="600" height="300" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" class="bg-slate-100 rounded-lg w-full h-auto">
+                        <style>.label{font-family:serif;font-style:italic;font-size:24px;}</style>
+                        <path d="M 50 250 C 200 50, 400 250, 550 50" stroke="black" stroke-width="3" fill="none" />
+                        <circle cx="250" cy="123" r="6" fill="black" />
+                        <line x1="250" y1="123" x2="380" y2="100" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrow_blue)" />
+                        <text x="390" y="100" class="label" fill="#3b82f6">v</text>
+                        <line x1="250" y1="123" x2="320" y2="223" stroke="#ef4444" stroke-width="4" marker-end="url(#arrow_red)" />
+                        <text x="325" y="240" class="label" fill="#ef4444">a</text>
+                        <line x1="250" y1="123" x2="289" y2="114" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow_green)" />
+                        <text x="285" y="105" class="label" fill="#16a34a">a&#x209C;</text>
+                        <line x1="250" y1="123" x2="287" y2="161" stroke="#8b5cf6" stroke-width="3" marker-end="url(#arrow_purple)" />
+                        <text x="265" y="185" class="label" fill="#8b5cf6">a&#x2099;</text>
+                        <line x1="289" y1="114" x2="320" y2="223" stroke="gray" stroke-width="1" stroke-dasharray="3" />
+                        <line x1="287" y1="161" x2="320" y2="223" stroke="gray" stroke-width="1" stroke-dasharray="3" />
+                        <defs>
+                            <marker id="arrow_blue" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" /></marker>
+                            <marker id="arrow_red" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#ef4444" /></marker>
+                            <marker id="arrow_green" markerWidth="8" markerHeight="5" refX="0" refY="2.5" orient="auto"><polygon points="0 0, 8 2.5, 0 5" fill="#16a34a" /></marker>
+                            <marker id="arrow_purple" markerWidth="8" markerHeight="5" refX="0" refY="2.5" orient="auto"><polygon points="0 0, 8 2.5, 0 5" fill="#8b5cf6" /></marker>
+                        </defs>
+                    </svg>
+                </div>
+                $$ \vec{a} = \vec{a}_t + \vec{a}_n $$
+                <ul class="list-disc list-inside ml-4 space-y-2">
+                    <li><strong>Tangential Acceleration ($\vec{a}_t$):</strong> This component is parallel to the velocity vector and is responsible for changing the particle's speed. Its magnitude is the rate of change of speed: $a_t = \frac{d|\vec{v}|}{dt}$.</li>
+                    <li><strong>Normal (Centripetal) Acceleration ($\vec{a}_n$):</strong> This component is perpendicular to the velocity vector, pointing towards the instantaneous center of the path's curvature. It is responsible for changing the direction of the velocity vector. Its magnitude is $a_n = \frac{v^2}{\rho}$, where $\rho$ is the local radius of curvature of the path (the radius of a circle that 'kisses' the curve at that point).</li>
+                </ul>
+            </section>
+
+            <section id="problem-set" class="mt-10">
+                <h2 class="text-3xl font-bold">5. Problem Set</h2>
+
+                <!-- Intermediate Problems -->
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 1 (Intermediate):</h4>
+                    <p>A football is kicked with an initial velocity of 25 m/s at an angle of 37° with the horizontal. Find the time of flight, the maximum height, and the horizontal range. ($g=9.8 \text{ m/s}^2$)</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> $v_0=25, \theta=37^\circ$.
+                        <br>$T = \frac{2v_0\sin\theta}{g} = \frac{2(25)\sin37^\circ}{9.8} \approx \frac{50(0.602)}{9.8} \approx 3.07 \, \text{s}$.
+                        <br>$H = \frac{v_0^2\sin^2\theta}{2g} = \frac{(25)^2(\sin37^\circ)^2}{2(9.8)} \approx \frac{625(0.362)}{19.6} \approx 11.5 \, \text{m}$.
+                        <br>$R = \frac{v_0^2\sin(2\theta)}{g} = \frac{(25)^2\sin(74^\circ)}{9.8} \approx \frac{625(0.961)}{9.8} \approx 61.3 \, \text{m}$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 2 (Intermediate):</h4>
+                    <p>A stone is thrown horizontally with a speed of 15 m/s from the top of a cliff 44 m high. How far from the base of the cliff does the stone strike the ground?</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> Here $\theta=0$, $v_{0x}=15, v_{0y}=0$.
+                        First, find time to fall from the vertical motion equation: $y(t) = y_0 + v_{0y}t - \frac{1}{2}gt^2$.
+                        Let $y_0=44, y(t)=0$. $0 = 44 + 0 - \frac{1}{2}(9.8)t^2 \implies 4.9t^2 = 44 \implies t = \sqrt{44/4.9} \approx 3.0 \, \text{s}$.
+                        Now find the horizontal distance: $x(t) = v_{0x}t = (15)(3.0) = 45 \, \text{m}$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 3 (Intermediate):</h4>
+                    <p>A particle's position is given by $\vec{r}(t) = (3t^2 - 1)\hat{i} + (4t^3 + 2t)\hat{j}$. Find the velocity and acceleration vectors as a function of time.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong>
+                        <br>Velocity: $\vec{v}(t) = \frac{d\vec{r}}{dt} = (6t)\hat{i} + (12t^2 + 2)\hat{j}$.
+                        <br>Acceleration: $\vec{a}(t) = \frac{d\vec{v}}{dt} = (6)\hat{i} + (24t)\hat{j}$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 4 (Intermediate):</h4>
+                    <p>A projectile has a range of 50 m and reaches a maximum height of 10 m. What was the launch angle?</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> We have $R = \frac{v_0^2\sin(2\theta)}{g}$ and $H = \frac{v_0^2\sin^2\theta}{2g}$.
+                        Let's take their ratio: $\frac{H}{R} = \frac{v_0^2\sin^2\theta/2g}{v_0^2(2\sin\theta\cos\theta)/g} = \frac{\sin^2\theta}{4\sin\theta\cos\theta} = \frac{\tan\theta}{4}$.
+                        So, $\tan\theta = \frac{4H}{R}$.
+                        $\tan\theta = \frac{4(10)}{50} = \frac{40}{50} = 0.8$.
+                        $\theta = \arctan(0.8) \approx 38.7^\circ$.
+                    </div>
+                </div>
+                 <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 5 (Intermediate):</h4>
+                    <p>At the peak of its trajectory, a projectile has a speed of 10 m/s. It was launched at an angle of 60°. What was its initial speed $v_0$?</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> At the peak of the trajectory, the vertical velocity component is zero ($v_y=0$). The velocity is purely horizontal, so the speed at the peak is equal to the constant horizontal velocity, $v_x$.
+                        $v_{peak} = v_x = v_0\cos\theta$.
+                        $10 \text{ m/s} = v_0\cos(60^\circ) = v_0(0.5)$.
+                        $v_0 = \frac{10}{0.5} = 20 \, \text{m/s}$.
+                    </div>
+                </div>
+
+                <!-- Advanced Problems -->
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 6 (Advanced):</h4>
+                    <p>A projectile is fired from the ground to clear a wall of height $h$ at a distance $d$. Show that the minimum initial speed $v_{0,min}$ required is given by $v_{0,min}^2 = g(h + \sqrt{h^2+d^2})$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> The trajectory equation is $y = x\tan\theta - \frac{gx^2}{2v_0^2\cos^2\theta}$. We want to pass through $(x,y)=(d,h)$.
+                        $h = d\tan\theta - \frac{gd^2}{2v_0^2}(1+\tan^2\theta)$.
+                        Rearranging for $v_0^2$: $\frac{gd^2(1+\tan^2\theta)}{2v_0^2} = d\tan\theta - h \implies v_0^2 = \frac{gd^2(1+\tan^2\theta)}{2(d\tan\theta - h)}$.
+                        To find the minimum $v_0$, we must maximize the denominator with respect to $\tan\theta$. Let $z=\tan\theta$.
+                        We need to minimize $f(z) = \frac{1+z^2}{dz-h}$. Setting $f'(z)=0$ gives $(2z)(dz-h) - d(1+z^2)=0$, which simplifies to $dz^2 - 2hz - d = 0$. The solution for $z$ is $z=\tan\theta = (h+\sqrt{h^2+d^2})/d$.
+                        Substituting this optimal $\tan\theta$ back into the equation for $v_0^2$ and simplifying leads to the desired result. (This is a lengthy but direct algebraic simplification).
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 7 (Advanced):</h4>
+                    <p>A particle moves along the curve $y = x^2/2$. At the point $(2, 2)$, its speed is 5 m/s and is increasing at a rate of 3 m/s². Find the total acceleration vector at this point.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> The total acceleration is the vector sum of its tangential and normal components: $\vec{a} = \vec{a}_t + \vec{a}_n$.
+                        <br>1. <strong>Tangential Acceleration:</strong> The magnitude is given as the rate of change of speed, $a_t = \frac{d|\vec{v}|}{dt} = 3 \, \text{m/s}^2$. To find the vector, we need the unit tangent vector, $\hat{u}_t$. The path is $\vec{r}(x) = x\hat{i} + (x^2/2)\hat{j}$. A vector tangent to the path is $\frac{d\vec{r}}{dx} = \hat{i} + x\hat{j}$. At $x=2$, this vector is $\hat{i} + 2\hat{j}$. The unit tangent vector is $\hat{u}_t = \frac{\hat{i} + 2\hat{j}}{\sqrt{1^2+2^2}} = \frac{1}{\sqrt{5}}(\hat{i} + 2\hat{j})$.
+                        So, $\vec{a}_t = a_t \hat{u}_t = \frac{3}{\sqrt{5}}(\hat{i} + 2\hat{j})$.
+                        <br>2. <strong>Normal Acceleration:</strong> The magnitude is $a_n = v^2/\rho$. We need the radius of curvature, $\rho = \frac{[1+(y')^2]^{3/2}}{|y''|}$. For $y=x^2/2$, we have $y'=x$ and $y''=1$. At $x=2$, $y'=2$.
+                        $\rho = \frac{[1+2^2]^{3/2}}{1} = 5^{3/2} = 5\sqrt{5} \, \text{m}$.
+                        $a_n = \frac{5^2}{5\sqrt{5}} = \frac{5}{\sqrt{5}} = \sqrt{5} \, \text{m/s}^2$.
+                        The unit normal vector $\hat{u}_n$ is perpendicular to $\hat{u}_t$ and points toward the center of curvature (inside the parabola). If $\hat{u}_t = \frac{1}{\sqrt{5}}(1, 2)$, then $\hat{u}_n = \frac{1}{\sqrt{5}}(-2, 1)$ points inward.
+                        So, $\vec{a}_n = a_n \hat{u}_n = \sqrt{5} \cdot \frac{1}{\sqrt{5}}(-2\hat{i} + \hat{j}) = -2\hat{i} + \hat{j}$.
+                        <br>3. <strong>Total Acceleration Vector:</strong>
+                        $\vec{a} = \vec{a}_t + \vec{a}_n = \frac{3}{\sqrt{5}}(\hat{i} + 2\hat{j}) + (-2\hat{i} + \hat{j}) = (\frac{3}{\sqrt{5}}-2)\hat{i} + (\frac{6}{\sqrt{5}}+1)\hat{j}$.
+                        $\vec{a} \approx (1.34 - 2)\hat{i} + (2.68 + 1)\hat{j} \approx -0.66\hat{i} + 3.68\hat{j} \, \text{m/s}^2$.
+                    </div>
+                </div>
+                 <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 8 (Advanced):</h4>
+                    <p>From a point on the ground at a horizontal distance $d$ from the foot of a vertical cliff of height $h$, a stone is thrown at an angle $\alpha$ such that it just passes the edge of the cliff. Show that if it strikes the ground at a distance $x$ from the foot of the cliff on the other side, then $h(d+x) = dx \tan\alpha$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> The trajectory equation is $y = x\tan\alpha - \frac{gx^2}{2v_0^2\cos^2\alpha}$.
+                        The point $(d, h)$ lies on this trajectory: (1) $h = d\tan\alpha - \frac{gd^2}{2v_0^2\cos^2\alpha}$.
+                        The projectile lands at a total range of $R = d+x$, so the point $(d+x, 0)$ also lies on the trajectory: (2) $0 = (d+x)\tan\alpha - \frac{g(d+x)^2}{2v_0^2\cos^2\alpha}$.
+                        From (2), we can solve for the term $\frac{g}{2v_0^2\cos^2\alpha} = \frac{(d+x)\tan\alpha}{(d+x)^2} = \frac{\tan\alpha}{d+x}$.
+                        Now substitute this expression back into equation (1):
+                        $h = d\tan\alpha - d^2 \left(\frac{\tan\alpha}{d+x}\right)$.
+                        $h = \tan\alpha \left(d - \frac{d^2}{d+x}\right) = \tan\alpha \left(\frac{d(d+x) - d^2}{d+x}\right) = \tan\alpha \left(\frac{d^2+dx-d^2}{d+x}\right)$.
+                        $h = \tan\alpha \left(\frac{dx}{d+x}\right)$. Rearranging gives the desired result: $h(d+x) = dx\tan\alpha$.
+                    </div>
+                </div>
+
+                <!-- Irodov-like Problems -->
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 9 (Irodov-like):</h4>
+                    <p>A particle is projected from the ground with velocity $u$ at an angle $\alpha$ with the horizontal. Find the radius of curvature $\rho$ of its path at the point of projection and at the highest point of the trajectory.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> We use the formula for normal acceleration $a_n = v^2/\rho$.
+                        The acceleration is always $\vec{a} = \vec{g}$ (downwards). The normal acceleration is the component of $\vec{g}$ perpendicular to the velocity vector $\vec{v}$.
+                        At the point of projection ($t=0$): $\vec{v} = \vec{u}$. The angle between $\vec{g}$ and $\vec{u}$ is $90^\circ+\alpha$. The component of $\vec{g}$ perpendicular to $\vec{u}$ is $g\cos\alpha$.
+                        So, $a_n = g\cos\alpha$. At this point, $v=u$.
+                        $g\cos\alpha = u^2/\rho_{proj} \implies \rho_{proj} = \frac{u^2}{g\cos\alpha}$.
+                        At the highest point: The velocity is purely horizontal, $v_x = u\cos\alpha$. The acceleration $\vec{g}$ is entirely perpendicular to the velocity. So, $a_n = g$.
+                        $g = v_x^2 / \rho_{top} = (u\cos\alpha)^2 / \rho_{top}$.
+                        $\rho_{top} = \frac{u^2\cos^2\alpha}{g}$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 10 (Irodov-like):</h4>
+                    <p>Two particles are projected from the same point with the same speed $v_0$ such that they have the same range $R$. If their times of flight are $t_1$ and $t_2$, show that $t_1 t_2 = 2R/g$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> For a given $v_0$, the range $R = (v_0^2\sin(2\theta))/g$ is the same for two angles, $\theta_1 = \alpha$ and $\theta_2 = 90^\circ - \alpha$, because $\sin(2(90-\alpha)) = \sin(180-2\alpha) = \sin(2\alpha)$.
+                        The time of flight for the first angle is $t_1 = \frac{2v_0\sin\alpha}{g}$.
+                        The time of flight for the second angle is $t_2 = \frac{2v_0\sin(90^\circ-\alpha)}{g} = \frac{2v_0\cos\alpha}{g}$.
+                        Now, let's find their product:
+                        $t_1 t_2 = \left(\frac{2v_0\sin\alpha}{g}\right) \left(\frac{2v_0\cos\alpha}{g}\right) = \frac{4v_0^2\sin\alpha\cos\alpha}{g^2}$.
+                        Using the identity $2\sin\alpha\cos\alpha = \sin(2\alpha)$, this becomes:
+                        $t_1 t_2 = \frac{2v_0^2\sin(2\alpha)}{g^2} = \frac{2}{g} \left(\frac{v_0^2\sin(2\alpha)}{g}\right)$.
+                        Since $R = \frac{v_0^2\sin(2\alpha)}{g}$, we have $t_1 t_2 = \frac{2R}{g}$.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+
+        function toggleSolution(button) {
+            const solutionDiv = button.nextElementSibling;
+            if (solutionDiv.style.display === 'block') {
+                solutionDiv.style.display = 'none';
+                button.textContent = 'Show Solution';
+            } else {
+                solutionDiv.style.display = 'block';
+                button.textContent = 'Hide Solution';
+            }
+        }
+    </script>
+</body>
+</html>
+
