@@ -16,5 +16,6 @@ Click the topic and Enjoy!
 
 ### - Advanced Level -
 - [`Motion along straight line`](https://george1meshveliani.github.io/Hello-Physics/AdvancedMotion)
+- [`Vectors`](https://george1meshveliani.github.io/Hello-Physics/Vectors)
 - [`Projectile Motion`](https://george1meshveliani.github.io/Hello-Physics/AdvancedProjectileMotion)
 - [`Force`](https://george1meshveliani.github.io/Hello-Physics/AdvancedForce)
