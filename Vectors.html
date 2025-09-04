@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vectors: A Mathematical Foundation for Physics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMea+pfKj3hveLNCOD8UNi9oapjg4pzxnGMwdLmgvKNYI6mkQ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzYCcm2KEPZ4ylvc7Y3kda3KGktIErv5fYk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5em;
+            margin-top: 1.5em;
+        }
+        h2, h3 {
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.3em;
+        }
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 2em; }
+        h3 { font-size: 1.5em; }
+        h4 { font-size: 1.25em; }
+        .katex-display {
+            margin: 1em 0;
+            padding: 1em;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .solution-container {
+            display: none;
+            border-left: 4px solid #3b82f6;
+            background-color: #eff6ff;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .problem-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Vectors: A Mathematical Foundation for Physics</h1>
+            <p class="text-lg text-slate-600 mt-2">From Geometric Intuition to Algebraic Rigor</p>
+        </header>
+
+        <main>
+            <section id="scalars-vs-vectors">
+                <h2 class="text-3xl font-bold">1. Scalars and Vectors: The Language of Physics</h2>
+                <p>In physics, we quantify the world using two types of quantities: scalars and vectors.</p>
+                <ul class="list-disc list-inside ml-4 space-y-2">
+                    <li>A <strong>scalar</strong> is a quantity that is fully described by a single number—its magnitude. Examples include mass (5 kg), temperature (293 K), and energy (100 J).</li>
+                    <li>A <strong>vector</strong> is a quantity that requires both a magnitude and a direction to be fully described. Examples include velocity (15 m/s, North), force (10 N, 30° above horizontal), and electric field.</li>
+                </ul>
+                <p>Geometrically, we represent a vector as an arrow. The length of the arrow corresponds to the vector's magnitude, and its orientation in space represents its direction.</p>
+            </section>
+
+            <section id="vector-representation" class="mt-10">
+                <h2 class="text-3xl font-bold">2. Vector Representation</h2>
+                <h3 class="text-2xl mt-6">Component Form</h3>
+                <p>While arrows are intuitive, they are not practical for calculations. We make vectors algebraic by placing them in a Cartesian coordinate system. Any vector can be uniquely expressed as the sum of its components along the coordinate axes.</p>
+                
+                 <div class="my-6">
+                    <svg width="600" height="300" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" class="bg-slate-100 rounded-lg w-full h-auto">
+                        <style>.label{font-family:serif; font-style:italic; font-size:24px;}.axis-label{alignment-baseline: middle; font-family:sans-serif; font-size:20px;}</style>
+                        <!-- Axes -->
+                        <path stroke="#475569" stroke-width="2" d="M 30 270 L 570 270" marker-end="url(#axis_arrow)"/>
+                        <path stroke="#475569" stroke-width="2" d="M 30 270 L 30 30" marker-end="url(#axis_arrow)"/>
+                        <text x="575" y="275" class="axis-label">x</text>
+                        <text x="10" y="35" class="axis-label">y</text>
+
+                        <!-- Vector A -->
+                        <line x1="30" y1="270" x2="450" y2="100" stroke="#ef4444" stroke-width="4" marker-end="url(#arrowhead_red)" />
+                        <text x="250" y="170" class="label" fill="#ef4444">A</text>
+                        
+                        <!-- Components -->
+                        <line x1="30" y1="270" x2="450" y2="270" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrowhead_blue)" />
+                        <text x="240" y="295" class="label" fill="#3b82f6">A&#x2093;</text>
+                        <line x1="450" y1="270" x2="450" y2="100" stroke="#16a34a" stroke-width="3" marker-end="url(#arrowhead_green)" />
+                        <text x="460" y="185" class="label" fill="#16a34a">A&#x1D67;</text>
+                        <line x1="30" y1="100" x2="450" y2="100" stroke="gray" stroke-dasharray="4"/>
+                        <line x1="450" y1="270" x2="30" y2="270" stroke="gray" stroke-dasharray="4"/>
+
+                        <defs>
+                            <marker id="arrowhead_red" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#ef4444" /></marker>
+                            <marker id="arrowhead_blue" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" /></marker>
+                            <marker id="arrowhead_green" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#16a34a" /></marker>
+                            <marker id="axis_arrow" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#475569" /></marker>
+                        </defs>
+                    </svg>
+                </div>
+
+                <p>We introduce <strong>unit vectors</strong> ($\hat{i}, \hat{j}, \hat{k}$) which are dimensionless vectors of length one pointing along the positive x, y, and z axes, respectively. The vector $\vec{A}$ can then be written as:</p>
+                $$ \vec{A} = A_x\hat{i} + A_y\hat{j} + A_z\hat{k} $$
+                <p>The scalar components ($A_x, A_y, A_z$) are the projections of $\vec{A}$ onto the axes. The magnitude of the vector is found using the Pythagorean theorem:</p>
+                $$ |\vec{A}| = A = \sqrt{A_x^2 + A_y^2 + A_z^2} $$
+            </section>
+            
+            <section id="vector-algebra" class="mt-10">
+                <h2 class="text-3xl font-bold">3. Vector Algebra</h2>
+                <h3 class="text-2xl mt-6">Addition and Subtraction</h3>
+                <p>Geometrically, vectors are added "head-to-tail". To find $\vec{R} = \vec{A} + \vec{B}$, you place the tail of $\vec{B}$ at the head of $\vec{A}$. The resultant vector $\vec{R}$ is drawn from the tail of $\vec{A}$ to the head of $\vec{B}$. Algebraically, addition is simpler: we just add the corresponding components.</p>
+                $$ \vec{A} + \vec{B} = (A_x + B_x)\hat{i} + (A_y + B_y)\hat{j} + (A_z + B_z)\hat{k} $$
+                <p>Vector subtraction is defined as the addition of a negative vector: $\vec{A} - \vec{B} = \vec{A} + (-\vec{B})$, where $-\vec{B}$ is a vector with the same magnitude as $\vec{B}$ but opposite direction.</p>
+                
+                 <div class="my-6">
+                    <svg width="600" height="250" viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" class="bg-slate-100 rounded-lg w-full h-auto">
+                        <style>.label{font-family:serif;font-style:italic;font-size:20px;}</style>
+                        <defs>
+                            <marker id="arr_k" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="black"/></marker>
+                        </defs>
+                        <!-- Head to Tail -->
+                        <text x="120" y="30" font-size="18px" font-weight="bold">Head-to-Tail</text>
+                        <line x1="50" y1="200" x2="150" y2="100" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr_k)"/>
+                        <text x="90" y="165" class="label">A</text>
+                        <line x1="150" y1="100" x2="250" y2="150" stroke="#ef4444" stroke-width="3" marker-end="url(#arr_k)"/>
+                        <text x="190" y="115" class="label">B</text>
+                        <line x1="50" y1="200" x2="250" y2="150" stroke="#16a34a" stroke-width="3" marker-end="url(#arr_k)" stroke-dasharray="5"/>
+                        <text x="140" y="190" class="label">A+B</text>
+                        <!-- Parallelogram -->
+                        <text x="400" y="30" font-size="18px" font-weight="bold">Parallelogram</text>
+                        <line x1="350" y1="200" x2="450" y2="100" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr_k)"/>
+                        <text x="390" y="165" class="label">A</text>
+                        <line x1="350" y1="200" x2="450" y2="220" stroke="#ef4444" stroke-width="3" marker-end="url(#arr_k)"/>
+                        <text x="390" y="225" class="label">B</text>
+                        <line x1="450" y1="100" x2="550" y2="120" stroke="gray" stroke-width="1" stroke-dasharray="3"/>
+                        <line x1="450" y1="220" x2="550" y2="120" stroke="gray" stroke-width="1" stroke-dasharray="3"/>
+                        <line x1="350" y1="200" x2="550" y2="120" stroke="#16a34a" stroke-width="3" marker-end="url(#arr_k)" stroke-dasharray="5"/>
+                        <text x="440" y="175" class="label">A+B</text>
+                    </svg>
+                </div>
+            </section>
+
+            <section id="vector-products" class="mt-10">
+                <h2 class="text-3xl font-bold">4. Vector Products</h2>
+                <p>Multiplying vectors is more complex than adding them, as there are two distinct types of products that are useful in physics.</p>
+                <h3 class="text-2xl mt-6">The Dot Product (Scalar Product)</h3>
+                <p>The dot product of two vectors, $\vec{A}$ and $\vec{B}$, results in a scalar. It measures the extent to which two vectors point in the same direction.</p>
+                <p><strong>Geometric Definition:</strong> $\vec{A} \cdot \vec{B} = |\vec{A}||\vec{B}|\cos\theta$, where $\theta$ is the angle between the two vectors.</p>
+                <p><strong>Component-wise Definition:</strong> $\vec{A} \cdot \vec{B} = A_x B_x + A_y B_y + A_z B_z$.</p>
+                <p>The physical concept of <strong>work</strong> is a perfect application: $W = \vec{F} \cdot \vec{d}$. Only the component of force in the direction of displacement does work.</p>
+
+                <h3 class="text-2xl mt-6">The Cross Product (Vector Product)</h3>
+                <p>The cross product of two vectors, $\vec{A}$ and $\vec{B}$, results in a new vector that is perpendicular to the plane containing $\vec{A}$ and $\vec{B}$.</p>
+                <p><strong>Geometric Definition:</strong> The magnitude is $|\vec{A} \times \vec{B}| = |\vec{A}||\vec{B}|\sin\theta$. The direction is given by the <strong>right-hand rule</strong>.</p>
+                <p><strong>Component-wise Definition (Determinant Form):</strong></p>
+                $$ \vec{A} \times \vec{B} = 
+                \begin{vmatrix} 
+                \hat{i} & \hat{j} & \hat{k} \\
+                A_x & A_y & A_z \\
+                B_x & B_y & B_z 
+                \end{vmatrix} = (A_yB_z - A_zB_y)\hat{i} - (A_xB_z - A_zB_x)\hat{j} + (A_x B_y - A_y B_x)\hat{k} $$
+                <p>The physical concept of <strong>torque</strong> is a key application: $\vec{\tau} = \vec{r} \times \vec{F}$.</p>
+                 <div class="my-6">
+                    <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" class="bg-slate-100 rounded-lg mx-auto">
+                        <style>.label{font-family:serif;font-style:italic;font-size:24px;}</style>
+                        <defs><marker id="arr_rh" markerWidth="7" markerHeight="5" refX="0" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#3b82f6"/></marker></defs>
+                        <!-- A and B vectors forming a plane -->
+                        <path d="M 150 150 L 250 100 L 200 250 L 100 200 Z" fill="#e0e7ff" stroke="#94a3b8"/>
+                        <line x1="150" y1="150" x2="250" y2="100" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr_rh)"/>
+                        <text x="255" y="95" class="label" fill="#3b82f6">A</text>
+                        <line x1="150" y1="150" x2="100" y2="200" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr_rh)"/>
+                        <text x="80" y="210" class="label" fill="#3b82f6">B</text>
+                        <!-- Cross product vector -->
+                        <line x1="150" y1="150" x2="150" y2="30" stroke="#ef4444" stroke-width="4" marker-end="url(#arr_r_cp)"/>
+                        <text x="155" y="60" class="label" fill="#ef4444">A x B</text>
+                        <defs><marker id="arr_r_cp" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/></marker></defs>
+                    </svg>
+                </div>
+            </section>
+            
+            <section id="vector-calculus" class="mt-10">
+                <h2 class="text-3xl font-bold">5. Introduction to Vector Calculus</h2>
+                <p>When a vector quantity changes with respect to a parameter like time, we can use calculus.</p>
+                <p><strong>Derivatives:</strong> The derivative of a vector is found by differentiating each component. If $\vec{r}(t)$ is the position vector, then:</p>
+                $$ \vec{v}(t) = \frac{d\vec{r}}{dt} = \frac{dx}{dt}\hat{i} + \frac{dy}{dt}\hat{j} + \frac{dz}{dt}\hat{k} $$
+                <p><strong>The Gradient Operator ($\nabla$):</strong> In multivariable calculus, the vector differential operator $\nabla$ ("del") is fundamental. In Cartesian coordinates:</p>
+                $$ \nabla = \hat{i}\frac{\partial}{\partial x} + \hat{j}\frac{\partial}{\partial y} + \hat{k}\frac{\partial}{\partial z} $$
+                <p>This operator can act on scalar and vector fields to give physically meaningful results:</p>
+                <ul class="list-disc list-inside ml-4 space-y-2">
+                    <li><strong>Gradient of a scalar field ($f$):</strong> $\nabla f$ is a vector field that points in the direction of the greatest rate of increase of $f$. (e.g., Force from Potential Energy: $\vec{F} = -\nabla U$).</li>
+                    <li><strong>Divergence of a vector field ($\vec{V}$):</strong> $\nabla \cdot \vec{V}$ is a scalar field that measures the "outflow" or "source strength" at a point. (e.g., Gauss's Law for electricity: $\nabla \cdot \vec{E} = \rho/\epsilon_0$).</li>
+                    <li><strong>Curl of a vector field ($\vec{V}$):</strong> $\nabla \times \vec{V}$ is a vector field that measures the "rotation" or "circulation" at a point. (e.g., Faraday's Law of Induction: $\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}$).</li>
+                </ul>
+            </section>
+            
+            <section id="problem-set" class="mt-10">
+                <h2 class="text-3xl font-bold">6. Problem Set</h2>
+                <!-- Problems go here -->
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 1 (Intermediate):</h4>
+                    <p>Given vectors $\vec{A} = 2\hat{i} + 3\hat{j}$ and $\vec{B} = -1\hat{i} + 2\hat{j}$, find the magnitude and direction of the resultant vector $\vec{R} = \vec{A} + \vec{B}$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> $\vec{R} = (2-1)\hat{i} + (3+2)\hat{j} = 1\hat{i} + 5\hat{j}$.
+                        <br>Magnitude: $|\vec{R}| = \sqrt{1^2 + 5^2} = \sqrt{26} \approx 5.1$.
+                        <br>Direction: $\theta = \arctan(R_y/R_x) = \arctan(5/1) \approx 78.7^\circ$ above the positive x-axis.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 2 (Intermediate):</h4>
+                    <p>Find the angle $\theta$ between the vectors $\vec{A} = 3\hat{i} + 4\hat{j}$ and $\vec{B} = 5\hat{i} + 12\hat{j}$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> Use the dot product: $\vec{A} \cdot \vec{B} = |\vec{A}||\vec{B}|\cos\theta$.
+                        <br>$\vec{A} \cdot \vec{B} = (3)(5) + (4)(12) = 15 + 48 = 63$.
+                        <br>$|\vec{A}| = \sqrt{3^2+4^2} = 5$.
+                        <br>$|\vec{B}| = \sqrt{5^2+12^2} = 13$.
+                        <br>$\cos\theta = \frac{\vec{A} \cdot \vec{B}}{|\vec{A}||\vec{B}|} = \frac{63}{5 \cdot 13} = \frac{63}{65}$.
+                        <br>$\theta = \arccos(63/65) \approx 14.25^\circ$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 3 (Intermediate):</h4>
+                    <p>Find a unit vector perpendicular to both $\vec{A} = \hat{i} - \hat{j} + 2\hat{k}$ and $\vec{B} = 2\hat{i} + \hat{j} - 3\hat{k}$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> A vector perpendicular to both is their cross product, $\vec{C} = \vec{A} \times \vec{B}$.
+                        <br>$\vec{C} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ 1 & -1 & 2 \\ 2 & 1 & -3 \end{vmatrix} = \hat{i}(3-2) - \hat{j}(-3-4) + \hat{k}(1-(-2)) = \hat{i} + 7\hat{j} + 3\hat{k}$.
+                        <br>The magnitude is $|\vec{C}| = \sqrt{1^2+7^2+3^2} = \sqrt{1+49+9} = \sqrt{59}$.
+                        <br>The unit vector is $\hat{C} = \frac{\vec{C}}{|\vec{C}|} = \frac{1}{\sqrt{59}}(\hat{i} + 7\hat{j} + 3\hat{k})$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 4 (Intermediate):</h4>
+                    <p>Calculate the work done by a force $\vec{F} = (2\hat{i} - 4\hat{j})\,$N in moving an object through a displacement $\vec{d} = (3\hat{i} + 3\hat{j})\,$m.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> Work is the dot product $W = \vec{F} \cdot \vec{d}$.
+                        <br>$W = (2)(3) + (-4)(3) = 6 - 12 = -6\,$J.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 5 (Intermediate):</h4>
+                    <p>Find the projection of vector $\vec{A} = 2\hat{i} - 3\hat{j} + 6\hat{k}$ onto vector $\vec{B} = \hat{i} + 2\hat{j} + 2\hat{k}$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> The scalar projection of A onto B is $A_B = \frac{\vec{A} \cdot \vec{B}}{|\vec{B}|}$.
+                        <br>$\vec{A} \cdot \vec{B} = (2)(1) + (-3)(2) + (6)(2) = 2 - 6 + 12 = 8$.
+                        <br>$|\vec{B}| = \sqrt{1^2+2^2+2^2} = \sqrt{9} = 3$.
+                        <br>$A_B = 8/3$. The vector projection is this scalar times the unit vector of B: $\vec{A}_B = A_B \hat{B} = \frac{8}{3} \frac{\vec{B}}{|\vec{B}|} = \frac{8}{9}(\hat{i} + 2\hat{j} + 2\hat{k})$.
+                    </div>
+                </div>
+
+                <!-- Advanced Problems -->
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 6 (Advanced):</h4>
+                    <p>A particle's position is given by $\vec{r}(t) = (R\cos(\omega t))\hat{i} + (R\sin(\omega t))\hat{j}$. Show that the acceleration vector is always directed towards the origin and has a magnitude of $\omega^2 R$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> This describes uniform circular motion.
+                        <br>Velocity: $\vec{v}(t) = \frac{d\vec{r}}{dt} = (-R\omega\sin(\omega t))\hat{i} + (R\omega\cos(\omega t))\hat{j}$.
+                        <br>Acceleration: $\vec{a}(t) = \frac{d\vec{v}}{dt} = (-R\omega^2\cos(\omega t))\hat{i} - (R\omega^2\sin(\omega t))\hat{j}$.
+                        <br>We can factor out $-\omega^2$: $\vec{a}(t) = -\omega^2 (R\cos(\omega t)\hat{i} + R\sin(\omega t)\hat{j}) = -\omega^2\vec{r}(t)$.
+                        <br>This shows the acceleration vector $\vec{a}$ is always in the opposite direction to the position vector $\vec{r}$, meaning it always points towards the origin.
+                        <br>Its magnitude is $|\vec{a}| = |-\omega^2\vec{r}| = \omega^2 |\vec{r}| = \omega^2 \sqrt{(R\cos\omega t)^2 + (R\sin\omega t)^2} = \omega^2 R$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 7 (Advanced):</h4>
+                    <p>Prove the vector triple product identity, also known as the BAC-CAB rule: $\vec{A} \times (\vec{B} \times \vec{C}) = \vec{B}(\vec{A} \cdot \vec{C}) - \vec{C}(\vec{A} \cdot \vec{B})$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> The most straightforward (though tedious) proof is to write out each vector in component form and show that the x, y, and z components of both sides of the equation are equal. Let's do the x-component.
+                        <br>First, $\vec{B} \times \vec{C} = (B_yC_z - B_zC_y)\hat{i} + \dots$
+                        <br>Then, the x-component of $\vec{A} \times (\vec{B} \times \vec{C})$ is $A_y(\vec{B} \times \vec{C})_z - A_z(\vec{B} \times \vec{C})_y$.
+                        <br>$[\vec{A} \times (\vec{B} \times \vec{C})]_x = A_y(B_x C_y - B_y C_x) - A_z(B_z C_x - B_x C_z)$.
+                        <br>$= A_yB_xC_y - A_yB_yC_x - A_zB_zC_x + A_zB_xC_z$.
+                        <br>Now for the right side: $[\vec{B}(\vec{A} \cdot \vec{C}) - \vec{C}(\vec{A} \cdot \vec{B})]_x = B_x(A_x C_x + A_y C_y + A_z C_z) - C_x(A_x B_x + A_y B_y + A_z B_z)$.
+                        <br>$= A_xB_xC_x + A_yB_xC_y + A_zB_xC_z - A_xB_xC_x - A_yB_yC_x - A_zB_zC_x$.
+                        <br>$= A_yB_xC_y + A_zB_xC_z - A_yB_yC_x - A_zB_zC_x$.
+                        <br>The expressions match. The y and z components can be shown to match similarly.
+                    </div>
+                </div>
+                 <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 8 (Advanced):</h4>
+                    <p>If a vector $\vec{v}(t)$ has a constant magnitude, show that its derivative $\frac{d\vec{v}}{dt}$ is perpendicular to $\vec{v}$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> Constant magnitude means $|\vec{v}| = c$, a constant.
+                        <br>This also means $|\vec{v}|^2 = \vec{v} \cdot \vec{v} = c^2$.
+                        <br>Now, differentiate this equation with respect to time $t$: $\frac{d}{dt}(\vec{v} \cdot \vec{v}) = \frac{d}{dt}(c^2) = 0$.
+                        <br>Using the product rule for dot products: $\frac{d\vec{v}}{dt} \cdot \vec{v} + \vec{v} \cdot \frac{d\vec{v}}{dt} = 0$.
+                        <br>Since the dot product is commutative, this is $2\vec{v} \cdot \frac{d\vec{v}}{dt} = 0$.
+                        <br>Therefore, $\vec{v} \cdot \frac{d\vec{v}}{dt} = 0$.
+                        <br>The dot product of two non-zero vectors is zero if and only if they are perpendicular. Thus, the derivative of a vector of constant magnitude is always perpendicular to the vector itself. This is why centripetal acceleration is perpendicular to velocity in uniform circular motion.
+                    </div>
+                </div>
+
+                <!-- Irodov-like Problems -->
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 9 (Irodov-like):</h4>
+                    <p>Use vectors to prove that the diagonals of a rhombus are perpendicular.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> Let the adjacent sides of the rhombus be represented by vectors $\vec{A}$ and $\vec{B}$ originating from the same corner.
+                        <br>A rhombus is a parallelogram with sides of equal length, so $|\vec{A}| = |\vec{B}|$.
+                        <br>One diagonal, $\vec{D}_1$, is the vector sum of the sides: $\vec{D}_1 = \vec{A} + \vec{B}$.
+                        <br>The other diagonal, $\vec{D}_2$, connects the heads of the two vectors, so it is their difference: $\vec{D}_2 = \vec{A} - \vec{B}$.
+                        <br>To check if the diagonals are perpendicular, we take their dot product:
+                        <br>$\vec{D}_1 \cdot \vec{D}_2 = (\vec{A} + \vec{B}) \cdot (\vec{A} - \vec{B})$.
+                        <br>Using the distributive property of the dot product: $\vec{D}_1 \cdot \vec{D}_2 = \vec{A}\cdot\vec{A} - \vec{A}\cdot\vec{B} + \vec{B}\cdot\vec{A} - \vec{B}\cdot\vec{B}$.
+                        <br>Since the dot product is commutative ($\vec{A}\cdot\vec{B} = \vec{B}\cdot\vec{A}$), the middle terms cancel.
+                        <br>$\vec{D}_1 \cdot \vec{D}_2 = \vec{A}\cdot\vec{A} - \vec{B}\cdot\vec{B} = |\vec{A}|^2 - |\vec{B}|^2$.
+                        <br>Because it is a rhombus, we know $|\vec{A}| = |\vec{B}|$, so $|\vec{A}|^2 - |\vec{B}|^2 = 0$.
+                        <br>Since $\vec{D}_1 \cdot \vec{D}_2 = 0$, the diagonals are perpendicular.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 10 (Irodov-like):</h4>
+                    <p>A boat moves relative to the water with a velocity that is $n=2.0$ times less than the river flow velocity. At what angle to the stream direction must the boat move to minimize drifting?</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> Let $\vec{v}_{flow}$ be the velocity of the river, and $\vec{v}_{boat,water}$ be the velocity of the boat relative to the water. The velocity of the boat relative to the ground is $\vec{v}_{boat,ground} = \vec{v}_{flow} + \vec{v}_{boat,water}$.
+                        <br>Let $|\vec{v}_{flow}| = u$. Then $|\vec{v}_{boat,water}| = u/n$. Let the river flow along the x-axis, so $\vec{v}_{flow} = u\hat{i}$.
+                        <br>Let the boat move at an angle $\alpha$ to the y-axis (across the stream). So its angle to the flow (x-axis) is $90+\alpha$. Let's use the angle $\theta$ with the flow direction (x-axis) for generality.
+                        $\vec{v}_{boat,water} = \frac{u}{n}(\cos\theta\hat{i} + \sin\theta\hat{j})$.
+                        <br>$\vec{v}_{boat,ground} = (u + \frac{u}{n}\cos\theta)\hat{i} + (\frac{u}{n}\sin\theta)\hat{j}$.
+                        <br>Drift is the downstream displacement, which depends on the x-component of the ground velocity. Time to cross is $t = W/v_y$ where $W$ is width. Drift $D = v_x t$. We want to minimize drift. In this phrasing, "drifting" means being carried downstream. To minimize this, the boat must point upstream to counteract the flow as much as possible.
+                        The downstream velocity component is $v_x = u + \frac{u}{n}\cos\theta$. To minimize this, we need $\cos\theta$ to be as negative as possible, which is -1.
+                        This happens when $\theta = 180^\circ$. The boat must move directly upstream. This minimizes downstream velocity, hence drift.
+                        Let's re-read. "Minimize drifting" might mean "minimize downstream distance while crossing".
+                        Let's say the boat wants to cross a river of width $W$. Time to cross is $t = \frac{W}{v_y} = \frac{W}{(u/n)\sin\theta}$.
+                        The drift distance is $D = v_x t = (u + \frac{u}{n}\cos\theta) \frac{W}{(u/n)\sin\theta} = W(n\csc\theta + \cot\theta)$.
+                        To minimize $D$, we take the derivative with respect to $\theta$ and set it to 0.
+                        $\frac{dD}{d\theta} = W(-n\csc\theta\cot\theta - \csc^2\theta) = 0$.
+                        $-W\csc\theta(n\cot\theta + \csc\theta) = 0$. Since $\csc\theta \ne 0$:
+                        $n\frac{\cos\theta}{\sin\theta} + \frac{1}{\sin\theta} = 0 \implies n\cos\theta = -1 \implies \cos\theta = -1/n$.
+                        Given $n=2$, $\cos\theta = -1/2$. This means $\theta = 120^\circ$. The boat must move at an angle of 120° with respect to the downstream direction.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+
+        function toggleSolution(button) {
+            const solutionDiv = button.nextElementSibling;
+            if (solutionDiv.style.display === 'block') {
+                solutionDiv.style.display = 'none';
+                button.textContent = 'Show Solution';
+            } else {
+                solutionDiv.style.display = 'block';
+                button.textContent = 'Hide Solution';
+            }
+        }
+    </script>
+</body>
+</html>
