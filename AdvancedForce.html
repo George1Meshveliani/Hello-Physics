@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamics: Force and Motion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMea+pfKj3hveLNCOD8UNi9oapjg4pzxnGMwdLmgvKNYI6mkQ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzYCcm2KEPZ4ylvc7Y3kda3KGktIErv5fYk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5em;
+            margin-top: 1.5em;
+        }
+        h2, h3 {
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.3em;
+        }
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 2em; }
+        h3 { font-size: 1.5em; }
+        h4 { font-size: 1.25em; }
+        .katex-display {
+            margin: 1em 0;
+            padding: 1em;
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .solution-container {
+            display: none;
+            border-left: 4px solid #3b82f6;
+            background-color: #eff6ff;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .problem-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Dynamics: Force and Motion</h1>
+            <p class="text-lg text-slate-600 mt-2">A Rigorous Examination of Newton's Laws and Their Applications</p>
+        </header>
+
+        <main>
+            <section id="newtons-laws">
+                <h2 class="text-3xl font-bold">1. The Axioms of Motion: Newton's Laws</h2>
+                <h3 class="text-2xl mt-6">Newton's First Law (Inertia)</h3>
+                <p>An object's state of motion ($\vec{v}$) remains constant if and only if the net force on it is zero ($\sum \vec{F} = 0$). This defines the concept of an <strong>inertial reference frame</strong>.</p>
+                <h3 class="text-2xl mt-6">Newton's Second Law (Dynamics)</h3>
+                <p>The net force on an object is equal to the time rate of change of its linear momentum: $\sum \vec{F} = \frac{d\vec{p}}{dt}$. For constant mass, this becomes the second-order differential equation governing motion: $\sum \vec{F} = m\frac{d^2\vec{x}}{dt^2}$.</p>
+                <h3 class="text-2xl mt-6">Newton's Third Law (Interaction)</h3>
+                <p>Forces arise from interactions between bodies. If body A exerts force $\vec{F}_{AB}$ on body B, then B exerts an equal and opposite force $\vec{F}_{BA} = -\vec{F}_{AB}$ on A.</p>
+            </section>
+            
+            <section id="work-energy" class="mt-10">
+                 <h2 class="text-3xl font-bold">2. Work and Energy: An Integral Approach</h2>
+                 <h3 class="text-2xl mt-6">Work-Kinetic Energy Theorem</h3>
+                 <p>The concept of <strong>work</strong> links force and energy. The work $W$ done by a net force $\sum \vec{F}$ in moving an object from position $\vec{r}_i$ to $\vec{r}_f$ is defined by the line integral:</p>
+                 $$ W_{net} = \int_{\vec{r}_i}^{\vec{r}_f} \sum \vec{F} \cdot d\vec{r} $$
+                 <p>We can derive its connection to motion by starting with Newton's second law:</p>
+                 $$ W_{net} = \int m\frac{d\vec{v}}{dt} \cdot d\vec{r} = \int m\frac{d\vec{v}}{dt} \cdot \vec{v} dt = \int m \vec{v} \cdot d\vec{v} $$
+                 <p>Since $\vec{v} \cdot d\vec{v} = \frac{1}{2} d(\vec{v} \cdot \vec{v}) = \frac{1}{2} d(v^2)$, the integral becomes:</p>
+                 $$ W_{net} = \int_{v_i}^{v_f} m d\left(\frac{1}{2}v^2\right) = \left[\frac{1}{2}mv^2\right]_{v_i}^{v_f} = \frac{1}{2}mv_f^2 - \frac{1}{2}mv_i^2 $$
+                 <p>This is the <strong>Work-Kinetic Energy Theorem</strong>: $W_{net} = \Delta K$. The net work done on an object equals the change in its kinetic energy.</p>
+            </section>
+
+            <section id="conservative-forces" class="mt-10">
+                <h2 class="text-3xl font-bold">3. Conservative Forces and Potential Energy</h2>
+                <p>A force is <strong>conservative</strong> if the work it does on an object moving between two points is independent of the path taken. This is equivalent to stating that the work done over any closed path is zero: $\oint \vec{F}_{cons} \cdot d\vec{r} = 0$.</p>
+                <p>By Stokes' theorem, this path independence condition is satisfied if the <strong>curl</strong> of the force field is zero:</p>
+                $$ \nabla \times \vec{F}_{cons} = 0 $$
+                <p>For any force field that satisfies this condition, we can define a scalar potential energy function $U(\vec{r})$ such that the force is the negative <strong>gradient</strong> of this potential:</p>
+                $$ \vec{F}_{cons} = -\nabla U = -\left(\frac{\partial U}{\partial x}\hat{i} + \frac{\partial U}{\partial y}\hat{j} + \frac{\partial U}{\partial z}\hat{k}\right) $$
+                <p>For example, the gravitational potential energy is $U(r) = -G M m / r$. Taking the negative gradient in spherical coordinates correctly yields the force $\vec{F}_g = -G M m / r^2 \hat{r}$.</p>
+            </section>
+
+            <section id="non-inertial-frames" class="mt-10">
+                <h2 class="text-3xl font-bold">4. Non-Inertial Frames and Fictitious Forces</h2>
+                <p>Newton's laws hold only in inertial frames. When we describe motion in an accelerating or rotating frame, we must introduce <strong>fictitious forces</strong> to make the second law valid in that frame.</p>
+                
+                <p>If an object has acceleration $\vec{a}_{in}$ in an inertial frame and $\vec{a}_{rot}$ in a frame rotating with angular velocity $\vec{\omega}$, the true force $\vec{F}_{true} = m\vec{a}_{in}$. The effective force in the rotating frame is $\vec{F}_{eff} = m\vec{a}_{rot}$, and the two are related by:</p>
+                $$ \vec{F}_{eff} = \vec{F}_{true} - \underbrace{m\vec{a}_0}_{\text{Translational}} - \underbrace{m\dot{\vec{\omega}} \times \vec{r}'}_{\text{Euler}} - \underbrace{m\vec{\omega} \times (\vec{\omega} \times \vec{r}')}_{\text{Centrifugal}} - \underbrace{2m(\vec{\omega} \times \vec{v}')}_{\text{Coriolis}} $$
+                <p>The two most common fictitious forces are:</p>
+                <ul class="list-disc list-inside ml-4 space-y-2">
+                    <li><strong>Centrifugal Force:</strong> Acts outwards from the axis of rotation. It is what pushes you to the side in a turning car.</li>
+                    <li><strong>Coriolis Force:</strong> Acts on moving objects in a rotating frame. It is perpendicular to both the velocity of the object and the axis of rotation. It is responsible for the large-scale rotation of hurricanes and ocean currents.</li>
+                </ul>
+            </section>
+            
+            <section id="damped-oscillations" class="mt-10">
+                <h2 class="text-3xl font-bold">5. Application: Damped Oscillations</h2>
+                <p>Consider a mass $m$ on a spring (constant $k$) subject to a linear drag force $\vec{F}_d = -b\vec{v}$. The net force is $\sum F_x = -kx - b v_x$. Applying Newton's second law:</p>
+                $$ -kx - b\frac{dx}{dt} = m\frac{d^2x}{dt^2} $$
+                <p>This gives the standard second-order homogeneous linear differential equation for a damped harmonic oscillator:</p>
+                $$ m\frac{d^2x}{dt^2} + b\frac{dx}{dt} + kx = 0 $$
+                <p>The solution to this equation describes how the system's oscillations decay over time due to the dissipative drag force.</p>
+            </section>
+            
+            <section id="problem-set" class="mt-10">
+                <h2 class="text-3xl font-bold">6. Problem Set</h2>
+
+                <!-- Intermediate Problems -->
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 1 (Intermediate):</h4>
+                    <p>A 5.0 kg block is pulled along a horizontal frictionless surface by a rope that makes an angle of 30° with the horizontal. The tension in the rope is 20 N. What is the acceleration of the block?</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> The horizontal component of the tension provides the acceleration. $\sum F_x = T\cos\theta = ma_x$.
+                        $a_x = \frac{T\cos\theta}{m} = \frac{20 \text{ N} \cdot \cos(30^\circ)}{5.0 \text{ kg}} = \frac{20 \cdot \sqrt{3}/2}{5} = 2\sqrt{3} \approx 3.46 \, \text{m/s}^2$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 2 (Intermediate):</h4>
+                    <p>Two masses, $m_1=2$ kg and $m_2=3$ kg, are connected by a light string that passes over a frictionless pulley (Atwood's machine). Find the acceleration of the system and the tension in the string. Use $g=9.8 \text{ m/s}^2$.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> The net force is the difference in weights: $F_{net} = m_2g - m_1g$. The total mass is $M = m_1+m_2$.
+                        $a = \frac{F_{net}}{M} = \frac{(m_2-m_1)g}{m_1+m_2} = \frac{(3-2) \cdot 9.8}{3+2} = \frac{9.8}{5} = 1.96 \, \text{m/s}^2$.
+                        For $m_1$: $T - m_1g = m_1a \implies T = m_1(g+a) = 2(9.8+1.96) = 23.52 \, \text{N}$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 3 (Intermediate):</h4>
+                    <p>A 10 kg block rests on a horizontal plane. The coefficient of static friction is $\mu_s=0.5$ and kinetic friction is $\mu_k=0.3$. What is the frictional force if a horizontal force of 40 N is applied? What if 60 N is applied? ($g=9.8 \text{ m/s}^2$)</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> First, find the maximum static friction: $f_{s,max} = \mu_s N = \mu_s mg = 0.5 \cdot 10 \cdot 9.8 = 49 \, \text{N}$.
+                        <br>Case 1 (40 N applied): Since $40 \text{ N} < 49 \text{ N}$, the block does not move. The static friction matches the applied force: $f_s = 40 \, \text{N}$.
+                        <br>Case 2 (60 N applied): Since $60 \text{ N} > 49 \text{ N}$, the block moves. The friction is now kinetic: $f_k = \mu_k N = \mu_k mg = 0.3 \cdot 10 \cdot 9.8 = 29.4 \, \text{N}$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 4 (Intermediate):</h4>
+                    <p>A car of mass 1200 kg travels at a constant speed of 15 m/s around a flat circular track of radius 50 m. What is the minimum coefficient of static friction required between the tires and the road?</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> The centripetal force is provided by static friction. $f_s = mv^2/r$.
+                        The maximum static friction available is $f_{s,max} = \mu_s N = \mu_s mg$.
+                        To avoid slipping, we need $f_{s,max} \ge mv^2/r$.
+                        $\mu_s mg \ge mv^2/r \implies \mu_s \ge \frac{v^2}{gr} = \frac{(15)^2}{9.8 \cdot 50} = \frac{225}{490} \approx 0.46$.
+                    </div>
+                </div>
+                 <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 5 (Intermediate):</h4>
+                    <p>A 2 kg block starts from rest on a rough inclined plane that makes an angle of 37° with the horizontal. The coefficient of kinetic friction is 0.25. Use the Work-Energy theorem to find the block's speed after it has slid 4 m down the plane.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> $W_{net} = \Delta K = \frac{1}{2}mv_f^2$. The net work is done by gravity and friction.
+                        $W_{net} = W_g + W_f = (mg\sin\theta)d - f_k d$.
+                        $f_k = \mu_k N = \mu_k mg \cos\theta$.
+                        $W_{net} = (mg\sin\theta - \mu_k mg\cos\theta)d = mgd(\sin\theta - \mu_k\cos\theta)$.
+                        $\frac{1}{2}mv_f^2 = mgd(\sin\theta - \mu_k\cos\theta) \implies v_f = \sqrt{2gd(\sin\theta - \mu_k\cos\theta)}$.
+                        $v_f = \sqrt{2 \cdot 9.8 \cdot 4 (\sin37^\circ - 0.25\cos37^\circ)} \approx \sqrt{78.4(0.602 - 0.25 \cdot 0.799)} \approx 5.61 \, \text{m/s}$.
+                    </div>
+                </div>
+
+                <!-- Advanced Problems -->
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 6 (Advanced):</h4>
+                    <p>A small object of mass $m$ is subject to a resistive force proportional to its velocity, $F_r = -bv$, in addition to a constant force $F_0$. It starts from rest. Find its velocity $v(t)$ as a function of time.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> This is a differential equation problem. $\sum F = F_0 - bv = ma = m\frac{dv}{dt}$.
+                        Rearrange to separate variables: $m\frac{dv}{dt} = F_0 - bv \implies \frac{dv}{F_0 - bv} = \frac{1}{m}dt$.
+                        Integrate from $v=0$ at $t=0$: $\int_0^v \frac{dv'}{F_0 - bv'} = \int_0^t \frac{1}{m}dt'$.
+                        Let $u = F_0 - bv'$, so $du = -b dv'$.
+                        $\int_{F_0}^{F_0-bv} \frac{-1/b \, du}{u} = \frac{t}{m} \implies -\frac{1}{b}[\ln|u|]_{F_0}^{F_0-bv} = \frac{t}{m}$.
+                        $\ln(F_0-bv) - \ln(F_0) = -bt/m \implies \ln\left(\frac{F_0-bv}{F_0}\right) = -bt/m$.
+                        $1 - \frac{bv}{F_0} = e^{-bt/m} \implies v(t) = \frac{F_0}{b}(1 - e^{-bt/m})$. The velocity approaches a terminal velocity of $F_0/b$.
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 7 (Advanced):</h4>
+                    <p>A particle of mass $m$ moves in a potential $U(x) = U_0((\frac{a}{x})^2 - \frac{a}{x})$. Find the force $F(x)$ acting on the particle. Find the equilibrium position $x_0$ and determine if it is stable.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> The force is the negative derivative of the potential: $F(x) = -\frac{dU}{dx}$.
+                        $F(x) = -U_0 \frac{d}{dx}(a^2x^{-2} - ax^{-1}) = -U_0(-2a^2x^{-3} - (-a)x^{-2}) = U_0(2a^2x^{-3} - ax^{-2})$.
+                        $F(x) = \frac{U_0 a}{x^3}(2a-x)$.
+                        Equilibrium is where $F(x_0)=0$. This occurs at $2a-x_0 = 0 \implies x_0 = 2a$.
+                        To check stability, we examine the second derivative of $U(x)$ at $x_0$.
+                        $\frac{d^2U}{dx^2} = -\frac{dF}{dx} = -U_0(-6a^2x^{-4} + 2ax^{-3})$. At $x_0=2a$:
+                        $\frac{d^2U}{dx^2}|_{2a} = -U_0(\frac{-6a^2}{16a^4} + \frac{2a}{8a^3}) = -U_0(\frac{-3}{8a^2} + \frac{1}{4a^2}) = \frac{U_0}{8a^2}$.
+                        Since $\frac{d^2U}{dx^2} > 0$, the potential has a local minimum, so the equilibrium is stable.
+                    </div>
+                </div>
+                 <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 8 (Advanced):</h4>
+                    <p>A projectile is fired with initial speed $v_0$ at an angle $\theta$. Air resistance provides a drag force $\vec{F}_D = -c\vec{v}^2 \hat{v}$. Write down the coupled differential equations for the x and y components of the velocity, $v_x$ and $v_y$. (Do not solve).</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> The net force is $\vec{F}_{net} = \vec{F}_g + \vec{F}_D = -mg\hat{j} - c v^2 \hat{v}$.
+                        The velocity vector is $\vec{v} = v_x \hat{i} + v_y \hat{j}$. The speed is $v = \sqrt{v_x^2 + v_y^2}$.
+                        The unit vector is $\hat{v} = \frac{\vec{v}}{v} = \frac{v_x\hat{i} + v_y\hat{j}}{\sqrt{v_x^2 + v_y^2}}$.
+                        So, $\vec{F}_D = -c\sqrt{v_x^2 + v_y^2}(v_x\hat{i} + v_y\hat{j})$.
+                        Now apply $\vec{F}_{net} = m\vec{a} = m\frac{dv_x}{dt}\hat{i} + m\frac{dv_y}{dt}\hat{j}$.
+                        X-component: $m\frac{dv_x}{dt} = -c v_x \sqrt{v_x^2 + v_y^2}$.
+                        Y-component: $m\frac{dv_y}{dt} = -mg - c v_y \sqrt{v_x^2 + v_y^2}$.
+                    </div>
+                </div>
+
+                <!-- Irodov-like Problems -->
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 9 (Irodov-like):</h4>
+                    <p>A particle of mass $m$ is located in a unidimensional potential field where the potential energy of the particle depends on the coordinate $x$ as $U(x) = A x^2 - B x^3$, where $A$ and $B$ are positive constants. Find the position of equilibrium and investigate its stability.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> Equilibrium occurs where the force is zero, $F(x) = -dU/dx = 0$.
+                        $F(x) = -\frac{d}{dx}(Ax^2 - Bx^3) = -(2Ax - 3Bx^2) = 3Bx^2 - 2Ax = x(3Bx - 2A)$.
+                        Equilibrium positions are $x_1 = 0$ and $x_2 = 2A/(3B)$.
+                        To investigate stability, we check the sign of the second derivative of the potential, $U''(x)$.
+                        $U''(x) = \frac{d^2U}{dx^2} = 2A - 6Bx$.
+                        For $x_1 = 0$: $U''(0) = 2A$. Since $A>0$, $U''(0)>0$, so this is a position of <strong>stable equilibrium</strong> (a potential minimum).
+                        For $x_2 = 2A/(3B)$: $U''(2A/3B) = 2A - 6B(2A/3B) = 2A - 4A = -2A$. Since $A>0$, $U''(x_2)<0$, so this is a position of <strong>unstable equilibrium</strong> (a potential maximum).
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <h4 class="text-lg font-semibold">Problem 10 (Irodov-like):</h4>
+                    <p>A uniform rod of mass $m$ and length $l$ rotates with a constant angular velocity $\omega$ in a horizontal plane about a vertical axis passing through one of its ends. Find the tension force $T(x)$ in the rod as a function of the distance $x$ from the axis of rotation.</p>
+                    <button onclick="toggleSolution(this)" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">Show Solution</button>
+                    <div class="solution-container">
+                        <strong>Solution:</strong> Consider a small element of the rod of length $dx$ at a distance $x$ from the axis. Its mass is $dm = (\frac{m}{l})dx$.
+                        This element moves in a circle of radius $x$, so it has a centripetal acceleration $a_c = \omega^2 x$. The net force on this element is $dF = (dm)a_c = (\frac{m}{l}dx)\omega^2x$.
+                        The tension $T(x)$ at position $x$ must provide the centripetal force for the entire outer part of the rod (from $x$ to $l$).
+                        The tension is the integral of the required centripetal force for all elements from $x$ to $l$:
+                        $T(x) = \int_x^l dF = \int_x^l (\frac{m}{l}\omega^2 r) dr$, where $r$ is the integration variable for position.
+                        $T(x) = \frac{m\omega^2}{l} \int_x^l r dr = \frac{m\omega^2}{l} \left[\frac{r^2}{2}\right]_x^l = \frac{m\omega^2}{2l}(l^2 - x^2)$.
+                        The tension is maximum at the axis ($x=0$), $T(0) = m\omega^2l/2$, and zero at the free end ($x=l$), $T(l)=0$.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function toggleSolution(button) {
+            const solutionDiv = button.nextElementSibling;
+            if (solutionDiv.style.display === 'block') {
+                solutionDiv.style.display = 'none';
+                button.textContent = 'Show Solution';
+            } else {
+                solutionDiv.style.display = 'block';
+                button.textContent = 'Hide Solution';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</body>
+</html>
+
