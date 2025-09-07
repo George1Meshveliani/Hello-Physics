@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Quiz: Electric Charge & Coulomb's Law</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- MathJax Configuration -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        startup: {
+          ready: () => {
+            MathJax.startup.defaultReady();
+            MathJax.startup.promise.then(() => {
+              console.log('MathJax initial typesetting complete');
+            });
+          }
+        }
+      };
+    </script>
+    <!-- MathJax Script -->
+    <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .problem-container, .solution-container {
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+        .problem-container:last-of-type, .solution-container:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .section-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* bold */
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #d1d5db;
+        }
+        .solution-step {
+            padding-left: 1.5rem;
+            border-left: 3px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            scroll-margin-top: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900">Physics Problems & Solutions</h1>
+            <p class="text-xl text-gray-600 mt-2">Focus: Electric Charge & Coulomb's Law</p>
+        </header>
+
+        <!-- Problems Section -->
+        <div id="problems" class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+            
+            <div class="flex justify-center mb-8">
+                <a href="#solutions" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors text-lg shadow-md">Jump to Solutions</a>
+            </div>
+
+            <!-- Simple Problems -->
+            <h2 class="section-title">Simple Problems</h2>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 1: Attraction and Repulsion</h3>
+                <p class="mb-4">Two small spheres are brought near each other. If sphere A has a positive charge and sphere B has a negative charge, will they attract or repel each other? What if both spheres have a positive charge?</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 2: Quantization of Charge</h3>
+                <p class="mb-4">An object has a net negative charge due to an excess of $5 \times 10^{13}$ electrons. What is its total charge in Coulombs? (The elementary charge $e = 1.602 \times 10^{-19}$ C).</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 3: Coulomb's Law Scaling</h3>
+                <p class="mb-4">Two point charges exert a force $F$ on each other when they are a distance $d$ apart. What happens to the magnitude of this force if the distance between them is tripled to $3d$?</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 4: Conductors and Insulators</h3>
+                <p class="mb-4">Why is a copper rod considered a good electrical conductor, while a glass rod is considered an insulator? Describe the difference in terms of electrons.</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 5: Calculating a Charge</h3>
+                <p class="mb-4">Two identical point charges are separated by 20 cm and repel each other with a force of 10 N. What is the magnitude of each charge? (Coulomb's constant $k = 8.99 \times 10^9$ N·m²/C²).</p>
+            </div>
+
+            <!-- Intermediate Problems -->
+            <h2 class="section-title mt-12">Intermediate Problems</h2>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 6: Force Calculation</h3>
+                <p class="mb-4">A point charge $q_1 = +2.0$ µC is located at the origin, and a second point charge $q_2 = -5.0$ µC is located on the x-axis at $x = 40$ cm. Calculate the magnitude and direction of the electrostatic force that $q_1$ exerts on $q_2$.</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 7: Net Force in One Dimension</h3>
+                <p class="mb-4">Three point charges are placed on the x-axis: $q_1 = +8$ µC is at the origin, $q_2 = -4$ µC is at $x = 20$ cm, and $q_3 = +18$ µC is at $x = 60$ cm. What is the net electrostatic force on charge $q_2$?</p>
+            </div>
+             <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 8: Finding Equilibrium Position</h3>
+                <p class="mb-4">A charge $q_A = +1.0$ µC is at the origin, and a charge $q_B = +4.0$ µC is at $x = 90$ cm. At what position on the x-axis between the two charges should a third charge, $q_C$, be placed so that the net force on it is zero?</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 9: Electric vs. Gravitational Force</h3>
+                <p class="mb-4">Calculate the ratio of the magnitude of the electrostatic force to the gravitational force between a proton and an electron. ($m_p = 1.67 \times 10^{-27}$ kg, $m_e = 9.11 \times 10^{-31}$ kg, $G = 6.67 \times 10^{-11}$ N·m²/kg²).</p>
+            </div>
+             <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 10: Balancing with Tension</h3>
+                <p class="mb-4">Two identical small spheres, each with a mass of 10 g, are hung from a point by two silk threads of length $L=50$ cm. They are given identical charges, and in equilibrium, they hang with an angle of $30^\circ$ between the threads. Find the magnitude of the charge on each sphere.</p>
+                 <div class="flex justify-center my-4">
+                     <svg width="250" height="200" viewBox="0 0 250 200">
+                        <line x1="125" y1="20" x2="75" y2="120" stroke="black" />
+                        <line x1="125" y1="20" x2="175" y2="120" stroke="black" />
+                        <circle cx="75" cy="120" r="10" fill="lightblue" />
+                        <circle cx="175" cy="120" r="10" fill="lightblue" />
+                        <path d="M 125 20 A 40 40 0 0 1 155 50" fill="none" stroke="gray" stroke-dasharray="2,2" />
+                        <text x="140" y="45">15°</text>
+                        <text x="68" y="145">q</text>
+                        <text x="168" y="145">q</text>
+                     </svg>
+                </div>
+            </div>
+            
+            <!-- Advanced Problems -->
+            <h2 class="section-title mt-12">Advanced Problems</h2>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 11: Net Force in 2D (Right Triangle)</h3>
+                <p class="mb-4">Three charges are arranged at the vertices of a right triangle. Charge $q_1 = -3.0$ nC is at the origin. Charge $q_2 = +5.0$ nC is on the y-axis at $y = 4.0$ m. Charge $q_3 = +2.0$ nC is on the x-axis at $x = 3.0$ m. Find the magnitude and direction of the net force on the charge at the origin ($q_1$).</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 12: Net Force in 2D (Equilateral Triangle)</h3>
+                <p class="mb-4">Three point charges, each with magnitude $q = +5$ µC, are placed at the vertices of an equilateral triangle with side length $a = 30$ cm. What is the magnitude of the net electrostatic force on any one of the charges?</p>
+                 <div class="flex justify-center my-4">
+                     <svg width="200" height="200" viewBox="0 0 200 200">
+                        <polygon points="100,30 170,150 30,150" fill="none" stroke="black" />
+                        <circle cx="100" cy="30" r="8" fill="red" /><text x="95" y="25">q₁</text>
+                        <circle cx="170" cy="150" r="8" fill="blue" /><text x="175" y="155">q₂</text>
+                        <circle cx="30" cy="150" r="8" fill="blue" /><text x="10" y="155">q₃</text>
+                     </svg>
+                </div>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 13: Maximizing Electrostatic Force</h3>
+                <p class="mb-4">A total charge $Q$ is to be divided into two parts, $q_1$ and $q_2$, such that $q_1 + q_2 = Q$. What must be the ratio $q_1/Q$ for the electrostatic force between the two parts to be a maximum when they are separated by a fixed distance?</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 14: Balancing Gravity</h3>
+                <p class="mb-4">A small sphere of mass $m=2.0$ g and charge $q_1 = +5.0$ µC is placed on a frictionless horizontal table. A second sphere with charge $q_2$ is placed directly 15 cm above the first sphere. What charge must $q_2$ have for the first sphere to be lifted off the table?</p>
+            </div>
+             <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 15: Net Force on a Square</h3>
+                <p class="mb-4">Four identical point charges, each with charge $+q$, are placed at the corners of a square with side length $s$. Find the magnitude of the net electrostatic force on the charge at the top right corner.</p>
+            </div>
+        </div>
+
+        <!-- Solutions Section -->
+        <div id="solutions" class="max-w-4xl mx-auto bg-white p-8 mt-12 rounded-2xl shadow-lg">
+            
+             <div class="flex justify-center mb-8">
+                 <a href="#problems" class="text-blue-600 hover:underline">Back to Problems</a>
+            </div>
+
+            <!-- Simple Solutions -->
+            <h2 class="section-title">Simple Solutions</h2>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 1: Attraction and Repulsion</h3>
+                <p>Opposite charges attract, so the positive sphere A and negative sphere B will attract each other.</p>
+                <p>Like charges repel, so if both spheres are positive, they will repel each other.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 2: Quantization of Charge</h3>
+                <p>The total charge $Q$ is the number of excess electrons $n$ times the elementary charge $e$. Since they are electrons, the charge is negative.</p>
+                <p>$Q = -n \cdot e = -(5 \times 10^{13}) \cdot (1.602 \times 10^{-19} \text{ C})$</p>
+                <p>$Q = -8.01 \times 10^{-6} \text{ C}$ or $-8.01$ µC.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 3: Coulomb's Law Scaling</h3>
+                <p>The force $F$ is inversely proportional to the square of the distance: $F \propto \frac{1}{d^2}$.</p>
+                <p>If the new distance is $d' = 3d$, the new force $F'$ will be $F' \propto \frac{1}{(3d)^2} = \frac{1}{9d^2}$.</p>
+                <p>So, the new force will be $1/9$ of the original force: $F' = F/9$.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 4: Conductors and Insulators</h3>
+                <p>In a conductor like copper, the outermost electrons (valence electrons) are loosely bound to their atoms and are free to move throughout the material. These mobile electrons can easily carry an electric current.</p>
+                <p>In an insulator like glass, electrons are tightly bound to their atoms and cannot move freely. There are very few mobile charge carriers.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 5: Calculating a Charge</h3>
+                <p>Using Coulomb's Law, $F = k \frac{|q_1 q_2|}{r^2}$. Since charges are identical, $q_1 = q_2 = q$.</p>
+                <p>$F = k \frac{q^2}{r^2}$. We rearrange to solve for $q$: $q = \sqrt{\frac{F r^2}{k}}$.</p>
+                <p>Convert distance to meters: $r = 20$ cm $= 0.20$ m.</p>
+                <p>$q = \sqrt{\frac{(10 \text{ N}) (0.20 \text{ m})^2}{8.99 \times 10^9 \text{ N·m²/C²}}} = \sqrt{4.449 \times 10^{-11} \text{ C²}} \approx 6.67 \times 10^{-6}$ C or 6.67 µC.</p>
+            </div>
+
+            <!-- Intermediate Solutions -->
+            <h2 class="section-title mt-12">Intermediate Solutions</h2>
+             <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 6: Force Calculation</h3>
+                <p>Use Coulomb's Law: $F = k \frac{|q_1 q_2|}{r^2}$.</p>
+                <p>$F = (8.99 \times 10^9 \text{ N·m²/C²}) \frac{|(2.0 \times 10^{-6} \text{ C})(-5.0 \times 10^{-6} \text{ C})|}{(0.40 \text{ m})^2}$</p>
+                <p>$F = (8.99 \times 10^9) \frac{1.0 \times 10^{-11}}{0.16} \approx 0.562$ N.</p>
+                <p>Since $q_1$ is positive and $q_2$ is negative, the force is attractive. The force on $q_2$ is directed towards $q_1$, which is in the negative x-direction.</p>
+            </div>
+             <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 7: Net Force in One Dimension</h3>
+                <p>The net force on $q_2$ is the vector sum of the force from $q_1$ ($F_{12}$) and the force from $q_3$ ($F_{32}$).</p>
+                <p>Force from $q_1$: $F_{12} = k \frac{|q_1 q_2|}{r_{12}^2} = (8.99 \times 10^9) \frac{|(8 \times 10^{-6})(-4 \times 10^{-6})|}{(0.20)^2} = 7.19$ N. Since charges are opposite, this force is attractive, pulling $q_2$ to the left (negative direction).</p>
+                <p>Force from $q_3$: $F_{32} = k \frac{|q_3 q_2|}{r_{32}^2} = (8.99 \times 10^9) \frac{|(18 \times 10^{-6})(-4 \times 10^{-6})|}{(0.40)^2} = 4.05$ N. Since charges are opposite, this force is attractive, pulling $q_2$ to the right (positive direction).</p>
+                <p>Net Force: $F_{net} = -7.19 \text{ N} + 4.05 \text{ N} = -3.14$ N. The net force is 3.14 N in the negative x-direction.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 8: Finding Equilibrium Position</h3>
+                <p>For the net force on $q_C$ to be zero, the force from $q_A$ ($F_{AC}$) must be equal in magnitude and opposite in direction to the force from $q_B$ ($F_{BC}$). Let $x$ be the position of $q_C$.</p>
+                <p>$k \frac{|q_A q_C|}{x^2} = k \frac{|q_B q_C|}{(0.90 - x)^2}$. The terms $k$ and $q_C$ cancel out.</p>
+                <p>$\frac{1.0 \times 10^{-6}}{x^2} = \frac{4.0 \times 10^{-6}}{(0.90 - x)^2} \implies \frac{1}{x^2} = \frac{4}{(0.90 - x)^2}$.</p>
+                <p>Take the square root of both sides: $\frac{1}{x} = \frac{2}{0.90 - x} \implies 0.90 - x = 2x \implies 3x = 0.90$.</p>
+                <p>$x = 0.30$ m or 30 cm from the origin.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 9: Electric vs. Gravitational Force</h3>
+                <p>The electric force is $F_E = k \frac{e^2}{r^2}$ and the gravitational force is $F_G = G \frac{m_p m_e}{r^2}$. The distance $r$ is the same for both.</p>
+                <p>The ratio is $\frac{F_E}{F_G} = \frac{k e^2 / r^2}{G m_p m_e / r^2} = \frac{k e^2}{G m_p m_e}$.</p>
+                <p>$\frac{F_E}{F_G} = \frac{(8.99 \times 10^9)(1.602 \times 10^{-19})^2}{(6.67 \times 10^{-11})(1.67 \times 10^{-27})(9.11 \times 10^{-31})} \approx 2.27 \times 10^{39}$.</p>
+                <p>The electrostatic force is about $10^{39}$ times stronger than the gravitational force.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 10: Balancing with Tension</h3>
+                <p>1. The distance between spheres is $r = 2L \sin(15^\circ) = 2(0.5)\sin(15^\circ) \approx 0.259$ m.</p>
+                <p>2. In equilibrium, the horizontal component of tension balances the electric force: $T \sin(15^\circ) = F_E$.</p>
+                <p>3. The vertical component of tension balances the weight: $T \cos(15^\circ) = mg$.</p>
+                <p>4. Divide the two equations: $\frac{T \sin(15^\circ)}{T \cos(15^\circ)} = \tan(15^\circ) = \frac{F_E}{mg}$.</p>
+                <p>5. Solve for $F_E$: $F_E = mg \tan(15^\circ) = (0.010 \text{ kg})(9.8 \text{ m/s²}) \tan(15^\circ) \approx 0.0263$ N.</p>
+                <p>6. Use Coulomb's law to find q: $F_E = k \frac{q^2}{r^2} \implies q = \sqrt{\frac{F_E r^2}{k}} = \sqrt{\frac{(0.0263)(0.259)^2}{8.99 \times 10^9}} \approx 4.43 \times 10^{-7}$ C or 0.443 µC.</p>
+            </div>
+
+            <!-- Advanced Solutions -->
+            <h2 class="section-title mt-12">Advanced Solutions</h2>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 11: Net Force in 2D (Right Triangle)</h3>
+                <p>1. Force from $q_2$ on $q_1$ ($F_{21}$) is attractive and points along the +y axis. $F_{21} = k \frac{|q_1 q_2|}{r_{21}^2} = (8.99 \times 10^9) \frac{|(-3\times 10^{-9})(5\times 10^{-9})|}{(4.0)^2} \approx 8.43 \times 10^{-9}$ N.</p>
+                <p>2. Force from $q_3$ on $q_1$ ($F_{31}$) is attractive and points along the +x axis. $F_{31} = k \frac{|q_1 q_3|}{r_{31}^2} = (8.99 \times 10^9) \frac{|(-3\times 10^{-9})(2\times 10^{-9})|}{(3.0)^2} \approx 5.99 \times 10^{-9}$ N.</p>
+                <p>3. The forces are perpendicular. Use the Pythagorean theorem to find the magnitude of the net force: $F_{net} = \sqrt{F_{21}^2 + F_{31}^2} = \sqrt{(8.43 \times 10^{-9})^2 + (5.99 \times 10^{-9})^2} \approx 1.03 \times 10^{-8}$ N.</p>
+                <p>4. The direction angle $\theta$ is $\tan^{-1}(\frac{F_{21}}{F_{31}}) = \tan^{-1}(\frac{8.43}{5.99}) \approx 54.6^\circ$ above the positive x-axis.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 12: Net Force in 2D (Equilateral Triangle)</h3>
+                <p>1. Consider the force on $q_1$. The force from $q_2$ ($F_{21}$) and from $q_3$ ($F_{31}$) are both repulsive and have the same magnitude: $F = k \frac{q^2}{a^2} = (8.99 \times 10^9) \frac{(5 \times 10^{-6})^2}{(0.30)^2} = 2.50$ N.</p>
+                <p>2. $F_{31}$ acts at an angle of $60^\circ$ from the line connecting $q_2$ and $q_1$. We use vector components. Let the x-axis be along the base. The force on the top charge has components:</p>
+                <p>$F_x = F_{21x} + F_{31x} = F \cos(60^\circ) - F \cos(60^\circ) = 0$.</p>
+                <p>$F_y = F_{21y} + F_{31y} = F \sin(60^\circ) + F \sin(60^\circ) = 2 F \sin(60^\circ)$.</p>
+                <p>3. $F_{net} = 2 (2.50 \text{ N}) \sin(60^\circ) = 5.0 \cdot \frac{\sqrt{3}}{2} \approx 4.33$ N.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 13: Maximizing Electrostatic Force</h3>
+                <p>1. Let $q_1 = q$. Then $q_2 = Q - q$. The force is $F = k \frac{q(Q-q)}{r^2} = \frac{k}{r^2}(qQ - q^2)$.</p>
+                <p>2. To find the maximum force, we take the derivative of $F$ with respect to $q$ and set it to zero: $\frac{dF}{dq} = 0$.</p>
+                <p>$\frac{dF}{dq} = \frac{k}{r^2}(Q - 2q)$. Setting this to zero: $Q - 2q = 0 \implies q = Q/2$.</p>
+                <p>3. This means $q_1 = Q/2$. The ratio is $q_1/Q = (Q/2)/Q = 1/2$. The force is maximum when the charge is split equally.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 14: Balancing Gravity</h3>
+                <p>For the sphere to lift off, the upward electrostatic force $F_E$ must equal its downward weight $W$.</p>
+                <p>$F_E = W \implies k \frac{|q_1 q_2|}{r^2} = mg$.</p>
+                <p>The charges must be opposite to have an attractive (upward) force, so $q_2$ must be negative.</p>
+                <p>$|q_2| = \frac{mg r^2}{k |q_1|} = \frac{(0.002 \text{ kg})(9.8 \text{ m/s²})(0.15 \text{ m})^2}{(8.99 \times 10^9 \text{ N·m²/C²})(5.0 \times 10^{-6} \text{ C})} \approx 9.81 \times 10^{-9}$ C.</p>
+                <p>So, $q_2 = -9.81$ nC.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 15: Net Force on a Square</h3>
+                <p>1. Consider the charge at the top right corner. It is repelled by three other charges. Let's call them Left, Bottom, and Diagonal.</p>
+                <p>2. Force from Left charge: $F_L = k \frac{q^2}{s^2}$ (in the +x direction).</p>
+                <p>3. Force from Bottom charge: $F_B = k \frac{q^2}{s^2}$ (in the +y direction).</p>
+                <p>4. Force from Diagonal charge: Distance is $s\sqrt{2}$. $F_D = k \frac{q^2}{(s\sqrt{2})^2} = k \frac{q^2}{2s^2}$. This force acts at $45^\circ$.</p>
+                <p>5. Sum the vector components: </p>
+                <p>$F_x = F_L + F_{Dx} = k\frac{q^2}{s^2} + F_D \cos(45^\circ) = k\frac{q^2}{s^2} + (k\frac{q^2}{2s^2})\frac{\sqrt{2}}{2} = k\frac{q^2}{s^2}(1 + \frac{\sqrt{2}}{4})$.</p>
+                <p>$F_y = F_B + F_{Dy} = k\frac{q^2}{s^2} + F_D \sin(45^\circ) = k\frac{q^2}{s^2} + (k\frac{q^2}{2s^2})\frac{\sqrt{2}}{2} = k\frac{q^2}{s^2}(1 + \frac{\sqrt{2}}{4})$.</p>
+                <p>6. $F_{net} = \sqrt{F_x^2 + F_y^2} = \sqrt{2 \left[k\frac{q^2}{s^2}(1 + \frac{\sqrt{2}}{4})\right]^2} = \sqrt{2} \cdot k\frac{q^2}{s^2}(1 + \frac{\sqrt{2}}{4}) \approx 1.90 k\frac{q^2}{s^2}$.</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
