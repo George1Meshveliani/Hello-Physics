@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Some Physics Problems & Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- MathJax Configuration -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        startup: {
+          ready: () => {
+            MathJax.startup.defaultReady();
+            MathJax.startup.promise.then(() => {
+              console.log('MathJax initial typesetting complete');
+            });
+          }
+        }
+      };
+    </script>
+    <!-- MathJax Script -->
+    <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .problem-container, .solution-container {
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+        }
+        .problem-container:last-of-type, .solution-container:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .section-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* bold */
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #d1d5db;
+        }
+        .solution-step {
+            padding-left: 1.5rem;
+            border-left: 3px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            scroll-margin-top: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900">Advanced Physics Problems & Solutions</h1>
+            <p class="text-xl text-gray-600 mt-2">Focus: Density, Buoyancy, and Archimedes' Principle</p>
+        </header>
+
+        <!-- Problems Section -->
+        <div id="problems" class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+            
+            <div class="flex justify-center mb-8">
+                <a href="#solutions" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition-colors text-lg shadow-md">Jump to Solutions</a>
+            </div>
+
+            <!-- Simple Problems -->
+            <h2 class="section-title">Simple Problems</h2>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 1: Basic Density</h3>
+                <p class="mb-4">A block of aluminum has a mass of 540 g and a volume of 200 cm³. What is its density in g/cm³?</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 2: Finding Volume</h3>
+                <p class="mb-4">Mercury has a density of 13.6 g/cm³. What is the volume of 272 g of mercury?</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 3: Unit Conversion</h3>
+                <p class="mb-4">The density of gold is 19.3 g/cm³. Convert this density to the SI unit of kg/m³.</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 4: Float or Sink?</h3>
+                <p class="mb-4">An object has a density of 1200 kg/m³. Will it float or sink in fresh water (density $\approx$ 1000 kg/m³)? Explain why.</p>
+            </div>
+
+            <!-- Intermediate Problems -->
+            <h2 class="section-title mt-12">Intermediate Problems</h2>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 5: Mass of a Cylinder</h3>
+                <p class="mb-4">A solid iron rod is shaped like a cylinder with a radius of 2 cm and a length of 50 cm. If the density of iron is 7.87 g/cm³, what is the mass of the rod in kilograms?</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 6: Displaced Volume</h3>
+                <p class="mb-4">A rock with a volume of 500 cm³ is dropped into a cylindrical container of water with a base radius of 10 cm. By how much does the water level rise?</p>
+                <div class="flex justify-center my-4">
+                     <svg width="300" height="200" viewBox="0 0 300 200">
+                        <!-- Before -->
+                        <path d="M20 50 H 120 V 180 H 20 Z" fill="none" stroke="black" stroke-width="2"/>
+                        <rect x="20" y="100" width="100" height="80" fill="#aaccff" />
+                        <text x="50" y="40">Before</text>
+                        <!-- Arrow -->
+                        <line x1="130" y1="115" x2="170" y2="115" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" /></marker></defs>
+                        <!-- After -->
+                        <path d="M180 50 H 280 V 180 H 180 Z" fill="none" stroke="black" stroke-width="2"/>
+                        <rect x="180" y="80" width="100" height="100" fill="#aaccff" />
+                        <ellipse cx="230" cy="150" rx="25" ry="15" fill="#888888"/>
+                        <text x="215" y="40">After</text>
+                        <line x1="180" y1="100" x2="280" y2="100" stroke="red" stroke-dasharray="4"/>
+                        <line x1="260" y1="80" x2="260" y2="100" stroke="red" stroke-width="1.5"/>
+                        <text x="265" y="95" fill="red">Δh</text>
+                    </svg>
+                </div>
+            </div>
+             <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 7: Apparent Mass</h3>
+                <p class="mb-4">A piece of granite has a mass of 2.7 kg and a density of 2700 kg/m³. It is fully submerged in water (density 1000 kg/m³). What is its apparent mass when submerged?</p>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 8: Alloy Density</h3>
+                <p class="mb-4">An alloy is made by mixing 100 cm³ of copper ($\rho = 8.96$ g/cm³) with 50 cm³ of zinc ($\rho = 7.14$ g/cm³). Assuming the final volume is the sum of the initial volumes, what is the density of the alloy?</p>
+            </div>
+            
+            <!-- Advanced Problems -->
+            <h2 class="section-title mt-12">Advanced Problems</h2>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 9: The Layered Liquid</h3>
+                <p class="mb-4">An object in the shape of a perfect cube with side length $s = 10$ cm has a uniform density. It is placed in a container holding two immiscible liquids: oil and water. The oil layer is on top of the water. The densities are $\rho_{\text{oil}} = 800$ kg/m³ and $\rho_{\text{water}} = 1000$ kg/m³. The cube comes to rest in equilibrium, with 40% of its volume submerged in the water and the rest in the oil. Calculate the density of the cube.</p>
+                <div class="flex justify-center my-4">
+                    <svg width="200" height="250" viewBox="0 0 200 250" class="bg-gray-50 rounded-lg border">
+                        <path d="M20 10 H 180 V 240 H 20 Z" fill="none" stroke="black" stroke-width="2" />
+                        <rect x="20" y="140" width="160" height="100" fill="#aaccff" />
+                        <text x="150" y="220" font-size="12" fill="#000055">Water</text>
+                        <rect x="20" y="40" width="160" height="100" fill="#ffeeaa" />
+                        <text x="155" y="60" font-size="12" fill="#553300">Oil</text>
+                        <rect x="75" y="80" width="50" height="50" fill="#cccccc" stroke="black" stroke-width="1.5" />
+                        <text x="92" y="108" font-size="14">Cube</text>
+                        <line x1="20" y1="140" x2="180" y2="140" stroke="black" stroke-width="1" stroke-dasharray="4"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 10: The Hollow Sphere</h3>
+                <p class="mb-4">A hollow sphere made of a metal with density $\rho_{\text{metal}} = 7800$ kg/m³ has an outer radius $R = 12$ cm and an inner radius $r = 10$ cm. It is fully submerged in a large tank of fresh water ($\rho_{\text{water}} = 1000$ kg/m³). Calculate the apparent weight of the sphere when it is submerged.</p>
+                 <div class="flex justify-center my-4">
+                    <svg width="200" height="200" viewBox="0 0 200 200" class="bg-gray-50 rounded-lg border">
+                       <rect x="0" y="0" width="200" height="200" fill="#aaccff" />
+                       <text x="150" y="30" font-size="12">Water</text>
+                       <circle cx="100" cy="100" r="60" fill="#dddddd" stroke="black" stroke-width="2"/>
+                       <circle cx="100" cy="100" r="50" fill="#aaccff" stroke="black" stroke-width="1.5" stroke-dasharray="4"/>
+                       <line x1="100" y1="100" x2="160" y2="100" stroke="black" stroke-width="1"/>
+                       <text x="162" y="104">R</text>
+                       <line x1="100" y1="100" x2="100" y2="50" stroke="black" stroke-width="1"/>
+                       <text x="105" y="75">r</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 11: The Hydrometer</h3>
+                <p class="mb-4">A simple hydrometer consists of a cylindrical glass tube of radius $r = 1$ cm, weighted at the bottom. The total mass of the hydrometer is 50 g. It is floated in a liquid of unknown density, and it settles with a length $L_1 = 20$ cm of the tube submerged. When placed in water ($\rho_{\text{water}} = 1.00$ g/cm³), it settles with $L_2 = 25$ cm submerged. What is the density of the unknown liquid?</p>
+                <div class="flex justify-center items-end space-x-8 my-4 h-64">
+                    <svg width="150" height="250" viewBox="0 0 150 250" class="bg-gray-50 rounded-lg border">
+                        <rect x="20" y="10" width="110" height="230" fill="none" stroke="black"/>
+                        <rect x="20" y="100" width="110" height="140" fill="#cceeff"/>
+                        <text x="40" y="30">Unknown Liquid</text>
+                        <rect x="65" y="50" width="20" height="150" fill="#ffffff" stroke="black"/>
+                        <ellipse cx="75" cy="200" rx="25" ry="15" fill="#aaaaaa" stroke="black"/>
+                        <line x1="85" y1="100" x2="105" y2="100" stroke="black"/>
+                        <text x="110" y="104">L₁</text>
+                    </svg>
+                    <svg width="150" height="250" viewBox="0 0 150 250" class="bg-gray-50 rounded-lg border">
+                        <rect x="20" y="10" width="110" height="230" fill="none" stroke="black"/>
+                        <rect x="20" y="50" width="110" height="190" fill="#aaccff"/>
+                        <text x="75" y="30">Water</text>
+                        <rect x="65" y="0" width="20" height="200" fill="#ffffff" stroke="black"/>
+                        <ellipse cx="75" cy="200" rx="25" ry="15" fill="#aaaaaa" stroke="black"/>
+                        <line x1="85" y1="50" x2="105" y2="50" stroke="black"/>
+                        <text x="110" y="54">L₂</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="problem-container">
+                <h3 class="text-2xl font-semibold mb-4">Problem 12: Density and Thermal Expansion</h3>
+                <p class="mb-4">A block of copper has a density of $\rho_0 = 8960$ kg/m³ at a temperature $T_0 = 20^\circ$C. The coefficient of linear expansion for copper is $\alpha = 17 \times 10^{-6}$ (C$^\circ$)$^{-1}$. What is the density of the copper block when it is heated to a temperature of $T_f = 520^\circ$C?</p>
+                <div class="flex justify-center my-4">
+                     <svg width="300" height="150" viewBox="0 0 300 150">
+                        <rect x="30" y="50" width="80" height="80" fill="#b87333" stroke="#5c3a1a" stroke-width="2"/>
+                        <text x="45" y="95" font-size="12" fill="white">T₀, ρ₀</text>
+                        <line x1="120" y1="90" x2="180" y2="90" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <text x="135" y="80">Heating</text>
+                        <rect x="190" y="45" width="90" height="90" fill="#d98c4a" stroke="#5c3a1a" stroke-width="2"/>
+                        <text x="208" y="95" font-size="12" fill="white">T_f, ρ_f</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solutions Section -->
+        <div id="solutions" class="max-w-4xl mx-auto bg-white p-8 mt-12 rounded-2xl shadow-lg">
+            
+            <div class="flex justify-center mb-8">
+                 <a href="#problems" class="text-blue-600 hover:underline">Back to Problems</a>
+            </div>
+
+            <!-- Simple Solutions -->
+            <h2 class="section-title">Simple Solutions</h2>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 1: Basic Density</h3>
+                <p>The formula for density is $\rho = \frac{m}{V}$.</p>
+                <p>$\rho = \frac{540 \text{ g}}{200 \text{ cm³}} = 2.7$ g/cm³.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 2: Finding Volume</h3>
+                <p>Rearranging the density formula, $V = \frac{m}{\rho}$.</p>
+                <p>$V = \frac{272 \text{ g}}{13.6 \text{ g/cm³}} = 20$ cm³.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 3: Unit Conversion</h3>
+                <p>To convert from g/cm³ to kg/m³, we multiply by 1000.</p>
+                <p>Explanation: $1 \frac{\text{g}}{\text{cm³}} = 1 \frac{\text{g}}{\text{cm³}} \times \frac{1 \text{ kg}}{1000 \text{ g}} \times (\frac{100 \text{ cm}}{1 \text{ m}})^3 = \frac{1}{1000} \times 1,000,000 \frac{\text{kg}}{\text{m³}} = 1000 \frac{\text{kg}}{\text{m³}}$.</p>
+                <p>$19.3 \text{ g/cm³} \times 1000 = 19300$ kg/m³.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 4: Float or Sink?</h3>
+                <p>The object will sink. An object sinks if its density is greater than the density of the fluid. Since $1200 \text{ kg/m³} > 1000 \text{ kg/m³}$, the object is denser than water and will sink.</p>
+            </div>
+
+            <!-- Intermediate Solutions -->
+            <h2 class="section-title mt-12">Intermediate Solutions</h2>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 5: Mass of a Cylinder</h3>
+                <p>1. Find the volume of the cylinder: $V = \pi r^2 h$.</p>
+                <p>$V = \pi (2 \text{ cm})^2 (50 \text{ cm}) = 200\pi \approx 628.32$ cm³.</p>
+                <p>2. Find the mass: $m = \rho \times V$.</p>
+                <p>$m = 7.87 \text{ g/cm³} \times 628.32 \text{ cm³} \approx 4944.9$ g.</p>
+                <p>3. Convert to kilograms: $4944.9 \text{ g} \div 1000 = 4.94$ kg.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 6: Displaced Volume</h3>
+                <p>The volume of water displaced is equal to the volume of the rock, $V_{\text{displaced}} = 500$ cm³.</p>
+                <p>This displaced volume takes the shape of a cylinder with the same base area as the container. The volume of this shape is $V = A_{\text{base}} \times \Delta h$.</p>
+                <p>$A_{\text{base}} = \pi r^2 = \pi (10 \text{ cm})^2 = 100\pi$ cm².</p>
+                <p>$\Delta h = \frac{V_{\text{displaced}}}{A_{\text{base}}} = \frac{500 \text{ cm³}}{100\pi \text{ cm²}} \approx 1.59$ cm. The water level rises by about 1.59 cm.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 7: Apparent Mass</h3>
+                <p>1. Find the volume of the granite: $V = \frac{m}{\rho} = \frac{2.7 \text{ kg}}{2700 \text{ kg/m³}} = 0.001$ m³.</p>
+                <p>2. Calculate the buoyant force: $F_B = \rho_{\text{water}} \cdot V \cdot g = 1000 \text{ kg/m³} \cdot 0.001 \text{ m³} \cdot 9.8 \text{ m/s²} = 9.8$ N.</p>
+                <p>3. Calculate the actual weight: $W = m \cdot g = 2.7 \text{ kg} \cdot 9.8 \text{ m/s²} = 26.46$ N.</p>
+                <p>4. Find the apparent weight: $W_{\text{app}} = W - F_B = 26.46 \text{ N} - 9.8 \text{ N} = 16.66$ N.</p>
+                <p>5. Find the apparent mass: $m_{\text{app}} = \frac{W_{\text{app}}}{g} = \frac{16.66 \text{ N}}{9.8 \text{ m/s²}} = 1.7$ kg.</p>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 8: Alloy Density</h3>
+                <p>1. Find the total mass: $m_{\text{total}} = m_{\text{copper}} + m_{\text{zinc}}$.</p>
+                <p>$m_{\text{copper}} = \rho_{Cu} V_{Cu} = 8.96 \text{ g/cm³} \times 100 \text{ cm³} = 896$ g.</p>
+                <p>$m_{\text{zinc}} = \rho_{Zn} V_{Zn} = 7.14 \text{ g/cm³} \times 50 \text{ cm³} = 357$ g.</p>
+                <p>$m_{\text{total}} = 896 \text{ g} + 357 \text{ g} = 1253$ g.</p>
+                <p>2. Find the total volume: $V_{\text{total}} = 100 \text{ cm³} + 50 \text{ cm³} = 150$ cm³.</p>
+                <p>3. Calculate alloy density: $\rho_{\text{alloy}} = \frac{m_{\text{total}}}{V_{\text{total}}} = \frac{1253 \text{ g}}{150 \text{ cm³}} \approx 8.35$ g/cm³.</p>
+            </div>
+
+            <!-- Advanced Solutions -->
+            <h2 class="section-title mt-12">Advanced Solutions</h2>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 9: The Layered Liquid</h3>
+                <div class="solution-step">
+                    <p><strong>Principle:</strong> For an object in equilibrium (floating), its total weight must be balanced by the total upward buoyant force from the fluids it displaces.</p>
+                    <p class="mt-2">Weight of cube: $W = m_{\text{cube}} \cdot g = \rho_{\text{cube}} \cdot V_{\text{total}} \cdot g$</p>
+                    <p>Buoyant force from oil: $F_{B,\text{oil}} = \rho_{\text{oil}} \cdot V_{\text{oil}} \cdot g$</p>
+                    <p>Buoyant force from water: $F_{B,\text{water}} = \rho_{\text{water}} \cdot V_{\text{water}} \cdot g$</p>
+                </div>
+                <div class="solution-step">
+                    <p><strong>Setup:</strong> According to Archimedes' principle: $W = F_{B,\text{oil}} + F_{B,\text{water}}$.</p>
+                    <p class="mt-2">$\rho_{\text{cube}} V_{\text{total}} g = \rho_{\text{oil}} V_{\text{oil}} g + \rho_{\text{water}} V_{\text{water}} g$</p>
+                    <p>We can cancel $g$ from all terms: $\rho_{\text{cube}} V_{\text{total}} = \rho_{\text{oil}} V_{\text{oil}} + \rho_{\text{water}} V_{\text{water}}$</p>
+                </div>
+                <div class="solution-step">
+                    <p><strong>Calculation:</strong> Given that 40% of the volume is in water, $V_{\text{water}} = 0.40 V_{\text{total}}$. This means the remaining 60% is in oil, so $V_{\text{oil}} = 0.60 V_{\text{total}}$.</p>
+                    <p class="mt-2">$\rho_{\text{cube}} V_{\text{total}} = \rho_{\text{oil}} (0.60 V_{\text{total}}) + \rho_{\text{water}} (0.40 V_{\text{total}})$</p>
+                    <p>Divide the entire equation by $V_{\text{total}}$: $\rho_{\text{cube}} = 0.60 \cdot \rho_{\text{oil}} + 0.40 \cdot \rho_{\text{water}}$</p>
+                    <p>$\rho_{\text{cube}} = 0.60 \cdot (800 \text{ kg/m³}) + 0.40 \cdot (1000 \text{ kg/m³})$</p>
+                    <p>$\rho_{\text{cube}} = 480 + 400 = 880$ kg/m³</p>
+                </div>
+                 <div class="mt-4 bg-blue-50 p-4 rounded-lg">
+                    <p class="font-bold text-blue-800">Final Answer: The density of the cube is 880 kg/m³.</p>
+                </div>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 10: The Hollow Sphere</h3>
+                <div class="solution-step">
+                    <p><strong>Principle:</strong> The apparent weight of a submerged object is its actual weight in air minus the upward buoyant force.</p>
+                    <p class="mt-2">Apparent Weight: $W_{\text{app}} = W_{\text{actual}} - F_{B}$</p>
+                </div>
+                <div class="solution-step">
+                    <p><strong>1. Calculate the volume of the metal:</strong> This is the volume of the outer sphere minus the volume of the inner hollow part.</p>
+                    <p>$V_{\text{metal}} = V_{\text{outer}} - V_{\text{inner}} = \frac{4}{3}\pi R^3 - \frac{4}{3}\pi r^3 = \frac{4}{3}\pi (R^3 - r^3)$</p>
+                    <p>Convert radii to meters: $R = 0.12$ m, $r = 0.10$ m.</p>
+                    <p>$V_{\text{metal}} = \frac{4}{3}\pi ((0.12)^3 - (0.10)^3) = \frac{4}{3}\pi (0.001728 - 0.001) \approx 0.00305$ m³</p>
+                </div>
+                 <div class="solution-step">
+                    <p><strong>2. Calculate the actual weight:</strong> $W_{\text{actual}} = m_{\text{sphere}} \cdot g = (\rho_{\text{metal}} \cdot V_{\text{metal}}) \cdot g$</p>
+                    <p>$W_{\text{actual}} = (7800 \text{ kg/m³} \cdot 0.00305 \text{ m³}) \cdot 9.8 \text{ m/s²} \approx 233.1$ N</p>
+                </div>
+                <div class="solution-step">
+                    <p><strong>3. Calculate the buoyant force:</strong> The buoyant force depends on the total volume of water displaced, which corresponds to the sphere's *outer* volume.</p>
+                    <p>$F_B = \rho_{\text{water}} \cdot V_{\text{displaced}} \cdot g = \rho_{\text{water}} \cdot (\frac{4}{3}\pi R^3) \cdot g$</p>
+                    <p>$F_B = 1000 \text{ kg/m³} \cdot (\frac{4}{3}\pi (0.12)^3) \cdot 9.8 \text{ m/s²} \approx 70.9$ N</p>
+                </div>
+                 <div class="solution-step">
+                    <p><strong>4. Calculate the apparent weight:</strong> $W_{\text{app}} = 233.1 \text{ N} - 70.9 \text{ N} = 162.2$ N</p>
+                </div>
+                 <div class="mt-4 bg-blue-50 p-4 rounded-lg">
+                    <p class="font-bold text-blue-800">Final Answer: The apparent weight of the submerged sphere is 162.2 N.</p>
+                </div>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 11: The Hydrometer</h3>
+                <div class="solution-step">
+                    <p><strong>Principle:</strong> A floating object displaces a weight of fluid equal to its own weight. Since the hydrometer's weight is constant, the weight of the displaced fluid is the same in both the unknown liquid and in water.</p>
+                    <p>$W_{\text{hydrometer}} = W_{\text{displaced, unknown}} = W_{\text{displaced, water}}$</p>
+                </div>
+                <div class="solution-step">
+                    <p><strong>Setup:</strong> Let $\rho_{\text{unk}}$ be the density of the unknown liquid. The displaced volume is the cylinder's cross-sectional area ($A$) times the submerged length ($L$).</p>
+                    <p>$(\rho_{\text{unk}} \cdot A \cdot L_1) \cdot g = (\rho_{\text{water}} \cdot A \cdot L_2) \cdot g$</p>
+                </div>
+                <div class="solution-step">
+                    <p><strong>Calculation:</strong> We can cancel the area $A$ and gravity $g$ from both sides, as they are constant.</p>
+                    <p>$\rho_{\text{unk}} \cdot L_1 = \rho_{\text{water}} \cdot L_2$</p>
+                    <p>$\rho_{\text{unk}} = \rho_{\text{water}} \cdot \frac{L_2}{L_1}$</p>
+                    <p>$\rho_{\text{unk}} = (1.00 \text{ g/cm³}) \cdot \frac{25 \text{ cm}}{20 \text{ cm}} = 1.25$ g/cm³</p>
+                </div>
+                 <div class="mt-4 bg-blue-50 p-4 rounded-lg">
+                    <p class="font-bold text-blue-800">Final Answer: The density of the unknown liquid is 1.25 g/cm³.</p>
+                </div>
+            </div>
+            <div class="solution-container">
+                <h3 class="text-2xl font-semibold mb-4">Solution 12: Density and Thermal Expansion</h3>
+                 <div class="solution-step">
+                    <p><strong>Principle:</strong> When an object is heated, its volume increases while its mass remains constant. Since density $\rho = m/V$, an increase in volume causes a decrease in density.</p>
+                </div>
+                <div class="solution-step">
+                    <p><strong>1. Relate volume expansion to linear expansion:</strong> For isotropic materials, the coefficient of volume expansion, $\beta$, is approximately three times the coefficient of linear expansion, $\alpha$.</p>
+                    <p>$\beta \approx 3\alpha = 3 \cdot (17 \times 10^{-6}) = 51 \times 10^{-6}$ (C$^\circ$)$^{-1}$</p>
+                </div>
+                <div class="solution-step">
+                    <p><strong>2. Find the new volume:</strong> The final volume $V_f$ is related to the initial volume $V_0$ by $V_f = V_0(1 + \beta \Delta T)$.</p>
+                    <p>$\Delta T = T_f - T_0 = 520^\circ\text{C} - 20^\circ\text{C} = 500^\circ$C</p>
+                    <p>$V_f = V_0(1 + (51 \times 10^{-6}) \cdot 500) = V_0(1 + 0.0255) = 1.0255 V_0$</p>
+                </div>
+                 <div class="solution-step">
+                    <p><strong>3. Find the new density:</strong> The mass $m$ is constant. $\rho_f = m/V_f$ and $\rho_0 = m/V_0$.</p>
+                    <p>$\rho_f = \frac{m}{1.0255 V_0} = \frac{1}{1.0255} \cdot \frac{m}{V_0} = \frac{\rho_0}{1.0255}$</p>
+                    <p>$\rho_f = \frac{8960 \text{ kg/m³}}{1.0255} \approx 8737.2$ kg/m³</p>
+                </div>
+                 <div class="mt-4 bg-blue-50 p-4 rounded-lg">
+                    <p class="font-bold text-blue-800">Final Answer: The new density of the copper is approximately 8737.2 kg/m³.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
