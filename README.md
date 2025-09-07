@@ -5,7 +5,7 @@ Click the topic and Enjoy!
 - [`Measuring length and volume`](https://george1meshveliani.github.io/Hello-Physics/LengthAndVolume)
 - [`Density`](https://george1meshveliani.github.io/Hello-Physics/Density)
 - [`Measuring time`](https://george1meshveliani.github.io/Hello-Physics/MeasuringTime)
-- [`Density Questions`](https://george1meshveliani.github.io/Hello-Physics/DesnityQuestions)
+- [`Density Questions`](https://george1meshveliani.github.io/Hello-Physics/DensityQuestions)
 
 #### Electricity and magnetism
 - [`Electric charge`](https://george1meshveliani.github.io/Hello-Physics/ElectricCharge)
