@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Topics in Classical Mechanics: Work and Energy</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX for LaTeX rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3NU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* A very light gray */
+        }
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+        }
+        .latex {
+            font-size: 1.1em;
+        }
+        .content-section {
+            border-left: 3px solid #e2e8f0;
+            padding-left: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .problem-box {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background-color: #ffffff;
+            transition: box-shadow 0.3s ease;
+        }
+        .problem-box:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .solution-box {
+            border: 1px solid #d1fae5; /* A light green border */
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            background-color: #f0fdf4; /* A very light green */
+        }
+        .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-4xl text-gray-900">Advanced Physics: The Concepts of Work and Energy</h1>
+            <p class="text-lg text-gray-600 mt-1">A University-Level Exposition of Fundamental Principles</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        
+        <!-- Introduction -->
+        <section class="mb-12">
+            <h2 class="text-3xl border-b pb-2 mb-4">Introduction: Beyond Newtonian Dynamics</h2>
+            <p class="text-lg leading-relaxed">
+                While Newtonian dynamics, centered on the vector concept of force ($\vec{F}=m\vec{a}$), provides a complete framework for classical mechanics, it is not always the most efficient or insightful approach. The scalar concepts of work and energy offer a powerful alternative perspective, particularly for complex systems. This framework simplifies problems by focusing on the initial and final states of a system, often bypassing the intricate details of the interactions that occur in between. Here, we develop these concepts from first principles using the language of vector calculus.
+            </p>
+        </section>
+
+        <!-- Section 1: Work -->
+        <section class="content-section">
+            <h2 class="text-3xl mb-6">1. Work Done by a Force</h2>
+            <h3 class="text-2xl mb-3">1.1 General Definition: The Line Integral</h3>
+            <p class="text-lg leading-relaxed mb-4">
+                In the most general case, a force $\vec{F}$ can vary in magnitude and direction, and the path of its point of application can be a curve in three-dimensional space. The work done by this force as the particle moves from point A to point B along a specific path $C$ is defined by the line integral:
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg text-center my-6">$$ W_{A \to B} = \int_{C} \vec{F} \cdot d\vec{r} $$</div>
+            <p class="text-lg leading-relaxed mb-4">
+                Here, $d\vec{r} = dx\,\hat{i} + dy\,\hat{j} + dz\,\hat{k}$ is the infinitesimal displacement vector along the path $C$. The dot product $\vec{F} \cdot d\vec{r}$ isolates the component of the force that acts along the direction of displacement, which is the only component that contributes to the work done. If the path is parameterized by a variable, say $t$, from $t_A$ to $t_B$, where $\vec{r}(t)$ is the position vector, then the integral becomes:
+            </p>
+             <div class="latex bg-gray-100 p-4 rounded-lg text-center my-6">$$ W = \int_{t_A}^{t_B} \vec{F}(\vec{r}(t)) \cdot \frac{d\vec{r}}{dt} dt $$</div>
+
+            <h3 class="text-2xl mt-8 mb-3">1.2 Conservative and Non-Conservative Forces</h3>
+            <p class="text-lg leading-relaxed mb-4">
+                A crucial distinction is made between two types of forces based on the path dependence of the work they do.
+            </p>
+            <ul class="list-disc pl-8 text-lg space-y-3">
+                <li>
+                    A force is <strong class="font-semibold">conservative</strong> if the work it does on a particle moving between two points is independent of the path taken. This is equivalent to stating that the work done over any closed loop is zero: $\oint \vec{F}_{c} \cdot d\vec{r} = 0$. Examples include gravity and the electrostatic force. Mathematically, a conservative force can always be expressed as the negative gradient of a scalar potential energy function, $U$.
+                    <div class="latex my-2">$\vec{F}_{c} = -\nabla U$</div>
+                    This property is mathematically equivalent to the force having zero curl: $\nabla \times \vec{F}_{c} = 0$.
+                </li>
+                <li>
+                    A force is <strong class="font-semibold">non-conservative</strong> if the work it does depends on the path. Friction and air resistance are classic examples. The work done by these dissipative forces is always negative and depends on the total path length.
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section 2: Kinetic Energy and the Work-Energy Theorem -->
+        <section class="content-section">
+            <h2 class="text-3xl mb-6">2. Kinetic Energy and the Work-Energy Theorem</h2>
+            <h3 class="text-2xl mb-3">2.1 The Derivation</h3>
+            <p class="text-lg leading-relaxed mb-4">
+                The Work-Energy Theorem is a direct consequence of Newton's Second Law. Consider the net work done by the total force $\vec{F}_{net}$ on a particle of mass $m$.
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg my-6">
+                $$ W_{net} = \int_{\vec{r}_i}^{\vec{r}_f} \vec{F}_{net} \cdot d\vec{r} = \int_{\vec{r}_i}^{\vec{r}_f} m \vec{a} \cdot d\vec{r} $$
+            </div>
+            <p class="text-lg leading-relaxed mb-4">
+                We use the chain rule to transform the integral. Knowing that acceleration is the time derivative of velocity, $\vec{a} = \frac{d\vec{v}}{dt}$, and velocity is the time derivative of position, $\vec{v} = \frac{d\vec{r}}{dt}$ (which implies $d\vec{r} = \vec{v} dt$), we can substitute these into the work integral:
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg my-6">
+                $$ W_{net} = \int_{t_i}^{t_f} m \left( \frac{d\vec{v}}{dt} \right) \cdot (\vec{v} dt) $$
+            </div>
+            <p class="text-lg leading-relaxed mb-4">
+                The $dt$ terms cancel, allowing us to change the variable of integration from position (via time) to velocity:
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg my-6">
+                 $$ W_{net} = m \int_{v_i}^{v_f} d\vec{v} \cdot \vec{v} $$
+            </div>
+            <p class="text-lg leading-relaxed mb-4">
+                To evaluate this integral, we use the product rule for the dot product: $d(\vec{v} \cdot \vec{v}) = d\vec{v} \cdot \vec{v} + \vec{v} \cdot d\vec{v} = 2(\vec{v} \cdot d\vec{v})$. Therefore, $\vec{v} \cdot d\vec{v} = \frac{1}{2} d(\vec{v} \cdot \vec{v})$. Since $\vec{v} \cdot \vec{v} = v^2$, the integral becomes trivial:
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg my-6">
+                 $$ W_{net} = m \int_{v_i}^{v_f} \frac{1}{2} d(v^2) = m \left[ \frac{1}{2}v^2 \right]_{v_i}^{v_f} = \frac{1}{2}mv_f^2 - \frac{1}{2}mv_i^2 $$
+            </div>
+            <p class="text-lg leading-relaxed mb-4">
+                We define the <strong class="font-semibold">kinetic energy</strong> as $K = \frac{1}{2}mv^2$. The theorem thus states that the net work done on an object equals the change in its kinetic energy.
+            </p>
+            <div class="latex border-2 border-blue-500 bg-blue-50 p-4 rounded-lg text-center my-6">$$ W_{net} = \Delta K $$</div>
+
+            <h3 class="text-2xl mt-8 mb-3">2.2 Relativistic Kinetic Energy</h3>
+            <p class="text-lg leading-relaxed mb-4">
+                In Special Relativity, the total energy of a particle is $E = \gamma m c^2$, where $m$ is the rest mass and $\gamma = (1 - v^2/c^2)^{-1/2}$ is the Lorentz factor. The rest energy is $E_0 = mc^2$. The kinetic energy is the difference between the total energy and the rest energy.
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg text-center my-6">$$ K_{rel} = E - E_0 = (\gamma - 1)mc^2 $$</div>
+            <p class="text-lg leading-relaxed mb-4">
+                For small velocities ($v \ll c$), the term $x = v^2/c^2$ is very small. We can use the binomial expansion for $\gamma = (1-x)^{-1/2} \approx 1 + (-\frac{1}{2})(-x) + O(x^2)$, which simplifies to $\gamma \approx 1 + \frac{1}{2}\frac{v^2}{c^2}$. Substituting this into the equation for $K_{rel}$ recovers the classical form:
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg text-center my-6">$$ K_{rel} \approx \left( (1 + \frac{1}{2}\frac{v^2}{c^2}) - 1 \right) mc^2 = \frac{1}{2}mv^2 $$</div>
+        </section>
+
+        <!-- Section 3: Potential Energy and Conservation of Energy -->
+        <section class="content-section">
+            <h2 class="text-3xl mb-6">3. Potential Energy and Conservation of Energy</h2>
+            <h3 class="text-2xl mb-3">3.1 Potential Energy Function</h3>
+            <p class="text-lg leading-relaxed mb-4">
+                For any conservative force $\vec{F}_c$, we can define a scalar potential energy function $U(\vec{r})$ such that the work done by the force is equal to the negative change in potential energy.
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg text-center my-6">$$ W_c = \int_{\vec{r}_i}^{\vec{r}_f} \vec{F}_c \cdot d\vec{r} = -[U(\vec{r}_f) - U(\vec{r}_i)] = -\Delta U $$</div>
+            <p class="text-lg leading-relaxed mb-4">
+                Only differences in potential energy are physically meaningful; the zero point of potential energy can be chosen arbitrarily. The force is recovered from the potential via the negative gradient operator, $\nabla = \hat{i}\frac{\partial}{\partial x} + \hat{j}\frac{\partial}{\partial y} + \hat{k}\frac{\partial}{\partial z}$.
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg text-center my-6">$$ \vec{F}_c = -\nabla U $$</div>
+            <p class="text-lg leading-relaxed mb-4">
+                For a one-dimensional system, this simplifies to $F_x(x) = -\frac{dU}{dx}$. Points where $F_x=0$ are equilibrium points. The equilibrium is stable if $\frac{d^2U}{dx^2} > 0$ (a local minimum in $U$) and unstable if $\frac{d^2U}{dx^2} < 0$ (a local maximum in $U$).
+            </p>
+            
+            <h3 class="text-2xl mt-8 mb-3">3.2 The Law of Conservation of Energy</h3>
+            <p class="text-lg leading-relaxed mb-4">
+                The net work can be split into work done by conservative forces ($W_c$) and work done by non-conservative forces ($W_{nc}$). From the Work-Energy Theorem:
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg my-6">$$ W_{net} = W_c + W_{nc} = \Delta K $$</div>
+            <p class="text-lg leading-relaxed mb-4">
+                Substituting $W_c = -\Delta U$, we get:
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg my-6">$$ -\Delta U + W_{nc} = \Delta K \implies W_{nc} = \Delta K + \Delta U $$</div>
+            <p class="text-lg leading-relaxed mb-4">
+                We define the total mechanical energy as $E_{mech} = K + U$. This yields the most general form of the law of energy conservation:
+            </p>
+            <div class="latex border-2 border-blue-500 bg-blue-50 p-4 rounded-lg text-center my-6">$$ W_{nc} = \Delta E_{mech} $$</div>
+            <p class="text-lg leading-relaxed mb-4">
+                In an isolated system where only conservative forces do work ($W_{nc} = 0$), the total mechanical energy is conserved: $\Delta E_{mech} = 0$, or $K_i + U_i = K_f + U_f$.
+            </p>
+        </section>
+
+        <!-- Section 4: Theoretical Examples -->
+        <section class="content-section">
+            <h2 class="text-3xl mb-6">4. Theoretical Examples</h2>
+            <h3 class="text-2xl mb-3">4.1 Classical: The Simple Pendulum</h3>
+            <p class="text-lg leading-relaxed mb-4">
+                Consider a simple pendulum of mass $m$ and length $l$. The kinetic energy is $K = \frac{1}{2}mv^2 = \frac{1}{2}m(l\dot{\theta})^2$. The potential energy, setting $U=0$ at the lowest point, is $U = mgh = mgl(1-\cos\theta)$. If energy is conserved, the total energy $E$ is constant:
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg text-center my-6">$$ E = K + U = \frac{1}{2}ml^2\dot{\theta}^2 + mgl(1-\cos\theta) = \text{const.} $$</div>
+            <p class="text-lg leading-relaxed mb-4">
+                Differentiating with respect to time gives the equation of motion:
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg my-6">
+                $$ \frac{dE}{dt} = ml^2\dot{\theta}\ddot{\theta} + mgl(\sin\theta)\dot{\theta} = 0 $$
+                $$ \implies \ddot{\theta} + \frac{g}{l}\sin\theta = 0 $$
+            </div>
+            <p class="text-lg leading-relaxed">This demonstrates how the equation of motion can be derived elegantly from energy principles.</p>
+
+            <h3 class="text-2xl mt-8 mb-3">4.2 Modern Physics: The Morse Potential</h3>
+            <p class="text-lg leading-relaxed mb-4">
+                The interaction between two atoms in a diatomic molecule can be approximated by the Morse potential, which accounts for bond stretching and dissociation.
+            </p>
+            <div class="latex bg-gray-100 p-4 rounded-lg text-center my-6">$$ U(r) = D_e(1 - e^{-a(r-r_e)})^2 $$</div>
+            <p class="text-lg leading-relaxed mb-4">
+                Here, $r$ is the interatomic distance, $r_e$ is the equilibrium bond distance, $D_e$ is the well depth (dissociation energy), and $a$ controls the 'width' of the potential. The force between the atoms is $F(r) = -dU/dr$. For small displacements from equilibrium, a Taylor expansion of $U(r)$ around $r_e$ shows that the potential is approximately quadratic, corresponding to a simple harmonic oscillator, which explains the quantized vibrational energy levels of the molecule.
+            </p>
+        </section>
+
+
+        <!-- Problems Section -->
+        <section class="mt-16">
+            <h2 class="text-3xl border-b pb-2 mb-8">Practice Problems</h2>
+            
+            <!-- Intermediate Problems -->
+            <div>
+                <h3 class="text-2xl mb-4 text-teal-700">Intermediate Level Problems</h3>
+                
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 1:</p>
+                    <p>A particle moves under the influence of a force $\vec{F} = (3x^2 \hat{i} + 4y \hat{j})$ N. Calculate the work done by this force as the particle moves from the origin (0,0) to the point (2,4) along the parabolic path $y=x^2$.</p>
+                </div>
+
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 2:</p>
+                    <p>A block of mass $m=5$ kg is released from rest at the top of an inclined plane of angle $\theta=30^\circ$ and height $h=10$ m. The coefficient of kinetic friction between the block and the plane is $\mu_k=0.2$. Using the work-energy theorem, find the speed of the block when it reaches the bottom of the incline.</p>
+                </div>
+
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 3:</p>
+                    <p>A potential energy function for a particle moving along the x-axis is given by $U(x) = 8x^2 - x^4$, where $U$ is in joules and $x$ is in meters. Determine (a) the points of stable and unstable equilibrium and (b) the force on the particle at $x=-1$ m.</p>
+                </div>
+
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 4:</p>
+                    <p>Derive the expression for the escape velocity from a planet of mass $M$ and radius $R$ by considering the conservation of mechanical energy. Calculate this velocity for Earth ($M \approx 5.97 \times 10^{24}$ kg, $R \approx 6.37 \times 10^6$ m).</p>
+                </div>
+                
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 5:</p>
+                    <p>A mass $m$ is attached to a spring with spring constant $k$. The mass is pulled a distance $A$ from its equilibrium position and released from rest. Calculate the velocity of the mass as a function of its position $x$ using energy conservation.</p>
+                </div>
+                
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 6:</p>
+                    <p>A proton (mass $m_p = 1.67 \times 10^{-27}$ kg) is accelerated from rest through a potential difference of $\Delta V = 2.5 \times 10^5$ V. What is its final kinetic energy (in Joules and eV) and its final speed? Is a relativistic treatment necessary? ($e = 1.602 \times 10^{-19}$ C).</p>
+                </div>
+
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 7:</p>
+                    <p>A bead of mass $m$ slides without friction on a vertical circular hoop of radius $R$. If it is displaced slightly from the top point, find its speed when it reaches the bottom point and the normal force exerted by the hoop at that point.</p>
+                </div>
+            </div>
+
+            <!-- Advanced Problems -->
+            <div class="mt-12">
+                <h3 class="text-2xl mb-4 text-red-700">Advanced Level Problems</h3>
+                
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 8:</p>
+                    <p>A particle of mass $m$ is subject to a central force $\vec{F} = -k/r^3 \vec{r}$, where $k$ is a positive constant and $\vec{r}$ is the position vector from the origin. (a) Show that this force is conservative. (b) Find the potential energy function $U(r)$, assuming $U(\infty)=0$. (c) If the particle is projected from $r_0$ with a velocity $v_0$ perpendicular to $\vec{r}_0$, find the condition for which it will move in a circular orbit.</p>
+                </div>
+                
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 9:</p>
+                    <p>A block of mass $m$ is placed on top of a larger block of mass $M$ which rests on a frictionless horizontal surface. A constant horizontal force $F$ is applied to the lower block. The coefficient of static friction between the blocks is $\mu_s$. Using work-energy considerations, find the maximum force $F_{max}$ that can be applied such that the top block does not slip. What is the work done by static friction on the top block in this case?</p>
+                </div>
+                
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 10:</p>
+                    <p>A particle moves in the xy-plane with a velocity $\vec{v}(t) = (\alpha t)\hat{i} + (\beta t^2)\hat{j}$, where $\alpha$ and $\beta$ are constants. The particle starts at the origin at $t=0$. Find the net work done on the particle by the forces acting on it during the interval from $t=0$ to $t=T$.</p>
+                </div>
+
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 11:</p>
+                    <p>An electron with a kinetic energy of 1.0 MeV collides head-on with a stationary positron (same rest mass, opposite charge). They annihilate, creating two photons of equal energy that travel in opposite directions. Calculate the energy (in MeV) and wavelength of each photon.</p>
+                </div>
+
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 12:</p>
+                    <p>A small object of mass $m$ is released from rest at the top of a frictionless hemisphere of radius $R$. At what angle $\theta$ (measured from the vertical) does the object lose contact with the hemisphere?</p>
+                </div>
+            </div>
+
+            <!-- Irodov-like Problems -->
+            <div class="mt-12">
+                <h3 class="text-2xl mb-4 text-purple-800">Irodov-like Problems</h3>
+                
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 13:</p>
+                    <p>A uniform chain of length $L$ and mass $M$ lies on a frictionless horizontal table such that a small fraction of its length, $L_0$, hangs over the edge. The chain is released from rest. Find the velocity of the chain at the moment the last link leaves the table. You must solve this by setting up an integral based on the work-energy theorem, considering the work done by gravity on the center of mass of the hanging part.</p>
+                </div>
+
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 14:</p>
+                    <p>A particle of mass $m$ moves in a one-dimensional potential field $U(x) = U_0 \left( \frac{a^2}{x^2} - \frac{a}{x} \right)$, where $U_0$ and $a$ are positive constants. The particle has a total energy $E = -U_0/16$. Determine the turning points of the motion and calculate the maximum speed of the particle during its motion.</p>
+                </div>
+                
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Problem 15:</p>
+                    <p>A light inextensible thread is wound around a uniform solid cylinder of mass $M$ and radius $R$. The cylinder is placed on a rough horizontal plane with a coefficient of kinetic friction $\mu_k$. The free end of the thread is pulled with a constant horizontal force $F$. Assuming the cylinder rolls without slipping, find the kinetic energy of the cylinder after its center has moved a distance $S$. Now, consider the case where the force $F$ is large enough to cause slipping. Find the work done by friction and the total kinetic energy (translational + rotational) after the center has moved a distance $S$.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Solutions Section -->
+        <section class="mt-16">
+            <h2 class="text-3xl border-b pb-2 mb-8">Solutions to Practice Problems</h2>
+
+            <!-- Intermediate Solutions -->
+            <div>
+                <h3 class="text-2xl mb-4 text-teal-700">Intermediate Level Solutions</h3>
+                
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 1:</p>
+                    <div class="solution-box">
+                        <p>The work done is $W = \int_C \vec{F} \cdot d\vec{r}$. We have $\vec{F} = 3x^2 \hat{i} + 4y \hat{j}$ and $d\vec{r} = dx \hat{i} + dy \hat{j}$.<br>The path is $y=x^2$, so $dy = 2x \, dx$. We substitute this into $d\vec{r}$ and $\vec{F}$:
+                        <div class="latex">$\vec{F} = 3x^2 \hat{i} + 4(x^2) \hat{j} = 3x^2 \hat{i} + 4x^2 \hat{j}$</div>
+                        <div class="latex">$d\vec{r} = dx \hat{i} + 2x \, dx \hat{j} = ( \hat{i} + 2x \hat{j}) dx$</div>
+                        Now compute the dot product:
+                        <div class="latex">$\vec{F} \cdot d\vec{r} = (3x^2)(1) + (4x^2)(2x) = 3x^2 + 8x^3$</div>
+                        The particle moves from (0,0) to (2,4), which corresponds to $x$ from 0 to 2. We integrate:
+                        <div class="latex">$$ W = \int_0^2 (3x^2 + 8x^3) \, dx = \left[ x^3 + 2x^4 \right]_0^2 $$</div>
+                        <div class="latex">$$ W = (2^3 + 2(2^4)) - (0) = 8 + 2(16) = 8 + 32 = 40 \, \text{J} $$</div>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 2:</p>
+                    <div class="solution-box">
+                        <p>We use the work-energy theorem: $W_{net} = \Delta K = K_f - K_i$. Since the block starts from rest, $K_i=0$.<br>
+                        The net work is the sum of work done by gravity ($W_g$) and friction ($W_f$).
+                        <div class="latex">$W_g = mgh = (5\,\text{kg})(9.8\,\text{m/s}^2)(10\,\text{m}) = 490\,\text{J}$</div>
+                        To find the work done by friction, we need the length of the incline, $d$, and the normal force, $N$.
+                        <div class="latex">$d = h / \sin(\theta) = 10\,\text{m} / \sin(30^\circ) = 20\,\text{m}$</div>
+                        <div class="latex">$N = mg \cos(\theta) = (5)(9.8)\cos(30^\circ) = 49(\sqrt{3}/2) \approx 42.44\,\text{N}$</div>
+                        The friction force is $f_k = \mu_k N = (0.2)(42.44\,\text{N}) = 8.488\,\text{N}$. Work done by friction is negative:
+                        <div class="latex">$W_f = -f_k d = -(8.488\,\text{N})(20\,\text{m}) = -169.76\,\text{J}$</div>
+                        <div class="latex">$W_{net} = W_g + W_f = 490 - 169.76 = 320.24\,\text{J}$</div>
+                        Finally, $K_f = \frac{1}{2}mv_f^2 = W_{net}$.
+                        <div class="latex">$$v_f = \sqrt{\frac{2 W_{net}}{m}} = \sqrt{\frac{2(320.24)}{5}} \approx 11.32\,\text{m/s}$$</div>
+                        </p>
+                    </div>
+                </div>
+                
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 3:</p>
+                    <div class="solution-box">
+                        <p>(a) Equilibrium points occur where the force is zero. $F(x) = -dU/dx = 0$.
+                        <div class="latex">$F(x) = -\frac{d}{dx}(8x^2 - x^4) = -(16x - 4x^3) = 4x^3 - 16x$</div>
+                        Set $F(x)=0$: $4x(x^2 - 4) = 0 \implies x=0, x=2, x=-2$.<br>
+                        To check for stability, we examine the second derivative of $U(x)$.
+                        <div class="latex">$\frac{d^2U}{dx^2} = \frac{d}{dx}(16x - 4x^3) = 16 - 12x^2$</div>
+                        - At $x=0$: $d^2U/dx^2 = 16 > 0 \implies$ Stable equilibrium.<br>
+                        - At $x=2$: $d^2U/dx^2 = 16 - 12(2^2) = -32 < 0 \implies$ Unstable equilibrium.<br>
+                        - At $x=-2$: $d^2U/dx^2 = 16 - 12(-2)^2) = -32 < 0 \implies$ Unstable equilibrium.<br>
+                        (b) The force at $x=-1$ m is:
+                        <div class="latex">$F(-1) = 4(-1)^3 - 16(-1) = -4 + 16 = 12\,\text{N}$</div>
+                        </p>
+                    </div>
+                </div>
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 4:</p>
+                    <div class="solution-box">
+                        <p>To escape the planet's gravity, the object must reach an infinite distance with at least zero kinetic energy. We set the final energy $E_f = K_f + U_f = 0 + 0 = 0$.<br>
+                        The initial state is at the planet's surface (radius $R$) with escape velocity $v_{esc}$.
+                        <div class="latex">$E_i = K_i + U_i = \frac{1}{2}mv_{esc}^2 - \frac{GMm}{R}$</div>
+                        By conservation of energy, $E_i = E_f$.
+                        <div class="latex">$\frac{1}{2}mv_{esc}^2 - \frac{GMm}{R} = 0 \implies \frac{1}{2}mv_{esc}^2 = \frac{GMm}{R}$</div>
+                        <div class="latex">$$v_{esc} = \sqrt{\frac{2GM}{R}}$$</div>
+                        For Earth:
+                        <div class="latex">$$v_{esc} = \sqrt{\frac{2(6.674 \times 10^{-11})(5.97 \times 10^{24})}{6.37 \times 10^6}} \approx 11180\,\text{m/s} \approx 11.2\,\text{km/s}$$</div>
+                        </p>
+                    </div>
+                </div>
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 5:</p>
+                    <div class="solution-box">
+                        <p>The total mechanical energy of the spring-mass system is conserved. $E = K+U = \frac{1}{2}mv^2 + \frac{1}{2}kx^2$.<br>
+                        Initially, at $x=A$, the mass is at rest ($v=0$). The total energy is purely potential:
+                        <div class="latex">$E = \frac{1}{2}m(0)^2 + \frac{1}{2}k(A)^2 = \frac{1}{2}kA^2$</div>
+                        This energy is constant. At any other position $x$, the energy is:
+                        <div class="latex">$\frac{1}{2}mv^2 + \frac{1}{2}kx^2 = \frac{1}{2}kA^2$</div>
+                        Solving for $v$:
+                        <div class="latex">$mv^2 = kA^2 - kx^2 = k(A^2 - x^2)$</div>
+                        <div class="latex">$$ v(x) = \pm \sqrt{\frac{k}{m}(A^2 - x^2)} $$</div>
+                        </p>
+                    </div>
+                </div>
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 6:</p>
+                    <div class="solution-box">
+                        <p>The work done by the electric field provides kinetic energy to the proton: $\Delta K = W = q\Delta V$.
+                        <div class="latex">$\Delta K = (1.602 \times 10^{-19}\,\text{C})(2.5 \times 10^5\,\text{V}) = 4.005 \times 10^{-14}\,\text{J}$</div>
+                        In electron-volts, since the charge is $1e$, the energy is simply $2.5 \times 10^5\,\text{eV}$ or $0.25\,\text{MeV}$.<br>
+                        To find the speed, we use the classical kinetic energy formula first.
+                        <div class="latex">$$v = \sqrt{\frac{2K}{m_p}} = \sqrt{\frac{2(4.005 \times 10^{-14}\,\text{J})}{1.67 \times 10^{-27}\,\text{kg}}} \approx 2.19 \times 10^7\,\text{m/s}$$</div>
+                        To check if relativity is needed, we compare this speed to the speed of light $c$:
+                        <div class="latex">$v/c = (2.19 \times 10^7) / (3 \times 10^8) \approx 0.073$</div>
+                        Since the speed is about 7.3% of the speed of light, the classical approximation is reasonably accurate and a full relativistic treatment is not strictly necessary.
+                        </p>
+                    </div>
+                </div>
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 7:</p>
+                    <div class="solution-box">
+                        <p>We use energy conservation. Let the bottom of the hoop be the reference for potential energy ($h=0$). The top is at $h=2R$.
+                        <div class="latex">$E_{top} = E_{bottom} \implies K_{top} + U_{top} = K_{bottom} + U_{bottom}$</div>
+                        <div class="latex">$0 + mg(2R) = \frac{1}{2}mv_{bottom}^2 + 0$</div>
+                        <div class="latex">$2mgR = \frac{1}{2}mv_{bottom}^2 \implies v_{bottom} = \sqrt{4gR} = 2\sqrt{gR}$</div>
+                        At the bottom, the net force provides the centripetal force. The forces are the normal force $N$ (upwards) and gravity $mg$ (downwards).
+                        <div class="latex">$F_{net} = N - mg = \frac{mv_{bottom}^2}{R}$</div>
+                        <div class="latex">$N = mg + \frac{m(4gR)}{R} = mg + 4mg = 5mg$</div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Solutions -->
+            <div class="mt-12">
+                <h3 class="text-2xl mb-4 text-red-700">Advanced Level Solutions</h3>
+                
+                <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 8:</p>
+                    <div class="solution-box">
+                        <p>(a) A force is conservative if its curl is zero, $\nabla \times \vec{F} = 0$. Given $\vec{F} = -k \frac{\vec{r}}{r^3} = -k\frac{x\hat{i} + y\hat{j} + z\hat{k}}{(x^2+y^2+z^2)^{3/2}}$. Let's check the z-component of the curl: $(\nabla \times \vec{F})_z = \frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}$.
+                        <div class="latex">$\frac{\partial F_y}{\partial x} = \frac{\partial}{\partial x} \left( -ky(x^2+y^2+z^2)^{-3/2} \right) = (-ky)(-\frac{3}{2})(x^2+y^2+z^2)^{-5/2}(2x) = 3kxy(r)^{-5}$</div>
+                        <div class="latex">$\frac{\partial F_x}{\partial y} = \frac{\partial}{\partial y} \left( -kx(x^2+y^2+z^2)^{-3/2} \right) = (-kx)(-\frac{3}{2})(x^2+y^2+z^2)^{-5/2}(2y) = 3kxy(r)^{-5}$</div>
+                        Since they are equal, the z-component is zero. By symmetry, all components are zero. The force is conservative.<br>
+                        (b) Since the force is conservative, $F_r = -dU/dr$. The magnitude of the force is $|\vec{F}| = k/r^3 |\vec{r}| = k/r^2$. The force is attractive, so $F_r = -k/r^2$.
+                        <div class="latex">$$ U(r) = -\int F_r dr = -\int_{\infty}^r (-\frac{k}{r'^2}) dr' = k \left[-\frac{1}{r'}\right]_{\infty}^r = -\frac{k}{r} $$</div>
+                        (c) For a circular orbit, the force provides the centripetal acceleration: $F = ma_c$.
+                        <div class="latex">$\frac{k}{r_0^2} = \frac{mv_0^2}{r_0} \implies v_0^2 = \frac{k}{mr_0}$</div>
+                        <div class="latex">$$v_0 = \sqrt{\frac{k}{mr_0}}$$</div>
+                        </p>
+                    </div>
+                </div>
+                
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 9:</p>
+                    <div class="solution-box">
+                        <p>The top block $m$ is accelerated by the static friction force $f_s$. The maximum acceleration it can have is $a_{max} = f_{s,max}/m = \mu_s N_m / m = \mu_s mg / m = \mu_s g$. For the blocks to move together without slipping, the whole system must have this maximum acceleration.
+                        Applying Newton's second law to the combined system $(M+m)$:
+                        <div class="latex">$F_{net} = F_{max} = (M+m)a_{max}$</div>
+                        <div class="latex">$$F_{max} = (M+m)\mu_s g$$</div>
+                        Now, consider the work done by static friction on the top block as the system moves a distance $d$. The force of static friction on the top block is $f_s = ma_{max} = m\mu_s g$.
+                        This force acts over a displacement $d$, so the work done is:
+                        <div class="latex">$$W_{f_s} = f_s \cdot d = (m\mu_s g)d$$</div>
+                        This work is positive, as the friction force is in the same direction as the displacement, and it is responsible for the increase in the kinetic energy of the top block.
+                        </p>
+                    </div>
+                </div>
+
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 10:</p>
+                    <div class="solution-box">
+                        <p>The simplest way to solve this is using the Work-Energy Theorem, $W_{net} = \Delta K$. We just need to find the change in kinetic energy.<br>
+                        The initial velocity at $t=0$ is $\vec{v}(0) = 0$, so the initial kinetic energy $K_i=0$.<br>
+                        The final velocity at $t=T$ is:
+                        <div class="latex">$\vec{v}(T) = (\alpha T)\hat{i} + (\beta T^2)\hat{j}$</div>
+                        The final speed squared is the magnitude of this vector squared:
+                        <div class="latex">$v_f^2 = |\vec{v}(T)|^2 = (\alpha T)^2 + (\beta T^2)^2 = \alpha^2 T^2 + \beta^2 T^4$</div>
+                        The final kinetic energy is:
+                        <div class="latex">$K_f = \frac{1}{2}mv_f^2 = \frac{1}{2}m(\alpha^2 T^2 + \beta^2 T^4)$</div>
+                        Since $K_i=0$, the net work done is:
+                        <div class="latex">$$ W_{net} = K_f - K_i = \frac{1}{2}m(\alpha^2 T^2 + \beta^2 T^4) $$</div>
+                        </p>
+                    </div>
+                </div>
+
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 11:</p>
+                    <div class="solution-box">
+                        <p>This problem requires conservation of total relativistic energy. The rest energy of an electron (or positron) is $E_0 = m_e c^2 \approx 0.511\,\text{MeV}$.<br>
+                        The total initial energy of the system is the sum of the energies of the electron and the positron.
+                        <div class="latex">$E_{initial} = E_{electron} + E_{positron}$</div>
+                        The positron is stationary, so its energy is just its rest energy: $E_{positron} = E_0$.<br>
+                        The electron is moving, so its energy is its kinetic energy plus its rest energy: $E_{electron} = K_e + E_0$.
+                        <div class="latex">$E_{initial} = (K_e + E_0) + E_0 = 1.0\,\text{MeV} + 0.511\,\text{MeV} + 0.511\,\text{MeV} = 2.022\,\text{MeV}$</div>
+                        This total energy is converted into two photons of equal energy, $E_\gamma$.
+                        <div class="latex">$E_{final} = 2E_\gamma$</div>
+                        By energy conservation, $E_{initial} = E_{final}$:
+                        <div class="latex">$2.022\,\text{MeV} = 2E_\gamma \implies E_\gamma = 1.011\,\text{MeV}$</div>
+                        The wavelength of each photon is found using $E = hc/\lambda$.
+                        <div class="latex">$$\lambda = \frac{hc}{E_\gamma} = \frac{1240\,\text{eV}\cdot\text{nm}}{1.011 \times 10^6\,\text{eV}} = \frac{1.240 \times 10^3\,\text{eV}\cdot\text{nm}}{1.011 \times 10^6\,\text{eV}} \approx 1.226 \times 10^{-3}\,\text{nm} = 1.226\,\text{pm}$$</div>
+                        </p>
+                    </div>
+                </div>
+
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 12:</p>
+                    <div class="solution-box">
+                        <p>Let $\theta$ be the angle from the vertical. Set potential energy $U=0$ at the initial height (top of the hemisphere). At an angle $\theta$, the object has dropped a vertical distance of $h=R(1-\cos\theta)$.
+                        By conservation of energy: $\Delta K = -\Delta U$.
+                        <div class="latex">$\frac{1}{2}mv^2 - 0 = - (mg(-h)) = mgR(1-\cos\theta) \implies v^2 = 2gR(1-\cos\theta)$</div>
+                        Now, analyze the forces. The forces perpendicular to the surface are the normal force $N$ and the radial component of gravity, $mg\cos\theta$. Their net sum provides the centripetal force.
+                        <div class="latex">$F_{net, radial} = mg\cos\theta - N = \frac{mv^2}{R}$</div>
+                        The object loses contact when $N=0$. This gives:
+                        <div class="latex">$mg\cos\theta = \frac{mv^2}{R} \implies g\cos\theta = \frac{v^2}{R}$</div>
+                        Substitute the expression for $v^2$ from energy conservation:
+                        <div class="latex">$g\cos\theta = \frac{2gR(1-\cos\theta)}{R} = 2g(1-\cos\theta)$</div>
+                        <div class="latex">$\cos\theta = 2 - 2\cos\theta \implies 3\cos\theta = 2 \implies \cos\theta = 2/3$</div>
+                        <div class="latex">$$\theta = \arccos(2/3) \approx 48.2^\circ$$</div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Irodov-like Solutions -->
+            <div class="mt-12">
+                <h3 class="text-2xl mb-4 text-purple-800">Irodov-like Solutions</h3>
+                
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 13:</p>
+                    <div class="solution-box">
+                        <p>We use the conservation of energy. Let the linear mass density be $\lambda = M/L$. Let the table surface be the zero potential energy reference ($U=0$).<br>
+                        Initial State: A length $L_0$ hangs. Its mass is $m_0 = \lambda L_0$. Its center of mass is at a distance $L_0/2$ below the table. The initial potential energy is $U_i = -m_0 g (L_0/2) = -(\lambda L_0)g(L_0/2) = -\frac{1}{2}\lambda g L_0^2$. The initial kinetic energy is $K_i=0$.
+                        <div class="latex">$E_i = -\frac{1}{2}\lambda g L_0^2$</div>
+                        Final State: The entire chain of length $L$ is hanging. Its mass is $M=\lambda L$. Its center of mass is at a distance $L/2$ below the table. The final potential energy is $U_f = -Mg(L/2) = -(\lambda L)g(L/2) = -\frac{1}{2}\lambda g L^2$. The final kinetic energy is $K_f = \frac{1}{2}Mv_f^2 = \frac{1}{2}(\lambda L)v_f^2$.
+                        <div class="latex">$E_f = \frac{1}{2}\lambda L v_f^2 - \frac{1}{2}\lambda g L^2$</div>
+                        By energy conservation, $E_i = E_f$:
+                        <div class="latex">$- \frac{1}{2}\lambda g L_0^2 = \frac{1}{2}\lambda L v_f^2 - \frac{1}{2}\lambda g L^2$</div>
+                        Cancel $\frac{1}{2}\lambda$: $-gL_0^2 = Lv_f^2 - gL^2$.
+                        <div class="latex">$Lv_f^2 = g(L^2 - L_0^2)$</div>
+                        <div class="latex">$$v_f = \sqrt{\frac{g(L^2 - L_0^2)}{L}}$$</div>
+                        </p>
+                    </div>
+                </div>
+
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 14:</p>
+                    <div class="solution-box">
+                        <p>Turning points occur where the kinetic energy is zero, so the total energy equals the potential energy: $E=U(x)$.
+                        <div class="latex">$-U_0/16 = U_0 \left( \frac{a^2}{x^2} - \frac{a}{x} \right)$</div>
+                        Divide by $U_0$ and let $z = a/x$: $-1/16 = z^2 - z$.
+                        Rearrange to form a quadratic equation: $z^2 - z + 1/16 = 0$.
+                        Using the quadratic formula, $z = \frac{-(-1) \pm \sqrt{(-1)^2 - 4(1)(1/16)}}{2(1)} = \frac{1 \pm \sqrt{1 - 1/4}}{2} = \frac{1 \pm \sqrt{3/4}}{2} = \frac{1 \pm \sqrt{3}/2}{2} = \frac{2 \pm \sqrt{3}}{4}$.
+                        Since $z=a/x$, the turning points are $x = a/z$.
+                        <div class="latex">$$x_1 = \frac{a}{(2+\sqrt{3})/4} = \frac{4a}{2+\sqrt{3}} = 4a(2-\sqrt{3})$$</div>
+                        <div class="latex">$$x_2 = \frac{a}{(2-\sqrt{3})/4} = \frac{4a}{2-\sqrt{3}} = 4a(2+\sqrt{3})$$</div>
+                        The maximum speed occurs where the potential energy is minimum. Find the minimum of $U(x)$ by setting $dU/dx=0$.
+                        <div class="latex">$\frac{dU}{dx} = U_0 \left( -2\frac{a^2}{x^3} + \frac{a}{x^2} \right) = 0 \implies \frac{a}{x^2} = \frac{2a^2}{x^3} \implies x=2a$</div>
+                        The minimum potential energy is $U_{min} = U(2a) = U_0(\frac{a^2}{(2a)^2} - \frac{a}{2a}) = U_0(\frac{1}{4} - \frac{1}{2}) = -U_0/4$.
+                        By energy conservation, $E = K_{max} + U_{min}$.
+                        <div class="latex">$-U_0/16 = K_{max} - U_0/4 \implies K_{max} = U_0/4 - U_0/16 = 3U_0/16$</div>
+                        <div class="latex">$\frac{1}{2}mv_{max}^2 = \frac{3U_0}{16} \implies v_{max} = \sqrt{\frac{3U_0}{8m}}$</div>
+                        </p>
+                    </div>
+                </div>
+
+                 <div class="problem-box">
+                    <p class="font-bold mb-2">Solution 15:</p>
+                    <div class="solution-box">
+                        <p><strong>Case 1: Rolls without slipping.</strong><br>
+                        We use the work-energy theorem for rigid bodies: $W_{net} = \Delta K$. The net work is done only by the external force $F$, since the static friction does no work in pure rolling. $W_{net} = F \cdot S$.
+                        The final kinetic energy has translational and rotational parts: $K_f = K_{trans} + K_{rot} = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2$.
+                        For a solid cylinder, $I_{cm} = \frac{1}{2}MR^2$. For pure rolling, $v_{cm} = \omega R$.
+                        <div class="latex">$K_f = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}(\frac{1}{2}MR^2)(\frac{v_{cm}}{R})^2 = \frac{1}{2}Mv_{cm}^2 + \frac{1}{4}Mv_{cm}^2 = \frac{3}{4}Mv_{cm}^2$</div>
+                        From the work-energy theorem, $W_{net} = K_f$.
+                        <div class="latex">$$ K_f = FS $$</div>
+                        <strong>Case 2: Slips.</strong><br>
+                        Now kinetic friction acts, and $v_{cm} \neq \omega R$. The work done by friction is $W_f = -f_k S = -\mu_k N S = -\mu_k MgS$.
+                        The work-energy theorem for translation: $W_{net, trans} = \Delta K_{trans}$.
+                        <div class="latex">$W_F + W_f = (F - \mu_k Mg)S = \Delta K_{trans}$</div>
+                        The work-energy theorem for rotation: $\tau_{net} \Delta\theta = \Delta K_{rot}$. The only torque about the center of mass is from friction: $\tau_{f_k} = f_k R = \mu_k MgR$.
+                        We need $\Delta \theta$. $a_{cm} = (F-\mu_k Mg)/M$. $S = \frac{1}{2}a_{cm}t^2 \implies t=\sqrt{2S/a_{cm}}$.
+                        $\alpha = \tau/I = (\mu_k MgR) / (\frac{1}{2}MR^2) = 2\mu_k g/R$.
+                        $\Delta\theta = \frac{1}{2}\alpha t^2 = \frac{1}{2}(2\mu_k g/R)(2S/a_{cm}) = (2\mu_k g S)/(R a_{cm})$.
+                        <div class="latex">$W_{rot} = \tau \Delta\theta = (\mu_k MgR) \frac{2\mu_k g S}{R a_{cm}} = \frac{2\mu_k^2 M g^2 S}{a_{cm}} = \frac{2\mu_k^2 M^2 g^2 S}{F - \mu_k Mg}$</div>
+                        This is the final rotational kinetic energy. The final translational energy is $(F - \mu_k Mg)S$.
+                        The total kinetic energy is:
+                        <div class="latex">$$ K_{total} = (F - \mu_k Mg)S + \frac{2\mu_k^2 M^2 g^2 S}{F - \mu_k Mg} $$</div>
+                        The work done by friction is $W_f = -\mu_k MgS$.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>&copy;  George Meshveliani - Advanced Physics Documentation. For educational purposes.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\(", right: "\\)", display: false},
+                    {left: "\\[", right: "\\]", display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</body>
+</html>
+
+
