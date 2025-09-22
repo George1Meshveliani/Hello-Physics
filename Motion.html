@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow: Understanding Speed & Acceleration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- MathJax Configuration -->
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <!-- MathJax script for formula rendering -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e2e8f0;
+            overflow: hidden; /* Hide scrollbars */
+        }
+        .slideshow-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            background-color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            width: 90%;
+            max-width: 1000px;
+            height: 85%;
+            max-height: 600px;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+            position: absolute;
+        }
+        .slide.active {
+            display: block;
+            opacity: 1;
+        }
+        h1, h2 {
+            color: #1e3a8a;
+        }
+        .nav-btn {
+            position: fixed;
+            bottom: 3rem;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            width: 4rem;
+            height: 4rem;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: background-color 0.2s, transform 0.2s;
+            z-index: 10;
+        }
+        .nav-btn:hover {
+            background-color: #1d4ed8;
+            transform: scale(1.1);
+        }
+        #prevBtn {
+            left: 3rem;
+        }
+        #nextBtn {
+            right: 3rem;
+        }
+        #slide-counter {
+            position: fixed;
+            bottom: 3.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            font-size: 1rem;
+            z-index: 10;
+        }
+        .formula-box {
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.25rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .problem-box {
+            background-color: #f1f5f9;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="slideshow-container">
+
+        <!-- Slide 1: Title -->
+        <div class="slide flex flex-col justify-center items-center text-center">
+            <h1 class="text-5xl font-bold mb-4">Understanding Motion</h1>
+            <p class="text-xl text-gray-600">A High School Guide to Speed and Acceleration</p>
+            <p class="mt-8 text-gray-500">Use the arrow buttons to navigate</p>
+        </div>
+
+        <!-- Slide 2: Motion Basics -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Position, Distance, and Displacement</h2>
+            <p class="mb-4">Before we measure speed, we need to know where things are and where they're going.</p>
+            <div class="grid md:grid-cols-2 gap-8 items-center mt-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-800">Key Terms</h3>
+                    <p class="mb-2"><strong>Position (\(x\)):</strong> An object's specific location.</p>
+                    <p class="mb-2"><strong>Distance:</strong> The total length of the path you travel. (Like the reading on a car's odometer).</p>
+                    <p><strong>Displacement (\(\Delta x\)):</strong> The straight-line change in position from start to end. Direction matters!</p>
+                </div>
+                <div>
+                    <svg class="w-full" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 20,80 C 40,20 100,20 120,80 S 150,100 180,80" stroke="#93c5fd" stroke-width="2" fill="none" stroke-dasharray="4"/>
+                        <text x="10" y="95" font-size="10">A (Start)</text> <text x="170" y="95" font-size="10">B (End)</text>
+                        <circle cx="20" cy="80" r="3" fill="#3b82f6"/> <circle cx="180" cy="80" r="3" fill="#3b82f6"/>
+                        <path d="M 20,80 L 180,80" stroke="#1e3a8a" stroke-width="2" fill="none"/>
+                        <path d="M 175,77 L 180,80 L 175,83" stroke="#1e3a8a" stroke-width="2" fill="none"/>
+                        <text x="90" y="65" font-size="8" fill="#1e3a8a">Displacement (e.g., 80m East)</text>
+                        <text x="90" y="40" font-size="8" fill="#93c5fd">Distance (e.g., 150m)</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Speed vs Velocity -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Speed vs. Velocity</h2>
+            <p class="mb-4">They seem similar, but in physics, direction is the key difference!</p>
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Speed (Scalar)</h3>
+                    <p>How fast you are moving, regardless of direction.</p>
+                    <div class="formula-box">\[ \text{Speed} = \frac{\text{Distance}}{\text{Time}} \]</div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Velocity (Vector)</h3>
+                    <p>The rate your position is changing. It's speed in a specific direction.</p>
+                    <div class="formula-box">\[ \text{Velocity} = \frac{\text{Displacement}}{\text{Time}} \]</div>
+                </div>
+            </div>
+            <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-bold text-lg">Race Track Example</h3>
+                <p>A car completes one lap on a 1-mile track. Its <strong>average speed</strong> might be 120 mph, but its <strong>average velocity</strong> is 0 mph because its displacement is zero!</p>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Acceleration -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Acceleration: The Rate of Change</h2>
+            <p class="mb-4">Acceleration is any change in velocity. This can be speeding up, slowing down, or just changing direction!</p>
+            <div class="formula-box">\[ \text{Acceleration} = \frac{\text{Change in Velocity}}{\text{Time}} = \frac{v_{final} - v_{initial}}{t} \]</div>
+             <div class="grid md:grid-cols-3 gap-4 mt-8 text-center">
+                <div class="p-4 bg-green-100 rounded-lg">
+                    <h3 class="font-bold text-lg">Speeding Up</h3><p>Positive acceleration.</p>
+                </div>
+                <div class="p-4 bg-red-100 rounded-lg">
+                    <h3 class="font-bold text-lg">Slowing Down</h3><p>Negative acceleration.</p>
+                </div>
+                <div class="p-4 bg-yellow-100 rounded-lg">
+                    <h3 class="font-bold text-lg">Changing Direction</h3><p>Even at constant speed!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Kinematic Formulas -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">The BIG Four: Formulas of Motion</h2>
+            <p class="mb-4">For objects moving with constant acceleration, these four formulas are your best friends.</p>
+            <p class="mb-2"><strong>Variables:</strong></p>
+            <ul class="list-disc list-inside mb-4">
+                <li>\(\Delta x\): displacement</li>
+                <li>\(v_0\): initial velocity</li>
+                <li>\(v\): final velocity</li>
+                <li>\(a\): acceleration</li>
+                <li>\(t\): time</li>
+            </ul>
+            <ol class="list-decimal list-inside space-y-4 text-lg">
+                <li>\(v = v_0 + at\)</li>
+                <li>\(\Delta x = v_0 t + \frac{1}{2}at^2\)</li>
+                <li>\(v^2 = v_0^2 + 2a\Delta x\)</li>
+                <li>\(\Delta x = \frac{1}{2}(v_0 + v)t\)</li>
+            </ol>
+        </div>
+
+        <!-- Slide 6: Formula examples -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Using the Formulas: An Example</h2>
+            <p class="mb-4">A car, starting from rest, accelerates at a constant 2 m/s² for 5 seconds.</p>
+            
+            <h3 class="text-xl font-semibold mt-6 mb-2 text-blue-800">What is its final velocity?</h3>
+            <p>We need \(v\). We know \(v_0=0\), \(a=2\), \(t=5\). The formula without \(\Delta x\) is perfect.</p>
+            <div class="formula-box">\[v = v_0 + at \rightarrow v = 0 + (2)(5) = 10 \text{ m/s}\]</div>
+
+            <h3 class="text-xl font-semibold mt-6 mb-2 text-blue-800">How far did it travel?</h3>
+            <p>We need \(\Delta x\). We know \(v_0=0\), \(a=2\), \(t=5\). The formula without \(v\) works well.</p>
+            <div class="formula-box">\[\Delta x = v_0 t + \frac{1}{2}at^2 \rightarrow \Delta x = (0)(5) + \frac{1}{2}(2)(5)^2 = 25 \text{ m}\]</div>
+        </div>
+
+        <!-- Slide 7: Graphs -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Graphs of Motion</h2>
+            <p class="mb-4">Visualizing motion helps us understand the relationships between variables.</p>
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Position vs. Time</h3>
+                    <svg class="w-full rounded-lg shadow-md border" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                        <text x="5" y="10" font-size="6">Position</text>
+                        <text x="80" y="75" font-size="6">Time</text>
+                        <path d="M 10 70 L 90 70" stroke="black" stroke-width="0.5"/>
+                        <path d="M 10 70 L 10 10" stroke="black" stroke-width="0.5"/>
+                        <path d="M 10 70 L 90 10" stroke="#3b82f6" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="30" font-size="5" fill="#3b82f6">Slope = Velocity</text>
+                        <path d="M 10 40 L 50 40" stroke="#16a34a" stroke-width="1.5" fill="none"/>
+                        <text x="20" y="35" font-size="5" fill="#16a34a">No Motion</text>
+                        <path d="M 10 70 C 40 70 60 50 90 10" stroke="#ef4444" stroke-width="1.5" fill="none" stroke-dasharray="2"/>
+                        <text x="40" y="60" font-size="5" fill="#ef4444">Curve = Acceleration</text>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Velocity vs. Time</h3>
+                    <svg class="w-full rounded-lg shadow-md border" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                        <text x="5" y="10" font-size="6">Velocity</text>
+                        <text x="80" y="75" font-size="6">Time</text>
+                        <path d="M 10 70 L 90 70" stroke="black" stroke-width="0.5"/>
+                        <path d="M 10 70 L 10 10" stroke="black" stroke-width="0.5"/>
+                        <path d="M 10 70 L 90 10" stroke="#3b82f6" stroke-width="1.5" fill="none"/>
+                        <text x="50" y="30" font-size="5" fill="#3b82f6">Slope = Acceleration</text>
+                        <path d="M 10 70 L 90 10 L 90 70 Z" fill="#3b82f6" fill-opacity="0.1"/>
+                        <text x="40" y="60" font-size="5" fill="#3b82f6">Area = Displacement</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Problems 1 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Problem Set: Group 1</h2>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 1</p>
+                <p>A sprinter runs 100 meters in 10 seconds. What is her average speed?</p>
+            </div>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 2</p>
+                <p>A bike starting from rest accelerates at 1 m/s² for 4 seconds. What is its final velocity?</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Solutions for Group 1 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Solutions: Group 1</h2>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 1: Sprinter's Speed</p>
+                <p class="mb-2"><strong>Formula:</strong> \( \text{Speed} = \frac{\text{Distance}}{\text{Time}} \)</p>
+                <p><strong>Calculation:</strong> \( \text{Speed} = \frac{100 \text{ m}}{10 \text{ s}} \)</p>
+                <p class="font-bold text-blue-700 mt-2"><strong>Answer:</strong> 10 m/s</p>
+            </div>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 2: Bike's Velocity</p>
+                <p class="mb-2"><strong>Given:</strong> \(v_0 = 0\) (from rest), \(a = 1\) m/s², \(t = 4\) s</p>
+                <p class="mb-2"><strong>Formula:</strong> \(v = v_0 + at\)</p>
+                <p><strong>Calculation:</strong> \(v = 0 + (1 \text{ m/s²})(4 \text{ s})\)</p>
+                <p class="font-bold text-blue-700 mt-2"><strong>Answer:</strong> 4 m/s</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Problems 2 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Problem Set: Group 2</h2>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 1</p>
+                <p>A train traveling at 30 m/s applies its brakes and slows to 10 m/s in 5 seconds. What is its acceleration?</p>
+            </div>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 2</p>
+                <p>A ball is dropped from a tall building. How far does it fall in 3 seconds? (Use g = 9.8 m/s² and ignore air resistance).</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Solutions for Group 2 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Solutions: Group 2</h2>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 1: Train's Acceleration</p>
+                 <p class="mb-2"><strong>Given:</strong> \(v_0 = 30\) m/s, \(v = 10\) m/s, \(t = 5\) s</p>
+                <p class="mb-2"><strong>Formula:</strong> \(a = (v - v_0) / t\)</p>
+                <p><strong>Calculation:</strong> \(a = (10 \text{ m/s} - 30 \text{ m/s}) / 5 \text{ s}\)</p>
+                <p class="font-bold text-blue-700 mt-2"><strong>Answer:</strong> -4 m/s² (The negative sign indicates deceleration)</p>
+            </div>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 2: Falling Ball</p>
+                <p class="mb-2"><strong>Given:</strong> \(v_0 = 0\) (dropped), \(a = g = 9.8\) m/s², \(t = 3\) s</p>
+                <p class="mb-2"><strong>Formula:</strong> \(\Delta x = v_0 t + \frac{1}{2}at^2\)</p>
+                <p><strong>Calculation:</strong> \(\Delta x = (0)(3) + \frac{1}{2}(9.8)(3)^2 = 0 + 4.9 \times 9\)</p>
+                <p class="font-bold text-blue-700 mt-2"><strong>Answer:</strong> 44.1 meters</p>
+            </div>
+        </div>
+        
+        <!-- Slide 12: Problems 3 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Problem Set: Group 3</h2>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 1</p>
+                <p>A car accelerates from rest at a constant rate of 4 m/s². How much distance does it cover before it reaches a speed of 20 m/s?</p>
+            </div>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 2</p>
+                <p>A stone is thrown straight upwards with an initial velocity of 19.6 m/s. What is the maximum height it reaches? (Use g = 9.8 m/s²).</p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Solutions for Group 3 -->
+        <div class="slide">
+            <h2 class="text-3xl font-bold mb-4">Solutions: Group 3</h2>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 1: Car's Distance</p>
+                <p class="mb-2"><strong>Given:</strong> \(v_0 = 0\), \(a = 4\) m/s², \(v = 20\) m/s</p>
+                <p class="mb-2"><strong>Formula:</strong> \(v^2 = v_0^2 + 2a\Delta x\)</p>
+                <p><strong>Calculation:</strong> \((20)^2 = (0)^2 + 2(4)\Delta x \rightarrow 400 = 8\Delta x\)</p>
+                <p class="font-bold text-blue-700 mt-2"><strong>Answer:</strong> \(\Delta x = 50\) meters</p>
+            </div>
+            <div class="problem-box">
+                <p class="font-semibold text-lg">Problem 2: Stone's Maximum Height</p>
+                <p class="mb-2"><strong>Given:</strong> \(v_0 = 19.6\) m/s, \(v = 0\) (at max height), \(a = -g = -9.8\) m/s²</p>
+                <p class="mb-2"><strong>Formula:</strong> \(v^2 = v_0^2 + 2a\Delta x\)</p>
+                <p><strong>Calculation:</strong> \((0)^2 = (19.6)^2 + 2(-9.8)\Delta x \rightarrow 0 = 384.16 - 19.6\Delta x\)</p>
+                <p class="font-bold text-blue-700 mt-2"><strong>Answer:</strong> \(\Delta x = 19.6\) meters</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: End -->
+        <div class="slide flex flex-col justify-center items-center text-center">
+            <h1 class="text-5xl font-bold mb-4">You've Mastered the Basics!</h1>
+            <p class="text-xl text-gray-600">You're now ready to tackle more complex motion problems.</p>
+        </div>
+
+    </div>
+
+    <button id="prevBtn" class="nav-btn">&#8592;</button>
+    <button id="nextBtn" class="nav-btn">&#8594;</button>
+    <div id="slide-counter"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slide-counter');
+            let currentSlide = 0;
+
+            function showSlide(n) {
+                if (slides[currentSlide]) {
+                    slides[currentSlide].classList.remove('active');
+                }
+                currentSlide = (n + slides.length) % slides.length;
+                if (slides[currentSlide]) {
+                    slides[currentSlide].classList.add('active');
+                }
+
+                // Tell MathJax to re-render the math on the new slide
+                // This ensures formulas on slides that were initially hidden get rendered properly.
+                if (window.MathJax && window.MathJax.typeset) {
+                    MathJax.typeset([slides[currentSlide]]);
+                }
+                
+                updateCounter();
+            }
+
+            function updateCounter() {
+                if (slideCounter) {
+                    slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+                }
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    showSlide(currentSlide + 1);
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    showSlide(currentSlide - 1);
+                });
+            }
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    showSlide(currentSlide + 1);
+                } else if (e.key === 'ArrowLeft') {
+                    showSlide(currentSlide - 1);
+                }
+            });
+
+            // Initial setup to show the first slide and render its math
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>
+
