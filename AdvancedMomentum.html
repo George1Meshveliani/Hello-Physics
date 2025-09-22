@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum, Impulse, and Collision Theory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+            color: #1e293b;
+        }
+        .content-section {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+        }
+        .formula {
+            background-color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        .proof {
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            background-color: #eff6ff;
+            padding: 1rem;
+            border-radius: 0.25rem;
+        }
+        .question {
+            background-color: #f0f9ff;
+            border: 1px solid #e0f2fe;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .solution {
+            background-color: #fefce8;
+            border: 1px solid #fef9c3;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .tag-intermediate { background-color: #dbeafe; color: #1e40af; }
+        .tag-advanced { background-color: #fee2e2; color: #991b1b; }
+        .tag-irodov { background-color: #d1fae5; color: #065f46; }
+        
+        /* Sidebar Navigation */
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            height: calc(100vh - 4rem);
+            overflow-y: auto;
+        }
+        .sidebar a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #475569;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            color: #0c4a6e;
+            background-color: #e0f2fe;
+            border-left-color: #0ea5e9;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Momentum, Impulse, and Collision Theory</h1>
+            <p class="mt-4 text-lg text-slate-600">An Advanced Exposition for University Students</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Sidebar Navigation -->
+            <aside class="lg:col-span-1">
+                <nav id="sidebar" class="sidebar">
+                    <h3 class="text-lg font-semibold mb-2 px-4">Contents</h3>
+                    <a href="#momentum-impulse">1. Momentum and Impulse</a>
+                    <a href="#conservation">2. Conservation of Momentum</a>
+                    <a href="#collisions">3. Momentum & Collisions</a>
+                    <a href="#elastic">4. Elastic Collisions</a>
+                    <a href="#com">5. Center of Mass</a>
+                    <a href="#problems">6. Problem Set</a>
+                    <a href="#solutions">7. Solutions</a>
+                </nav>
+            </aside>
+            
+            <!-- Main Content -->
+            <main class="lg:col-span-3">
+                <section id="momentum-impulse" class="content-section">
+                    <h2 class="text-3xl mb-4">1. Momentum and Impulse</h2>
+                    <p class="mb-4">Linear momentum is a fundamental concept in physics, quantifying the motion of an object. For a single particle, it is the product of its mass and velocity. For a system of particles, it is the vector sum of the individual momenta.</p>
+                    
+                    <h3 class="text-2xl mt-6 mb-2">Definition of Momentum</h3>
+                    <p>The linear momentum $\vec{p}$ of a particle of mass $m$ moving with velocity $\vec{v}$ is defined as:</p>
+                    <div class="formula">
+                        $$ \vec{p} = m\vec{v} $$
+                    </div>
+                    <p>Momentum is a vector quantity, meaning it has both magnitude and direction, which are the same as the velocity vector.</p>
+
+                    <h3 class="text-2xl mt-6 mb-2">Relationship with Newton's Second Law</h3>
+                    <p>Newton's Second Law of Motion can be expressed more fundamentally in terms of momentum. The net force acting on a particle is equal to the time rate of change of its linear momentum.</p>
+                    <div class="proof">
+                        <h4 class="font-semibold text-lg mb-2">Proof</h4>
+                        <p>Starting with the definition of momentum, we differentiate with respect to time:</p>
+                        $$ \frac{d\vec{p}}{dt} = \frac{d(m\vec{v})}{dt} $$
+                        <p>Assuming mass $m$ is constant (non-relativistic mechanics):</p>
+                        $$ \frac{d\vec{p}}{dt} = m \frac{d\vec{v}}{dt} $$
+                        <p>Since acceleration $\vec{a} = \frac{d\vec{v}}{dt}$, we have:</p>
+                        $$ \frac{d\vec{p}}{dt} = m\vec{a} $$
+                        <p>By Newton's Second Law, we know:</p>
+                        $$ \sum \vec{F} = m\vec{a} $$
+                        <p>Therefore:</p>
+                        <div class="formula">
+                            $$ \sum \vec{F} = \frac{d\vec{p}}{dt} $$
+                        </div>
+                        <p>This is the most general form of Newton's Second Law, as it also holds for systems where mass is not constant, such as a rocket expelling fuel.</p>
+                    </div>
+
+                    <h3 class="text-2xl mt-6 mb-2">Impulse</h3>
+                    <p>Impulse is the change in momentum of an object when a force is applied over a period of time. It provides a measure of the overall effect of a force.</p>
+                    <p>From Newton's Second Law, we can write $d\vec{p} = \vec{F} dt$. To find the total change in momentum over a finite time interval from $t_1$ to $t_2$, we integrate:</p>
+                    $$ \int_{\vec{p}_1}^{\vec{p}_2} d\vec{p} = \int_{t_1}^{t_2} \vec{F}(t) dt $$
+                    $$ \Delta \vec{p} = \vec{p}_2 - \vec{p}_1 = \int_{t_1}^{t_2} \vec{F}(t) dt $$
+                    <p>The integral on the right is defined as the impulse, $\vec{J}$:</p>
+                    <div class="formula">
+                        $$ \vec{J} = \int_{t_1}^{t_2} \vec{F}(t) dt $$
+                    </div>
+                    <p>This leads to the Impulse-Momentum Theorem:</p>
+                    <div class="formula">
+                        $$ \vec{J} = \Delta \vec{p} $$
+                    </div>
+                    <p>If the force $\vec{F}$ is constant over the time interval $\Delta t = t_2 - t_1$, the integral simplifies to:</p>
+                    $$ \vec{J} = \vec{F} \Delta t $$
+                    <p>If the force is not constant, we can define an average force $\vec{F}_{avg}$ such that:</p>
+                    $$ \vec{J} = \vec{F}_{avg} \Delta t $$
+                </section>
+                
+                <section id="conservation" class="content-section">
+                    <h2 class="text-3xl mb-4">2. Conservation of Momentum</h2>
+                    <p>The principle of conservation of linear momentum is one of the most powerful laws in physics. It states that for an isolated system, the total linear momentum remains constant.</p>
+                    
+                    <h3 class="text-2xl mt-6 mb-2">Derivation from Newton's Laws</h3>
+                    <p>An isolated system is defined as a system on which the net external force is zero ($\sum \vec{F}_{ext} = 0$).</p>
+                    <div class="proof">
+                        <h4 class="font-semibold text-lg mb-2">Proof</h4>
+                        <p>Consider a system of N particles. The total momentum $\vec{P}_{sys}$ is the vector sum of the individual momenta:</p>
+                        $$ \vec{P}_{sys} = \sum_{i=1}^{N} \vec{p}_i = \sum_{i=1}^{N} m_i \vec{v}_i $$
+                        <p>The time rate of change of the total momentum is:</p>
+                        $$ \frac{d\vec{P}_{sys}}{dt} = \sum_{i=1}^{N} \frac{d\vec{p}_i}{dt} = \sum_{i=1}^{N} \vec{F}_i $$
+                        <p>Where $\vec{F}_i$ is the net force on the $i$-th particle. This force is the sum of external forces ($\vec{F}_{i,ext}$) and internal forces exerted by other particles in the system ($\vec{F}_{ij}$ where $j \neq i$):</p>
+                        $$ \vec{F}_i = \vec{F}_{i,ext} + \sum_{j \neq i} \vec{F}_{ij} $$
+                        <p>Substituting this into the sum:</p>
+                        $$ \frac{d\vec{P}_{sys}}{dt} = \sum_{i=1}^{N} \vec{F}_{i,ext} + \sum_{i=1}^{N} \sum_{j \neq i} \vec{F}_{ij} $$
+                        <p>The first term is the net external force on the system, $\sum \vec{F}_{ext}$. The second term represents the sum of all internal forces. By Newton's Third Law, for every internal force $\vec{F}_{ij}$, there is an equal and opposite force $\vec{F}_{ji}$ (i.e., $\vec{F}_{ij} = -\vec{F}_{ji}$). When summed over all pairs, these internal forces cancel out:</p>
+                        $$ \sum_{i=1}^{N} \sum_{j \neq i} \vec{F}_{ij} = 0 $$
+                        <p>Therefore, the equation simplifies to:</p>
+                        <div class="formula">
+                            $$ \frac{d\vec{P}_{sys}}{dt} = \sum \vec{F}_{ext} $$
+                        </div>
+                        <p>If the system is isolated, $\sum \vec{F}_{ext} = 0$, which implies:</p>
+                        $$ \frac{d\vec{P}_{sys}}{dt} = 0 $$
+                        <p>This means the total momentum vector $\vec{P}_{sys}$ is constant in time. This is the law of conservation of linear momentum.</p>
+                    </div>
+                </section>
+                
+                <section id="collisions" class="content-section">
+                    <h2 class="text-3xl mb-4">3. Momentum Conservation and Collisions</h2>
+                    <p>A collision is a brief, intense interaction between two or more bodies. During a collision, the interaction forces are typically much larger than any external forces. Therefore, even if external forces (like gravity or friction) are present, the system can be considered approximately isolated over the short duration of the collision.</p>
+                    <p>This allows us to apply the principle of momentum conservation to analyze collisions. The total momentum of the system just before the collision is equal to the total momentum just after the collision.</p>
+                    <div class="formula">
+                        $$ \vec{P}_{initial} = \vec{P}_{final} $$
+                    </div>
+                    <p>For a two-body collision:</p>
+                    $$ m_1\vec{u}_1 + m_2\vec{u}_2 = m_1\vec{v}_1 + m_2\vec{v}_2 $$
+                    <p>Here, $\vec{u}_1, \vec{u}_2$ are the velocities before the collision, and $\vec{v}_1, \vec{v}_2$ are the velocities after.</p>
+
+                    <h3 class="text-2xl mt-6 mb-2">Types of Collisions</h3>
+                    <p>Collisions are categorized based on whether kinetic energy is conserved.</p>
+                    <ul>
+                        <li class="mt-2"><strong>Elastic Collision:</strong> Total kinetic energy of the system is conserved.</li>
+                        <li class="mt-2"><strong>Inelastic Collision:</strong> Total kinetic energy is not conserved. Some energy is converted into other forms, such as heat, sound, or potential energy in deformation.</li>
+                        <li class="mt-2"><strong>Perfectly Inelastic Collision:</strong> A special case of inelastic collision where the colliding objects stick together and move with a common final velocity. This type of collision involves the maximum possible loss of kinetic energy consistent with momentum conservation.</li>
+                    </ul>
+                </section>
+                
+                <section id="elastic" class="content-section">
+                    <h2 class="text-3xl mb-4">4. Elastic Collisions</h2>
+                    <p>In an elastic collision, both momentum and kinetic energy are conserved. This provides a system of equations that can be used to solve for the final velocities.</p>
+
+                    <h3 class="text-2xl mt-6 mb-2">One-Dimensional Elastic Collision</h3>
+                    <p>Consider two particles with masses $m_1, m_2$ and initial velocities $u_1, u_2$ colliding elastically along a straight line. Their final velocities are $v_1, v_2$.</p>
+                    <p>Conservation of Momentum:</p>
+                    $$ m_1 u_1 + m_2 u_2 = m_1 v_1 + m_2 v_2 \quad \text{(1)} $$
+                    <p>Conservation of Kinetic Energy:</p>
+                    $$ \frac{1}{2}m_1 u_1^2 + \frac{1}{2}m_2 u_2^2 = \frac{1}{2}m_1 v_1^2 + \frac{1}{2}m_2 v_2^2 \quad \text{(2)} $$
+                    
+                    <div class="proof">
+                        <h4 class="font-semibold text-lg mb-2">Derivation of Final Velocities</h4>
+                        <p>Rearrange the equations:</p>
+                        $$ m_1(u_1 - v_1) = m_2(v_2 - u_2) \quad \text{(1a)} $$
+                        $$ m_1(u_1^2 - v_1^2) = m_2(v_2^2 - u_2^2) \implies m_1(u_1-v_1)(u_1+v_1) = m_2(v_2-u_2)(v_2+u_2) \quad \text{(2a)} $$
+                        <p>Divide equation (2a) by (1a), assuming $u_1 \neq v_1$ (a collision occurred):</p>
+                        $$ u_1 + v_1 = v_2 + u_2 \implies u_1 - u_2 = -(v_1 - v_2) \quad \text{(3)} $$
+                        <p>This remarkable result shows that the relative speed of approach ($u_1 - u_2$) is equal to the negative of the relative speed of separation ($v_1 - v_2$). The coefficient of restitution, $e$, for an elastic collision is 1.</p>
+                        <p>We now have a system of two linear equations (1) and (3) to solve for $v_1$ and $v_2$. Solving them simultaneously yields:</p>
+                        <div class="formula">
+                            $$ v_1 = \left(\frac{m_1 - m_2}{m_1 + m_2}\right)u_1 + \left(\frac{2m_2}{m_1 + m_2}\right)u_2 $$
+                            $$ v_2 = \left(\frac{2m_1}{m_1 + m_2}\right)u_1 + \left(\frac{m_2 - m_1}{m_1 + m_2}\right)u_2 $$
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="com" class="content-section">
+                    <h2 class="text-3xl mb-4">5. Center of Mass</h2>
+                    <p>The center of mass (CM) is a specific point in a system of particles which behaves as if the total mass of the system were concentrated there, and all external forces were applied at that point.</p>
+
+                    <h3 class="text-2xl mt-6 mb-2">Position of the Center of Mass</h3>
+                    <p>For a system of N particles with masses $m_i$ and position vectors $\vec{r}_i$, the position of the center of mass $\vec{R}_{CM}$ is defined as:</p>
+                    <div class="formula">
+                        $$ \vec{R}_{CM} = \frac{\sum_{i=1}^{N} m_i \vec{r}_i}{\sum_{i=1}^{N} m_i} = \frac{1}{M} \sum_{i=1}^{N} m_i \vec{r}_i $$
+                    </div>
+                    <p>where $M = \sum m_i$ is the total mass of the system.</p>
+                    <p>For a continuous body with density $\rho(\vec{r})$, the summation becomes an integral over the volume V:</p>
+                    <div class="formula">
+                        $$ \vec{R}_{CM} = \frac{1}{M} \int_V \vec{r} \, dm = \frac{1}{M} \int_V \vec{r} \rho(\vec{r}) \, dV $$
+                    </div>
+
+                    <h3 class="text-2xl mt-6 mb-2">Velocity and Acceleration of the Center of Mass</h3>
+                    <p>Differentiating the position vector with respect to time gives the velocity of the center of mass:</p>
+                    $$ \vec{V}_{CM} = \frac{d\vec{R}_{CM}}{dt} = \frac{1}{M} \sum m_i \frac{d\vec{r}_i}{dt} = \frac{1}{M} \sum m_i \vec{v}_i = \frac{\vec{P}_{sys}}{M} $$
+                    <p>This gives a crucial relationship:</p>
+                    <div class="formula">
+                        $$ \vec{P}_{sys} = M \vec{V}_{CM} $$
+                    </div>
+                    <p>The total momentum of a system is equal to its total mass times the velocity of its center of mass.</p>
+                    <p>Differentiating again gives the acceleration:</p>
+                    $$ \vec{A}_{CM} = \frac{d\vec{V}_{CM}}{dt} = \frac{1}{M} \frac{d\vec{P}_{sys}}{dt} $$
+                    <p>Using our previous result that $\frac{d\vec{P}_{sys}}{dt} = \sum \vec{F}_{ext}$, we get:</p>
+                    <div class="formula">
+                        $$ \sum \vec{F}_{ext} = M \vec{A}_{CM} $$
+                    </div>
+                    <p>This equation proves that the center of mass of a system moves as if it were a single particle of mass $M$ acted upon by the net external force. If there are no external forces, $\vec{A}_{CM}=0$, and the center of mass moves with constant velocity, irrespective of the complex interactions (collisions, explosions) happening within the system.</p>
+                </section>
+                
+                <section id="problems" class="content-section">
+                    <h2 class="text-3xl mb-4">6. Problem Set</h2>
+                    
+                    <div class="question">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                        <p class="font-semibold mt-2">1. A 1200 kg car traveling at 25 m/s collides with a stationary 1800 kg truck. They lock together after the collision. What is their common final velocity?</p>
+                    </div>
+                    
+                    <div class="question">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                        <p class="font-semibold mt-2">2. A 0.5 kg ball is thrown against a wall with a velocity of 30 m/s and bounces back with a velocity of 20 m/s. If the contact time with the wall is 0.05 s, what is the average force exerted on the ball by the wall?</p>
+                    </div>
+
+                    <div class="question">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                        <p class="font-semibold mt-2">3. Two asteroids of equal mass are moving towards each other along a straight line with speeds of 40 km/s and 20 km/s respectively. They undergo a perfectly elastic collision. Find their velocities after the collision.</p>
+                    </div>
+
+                    <div class="question">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                        <p class="font-semibold mt-2">4. A 2 kg object moving at 6 m/s collides with a 4 kg object moving in the same direction at 3 m/s. The collision is elastic. Find the final velocities of both objects.</p>
+                    </div>
+                    
+                    <div class="question">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                        <p class="font-semibold mt-2">5. A firecracker of mass 100 g, initially at rest, explodes into three fragments. A 30 g fragment moves along the x-axis with a speed of 40 m/s, and a 50 g fragment moves along the y-axis with a speed of 20 m/s. Find the velocity (magnitude and direction) of the third fragment.</p>
+                    </div>
+                    
+                    <div class="question">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                        <p class="font-semibold mt-2">6. Find the center of mass of a uniform semi-circular plate of radius R, assuming its origin is at the center of the full circle.</p>
+                    </div>
+                    
+                    <div class="question">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                        <p class="font-semibold mt-2">7. A rocket with an initial mass of 20,000 kg is moving at 2000 m/s. It expels gas at a rate of 150 kg/s with an exhaust velocity of 3000 m/s relative to the rocket. What is the initial acceleration of the rocket?</p>
+                    </div>
+                    
+                    <div class="question">
+                        <span class="tag tag-intermediate">Intermediate</span>
+                        <p class="font-semibold mt-2">8. A 1 kg block slides down a frictionless track, starting from a height of 2.5 m. At the bottom, it collides elastically with a stationary 2 kg block. To what height does the 1 kg block rebound?</p>
+                    </div>
+
+                    <div class="question">
+                        <span class="tag tag-advanced">Advanced</span>
+                        <p class="font-semibold mt-2">9. A bullet of mass $m$ is fired with velocity $v_0$ into a pendulum bob of mass $M$ suspended by a string of length $L$. The bullet becomes embedded in the bob. Find the maximum angle $\theta$ the string makes with the vertical.</p>
+                    </div>
+                    
+                    <div class="question">
+                        <span class="tag tag-advanced">Advanced</span>
+                        <p class="font-semibold mt-2">10. A particle of mass $m_1$ with initial velocity $u_1$ collides elastically with a stationary particle of mass $m_2$. If the first particle is deflected by an angle $\theta_1$ and the second by $\theta_2$ (both with respect to the initial direction of $m_1$), prove that for $m_1 = m_2$, $\theta_1 + \theta_2 = 90^\circ$. (Assume a 2D collision, non-head-on).</p>
+                    </div>
+
+                    <div class="question">
+                        <span class="tag tag-advanced">Advanced</span>
+                        <p class="font-semibold mt-2">11. A uniform chain of length $L$ and mass $M$ is held vertically such that its lower end just touches a horizontal table. The chain is released from rest. Find the force exerted by the chain on the table when a length $x$ of the chain has fallen onto the table.</p>
+                    </div>
+
+                    <div class="question">
+                        <span class="tag tag-advanced">Advanced</span>
+                        <p class="font-semibold mt-2">12. A shell is fired from a cannon with a velocity $v$ at an angle $\theta$ to the horizontal. At the highest point of its trajectory, it explodes into two equal fragments. One fragment falls vertically downwards with zero initial velocity. Where does the other fragment land, relative to the cannon?</p>
+                    </div>
+
+                    <div class="question">
+                        <span class="tag tag-advanced">Advanced</span>
+                        <p class="font-semibold mt-2">13. A spherical droplet of liquid of radius $R$ is falling at a constant terminal velocity $v_T$. It scoops up stationary water vapor from the atmosphere. Assuming its mass increases at a rate proportional to its cross-sectional area and its velocity, $dm/dt = k \pi r^2 v$, derive an expression for its acceleration as a function of its radius $r$. The drag force is given by Stokes' law, $F_d = 6\pi\eta r v$.</p>
+                    </div>
+                    
+                    <div class="question">
+                        <span class="tag tag-irodov">Irodov-like</span>
+                        <p class="font-semibold mt-2">14. A small disc of mass $m$ slides down a smooth hill of height $h$ without initial velocity and gets onto a plank of mass $M$ lying on a smooth horizontal plane. Due to friction between the disc and the plank, the disc slows down and, beginning with a certain moment, moves in one piece with the plank. Find the total work performed by the friction forces in this process.</p>
+                    </div>
+
+                    <div class="question">
+                        <span class="tag tag-irodov">Irodov-like</span>
+                        <p class="font-semibold mt-2">15. A cannon of mass $M$ rests on a smooth horizontal surface. It fires a shell of mass $m$ in a direction at an angle $\alpha$ to the horizontal. The velocity of the shell relative to the cannon is $u$. Find the horizontal velocity of the shell relative to the Earth, $v_x$, just after it is fired.</p>
+                    </div>
+
+                </section>
+                
+                <section id="solutions" class="content-section">
+                    <h2 class="text-3xl mb-4">7. Solutions</h2>
+
+                    <div class="solution">
+                        <h3 class="font-bold">1. Perfectly Inelastic Collision</h3>
+                        <p><strong>Formulas:</strong> Conservation of momentum for a perfectly inelastic collision:</p>
+                        $$ m_1 u_1 + m_2 u_2 = (m_1 + m_2)V_f $$
+                        <p><strong>Variables:</strong> $m_c = 1200$ kg, $v_c = 25$ m/s, $m_t = 1800$ kg, $v_t = 0$ m/s.</p>
+                        <p><strong>Approach:</strong> The total momentum before the collision is just the momentum of the car. After the collision, both move together with velocity $V_f$.</p>
+                        $$ p_i = m_c v_c + m_t v_t = (1200)(25) + 0 = 30000 \text{ kg m/s} $$
+                        $$ p_f = (m_c + m_t)V_f = (1200 + 1800)V_f = 3000 V_f $$
+                        $$ p_i = p_f \implies 30000 = 3000 V_f \implies V_f = 10 \text{ m/s} $$
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">2. Impulse and Average Force</h3>
+                        <p><strong>Formulas:</strong> Impulse-Momentum Theorem:</p>
+                        $$ \vec{J} = \Delta \vec{p} = \vec{F}_{avg} \Delta t $$
+                        <p><strong>Variables:</strong> $m = 0.5$ kg, $\vec{u} = 30$ m/s, $\vec{v} = -20$ m/s (taking initial direction as positive), $\Delta t = 0.05$ s.</p>
+                        <p><strong>Approach:</strong> Calculate the change in momentum and then find the average force.</p>
+                        $$ \Delta p = p_f - p_i = m v - m u = (0.5)(-20) - (0.5)(30) = -10 - 15 = -25 \text{ kg m/s} $$
+                        $$ F_{avg} = \frac{\Delta p}{\Delta t} = \frac{-25}{0.05} = -500 \text{ N} $$
+                        <p>The magnitude of the average force is 500 N, and the negative sign indicates it's in the direction opposite to the initial velocity (i.e., away from the wall).</p>
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">3. 1D Elastic Collision (Equal Mass)</h3>
+                        <p><strong>Formulas:</strong> For elastic collisions with $m_1=m_2$, the velocities are exchanged:</p>
+                        $$ v_1 = u_2 \quad \text{and} \quad v_2 = u_1 $$
+                        <p><strong>Variables:</strong> Let $m_1 = m_2 = m$. Let $u_1 = 40$ km/s and $u_2 = -20$ km/s.</p>
+                        <p><strong>Approach:</strong> Directly apply the velocity exchange rule.</p>
+                        $$ v_1 = u_2 = -20 \text{ km/s} $$
+                        $$ v_2 = u_1 = 40 \text{ km/s} $$
+                        <p>The asteroids pass through each other, exchanging their velocities.</p>
+                    </div>
+                    
+                    <div class="solution">
+                        <h3 class="font-bold">4. 1D Elastic Collision (Unequal Mass)</h3>
+                        <p><strong>Formulas:</strong></p>
+                        $$ v_1 = \left(\frac{m_1 - m_2}{m_1 + m_2}\right)u_1 + \left(\frac{2m_2}{m_1 + m_2}\right)u_2 $$
+                        $$ v_2 = \left(\frac{2m_1}{m_1 + m_2}\right)u_1 + \left(\frac{m_2 - m_1}{m_1 + m_2}\right)u_2 $$
+                        <p><strong>Variables:</strong> $m_1=2$ kg, $u_1=6$ m/s, $m_2=4$ kg, $u_2=3$ m/s.</p>
+                        <p><strong>Approach:</strong> Substitute values into the final velocity equations.</p>
+                        $$ v_1 = \left(\frac{2 - 4}{2 + 4}\right)(6) + \left(\frac{2 \cdot 4}{2 + 4}\right)(3) = \left(\frac{-2}{6}\right)(6) + \left(\frac{8}{6}\right)(3) = -2 + 4 = 2 \text{ m/s} $$
+                        $$ v_2 = \left(\frac{2 \cdot 2}{2 + 4}\right)(6) + \left(\frac{4 - 2}{2 + 4}\right)(3) = \left(\frac{4}{6}\right)(6) + \left(\frac{2}{6}\right)(3) = 4 + 1 = 5 \text{ m/s} $$
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">5. Explosion and Momentum Conservation in 2D</h3>
+                        <p><strong>Formulas:</strong></p>
+                        $$ \vec{P}_{initial} = \vec{P}_{final} = 0 \implies \vec{p}_1 + \vec{p}_2 + \vec{p}_3 = 0 $$
+                        <p><strong>Variables:</strong> $m_{tot}=0.1$ kg. $m_1=0.03$ kg, $\vec{v}_1 = 40\hat{i}$ m/s. $m_2=0.05$ kg, $\vec{v}_2 = 20\hat{j}$ m/s. $m_3 = 0.1 - 0.03 - 0.05 = 0.02$ kg.</p>
+                        <p><strong>Approach:</strong> The initial momentum is zero. The vector sum of the final momenta must also be zero.</p>
+                        $$ \vec{p}_1 = (0.03)(40\hat{i}) = 1.2\hat{i} \text{ kg m/s} $$
+                        $$ \vec{p}_2 = (0.05)(20\hat{j}) = 1.0\hat{j} \text{ kg m/s} $$
+                        $$ \vec{p}_3 = -(\vec{p}_1 + \vec{p}_2) = -1.2\hat{i} - 1.0\hat{j} \text{ kg m/s} $$
+                        $$ \vec{v}_3 = \frac{\vec{p}_3}{m_3} = \frac{-1.2\hat{i} - 1.0\hat{j}}{0.02} = -60\hat{i} - 50\hat{j} \text{ m/s} $$
+                        $$ |\vec{v}_3| = \sqrt{(-60)^2 + (-50)^2} = \sqrt{3600 + 2500} = \sqrt{6100} \approx 78.1 \text{ m/s} $$
+                        $$ \theta = \tan^{-1}\left(\frac{-50}{-60}\right) = 219.8^\circ \text{ or } 39.8^\circ \text{ below the negative x-axis.} $$
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">6. Center of Mass of a Semi-Circular Plate</h3>
+                        <p><strong>Formulas:</strong> By symmetry, $X_{CM} = 0$.</p>
+                        $$ Y_{CM} = \frac{1}{M} \int y \, dm $$
+                        <p><strong>Variables:</strong> Radius R, Mass M. Let $\sigma$ be the uniform mass per unit area. $M = \sigma (\frac{1}{2}\pi R^2)$.</p>
+                        <p><strong>Approach:</strong> Integrate over the area using polar coordinates. Consider a small area element $dA = r \, dr \, d\theta$. Then $dm = \sigma dA = \sigma r \, dr \, d\theta$. The y-coordinate is $y = r \sin\theta$.</p>
+                        $$ Y_{CM} = \frac{1}{M} \int_0^\pi \int_0^R (r \sin\theta) (\sigma r \, dr \, d\theta) = \frac{\sigma}{M} \int_0^\pi \sin\theta \, d\theta \int_0^R r^2 \, dr $$
+                        $$ \int_0^\pi \sin\theta \, d\theta = [-\cos\theta]_0^\pi = -(-1) - (-1) = 2 $$
+                        $$ \int_0^R r^2 \, dr = [\frac{r^3}{3}]_0^R = \frac{R^3}{3} $$
+                        $$ Y_{CM} = \frac{\sigma}{M} (2) \left(\frac{R^3}{3}\right) = \frac{\sigma}{\sigma (\frac{1}{2}\pi R^2)} \frac{2R^3}{3} = \frac{1}{\frac{1}{2}\pi R^2} \frac{2R^3}{3} = \frac{4R}{3\pi} $$
+                        <p>The center of mass is at $(0, \frac{4R}{3\pi})$.</p>
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">7. Rocket Thrust</h3>
+                        <p><strong>Formulas:</strong> Thrust $F_{th} = |v_{rel} \frac{dM}{dt}|$. Net force $\sum F = Ma$.</p>
+                        <p><strong>Variables:</strong> $M_0 = 20000$ kg, $v_{rel} = 3000$ m/s, $\frac{dM}{dt} = -150$ kg/s (mass is decreasing).</p>
+                        <p><strong>Approach:</strong> Calculate the thrust force. The question asks for initial acceleration, implying using the initial mass. Net force on the rocket is just the thrust (ignoring gravity).</p>
+                        $$ F_{th} = |(3000)(-150)| = 450,000 \text{ N} $$
+                        $$ F_{net} = M_{initial} a \implies 450,000 = (20000) a $$
+                        $$ a = \frac{450,000}{20,000} = 22.5 \text{ m/s}^2 $$
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">8. Energy Conservation and Elastic Collision</h3>
+                        <p><strong>Formulas:</strong> Conservation of Energy: $mgh = \frac{1}{2}mu^2$. 1D Elastic Collision: $v_1 = \frac{m_1 - m_2}{m_1 + m_2}u_1$.</p>
+                        <p><strong>Variables:</strong> $m_1=1$ kg, $m_2=2$ kg, $h=2.5$ m, $g \approx 9.8$ m/s$^2$.</p>
+                        <p><strong>Approach:</strong> 1. Find the velocity $u_1$ of the first block at the bottom using energy conservation. 2. Use this as the initial velocity for the elastic collision with the stationary block ($u_2=0$). 3. Find the rebound velocity $v_1$. 4. Use energy conservation again to find the rebound height.</p>
+                        <p>1. Velocity before collision:</p>
+                        $$ u_1 = \sqrt{2gh} = \sqrt{2(9.8)(2.5)} = \sqrt{49} = 7 \text{ m/s} $$
+                        <p>2. Velocity after collision ($u_2=0$):</p>
+                        $$ v_1 = \left(\frac{1 - 2}{1 + 2}\right)(7) = \left(\frac{-1}{3}\right)(7) = -7/3 \text{ m/s} $$
+                        <p>3. Rebound height:</p>
+                        $$ \frac{1}{2}m_1 v_1^2 = m_1 g h_{rebound} \implies h_{rebound} = \frac{v_1^2}{2g} $$
+                        $$ h_{rebound} = \frac{(-7/3)^2}{2(9.8)} = \frac{49/9}{19.6} \approx \frac{5.44}{19.6} \approx 0.278 \text{ m} $$
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">9. Ballistic Pendulum</h3>
+                        <p><strong>Formulas:</strong> Momentum conservation for perfectly inelastic collision, then energy conservation.</p>
+                        <p><strong>Approach:</strong> 1. Collision: The bullet embeds in the bob. This is perfectly inelastic. Momentum is conserved. Find the velocity $V$ of the combined mass just after impact. 2. Swing: After the collision, the combined mass swings up. Mechanical energy is conserved. Use the velocity $V$ to find the maximum height $h$. 3. Geometry: Relate the height $h$ to the angle $\theta$.</p>
+                        <p>1. Collision:</p>
+                        $$ m v_0 = (m+M)V \implies V = \frac{m v_0}{m+M} $$
+                        <p>2. Swing:</p>
+                        $$ \frac{1}{2}(m+M)V^2 = (m+M)gh \implies h = \frac{V^2}{2g} = \frac{1}{2g} \left(\frac{m v_0}{m+M}\right)^2 $$
+                        <p>3. Geometry:</p>
+                        $$ h = L - L\cos\theta = L(1-\cos\theta) $$
+                        <p>Equating the expressions for h:</p>
+                        $$ L(1-\cos\theta) = \frac{m^2 v_0^2}{2g(m+M)^2} \implies 1-\cos\theta = \frac{m^2 v_0^2}{2gL(m+M)^2} $$
+                        $$ \cos\theta = 1 - \frac{m^2 v_0^2}{2gL(m+M)^2} \implies \theta = \arccos\left(1 - \frac{m^2 v_0^2}{2gL(m+M)^2}\right) $$
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">10. 2D Elastic Collision of Equal Masses</h3>
+                        <p><strong>Formulas:</strong> Vector momentum conservation and kinetic energy conservation.</p>
+                        <p><strong>Approach:</strong> Simplify the equations for $m_1=m_2=m$ and prove the geometric relationship.</p>
+                        <p>Momentum conservation ($m_1=m_2=m$):</p>
+                        $$ m\vec{u}_1 = m\vec{v}_1 + m\vec{v}_2 \implies \vec{u}_1 = \vec{v}_1 + \vec{v}_2 $$
+                        <p>Kinetic energy conservation:</p>
+                        $$ \frac{1}{2}mu_1^2 = \frac{1}{2}mv_1^2 + \frac{1}{2}mv_2^2 \implies u_1^2 = v_1^2 + v_2^2 $$
+                        <p>Take the dot product of the momentum equation with itself:</p>
+                        $$ \vec{u}_1 \cdot \vec{u}_1 = (\vec{v}_1 + \vec{v}_2) \cdot (\vec{v}_1 + \vec{v}_2) $$
+                        $$ u_1^2 = \vec{v}_1 \cdot \vec{v}_1 + \vec{v}_2 \cdot \vec{v}_2 + 2(\vec{v}_1 \cdot \vec{v}_2) $$
+                        $$ u_1^2 = v_1^2 + v_2^2 + 2v_1 v_2 \cos(\theta_{12}) $$
+                        <p>where $\theta_{12}$ is the angle between $\vec{v}_1$ and $\vec{v}_2$. Now substitute the energy equation $u_1^2 = v_1^2 + v_2^2$ into this:</p>
+                        $$ v_1^2 + v_2^2 = v_1^2 + v_2^2 + 2v_1 v_2 \cos(\theta_{12}) $$
+                        $$ 0 = 2v_1 v_2 \cos(\theta_{12}) $$
+                        <p>Since neither $v_1$ nor $v_2$ is generally zero, this implies $\cos(\theta_{12}) = 0$, which means $\theta_{12} = 90^\circ$. The angle between the final velocity vectors is $90^\circ$. From the geometry, $\theta_{12} = \theta_1 + \theta_2$. Therefore, $\theta_1 + \theta_2 = 90^\circ$.</p>
+                    </div>
+                    
+                    <div class="solution">
+                        <h3 class="font-bold">11. Falling Chain</h3>
+                        <p><strong>Formulas:</strong> Newton's Second Law in variable mass form: $F_{net} = \frac{dp}{dt}$.</p>
+                        <p><strong>Approach:</strong> The force on the table has two components: 1. The weight of the length $x$ already on the table ($F_w$). 2. The impulsive force required to stop the falling segment ($F_{impulse}$).</p>
+                        <p>1. Weight: Let $\lambda = M/L$ be the linear mass density. The mass on the table is $m_x = \lambda x$. The weight is:</p>
+                        $$ F_w = m_x g = \lambda x g $$
+                        <p>2. Impulse force: A segment of chain that has fallen a distance $x$ has a velocity $v = \sqrt{2gx}$. The rate at which mass hits the table is $\frac{dm}{dt} = \lambda v$. The force is the rate of change of momentum:</p>
+                        $$ F_{impulse} = \frac{dp}{dt} = v \frac{dm}{dt} = v(\lambda v) = \lambda v^2 = \lambda(2gx) = 2\lambda gx $$
+                        <p>3. Total force:</p>
+                        $$ F_{total} = F_w + F_{impulse} = \lambda x g + 2\lambda x g = 3\lambda x g = 3\frac{M}{L}xg $$
+                        <p>The force on the table is three times the weight of the portion of the chain already on it.</p>
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">12. Exploding Shell</h3>
+                        <p><strong>Formulas:</strong> Projectile motion, Conservation of momentum, Center of Mass motion.</p>
+                        <p><strong>Approach:</strong> The explosion is an internal force and does not affect the motion of the center of mass (CM). The CM will follow the original parabolic trajectory.</p>
+                        <p>1. Trajectory of CM: The range of the unexploded shell is $R = \frac{v^2 \sin(2\theta)}{g}$. The explosion happens at the highest point, at horizontal position $x_{top} = R/2$.</p>
+                        <p>2. CM after explosion: The CM of the two fragments lands at the original range $R$. Since the fragments have equal mass ($m_1=m_2$), the position of their CM is $X_{CM} = \frac{x_1+x_2}{2}$.</p>
+                        <p>3. Find landing spot: We know $X_{CM} = R$. The first fragment falls vertically, so its landing position is $x_1 = x_{top} = R/2$.</p>
+                        $$ R = \frac{(R/2) + x_2}{2} \implies 2R = R/2 + x_2 \implies x_2 = \frac{3}{2}R $$
+                        <p>The other fragment lands at a distance of $1.5R$ from the cannon.</p>
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">13. Accreting Droplet</h3>
+                        <p><strong>Formulas:</strong> Newton's Second Law for variable mass accreting stationary matter: $\sum F_{ext} = m a + v \frac{dm}{dt}$.</p>
+                        <p><strong>Variables:</strong> External forces are gravity ($mg$) and drag ($F_d$). $m = \rho \frac{4}{3}\pi r^3$. Given $dm/dt = k\pi r^2 v$.</p>
+                        <p><strong>Approach:</strong> Set up the force equation and solve for acceleration $a$.</p>
+                        $$ \sum F_{ext} = mg - F_d = \rho(\frac{4}{3}\pi r^3)g - 6\pi\eta r v $$
+                        The equation of motion is:
+                        $$ \rho(\frac{4}{3}\pi r^3)g - 6\pi\eta r v = m a + v(k\pi r^2 v) $$
+                        $$ \rho(\frac{4}{3}\pi r^3)g - 6\pi\eta r v = \rho(\frac{4}{3}\pi r^3)a + k\pi r^2 v^2 $$
+                        <p>Solve for $a$:</p>
+                        $$ a = \frac{1}{m} \left( mg - F_d - k\pi r^2 v^2 \right) = g - \frac{6\pi\eta r v}{\rho\frac{4}{3}\pi r^3} - \frac{k\pi r^2 v^2}{\rho\frac{4}{3}\pi r^3} $$
+                        $$ a = g - \frac{4.5 \eta v}{\rho r^2} - \frac{0.75 k v^2}{\rho r} $$
+                    </div>
+                    
+                    <div class="solution">
+                        <h3 class="font-bold">14. Work Done by Friction</h3>
+                        <p><strong>Formulas:</strong> Work-Energy Theorem: $W_{friction} = \Delta K_{sys}$. Conservation of momentum.</p>
+                        <p><strong>Approach:</strong> The work done by friction equals the loss in mechanical energy of the system. External horizontal forces are zero, so momentum is conserved.</p>
+                        <p>1. Velocity of disc: From energy conservation, its initial velocity on the plank is $u = \sqrt{2gh}$.</p>
+                        <p>2. Final velocity: The disc and plank move together with velocity $V$. By momentum conservation:</p>
+                        $$ mu = (m+M)V \implies V = \frac{m}{m+M}u = \frac{m\sqrt{2gh}}{m+M} $$
+                        <p>3. Energy Loss (Work by friction):</p>
+                        $$ K_{initial} = \frac{1}{2}mu^2 = mgh $$
+                        $$ K_{final} = \frac{1}{2}(m+M)V^2 = \frac{1}{2}(m+M)\left(\frac{m^2 u^2}{(m+M)^2}\right) = \frac{m^2}{m+M} \left( \frac{1}{2} u^2 \right) = \frac{m^2}{m+M}(gh) $$
+                        $$ W_{friction} = K_{final} - K_{initial} = \frac{m^2}{m+M}gh - mgh $$
+                        $$ W_{friction} = gh \left(\frac{m^2 - m(m+M)}{m+M}\right) = gh \left(\frac{m^2 - m^2 - mM}{m+M}\right) $$
+                        $$ W_{friction} = - \frac{mMgh}{m+M} $$
+                        <p>The negative sign indicates that energy is dissipated from the system.</p>
+                    </div>
+
+                    <div class="solution">
+                        <h3 class="font-bold">15. Cannon and Shell Relative Velocity</h3>
+                        <p><strong>Formulas:</strong> Conservation of momentum (horizontal). Relative velocity: $\vec{v}_{s, E} = \vec{v}_{s, c} + \vec{v}_{c, E}$.</p>
+                        <p><strong>Approach:</strong> Let the cannon recoil with velocity $\vec{V}_c = -V_c \hat{i}$. The shell's velocity relative to the cannon is $\vec{u}$. The shell's velocity relative to Earth is $\vec{v}_s$.</p>
+                        <p>1. Relative Velocity (x-component):</p>
+                        $$ v_{sx} = u_x + V_{cx} = u\cos\alpha - V_c $$
+                        <p>2. Horizontal Momentum Conservation (initial momentum is zero):</p>
+                        $$ P_{fx} = M(-V_c) + m(v_{sx}) = 0 $$
+                        $$ M(-V_c) + m(u\cos\alpha - V_c) = 0 $$
+                        <p>3. Solve for recoil velocity $V_c$:</p>
+                        $$ m u \cos\alpha = MV_c + mV_c = (M+m)V_c $$
+                        $$ V_c = \frac{m u \cos\alpha}{M+m} $$
+                        <p>4. Substitute $V_c$ back into the expression for $v_{sx}$:</p>
+                        $$ v_{sx} = u\cos\alpha - \frac{m u \cos\alpha}{M+m} = u\cos\alpha \left(1 - \frac{m}{M+m}\right) $$
+                        $$ v_{sx} = u\cos\alpha \left(\frac{M+m-m}{M+m}\right) = \frac{M u \cos\alpha}{M+m} $$
+                    </div>
+
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Simple script for sidebar active state
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#sidebar a');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-20% 0px -70% 0px' });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
