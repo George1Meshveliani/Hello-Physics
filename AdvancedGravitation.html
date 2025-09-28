@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Gravitation</title>
+    <title>Advanced Gravitation: Theory, Problems & Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
@@ -22,14 +22,18 @@
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
         .content-section { background-color: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
-        h1, h2, h3 { font-weight: 700; color: #0f172a; }
+        h1, h2, h3, h4 { font-weight: 700; color: #0f172a; }
         h1 { font-size: 2.5rem; letter-spacing: -0.025em; }
         h2 { font-size: 1.875rem; margin-top: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem; margin-bottom: 1rem;}
         h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #334155; }
+        h4 { font-size: 1.1rem; color: #1e293b; }
         .proof { background-color: #f1f5f9; border-left: 4px solid #3b82f6; padding: 1.5rem; margin-top: 1rem; border-radius: 0.5rem; }
-        .formula { background-color: #eef2ff; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; font-size: 1.1rem; overflow-x: auto; }
+        .formula { background-color: #eef2ff; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; font-size: 1.1rem; overflow-x: auto; text-align: center; }
+        .problem-text { line-height: 1.75; }
+        .solution-block { border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1.5rem; margin-top: 1rem; }
+        .solution-step { margin-top: 1rem; }
     </style>
 </head>
 <body class="antialiased">
@@ -41,233 +45,147 @@
         <main>
             <section id="newton-law" class="content-section">
                 <h2>1. Newton’s Law of Gravitation</h2>
-                <p>Newton's Law of Universal Gravitation provides the foundational framework for understanding celestial mechanics. It posits that the gravitational force between two point masses is attractive, directly proportional to the product of their masses, and inversely proportional to the square of their separation distance.</p>
-                <div class="formula">
-                    $$ \vec{F}_{12} = - G \frac{m_1 m_2}{r^2} \hat{r}_{12} $$
-                </div>
-                <p>The associated gravitational field $\vec{g}$ created by a mass $M$ is a vector field representing the force per unit mass at any point in space. The field is a property of space itself, modified by the presence of mass.</p>
-                <div class="formula">
-                    $$ \vec{g}(\vec{r}) = -G \frac{M}{r^2} \hat{r} $$
-                </div>
+                <p>Newton's Law of Universal Gravitation provides the foundational framework for understanding celestial mechanics. It posits that the gravitational force between two point masses, $m_1$ and $m_2$, is attractive, directly proportional to the product of their masses, and inversely proportional to the square of their separation distance, $r$.</p>
+                <div class="formula">$$ \vec{F}_{12} = - G \frac{m_1 m_2}{r^2} \hat{r}_{12} $$</div>
+                <p>Here, $G$ is the universal gravitational constant, and $\hat{r}_{12}$ is the unit vector pointing from $m_1$ to $m_2$. The negative sign signifies the attractive nature of the force. The associated gravitational field $\vec{g}$ created by a mass $M$ is a vector field representing the force per unit mass at any point in space.</p>
+                <div class="formula">$$ \vec{g}(\vec{r}) = -G \frac{M}{r^2} \hat{r} $$</div>
                 <p>For a collection of masses, the total gravitational field at a point is the vector sum of the fields from each individual mass, an application of the <strong>Principle of Superposition</strong>.</p>
                  <div class="formula">$$ \vec{g}_{total} = \sum_i \vec{g}_i = -G \sum_i \frac{M_i}{r_i^2} \hat{r}_i $$</div>
             </section>
             
             <section id="weight" class="content-section">
                 <h2>2. Weight</h2>
-                <p>Weight is the gravitational force exerted on an object by a large astronomical body. For an object at a height $h$ above the Earth's surface, its weight is given by:</p>
-                 <div class="formula">
-                    $$ W(h) = F_g = G \frac{M_E m}{(R_E + h)^2} = mg(h) $$
-                </div>
+                <p>Weight is the gravitational force exerted on an object by a large astronomical body. For an object of mass $m$ at a height $h$ above the Earth's surface (mass $M_E$, radius $R_E$), its weight is given by:</p>
+                 <div class="formula">$$ W(h) = F_g = G \frac{M_E m}{(R_E + h)^2} = mg(h) $$</div>
                 <div class="proof">
                     <h3>Proof: Variation of $g$ with Altitude</h3>
-                    <p>For altitudes $h \ll R_E$, a first-order approximation can be found using the binomial expansion $(1+x)^n \approx 1+nx$ for small $x$.</p>
+                    <p>For altitudes $h \ll R_E$, a first-order approximation can be found using the binomial expansion $(1+x)^n \approx 1+nx$ for small $x$. We can write $g(h)$ as:</p>
                     $$ g(h) = G \frac{M_E}{R_E^2(1 + h/R_E)^2} = g_0 (1 + h/R_E)^{-2} $$
                     <p>Where $g_0 = GM_E/R_E^2$ is the acceleration at the surface. Using the binomial approximation with $x=h/R_E$ and $n=-2$:</p>
-                    <div class="formula">
-                         $$ g(h) \approx g_0 \left(1 - 2\frac{h}{R_E}\right) $$
-                    </div>
-                    <p>This linear approximation is highly accurate for altitudes up to about 100 km.</p>
+                    <div class="formula">$$ g(h) \approx g_0 \left(1 - 2\frac{h}{R_E}\right) $$</div>
                 </div>
                 <div class="proof">
                     <h3>Proof: Variation of $g$ with Depth</h3>
-                    <p>Assuming the Earth has a uniform density $\rho$, the gravitational force on a mass $m$ at a distance $r$ from the center ($r < R_E$) is due only to the mass enclosed within the sphere of radius $r$, according to the Shell Theorem. The mass enclosed is $M_{enc} = \rho \cdot V_r = \frac{M_E}{(4/3)\pi R_E^3} \cdot \frac{4}{3}\pi r^3 = M_E \frac{r^3}{R_E^3}$.</p>
-                    <p>The gravitational force is $F_g(r) = G \frac{M_{enc}m}{r^2} = G \frac{(M_E r^3/R_E^3)m}{r^2} = \left(\frac{GM_E m}{R_E^3}\right) r$.</p>
+                    <p>Assuming the Earth has a uniform density $\rho$, the gravitational force on a mass $m$ at a distance $r$ from the center ($r < R_E$) is due only to the mass enclosed within the sphere of radius $r$, according to the Shell Theorem. The mass enclosed is $M_{enc} = M_E (r^3/R_E^3)$. The gravitational force is $F_g(r) = G M_{enc}m/r^2$.</p>
                     <p>Since $F_g = mg(r)$, the gravitational acceleration inside the Earth is:</p>
-                    <div class="formula">
-                         $$ g(r) = \left(\frac{GM_E}{R_E^3}\right) r = g_0 \frac{r}{R_E} $$
-                    </div>
-                    <p>This shows that $g$ decreases linearly as one approaches the center of the Earth, becoming zero at the very center.</p>
+                    <div class="formula">$$ g(r) = \left(\frac{GM_E}{R_E^3}\right) r = g_0 \frac{r}{R_E} $$</div>
+                    <p>This shows that $g$ decreases linearly as one approaches the center of the Earth, becoming zero at the center.</p>
                 </div>
             </section>
 
             <section id="potential-energy" class="content-section">
                 <h2>3. Gravitational Potential Energy</h2>
-                <p>Since the gravitational force is conservative, we can define a scalar potential energy function $U$ such that the work done by gravity is the negative change in potential energy, $W_g = -\Delta U$.</p>
-                 <div class="formula">
-                    $$ \Delta U = U_f - U_i = - \int_{r_i}^{r_f} \vec{F}_g \cdot d\vec{r} = -G M m \left(\frac{1}{r_f} - \frac{1}{r_i}\right) $$
-                </div>
+                <p>Since the gravitational force is conservative, we can define a scalar potential energy function $U$ such that the work done by gravity is $W_g = -\Delta U$. The change in potential energy is the negative of the work done by the gravitational force in moving a mass $m$ from an initial position $r_i$ to a final position $r_f$.</p>
+                 <div class="formula">$$ \Delta U = U_f - U_i = - \int_{r_i}^{r_f} \vec{F}_g \cdot d\vec{r} $$</div>
+                 <p>Substituting $\vec{F}_g = -G M m/r^2 \hat{r}$ and $d\vec{r} = dr \hat{r}$, the integral becomes:</p>
+                 $$ \Delta U = - \int_{r_i}^{r_f} \left(- G \frac{M m}{r^2}\right) dr = GMm \int_{r_i}^{r_f} \frac{1}{r^2} dr = GMm \left[-\frac{1}{r}\right]_{r_i}^{r_f} = -G M m \left(\frac{1}{r_f} - \frac{1}{r_i}\right) $$
                 <p>By defining the zero point of potential energy at infinite separation ($U(\infty) = 0$), the potential energy of a two-mass system is always negative:</p>
-                <div class="formula">
-                    $$ U(r) = - G \frac{m_1 m_2}{r} $$
-                </div>
+                <div class="formula">$$ U(r) = - G \frac{m_1 m_2}{r} $$</div>
             </section>
 
             <section id="satellite-motion" class="content-section">
                 <h2>4. The Motion of Satellites</h2>
-                <p>For a satellite in a circular orbit, the gravitational force provides the necessary centripetal force. This balance dictates the satellite's speed and energy.</p>
                 <div class="proof">
                     <h3>Proof: Total Energy of a Circular Orbit</h3>
-                    <p>From Newton's second law for circular motion: $G \frac{Mm}{r^2} = \frac{mv^2}{r}$.</p>
-                    <p>The kinetic energy is $K = \frac{1}{2} mv^2 = \frac{1}{2} m \left(\frac{GM}{r}\right) = \frac{GMm}{2r}$.</p>
-                    <p>The potential energy is $U = - \frac{GMm}{r}$.</p>
-                    <p>The total energy is the sum, a result known as the Virial Theorem for this system:</p>
-                    <div class="formula">
-                        $$ E = K + U = \frac{GMm}{2r} - \frac{GMm}{r} = - \frac{GMm}{2r} \quad (\text{Note: } E = -K = U/2) $$
-                    </div>
-                    <p>The negative energy signifies a bound system. An object with $E \ge 0$ is unbound and will follow a parabolic or hyperbolic trajectory, escaping the gravitational pull.</p>
+                    <p>For a satellite in a circular orbit, the gravitational force provides the centripetal force: $G Mm/r^2 = mv^2/r$. The kinetic energy is $K = \frac{1}{2} mv^2 = GMm/(2r)$. The potential energy is $U = - GMm/r$. The total energy is the sum, a result known as the Virial Theorem for this system:</p>
+                    <div class="formula">$$ E = K + U = \frac{GMm}{2r} - \frac{GMm}{r} = - \frac{GMm}{2r} $$</div>
+                    <p>The negative energy signifies a bound system. An object with $E \ge 0$ is unbound and will follow a parabolic or hyperbolic trajectory.</p>
                 </div>
                 <div class="proof">
                     <h3>Proof: Escape Velocity</h3>
-                    <p>Escape velocity is the minimum speed an object must have at a given distance $R$ from a mass $M$ to escape its gravitational influence, i.e., to reach $r=\infty$ with zero final speed. We use conservation of energy. The minimum energy for escape is $E_{total}=0$.</p>
-                    <p>Initial energy at the surface (radius R) must equal the final energy at infinity:</p>
+                    <p>Escape velocity is the minimum speed an object must have to escape a gravitational field, i.e., to reach $r=\infty$ with zero final speed. We use conservation of energy. The minimum energy for escape is $E_{total}=0$. Initial energy at radius $R$ must equal the final energy at infinity:</p>
                     $$ E_i = E_f \implies \frac{1}{2}mv_{esc}^2 - \frac{GMm}{R} = 0 + 0 $$
-                    <p>Solving for $v_{esc}$ gives:</p>
                     <div class="formula">$$ v_{esc} = \sqrt{\frac{2GM}{R}} $$</div>
-                    <p>Note that this is $\sqrt{2}$ times the speed required for a circular orbit at that radius.</p>
                 </div>
             </section>
             
             <section id="kepler-laws" class="content-section">
                 <h2>5. Kepler’s Laws and the Motion of Planets</h2>
-                
-
-[Image of a planetary elliptical orbit with foci]
-
-                <div class="proof">
-                    <h3>Proof of Kepler's First Law (Law of Orbits)</h3>
-                    <p>The derivation of elliptical orbits from Newton's laws is a classic problem in mechanics. It involves solving the vector equation of motion $\vec{F}=m\vec{a}$ for a central force. Using polar coordinates, the equation of motion for the reduced mass $\mu$ is:</p>
-                    $$ \mu(\ddot{r} - r\dot{\theta}^2) = -G\frac{M\mu}{r^2} \quad \text{and} \quad \mu(r\ddot{\theta} + 2\dot{r}\dot{\theta}) = 0 $$
-                    <p>The second equation implies conservation of angular momentum, $L = \mu r^2 \dot{\theta} = \text{const}$. This can be used to eliminate $\dot{\theta}$ from the radial equation. The substitution $u=1/r$ transforms the radial equation into a simpler form (Binet's equation):</p>
-                    <div class="formula">$$ \frac{d^2u}{d\theta^2} + u = \frac{GM\mu^2}{L^2} $$</div>
-                    <p>This is the equation for a simple harmonic oscillator with a constant term. Its solution is $u(\theta) = A\cos(\theta - \theta_0) + \frac{GM\mu^2}{L^2}$. Converting back to $r=1/u$ gives the equation for a conic section:</p>
-                    <div class="formula">$$ r(\theta) = \frac{L^2/(GM\mu^2)}{1 + \epsilon \cos(\theta-\theta_0)} $$</div>
-                    <p>where $\epsilon = AL^2/(GM\mu^2)$ is the eccentricity. For a bound orbit, $0 \le \epsilon < 1$, which defines an ellipse. This proves planets move in elliptical orbits.</p>
-                </div>
                  <div class="proof">
                     <h3>Proof of Kepler's Second Law (Law of Areas)</h3>
-                    <p>This law is a direct consequence of the conservation of angular momentum. Since gravity is a central force, the torque $\vec{\tau} = \vec{r} \times \vec{F}_g$ is zero, which implies the angular momentum $\vec{L} = \vec{r} \times \vec{p}$ is constant.</p>
-                    <p>The infinitesimal area $dA$ swept by the position vector $\vec{r}$ in time $dt$ is $dA = \frac{1}{2} |\vec{r} \times d\vec{r}| = \frac{1}{2} |\vec{r} \times \vec{v}dt|$. The rate of change of area is:</p>
+                    <p>This law is a direct consequence of the conservation of angular momentum. Since gravity is a central force, the torque $\vec{\tau} = \vec{r} \times \vec{F}_g$ is zero, which implies the angular momentum $\vec{L} = \vec{r} \times \vec{p}$ is constant. The infinitesimal area $dA$ swept by the position vector $\vec{r}$ in time $dt$ is $dA = \frac{1}{2} |\vec{r} \times d\vec{r}| = \frac{1}{2} |\vec{r} \times \vec{v}dt|$. The rate of change of area is:</p>
                     <div class="formula">$$ \frac{dA}{dt} = \frac{1}{2} |\vec{r} \times \vec{v}| = \frac{|\vec{L}|}{2m} = \text{constant} $$</div>
                 </div>
                 <div class="proof">
                     <h3>Proof of Kepler's Third Law (Law of Periods)</h3>
-                    <p>The total area of an ellipse is $A = \pi ab$, where $a$ is the semi-major axis and $b$ is the semi-minor axis. The orbital period is $T = A / (dA/dt)$.</p>
-                    <p>Using $dA/dt = L/2m$, we get $T = \frac{2m(\pi ab)}{L}$. For an ellipse, $b=a\sqrt{1-\epsilon^2}$ and the angular momentum can be shown to be $L = \sqrt{GMm^2 a(1-\epsilon^2)}$.</p>
-                    <p>Substituting these into the period equation:</p>
-                    $$ T = \frac{2m\pi a^2 \sqrt{1-\epsilon^2}}{\sqrt{GMm^2 a(1-\epsilon^2)}} = \frac{2\pi a^{3/2}}{\sqrt{GM}} $$
+                    <p>The total area of an ellipse is $A = \pi ab$, where $a$ is the semi-major axis. The orbital period is $T = A / (dA/dt)$. Using $dA/dt = L/2m$ and expressions for an ellipse relating $L$ and $a$, we find:</p>
+                    $$ T = \frac{2m(\pi a^2 \sqrt{1-\epsilon^2})}{\sqrt{GMm^2 a(1-\epsilon^2)}} = \frac{2\pi a^{3/2}}{\sqrt{GM}} $$
                     <p>Squaring both sides gives the celebrated result:</p>
-                    <div class="formula">$$ T^2 = \frac{4\pi^2}{GM} a^3 \quad \implies \quad T^2 \propto a^3 $$</div>
+                    <div class="formula">$$ T^2 = \left(\frac{4\pi^2}{GM}\right) a^3 \implies T^2 \propto a^3 $$</div>
                 </div>
             </section>
             
             <section id="spherical-mass" class="content-section">
                 <h2>6. Spherical Mass Distributions</h2>
                 <div class="proof">
-                    <h3>Proof of Shell Theorem via Direct Integration</h3>
-                    
-                    <p>We prove that the gravitational force outside a uniform spherical shell of mass $M$ is the same as if all its mass were at its center by calculating the potential.</p>
-                    <p>Consider a ring on the shell at an angle $\theta$. The mass of the ring is $dM = \frac{M}{2}\sin\theta d\theta$. Every point on this ring is at a distance $s$ from the external point mass $m$. From the Law of Cosines, $s^2 = r^2 + R^2 - 2rR\cos\theta$.</p>
-                    <p>The potential from the ring is $dU = -G \frac{m \, dM}{s}$. By changing variables from $\theta$ to $s$ (where $2s\,ds = 2rR\sin\theta d\theta$) and integrating over the entire shell (from $s=r-R$ to $s=r+R$ for a point outside), we find:</p>
-                    $$ U = \int dU = \int_{r-R}^{r+R} -G\frac{m(M/2rR)s\,ds}{s} = -\frac{GMm}{2rR} \int_{r-R}^{r+R} ds $$
-                    <div class="formula">$$ U_{out} = - \frac{GMm}{r} $$</div>
-                    <p>For a point inside the shell, the limits of integration are $R-r$ to $R+r$, which yields a constant potential: $U_{in} = -GMm/R$. Since force is the negative gradient of potential, $F = -dU/dr$, the force inside the shell is zero.</p>
-                </div>
-                <div class="proof">
                     <h3>Proof of Shell Theorem via Gauss's Law for Gravity</h3>
-                    
-                    <p>A more elegant proof uses Gauss's Law for Gravity, which is analogous to Gauss's Law in electrostatics. It states that the flux of the gravitational field through any closed surface is proportional to the enclosed mass.</p>
-                    <div class="formula">$$ \oint \vec{g} \cdot d\vec{A} = -4\pi G M_{enc} $$</div>
-                    <p><b>Outside the shell ($r > R$):</b> We choose a spherical Gaussian surface of radius $r$. By symmetry, $\vec{g}$ must be radial and have constant magnitude on the surface. So, $\oint \vec{g} \cdot d\vec{A} = g(4\pi r^2)$. The enclosed mass is the entire shell, $M_{enc}=M$.</p>
+                    <p>Gauss's Law for Gravity states that the flux of the gravitational field through any closed surface is proportional to the enclosed mass: $\oint \vec{g} \cdot d\vec{A} = -4\pi G M_{enc}$.</p>
+                    <p><b>Outside the shell ($r > R$):</b> We choose a spherical Gaussian surface of radius $r$. By symmetry, $\vec{g}$ is radial. So, $g(4\pi r^2) = -4\pi G M_{enc}$. The enclosed mass is the entire shell, $M_{enc}=M$.</p>
                     $$ g(4\pi r^2) = -4\pi GM \implies g = -G\frac{M}{r^2} $$
-                    <p><b>Inside the shell ($r < R$):</b> We choose a spherical Gaussian surface of radius $r < R$. The enclosed mass is zero, $M_{enc}=0$.</p>
-                    $$ g(4\pi r^2) = -4\pi G (0) \implies g=0 $$
-                    <p>This method elegantly proves both parts of the Shell Theorem.</p>
+                    <p><b>Inside the shell ($r < R$):</b> The enclosed mass is zero, $M_{enc}=0$, so $g=0$. This elegantly proves both parts of the Shell Theorem.</p>
                 </div>
             </section>
             
             <section id="apparent-weight" class="content-section">
                 <h2>7. Apparent Weight and the Earth’s Rotation</h2>
-                
-                <p>An object on the surface of the rotating Earth is in a non-inertial reference frame. This causes its apparent weight (the reading on a scale) to differ from its true gravitational weight.</p>
-                <p>The net force on an object at latitude $\lambda$ provides the centripetal force required for its circular path of radius $r_c = R_E \cos\lambda$ around the Earth's axis.</p>
-                <div class="formula">
-                    $$ \vec{F}_{net} = \vec{F}_g + \vec{F}_N = m\vec{a}_c $$
-                </div>
-                <p>The apparent weight is the normal force, $\vec{W}_{app} = \vec{F}_N = m\vec{g}_{true} - m\vec{a}_c$. The centripetal acceleration, $a_c = \omega^2 (R_E \cos\lambda)$, is directed perpendicular to the axis of rotation. This subtractive term is largest at the equator ($\lambda=0$) and zero at the poles ($\lambda=90^\circ$). The vector subtraction also means the apparent weight is not pointed directly towards the Earth's center (except at the equator and poles).</p>
+                <p>An object on the surface of the rotating Earth is in a non-inertial reference frame. Its apparent weight, $\vec{W}_{app}$, (the normal force $\vec{F}_N$) differs from its true gravitational weight, $\vec{F}_g$. The net force provides the centripetal force required for its circular path of radius $r_c = R_E \cos\lambda$ around the Earth's axis, where $\lambda$ is the latitude.</p>
+                <div class="formula">$$ \vec{F}_{net} = \vec{F}_g + \vec{F}_N = m\vec{a}_c $$</div>
+                <p>The apparent weight is $\vec{W}_{app} = \vec{F}_N = m\vec{g}_{true} - m\vec{a}_c$. The centripetal acceleration, $a_c = \omega^2 R_E \cos\lambda$, is largest at the equator ($\lambda=0$) and zero at the poles ($\lambda=90^\circ$).</p>
             </section>
             
             <section id="problems" class="content-section">
                 <h2>Advanced Problems in Gravitation</h2>
-                <p class="text-slate-600 mb-6">These problems are designed to test your understanding of the material at a deep, analytical level. They require a solid foundation in calculus and classical mechanics.</p>
-
-                <!-- Intermediate Problems -->
+                
                 <h3 class="text-blue-600 border-b-2 border-blue-200 pb-2 mb-4">Intermediate Problems</h3>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>1. Hohmann Transfer Orbit Analysis</h4>
-                    <p>A satellite in a 7,000 km radius circular Earth orbit must be transferred to a 42,200 km radius circular geosynchronous orbit. The transfer is to be achieved via an elliptical Hohmann orbit. This maneuver requires two instantaneous engine burns. The first burn places the satellite onto the transfer ellipse at its periapsis, and the second burn circularizes the orbit at its apoapsis. Calculate the total propulsive velocity change, $\Delta v_{total} = \Delta v_1 + \Delta v_2$, required for this orbital transfer.
-                    
-                    </p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>2. Oscillatory Motion in a Gravity Tunnel</h4>
-                    <p>Consider an idealized Earth of uniform density $\rho$, mass $M_E$, and radius $R_E$. A frictionless tunnel is bored along a chord of the Earth, not necessarily through the center. An object of mass $m$ is released from the surface into this tunnel. Prove that the object experiences a linear restoring force and subsequently undergoes simple harmonic motion. Derive an expression for the period of this oscillation and show it is independent of the chord's location.</p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>3. The Sun-Earth L1 Lagrange Point</h4>
-                    <p>In a system with two large bodies (e.g., Sun and Earth) orbiting their common center of mass, there exist five points of stability known as Lagrange points. The L1 point lies on the line connecting the two bodies. A satellite placed at L1 will orbit the Sun with the same angular velocity as the Earth. Consider the Sun (mass $M_S$) and Earth (mass $M_E$) separated by distance $R$. In the rotating reference frame, find the distance $r$ from the Earth to the L1 point by balancing gravitational and centrifugal forces.
-                    
-                    </p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>4. Energy Requirement for Orbital Insertion</h4>
-                    <p>A 1,200 kg satellite is initially in a low Earth circular orbit at an altitude of 300 km. It needs to be placed into a final geostationary circular orbit at an altitude of 35,786 km. Calculate the minimum work that must be supplied by the satellite's propulsion system to achieve this change in orbit. Ignore the mass of the expended fuel.</p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>5. Dynamics of a Binary Star System</h4>
-                    <p>Two stars of masses $M_A$ and $M_B$ are gravitationally bound in a binary system. They follow stable circular orbits around their common center of mass with a constant separation distance $d$. Derive a general expression for the orbital period $T$ of the system in terms of $M_A$, $M_B$, $d$, and the gravitational constant $G$.</p>
-                </div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>1. Hohmann Transfer Orbit Analysis</h4><p class="problem-text">An artificial satellite is in a circular orbit of radius $r_1$ around the Earth. To move it to a coplanar circular orbit of radius $r_2 > r_1$, a Hohmann transfer orbit is employed. Determine the total change in velocity required for the maneuver.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>2. Oscillatory Motion in a Gravity Tunnel</h4><p class="problem-text">A straight, frictionless tunnel is bored through a non-rotating Earth of uniform density. Demonstrate that an object dropped into the tunnel undergoes simple harmonic motion and derive an expression for its period.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>3. The Sun-Earth L1 Lagrange Point</h4><p class="problem-text">Determine the distance $r$ of the L1 Lagrange point from the Earth, assuming the Earth (mass $M_E$) and Sun (mass $M_S$) are in circular orbits at a separation $R$. Provide a linearized solution for $r \ll R$.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>4. Energy Requirement for Orbital Insertion</h4><p class="problem-text">A probe of mass $m$ is in a circular LEO at altitude $h_1$. Calculate the minimum energy required to place it into a circular GEO at altitude $h_2$.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>5. Dynamics of a Binary Star System</h4><p class="problem-text">Two stars of mass $M_A$ and $M_B$ are separated by a constant distance $d$. Derive an expression for the orbital period $T$ of the system.</p></div>
 
-                <!-- Hard Problems -->
                 <h3 class="text-indigo-600 border-b-2 border-indigo-200 pb-2 mb-4 mt-8">Hard Problems</h3>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>6. Gravitational Self-Energy of a Sphere</h4>
-                    <p>Derive the total gravitational potential energy (self-energy) of a uniform sphere of mass $M$ and radius $R$. This quantity represents the work done to assemble the sphere by bringing infinitesimal shells of mass from an infinite distance. The final expression should be in terms of $G$, $M$, and $R$.</p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>7. The Gravitational Slingshot</h4>
-                    <p>A spacecraft of mass $m$ approaches a planet of mass $M$ ($M \gg m$). In the Sun's inertial frame, the planet moves with velocity $\vec{V}$ and the spacecraft has initial velocity $\vec{v}_i$. The maneuver is designed such that the spacecraft performs a hyperbolic fly-by. In the planet's rest frame, the encounter is elastic, meaning the spacecraft's speed is unchanged. If the initial approach is head-on (velocities are anti-parallel), determine the spacecraft's final velocity $\vec{v}_f$ in the Sun's frame and show that its kinetic energy increases by $2m|\vec{V}|(|\vec{v}_i| + |\vec{V}|)$.</p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>8. Gravitational Field of a Finite Rod</h4>
-                    <p>A uniform, thin rod of mass $M$ and length $L$ is placed along the x-axis, centered at the origin. By integrating the contributions from infinitesimal mass elements, derive the exact expression for the gravitational field vector $\vec{g}$ at a point $P$ on the positive y-axis, a distance $y$ from the origin.</p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>9. Orbital Stability with a Perturbation Potential</h4>
-                    <p>The gravitational potential energy of a test mass $m$ in the field of a non-uniform planet is given by $U(r) = -\frac{GMm}{r}\left(1 + \frac{\alpha}{r^2}\right)$, where $\alpha$ is a constant. First, derive the force law $F(r)$. Using the concept of an effective potential energy $U_{eff}(r)$ for a given angular momentum $L$, find the condition on $\alpha$ that must be met for stable circular orbits to exist.</p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>10. Tidal Stress on a Radially Infalling Rod</h4>
-                    <p>A rigid, uniform rod of mass $m$, length $L$, and cross-sectional area $A$ is in a radial free-fall towards a planet of mass $M_P$. The center of the rod is at a distance $r$ from the planet's center ($r \gg L$). The rod remains aligned radially. Derive an expression for the tensile stress (internal tension force per unit area) at the midpoint of the rod caused by the planet's gravitational gradient (tidal forces).</p>
-                </div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>6. Gravitational Self-Energy of a Sphere</h4><p class="problem-text">Calculate the gravitational self-energy $U_g$ of a sphere of uniform mass density, with total mass $M$ and radius $R$.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>7. The Gravitational Slingshot</h4><p class="problem-text">A spacecraft (initial velocity $\vec{v}_i$) performs a hyperbolic fly-by of a planet (velocity $\vec{V}$). For a head-on encounter, determine the spacecraft's final velocity $\vec{v}_f$ and the change in its kinetic energy.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>8. Gravitational Field of a Finite Rod</h4><p class="problem-text">A uniform rod of mass $M$ and length $L$ lies on the x-axis. Derive the gravitational field $\vec{g}$ at a point $(0, y)$.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>9. Orbital Stability with a Perturbation Potential</h4><p class="problem-text">A test mass moves in a potential $U(r) = -k/r - \beta/r^3$. Determine the condition on $\beta$ that permits stable circular motion.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>10. Tidal Stress on a Radially Infalling Rod</h4><p class="problem-text">A uniform rod of length $L$ falls radially towards a planet. Derive the tensile stress at its midpoint.</p></div>
 
-                <!-- Advanced (Irodov-like) Problems -->
                 <h3 class="text-rose-600 border-b-2 border-rose-200 pb-2 mb-4 mt-8">Advanced (Irodov-like) Problems</h3>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>11. Escape Velocity from a Rotating Body</h4>
-                    <p>An object is located at the equator of a spherical asteroid of radius $R$ and uniform density $\rho$, which rotates with a constant angular velocity $\omega$. Determine the minimum launch speed $v_{rel}$ relative to the asteroid's surface required for the object to escape to infinity. You must also determine the optimal launch direction (e.g., prograde, retrograde, normal) that minimizes this speed.</p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>12. Bertrand's Theorem and Orbital Stability</h4>
-                    <p>For a central force of the form $F(r) = -k/r^n$, only two values of the exponent $n$ result in stable, closed orbits for all bound initial conditions. One is $n=2$ (gravity/electrostatics). Using an analysis of the effective potential, find the other integer value of $n$. This is a specific case of Bertrand's Theorem.</p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>13. Field Inside a Spherical Cavity</h4>
-                    <p>Consider a solid sphere of uniform density $\rho$ and radius $R$. A spherical cavity of radius $a$ is carved out from it. The center of the cavity is displaced from the center of the large sphere by a vector $\vec{b}$. Using the principle of superposition, prove that the gravitational field inside the cavity is uniform (both in magnitude and direction) and find its vector value.
-                    
-                    </p>
-                </div>
-                <div class="problem mb-6 pb-4 border-b border-slate-200">
-                    <h4>14. Derivation of the Roche Limit</h4>
-                    <p>A small, fluid satellite of mean density $\rho_m$ and radius $r_m$ orbits a large planet of mean density $\rho_p$ and radius $R_p$. The satellite is held together by its own gravity. The Roche limit is the orbital distance $d$ at which the planet's tidal forces are strong enough to disintegrate the satellite. By modeling the satellite as two test masses separated by $2r_m$ and comparing the planet's differential gravitational force to the satellite's self-gravitational force, derive the expression for the Roche limit: $d \approx R_p \left(2 \frac{\rho_p}{\rho_m}\right)^{1/3}$.</p>
-                </div>
-                <div class="problem">
-                    <h4>15. Apsidal Precession from a Perturbation</h4>
-                    <p>A planet's potential energy includes a small perturbation term from General Relativity, giving $U(r) = -\frac{k}{r} + \frac{h}{r^2}$, where $k=GMm$ and $h$ is a small constant. This causes the apsides (perihelion and aphelion) of the orbit to precess. For a nearly circular orbit, calculate the angle $\Delta\phi$ by which the perihelion advances per revolution. (Hint: The period of radial oscillations will be slightly different from the orbital period).</p>
-                </div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>11. Escape Velocity from a Rotating Body</h4><p class="problem-text">An object is at the equator of a rotating asteroid. Determine the minimum launch speed $v_{rel}$ relative to the surface required for escape, and find the optimal launch direction.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>12. Bertrand's Theorem and Orbital Stability</h4><p class="problem-text">For a central force $F(r)=-k/r^n$, only $n=2$ and one other integer value of $n$ result in stable, closed orbits. Find this other value.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>13. Field Inside a Spherical Cavity</h4><p class="problem-text">A uniform sphere has an off-centre spherical cavity. Prove that the gravitational field inside the cavity is uniform and derive its value.</p></div>
+                <div class="problem mb-6 pb-4 border-b border-slate-200"><h4>14. Derivation of the Roche Limit</h4><p class="problem-text">A fluid satellite orbits a planet. Derive the orbital distance (Roche limit) at which tidal forces from the planet overcome the satellite's self-gravity, disintegrating it.</p></div>
+                <div class="problem"><h4>15. Apsidal Precession from a Perturbation</h4><p class="problem-text">For a potential $U(r) = -k/r + h/r^2$, calculate the angle of perihelion advance per revolution for a nearly circular orbit.</p></div>
+            </section>
+
+            <section id="solutions" class="content-section">
+                <h2>Problem Solutions</h2>
+                
+                <h3 class="text-blue-600 border-b-2 border-blue-200 pb-2 mb-4">Intermediate Problem Solutions</h3>
+                <div class="solution-block mb-8"><h4>1. Hohmann Transfer Orbit Analysis</h4><div class="solution-step">The total change in velocity is the sum of two burns. The first burn moves the satellite from the initial circular orbit to the elliptical transfer orbit. The second circularizes the orbit at the new radius.</div><div class="formula">$$ \Delta v_{total} = \sqrt{\frac{GM}{r_1}} \left(\sqrt{\frac{2r_2}{r_1+r_2}} - 1\right) + \sqrt{\frac{GM}{r_2}} \left(1 - \sqrt{\frac{2r_1}{r_1+r_2}}\right) $$</div></div>
+                <div class="solution-block mb-8"><h4>2. Oscillatory Motion in a Gravity Tunnel</h4><div class="solution-step">The component of gravitational force along the tunnel is $F_x = -(mg_0/R_E)x$, which is a linear restoring force, characteristic of SHM. The period is:</div><div class="formula">$$ T = 2\pi \sqrt{\frac{R_E}{g_0}} $$</div></div>
+                <div class="solution-block mb-8"><h4>3. The Sun-Earth L1 Lagrange Point</h4><div class="solution-step">In the inertial frame, the net force on the third body provides the centripetal force for its orbit: $-\frac{GM_S m}{(R-r)^2} + \frac{GM_E m}{r^2} = -m\omega^2(R-r)$. We use Earth's orbital angular velocity, $\omega^2 \approx GM_S/R^3$. Using the binomial approximation $(1-x)^{-2} \approx 1+2x$ for $x=r/R$, the force equation simplifies to:</div><div class="formula">$$ r \approx R \left( \frac{M_E}{3M_S} \right)^{1/3} $$</div></div>
+                <div class="solution-block mb-8"><h4>4. Energy Requirement for Orbital Insertion</h4><div class="solution-step">The total energy in a circular orbit is $E = -GMm/(2r)$. The work required is the difference in energy between the two orbits. Let $r_1=R_E+h_1$ and $r_2=R_E+h_2$.</div><div class="formula">$$ W = \Delta E = E_2 - E_1 = \left(-\frac{GM_E m}{2r_2}\right) - \left(-\frac{GM_E m}{2r_1}\right) = \frac{GM_E m}{2} \left(\frac{1}{r_1} - \frac{1}{r_2}\right) $$</div></div>
+                <div class="solution-block mb-8"><h4>5. Dynamics of a Binary Star System</h4><div class="solution-step">Let star A orbit at radius $r_A$ and star B at $r_B$. The gravitational force provides the centripetal force for each: $G M_A M_B / d^2 = M_A v_A^2/r_A$. Using $v_A = 2\pi r_A/T$ and the center of mass relation $M_A r_A = M_B r_B$ with $d=r_A+r_B$, we can solve for T.</div><div class="formula">$$ T = 2\pi \sqrt{\frac{d^3}{G(M_A+M_B)}} $$</div></div>
+
+                <h3 class="text-indigo-600 border-b-2 border-indigo-200 pb-2 mb-4 mt-8">Hard Problem Solutions</h3>
+                <div class="solution-block mb-8"><h4>6. Gravitational Self-Energy of a Sphere</h4><div class="solution-step">By integrating the work done to add successive shells of mass, $dW = V(r)dm$, from $r=0$ to $r=R$, we find the total self-energy.</div><div class="formula">$$ U_g = -\frac{3}{5}\frac{GM^2}{R} $$</div></div>
+                <div class="solution-block mb-8"><h4>7. The Gravitational Slingshot</h4><div class="solution-step">Transform to planet's frame: $\vec{v}'_i = \vec{v}_i - \vec{V}$. After elastic interaction: $|\vec{v}'_f|=|\vec{v}'_i|$. For head-on, $\vec{v}'_f = -\vec{v}'_i$. Transform back to Sun's frame: $\vec{v}_f = \vec{v}'_f + \vec{V} = -(\vec{v}_i - \vec{V}) + \vec{V} = -\vec{v}_i + 2\vec{V}$.</div><div class="formula">$$ \Delta K = \frac{1}{2}m(v_f^2 - v_i^2) = \frac{1}{2}m((|-v_i+2V|)^2 - v_i^2) = 2m V (v_i + V) $$</div></div>
+                <div class="solution-block mb-8"><h4>8. Gravitational Field of a Finite Rod</h4><div class="solution-step">Let $\lambda = M/L$. The field from an element $dx$ at position $x$ is $d\vec{g}$. By symmetry, x-components cancel. The y-component is $dg_y = -G(\lambda dx) \cos\theta / r^2$, where $r=\sqrt{x^2+y^2}$ and $\cos\theta=y/r$. Integrating from $x=-L/2$ to $x=L/2$:</div><div class="formula">$$ \vec{g}(0,y) = -\frac{2GM}{y\sqrt{L^2+4y^2}} \hat{j} $$</div></div>
+                <div class="solution-block mb-8"><h4>9. Orbital Stability with a Perturbation Potential</h4><div class="solution-step">The effective potential is $U_{eff}(r) = U(r) + L^2/(2mr^2)$. For a stable orbit, we need $d^2U_{eff}/dr^2 > 0$ at the radius of the circular orbit (where $dU_{eff}/dr=0$). This analysis yields the condition:</div><div class="formula">$$ L^2 > 6m|\beta| \implies \text{The orbit must have sufficient angular momentum.} $$</div></div>
+                <div class="solution-block mb-8"><h4>10. Tidal Stress on a Radially Infalling Rod</h4><div class="solution-step">The tensile force at the midpoint is the integral of the differential gravitational force on the outer half of the rod. $F_{tidal} = \int_0^{L/2} (F_g(r+x) - F_g(r)) dm$. Approximating the force difference as $dF/dr \cdot x$ and integrating yields the tension $T$. Stress $\sigma = T/A$.</div><div class="formula">$$ \sigma = \frac{T}{A} = \frac{G M_P m L}{4 A r^3} $$</div></div>
+
+                <h3 class="text-rose-600 border-b-2 border-rose-200 pb-2 mb-4 mt-8">Advanced (Irodov-like) Problem Solutions</h3>
+                <div class="solution-block mb-8"><h4>11. Escape Velocity from a Rotating Body</h4><div class="solution-step">In the inertial frame, the object's initial velocity is $\vec{v}_{launch} = \vec{v}_{rel} + \vec{v}_{rot}$, where $v_{rot} = \omega R$. To escape, total energy must be zero: $\frac{1}{2}m v_{launch}^2 - GMm/R = 0$. This requires $v_{launch} = \sqrt{2GM/R} = v_{esc,static}$. To minimize $v_{rel}$, we must maximize the contribution from rotation by launching prograde (in the direction of rotation).</div><div class="formula">$$ v_{rel,min} = v_{esc,static} - v_{rot} = \sqrt{\frac{2GM}{R}} - \omega R $$</div></div>
+                <div class="solution-block mb-8"><h4>12. Bertrand's Theorem and Orbital Stability</h4><div class="solution-step">The condition for closed orbits is that the angular frequency of radial perturbations, $\omega_r$, is a rational multiple of the orbital angular frequency, $\omega_\phi$. For stability for all initial conditions, we require $\omega_r = \omega_\phi$. Analyzing the effective potential for $F(r)=-k/r^n$ shows this condition is only met for $n=2$ (gravity) and $n=-1$ (Hooke's Law, harmonic oscillator).</div><div class="formula">$$ n = -1 \quad (F(r) = -kr, \text{ a linear restoring force}) $$</div></div>
+                <div class="solution-block mb-8"><h4>13. Field Inside a Spherical Cavity</h4><div class="solution-step">Using superposition, the field inside is the field of the full sphere ($\vec{g}_{full}$) minus the field of the mass that would have filled the cavity ($\vec{g}_{cavity\_mass}$). Let $\vec{r}$ be a point from the large sphere's center and $\vec{b}$ be the cavity's center. The field is uniform.</div><div class="formula">$$ \vec{g}_{cavity} = \frac{4}{3}\pi G \rho \vec{b} $$</div></div>
+                <div class="solution-block mb-8"><h4>14. Derivation of the Roche Limit</h4><div class="solution-step">Consider a point mass on the satellite's surface closest to the planet. The planet's gravity pulls it, while the satellite's gravity and the centripetal force (in the satellite's frame) push it away. The tidal force is the difference in the planet's gravity across the satellite. The limit is where the tidal force exceeds the satellite's self-gravity. $F_{tidal} \approx \frac{2GM_p r_m}{d^3} > \frac{G m_m}{r_m^2}$. Substituting densities yields the result.</div><div class="formula">$$ d \approx R_p \left(2 \frac{\rho_p}{\rho_m}\right)^{1/3} $$</div></div>
+                <div class="solution-block mb-8"><h4>15. Apsidal Precession from a Perturbation</h4><div class="solution-step">The angular frequencies of radial ($\omega_r$) and orbital ($\omega_\phi$) motion are found from the effective potential $U_{eff}$. $\omega_r^2 = \frac{1}{m}\frac{d^2U_{eff}}{dr^2}|_{r_0}$ and $\omega_\phi = L/(mr_0^2)$. The precession angle per orbit is $\Delta\phi = 2\pi(\omega_\phi/\omega_r - 1)$. For the given potential, this evaluates to:</div><div class="formula">$$ \Delta\phi \approx \frac{6\pi h m}{L^2} $$</div></div>
             </section>
         </main>
     </div>
 </body>
 </html>
+
+
 
