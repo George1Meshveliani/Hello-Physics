@@ -24,5 +24,5 @@ Click the topic and Enjoy!
 - [`Force`](https://george1meshveliani.github.io/Hello-Physics/AdvancedForce)
 - [`Energy and Work`](https://george1meshveliani.github.io/Hello-Physics/AdvancedEnergy)
 - [`Momentum, Impulse and Collision Theory`](https://george1meshveliani.github.io/Hello-Physics/AdvancedMomentum)
-- [`Gravitation and Periodic Motion`](https://george1meshveliani.github.io/Hello-Physics/AdvancedGravitation)
+- [`Gravitation`](https://george1meshveliani.github.io/Hello-Physics/AdvancedGravitation)
 
