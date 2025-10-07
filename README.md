@@ -26,4 +26,5 @@ Click the topic and Enjoy!
 - [`Momentum, Impulse and Collision Theory`](https://george1meshveliani.github.io/Hello-Physics/AdvancedMomentum)
 - [`Gravitation`](https://george1meshveliani.github.io/Hello-Physics/AdvancedGravitation)
 - [`Periodic Motion`](https://george1meshveliani.github.io/Hello-Physics/AdvancedPeriodicMotion)
+- [`Mechanical Waves`](https://george1meshveliani.github.io/Hello-Physics/AdvancedMechanicalWaves)
 
