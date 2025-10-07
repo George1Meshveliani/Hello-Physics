@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus of Periodic Motion</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Load KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" xintegrity="sha384-GvrDXHjU4I4V4t2T2fM0G9M+J+mowrUoO2+2P6tQ5R4Z6F4C5Ew1O0p7P2F/b" crossorigin="anonymous">
+    <!-- Load KaTeX JS -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" xintegrity="sha384-e1U8j1N5BvE4T2T2fM0G9M+J+mowrUoO2+2P6tQ5R4Z6F4C5Ew1O0p7P2F/b" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" xintegrity="sha384-k3vX6P6p5N7Q3B+t3T3V4J+M0G9M+J+mowrUoO2+2P6tQ5R4Z6F4C5Ew1O0p7P2F/b" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        @media print {
+            @page { margin: 0.25cm; }
+            body { margin: 0; padding: 0; font-size: 10pt; }
+            .no-print { display: none !important; }
+            .shadow-xl, .border, .rounded-xl { box-shadow: none !important; border: none !important; border-radius: 0 !important; }
+            body, .bg-gray-50, .bg-white, .solution-box { background-color: #fff !important; }
+            h1, h2, h3, p, div { color: #000 !important; }
+            .katex-display { background-color: #f0f0f5 !important; border: 1px solid #ccc; padding: 0.5rem 0.25rem; }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f9;
+        }
+
+        .katex-display {
+            overflow-y: hidden;
+            padding: 1rem 0.5rem;
+            background-color: #f0f0f5;
+            border-radius: 0.5rem;
+            margin: 0.75rem 0;
+        }
+
+        .problem-section {
+            border-left: 4px solid #3b82f6; /* Tailwind blue-500 */
+            padding-left: 1rem;
+            margin-top: 1rem;
+        }
+
+        .solution-container {
+            background-color: #f8fafc; /* bg-slate-50 */
+        }
+        .solution-box {
+            background-color: #eef2ff; /* bg-indigo-50 */
+            border: 1px solid #c7d2fe; /* border-indigo-200 */
+        }
+    </style>
+</head>
+
+<body class="p-4 sm:p-8">
+
+    <div id="main-content" class="max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-xl shadow-xl border border-gray-200">
+
+        <!-- Header -->
+        <header class="mb-8 border-b-2 pb-4 flex justify-between items-center no-print">
+            <h1 class="text-4xl font-extrabold text-blue-800">Periodic Motion: A Calculus Approach</h1>
+            <button onclick="window.print()" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
+                Download PDF
+            </button>
+        </header>
+
+        <section id="introduction" class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b pb-2">1. Foundations of Simple Harmonic Motion</h2>
+            <p class="text-gray-700 leading-relaxed">
+                <span class="font-bold">Periodic motion</span> is any motion that repeats in a fixed time interval, $T$. The most important type is <span class="font-bold">Simple Harmonic Motion (SHM)</span>, which is defined by a restoring force that is directly proportional to the displacement from the equilibrium point ($x=0$) and is always directed toward it.
+            </p>
+            <div class="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200 text-sm">
+                <p class="font-semibold text-yellow-800">Core Defining Force (Hooke's Law):</p>
+                <p class="text-yellow-700">The mathematical condition for SHM is expressed through Hooke's Law:</p>
+                $$F = -kx \tag{1}$$
+                <p class="text-yellow-700">
+                    The parameter $k$ is the <span class="font-bold">spring constant</span> (stiffness), and the negative sign ensures that the force $F$ always acts in the opposite direction to the displacement $x$. This is the <span class="font-bold">restoring</span> nature of the force.
+                </p>
+            </div>
+        </section>
+
+        <section id="shm-differential" class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b pb-2">2. The Simple Harmonic Oscillator and Its Equations</h2>
+
+            <h3 class="text-2xl font-semibold text-blue-700 mt-6 mb-3">2.1. The Governing Differential Equation</h3>
+            <p class="text-gray-700 leading-relaxed">
+                We combine the physical law (Hooke's Law) with the fundamental dynamical law (<span class="font-bold">Newton's Second Law</span>: $F_{net} = ma$). Since acceleration ($a$) is the second time derivative of position ($x$), $\left(a = \frac{d^2x}{dt^2}\right)$, this substitution transforms the physical system into a differential equation.
+            </p>
+            <div class="mt-2 text-gray-700 p-3 bg-gray-50 rounded-lg">
+                <p class="font-medium">Derivation Steps:</p>
+                $$m \frac{d^2x}{dt^2} = -kx$$
+                $$\frac{d^2x}{dt^2} + \frac{k}{m}x = 0$$
+                <p class="font-medium mt-2">By defining the angular frequency $\omega$ such that $\omega^2 = k/m$, we arrive at the standard form:</p>
+            </div>
+            $$ \frac{d^2x}{dt^2} + \omega^2 x = 0 \tag{2} $$
+            <p class="text-gray-700 leading-relaxed mt-4">
+                Equation (2) states that the **acceleration is directly proportional to the negative of the displacement**. This is the mathematical signature of SHM, where the acceleration continually pulls the mass back toward the equilibrium.
+            </p>
+
+            <h3 class="text-2xl font-semibold text-blue-700 mt-6 mb-3">2.2. Kinematic Solution for Position, Velocity, and Acceleration</h3>
+            <p class="text-gray-700 leading-relaxed">
+                The general solution to the second-order linear ODE (2) is a sinusoidal function.
+            </p>
+            <p class="font-semibold text-gray-800 mt-4">Position $x(t)$:</p>
+            <p class="text-gray-700 leading-relaxed">
+                This equation describes the position of the mass as a function of time. $\mathbf{A}$ is the <span class="font-bold">amplitude</span> (maximum displacement), $\mathbf{\omega}$ is the <span class="font-bold">angular frequency</span>, and $\mathbf{\phi}$ is the <span class="font-bold">phase constant</span>, determined by the object's position and velocity at $t=0$.
+            </p>
+            $$ x(t) = A \cos(\omega t + \phi) \tag{3} $$
+
+            <p class="font-semibold text-gray-800 mt-4">Velocity $v(t)$ (First Derivative):</p>
+            <p class="text-gray-700 leading-relaxed">
+                Velocity is found by taking the <span class="font-bold">first time derivative of the position function (3)</span>. This reveals that velocity is a sine function, meaning it is $90^\circ$ ($\pi/2$ radians) out of phase with the position. Velocity is maximum ($v_{max} = A\omega$) when position is zero ($x=0$).
+            </p>
+            $$ v(t) = \frac{dx}{dt} = -A\omega \sin(\omega t + \phi) \tag{4} $$
+
+            <p class="font-semibold text-gray-800 mt-4">Acceleration $a(t)$ (Second Derivative):</p>
+            <p class="text-gray-700 leading-relaxed">
+                Acceleration is found by taking the <span class="font-bold">second time derivative of $x(t)$</span> or the first derivative of $v(t)$. This function is a cosine wave, placing it $180^\circ$ ($\pi$ radians) out of phase with position, which confirms the negative sign in the ODE (2). Acceleration is maximum ($a_{max} = A\omega^2$) when position is maximum ($x=\pm A$).
+            </p>
+            $$ a(t) = \frac{d^2x}{dt^2} = -A\omega^2 \cos(\omega t + \phi) = -\omega^2 x(t) \tag{5} $$
+        </section>
+
+        <section id="energy" class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b pb-2">3. Conservation of Energy in SHM</h2>
+            <p class="text-gray-700 leading-relaxed">
+                In an ideal, undamped SHM system, the total mechanical energy is constant, continually transforming between kinetic energy (due to motion) and elastic potential energy (due to displacement).
+            </p>
+
+            <h3 class="text-2xl font-semibold text-blue-700 mt-6 mb-3">3.1. Potential Energy $\left(U\right)$</h3>
+            <p class="text-gray-700 leading-relaxed">
+                The potential energy stored in the spring is derived by integrating the force ($F_{applied} = +kx$) with respect to displacement. Substituting the kinematic equation (3) into the standard formula gives its time-dependence.
+            </p>
+            $$ U(t) = \frac{1}{2} k x^2 = \frac{1}{2} k A^2 \cos^2(\omega t + \phi) \tag{6} $$
+
+            <h3 class="2xl font-semibold text-blue-700 mt-6 mb-3">3.2. Kinetic Energy $\left(K\right)$</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Kinetic energy depends on the square of the velocity (4).
+            </p>
+            $$ K(t) = \frac{1}{2} m v^2 = \frac{1}{2} m A^2 \omega^2 \sin^2(\omega t + \phi) \tag{7} $$
+
+            <h3 class="2xl font-semibold text-blue-700 mt-6 mb-3">3.3. Total Mechanical Energy $\left(E\right)$</h3>
+            <p class="text-gray-700 leading-relaxed">
+                The total energy is the sum $E = K(t) + U(t)$. This is where the mathematical identity $\sin^2\theta + \cos^2\theta = 1$ and the physical relation $k = m\omega^2$ are used to prove conservation.
+            </p>
+            <div class="mt-2 text-gray-700 p-3 bg-gray-50 rounded-lg">
+                <p class="font-medium">Proof of Conservation:</p>
+                $$E = U(t) + K(t) = \frac{1}{2} k A^2 \cos^2(\omega t + \phi) + \frac{1}{2} m A^2 \omega^2 \sin^2(\omega t + \phi)$$
+                <p class="font-medium mt-2">Since $m\omega^2 = k$, the second term becomes $\frac{1}{2} k A^2 \sin^2(\omega t + \phi)$. Factoring out the common term $\frac{1}{2} k A^2$:</p>
+                $$E = \frac{1}{2} k A^2 \left( \cos^2(\omega t + \phi) + \sin^2(\omega t + \phi) \right)$$
+                <p class="font-medium mt-2">The total mechanical energy $E$ is:</p>
+            </div>
+            $$ E = \frac{1}{2} k A^2 \tag{8} $$
+            <p class="mt-2 text-gray-700 leading-relaxed font-bold">
+                Equation (8) is independent of time $t$, proving that energy is constant and depends only on the spring stiffness $k$ and the maximum displacement $A$.
+            </p>
+        </section>
+
+        <section id="damping" class="mb-8">
+            <h2 class="3xl font-bold text-gray-800 mb-4 border-b pb-2">4. Damped Harmonic Motion</h2>
+            <p class="text-gray-700 leading-relaxed">
+                <span class="font-bold">Damping</span> occurs when a dissipative force, such as friction or drag ($F_{d} = -b v$), acts against the motion. This force is proportional to the velocity and causes the amplitude to decrease over time.
+            </p>
+
+            <h3 class="2xl font-semibold text-blue-700 mt-6 mb-3">4.1. Damped Differential Equation</h3>
+            <p class="text-gray-700 leading-relaxed">
+                The net force now includes the restoring force, $F_{restoring} = -kx$, and the damping force, $F_{damping} = -b \frac{dx}{dt}$. Applying Newton's Second Law results in the general equation for a damped oscillator.
+            </p>
+            $$ m\frac{d^2x}{dt^2} + b\frac{dx}{dt} + kx = 0 \tag{9} $$
+            <p class="text-gray-700 leading-relaxed mt-4">
+                This equation is solved by trying an exponential solution $x(t) = e^{\lambda t}$. The resulting motion is classified based on the damping coefficient $b$ relative to $\sqrt{4mk}$.
+            </p>
+
+            <h3 class="2xl font-semibold text-blue-700 mt-6 mb-3">4.2. Classification of Solutions</h3>
+
+            <p class="font-semibold text-gray-800 mt-4">Case 1: Underdamped $\left(b^2 < 4mk\right)$</p>
+            <p class="text-gray-700 leading-relaxed">
+                The mass <span class="font-bold">oscillates</span> but with an amplitude $A(t) = A_0 e^{-\beta t}$ that decays exponentially. The angular frequency is $\omega_d = \sqrt{\omega_0^2 - \beta^2}$, where $\omega_0 = \sqrt{k/m}$ is the natural frequency and $\beta = b/(2m)$.
+            </p>
+            $$ x(t) = A_0 e^{-\beta t} \cos(\omega_d t + \phi) \tag{10} $$
+
+            <p class="font-semibold text-gray-800 mt-4">Case 2: Critically Damped $\left(b^2 = 4mk\right)$</p>
+            <p class="text-gray-700 leading-relaxed">
+                The mass returns to equilibrium in the **minimum possible time without oscillating**. This solution is often desired in engineering applications (e.g., car suspension).
+            </p>
+            $$ x(t) = (C_1 + C_2 t) e^{-\omega_0 t} \tag{11} $$
+        </section>
+
+        <!-- Problems Section -->
+        <section id="problems" class="mt-10 p-6 bg-indigo-50 rounded-xl shadow-inner">
+            <h2 class="3xl font-extrabold text-indigo-800 mb-6 border-b-2 border-indigo-300 pb-3">5. Practice Problems</h2>
+
+            <div class="space-y-6">
+                <!-- Intermediate Problems (5) -->
+                <h3 class="2xl font-bold text-indigo-700">Intermediate Problems (5)</h3>
+                <div class="problem-section">
+                    <p class="font-semibold text-gray-900">P1. SHM Kinematics</p>
+                    <p class="text-gray-700">A $0.5 \text{ kg}$ mass is attached to a spring ($k=50 \text{ N/m}$) and oscillates with an amplitude $A = 0.1 \text{ m}$. At time $t=0$, the mass is at $x=A$. Determine: (a) the angular frequency $\omega$; (b) the phase constant $\phi$; (c) the position $x$ when the speed is half the maximum speed.</p>
+                </div>
+
+                <div class="problem-section">
+                    <p class="font-semibold text-gray-900">P4. Average Kinetic Energy</p>
+                    <p class="text-gray-700">Prove that the average kinetic energy $\langle K \rangle$ over one full period of SHM is exactly half of the total energy $E$. Use integration over the full period $T$.</p>
+                </div>
+
+                <!-- Advanced Problems (3) -->
+                <h3 class="2xl font-bold text-indigo-700 mt-8">Advanced Problems (3)</h3>
+                <div class="problem-section">
+                    <p class="font-semibold text-gray-900">P6. Logarithmic Decrement in Damped SHM</p>
+                    <p class="text-gray-700">For an underdamped oscillator, the displacement is $x(t) = A_0 e^{-\beta t} \cos(\omega_d t)$. The logarithmic decrement $\delta$ is defined as the natural logarithm of the ratio of the amplitude of two successive oscillations. Show that $\delta = \beta T_d$, where $T_d = 2\pi/\omega_d$ is the damped period.</p>
+                </div>
+
+                <div class="problem-section">
+                    <p class="font-semibold text-gray-900">P7. Critically Damped Max Displacement</p>
+                    <p class="text-gray-700">Consider a critically damped oscillator with $x(t) = (A + Bt)e^{-\omega_0 t}$. Calculate the time $t_{max}$ at which the displacement reaches its maximum value, given initial conditions $x(0) = 0$ and $v(0) = v_0$ (meaning the oscillator starts at equilibrium with an initial push).</p>
+                </div>
+
+                <!-- Irodov-like Problems (2) -->
+                <h3 class="2xl font-bold text-indigo-700 mt-8">Irodov-like Problems (2)</h3>
+                <div class="problem-section">
+                    <p class="font-semibold text-gray-900">P9. Two-Block System</p>
+                    <p class="text-gray-700">A block of mass $m$ is placed on top of a larger block of mass $M$. The lower block $M$ is attached to a spring with stiffness $k$. The coefficient of static friction between the blocks is $\mu_s$. The entire system oscillates horizontally in SHM with amplitude $A$. Find the maximum possible amplitude $A_{max}$ such that the top block $m$ does not slip relative to $M$.</p>
+                </div>
+
+                <div class="problem-section">
+                    <p class="font-semibold text-gray-900">P10. Time-Dependent Potential</p>
+                    <p class="text-gray-700">A particle of mass $m$ is moving in a potential field $U(x) = \frac{1}{2} k x^2 + \lambda x^3$. Analyze the motion near $x=0$. Find the effective angular frequency $\omega_{eff}$ for small oscillations around the equilibrium position $x_0$. (Hint: Find the equilibrium point $x_0$, then use Taylor expansion to approximate the potential near $x_0$).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Section -->
+        <section id="solutions" class="mt-10 p-6 solution-container rounded-xl shadow-xl">
+            <h2 class="3xl font-extrabold text-blue-800 mb-6 border-b-2 border-blue-200 pb-3">6. Detailed Solutions</h2>
+
+            <div class="space-y-8 text-gray-800">
+                <!-- P1 -->
+                <div class="p-4 solution-box rounded-lg">
+                    <p class="font-bold text-xl text-indigo-700 mb-2">P1. SHM Kinematics</p>
+                    <p class="text-sm italic text-gray-600">This problem applies the definitions of $\omega$, $\phi$, and uses the energy/velocity relationship to find the position.</p>
+
+                    <p class="font-medium text-gray-900 mt-3">Part (a): Angular Frequency $\omega$</p>
+                    <p class="text-gray-700">The angular frequency is determined by the system's inertia ($m$) and stiffness ($k$):</p>
+                    $$ \omega = \sqrt{\frac{k}{m}} = \sqrt{\frac{50 \text{ N/m}}{0.5 \text{ kg}}} = \sqrt{100} = 10 \text{ rad/s} $$
+
+                    <p class="font-medium text-gray-900 mt-3">Part (b): Phase Constant $\phi$</p>
+                    <p class="text-gray-700">We use the position equation (3) with the initial condition $x(0) = A$:</p>
+                    $$ x(0) = A \cos(\omega(0) + \phi) \implies A = A \cos(\phi) $$
+                    <p class="text-gray-700">For this to be true, $\cos(\phi)$ must equal 1. The simplest solution is:</p>
+                    $$ \phi = 0 $$
+
+                    <p class="font-medium text-gray-900 mt-3">Part (c): Position $x$ when $v = v_{max}/2$</p>
+                    <p class="text-gray-700">We use the relationship derived from the conservation of energy (related to the position/velocity equation, $v = \pm \omega \sqrt{A^2 - x^2}$). We know $v_{max} = A\omega$. We set $v = \frac{1}{2} A\omega$:</p>
+                    $$ \begin{aligned} \frac{1}{2} A\omega &= \omega \sqrt{A^2 - x^2} \\ \frac{1}{2} A &= \sqrt{A^2 - x^2} \quad (\text{Divide by } \omega) \\ \frac{A^2}{4} &= A^2 - x^2 \quad (\text{Square both sides}) \\ x^2 &= A^2 - \frac{A^2}{4} = \frac{3}{4} A^2 \\ x &= \pm \frac{\sqrt{3}}{2} A \\ x &= \pm \frac{\sqrt{3}}{2} (0.1 \text{ m}) \approx \pm 0.0866 \text{ m} \end{aligned} $$
+                    <p class="text-gray-700">The speed is half of the maximum when the mass is $86.6\%$ of the amplitude away from equilibrium.</p>
+                </div>
+
+                <!-- P4 -->
+                <div class="p-4 solution-box rounded-lg">
+                    <p class="font-bold text-xl text-indigo-700 mb-2">P4. Average Kinetic Energy</p>
+                    <p class="text-sm italic text-gray-600">This proof requires integration over one full period $T$ to find the average value $\langle K \rangle$ and relies on the $\sin^2\theta$ integral identity.</p>
+
+                    <p class="font-medium text-gray-900 mt-3">Step 1: Define the Average Value</p>
+                    <p class="text-gray-700">The average value of any time-dependent quantity $f(t)$ over a period $T$ is $\langle f \rangle = \frac{1}{T} \int_{0}^{T} f(t) dt$. Using the kinetic energy function (7) with $\phi=0$ for simplicity:</p>
+                    $$ \langle K \rangle = \frac{1}{T} \int_{0}^{T} K(t) dt = \frac{1}{T} \int_{0}^{T} \left( \frac{1}{2} m A^2 \omega^2 \sin^2(\omega t) \right) dt $$
+
+                    <p class="font-medium text-gray-900 mt-3">Step 2: Simplify and Apply Identity</p>
+                    <p class="text-gray-700">We use the relation $k = m\omega^2$ and factor out the constant terms. We then apply the trigonometric identity $\sin^2\theta = \frac{1}{2} (1 - \cos(2\theta))$:</p>
+                    $$ \begin{aligned} \langle K \rangle &= \frac{1}{2} k A^2 \frac{1}{T} \int_{0}^{T} \sin^2(\omega t) dt \\ \langle K \rangle &= \frac{1}{2} k A^2 \frac{1}{T} \int_{0}^{T} \frac{1}{2} (1 - \cos(2\omega t)) dt \end{aligned} $$
+
+                    <p class="font-medium text-gray-900 mt-3">Step 3: Evaluate the Integral</p>
+                    <p class="text-gray-700">When integrating over a full period $T$ (where $T=2\pi/\omega$), the integral of the cosine term is zero: $\int_{0}^{T} \cos(2\omega t) dt = 0$. This leaves only the integral of the constant term:</p>
+                    $$ \begin{aligned} \langle K \rangle &= \frac{1}{4} k A^2 \frac{1}{T} \int_{0}^{T} dt \\ \langle K \rangle &= \frac{1}{4} k A^2 \frac{1}{T} [t]_{0}^{T} = \frac{1}{4} k A^2 \frac{T}{T} \\ \langle K \rangle &= \frac{1}{4} k A^2 \end{aligned} $$
+
+                    <p class="font-medium text-gray-900 mt-3">Conclusion</p>
+                    <p class="text-gray-700">Since the total energy is $E = \frac{1}{2} k A^2$ (8), we conclude:</p>
+                    $$ \langle K \rangle = \frac{1}{2} E $$
+                    <p class="text-gray-700">By conservation of energy, this also means the average potential energy $\langle U \rangle$ must be $\frac{1}{2} E$.</p>
+                </div>
+
+                <!-- P6 -->
+                <div class="p-4 solution-box rounded-lg">
+                    <p class="font-bold text-xl text-pink-700 mb-2">P6. Logarithmic Decrement</p>
+                    <p class="text-sm italic text-gray-600">This problem analyzes the exponential decay factor of the underdamped solution (10) over exactly one damped period $T_d = 2\pi/\omega_d$.</p>
+
+                    <p class="font-medium text-gray-900 mt-3">Step 1: Define Successive Amplitudes</p>
+                    <p class="text-gray-700">For underdamped motion, the amplitude $A(t)$ is $A_0 e^{-\beta t}$. Let $A_n$ be the amplitude at time $t_n$ (when $\cos(\omega_d t + \phi) = \pm 1$). The next amplitude, $A_{n+1}$, occurs exactly one period later, at $t_{n+1} = t_n + T_d$.</p>
+                    $$ \begin{aligned} A_n &= A_0 e^{-\beta t_n} \\ A_{n+1} &= A_0 e^{-\beta (t_n + T_d)} = A_0 e^{-\beta t_n} e^{-\beta T_d} \end{aligned} $$
+
+                    <p class="font-medium text-gray-900 mt-3">Step 2: Form the Ratio $\frac{A_n}{A_{n+1}}$</p>
+                    <p class="text-gray-700">The logarithmic decrement is based on the ratio of successive maximum amplitudes. When we divide, the time-dependent term $A_0 e^{-\beta t_n}$ cancels out:</p>
+                    $$ \frac{A_n}{A_{n+1}} = \frac{A_0 e^{-\beta t_n}}{A_0 e^{-\beta t_n} e^{-\beta T_d}} = e^{\beta T_d} $$
+
+                    <p class="font-medium text-gray-900 mt-3">Step 3: Calculate the Logarithmic Decrement $\delta$</p>
+                    <p class="text-gray-700">The definition of the logarithmic decrement $\delta$ is the natural logarithm of this ratio:</p>
+                    $$ \delta = \ln \left( \frac{A_n}{A_{n+1}} \right) = \ln \left( e^{\beta T_d} \right) $$
+                    <p class="text-gray-700">Since $\ln(e^x) = x$, we have the required result:</p>
+                    $$ \delta = \beta T_d $$
+                </div>
+
+                <!-- P7 -->
+                <div class="p-4 solution-box rounded-lg">
+                    <p class="font-bold text-xl text-pink-700 mb-2">P7. Critically Damped Max Displacement</p>
+                    <p class="text-sm italic text-gray-600">For critically damped motion (11), the maximum displacement $t_{max}$ occurs when the velocity $v(t) = \frac{dx}{dt}$ is zero. This requires solving for the constants $A$ and $B$ using the initial conditions.</p>
+
+                    <p class="font-medium text-gray-900 mt-3">Step 1: Solve for Constants $A$ and $B$ using Initial Conditions</p>
+                    <p class="text-gray-700">The solution form is $x(t) = (A + B t) e^{-\omega_0 t}$.</p>
+                    <p class="text-gray-700">Initial position $x(0) = 0$:</p>
+                    $$ x(0) = (A + 0) e^0 = A \implies A = 0 $$
+                    <p class="text-gray-700">Thus, $x(t) = B t e^{-\omega_0 t}$. Now, we find the velocity $v(t)$ by differentiation (product rule):</p>
+                    $$ \begin{aligned} v(t) &= \frac{dx}{dt} = B \left[ (1) e^{-\omega_0 t} + t (-\omega_0 e^{-\omega_0 t}) \right] \\ v(t) &= B e^{-\omega_0 t} (1 - \omega_0 t) \end{aligned} $$
+                    <p class="text-gray-700">Initial velocity $v(0) = v_0$:</p>
+                    $$ v(0) = B e^0 (1 - 0) = B \implies B = v_0 $$
+                    <p class="text-gray-700">The specific displacement equation is $x(t) = v_0 t e^{-\omega_0 t}$.</p>
+
+                    <p class="font-medium text-gray-900 mt-3">Step 2: Find Time $t_{max}$ when $\frac{dx}{dt} = 0$</p>
+                    <p class="text-gray-700">Set the velocity function to zero to find the time of maximum displacement, $t_{max}$:</p>
+                    $$ v_0 e^{-\omega_0 t_{max}} (1 - \omega_0 t_{max}) = 0 $$
+                    <p class="text-gray-700">Since $v_0 \ne 0$ (initial push) and $e^{-\omega_0 t}$ is never zero, the term in parentheses must be zero:</p>
+                    $$ 1 - \omega_0 t_{max} = 0 $$
+                    $$ t_{max} = \frac{1}{\omega_0} $$
+                </div>
+
+                <!-- P9 -->
+                <div class="p-4 solution-box rounded-lg">
+                    <p class="font-bold text-xl text-red-700 mb-2">P9. Two-Block System</p>
+                    <p class="text-sm italic text-gray-600">This is a dynamics problem that requires finding the maximum acceleration of the two-block system and relating it to the maximum static friction force.</p>
+
+                    <p class="font-medium text-gray-900 mt-3">Step 1: System Angular Frequency $\omega$</p>
+                    <p class="text-gray-700">Since the blocks move together, the total oscillating mass is $(M+m)$. The angular frequency of the system is:</p>
+                    $$ \omega^2 = \frac{k}{M+m} $$
+
+                    <p class="font-medium text-gray-900 mt-3">Step 2: Maximum Acceleration $a_{max}$ of the System</p>
+                    <p class="text-gray-700">The magnitude of the maximum acceleration of any point in SHM is given by $a_{max} = A_{max} \omega^2$ (from (5)).</p>
+                    $$ a_{max} = A_{max} \left( \frac{k}{M+m} \right) $$
+
+                    <p class="font-medium text-gray-900 mt-3">Step 3: Force Required by Top Block $m$</p>
+                    <p class="text-gray-700">For the top block $m$ to move with this acceleration, it requires a net force $F_{net, m}$. This force is provided entirely by the static friction $F_f$ from the bottom block $M$.</p>
+                    $$ F_{net, m} = m a_{max} = m A_{max} \omega^2 $$
+
+                    <p class="font-medium text-gray-900 mt-3">Step 4: Maximum Friction Limit</p>
+                    <p class="text-gray-700">To prevent slipping, the required force $F_{net, m}$ must be less than or equal to the maximum static friction force $F_{f, \text{max}} = \mu_s F_N$. Since the motion is horizontal, the normal force $F_N$ on the top block is simply $mg$:</p>
+                    $$ F_{net, m} \le F_{f, \text{max}} \implies m A_{max} \omega^2 \le \mu_s m g $$
+
+                    <p class="font-medium text-gray-900 mt-3">Step 5: Solve for $A_{max}$</p>
+                    <p class="text-gray-700">The mass $m$ cancels out. Substitute $\omega^2$ from Step 1 and solve for $A_{max}$:</p>
+                    $$ A_{max} \omega^2 = \mu_s g $$
+                    $$ A_{max} \left( \frac{k}{M+m} \right) = \mu_s g $$
+                    $$ A_{max} = \frac{\mu_s g (M+m)}{k} $$
+                    <p class="text-gray-700">This is the maximum amplitude the system can sustain before the required inertial force exceeds the available friction.</p>
+                </div>
+
+                <!-- P10 -->
+                <div class="p-4 solution-box rounded-lg">
+                    <p class="font-bold text-xl text-red-700 mb-2">P10. Time-Dependent Potential</p>
+                    <p class="text-sm italic text-gray-600">The motion near an equilibrium point of a complex potential can be approximated as SHM by performing a Taylor expansion of the potential energy $U(x)$ around that point.</p>
+
+                    <p class="font-medium text-gray-900 mt-3">Step 1: Find Equilibrium Point $x_0$</p>
+                    <p class="text-gray-700">Equilibrium occurs where the force is zero, $F(x) = -\frac{dU}{dx} = 0$.</p>
+                    $$ \frac{dU}{dx} = \frac{d}{dx} \left( \frac{1}{2} k x^2 + \lambda x^3 \right) = k x + 3\lambda x^2 $$
+                    <p class="text-gray-700">Setting this to zero to find the equilibrium points $x_0$:</p>
+                    $$ x_0 (k + 3\lambda x_0) = 0 $$
+                    <p class="text-gray-700">The two equilibrium points are $x_0 = 0$ and $x_0 = -k/(3\lambda)$. The problem asks for the motion near $x=0$, so we use $\mathbf{x_0 = 0}$.</p>
+
+                    <p class="font-medium text-gray-900 mt-3">Step 2: Approximate Potential using Taylor Expansion</p>
+                    <p class="text-gray-700">For small oscillations around $x_0=0$, the potential energy can be approximated by keeping only the lowest non-zero terms in its Taylor expansion:</p>
+                    $$ U(x) \approx U(x_0) + \left. \frac{dU}{dx} \right|_{x_0} (x-x_0) + \frac{1}{2} \left. \frac{d^2U}{dx^2} \right|_{x_0} (x-x_0)^2 + \dots $$
+                    <p class="text-gray-700">At $x_0=0$: $U(0)=0$. The first derivative $\frac{dU}{dx}|_{0}=0$ (since it's an equilibrium point).</p>
+                    <p class="text-gray-700">We only need the second derivative term to approximate the potential as an SHM potential $U \approx \frac{1}{2} k_{eff} x^2$.</p>
+
+                    <p class="font-medium text-gray-900 mt-3">Step 3: Calculate the Effective Spring Constant $k_{eff}$</p>
+                    <p class="text-gray-700">The effective spring constant $k_{eff}$ is given by the second derivative evaluated at $x_0$:</p>
+                    $$ k_{eff} = \left. \frac{d^2U}{dx^2} \right|_{x=x_0} $$
+                    $$ \frac{d^2U}{dx^2} = \frac{d}{dx} (k x + 3\lambda x^2) = k + 6\lambda x $$
+                    <p class="text-gray-700">Evaluating at $x_0 = 0$:</p>
+                    $$ k_{eff} = k + 6\lambda(0) = k $$
+
+                    <p class="font-medium text-gray-900 mt-3">Step 4: Determine the Effective Angular Frequency $\omega_{eff}$</p>
+                    <p class="text-gray-700">The motion near $x=0$ is approximately SHM with spring constant $k_{eff}=k$. The effective angular frequency is:</p>
+                    $$ \omega_{eff} = \sqrt{\frac{k_{eff}}{m}} = \sqrt{\frac{k}{m}} $$
+                    <p class="text-gray-700">For small oscillations, the cubic term has no effect on the angular frequency, as its influence is zero at $x=0$ and negligible for small $x$.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        /**
+         * Renders all KaTeX expressions on the page after content load.
+         */
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                // Settings for KaTeX auto-render extension
+                delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "\\(", right: "\\)", display: false}
+                ],
+                // Set trust to true to allow LaTeX environments like 'aligned'
+                throwOnError : false,
+                trust: true 
+            });
+        });
+    </script>
+</body>
+</html>
