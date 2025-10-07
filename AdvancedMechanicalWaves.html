@@ -57,19 +57,23 @@
             margin: 0.5rem 0 !important;
         }
 
-        /* Styling for the print button */
+        /* Styling for the modest print button */
         .print-button {
             transition: all 0.2s;
+            /* Modest styling */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+            border: 1px solid #dbeafe; /* Light blue border */
         }
         .print-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(59, 130, 246, 0.2);
         }
 
         /* * CRITICAL PRINT CSS for a professional, clean printout.
          * Hides UI and ensures no URLs, dates, or small headers/footers appear.
         */
         @media print {
+            /* Hide all non-document elements */
             .print-button, .no-print {
                 display: none !important;
             }
@@ -81,11 +85,11 @@
                 font-size: 11pt; /* Better for standard print */
                 line-height: 1.5;
             }
-            /* Explicitly set page margins and suppress headers/footers */
+            /* Explicitly set page margins and suppress headers/footers added by the browser */
             @page {
                 size: A4;
-                margin: 0.5in;
-                /* These properties help suppress unwanted browser printing artifacts */
+                margin: 0.5in; /* Minimum margin for professional look */
+                /* Hiding default browser print content */
                 @top-center { content: none; }
                 @bottom-center { content: none; }
                 @top-left { content: none; }
@@ -116,9 +120,12 @@
 
     <!-- Header and Download Button (Will be hidden during print via 'no-print' class) -->
     <div class="bg-blue-600 text-white shadow-lg p-6 sticky top-0 z-10 flex justify-between items-center rounded-b-lg no-print">
-        <h1 class="text-3xl font-extrabold tracking-tight">Mechanical Waves: Documentation</h1>
-        <button onclick="downloadPdf()" class="print-button bg-white text-blue-600 font-bold py-2 px-6 rounded-full shadow-lg">
-            Download PDF / Print
+        <!-- TITLE CHANGE: Removed "Documentation" -->
+        <h1 class="text-3xl font-extrabold tracking-tight">Mechanical Waves: A Mathematical Analysis</h1>
+        
+        <!-- MODEST BUTTON STYLING -->
+        <button onclick="downloadPdf()" class="print-button bg-white text-blue-600 font-medium py-1.5 px-4 rounded-lg">
+            Print Document
         </button>
     </div>
 
