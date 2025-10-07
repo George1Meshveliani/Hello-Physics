@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical Waves: A Mathematical Analysis</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- CRITICAL MATHJAX CONFIGURATION FOR RELIABLE RENDERING -->
+    <script type="text/javascript">
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']], // Explicitly define inline delimiters
+                displayMath: [['$$', '$$'], ['\\[', '\\]']] // Explicitly define block delimiters
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Configure Tailwind and custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+            line-height: 1.75;
+            font-size: 16px;
+        }
+
+        /* Custom styling for MathJax block formulas */
+        .math-block {
+            background-color: #fff;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #3b82f6; /* Blue indicator line */
+            overflow-x: auto; /* Fallback for exceptionally long formulas */
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Ensure MathJax rendering uses the full width comfortably and is properly aligned in text */
+        mjx-container {
+            display: inline-block !important;
+            max-width: 100%;
+            vertical-align: middle;
+            line-height: normal; /* Prevents vertical stretching in inline text */
+            margin: 0 2px;
+        }
+
+        /* Block formulas for better visual separation */
+        mjx-container[display="true"] {
+            display: block !important;
+            text-align: left !important;
+            margin: 0.5rem 0 !important;
+        }
+
+        /* Styling for the print button */
+        .print-button {
+            transition: all 0.2s;
+        }
+        .print-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.4);
+        }
+
+        /* * CRITICAL PRINT CSS for a professional, clean printout.
+         * Hides UI and ensures no URLs, dates, or small headers/footers appear.
+        */
+        @media print {
+            .print-button, .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                font-size: 11pt; /* Better for standard print */
+                line-height: 1.5;
+            }
+            /* Explicitly set page margins and suppress headers/footers */
+            @page {
+                size: A4;
+                margin: 0.5in;
+                /* These properties help suppress unwanted browser printing artifacts */
+                @top-center { content: none; }
+                @bottom-center { content: none; }
+                @top-left { content: none; }
+                @bottom-left { content: none; }
+                @top-right { content: none; }
+                @bottom-right { content: none; }
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+
+        // Function to trigger the print dialog
+        function downloadPdf() {
+            window.print();
+        }
+    </script>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <!-- Header and Download Button (Will be hidden during print via 'no-print' class) -->
+    <div class="bg-blue-600 text-white shadow-lg p-6 sticky top-0 z-10 flex justify-between items-center rounded-b-lg no-print">
+        <h1 class="text-3xl font-extrabold tracking-tight">Mechanical Waves: Documentation</h1>
+        <button onclick="downloadPdf()" class="print-button bg-white text-blue-600 font-bold py-2 px-6 rounded-full shadow-lg">
+            Download PDF / Print
+        </button>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="max-w-4xl mx-auto p-6 lg:p-10 bg-white shadow-xl rounded-xl mt-6 mb-12">
+        <h2 class="text-2xl font-semibold mb-6 border-b-2 pb-2 text-blue-700">1. Theoretical Analysis and Derivations</h2>
+        
+        <!-- 1. General Wave Description -->
+        <section>
+            <h3 class="text-xl font-bold mb-3 text-blue-600">1.1 Wave Kinematics and the Wave Function</h3>
+            <p class="mb-4">
+                A mechanical wave is a disturbance that propagates through a medium, transferring energy and momentum without transferring matter. The displacement of a point in the medium from its equilibrium position is a function of both position $x$ and time $t$, denoted by $y(x, t)$.
+            </p>
+
+            <h4 class="text-lg font-semibold mt-4 mb-2">1.1.1 General Form of the Wave Function</h4>
+            <p>
+                For a wave propagating with a constant speed $v$ in the positive $x$-direction, the function must maintain its shape over time. This leads to the general form:
+            </p>
+            <div class="math-block">
+                $$
+                y(x, t) = f(x - v t) \tag{1}
+                $$
+            </div>
+            <p>
+                where $f$ is any function that describes the shape of the wave profile. A wave propagating in the negative $x$-direction is given by $y(x, t) = f(x + v t)$.
+            </p>
+
+            <h4 class="text-lg font-semibold mt-4 mb-2">1.1.2 Harmonic Wave Function (Sinusoidal)</h4>
+            <p>
+                The most common type of wave for analysis is the harmonic (sinusoidal) wave. For a wave propagating in the positive $x$-direction, the displacement is:
+            </p>
+            <div class="math-block">
+                $$
+                y(x, t) = A \cos(k x - \omega t + \phi) \tag{2}
+                $$
+            </div>
+            <p>
+                Here, $A$ is the amplitude, $k$ is the wave number, $\omega$ is the angular frequency, and $\phi$ is the phase constant. The fundamental relationships connecting these parameters are:
+            </p>
+            <div class="math-block">
+                $$
+                k = \frac{2\pi}{\lambda} \quad ; \quad \omega = 2\pi f = \frac{2\pi}{T} \quad ; \quad v = \frac{\omega}{k} = \lambda f \tag{3}
+                $$
+            </div>
+            <p>
+                where $\lambda$ is the wavelength, $f$ is the frequency, and $T$ is the period.
+            </p>
+        </section>
+
+        <!-- 2. The Classical Wave Equation (Derivation) -->
+        <section class="mt-8">
+            <h3 class="text-xl font-bold mb-3 text-blue-600">1.2 The Classical Wave Equation (CWE)</h3>
+            <p class="mb-4">
+                The classical wave equation is a linear, second-order partial differential equation that governs the propagation of many types of waves, including mechanical waves.
+            </p>
+            
+            <h4 class="text-lg font-semibold mt-4 mb-2">1.2.1 Proof of the CWE from the General Solution</h4>
+            <p>
+                Consider the general wave function $y(x, t) = f(x - v t)$. Let $u = x - v t$. The wave function is $y(u)$. We apply the chain rule to find the partial derivatives with respect to $x$ and $t$.
+            </p>
+            <p class="font-medium mt-2">First-order partial derivatives:</p>
+            <div class="math-block">
+                $$
+                \frac{\partial y}{\partial x} = \frac{dy}{du} \frac{\partial u}{\partial x} = f'(u) (1) = f'(u) \tag{4}
+                $$
+            </div>
+            <div class="math-block">
+                $$
+                \frac{\partial y}{\partial t} = \frac{dy}{du} \frac{\partial u}{\partial t} = f'(u) (-v) = -v f'(u) \tag{5}
+                $$
+            </div>
+            <p class="font-medium mt-2">Second-order partial derivatives:</p>
+            <div class="math-block">
+                $$
+                \frac{\partial^2 y}{\partial x^2} = \frac{\partial}{\partial x} \left( \frac{\partial y}{\partial x} \right) = \frac{\partial}{\partial x} (f'(u)) = f''(u) \frac{\partial u}{\partial x} = f''(u) \tag{6}
+                $$
+            </div>
+            <div class="math-block">
+                $$
+                \frac{\partial^2 y}{\partial t^2} = \frac{\partial}{\partial t} \left( \frac{\partial y}{\partial t} \right) = \frac{\partial}{\partial t} (-v f'(u)) = -v \left( f''(u) \frac{\partial u}{\partial t} \right) = -v (f''(u) (-v)) = v^2 f''(u) \tag{7}
+                $$
+            </div>
+            <p>
+                By comparing equations (6) and (7), we can eliminate $f''(u)$ to obtain the one-dimensional Classical Wave Equation:
+            </p>
+            <div class="math-block">
+                $$
+                \frac{\partial^2 y}{\partial x^2} = \frac{1}{v^2} \frac{\partial^2 y}{\partial t^2} \tag{8}
+                $$
+            </div>
+        </section>
+
+        <!-- 3. Transverse Waves on a String (Physical Derivation) -->
+        <section class="mt-8">
+            <h3 class="text-xl font-bold mb-3 text-blue-600">1.3 Speed of Transverse Waves on a String</h3>
+            <p class="mb-4">
+                We now derive the wave speed $v$ by applying Newton's Second Law to an infinitesimal segment of a string under tension $T$.
+            </p>
+            
+            <h4 class="text-lg font-semibold mt-4 mb-2">1.3.1 Physical Derivation of Wave Speed $v$</h4>
+            <p>
+                Consider a small segment of length $dx$ of a string with linear mass density $\mu$. The tension $T$ acts tangentially to the string at both ends of the segment. We assume the vertical displacement $y$ is small, so the tension $T$ remains approximately constant.
+            </p>
+            <p>
+                The net vertical force $dF_y$ on the segment is the difference between the vertical components of the tension at $x+dx$ and $x$.
+            </p>
+            <div class="math-block">
+                $$
+                dF_y = T \sin(\theta_{x+dx}) - T \sin(\theta_x) \tag{9}
+                $$
+            </div>
+            <p>
+                For small angles (small transverse displacement), $\sin\theta \approx \tan\theta$. The slope of the string at any point is $\tan\theta = \frac{\partial y}{\partial x}$.
+            </p>
+            <div class="math-block">
+                $$
+                dF_y \approx T \left( \frac{\partial y}{\partial x} \Big|_{x+dx} - \frac{\partial y}{\partial x} \Big|_x \right) \tag{10}
+                $$
+            </div>
+            <p>
+                According to Newton's Second Law, $dF_y = (dm) a_y$. Since $dm = \mu \, dx$ and $a_y = \frac{\partial^2 y}{\partial t^2}$:
+            </p>
+            <div class="math-block">
+                $$
+                T \left( \frac{\partial y}{\partial x} \Big|_{x+dx} - \frac{\partial y}{\partial x} \Big|_x \right) = \mu \, dx \, \frac{\partial^2 y}{\partial t^2} \tag{11}
+                $$
+            </div>
+            <p>
+                Dividing by $dx$ and taking the limit as $dx \to 0$, the term on the left side becomes the definition of the second derivative of the slope with respect to $x$:
+            </p>
+            <div class="math-block">
+                $$
+                \lim_{dx \to 0} \frac{1}{dx} \left[ \frac{\partial y}{\partial x} \Big|_{x+dx} - \frac{\partial y}{\partial x} \Big|_x \right] = \frac{\partial^2 y}{\partial x^2} \tag{12}
+                $$
+            </div>
+            <p>
+                Substituting this back into equation (11), we get the CWE specifically for a string:
+            </p>
+            <div class="math-block">
+                $$
+                T \frac{\partial^2 y}{\partial x^2} = \mu \frac{\partial^2 y}{\partial t^2} \quad \implies \quad \frac{\partial^2 y}{\partial x^2} = \frac{\mu}{T} \frac{\partial^2 y}{\partial t^2} \tag{13}
+                $$
+            </div>
+            <p>
+                Comparing this result (13) with the general CWE (8), we find that $\frac{1}{v^2} = \frac{\mu}{T}$. Thus, the wave speed is:
+            </p>
+            <div class="math-block">
+                $$
+                v = \sqrt{\frac{T}{\mu}} \tag{14}
+                $$
+            </div>
+            <p>
+                The speed of a mechanical wave is determined solely by the properties of the medium: the restoring force (Tension $T$) and the inertia (linear mass density $\mu$).
+            </p>
+        </section>
+
+        <!-- 4. Energy and Power in Waves -->
+        <section class="mt-8">
+            <h3 class="text-xl font-bold mb-3 text-blue-600">1.4 Energy and Power Transmission</h3>
+            <p class="mb-4">
+                Waves carry energy. We calculate the rate at which energy is transferred across a point, known as the wave power $P$.
+            </p>
+
+            <h4 class="text-lg font-semibold mt-4 mb-2">1.4.1 Kinetic Energy Density</h4>
+            <p>
+                The infinitesimal kinetic energy $dK$ of a segment $dx$ is $dK = \frac{1}{2} (dm) v_y^2$, where $v_y = \frac{\partial y}{\partial t}$ is the transverse velocity.
+            </p>
+            <div class="math-block">
+                $$
+                dK = \frac{1}{2} (\mu \, dx) \left(\frac{\partial y}{\partial t}\right)^2 \quad \implies \quad \frac{dK}{dx} = \frac{1}{2} \mu \left(\frac{\partial y}{\partial t}\right)^2 \tag{15}
+                $$
+            </div>
+            <p>
+                For a harmonic wave $y(x, t) = A \cos(k x - \omega t)$, the velocity is $\frac{\partial y}{\partial t} = \omega A \sin(k x - \omega t)$.
+            </p>
+            <div class="math-block">
+                $$
+                \frac{dK}{dx} = \frac{1}{2} \mu \omega^2 A^2 \sin^2(k x - \omega t) \tag{16}
+                $$
+            </div>
+
+            <h4 class="text-lg font-semibold mt-4 mb-2">1.4.2 Potential Energy Density</h4>
+            <p>
+                The potential energy $dU$ stored in the segment is due to the stretching of the string. The length change $\Delta L = ds - dx$ is approximated using the binomial expansion of $ds = dx \sqrt{1 + \left(\frac{\partial y}{\partial x}\right)^2}$ as $\Delta L \approx \frac{1}{2} \left(\frac{\partial y}{\partial x}\right)^2 dx$. The potential energy $dU = T \Delta L$:
+            </p>
+            <div class="math-block">
+                $$
+                \frac{dU}{dx} = \frac{1}{2} T \left(\frac{\partial y}{\partial x}\right)^2 \tag{17}
+                $$
+            </div>
+            <p>
+                Using $T = \mu v^2$ and $v=\omega/k$ (which gives $T = \mu \omega^2/k^2$), we find that the potential energy density is equal to the kinetic energy density:
+            </p>
+            <div class="math-block">
+                $$
+                \frac{dU}{dx} = \frac{1}{2} \mu \omega^2 A^2 \sin^2(k x - \omega t) \tag{18}
+                $$
+            </div>
+            <p class="font-bold">
+                Crucially, $\frac{dK}{dx} = \frac{dU}{dx}$ for a travelling harmonic wave.
+            </p>
+
+            <h4 class="text-lg font-semibold mt-4 mb-2">1.4.3 Average Power Transmitted</h4>
+            <p>
+                The instantaneous power $P$ is $P(x, t) = -T \frac{\partial y}{\partial x} \cdot \frac{\partial y}{\partial t}$. After substitution and averaging $\langle \sin^2(\theta) \rangle = \frac{1}{2}$, the average power $\bar{P}$ transmitted is found to be:
+            </p>
+            <div class="math-block">
+                $$
+                \bar{P} = \frac{1}{2} \mu v \omega^2 A^2 \tag{19}
+                $$
+            </div>
+            <p>
+                The average power is proportional to the medium's inertia ($\mu$), wave speed ($v$), the square of the angular frequency ($\omega^2$), and the square of the amplitude ($A^2$).
+            </p>
+        </section>
+
+        <!-- 5. Superposition and Boundary Conditions -->
+        <section class="mt-8">
+            <h3 class="text-xl font-bold mb-3 text-blue-600">1.5 Principle of Superposition and Standing Waves</h3>
+            <p class="mb-4">
+                The principle of superposition states that the resultant displacement $y_R(x, t)$ is the vector sum of individual wave displacements: $y_R(x, t) = y_1(x, t) + y_2(x, t)$.
+            </p>
+
+            <h4 class="text-lg font-semibold mt-4 mb-2">1.5.1 Standing Waves Derivation</h4>
+            <p>
+                A standing wave results from the superposition of two identical waves traveling in opposite directions: $y_1(x, t) = A \sin(k x - \omega t)$ and $y_2(x, t) = A \sin(k x + \omega t)$.
+            </p>
+            <div class="math-block">
+                $$
+                y_S(x, t) = A [\sin(k x - \omega t) + \sin(k x + \omega t)] \tag{20}
+                $$
+            </div>
+            <p>
+                Using the trigonometric identity $\sin \alpha + \sin \beta = 2 \sin\left(\frac{\alpha+\beta}{2}\right) \cos\left(\frac{\alpha-\beta}{2}\right)$:
+            </p>
+            <div class="math-block">
+                $$
+                y_S(x, t) = \left[ 2 A \sin(k x) \right] \cos(\omega t) \tag{21}
+                $$
+            </div>
+            <p>
+                This form shows the wave is stationary: the spatial dependence is separated from the time dependence. The amplitude of oscillation is dependent only on position $x$: $A_S(x) = 2 A \sin(k x)$.
+            </p>
+        </section>
+        
+        <!-- 6. Problems Section -->
+        <section class="mt-12 p-6 bg-gray-100 rounded-xl shadow-inner">
+            <h3 class="text-2xl font-bold mb-4 text-red-700 border-b-2 border-red-500 pb-2">2. Problems (10)</h3>
+            <p class="mb-6 text-gray-700 italic">These problems range from intermediate calculations to advanced conceptual derivations. Solutions follow in the next section.</p>
+
+            <!-- Problem List -->
+            <ol class="list-decimal ml-6 space-y-4">
+                <li class="font-medium text-lg"><span class="font-mono text-blue-600">P1. (Intermediate)</span> A wave on a string is described by $y(x, t) = 0.05 \cos(4\pi x - 20\pi t + \pi/4)$, where $x$ and $y$ are in meters and $t$ is in seconds. Determine the phase velocity $v$, wavelength $\lambda$, and the maximum transverse velocity $v_{y, \text{max}}$ of any element of the string.</li>
+                <li class="font-medium text-lg"><span class="font-mono text-blue-600">P2. (Intermediate)</span> A $10 \text{ m}$ long string with a mass of $100 \text{ g}$ is under tension of $400 \text{ N}$. If a wave pulse is generated at one end, calculate the time $t$ required for the pulse to reach the other end.</li>
+                <li class="font-medium text-lg"><span class="font-mono text-blue-600">P3. (Intermediate)</span> Two harmonic waves are described by $y_1 = 3.0 \sin(2x - 5t)$ and $y_2 = 3.0 \sin(2x - 5t + \pi/3)$. Find the amplitude $A_R$ of the resultant wave formed by their superposition.</li>
+                <li class="font-medium text-lg"><span class="font-mono text-blue-600">P4. (Intermediate)</span> The average power $\bar{P}$ transmitted by a harmonic wave on a string is $10 \text{ W}$. If the tension $T$ is doubled and the amplitude $A$ is halved, what is the new average power $\bar{P}'$, assuming the linear density $\mu$ and angular frequency $\omega$ remain constant?</li>
+                <li class="font-medium text-lg"><span class="font-mono text-blue-600">P5. (Intermediate)</span> A standing wave on a string is described by $y(x, t) = 0.1 \sin(1.5\pi x) \cos(30\pi t)$, where $x$ and $y$ are in meters. Find the distance $\Delta x$ between a node and the nearest antinode.</li>
+                <li class="font-medium text-lg"><span class="font-mono text-red-700">P6. (Advanced)</span> Given the 3D wave equation: $$\nabla^2 \Psi = \frac{1}{v^2} \frac{\partial^2 \Psi}{\partial t^2}$$ Assume a spherical wave solution $\Psi(r, t) = \frac{f(r-vt)}{r}$. Show that the product $\Phi(r, t) = r\Psi(r, t)$ satisfies the one-dimensional wave equation: $$\frac{\partial^2 \Phi}{\partial r^2} = \frac{1}{v^2} \frac{\partial^2 \Phi}{\partial t^2}$$</li>
+                <li class="font-medium text-lg"><span class="font-mono text-red-700">P7. (Advanced)</span> A damped harmonic wave is described by $y(x, t) = A_0 e^{-\alpha x} \cos(k x - \omega t)$, where $\alpha$ is the damping coefficient. Calculate the instantaneous power $P(x, t)$ transferred across the point $x$. Express the average power $\bar{P}(x)$ in terms of the initial average power $\bar{P}_0 = \frac{1}{2} \mu v \omega^2 A_0^2$. (Assume $\alpha$ is small such that $\alpha/k \approx 0$).</li>
+                <li class="font-medium text-lg"><span class="font-mono text-red-700">P8. (Advanced)</span> A semi-infinite string ($x \ge 0$) has two linear mass densities: $\mu_1$ for $x < 0$ and $\mu_2$ for $x \ge 0$. A wave of amplitude $A_I$ is incident from the left ($x < 0$). Determine the amplitude reflection coefficient $R = A_R / A_I$ and the transmission coefficient $T = A_T / A_I$. Use the boundary conditions that the displacement $y(0, t)$ and the slope $\frac{\partial y}{\partial x}\big|_{x=0}$ must be continuous.</li>
+                <li class="font-medium text-lg"><span class="font-mono text-purple-700">P9. (Irodov-like)</span> A uniform flexible string of total length $L$ and mass $M$ is suspended vertically from a rigid support. A transverse wave pulse is generated at the bottom end of the string. Determine the total time $t$ required for the pulse to travel from the bottom end to the support. (Hint: The tension $T(y)$ varies with height $y$ from the bottom).</li>
+                <li class="font-medium text-lg"><span class="font-mono text-purple-700">P10. (Irodov-like)</span> An elastic bar with density $\rho$ and Young's modulus $E$ is rigidly fixed at one end ($x=0$) and free at the other ($x=L$). The longitudinal wave speed in the bar is $v = \sqrt{E/\rho}$. A standing wave is set up in the bar. Find the two boundary conditions for the displacement $\xi(x, t)$ and determine the possible resonance frequencies $f_n$ for this bar.</li>
+            </ol>
+        </section>
+
+        <!-- 7. Solutions Section (No Button, Formula First Approach) -->
+        <section class="mt-12 p-6 bg-green-50 rounded-xl shadow-2xl">
+            <h3 class="text-2xl font-bold mb-4 text-green-700 border-b-2 border-green-500 pb-2">3. Solutions</h3>
+
+            <!-- Solutions for Intermediate Problems -->
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-green-600">3.1 Solutions to Intermediate Problems (P1 - P5)</h4>
+            
+            <div class="space-y-6">
+                <div>
+                    <strong class="font-mono text-green-700">P1.</strong> Wave function is $y(x, t) = A \cos(k x - \omega t + \phi)$. Comparing with the given equation, $k = 4\pi \text{ rad/m}$ and $\omega = 20\pi \text{ rad/s}$.
+                    $$\text{Phase Velocity: } v = \frac{\omega}{k} = \frac{20\pi}{4\pi} = 5.0 \text{ m/s}$$
+                    $$\text{Wavelength: } \lambda = \frac{2\pi}{k} = \frac{2\pi}{4\pi} = 0.5 \text{ m}$$
+                    $$\text{Max Transverse Velocity: } v_{y, \text{max}} = A\omega = (0.05) (20\pi) = \pi \approx 3.14 \text{ m/s}$$
+                </div>
+                <div>
+                    <strong class="font-mono text-green-700">P2.</strong> The time required is $t = L/v$, where $v = \sqrt{T/\mu}$.
+                    $$\text{Linear density: } \mu = M/L = 0.100 \text{ kg} / 10 \text{ m} = 0.01 \text{ kg/m}$$
+                    $$\text{Wave speed: } v = \sqrt{400 \text{ N} / 0.01 \text{ kg/m}} = 200 \text{ m/s}$$
+                    $$\text{Time: } t = 10 \text{ m} / 200 \text{ m/s} = 0.05 \text{ s}$$
+                </div>
+                <div>
+                    <strong class="font-mono text-green-700">P3.</strong> The resultant amplitude $A_R$ for two waves with phase difference $\phi$ is $A_R = 2 A \left| \cos\left(\frac{\phi}{2}\right) \right|$. Here $A=3.0$ and $\phi = \pi/3$.
+                    $$A_R = 2 (3.0) \cos\left(\frac{\pi/3}{2}\right) = 6.0 \cos\left(\frac{\pi}{6}\right)$$
+                    $$A_R = 6.0 \left( \frac{\sqrt{3}}{2} \right) = 3\sqrt{3} \approx 5.20 \text{ m}$$
+                </div>
+                <div>
+                    <strong class="font-mono text-green-700">P4.</strong> Average power $\bar{P}$ is proportional to $\sqrt{T}$ and $A^2$. Specifically, $\bar{P} \propto \sqrt{\mu T} \omega^2 A^2$.
+                    $$\frac{\bar{P}'}{\bar{P}} = \frac{\sqrt{T'} (A')^2}{\sqrt{T} A^2} = \frac{\sqrt{2T} (A/2)^2}{\sqrt{T} A^2}$$
+                    $$\frac{\bar{P}'}{\bar{P}} = \frac{\sqrt{2}}{1} \cdot \frac{1}{4} = \frac{\sqrt{2}}{4}$$
+                    $$\bar{P}' = 10 \text{ W} \cdot \frac{\sqrt{2}}{4} = \frac{5\sqrt{2}}{2} \approx 3.54 \text{ W}$$
+                </div>
+                <div>
+                    <strong class="font-mono text-green-700">P5.</strong> The distance between a node and the nearest antinode is $\lambda/4$. The wave number $k$ is $1.5\pi$.
+                    $$\text{Wavelength: } \lambda = \frac{2\pi}{k} = \frac{2\pi}{1.5\pi} = \frac{4}{3} \text{ m}$$
+                    $$\text{Distance between node and antinode: } \Delta x = \frac{\lambda}{4} = \frac{1}{4} \left( \frac{4}{3} \text{ m} \right) = \frac{1}{3} \text{ m}$$
+                </div>
+            </div>
+
+            <!-- Solutions for Advanced Problems -->
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-green-600">3.2 Solutions to Advanced Problems (P6 - P8)</h4>
+
+            <div class="space-y-6">
+                <div>
+                    <strong class="font-mono text-green-700">P6.</strong> We are given $\Psi(r, t) = \frac{f(u)}{r}$, where $u=r-vt$. We define $\Phi = r\Psi = f(u)$.
+                    $$\text{Partial derivatives of } \Phi \text{ with respect to } r \text{ and } t:$$
+                    $$\frac{\partial \Phi}{\partial r} = f'(u) \frac{\partial u}{\partial r} = f'(u)$$
+                    $$\frac{\partial^2 \Phi}{\partial r^2} = f''(u) \frac{\partial u}{\partial r} = f''(u)$$
+                    $$\frac{\partial \Phi}{\partial t} = f'(u) \frac{\partial u}{\partial t} = -v f'(u)$$
+                    $$\frac{\partial^2 \Phi}{\partial t^2} = -v f''(u) \frac{\partial u}{\partial t} = (-v) f''(u) (-v) = v^2 f''(u)$$
+                    $$\text{Substituting into the 1D wave equation: } \frac{\partial^2 \Phi}{\partial r^2} = f''(u) \quad ; \quad \frac{1}{v^2} \frac{\partial^2 \Phi}{\partial t^2} = \frac{1}{v^2} v^2 f''(u) = f''(u)$$
+                    $$\text{Thus: } \frac{\partial^2 \Phi}{\partial r^2} = \frac{1}{v^2} \frac{\partial^2 \Phi}{\partial t^2}$$
+                </div>
+                <div>
+                    <strong class="font-mono text-green-700">P7.</strong> Damped wave: $y(x, t) = A_0 e^{-\alpha x} \cos(k x - \omega t)$.
+                    $$\frac{\partial y}{\partial x} = -\alpha A_0 e^{-\alpha x} \cos(\dots) + k A_0 e^{-\alpha x} \sin(\dots)$$
+                    $$\frac{\partial y}{\partial t} = \omega A_0 e^{-\alpha x} \sin(\dots)$$
+                    $$\text{Using the approximation } \alpha/k \approx 0 \text{ (i.e., } \frac{\partial y}{\partial x} \approx k A_0 e^{-\alpha x} \sin(\dots) \text{):}$$
+                    $$\text{Instantaneous Power: } P(x, t) = -T \frac{\partial y}{\partial x} \frac{\partial y}{\partial t} \approx T (k A_0 e^{-\alpha x} \sin) (\omega A_0 e^{-\alpha x} \sin)$$
+                    $$P(x, t) = T k \omega A_0^2 e^{-2\alpha x} \sin^2(k x - \omega t)$$
+                    $$\text{Average Power: } \bar{P}(x) = \langle P(x, t) \rangle = \frac{1}{2} T k \omega A_0^2 e^{-2\alpha x}$$
+                    $$\text{Since } \bar{P}_0 = \frac{1}{2} T k \omega A_0^2 \text{ (from } x=0 \text{):}$$
+                    $$\bar{P}(x) = \bar{P}_0 e^{-2\alpha x}$$
+                </div>
+                <div>
+                    <strong class="font-mono text-green-700">P8.</strong> Boundary conditions at $x=0$ require continuity of displacement ($y$) and slope ($\frac{\partial y}{\partial x}$).
+                    $$y_I + y_R = y_T \implies A_I + A_R = A_T \tag{i}$$
+                    $$\frac{\partial y_I}{\partial x} + \frac{\partial y_R}{\partial x} = \frac{\partial y_T}{\partial x} \implies k_1 (A_I - A_R) = k_2 A_T \tag{ii}$$
+                    $$\text{From (i) and (ii), the coefficients are:}$$
+                    $$\text{Reflection Coefficient: } R = \frac{A_R}{A_I} = \frac{k_1 - k_2}{k_1 + k_2}$$
+                    $$\text{Transmission Coefficient: } T = \frac{A_T}{A_I} = \frac{2 k_1}{k_1 + k_2}$$
+                    $$\text{Where } k_1 = \omega/v_1 \text{ and } k_2 = \omega/v_2 \text{ (since frequency } \omega \text{ is conserved).}$$
+                </div>
+            </div>
+
+            <!-- Solutions for Irodov-like Problems -->
+            <h4 class="text-xl font-semibold mt-6 mb-3 text-green-600">3.3 Solutions to Irodov-like Problems (P9 - P10)</h4>
+
+            <div class="space-y-6">
+                <div>
+                    <strong class="font-mono text-green-700">P9.</strong> Let $\mu = M/L$ be the linear density. The tension $T(y)$ at height $y$ (measured from the bottom) is the weight of the string segment below it.
+                    $$T(y) = (\mu y) g = \frac{M g}{L} y$$
+                    $$\text{Wave speed: } v(y) = \sqrt{\frac{T(y)}{\mu}} = \sqrt{\frac{(M g / L) y}{M/L}} = \sqrt{g y}$$
+                    $$\text{Time element: } dt = \frac{dy}{v(y)} = \frac{dy}{\sqrt{g y}}$$
+                    $$\text{Total time: } t = \int_{0}^{L} \frac{dy}{\sqrt{g y}} = \frac{1}{\sqrt{g}} \int_{0}^{L} y^{-1/2} dy$$
+                    $$t = \frac{1}{\sqrt{g}} \left[ 2 y^{1/2} \right]_{0}^{L} = 2 \sqrt{\frac{L}{g}}$$
+                </div>
+                <div>
+                    <strong class="font-mono text-green-700">P10.</strong> Longitudinal wave displacement $\xi(x, t)$.
+                    $$\text{1. Fixed end at } x=0 \text{ (Displacement is zero): } \xi(0, t) = 0$$
+                    $$\text{2. Free end at } x=L \text{ (Strain } \partial \xi / \partial x \text{ is zero): } \frac{\partial \xi}{\partial x}\Big|_{x=L} = 0$$
+                    $$\text{Applying } \xi(0, t) = 0 \text{ to the general solution } \xi(x, t) = (C \sin(k x) + D \cos(k x)) \cos(\omega t) \text{ yields } D = 0.$$
+                    $$\text{Applying } \frac{\partial \xi}{\partial x}\Big|_{x=L} = 0 \text{ to } \xi(x, t) = C \sin(k x) \cos(\omega t) \text{ yields:}$$
+                    $$k C \cos(k L) \cos(\omega t) = 0 \implies \cos(k L) = 0$$
+                    $$\text{Quantization condition: } k L = (n + 1/2)\pi \quad \text{for } n = 0, 1, 2, \dots$$
+                    $$\text{Since } k = 2\pi f/v \text{ and } v = \sqrt{E/\rho} \text{:}$$
+                    $$\frac{2\pi f_n}{v} L = (n + 1/2)\pi$$
+                    $$\text{Resonance Frequencies: } f_n = \frac{(2n+1) v}{4L} = \frac{(2n+1)}{4L} \sqrt{\frac{E}{\rho}}$$
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
