@@ -73,19 +73,29 @@
         }
 
         @media print {
-            /* Hide the PDF download button when printing */
+            /* 1. Hides the main header (title and button) */
             .no-print {
                 display: none !important;
             }
-            /* Ensure the header/footer (date, URL) does not appear and set tight margins */
+            
+            /* 2. Minimized margins to suppress browser headers/footers (URL, date) */
             @page {
-                margin: 1cm;
+                margin: 0.5cm; /* Tight margin for content */
                 -webkit-print-color-adjust: exact;
             }
             body {
                 margin: 0;
                 padding: 0;
             }
+            
+            /* Remove main container styling (shadow, padding, rounding, top border) for printing */
+            #content {
+                box-shadow: none !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+                border-top: none !important;
+            }
+            
             /* Force page break before the solutions section for better organization */
             .print-break-before {
                 page-break-before: always;
@@ -127,7 +137,7 @@
     <!-- Increased max-width to 7xl to give maximum space for formulas -->
     <div id="content" class="max-w-7xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-2xl space-y-10">
 
-        <!-- Header and Download Button -->
+        <!-- Header and Download Button (Now hidden during print via no-print class) -->
         <header class="pb-6 border-b-2 border-indigo-200 flex justify-between items-center no-print">
             <h1 class="text-4xl font-extrabold text-indigo-700">Advanced Gravitation: Calculus & Theory</h1>
             <button onclick="downloadPdf()" class="no-print bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
@@ -551,7 +561,7 @@
             <!-- Solution P6.6 (Advanced) -->
             <div class="mb-6 p-4 border border-indigo-300 rounded-lg bg-indigo-50 shadow-md">
                 <h3 class="text-xl font-bold text-indigo-700">S7.6. Field of a Uniform Sphere (Inside) (P6.6)</h3>
-                <h4 class="font-semibold text-indigo-600 mt-2">Formula First Approach (Gauss's Law):</h4>
+                <h4 class="font-semibold text-indigo-600 mt-2">Formula First Approach:</h4>
                 <p>The field $\mathbf{g}(r)$ for $r \le R$ is determined by the mass enclosed $M_{\text{encl}} = M(r^3/R^3)$.</p>
                 $$ g(r) (4\pi r^2) = - 4 \pi G M_{\text{encl}} $$
                 <p>The field increases linearly with distance from the center:</p>
