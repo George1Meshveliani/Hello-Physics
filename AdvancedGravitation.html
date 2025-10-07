@@ -96,9 +96,11 @@
                 border-top: none !important;
             }
             
-            /* Force page break before the solutions section for better organization */
-            .print-break-before {
+            /* NEW: Force page break before major units */
+            .print-unit-start {
                 page-break-before: always;
+                margin-top: 0 !important; /* Ensure content starts at the top of the new page */
+                padding-top: 0 !important;
             }
         }
         
@@ -149,6 +151,7 @@
         </header>
         
         <!-- 1. Foundations -->
+        <!-- This section does NOT have the print-unit-start class, it starts immediately after the header/title -->
         <section class="border-b pb-8">
             <h2 class="text-3xl font-bold text-indigo-600 mb-4">1. Foundations: The Law and The Field</h2>
             <p class="mb-4">The study of gravitation in an advanced context utilizes <strong>vector calculus</strong> to describe the interaction between masses, transitioning from scalar magnitudes to field concepts.</p>
@@ -162,7 +165,7 @@
         </section>
 
         <!-- 2. Gravitational Field and Potential Energy -->
-        <section class="border-b pb-8">
+        <section class="border-b pb-8 print-unit-start">
             <h2 class="text-3xl font-bold text-indigo-600 mb-4">2. Gravitational Field and Potential Energy</h2>
             
             <h3 class="text-xl font-semibold text-gray-700 mt-6">2.1. The Gravitational Field $\mathbf{g}$</h3>
@@ -210,7 +213,7 @@
         </section>
 
         <!-- 3. Gauss's Law -->
-        <section class="border-b pb-8">
+        <section class="border-b pb-8 print-unit-start">
             <h2 class="text-3xl font-bold text-indigo-600 mb-4">3. Gauss's Law for Gravitation (Integral and Differential Forms)</h2>
             
             <h3 class="text-xl font-semibold text-gray-700 mt-6">3.1. Integral Form (Flux Theorem)</h3>
@@ -250,7 +253,7 @@
         </section>
         
         <!-- 4. Orbital Dynamics -->
-        <section class="border-b pb-8">
+        <section class="border-b pb-8 print-unit-start">
             <h2 class="text-3xl font-bold text-indigo-600 mb-4">4. Orbital Dynamics: Derivation of Kepler's Laws</h2>
             
             <h3 class="text-xl font-semibold text-gray-700 mt-6">4.1. Proof of Kepler's Second Law (Conservation of Angular Momentum)</h3>
@@ -306,7 +309,7 @@
         </section>
         
         <!-- 5. Escape Velocity -->
-        <section>
+        <section class="print-unit-start">
             <h2 class="text-3xl font-bold text-indigo-600 mb-4">5. Escape Velocity (Energy Principle)</h2>
             
             <p>The <strong>escape velocity</strong> $v_e$ is the minimum speed required for an object to completely overcome the gravitational field of a massive body $M$. This condition requires the object's final velocity to be zero at infinite distance ($r \to \infty$).</p>
@@ -333,8 +336,8 @@
             </div>
         </section>
 
-        <!-- Problems Section -->
-        <div class="mt-12 pt-10 border-t-2 border-indigo-700">
+        <!-- 6. Problems Section -->
+        <div class="mt-12 pt-10 border-t-2 border-indigo-700 print-unit-start">
             <h2 class="text-3xl font-bold text-indigo-600 mb-6">6. Problems for Practice</h2>
             <div class="space-y-6">
                 
@@ -400,8 +403,8 @@
             </div>
         </div>
 
-        <!-- Solutions Section -->
-        <div class="mt-12 pt-10 border-t-2 border-indigo-700 print-break-before">
+        <!-- 7. Solutions Section -->
+        <div class="mt-12 pt-10 border-t-2 border-indigo-700 print-unit-start">
             <h2 class="text-3xl font-bold text-indigo-600 mb-6">7. Detailed Solutions</h2>
             
             <!-- Solution P6.1 -->
@@ -500,7 +503,7 @@
             <!-- Solution P6.4 -->
             <div class="mb-6 p-4 border border-indigo-300 rounded-lg bg-indigo-50 shadow-md">
                 <h3 class="text-xl font-bold text-indigo-700">S7.4. Field Inside a Spherical Shell (P6.4)</h3>
-                <h4 class="font-semibold text-indigo-600 mt-2">Formula First Approach (Gauss's Law):</h4>
+                <h4 class="font-semibold text-indigo-600 mt-2">Formula First Approach:</h4>
                 <p>Gauss's Law (Equation 3.1) states $\oint_S \mathbf{g} \cdot d\mathbf{A} = - 4 \pi G M_{\text{encl}}$. For any closed Gaussian surface $S$ constructed entirely within the hollow shell, the enclosed mass $M_{\text{encl}}$ is zero.</p>
                 <div class="my-4 p-4 bg-gray-100 rounded-lg shadow-inner overflow-x-hidden">
                     $$ \oint_S \mathbf{g} \cdot d\mathbf{A} = 0 \implies \mathbf{g} = \mathbf{0} \quad \text{for } r < R \tag{S7.4} $$
