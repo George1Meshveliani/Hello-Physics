@@ -3,353 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinematics: Motion Along a Straight Line</title>
+    <title>Mathematical Kinematics: Motion Along a Straight Line</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMea+pfKj3hveLNCOD8UNi9oapjg4pzxnGMwdLmgvKNYI6mkQ" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzYCcm2KEPZ4ylvc7Y3kda3KGktIErv5fYk" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
     <style>
+        /* Configure Font and Default Styling */
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.8;
-            background-color: #f8fafc;
-            color: #1e293b;
+            background-color: #f8fafc; /* Light gray background */
+            color: #1e293b; /* Dark text */
+            font-weight: normal; /* Ensuring base text is not bold */
         }
-        h1, h2, h3 {
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 0.5em;
-            margin-top: 1.5em;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 0.3em;
+        /* Ensure headers use appropriate Tailwind size classes and default to normal weight */
+        h1, h2, h3, h4 {
+            font-weight: normal; 
         }
-        h1 { font-size: 2.5em; }
-        h2 { font-size: 2em; }
-        h3 { font-size: 1.5em; }
-        .katex-display {
-            margin: 1em 0;
-            padding: 1em;
-            background-color: #f1f5f9;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-        .solution-container {
-            display: none;
-            border-left: 4px solid #3b82f6;
-            background-color: #eff6ff;
+        /* Style for LaTeX/MathJax formulas */
+        .formula {
+            display: block;
+            margin: 1.5rem 0;
             padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 0 8px 8px 0;
+            text-align: center;
+            background-color: #e2e8f0; /* Subtle background for formulas */
+            border-radius: 0.5rem;
+            max-width: 100%;
+            overflow-x: auto; /* Ensure horizontal scroll for long formulas on small screens */
         }
-        .problem-card {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        .proof-box {
+            border-left: 4px solid #f97316; /* Orange border for derivations/proofs */
+            background-color: #fff7ed;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .solution-box {
+            border-left: 4px solid #06b6d4; /* Cyan border for solutions */
+            background-color: #ecfeff;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* -------------------------------------- */
+        /* CSS for High-Quality Print/PDF Output */
+        /* -------------------------------------- */
+        @media print {
+            .print-hidden {
+                display: none !important;
+            }
+            @page {
+                margin: 0.5in;
+                size: A4;
+            }
+            .page-break-before {
+                page-break-before: always;
+            }
+            body, .container {
+                max-width: 100% !important;
+                overflow-x: hidden !important;
+            }
+            .formula, .proof-box, .solution-box {
+                background-color: #fff !important;
+                border: 1px solid #cbd5e1;
+            }
         }
     </style>
+    <!-- Load MathJax -->
+    <script>
+        // MathJax configuration
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load the MathJax library asynchronously -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body class="bg-slate-50">
+<body class="p-4 sm:p-8">
 
-    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Kinematics: Motion Along a Straight Line</h1>
-            <p class="text-lg text-slate-600 mt-2">An Advanced, Calculus-Based Examination</p>
+    <div class="container mx-auto max-w-4xl bg-white p-6 sm:p-10 rounded-xl shadow-2xl">
+
+        <!-- Header and Print Button (Print Hidden) -->
+        <header class="print-hidden mb-8 border-b pb-4 flex justify-between items-center">
+            <h1 class="text-3xl font-medium text-orange-600">Kinematics: Motion Along a Straight Line</h1>
+            <button onclick="window.print()" class="bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-4 rounded-lg shadow-lg transition duration-300">
+                Download/Print PDF
+            </button>
         </header>
 
+        <!-- Main Content Starts Here -->
         <main>
-            <section id="fundamentals">
-                <h2 class="text-3xl font-bold">1. Fundamental Concepts of Motion</h2>
-                <p>Kinematics is the branch of classical mechanics that describes the motion of points, bodies (objects), and systems of bodies without considering the forces that cause them to move.</p>
 
-                <h3 class="text-2xl mt-6">Position ($x$)</h3>
-                <p>To describe motion, we first need to define an object's <strong>position</strong>. In one dimension, we establish a coordinate axis (e.g., the x-axis) with a designated <strong>origin</strong> ($x=0$) and a positive direction. The position of an object is its location on this axis, specified by a coordinate $x$. It is a vector quantity, where the sign indicates direction.</p>
+            <!-- Unit 1: Fundamental Concepts -->
+            <section class="mb-10 page-break-before">
+                <h2 class="text-4xl font-medium mb-6 text-gray-800">1. Fundamental Concepts of Motion</h2>
 
-                <h3 class="text-2xl mt-6">Displacement ($\Delta x$)</h3>
-                <p><strong>Displacement</strong> is the change in an object's position. If an object moves from an initial position $x_i$ at time $t_i$ to a final position $x_f$ at time $t_f$, the displacement is:</p>
-                $$ \Delta x = x_f - x_i $$
-                <p>Displacement is a vector quantity, distinct from <strong>distance</strong>, which is the total scalar path length traveled.</p>
+                <p class="mb-4">Motion along a straight line (one-dimensional kinematics) describes the position, velocity, and acceleration of a particle as a function of time. We use a single spatial coordinate, $x(t)$, to define the position of the particle relative to a chosen origin.</p>
 
-                <h3 class="text-2xl mt-6">Average Velocity ($\bar{v}$) and Average Speed</h3>
-                <p><strong>Average velocity</strong> is the ratio of displacement to the corresponding time interval. It is a vector quantity.</p>
-                $$ \bar{v} = \frac{\Delta x}{\Delta t} = \frac{x_f - x_i}{t_f - t_i} $$
-                <p><strong>Average speed</strong> is a scalar quantity defined as the total distance traveled divided by the time interval.</p>
-                $$ \text{Average Speed} = \frac{\text{Total Distance}}{\Delta t} $$
+                <h3 class="text-2xl font-medium mb-3 text-gray-700">1.1. Position and Displacement</h3>
+                <p class="mb-4">The position $x$ is a coordinate vector, giving the location relative to the origin. The SI unit is meters ($\text{m}$). The displacement ($\Delta x$) is the change in position over a time interval $\Delta t = t_f - t_i$.</p>
+                <div class="formula">
+                    $$\Delta x = x_f - x_i \quad \text{(1.1)}$$
+                </div>
+                <p>Displacement is a vector quantity (sign matters), while the total distance traveled is a scalar quantity, often greater than or equal to the magnitude of the displacement, $|\Delta x|$.</p>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700">1.2. Average Velocity and Speed</h3>
+                <p class="mb-4">The average velocity ($\bar{v}$) is the ratio of displacement to the time interval:</p>
+                <div class="formula">
+                    $$\bar{v} = \frac{\Delta x}{\Delta t} = \frac{x_f - x_i}{t_f - t_i} \quad \text{(1.2)}$$
+                </div>
+                <p>The average velocity is a vector quantity. The average speed is the ratio of the total distance traveled to the total time interval, a scalar quantity.</p>
             </section>
 
-            <section id="instantaneous-velocity" class="mt-10">
-                <h2 class="text-3xl font-bold">2. Instantaneous Velocity and Speed</h2>
-                <p>To describe velocity at a specific moment, we take the limit of the average velocity as the time interval $\Delta t$ approaches zero. This is the definition of the derivative.</p>
-                <p><strong>Instantaneous velocity</strong> is the first time derivative of position:</p>
-                $$ v(t) = \lim_{\Delta t \to 0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt} $$
-                <p>Graphically, this is the slope of the tangent line to the position-time ($x-t$) graph. <strong>Instantaneous speed</strong> is the magnitude of the instantaneous velocity, $s = |v(t)|$.</p>
+            <!-- Unit 2: Instantaneous Velocity and Acceleration -->
+            <section class="mb-10 page-break-before">
+                <h2 class="text-4xl font-medium mb-6 text-gray-800">2. Instantaneous Velocity and Acceleration</h2>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700">2.1. Instantaneous Velocity ($v$)</h3>
+                <p class="mb-4">Instantaneous velocity is the limit of the average velocity as the time interval approaches zero. It is the first time derivative of the position function $x(t)$.</p>
+                <div class="formula">
+                    $$v(t) = \lim_{\Delta t \to 0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt} \quad \text{(2.1)}$$
+                </div>
+                <p>The magnitude of the instantaneous velocity, $|v(t)|$, is the instantaneous speed. The velocity function is the slope of the position-time graph.</p>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700">2.2. Acceleration ($a$)</h3>
+                <p class="mb-4">Instantaneous acceleration ($a$) is the rate of change of instantaneous velocity. It is the first derivative of the velocity function, and the second derivative of the position function $x(t)$.</p>
+                <div class="formula">
+                    $$a(t) = \frac{dv}{dt} = \frac{d}{dt} \left(\frac{dx}{dt}\right) = \frac{d^2 x}{dt^2} \quad \text{(2.2)}$$
+                </div>
+                <p>Acceleration is the slope of the velocity-time graph. Its SI unit is meters per second squared ($\text{m}/\text{s}^2$).</p>
+                
+                <h3 class="text-2xl font-medium mb-3 text-gray-700">2.3. Advanced Relationship (Chain Rule)</h3>
+                <p class="mb-4">Acceleration can also be expressed in terms of position by using the chain rule, a crucial form for non-time-dependent problems:</p>
+                <div class="formula">
+                    $$a = \frac{dv}{dt} = \frac{dv}{dx} \frac{dx}{dt} = v \frac{dv}{dx} \quad \text{(2.3)}$$
+                </div>
             </section>
 
-            <section id="acceleration" class="mt-10">
-                <h2 class="text-3xl font-bold">3. Acceleration</h2>
-                <p><strong>Acceleration</strong> is the rate of change of velocity. It is the first time derivative of velocity and the second time derivative of position:</p>
-                $$ a(t) = \frac{dv}{dt} = \frac{d}{dt}\left(\frac{dx}{dt}\right) = \frac{d^2x}{dt^2} $$
+            <!-- Unit 3: Constant Acceleration and Kinematic Equations -->
+            <section class="mb-10 page-break-before">
+                <h2 class="text-4xl font-medium mb-6 text-gray-800">3. Constant Acceleration and Kinematic Equations</h2>
 
-                <h3 class="text-2xl mt-6">Constant Acceleration and Kinematic Equations</h3>
-                <p>For the special case of constant acceleration ($a$), we can derive the kinematic equations through integration. Here are the step-by-step derivations:</p>
-                <div class="space-y-6 bg-white p-6 rounded-lg shadow mt-4">
-                    <div>
-                        <h4 class="font-semibold text-lg text-slate-800">1. Velocity from Acceleration (Integration)</h4>
-                        <p>We start with the definition of constant acceleration, $a = \frac{dv}{dt}$. We rearrange and integrate, assuming an initial velocity $v_0$ at $t=0$ and velocity $v$ at time $t$:</p>
-                        $$ dv = a \, dt \implies \int_{v_0}^{v} dv' = \int_{0}^{t} a \, dt' $$
-                        <p>Since $a$ is constant, it can be taken out of the integral:</p>
-                        $$ [v']_{v_0}^{v} = a \int_{0}^{t} dt' \implies v - v_0 = a[t']_{0}^{t} $$
-                        <p>This yields the first kinematic equation:</p>
-                        <div class="p-3 bg-blue-50 border border-blue-200 rounded-md text-center font-mono">$$ v = v_0 + at $$</div>
-                    </div>
-                    <div class="border-t pt-6">
-                        <h4 class="font-semibold text-lg text-slate-800">2. Position from Velocity (Integration)</h4>
-                        <p>Next, we use $v = \frac{dx}{dt}$ and substitute our expression for $v$:</p>
-                        $$ \frac{dx}{dt} = v_0 + at $$
-                        <p>Assuming an initial position $x_0$ at $t=0$ and position $x$ at time $t$, we separate variables and integrate:</p>
-                        $$ dx = (v_0 + at) \, dt \implies \int_{x_0}^{x} dx' = \int_{0}^{t} (v_0 + at') \, dt' $$
-                        $$ [x']_{x_0}^{x} = \left[v_0t' + \frac{1}{2}at'^2\right]_0^t \implies x - x_0 = (v_0t + \frac{1}{2}at^2) - (0) $$
-                        <p>This yields the second kinematic equation:</p>
-                        <div class="p-3 bg-blue-50 border border-blue-200 rounded-md text-center font-mono">$$ x = x_0 + v_0t + \frac{1}{2}at^2 $$</div>
-                    </div>
-                    <div class="border-t pt-6">
-                        <h4 class="font-semibold text-lg text-slate-800">3. Time-Independent Equation (Algebraic Derivation)</h4>
-                        <p>We derive a relationship between velocity and displacement by eliminating time. From the first equation, $t = (v - v_0)/a$. We substitute this into the position equation:</p>
-                        $$ x - x_0 = v_0\left(\frac{v - v_0}{a}\right) + \frac{1}{2}a\left(\frac{v - v_0}{a}\right)^2 $$
-                        $$ x - x_0 = \frac{v_0v - v_0^2}{a} + \frac{a}{2} \frac{v^2 - 2v_0v + v_0^2}{a^2} = \frac{v_0v - v_0^2}{a} + \frac{v^2 - 2v_0v + v_0^2}{2a} $$
-                        <p>Multiplying by $2a$ to clear the denominators:</p>
-                        $$ 2a(x - x_0) = 2(v_0v - v_0^2) + (v^2 - 2v_0v + v_0^2) $$
-                        $$ 2a(x - x_0) = 2v_0v - 2v_0^2 + v^2 - 2v_0v + v_0^2 $$
-                        <p>Simplifying the expression gives the third kinematic equation:</p>
-                        <div class="p-3 bg-blue-50 border border-blue-200 rounded-md text-center font-mono">$$ v^2 = v_0^2 + 2a(x-x_0) $$</div>
-                    </div>
+                <p class="mb-4">When acceleration is constant ($a(t) = a = \text{constant}$), the motion equations can be solved analytically using integration. We assume motion starts at $t=0$ with initial velocity $v_0$ and initial position $x_0$.</p>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700">3.1. Velocity as a Function of Time ($v(t)$)</h3>
+                <p class="mb-4">Starting with the definition of acceleration, $a = dv/dt$, we separate variables and integrate over the boundaries:</p>
+                <div class="proof-box">
+                    <p class="mb-2">Integration Proof for $v(t)$:</p>
+                    $$\frac{dv}{dt} = a \implies dv = a dt$$
+                    $$\int_{v_0}^{v} dv' = \int_{0}^{t} a dt'$$
+                    $$[v']_{v_0}^{v} = a [t']_{0}^{t}$$
+                    $$v - v_0 = a t$$
+                    $$v = v_0 + at \quad \text{(3.1)}$$
                 </div>
 
-                <h3 class="text-2xl mt-6">General Motion via Integration</h3>
-                <p>For a general, non-constant acceleration $a(t)$, we find velocity and position by direct integration:</p>
-                $$ \Delta v = v_f - v_i = \int_{t_i}^{t_f} a(t) \, dt $$
-                $$ \Delta x = x_f - x_i = \int_{t_i}^{t_f} v(t) \, dt $$
+                <h3 class="text-2xl font-medium mb-3 text-gray-700 page-break-before">3.2. Position as a Function of Time ($x(t)$)</h3>
+                <p class="mb-4">Using the definition of velocity, $v = dx/dt$, and substituting the derived expression for $v(t)$ (3.1):</p>
+                <div class="proof-box">
+                    <p class="mb-2">Integration Proof for $x(t)$:</p>
+                    $$\frac{dx}{dt} = v(t) = v_0 + at \implies dx = (v_0 + at) dt$$
+                    $$\int_{x_0}^{x} dx' = \int_{0}^{t} (v_0 + at') dt'$$
+                    $$[x']_{x_0}^{x} = \int_{0}^{t} v_0 dt' + \int_{0}^{t} a t' dt'$$
+                    $$x - x_0 = v_0 [t']_{0}^{t} + a \left[\frac{(t')^2}{2}\right]_{0}^{t}$$
+                    $$x - x_0 = v_0 t + \frac{1}{2} a t^2$$
+                    $$x = x_0 + v_0 t + \frac{1}{2} a t^2 \quad \text{(3.2)}$$
+                </div>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700 page-break-before">3.3. Velocity as a Function of Position ($v(x)$)</h3>
+                <p class="mb-4">This third kinematic equation is derived by substituting time $t$ from (3.1) into (3.2), or more elegantly using the advanced calculus relation (2.3): $a = v(dv/dx)$.</p>
+                <div class="proof-box">
+                    <p class="mb-2">Integration Proof for $v(x)$:</p>
+                    $$a = v \frac{dv}{dx} \implies a dx = v dv$$
+                    $$\int_{x_0}^{x} a dx' = \int_{v_0}^{v} v' dv'$$
+                    $$a [x']_{x_0}^{x} = \left[\frac{(v')^2}{2}\right]_{v_0}^{v}$$
+                    $$a (x - x_0) = \frac{1}{2} v^2 - \frac{1}{2} v_0^2$$
+                    $$v^2 = v_0^2 + 2a (x - x_0) \quad \text{(3.3)}$$
+                </div>
             </section>
 
-            <section id="problem-set" class="mt-12">
-                <h2 class="text-3xl font-bold">4. Problem Set & Solutions</h2>
-                <p class="text-slate-600 mb-6">Attempt to solve each problem in the text area provided, then click the button to reveal the detailed solution.</p>
-                
-                <div id="problems-container"></div>
+
+            <!-- Unit 4: Problems -->
+            <section class="mb-10 page-break-before">
+                <h2 class="text-4xl font-medium mb-6 text-gray-800">4. Practice Problems</h2>
+
+                <p class="mb-4">These problems require analytical application of the kinematic equations, calculus, and advanced conceptual understanding of one-dimensional motion.</p>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700">4.1. Intermediate Problems (5)</h3>
+
+                <ol class="list-decimal list-inside space-y-3 pl-4">
+                    <li>A particle's position is given by $x(t) = 2.0 t^3 - 5.0 t^2 + 7.0 \text{ m}$. Determine the instantaneous velocity and instantaneous acceleration at $t = 2.0 \text{ s}$.</li>
+                    <li>A train accelerates uniformly from rest at $a = 1.5 \text{ m/s}^2$ for $20 \text{ s}$. It then travels at a constant velocity for $60 \text{ s}$, and finally decelerates at a constant rate of $2.0 \text{ m/s}^2$ until it stops. Find the total distance traveled.</li>
+                    <li>Two cars, A and B, are initially $100 \text{ m}$ apart. Car A starts from rest with $a_A = 2.0 \text{ m/s}^2$ toward B. Car B travels towards A at a constant velocity of $15 \text{ m/s}$. Find the time $t$ at which they meet.</li>
+                    <li>A bullet traveling at $400 \text{ m/s}$ penetrates a wooden plank to a depth of $5.0 \text{ cm}$. Assuming constant acceleration (deceleration), find the magnitude of the acceleration.</li>
+                    <li>A sprinter can maintain a maximum speed of $12 \text{ m/s}$. If they accelerate uniformly from rest at $4.0 \text{ m/s}^2$, how long does it take for them to reach maximum speed, and what distance do they cover in that time?</li>
+                </ol>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700 page-break-before">4.2. Advanced Problems (3)</h3>
+
+                <ol class="list-decimal list-inside space-y-3 pl-4" start="6">
+                    <li>The acceleration of a particle moving along the x-axis is given by $a(t) = k t$, where $k$ is a constant. If the particle starts from rest at the origin ($x_0=0, v_0=0$), derive the position function $x(t)$.</li>
+                    <li>A rocket is launched vertically with an acceleration of $a(t) = c / (t+1)$, where $c$ is a constant. If $v_0 = 0$, find the total distance $x$ traveled during the time interval $[0, T]$.</li>
+                    <li>A particle moving along the x-axis has a velocity dependent acceleration $a(v) = -k v^2$, where $k > 0$ is a constant. If $v(0) = v_0$, find the time $t$ required for the velocity to decrease to $v_0/2$.</li>
+                </ol>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700 page-break-before">4.3. Irodov-like Problems (2)</h3>
+
+                <ol class="list-decimal list-inside space-y-3 pl-4" start="9">
+                    <li>Two particles, 1 and 2, move with constant accelerations $a_1$ and $a_2$ (both non-zero). They start at the same position and time. After time $T$, their velocities are $v_1$ and $v_2$. Find the acceleration of particle 1, $a_1$, in terms of $v_1$, $v_2$, and $T$, given that their average velocities over the interval $[0, T]$ are the same.</li>
+                    <li>A particle starts from rest and moves with acceleration $a = 3 \sqrt{v}$, where $v$ is the instantaneous speed. Find the distance traveled by the particle when it reaches a speed of $v_f = 9 \text{ m/s}$.</li>
+                </ol>
             </section>
+
+            <!-- Unit 5: Solutions (Separated by page-break-before) -->
+            <section class="mb-10 page-break-before">
+                <h2 class="text-4xl font-medium mb-6 text-gray-800 border-b pb-2 text-orange-600">5. Solutions to Practice Problems</h2>
+
+                <p class="mb-6">The solutions below apply calculus and the fundamental kinematic definitions rigorously to solve each problem.</p>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700">5.1. Intermediate Solutions</h3>
+
+                <h4 class="text-xl font-medium mb-2 text-gray-600">Problem 1: Time Derivatives</h4>
+                <div class="solution-box">
+                    <p>Position: $x(t) = 2.0 t^3 - 5.0 t^2 + 7.0$</p>
+                    <p>Velocity: $v(t) = \frac{dx}{dt} = \frac{d}{dt} (2.0 t^3 - 5.0 t^2 + 7.0) = 6.0 t^2 - 10.0 t$</p>
+                    <p>Acceleration: $a(t) = \frac{dv}{dt} = \frac{d}{dt} (6.0 t^2 - 10.0 t) = 12.0 t - 10.0$</p>
+                    <p>At $t = 2.0 \text{ s}$:</p>
+                    $$v(2.0) = 6.0 (2.0)^2 - 10.0 (2.0) = 24.0 - 20.0 = 4.0 \text{ m/s}$$
+                    $$a(2.0) = 12.0 (2.0) - 10.0 = 24.0 - 10.0 = 14.0 \text{ m/s}^2$$
+                </div>
+
+                <h4 class="text-xl font-medium mb-2 text-gray-600 page-break-before">Problem 2: Multi-Stage Motion</h4>
+                <div class="solution-box">
+                    <p>Phase 1 (Acceleration): $v_0 = 0, a_1 = 1.5 \text{ m/s}^2, t_1 = 20 \text{ s}$.</p>
+                    $$v_1 = v_0 + a_1 t_1 = 0 + (1.5)(20) = 30.0 \text{ m/s}$$
+                    $$x_1 = v_0 t_1 + \frac{1}{2} a_1 t_1^2 = 0 + \frac{1}{2} (1.5) (20)^2 = 300.0 \text{ m}$$
+                    <p>Phase 2 (Constant Velocity): $v_2 = 30.0 \text{ m/s}, t_2 = 60 \text{ s}$.</p>
+                    $$x_2 = v_2 t_2 = (30.0) (60) = 1800.0 \text{ m}$$
+                    <p>Phase 3 (Deceleration): $v_i = 30.0 \text{ m/s}, v_f = 0, a_3 = -2.0 \text{ m/s}^2$. Using $v^2 = v_0^2 + 2a \Delta x$:</p>
+                    $$0^2 = (30.0)^2 + 2 (-2.0) x_3 \implies 4.0 x_3 = 900.0 \implies x_3 = 225.0 \text{ m}$$
+                    <p>Total Distance: $x_{total} = x_1 + x_2 + x_3 = 300.0 + 1800.0 + 225.0 = 2325.0 \text{ m}$</p>
+                </div>
+
+                <h4 class="text-xl font-medium mb-2 text-gray-600 page-break-before">Problem 3: Meeting Time</h4>
+                <div class="solution-box">
+                    <p>Let $x=0$ be the starting point of Car A. The meeting occurs when $x_A = x_B$.</p>
+                    <p>Car A: $x_A(t) = x_{A0} + v_{A0} t + \frac{1}{2} a_A t^2 = 0 + 0 + \frac{1}{2} (2.0) t^2 = t^2$</p>
+                    <p>Car B: $x_B(t) = x_{B0} + v_{B0} t = 100 + (-15) t = 100 - 15 t$</p>
+                    <p>Set $x_A = x_B$:</p>
+                    $$t^2 = 100 - 15 t \implies t^2 + 15 t - 100 = 0$$
+                    <p>Using the quadratic formula, $t = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$:</p>
+                    $$t = \frac{-15 \pm \sqrt{15^2 - 4(1)(-100)}}{2} = \frac{-15 \pm \sqrt{625}}{2} = \frac{-15 \pm 25}{2}$$
+                    <p>The positive solution is $t = \frac{10}{2} = 5.0 \text{ s}$</p>
+                </div>
+
+                <h4 class="text-xl font-medium mb-2 text-gray-600 page-break-before">Problem 4: Deceleration in a Medium</h4>
+                <div class="solution-box">
+                    <p>Given: $v_0 = 400 \text{ m/s}, v_f = 0, \Delta x = 0.05 \text{ m}$. Use $v^2 = v_0^2 + 2a \Delta x$:</p>
+                    $$0^2 = (400)^2 + 2 a (0.05)$$
+                    $$0 = 160,000 + 0.10 a$$
+                    $$a = \frac{-160,000}{0.10} = -1,600,000 \text{ m/s}^2$$
+                    <p>The magnitude of acceleration is $|\vec{a}| = 1.6 \times 10^6 \text{ m/s}^2$</p>
+                </div>
+
+                <h4 class="text-xl font-medium mb-2 text-gray-600 page-break-before">Problem 5: Time and Distance to Max Speed</h4>
+                <div class="solution-box">
+                    <p>Given: $v_0 = 0, v_f = 12 \text{ m/s}, a = 4.0 \text{ m/s}^2$.</p>
+                    <p>Time to reach maximum speed (using $v = v_0 + at$):</p>
+                    $$12 = 0 + (4.0) t \implies t = \frac{12}{4.0} = 3.0 \text{ s}$$
+                    <p>Distance covered (using $v^2 = v_0^2 + 2a \Delta x$):</p>
+                    $$(12)^2 = 0^2 + 2 (4.0) \Delta x$$
+                    $$144 = 8.0 \Delta x \implies \Delta x = \frac{144}{8.0} = 18.0 \text{ m}$$
+                </div>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700 page-break-before">5.2. Advanced Solutions</h3>
+
+                <h4 class="text-xl font-medium mb-2 text-gray-600">Problem 6: Position with Time-Dependent Acceleration</h4>
+                <div class="solution-box">
+                    <p>Step 1: Find $v(t)$ by integrating $a(t) = kt$ with $v_0 = 0$:</p>
+                    $$v(t) = \int a(t) dt = \int kt dt = \frac{1}{2} k t^2 + C_1$$
+                    <p>Since $v(0)=0$, $C_1=0$, so $v(t) = \frac{1}{2} k t^2$.</p>
+                    <p>Step 2: Find $x(t)$ by integrating $v(t)$ with $x_0 = 0$:</p>
+                    $$x(t) = \int v(t) dt = \int \frac{1}{2} k t^2 dt = \frac{1}{2} k \left(\frac{t^3}{3}\right) + C_2$$
+                    <p>Since $x(0)=0$, $C_2=0$.</p>
+                    $$x(t) = \frac{1}{6} k t^3$$
+                </div>
+
+                <h4 class="text-xl font-medium mb-2 text-gray-600 page-break-before">Problem 7: Distance with Logarithmic Acceleration</h4>
+                <div class="solution-box">
+                    <p>Step 1: Find $v(t)$ by integrating $a(t) = c/(t+1)$ with $v_0 = 0$:</p>
+                    $$v(t) = \int_{0}^{t} \frac{c}{t'+1} dt' = c [\ln|t'+1|]_{0}^{t}$$
+                    $$v(t) = c (\ln(t+1) - \ln(1)) = c \ln(t+1)$$
+                    <p>Step 2: Find the distance $x$ by integrating $v(t)$ from $0$ to $T$:</p>
+                    $$x = \int_{0}^{T} v(t) dt = \int_{0}^{T} c \ln(t+1) dt$$
+                    <p>Use substitution: $u = t+1$, $du = dt$. Limits: $t=0 \to u=1$, $t=T \to u=T+1$.</p>
+                    $$x = c \int_{1}^{T+1} \ln(u) du$$
+                    <p>Applying the standard integral $\int \ln(u) du = u \ln(u) - u$:</p>
+                    $$x = c [u \ln(u) - u]_{1}^{T+1}$$
+                    $$x = c \left[ \left((T+1) \ln(T+1) - (T+1)\right) - \left(1 \ln(1) - 1\right) \right]$$
+                    $$x = c \left[ (T+1) \ln(T+1) - T - 1 + 1 \right]$$
+                    $$x = c \left[ (T+1) \ln(T+1) - T \right]$$
+                </div>
+
+                <h4 class="text-xl font-medium mb-2 text-gray-600 page-break-before">Problem 8: Time with Velocity-Dependent Acceleration</h4>
+                <div class="solution-box">
+                    <p>Use the definition $a = dv/dt$. Separate variables and integrate:</p>
+                    $$a(v) = -k v^2 \implies \frac{dv}{dt} = -k v^2$$
+                    $$\int_{v_0}^{v_0/2} \frac{dv}{v^2} = \int_{0}^{t} -k dt$$
+                    $$\left[-\frac{1}{v}\right]_{v_0}^{v_0/2} = -k [t]_{0}^{t}$$
+                    $$-\left(\frac{1}{v_0/2} - \frac{1}{v_0}\right) = -k t$$
+                    $$-\left(\frac{2}{v_0} - \frac{1}{v_0}\right) = -k t$$
+                    $$-\frac{1}{v_0} = -k t$$
+                    $$t = \frac{1}{k v_0}$$
+                </div>
+
+                <h3 class="text-2xl font-medium mb-3 text-gray-700 page-break-before">5.3. Irodov-like Solutions</h3>
+
+                <h4 class="text-xl font-medium mb-2 text-gray-600">Problem 9: Average Velocity and Acceleration Relation</h4>
+                <div class="solution-box">
+                    <p>For constant acceleration, the average velocity is $\bar{v} = (v_0 + v_f)/2$. Since $v_{10} = 0$ and $v_{20} = 0$, the average velocities are:</p>
+                    $$\bar{v}_1 = \frac{v_1}{2} \quad \text{and} \quad \bar{v}_2 = \frac{v_2}{2}$$
+                    <p>The problem states $\bar{v}_1 = \bar{v}_2$, which means $v_1 = v_2$.</p>
+                    <p>Using the kinematic equation $v = v_0 + at$, we have:</p>
+                    $$v_1 = a_1 T \quad \text{and} \quad v_2 = a_2 T$$
+                    <p>Since $v_1 = v_2$:</p>
+                    $$a_1 T = a_2 T \implies a_1 = a_2$$
+                    <p>The average velocity is also defined as $\bar{v} = \Delta x / \Delta t$. For constant acceleration from rest, $\Delta x = \frac{1}{2} a T^2$.</p>
+                    $$\bar{v}_1 = \frac{\frac{1}{2} a_1 T^2}{T} = \frac{1}{2} a_1 T$$
+                    <p>Equating this to the first result: $\frac{1}{2} a_1 T = \frac{v_1}{2} \implies a_1 = \frac{v_1}{T}$.</p>
+                    <p>The condition $v_1=v_2$ implies that $a_1$ is also equal to $v_2/T$.</p>
+                    $$a_1 = \frac{v_1}{T}$$
+                </div>
+
+                <h4 class="text-xl font-medium mb-2 text-gray-600 page-break-before">Problem 10: Distance with Velocity-Dependent Acceleration</h4>
+                <div class="solution-box">
+                    <p>Use the advanced form $a = v(dv/dx)$. Separate variables and integrate:</p>
+                    $$a = 3 \sqrt{v} \implies v \frac{dv}{dx} = 3 \sqrt{v}$$
+                    $$\frac{v}{\sqrt{v}} dv = 3 dx \implies \sqrt{v} dv = 3 dx$$
+                    <p>Integrate from $x_0=0$ to $x$ and $v_0=0$ to $v_f=9$:</p>
+                    $$\int_{0}^{9} v^{1/2} dv = \int_{0}^{x} 3 dx$$
+                    $$\left[\frac{v^{3/2}}{3/2}\right]_{0}^{9} = 3 [x]_{0}^{x}$$
+                    $$\frac{2}{3} (9^{3/2}) = 3 x$$
+                    $$\frac{2}{3} (27) = 3 x$$
+                    $$18 = 3 x$$
+                    $$x = 6.0 \text{ m}$$
+                </div>
+            </section>
+
         </main>
     </div>
-
-    <script>
-        const problems = [
-            { 
-                level: 'Intermediate',
-                title: 'Problem 1',
-                question: "The position of a particle moving along the x-axis is given by $x(t) = 4t^3 - 12t^2 + 5$, where $x$ is in meters and $t$ is in seconds. (a) Find the velocity and acceleration functions. (b) What is the particle's position when it achieves its minimum velocity? (c) When is the particle at rest?",
-                solution: `
-                    <p><strong>(a) Velocity and Acceleration:</strong></p>
-                    <p>Velocity: $v(t) = \\frac{dx}{dt} = \\frac{d}{dt}(4t^3 - 12t^2 + 5) = 12t^2 - 24t$ m/s.</p>
-                    <p>Acceleration: $a(t) = \\frac{dv}{dt} = \\frac{d}{dt}(12t^2 - 24t) = 24t - 24$ m/s².</p>
-                    <p><strong>(b) Position at Minimum Velocity:</strong></p>
-                    <p>Minimum velocity occurs when acceleration is zero. $a(t) = 0 \\implies 24t - 24 = 0 \\implies t = 1$ s.</p>
-                    <p>The position at $t=1$ s is: $x(1) = 4(1)^3 - 12(1)^2 + 5 = 4 - 12 + 5 = -3$ m.</p>
-                    <p><strong>(c) Particle at Rest:</strong></p>
-                    <p>The particle is at rest when velocity is zero. $v(t) = 0 \\implies 12t^2 - 24t = 12t(t - 2) = 0$.</p>
-                    <p>The solutions are $t=0$ s and $t=2$ s.</p>
-                `
-            },
-            {
-                level: 'Intermediate',
-                title: 'Problem 2',
-                question: "A particle's velocity is described by the function $v(t) = 6t - t^2$ for $t \\ge 0$. (a) Find its displacement between $t=1$ s and $t=4$ s. (b) Find the total distance it travels over the same interval.",
-                solution: `
-                    <p><strong>(a) Displacement:</strong></p>
-                    <p>Displacement is the integral of the velocity function.</p>
-                    $$ \\Delta x = \\int_{1}^{4} (6t - t^2) \\, dt = \\left[3t^2 - \\frac{1}{3}t^3\\right]_{1}^{4} $$
-                    $$ = \\left(3(4)^2 - \\frac{1}{3}(4)^3\\right) - \\left(3(1)^2 - \\frac{1}{3}(1)^3\\right) $$
-                    $$ = \\left(48 - \\frac{64}{3}\\right) - \\left(3 - \\frac{1}{3}\\right) = \\frac{80}{3} - \\frac{8}{3} = \\frac{72}{3} = 24 \\text{ m} $$
-                    <p><strong>(b) Total Distance:</strong></p>
-                    <p>We check for direction changes by finding when $v(t)=0$. $v(t) = t(6-t)=0$ at $t=0$ and $t=6$ s. Since the particle does not change direction in the interval $[1, 4]$, the distance traveled equals the magnitude of the displacement.</p>
-                    <p>Distance = $|\\Delta x| = 24$ m.</p>
-                `
-            },
-            {
-                level: 'Intermediate',
-                title: 'Problem 3',
-                question: "Car A starts from rest at $t=0$ and accelerates at a constant rate of $2.0 \\, \\text{m/s}^2$. At the same instant, Car B, traveling with a constant speed of $8.0 \\, \\text{m/s}$, passes Car A. (a) At what time do they meet again? (b) How far from the starting point do they meet?",
-                solution: `
-                    <p><strong>(a) Time to meet:</strong></p>
-                    <p>Position of Car A: $x_A(t) = \\frac{1}{2}at^2 = \\frac{1}{2}(2)t^2 = t^2$.</p>
-                    <p>Position of Car B: $x_B(t) = vt = 8t$.</p>
-                    <p>They meet when $x_A(t) = x_B(t) \\implies t^2 = 8t \\implies t(t-8)=0$. They meet again at $t = 8.0$ s.</p>
-                    <p><strong>(b) Meeting point:</strong></p>
-                    <p>Using Car B's equation: $x_B(8) = 8(8) = 64$ m.</p>
-                    <p>Check with Car A's equation: $x_A(8) = (8)^2 = 64$ m.</p>
-                `
-            },
-            {
-                level: 'Intermediate',
-                title: 'Problem 4',
-                question: "An object is thrown vertically upward from the edge of a cliff of height $H=50$ m with an initial velocity of $v_0 = 10$ m/s. Assume $g=9.8 \\, \\text{m/s}^2$. (a) How long does it take to reach its maximum height? (b) What is the total time the object is in the air before hitting the ground at the base of the cliff?",
-                solution: `
-                    <p>Let upward be positive, origin at the base. Initial position $y_0 = 50$ m, $a = -g = -9.8 \\, \\text{m/s}^2$.</p>
-                    <p><strong>(a) Time to max height:</strong></p>
-                    <p>At max height, $v=0$. Using $v = v_0 + at \\implies 0 = 10 + (-9.8)t \\implies t = \\frac{10}{9.8} \\approx 1.02$ s.</p>
-                    <p><strong>(b) Total time in air:</strong></p>
-                    <p>The object hits the ground at $y=0$. Using $y(t) = y_0 + v_0t + \\frac{1}{2}at^2$:</p>
-                    $$ 0 = 50 + 10t + \\frac{1}{2}(-9.8)t^2 \\implies 4.9t^2 - 10t - 50 = 0 $$
-                    <p>Using the quadratic formula, $t = \\frac{10 \\pm \\sqrt{(-10)^2 - 4(4.9)(-50)}}{2(4.9)} = \\frac{10 \\pm \\sqrt{1080}}{9.8}$.</p>
-                    <p>We take the positive root: $t \\approx \\frac{10 + 32.86}{9.8} \\approx 4.37$ s.</p>
-                `
-            },
-            {
-                level: 'Intermediate',
-                title: 'Problem 5',
-                question: "The velocity-time graph of a particle is a semicircle of radius $R=2$ centered at $(t,v) = (2,0)$ for $0 \\le t \\le 4$. Find the total displacement and the acceleration at $t=1$ s.",
-                solution: `
-                    <p><strong>(a) Total Displacement:</strong></p>
-                    <p>Displacement is the area under the v-t curve. The area of the semicircle is $\\frac{1}{2}\\pi R^2$.</p>
-                    <p>$\\Delta x = \\text{Area} = \\frac{1}{2}\\pi (2)^2 = 2\\pi$ m.</p>
-                    <p><strong>(b) Acceleration at t=1s:</strong></p>
-                    <p>Acceleration is the slope of the v-t graph. The equation of the circle is $(t-2)^2 + v^2 = 2^2$. For the upper semicircle, $v(t) = \\sqrt{4 - (t-2)^2}$.</p>
-                    <p>Differentiating to find acceleration: $a(t) = \\frac{dv}{dt} = \\frac{-(t-2)}{\\sqrt{4 - (t-2)^2}}$.</p>
-                    <p>At $t=1$ s: $a(1) = \\frac{-(1-2)}{\\sqrt{4 - (1-2)^2}} = \\frac{1}{\\sqrt{3}} = \\frac{\\sqrt{3}}{3} \\, \\text{m/s}^2$.</p>
-                `
-            },
-            {
-                level: 'Advanced',
-                title: 'Problem 6',
-                question: "A particle starts from rest at the origin. For the first 4 seconds, its acceleration is given by $a(t) = (6 - \\frac{3}{2}t) \\, \\text{m/s}^2$. Find its velocity and position at $t=4$ s.",
-                solution: `
-                    <p><strong>(a) Velocity at t=4s:</strong></p>
-                    <p>Integrate acceleration to find velocity. $v(0)=0$.</p>
-                    $$ v(t) = \\int_{0}^{t} (6 - \\frac{3}{2}t') \\, dt' = \\left[6t' - \\frac{3}{4}t'^2\\right]_0^t = 6t - \\frac{3}{4}t^2 $$
-                    <p>At $t=4$ s: $v(4) = 6(4) - \\frac{3}{4}(4)^2 = 24 - 12 = 12$ m/s.</p>
-                    <p><strong>(b) Position at t=4s:</strong></p>
-                    <p>Integrate velocity to find position. $x(0)=0$.</p>
-                    $$ x(t) = \\int_{0}^{t} (6t' - \\frac{3}{4}t'^2) \\, dt' = \\left[3t'^2 - \\frac{1}{4}t'^3\\right]_0^t = 3t^2 - \\frac{1}{4}t^3 $$
-                    <p>At $t=4$ s: $x(4) = 3(4)^2 - \\frac{1}{4}(4)^3 = 48 - 16 = 32$ m.</p>
-                `
-            },
-            {
-                level: 'Advanced',
-                title: 'Problem 7',
-                question: "A body moving through a fluid experiences a resistive force resulting in an acceleration of $a = -kv^2$, where $k$ is a positive constant. If the body has an initial velocity $v_0$ at $t=0$, find its velocity $v(t)$ as a function of time.",
-                solution: `
-                    <p>We solve the differential equation $a = \\frac{dv}{dt} = -kv^2$.</p>
-                    <p>Separate variables: $\\frac{dv}{v^2} = -k \\, dt$.</p>
-                    <p>Integrate both sides from initial conditions ($v_0$ at $t=0$) to general conditions ($v$ at time $t$):</p>
-                    $$ \\int_{v_0}^{v} \\frac{1}{v'^2} \\, dv' = \\int_{0}^{t} -k \\, dt' $$
-                    $$ \\left[-\\frac{1}{v'}\\right]_{v_0}^{v} = \\left[-kt'\\right]_0^t $$
-                    $$ -\\frac{1}{v} + \\frac{1}{v_0} = -kt $$
-                    $$ \\frac{1}{v} = \\frac{1}{v_0} + kt = \\frac{1 + v_0kt}{v_0} $$
-                    <p>Solving for $v(t)$ gives: $v(t) = \\frac{v_0}{1 + v_0kt}$.</p>
-                `
-            },
-            {
-                level: 'Advanced',
-                title: 'Problem 8',
-                question: "The acceleration of a particle is given by $a(x) = - \\omega^2 x$, where $\\omega$ is a constant. The particle starts at $x=A$ with zero initial velocity. Find the velocity $v$ as a function of position $x$.",
-                solution: `
-                    <p>Use the chain rule form of acceleration: $a = v \\frac{dv}{dx}$.</p>
-                    <p>The equation becomes $v \\frac{dv}{dx} = - \\omega^2 x$.</p>
-                    <p>Separate variables: $v \\, dv = - \\omega^2 x \\, dx$.</p>
-                    <p>Integrate from the initial state ($v=0$ at $x=A$) to a general state ($v$ at position $x$):</p>
-                    $$ \\int_{0}^{v} v' \\, dv' = \\int_{A}^{x} - \\omega^2 x' \\, dx' $$
-                    $$ \\left[\\frac{1}{2}v'^2\\right]_0^v = \\left[-\\frac{1}{2}\\omega^2 x'^2\\right]_A^x $$
-                    $$ \\frac{1}{2}v^2 = -\\frac{1}{2}\\omega^2 x^2 - (-\\frac{1}{2}\\omega^2 A^2) $$
-                    <p>This simplifies to $v^2 = \\omega^2 (A^2 - x^2)$, so the velocity is: $v(x) = \\pm \\omega \\sqrt{A^2 - x^2}$.</p>
-                `
-            },
-            {
-                level: 'Irodov-like',
-                title: 'Problem 9',
-                question: "A particle starts from rest and moves along a straight line with an acceleration $a = \\beta \\sqrt{v}$, where $\\beta$ is a positive constant and $v$ is its instantaneous velocity. How does the particle's displacement $x$ depend on time $t$?",
-                solution: `
-                    <p>This problem requires a two-step integration. First, find $v(t)$.</p>
-                    <p><strong>1. Find v(t):</strong></p>
-                    <p>From $a = \\frac{dv}{dt} = \\beta \\sqrt{v}$, separate variables: $v^{-1/2} dv = \\beta dt$.</p>
-                    <p>Integrate from $v=0$ at $t=0$: $\\int_0^v v'^{-1/2} dv' = \\int_0^t \\beta dt' \\implies [2v'^{1/2}]_0^v = [\\beta t']_0^t$.</p>
-                    <p>This gives $2\\sqrt{v} = \\beta t$, so $v(t) = (\\frac{\\beta t}{2})^2 = \\frac{\\beta^2 t^2}{4}$.</p>
-                    <p><strong>2. Find x(t):</strong></p>
-                    <p>From $v = \\frac{dx}{dt} = \\frac{\\beta^2 t^2}{4}$, integrate from $x=0$ at $t=0$:</p>
-                    <p>$\\int_0^x dx' = \\int_0^t \\frac{\\beta^2 t'^2}{4} dt'$.</p>
-                    <p> $x = \\frac{\\beta^2}{4} \\left[\\frac{t'^3}{3}\\right]_0^t$.</p>
-                    <p>The displacement depends on time as: $x(t) = \\frac{\\beta^2 t^3}{12}$.</p>
-                `
-            },
-            {
-                level: 'Irodov-like',
-                title: 'Problem 10',
-                question: "Two points, A and B, are separated by a distance $L$. They start moving towards each other at the same instant with constant velocities $v_A$ and $v_B$. A bird, starting from A, flies towards B with a constant speed $u$ ($u > v_A, v_B$). Upon reaching B, it instantly turns back and flies towards A. It continues flying back and forth until the points collide. What is the total distance the bird flies?",
-                solution: `
-                    <p>This problem is best solved with a simple insight rather than an infinite series.</p>
-                    <p>The total distance the bird flies is its constant speed, $u$, multiplied by the total time it is in the air, $T$. The bird stops flying when the two points collide.</p>
-                    <p>First, find the collision time $T$. Let A start at $x_A=0$ and B start at $x_B=L$.</p>
-                    <p>Position of A: $x_A(t) = v_A t$.</p>
-                    <p>Position of B: $x_B(t) = L - v_B t$.</p>
-                    <p>They collide when $x_A(T) = x_B(T)$:</p>
-                    $$ v_A T = L - v_B T \\implies T(v_A + v_B) = L \\implies T = \\frac{L}{v_A + v_B} $$
-                    <p>This is the total time the bird is flying. The total distance is:</p>
-                    $$ D_{bird} = u \\cdot T = \\frac{uL}{v_A + v_B} $$
-                `
-            }
-        ];
-
-        function toggleSolution(index) {
-            const solutionDiv = document.getElementById(`solution-${index}`);
-            const button = document.getElementById(`button-${index}`);
-            if (solutionDiv.style.display === 'none' || solutionDiv.style.display === '') {
-                solutionDiv.style.display = 'block';
-                button.textContent = 'Hide Solution';
-            } else {
-                solutionDiv.style.display = 'none';
-                button.textContent = 'Show Solution';
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('problems-container');
-            let problemHTML = '';
-            problems.forEach((p, index) => {
-                let levelColor = 'bg-blue-100 text-blue-800';
-                if (p.level === 'Advanced') levelColor = 'bg-purple-100 text-purple-800';
-                if (p.level === 'Irodov-like') levelColor = 'bg-red-100 text-red-800';
-
-                problemHTML += `
-                    <div class="problem-card">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-xl font-semibold text-slate-800">${p.title}</h3>
-                            <span class="text-sm font-medium px-3 py-1 rounded-full ${levelColor}">${p.level}</span>
-                        </div>
-                        <div class="text-slate-700">${p.question}</div>
-                        <div class="mt-4">
-                            <label for="answer-${index}" class="block text-sm font-medium text-slate-600 mb-2">Your Answer:</label>
-                            <textarea id="answer-${index}" rows="4" class="w-full p-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"></textarea>
-                        </div>
-                        <button id="button-${index}" onclick="toggleSolution(${index})" class="mt-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">Show Solution</button>
-                        <div id="solution-${index}" class="solution-container">
-                            <h4 class="font-bold text-lg mb-2 text-slate-800">Solution:</h4>
-                            <div class="text-slate-700">${p.solution}</div>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = problemHTML;
-
-            renderMathInElement(document.body, {
-                delimiters: [
-                    {left: '$$', right: '$$', display: true},
-                    {left: '$', right: '$', display: false},
-                    {left: '\\(', right: '\\)', display: false},
-                    {left: '\\[', right: '\\]', display: true}
-                ],
-                throwOnError : false
-            });
-        });
-    </script>
 </body>
 </html>
-
-
