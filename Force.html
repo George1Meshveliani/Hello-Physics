@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classical Dynamics: 2D Force Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MathJax for rendering LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    
+    <!-- Explicit MathJax Configuration for $$ delimiters -->
+    <script>
+        window.MathJax = {
+            tex: {
+                // Ensure both inline and display delimiters are recognized
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true, // Allow escaping of delimiters
+                tags: 'none'
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Dark Theme Variables */
+        :root {
+            --bg-color: #0A0A0F; /* Deep Space Black */
+            --card-bg: #161625; /* Dark Inner Card */
+            --text-primary: #E0F2F1; /* Light Teal/Cyan Text */
+            --accent-primary: #4E78FF; /* Vibrant Blue */
+            --accent-secondary: #00FFC0; /* Electric Mint */
+            --highlight-color: #FFD700; /* Gold for alerts/important text */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .slide {
+            flex-shrink: 0;
+            width: 100%;
+            display: none; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            height: calc(100vh - 4rem); 
+            transition: opacity 0.6s ease;
+            overflow-y: auto; 
+        }
+        .slide-content {
+            max-width: 68rem; /* Wide and cinematic */
+            width: 100%;
+            background-color: var(--card-bg);
+            padding: 4rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            border: 2px solid #292940;
+            transition: transform 0.3s ease;
+        }
+        .slide-title {
+            color: var(--accent-primary);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(78, 120, 255, 0.5);
+            letter-spacing: -1px;
+        }
+        .btn-primary {
+            background-color: var(--accent-primary);
+            color: var(--bg-color);
+            padding: 0.8rem 2.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(78, 120, 255, 0.4);
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #6a95ff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(78, 120, 255, 0.6);
+        }
+        .math-display {
+            font-size: 2.5rem; 
+            color: var(--accent-secondary); 
+            background-color: #0A0A0F;
+            padding: 1.5rem 2rem;
+            border-radius: 0.75rem;
+            display: block;
+            margin: 1.5rem auto;
+            border: 2px solid var(--accent-secondary);
+            box-shadow: 0 0 15px rgba(0, 255, 192, 0.4);
+            text-align: center;
+        }
+        .fixed-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4rem;
+            background-color: #161625;
+            border-top: 1px solid #292940;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Slides Container -->
+    <main class="flex-grow">
+        <!-- Slide 1: Title, Lesson Plan, and Objectives -->
+        <section id="slide-1" class="slide">
+            <div class="slide-content">
+                <h1 class="slide-title">Classical Dynamics: Newton's Laws</h1>
+                <p class="text-2xl text-center text-blue-300 mb-12 font-light tracking-wide">The Fundamental Principles Governing Motion</p>
+
+                <div class="grid lg:grid-cols-2 gap-10 mt-8">
+                    <div class="p-8 rounded-xl bg-[#1C1C30] border-l-4 border-l-blue-400">
+                        <h2 class="text-2xl font-semibold text-blue-300 mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.25 5.253 7.5 5.253c-2.31 0-3.417 1.272-3.417 3.123 0 1.944 1.25 3.037 3.417 3.037 1.636 0 2.913-.198 3.5-1.002m0 1.996c1.233.804 2.51.996 3.5 1.002 2.167 0 3.417-1.093 3.417-3.037 0-1.851-1.107-3.123-3.417-3.123-1.75 0-3.332.224-4.5.999"></path></svg>
+                            Learning Goals
+                        </h2>
+                        <ul class="list-disc list-inside space-y-3 text-lg text-gray-300 pl-4">
+                            <li>Define force, mass, and acceleration with correct units.</li>
+                            <li>Understand and apply the Law of Inertia (First Law).</li>
+                            <li>Master the dynamical relationship $\Sigma \vec{F} = m \vec{a}$ (Second Law).</li>
+                            <li>Accurately identify action-reaction pairs (Third Law).</li>
+                            <li>Resolve forces into 2D components and analyze Inclined Planes.</li>
+                            <li class="font-bold text-accent-secondary">NEW: Define and use **Tension** in connected systems.</li>
+                            <li class="font-bold text-accent-secondary">NEW: Analyze two-body systems (Atwood and Horizontal Pulleys).</li>
+                        </ul>
+                    </div>
+                    <div class="p-8 rounded-xl bg-[#1C1C30] border-l-4 border-l-green-400">
+                        <h2 class="text-2xl font-semibold text-emerald-300 mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+                            Key Vocabulary
+                        </h2>
+                        <ul class="list-disc list-inside space-y-3 text-lg text-gray-300 pl-4">
+                            <li>Force ($\vec{F}$): Vector quantity, measured in Newtons ($N$).</li>
+                            <li>Inertia: Resistance to change in motion, proportional to mass ($m$).</li>
+                            <li>Net Force ($\Sigma \vec{F}$): The vector sum of all forces.</li>
+                            <li>Equilibrium: State where $\Sigma \vec{F} = 0$.</li>
+                            <li>Normal Force ($F_{\text{N}}$) & Friction Force ($F_{\text{f}}$).</li>
+                            <li class="font-bold text-highlight-color">Tension ($F_{\text{T}}$): Force transmitted through a rope or cable.</li>
+                            <li class="font-bold text-highlight-color">Connected System: Two or more masses accelerating together.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Do Now (5-10 Minutes) -->
+        <section id="slide-2" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-highlight-color">Do Now: Inertia and Mass</h2>
+                
+                <div class="text-center mb-8 p-4 bg-yellow-900/40 rounded-xl border border-highlight-color/50">
+                    <p class="text-5xl font-extrabold text-highlight-color mb-2" id="timer">5:00</p>
+                    <p class="text-lg text-yellow-200">Time Remaining</p>
+                </div>
+
+                <div class="p-8 bg-[#1C1C30] rounded-xl shadow-xl border-l-4 border-l-highlight-color">
+                    <p class="text-2xl font-medium text-gray-100 mb-4">The Challenge:</p>
+                    <p class="text-xl text-gray-300">
+                        A small $1000~kg$ car and a large $40,000~kg$ train are traveling on parallel tracks at the exact same velocity. 
+                        If both engines suddenly fail, which object will require a larger retarding force to stop it in the same amount of time? Explain your reasoning using the concept of **inertia**.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Newton's First Law -->
+        <section id="slide-3" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-accent-secondary">Newton's First Law: The Law of Inertia</h2>
+                
+                <div class="p-8 rounded-xl bg-[#1C1C30] shadow-xl border-t-4 border-t-accent-secondary">
+                    <h3 class="text-2xl font-semibold text-accent-secondary mb-4">Formal Statement:</h3>
+                    <p class="text-xl text-gray-200 mb-6 italic border-l-4 pl-4 border-gray-500">
+                        "An object at rest stays at rest, and an object in motion stays in motion with the same speed and in the same direction unless acted upon by an unbalanced external force."
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mt-6">
+                        <div>
+                            <h4 class="text-2xl text-blue-300 font-semibold mb-2">The Equilibrium Condition</h4>
+                            <p class="text-lg text-gray-300">
+                                This law describes the state of **equilibrium**, where the net force is zero. Acceleration is zero.
+                            </p>
+                            <div class="math-display">
+                                $$
+                                \Sigma \vec{F} = 0
+                                $$
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl text-blue-300 font-semibold mb-2">Inertia: Resistance to Change</h4>
+                            <p class="text-lg text-gray-300">
+                                Inertia is what causes passengers to lurch forward when a bus suddenly brakes. The passenger's body resists the change in velocity. The amount of inertia is directly proportional to the **mass** ($m$).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Newton's Second Law: The Equation -->
+        <section id="slide-4" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-accent-primary">Newton's Second Law: Dynamics Quantified</h2>
+                
+                <div class="p-8 rounded-xl bg-[#1C1C30] shadow-xl border-t-4 border-t-accent-primary text-center">
+                    <h3 class="text-2xl font-semibold text-accent-primary mb-6">The Law of Acceleration:</h3>
+                    <p class="text-xl text-gray-200 mb-8 italic">
+                        The net force acting on an object is equal to the mass of the object multiplied by its acceleration.
+                    </p>
+
+                    <div class="math-display mx-auto">
+                        $$
+                        \Sigma \vec{F} = m \vec{a}
+                        $$
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mt-8 text-left">
+                        <div class="p-4 bg-[#0A0A0F] rounded-lg border border-gray-700">
+                            <p class="text-lg font-medium text-highlight-color">Force ($\Sigma F$)</p>
+                            <p class="text-sm text-gray-400">Causes the acceleration. Measured in $\text{N}$.</p>
+                        </div>
+                        <div class="p-4 bg-[#0A0A0F] rounded-lg border border-gray-700">
+                            <p class="text-lg font-medium text-highlight-color">Mass ($m$)</p>
+                            <p class="text-sm text-gray-400">The object's inertia. Measured in $\text{kg}$.</p>
+                        </div>
+                        <div class="p-4 bg-[#0A0A0F] rounded-lg border border-gray-700">
+                            <p class="text-lg font-medium text-highlight-color">Acceleration ($a$)</p>
+                            <p class="text-sm text-gray-400">The rate of velocity change. Measured in $\text{m/s}^2$.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Second Law Application (Example) -->
+        <section id="slide-5" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-highlight-color">Second Law Application: 1D Calculation</h2>
+                <p class="text-xl text-center mb-8 text-gray-200">
+                    Applying $\Sigma F = m a$ to a simple horizontal force system.
+                </p>
+
+                <div class="p-8 bg-[#1C1C30] rounded-xl shadow-xl border-t-4 border-t-highlight-color">
+                    <p class="text-2xl font-semibold text-gray-100 mb-4">Problem Statement:</p>
+                    <p class="text-xl text-gray-300 mb-6">
+                        A construction worker pushes a $40~\text{kg}$ block with an applied force ($F_{\text{A}}$) of $150~\text{N}$. The rough concrete floor exerts a friction force ($F_{\text{f}}$) of $50~\text{N}$ opposite the direction of motion. Determine the block's acceleration ($a$).
+                    </p>
+
+                    <div class="p-6 bg-gray-900 rounded-lg border border-gray-700">
+                        <h3 class="text-xl font-semibold text-highlight-color mb-3">Step-by-Step Solution:</h3>
+                        <div class="space-y-5 text-lg text-gray-200">
+                            <p>1. Calculate Net Force ($\Sigma F$). (Forward forces are positive):</p>
+                            <div class="math-display max-w-fit mx-auto">
+                                $$
+                                \Sigma F = F_{\text{A}} - F_{\text{f}} = 150 \text{ N} - 50 \text{ N} = 100 \text{ N}
+                                $$
+                            </div>
+
+                            <p>2. Calculate Acceleration ($a$) using $a = \Sigma F / m$:</p>
+                            <div class="math-display max-w-fit mx-auto">
+                                $$
+                                a = \frac{100 \text{ N}}{40 \text{ kg}} = 2.5 \frac{\text{m}}{\text{s}^2}
+                                $$
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-2xl font-semibold text-accent-secondary text-center">
+                        Result: The block accelerates at $2.5~\text{m/s}^2$ in the direction of the push.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Newton's Third Law -->
+        <section id="slide-6" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-accent-secondary">Newton's Third Law: The Interaction Pair</h2>
+                
+                <div class="p-8 rounded-xl bg-[#1C1C30] shadow-xl border-t-4 border-t-accent-secondary">
+                    <h3 class="text-2xl font-semibold text-accent-secondary mb-4">The Statement (Action-Reaction):</h3>
+                    <p class="text-xl text-gray-200 mb-6 italic border-l-4 pl-4 border-gray-500">
+                        "For every action force, there is an equal and opposite reaction force."
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mt-6">
+                        <div>
+                            <h4 class="text-2xl text-blue-300 font-semibold mb-2">The Core Equation</h4>
+                            <p class="text-lg text-gray-300">
+                                The forces are always equal in magnitude and opposite in direction.
+                            </p>
+                            <div class="math-display">
+                                $$
+                                \vec{F}_{\text{A on B}} = - \vec{F}_{\text{B on A}}
+                                $$
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl text-blue-300 font-semibold mb-2">Crucial Distinction</h4>
+                            <ul class="list-disc list-inside space-y-2 text-lg text-gray-300 pl-4">
+                                <li>The forces always act on **different** objects.</li>
+                                <li>This is why they **never cancel out** when analyzing the motion of a single object.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        <!-- Slide 7: Third Law Pitfall -->
+        <section id="slide-7" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-highlight-color">Analyzing the Reaction Pair</h2>
+                
+                <div class="p-8 bg-[#1C1C30] rounded-xl shadow-xl border-t-4 border-t-highlight-color">
+                    <h3 class="text-2xl font-semibold text-highlight-color mb-4">When Forces Act on Different Objects</h3>
+                    <p class="text-xl text-gray-200 mb-6">
+                        The acceleration of any object is determined only by the **net force acting on that single object** ($\Sigma \vec{F} = m \vec{a}$).
+                    </p>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div class="p-4 bg-gray-800 rounded-lg border border-gray-700">
+                            <p class="text-2xl font-bold text-blue-300">Action</p>
+                            <p class="text-sm text-gray-400">Hammer hits Nail (Forward)</p>
+                        </div>
+                        <div class="p-4 bg-gray-800 rounded-lg border border-gray-700">
+                            <p class="text-2xl font-bold text-blue-300">Reaction</p>
+                            <p class="text-sm text-gray-400">Nail hits Hammer (Backward)</p>
+                        </div>
+                        <div class="p-4 bg-gray-800 rounded-lg border border-gray-700">
+                            <p class="text-2xl font-bold text-accent-secondary">Result</p>
+                            <p class="text-sm text-gray-400">The hammer and nail experience the same force magnitude, but their accelerations depend on their mass.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- === 2D FORCES === -->
+
+        <!-- Slide 8: Vector Components and FBDs -->
+        <section id="slide-8" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-accent-primary">2D Forces: Resolving Components</h2>
+                <p class="text-xl text-center mb-8 text-gray-200">
+                    To apply $\Sigma \vec{F} = m \vec{a}$ in two dimensions, we must break every force into $x$ and $y$ components.
+                </p>
+
+                <div class="p-8 bg-[#1C1C30] rounded-xl shadow-xl border-t-4 border-t-accent-primary">
+                    <h3 class="text-2xl font-semibold text-accent-primary mb-4">Trigonometric Resolution:</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mt-6">
+                        <div>
+                            <h4 class="text-2xl text-highlight-color font-semibold mb-2">X-Component (Adjacent)</h4>
+                            <p class="text-lg text-gray-300">
+                                The force component parallel to the x-axis, typically found using **cosine**.
+                            </p>
+                            <div class="math-display">
+                                $$
+                                F_x = F \cos \theta
+                                $$
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl text-highlight-color font-semibold mb-2">Y-Component (Opposite)</h4>
+                            <p class="text-lg text-gray-300">
+                                The force component parallel to the y-axis, typically found using **sine**.
+                            </p>
+                            <div class="math-display">
+                                $$
+                                F_y = F \sin \theta
+                                $$
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-lg text-gray-400 mt-6">
+                        ($\theta$ is the angle measured from the positive x-axis, or the closest axis).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Strategy for Inclined Planes -->
+        <section id="slide-9" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-accent-secondary">Strategy: Analyzing Inclined Planes</h2>
+                <p class="text-xl text-center mb-8 text-gray-200">
+                    The most efficient way to analyze motion on a ramp is to **tilt your coordinate system.**
+                </p>
+
+                <div class="p-8 bg-[#1C1C30] rounded-xl shadow-xl border-t-4 border-t-accent-secondary">
+                    <h3 class="text-2xl font-semibold text-accent-secondary mb-4">Tilted Axes Rules:</h3>
+                    
+                    <ol class="list-decimal list-inside space-y-4 text-xl text-gray-300 pl-4">
+                        <li>**Draw FBD:** Include $W$ (straight down), $F_{\text{N}}$ (perpendicular to surface), and $F_{\text{f}}$ (parallel to surface).</li>
+                        <li>**Tilt Axes:** Set the $+x$ axis parallel to the incline (direction of motion) and the $+y$ axis perpendicular to the incline.</li>
+                        <li>**Resolve Weight ($W$):** The only force that requires resolution is gravity (Weight, $W$).</li>
+                        <li class="font-bold text-highlight-color">Weight Components: The angle of the incline ($\theta$) is equal to the angle between $W$ and the new $y$-axis.</li>
+                    </ol>
+
+                    <div class="math-display mx-auto max-w-lg mt-8 text-left text-base">
+                        $$
+                        W_x = W \sin \theta \quad (\text{Down the ramp}) \\
+                        W_y = W \cos \theta \quad (\text{Perpendicular into the ramp})
+                        $$
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Inclined Plane (Equilibrium) -->
+        <section id="slide-10" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-highlight-color">2D Example: Static Equilibrium on a Ramp</h2>
+                
+                <div class="p-8 bg-[#1C1C30] rounded-xl shadow-xl border-t-4 border-t-highlight-color">
+                    <p class="text-xl text-gray-300 mb-6">
+                        A $2~\text{kg}$ block is held stationary on a frictionless ramp inclined at $\theta = 30^\circ$. Find the Normal Force ($F_{\text{N}}$) exerted by the ramp. (Assume $g = 9.8~\text{m/s}^2$).
+                    </p>
+
+                    <div class="p-6 bg-gray-900 rounded-lg border border-gray-700">
+                        <h3 class="text-xl font-semibold text-highlight-color mb-3">Solution (Y-Direction):</h3>
+                        <div class="space-y-5 text-lg text-gray-200">
+                            <p>1. Calculate Weight ($W$):</p>
+                            <div class="math-display max-w-fit mx-auto text-base">
+                                $$
+                                W = m g = (2 \text{ kg})(9.8 \text{ m/s}^2) = 19.6 \text{ N}
+                                $$
+                            </div>
+
+                            <p>2. Apply Second Law in the y-direction ($\Sigma F_y = 0$ since $a_y=0$):</p>
+                            <div class="math-display max-w-fit mx-auto text-base">
+                                $$
+                                \Sigma F_y = F_{\text{N}} - W_y = 0 \\
+                                F_{\text{N}} = W_y = W \cos \theta
+                                $$
+                            </div>
+
+                            <p>3. Solve for $F_{\text{N}}$:</p>
+                            <div class="math-display max-w-fit mx-auto text-base">
+                                $$
+                                F_{\text{N}} = (19.6 \text{ N}) \cos(30^\circ) \approx 16.97 \text{ N}
+                                $$
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-2xl font-semibold text-accent-secondary text-center">
+                        Result: The ramp pushes back with a Normal Force of approximately $17.0~\text{N}$.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Inclined Plane (Dynamics) -->
+        <section id="slide-11" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-accent-primary">2D Example: Dynamic Motion on a Ramp</h2>
+                
+                <div class="p-8 bg-[#1C1C30] rounded-xl shadow-xl border-t-4 border-t-accent-primary">
+                    <p class="text-xl text-gray-300 mb-6">
+                        If the $2~\text{kg}$ block *slides* down the $30^\circ$ incline, and the friction force is $F_{\text{f}} = 4.0~\text{N}$, what is its acceleration ($a$)?
+                    </p>
+
+                    <div class="p-6 bg-gray-900 rounded-lg border border-gray-700">
+                        <h3 class="text-xl font-semibold text-accent-primary mb-3">Solution (X-Direction):</h3>
+                        <div class="space-y-5 text-lg text-gray-200">
+                            <p>1. Identify $W_x$ (the driving force) and $F_{\text{f}}$ (the opposing force):</p>
+                            <div class="math-display max-w-fit mx-auto text-base">
+                                $$
+                                W_x = W \sin \theta = (19.6 \text{ N}) \sin(30^\circ) = 9.8 \text{ N}
+                                $$
+                            </div>
+
+                            <p>2. Apply Second Law in the x-direction ($\Sigma F_x = m a$):</p>
+                            <div class="math-display max-w-fit mx-auto text-base">
+                                $$
+                                \Sigma F_x = W_x - F_{\text{f}} = m a \\
+                                a = \frac{W_x - F_{\text{f}}}{m}
+                                $$
+                            </div>
+
+                            <p>3. Solve for acceleration ($a$):</p>
+                            <div class="math-display max-w-fit mx-auto text-base">
+                                $$
+                                a = \frac{9.8 \text{ N} - 4.0 \text{ N}}{2.0 \text{ kg}} = \frac{5.8 \text{ N}}{2.0 \text{ kg}} = 2.9 \frac{\text{m}}{\text{s}^2}
+                                $$
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-2xl font-semibold text-highlight-color text-center">
+                        Result: The block accelerates down the ramp at $2.9~\text{m/s}^2$.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Slide 12: Transition to Systems -->
+        <section id="slide-12" class="slide">
+            <div class="slide-content text-center">
+                <h2 class="slide-title">Conclusion: Mastering 2D Dynamics</h2>
+                <p class="text-2xl text-gray-200 mb-8 font-light tracking-wide">
+                    By resolving forces into $x$ and $y$ components, we can apply Newton's Second Law to any complex scenario.
+                </p>
+                
+                <div class="p-10 bg-[#1C1C30] rounded-xl border-2 border-accent-primary">
+                    <h3 class="text-3xl font-semibold text-accent-primary mb-4 flex items-center justify-center">
+                        <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        What's Next? (Connected Systems)
+                    </h3>
+                    <p class="text-xl text-gray-300 mb-6">
+                        Our final step in foundational dynamics is analyzing systems where forces are transmitted through cables and ropes.
+                    </p>
+                    <p class="text-xl font-semibold text-highlight-color mt-6">
+                        Next Class Topic: **Tension, Atwood Machines, and Pulley Systems.** (Let's start now!)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- === NEW SECTION: TENSION AND CONNECTED SYSTEMS === -->
+
+        <!-- Slide 13 (New): Tension & Pulley Introduction -->
+        <section id="slide-13" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-accent-secondary">Tension: The Force in the Cable</h2>
+                <p class="text-xl text-center mb-8 text-gray-200">
+                    Tension ($F_{\text{T}}$) is the force exerted by a flexible medium (like a rope, string, or cable) when it is pulled taut.
+                </p>
+
+                <div class="p-8 bg-[#1C1C30] rounded-xl shadow-xl border-t-4 border-t-accent-secondary">
+                    <h3 class="text-2xl font-semibold text-accent-secondary mb-4">Key Properties of Tension:</h3>
+                    
+                    <ul class="list-disc list-inside space-y-4 text-xl text-gray-300 pl-4">
+                        <li>**Direction:** Tension always pulls **away** from the object to which the rope is attached.</li>
+                        <li>**Ideal Rope:** In introductory problems, we assume ropes are **massless**, meaning tension ($F_{\text{T}}$) is uniform throughout the entire rope.</li>
+                        <li>**Ideal Pulley:** We assume pulleys are **massless and frictionless**. They only change the **direction** of the tension force, not its magnitude.</li>
+                        <li>**Connected Systems:** Objects connected by a single rope or cable **must** have the same magnitude of acceleration ($a$).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 14 (New): System Dynamics: Atwood Machine -->
+        <section id="slide-14" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-highlight-color">System Dynamics: The Atwood Machine</h2>
+                <p class="text-xl text-center mb-8 text-gray-200">
+                    A classic vertical system used to find the acceleration of two connected masses.
+                </p>
+
+                <div class="p-8 bg-[#1C1C30] rounded-xl shadow-xl border-t-4 border-t-highlight-color">
+                    <h3 class="text-2xl font-semibold text-highlight-color mb-4">The System Approach:</h3>
+                    
+                    <p class="text-xl text-gray-300 mb-6">
+                        Treat the two blocks and the rope as a single system. The **Tension forces are internal** and cancel out! Only external forces (Weight/Gravity) contribute to the system's net force ($\Sigma F_{\text{net}}$).
+                    </p>
+                    
+                    <div class="math-display mx-auto max-w-xl mt-8 text-left text-base">
+                        $$
+                        \text{Driving Force: } W_2 = m_2 g \\
+                        \text{Opposing Force: } W_1 = m_1 g \\
+                        \Sigma F_{\text{net}} = W_2 - W_1 = (m_2 + m_1) a 
+                        $$
+                    </div>
+                    
+                    <h3 class="text-2xl font-semibold text-accent-secondary mt-8">Solving for Acceleration ($a$):</h3>
+                    <div class="math-display mx-auto max-w-xl mt-4 text-base">
+                        $$
+                        a = \frac{m_2 g - m_1 g}{m_1 + m_2} = g \left( \frac{m_2 - m_1}{m_1 + m_2} \right)
+                        $$
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 15 (New): System Dynamics: Horizontal Pulley -->
+        <section id="slide-15" class="slide">
+            <div class="slide-content">
+                <h2 class="slide-title text-accent-primary">System Dynamics: Horizontal Pulley</h2>
+                <p class="text-xl text-center mb-8 text-gray-200">
+                    A mass $m_1$ on a table connected to a hanging mass $m_2$ via a rope and pulley.
+                </p>
+
+                <div class="p-8 bg-[#1C1C30] rounded-xl shadow-xl border-t-4 border-t-accent-primary">
+                    <h3 class="text-2xl font-semibold text-accent-primary mb-4">The System Approach (with Friction):</h3>
+                    
+                    <p class="text-xl text-gray-300 mb-6">
+                        The motion is determined by the forces acting *along the line of motion* (the $x$-axis for $m_1$, and the $y$-axis for $m_2$).
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mt-6">
+                        <div>
+                            <h4 class="text-2xl text-highlight-color font-semibold mb-2">Forces Driving/Opposing:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-lg text-gray-300 pl-4">
+                                <li>**Driving:** $W_2 = m_2 g$ (Gravity on the hanging mass).</li>
+                                <li>**Opposing:** $F_{\text{f}1}$ (Friction on the table mass $m_1$).</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl text-highlight-color font-semibold mb-2">System Net Force ($\Sigma F_{\text{net}}$):</h4>
+                            <p class="text-lg text-gray-300">
+                                Tension is internal and cancels. The total mass accelerating is $m_1 + m_2$.
+                            </p>
+                            <div class="math-display max-w-full mx-auto text-base">
+                                $$
+                                \Sigma F_{\text{net}} = W_2 - F_{\text{f}1} = (m_1 + m_2) a
+                                $$
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-lg font-semibold text-accent-secondary mt-6 text-center">
+                        This is the most powerful method for finding system acceleration!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 16 (New Final Slide): Unit Mastery -->
+        <section id="slide-16" class="slide">
+            <div class="slide-content text-center">
+                <h2 class="slide-title text-highlight-color">Unit Mastery Check: Classical Dynamics</h2>
+                <p class="text-2xl text-gray-200 mb-8 font-light tracking-wide">
+                    You have mastered the foundational laws and techniques for analyzing forces in all standard scenarios.
+                </p>
+                
+                <div class="p-10 bg-[#1C1C30] rounded-xl border-2 border-accent-secondary">
+                    <h3 class="text-3xl font-semibold text-accent-secondary mb-4 flex items-center justify-center">
+                        <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 0012 21a12.001 12.001 0 008.618-18.056z"></path></svg>
+                        Summary of Core Concepts
+                    </h3>
+                    <ul class="text-xl text-gray-300 space-y-4 list-disc list-inside text-left mx-auto max-w-md">
+                        <li>**1D Motion:** $\Sigma F = m a$ (Basic FBD and Net Force calculation).</li>
+                        <li>**2D Motion:** **Force Resolution** ($F_x, F_y$) and **Tilted Axes** (Inclined Planes).</li>
+                        <li>**Connected Systems:** Treating multiple masses as a single unit to find the system acceleration ($a$).</li>
+                        <li>**Universal Tools:** Free Body Diagrams (FBDs) and Newton's Three Laws.</li>
+                    </ul>
+
+                    <p class="text-2xl font-semibold text-accent-primary mt-8">
+                        The Unit is Complete! Great work!
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Bottom Navigation Bar -->
+    <footer class="fixed-nav">
+        <button id="prev-btn" onclick="prevSlide()" class="nav-btn btn-primary bg-gray-600 hover:bg-gray-500 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Previous
+        </button>
+        <span id="slide-indicator" class="text-lg font-medium text-gray-400">Slide 1 of 16</span>
+        <button id="next-btn" onclick="nextSlide()" class="nav-btn btn-primary flex items-center">
+            Next
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </button>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Slideshow Setup ---
+            const slides = document.querySelectorAll('.slide');
+            const slideIndicator = document.getElementById('slide-indicator');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const totalSlides = slides.length; // Now 16
+            let currentSlideIndex = 0;
+            
+
+            // --- Do Now Timer Logic (Slide 2) ---
+            const timerDisplay = document.getElementById('timer');
+            let timeLeft = 5 * 60; // 5 minutes in seconds
+            let timerInterval;
+
+            function updateTimer() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = "Time Up!";
+                    timerDisplay.classList.remove('text-highlight-color');
+                    timerDisplay.classList.add('text-red-500');
+                } else {
+                    timeLeft--;
+                }
+            }
+            
+            function startTimer() {
+                if (!timerInterval) {
+                     timerInterval = setInterval(updateTimer, 1000);
+                }
+            }
+
+
+            // --- Slideshow Navigation Functions ---
+
+            function updateNavigationButtons() {
+                // Update indicator
+                slideIndicator.textContent = `Slide ${currentSlideIndex + 1} of ${totalSlides}`;
+
+                // Manage visibility
+                prevBtn.style.display = (currentSlideIndex === 0) ? 'none' : 'flex';
+                nextBtn.style.display = (currentSlideIndex === totalSlides - 1) ? 'none' : 'flex';
+
+                // Specific state for the first slide button 
+                if (currentSlideIndex === 0) {
+                    nextBtn.textContent = 'Start The Lesson';
+                    nextBtn.style.backgroundColor = 'var(--accent-secondary)';
+                    nextBtn.style.boxShadow = '0 5px 15px rgba(0, 255, 192, 0.4)';
+                } else {
+                    nextBtn.textContent = 'Next';
+                    nextBtn.style.backgroundColor = 'var(--accent-primary)';
+                    nextBtn.style.boxShadow = '0 5px 15px rgba(78, 120, 255, 0.4)';
+                }
+                nextBtn.onclick = window.nextSlide;
+            }
+
+            function showSlide(index) {
+                if (index < 0 || index >= totalSlides) return;
+
+                // Hide all and show target
+                slides.forEach(slide => slide.style.display = 'none');
+                slides[index].style.display = 'flex';
+                
+                currentSlideIndex = index;
+
+                // Start timer if on the 'Do Now' slide (Slide index 1)
+                if (currentSlideIndex === 1) {
+                    startTimer();
+                } else {
+                    // Optional: pause or reset timer when leaving the slide
+                    if (timerInterval) clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+
+                updateNavigationButtons();
+            }
+
+            window.nextSlide = function() {
+                showSlide(currentSlideIndex + 1);
+            };
+
+            window.prevSlide = function() {
+                showSlide(currentSlideIndex - 1);
+            };
+            
+            // Initial load
+            showSlide(0);
+        });
+    </script>
+
+</body>
+</html>
