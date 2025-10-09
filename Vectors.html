@@ -41,7 +41,7 @@
             color: #1e293b; /* Tailwind: text-slate-800 */
         }
         h1, h2, h3, h4 {
-            font-weight: 700; /* Ensure headings are visibly bold */
+            font-weight: 800; /* Ensure headings are visibly heavy */
         }
         .formula {
             display: block;
@@ -88,21 +88,28 @@
             font-size: 0.95rem;
         }
         
-        .illustration-note {
-            font-style: italic;
-            color: #64748b; /* Tailwind: text-slate-500 */
-            margin-top: 0.5rem;
-            text-align: center;
+        .problem-statement-list {
+            counter-reset: problem-counter;
+            list-style: none; /* Remove default list style */
+            padding-left: 0;
         }
-        .vector-illustration {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .problem-statement-list li {
+            counter-increment: problem-counter;
             margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .problem-statement-list li::before {
+            content: "P" counter(problem-counter) ".";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #4338ca; /* Tailwind: indigo-700 */
         }
 
+
         /* ------------------------------------ */
-        /* PRINT STYLES (Printable Enhancements) */
+        /* PRINT STYLES (Enforcing Plain Text) */
         /* ------------------------------------ */
         @media print {
             body {
@@ -118,10 +125,16 @@
                 display: none !important;
             }
 
-            /* Enforce page breaks for new 'units' (sections 4 and 6) */
-            .print-break {
+            /* Enforce page breaks for new 'units' */
+            .page-start {
                 page-break-before: always;
             }
+
+            /* Ensures content doesn't split across a page break */
+            .problem-unit, .concept-box, .proof-box, .problem-statement-block {
+                page-break-inside: avoid;
+            }
+
 
             /* Remove non-essential UI/decorative elements */
             .Header, .Main section, .container {
@@ -131,22 +144,29 @@
             }
 
             /* Ensure all text is dark and readable */
-            h1, h2, h3, h4, p, span, div, li, strong {
+            h1, h2, h3, h4, p, span, div, li {
                 color: #000 !important;
-                font-weight: 700 !important; /* Ensure all bolds render correctly */
             }
-
+            
+            /* FIX: Ensure regular text (which is now un-bolded) is normal weight */
+            p, div, span, li, a {
+                font-weight: 400 !important;
+            }
+            
+            h1, h2, h3, h4 {
+                font-weight: 800 !important; /* Keep headers heavy */
+            }
+            
             /* Simplify boxes for printing */
             .concept-box, .proof-box, .physics-example, .solution-box {
                 background-color: #f0f0ff !important; /* Very light blue/gray background */
                 border: 1px solid #ccc !important;
                 padding: 0.75rem !important;
                 border-left: 4px solid #3b82f6 !important; /* Use a standard blue border for contrast */
-                page-break-inside: avoid;
             }
 
             /* Ensure MathJax/Formulas are contained */
-            .formula, .vector-illustration {
+            .formula {
                 page-break-inside: avoid;
                 background-color: #f7f7f7 !important;
             }
@@ -173,14 +193,14 @@
             <section class="mb-10">
                 <h2 class="text-3xl border-b text-gray-800 mb-4">1. Scalars and Vectors</h2>
                 <div class="concept-box">
-                    <h3 class="text-xl font-bold">Scalar Quantity</h3>
-                    <p>A <strong>Scalar</strong> quantity is defined only by its <strong>magnitude</strong> (a number and a unit). It follows ordinary arithmetic.</p>
-                    <p class="text-sm mt-2">Examples: <strong>Mass</strong> ($\text{kg}$), <strong>Temperature</strong> ($\text{K}$), <strong>Time</strong> ($\text{s}$).</p>
+                    <h3 class="text-xl">Scalar Quantity</h3>
+                    <p>A Scalar quantity is defined only by its magnitude (a number and a unit). It follows ordinary arithmetic.</p>
+                    <p class="text-sm mt-2">Examples: Mass ($\text{kg}$), Temperature ($\text{K}$), Time ($\text{s}$).</p>
                 </div>
                 <div class="concept-box">
-                    <h3 class="text-xl font-bold">Vector Quantity</h3>
-                    <p>A <strong>Vector</strong> quantity is defined by <strong>both</strong> its <strong>magnitude</strong> and <strong>direction</strong> in space. It follows specialized vector algebra.</p>
-                    <p class="text-sm mt-2">Examples: <strong>Force</strong> ($\vec{F}$), <strong>Velocity</strong> ($\vec{v}$), <strong>Displacement</strong> ($\Delta \vec{r}$).</p>
+                    <h3 class="text-xl">Vector Quantity</h3>
+                    <p>A Vector quantity is defined by both its magnitude and direction in space. It follows specialized vector algebra.</p>
+                    <p class="text-sm mt-2">Examples: Force ($\vec{F}$), Velocity ($\vec{v}$), Displacement ($\Delta \vec{r}$).</p>
                 </div>
             </section>
 
@@ -192,7 +212,7 @@
                 <div class="formula">
                     $$\vec{A} = A_x \hat{i} + A_y \hat{j} + A_z \hat{k}$$
                 </div>
-                <p>The <strong>magnitude</strong> of $\vec{A}$ is found using the Pythagorean theorem:</p>
+                <p>The magnitude of $\vec{A}$ is found using the Pythagorean theorem:</p>
                 <div class="formula">
                     $$|\vec{A}| = \sqrt{A_x^2 + A_y^2 + A_z^2}$$
                 </div>
@@ -203,39 +223,6 @@
                     <p>Vector subtracted by $\vec{B}$ is equivalent to adding $-\vec{B}$:</p>
                     $$\vec{D} = \vec{A} - \vec{B} = (A_x - B_x)\hat{i} + (A_y - B_y)\hat{j} + (A_z - B_z)\hat{k}$$
                 </div>
-                
-                <!-- Vector Addition Illustration -->
-                <div class="vector-illustration">
-                    <svg width="250" height="150" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <marker id="arrowhead" markerWidth="5" markerHeight="5" refX="2" refY="2" orient="auto">
-                                <path d="M0,0 L4,2 L0,4 Z" fill="#475569"/>
-                            </marker>
-                            <marker id="arrowhead-red" markerWidth="5" markerHeight="5" refX="2" refY="2" orient="auto">
-                                <path d="M0,0 L4,2 L0,4 Z" fill="#ef4444"/>
-                            </marker>
-                            <marker id="arrowhead-blue" markerWidth="5" markerHeight="5" refX="2" refY="2" orient="auto">
-                                <path d="M0,0 L4,2 L0,4 Z" fill="#3b82f6"/>
-                            </marker>
-                            <marker id="arrowhead-green" markerWidth="5" markerHeight="5" refX="2" refY="2" orient="auto">
-                                <path d="M0,0 L4,2 L0,4 Z" fill="#10b981"/>
-                            </marker>
-                        </defs>
-                        <!-- Axes -->
-                        <line x1="10" y1="130" x2="190" y2="130" stroke="#475569" stroke-width="1" marker-end="url(#arrowhead)"/>
-                        <line x1="10" y1="130" x2="10" y2="20" stroke="#475569" stroke-width="1" marker-end="url(#arrowhead)"/>
-                        <!-- Vector A (Head-to-Tail) -->
-                        <line x1="10" y1="130" x2="100" y2="75" stroke="#ef4444" stroke-width="2" marker-end="url(#arrowhead-red)"/>
-                        <text x="55" y="75" font-weight="bold" fill="#ef4444">A</text>
-                        <!-- Vector B (Head-to-Tail) -->
-                        <line x1="100" y1="75" x2="160" y2="50" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
-                        <text x="135" y="60" font-weight="bold" fill="#3b82f6">B</text>
-                        <!-- Resultant R -->
-                        <line x1="10" y1="130" x2="160" y2="50" stroke="#10b981" stroke-width="3" stroke-dasharray="4 2" marker-end="url(#arrowhead-green)"/>
-                        <text x="80" y="45" font-weight="bold" fill="#10b981">R</text>
-                    </svg>
-                    <p class="illustration-note">Illustration of Vector Addition ($\vec{R} = \vec{A} + \vec{B}$) using the Head-to-Tail Rule.</p>
-                </div>
             </section>
 
             <!-- Section 3: Vector Products -->
@@ -243,80 +230,80 @@
                 <h2 class="text-3xl border-b text-gray-800 mb-4">3. Vector Products</h2>
 
                 <h3 class="text-2xl mb-4">3.1. The Dot Product (Scalar Product)</h3>
-                <p>The <strong>dot product</strong> of two vectors, $\vec{A}$ and $\vec{B}$, yields a <strong>scalar</strong> quantity. It measures the extent to which the vectors are parallel.</p>
+                <p>The dot product of two vectors, $\vec{A}$ and $\vec{B}$, yields a scalar quantity. It measures the extent to which the vectors are parallel. The geometric definition involves the angle $\theta$ between them.</p>
                 <div class="formula">
                     $$\vec{A} \cdot \vec{B} = |\vec{A}| |\vec{B}| \cos \theta \quad \text{(Geometric Definition)}$$
                     $$\vec{A} \cdot \vec{B} = A_x B_x + A_y B_y + A_z B_z \quad \text{(Component Form)}$$
                 </div>
-                <p>The dot product is used to find the <strong>angle</strong> between two vectors.</p>
+                <p>The dot product is used to find the angle between two vectors.</p>
 
                 <div class="physics-example">
-                    <p class="font-bold text-blue-800">Physics Application: Work</p>
-                    <p>Work is a <strong>scalar</strong> quantity that is the dot product of <strong>Force</strong> and <strong>Displacement</strong>.</p>
+                    <p class="text-blue-800">Physics Application: Work</p>
+                    <p>Work is a scalar quantity that is the dot product of Force and Displacement.</p>
                     $$W = \vec{F} \cdot \vec{d} = |\vec{F}| |\vec{d}| \cos \theta$$
                 </div>
 
                 <h3 class="text-2xl mb-4">3.2. The Cross Product (Vector Product)</h3>
-                <p>The <strong>cross product</strong> of two vectors, $\vec{A}$ and $\vec{B}$, yields a new <strong>vector</strong> $\vec{C}$, which is <strong>perpendicular</strong> to both $\vec{A}$ and $\vec{B}$. The direction is determined by the <strong>Right-Hand Rule</strong>.</p>
+                <p>The cross product of two vectors, $\vec{A}$ and $\vec{B}$, yields a new vector $\vec{C}$, which is perpendicular to both $\vec{A}$ and $\vec{B}$. The direction of $\vec{C}$ is determined by the Right-Hand Rule.</p>
                 <div class="formula">
                     $$|\vec{A} \times \vec{B}| = |\vec{A}| |\vec{B}| \sin \theta \quad \text{(Magnitude Definition)}$$
                     $$\vec{A} \times \vec{B} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ A_x & A_y & A_z \\ B_x & B_y & B_z \end{vmatrix} \quad \text{(Determinant Form)}$$
                 </div>
 
                 <div class="physics-example">
-                    <p class="font-bold text-blue-800">Physics Application: Torque</p>
-                    <p><strong>Torque</strong> is a <strong>vector</strong> quantity that is the cross product of the <strong>position vector</strong> ($\vec{r}$) and the <strong>Force</strong> ($\vec{F}$).</p>
+                    <p class="text-blue-800">Physics Application: Torque</p>
+                    <p>Torque is a vector quantity that is the cross product of the position vector ($\vec{r}$) and the Force ($\vec{F}$).</p>
                     $$\vec{\tau} = \vec{r} \times \vec{F}$$
                 </div>
             </section>
 
-            <!-- Section 4: Vector Calculus Fundamentals (New Page Break) -->
-            <section class="mb-10 print-break">
+            <!-- Section 4: Vector Calculus Fundamentals (New Page Break enforced by .page-start) -->
+            <section class="mb-10 page-start">
                 <h2 class="text-3xl border-b text-gray-800 mb-4">4. The $\nabla$ Operator (Del or Nabla)</h2>
-                <p>The <strong>Del</strong> operator, $\nabla$ (nabla), is a differential <strong>vector operator</strong> used in vector calculus. It acts on scalar and vector fields.</p>
+                <p>The Del operator, $\nabla$ (nabla), is a differential vector operator used in vector calculus. It acts on scalar and vector fields.</p>
                 <div class="formula">
                     $$\nabla = \frac{\partial}{\partial x}\hat{i} + \frac{\partial}{\partial y}\hat{j} + \frac{\partial}{\partial z}\hat{k}$$
                 </div>
 
                 <h3 class="text-2xl mb-4">4.1. The Gradient of a Scalar Field ($\text{grad } f$)</h3>
-                <p>The <strong>gradient</strong> of a scalar function $f(x, y, z)$ (like <strong>Temperature</strong> $T$) is a <strong>vector</strong> that points in the direction of the <strong>greatest rate of increase</strong> of the function at that point.</p>
+                <p>The gradient of a scalar function $f(x, y, z)$ (like Temperature $T$) is a vector that points in the direction of the greatest rate of increase of the function at that point.</p>
                 <div class="formula">
                     $$\text{grad } f = \nabla f = \frac{\partial f}{\partial x}\hat{i} + \frac{\partial f}{\partial y}\hat{j} + \frac{\partial f}{\partial z}\hat{k}$$
                 </div>
                 
                 <div class="physics-example">
-                    <p class="font-bold text-blue-800">Physics Application: Force</p>
-                    <p>The <strong>Force</strong> vector ($\vec{F}$) is the negative <strong>gradient</strong> of the potential energy scalar field ($U$): $\vec{F} = -\nabla U$.</p>
+                    <p class="text-blue-800">Physics Application: Force</p>
+                    <p>The Force vector ($\vec{F}$) is the negative gradient of the potential energy scalar field ($U$): $\vec{F} = -\nabla U$.</p>
                 </div>
 
                 <h3 class="text-2xl mb-4">4.2. The Divergence of a Vector Field ($\text{div } \vec{F}$)</h3>
-                <p>The <strong>divergence</strong> of a vector field $\vec{F}$ is a <strong>scalar</strong> quantity that measures the magnitude of the vector field's <strong>source</strong> or <strong>sink</strong> at a given point (flow or flux per unit volume).</p>
+                <p>The divergence of a vector field $\vec{F}$ is a scalar quantity that measures the magnitude of the vector field's source or sink (flow or flux per unit volume).</p>
                 <div class="formula">
                     $$\text{div } \vec{F} = \nabla \cdot \vec{F} = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}$$
                 </div>
                 <div class="physics-example">
-                    <p class="font-bold text-blue-800">Physics Application: Gauss's Law</p>
-                    <p>In its differential form, <strong>Gauss's Law</strong> relates the <strong>divergence</strong> of the electric field ($\vec{E}$) to the charge density ($\rho$): $\nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0}$.</p>
+                    <p class="text-blue-800">Physics Application: Gauss's Law</p>
+                    <p>In its differential form, Gauss's Law relates the divergence of the electric field ($\vec{E}$) to the charge density ($\rho$): $\nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0}$.</p>
                 </div>
 
                 <h3 class="text-2xl mb-4">4.3. The Curl of a Vector Field ($\text{curl } \vec{F}$)</h3>
-                <p>The <strong>curl</strong> of a vector field $\vec{F}$ is a <strong>vector</strong> quantity that measures the <strong>rotation</strong> (or vorticity) of the field at a given point.</p>
+                <p>The curl of a vector field $\vec{F}$ is a vector quantity that measures the rotation (or vorticity) of the field at a given point.</p>
                 <div class="formula">
                     $$\text{curl } \vec{F} = \nabla \times \vec{F} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ F_x & F_y & F_z \end{vmatrix}$$
                 </div>
                 <div class="physics-example">
-                    <p class="font-bold text-blue-800">Physics Application: Magnetic Field</p>
-                    <p>The <strong>curl</strong> of the magnetic field ($\vec{B}$) is related to the current density ($\vec{J}$) in <strong>Ampère's Law</strong> (ignoring displacement current): $\nabla \times \vec{B} = \mu_0 \vec{J}$.</p>
+                    <p class="text-blue-800">Physics Application: Magnetic Field</p>
+                    <p>The curl of the magnetic field ($\vec{B}$) is related to the current density ($\vec{J}$) in Ampère's Law (ignoring displacement current): $\nabla \times \vec{B} = \mu_0 \vec{J}$.</p>
                 </div>
             </section>
 
             <!-- Section 5: Key Identities and Proofs -->
-            <section class="mb-10">
+            <section class="mb-10 page-start">
                 <h2 class="text-3xl border-b text-gray-800 mb-4">5. Key Identities and Proofs</h2>
 
                 <h3 class="text-2xl mb-4">5.1. The Dot Product is Commutative</h3>
                 <div class="proof-box">
-                    <p class="mb-2 font-bold">Proof:</p>
+                    <p class="mb-2">Proof:</p>
                     <p>From the geometric definition, the angle $\theta$ between $\vec{A}$ and $\vec{B}$ is the same as the angle between $\vec{B}$ and $\vec{A}$. Since $\cos \theta = \cos (-\theta)$, the order does not matter:</p>
                     $$\vec{A} \cdot \vec{B} = |\vec{A}| |\vec{B}| \cos \theta$$
                     $$\vec{B} \cdot \vec{A} = |\vec{B}| |\vec{A}| \cos \theta$$
@@ -325,60 +312,190 @@
 
                 <h3 class="text-2xl mb-4">5.2. The Curl of a Gradient is Zero (Conservative Field Proof)</h3>
                 <div class="proof-box">
-                    <p class="mb-2 font-bold">Proof:</p>
+                    <p class="mb-2">Proof:</p>
                     <p>From Clairaut's Theorem (equality of mixed partial derivatives), if $f$ has continuous second partial derivatives, then:</p>
                     $$\frac{\partial^2 f}{\partial x \partial y} = \frac{\partial^2 f}{\partial y \partial x}$$
-                    <p>The <strong>curl</strong> of the <strong>gradient</strong> is given by $\nabla \times (\nabla f)$:</p>
+                    <p>The curl of the gradient is given by $\nabla \times (\nabla f)$:</p>
                     <p>The x-component of the curl is:</p>
                     $$\text{Curl}_x = \frac{\partial}{\partial y}\left(\frac{\partial f}{\partial z}\right) - \frac{\partial}{\partial z}\left(\frac{\partial f}{\partial y}\right) = \frac{\partial^2 f}{\partial y \partial z} - \frac{\partial^2 f}{\partial z \partial y}$$
                     <p>Since $\frac{\partial^2 f}{\partial y \partial z} = \frac{\partial^2 f}{\partial z \partial y}$, the x-component is zero. This applies to the y and z components as well.</p>
-                    <p>Using $\nabla \times (\nabla f) = \vec{0}$ is a fundamental test for a <strong>conservative field</strong> (e.g., a gravitational or electrostatic field).</p>
+                    <p>Using $\nabla \times (\nabla f) = \vec{0}$ is a fundamental test for a conservative field (e.g., a gravitational or electrostatic field).</p>
                 </div>
             </section>
 
-            <!-- Section 6: Practice Problems (New Page Break) -->
-            <section class="mb-10 print-break">
-                <h2 class="text-3xl border-b text-gray-800 mb-4">6. Practice Problems</h2>
+            <!-- Section 6: Practice Problems - STATEMENTS ONLY (New Page Break enforced by .page-start) -->
+            <section class="mb-10 page-start">
+                <h2 class="text-3xl border-b text-gray-800 mb-4">6. Practice Problems: Statements</h2>
+                <p class="text-lg mb-6">Attempt all problems below before checking the solutions on the following pages.</p>
                 
-                <h3 class="text-2xl text-xl font-bold mt-4">6.1. Vector Addition, Magnitude, and Unit Vector</h3>
-                <div class="text-xl solution-box">
-                    <p class="text-gray-600">Problem 1: Given $\vec{A} = 2\hat{i} + 3\hat{j} - 1\hat{k}$ and $\vec{B} = 3\hat{i} - \hat{j} + 5\hat{k}$. Find the resultant vector $\vec{R} = \vec{A} + \vec{B}$, its magnitude $|\vec{R}|$, and its unit vector $\hat{r}$.</p>
-                    <p class="font-bold mt-2">Solution:</p>
-                    <p>1. Resultant Vector $\vec{R} = (2+3)\hat{i} + (3-1)\hat{j} + (-1+5)\hat{k} = 5\hat{i} + 2\hat{j} + 4\hat{k}$</p>
-                    <p>2. Magnitude $$|\vec{R}| = \sqrt{5^2 + 2^2 + 4^2} = \sqrt{25 + 4 + 16} = \sqrt{45} \approx 6.71$$</p>
-                    <p>3. Unit Vector $$\hat{r} = \frac{\vec{R}}{|\vec{R}|} = \frac{1}{\sqrt{45}}(5\hat{i} + 2\hat{j} + 4\hat{k})$$</p>
+                <div class="problem-statement-block">
+                    
+                    <h3 class="text-2xl text-indigo-700 mt-4 border-b border-indigo-200 pb-2">Intermediate Level (5 Problems)</h3>
+                    <ul class="problem-statement-list">
+                        <li>Given $\vec{A} = \hat{i} - 2\hat{j} + 3\hat{k}$ and $\vec{B} = 2\hat{i} + 4\hat{j} - \hat{k}$. Calculate the resultant vector $\vec{R} = 2\vec{A} + 3\vec{B}$.</li>
+                        <li>A displacement vector $\vec{d}$ has an x-component of $12\text{ m}$ and a magnitude of $15\text{ m}$. Find the possible values for the y-component $d_y$ and the angle $\theta$ $\text{(in degrees)}$ the vector makes with the positive x-axis.</li>
+                        <li>A force $\vec{F} = (5\hat{i} - 2\hat{j})\text{ N}$ causes a displacement $\vec{d} = (3\hat{i} + 4\hat{j})\text{ m}$. Calculate the work done $W = \vec{F} \cdot \vec{d}$ (a scalar quantity).</li>
+                        <li>Find the magnitude of the torque vector $\vec{\tau} = \vec{r} \times \vec{F}$, where the position vector is $\vec{r} = 4\hat{i} + \hat{k}$ and the force vector is $\vec{F} = 2\hat{j} - 3\hat{k}$.</li>
+                        <li>Calculate the scalar projection of vector $\vec{A} = 6\hat{i} + 2\hat{j}$ onto vector $\vec{B} = \hat{i} - 3\hat{j}$. The projection is given by $\text{proj}_{\vec{B}} \vec{A} = \frac{\vec{A} \cdot \vec{B}}{|\vec{B}|}$.</li>
+                    </ul>
+
+                    <h3 class="text-2xl text-indigo-700 mt-8 border-b border-indigo-200 pb-2">Advanced Level (3 Problems)</h3>
+                    <ul class="problem-statement-list" style="counter-reset: problem-counter 5">
+                        <li>Three points in space are given by $P(1, 0, 0)$, $Q(0, 2, 0)$, and $R(0, 0, 3)$. Calculate the area of the triangle formed by these three points using the cross product.</li>
+                        <li>The velocity of a fluid is described by the vector field $\vec{v}(x, y, z) = (x^2 + y)\hat{i} + (z^2 + c x)\hat{j} + (y^2 + z)\hat{k}$. Find the value of the constant $c$ such that the field is irrotational (meaning $\nabla \times \vec{v} = \vec{0}$).</li>
+                        <li>The temperature $T$ (in $\text{K}$) in a room is given by the scalar field $T(x, y, z) = 2xy^2 + \sin(\pi z)$. Find the vector direction in which the temperature increases most rapidly at the point $P(2, 1, 0)$, and state the maximum rate of increase.</li>
+                    </ul>
+
+                    <h3 class="text-2xl text-indigo-700 mt-8 border-b border-indigo-200 pb-2">Irodov-Like / Conceptual (2 Problems)</h3>
+                    <ul class="problem-statement-list" style="counter-reset: problem-counter 8">
+                        <li>Prove the following vector identity for a scalar function $\phi$ and a vector field $\vec{A}$:
+                        $$\nabla \times (\phi \vec{A}) = (\nabla \phi) \times \vec{A} + \phi (\nabla \times \vec{A})$$</li>
+                        <li>Consider the position vector field $\vec{r} = x\hat{i} + y\hat{j} + z\hat{k}$. Calculate the Divergence ($\nabla \cdot \vec{r}$) and the Curl ($\nabla \times \vec{r}$) of this field. Explain the physical meaning of the results.</li>
+                    </ul>
                 </div>
+            </section>
+            
+            <!-- Section 6: SOLUTIONS (Starts on a new page) -->
+            <section class="mb-10 page-start">
+                <h2 class="text-3xl border-b text-emerald-700 mb-6">6. Practice Problems: Solutions</h2>
+                <p class="text-lg mb-6">Detailed solutions for all 10 problems.</p>
                 
-                <h3 class="text-2xl text-xl font-bold mt-4">6.2. Dot Product and Angle</h3>
-                <div class="text-xl solution-box">
-                    <p class="text-gray-600">Problem 2: Find the angle $\theta$ between $\vec{A} = 2\hat{i} - 3\hat{j} + \hat{k}$ and $\vec{B} = 4\hat{i} + 2\hat{j} - 4\hat{k}$.</p>
-                    <p class="font-bold mt-2">Solution:</p>
-                    <p>1. Calculate Dot Product: $\vec{A} \cdot \vec{B} = (2)(4) + (-3)(2) + (1)(-4) = 8 - 6 - 4 = -2$</p>
-                    <p>2. Calculate Magnitudes: $|\vec{A}| = \sqrt{2^2 + (-3)^2 + 1^2} = \sqrt{14}$. $|\vec{B}| = \sqrt{4^2 + 2^2 + (-4)^2} = \sqrt{36} = 6$.</p>
-                    <p>3. Find Angle: $\cos \theta = \frac{\vec{A} \cdot \vec{B}}{|\vec{A}| |\vec{B}|} = \frac{-2}{6\sqrt{14}} = \frac{-1}{3\sqrt{14}}$</p>
-                    <p>4. Result: $$\theta = \arccos\left(\frac{-1}{3\sqrt{14}}\right) \approx 95.1^\circ$$</p>
-                </div>
+                <div class="solution-container">
 
-                <h3 class="text-2xl text-xl font-bold mt-4">6.3. Cross Product and Area</h3>
-                <div class="text-xl solution-box">
-                    <p class="text-gray-600">Problem 3: Calculate the cross product $\vec{A} \times \vec{B}$ for $\vec{A} = 2\hat{i} + \hat{j}$ and $\vec{B} = 3\hat{k}$. Find the magnitude (which represents the area of the parallelogram formed by $\vec{A}$ and $\vec{B}$).</p>
-                    <p class="font-bold mt-2">Solution:</p>
-                    <p>1. Cross Product:</p>
-                    $$\vec{A} \times \vec{B} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ 2 & 1 & 0 \\ 0 & 0 & 3 \end{vmatrix} = \hat{i}((1)(3) - (0)(0)) - \hat{j}((2)(3) - (0)(0)) + \hat{k}((2)(0) - (1)(0))$$
-                    <p>2. Result: $\vec{A} \times \vec{B} = 3\hat{i} - 6\hat{j} + 0\hat{k} = 3\hat{i} - 6\hat{j}$</p>
-                    <p class="mt-2">3. Magnitude (Area): $$|\vec{A} \times \vec{B}| = \sqrt{3^2 + (-6)^2} = \sqrt{9 + 36} = \sqrt{45} \approx 6.71 \text{ units}^2$$</p>
-                </div>
+                    <!-- Solution 1 -->
+                    <div class="solution-box mb-4">
+                        <h4 class="text-xl text-emerald-700 mb-2">Solution P1 (Intermediate)</h4>
+                        <p>Given $\vec{A} = \hat{i} - 2\hat{j} + 3\hat{k}$ and $\vec{B} = 2\hat{i} + 4\hat{j} - \hat{k}$.</p>
+                        <p>1. Calculate $2\vec{A}$ and $3\vec{B}$:</p>
+                        $$2\vec{A} = 2\hat{i} - 4\hat{j} + 6\hat{k}$$
+                        $$3\vec{B} = 6\hat{i} + 12\hat{j} - 3\hat{k}$$
+                        <p>2. Calculate resultant $\vec{R} = 2\vec{A} + 3\vec{B}$:</p>
+                        $$\vec{R} = (2+6)\hat{i} + (-4+12)\hat{j} + (6-3)\hat{k} = 8\hat{i} + 8\hat{j} + 3\hat{k}$$
+                        <p class="mt-2">Result: $\vec{R} = 8\hat{i} + 8\hat{j} + 3\hat{k}$</p>
+                    </div>
 
-                <h3 class="text-2xl text-xl font-bold mt-4">6.4. Gradient and Directional Derivative</h3>
-                <div class="text-xl solution-box">
-                    <p class="text-gray-600">Problem 4: Given the temperature scalar field $T(x, y, z) = x^2 y + 3yz$, find the <strong>Gradient</strong> $\nabla T$ and the <strong>Directional Derivative</strong> $D_{\hat{v}} T$ at point $P(1, 1, 1)$ in the direction of the unit vector $\hat{v} = \frac{1}{\sqrt{3}}(\hat{i} + \hat{j} + \hat{k})$.</p>
-                    <p class="font-bold mt-2">Solution:</p>
-                    <p>1. Calculate Partial Derivatives:</p>
-                    $$\frac{\partial T}{\partial x} = 2xy, \quad \frac{\partial T}{\partial y} = x^2 + 3z, \quad \frac{\partial T}{\partial z} = 3y$$
-                    <p>2. Gradient at $P(1, 1, 1)$:</p>
-                    $$\nabla T |_{(1,1,1)} = 2(1)(1)\hat{i} + (1^2 + 3(1))\hat{j} + 3(1)\hat{k} = 2\hat{i} + 4\hat{j} + 3\hat{k}$$
-                    <p>3. Directional Derivative is $D_{\hat{v}} T = \nabla T \cdot \hat{v}$</p>
-                    <p>4. Calculation: $$D_{\hat{v}} T = (2\hat{i} + 4\hat{j} + 3\hat{k}) \cdot \frac{1}{\sqrt{3}}(\hat{i} + \hat{j} + \hat{k}) = \frac{1}{\sqrt{3}}(2(1) + 4(1) + 3(1)) = \frac{9}{\sqrt{3}} \approx 5.20$$</p>
+                    <!-- Solution 2 -->
+                    <div class="solution-box mb-4">
+                        <h4 class="text-xl text-emerald-700 mb-2">Solution P2 (Intermediate)</h4>
+                        <p>Given $d_x = 12\text{ m}$ and $|\vec{d}| = 15\text{ m}$.</p>
+                        <p>1. Find $d_y$ using the magnitude formula $|\vec{d}| = \sqrt{d_x^2 + d_y^2}$:</p>
+                        $$15^2 = 12^2 + d_y^2 \implies 225 = 144 + d_y^2$$
+                        $$d_y^2 = 81 \implies d_y = \pm 9\text{ m}$$
+                        <p>2. Find the angle $\theta$: $\cos \theta = \frac{d_x}{|\vec{d}|} = \frac{12}{15} = 0.8$.</p>
+                        $$\theta = \arccos(0.8) \approx 36.87^\circ$$
+                        <p class="mt-2">Result: $d_y = \pm 9\text{ m}$, $\theta \approx 36.87^\circ$.</p>
+                    </div>
+
+                    <!-- Solution 3 -->
+                    <div class="solution-box mb-4">
+                        <h4 class="text-xl text-emerald-700 mb-2">Solution P3 (Intermediate)</h4>
+                        <p>Work is the dot product $W = \vec{F} \cdot \vec{d}$.</p>
+                        $$\vec{F} = 5\hat{i} - 2\hat{j}, \quad \vec{d} = 3\hat{i} + 4\hat{j}$$
+                        $$W = (5)(3) + (-2)(4) = 15 - 8 = 7$$
+                        <p class="mt-2">Result: $W = 7\text{ Joules}$ (The unit of work is the Joule, J).</p>
+                    </div>
+                    
+                    <!-- Solution 4 -->
+                    <div class="solution-box mb-4">
+                        <h4 class="text-xl text-emerald-700 mb-2">Solution P4 (Intermediate)</h4>
+                        <p>Torque is $\vec{\tau} = \vec{r} \times \vec{F}$. $\vec{r} = 4\hat{i} + 0\hat{j} + 1\hat{k}$, $\vec{F} = 0\hat{i} + 2\hat{j} - 3\hat{k}$.</p>
+                        $$\vec{\tau} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ 4 & 0 & 1 \\ 0 & 2 & -3 \end{vmatrix}$$
+                        $$\vec{\tau} = \hat{i}((0)(-3) - (1)(2)) - \hat{j}((4)(-3) - (1)(0)) + \hat{k}((4)(2) - (0)(0))$$
+                        $$\vec{\tau} = -2\hat{i} - (-12)\hat{j} + 8\hat{k} = -2\hat{i} + 12\hat{j} + 8\hat{k}$$
+                        <p>Magnitude $|\vec{\tau}| = \sqrt{(-2)^2 + 12^2 + 8^2} = \sqrt{4 + 144 + 64} = \sqrt{212}$$</p>
+                        <p class="mt-2">Result: $|\vec{\tau}| = \sqrt{212} \approx 14.56$</p>
+                    </div>
+                    
+                    <!-- Solution 5 -->
+                    <div class="solution-box mb-4">
+                        <h4 class="text-xl text-emerald-700 mb-2">Solution P5 (Intermediate)</h4>
+                        <p>The scalar projection is $\text{proj}_{\vec{B}} \vec{A} = \frac{\vec{A} \cdot \vec{B}}{|\vec{B}|}$.</p>
+                        <p>1. Dot Product: $\vec{A} \cdot \vec{B} = (6)(1) + (2)(-3) = 6 - 6 = 0$</p>
+                        <p>2. Magnitude of $\vec{B}$: $|\vec{B}| = \sqrt{1^2 + (-3)^2} = \sqrt{10}$</p>
+                        <p>3. Projection: $\text{proj}_{\vec{B}} \vec{A} = \frac{0}{\sqrt{10}} = 0$</p>
+                        <p class="mt-2">Result: The scalar projection is $0$. (This means the vectors are orthogonal/perpendicular.)</p>
+                    </div>
+
+                    <h3 class="text-2xl text-indigo-700 mt-8 border-b border-indigo-200 pb-2 page-start">Advanced Level Solutions</h3>
+
+                    <!-- Solution 6 (A1) -->
+                    <div class="solution-box mb-4">
+                        <h4 class="text-xl text-emerald-700 mb-2">Solution P6 (Advanced)</h4>
+                        <p>Points $P(1, 0, 0)$, $Q(0, 2, 0)$, $R(0, 0, 3)$. The area is $\frac{1}{2} |\vec{PQ} \times \vec{PR}|$.</p>
+                        <p>1. Find vectors $\vec{PQ}$ and $\vec{PR}$:</p>
+                        $$\vec{PQ} = Q - P = (0-1)\hat{i} + (2-0)\hat{j} + (0-0)\hat{k} = -\hat{i} + 2\hat{j}$$
+                        $$\vec{PR} = R - P = (0-1)\hat{i} + (0-0)\hat{j} + (3-0)\hat{k} = -\hat{i} + 3\hat{k}$$
+                        <p>2. Calculate the Cross Product $\vec{C} = \vec{PQ} \times \vec{PR}$:</p>
+                        $$\vec{C} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ -1 & 2 & 0 \\ -1 & 0 & 3 \end{vmatrix} = \hat{i}(6-0) - \hat{j}(-3-0) + \hat{k}(0-(-2)) = 6\hat{i} + 3\hat{j} + 2\hat{k}$$
+                        <p>3. Find the Magnitude and Area:</p>
+                        $$|\vec{C}| = \sqrt{6^2 + 3^2 + 2^2} = \sqrt{36 + 9 + 4} = \sqrt{49} = 7$$
+                        $$\text{Area} = \frac{1}{2} |\vec{C}| = \frac{7}{2} = 3.5$$
+                        <p class="mt-2">Result: Area $= 3.5\text{ units}^2$</p>
+                    </div>
+
+                    <!-- Solution 7 (A2) -->
+                    <div class="solution-box mb-4">
+                        <h4 class="text-xl text-emerald-700 mb-2">Solution P7 (Advanced)</h4>
+                        <p>For a vector field $\vec{v} = v_x \hat{i} + v_y \hat{j} + v_z \hat{k}$ to be irrotational, its curl must be zero: $\nabla \times \vec{v} = \vec{0}$.</p>
+                        <p>The components of $\nabla \times \vec{v}$ are:</p>
+                        $$(\nabla \times \vec{v})_z = \frac{\partial v_y}{\partial x} - \frac{\partial v_x}{\partial y}$$
+                        $$(\nabla \times \vec{v})_y = \frac{\partial v_x}{\partial z} - \frac{\partial v_z}{\partial x}$$
+                        $$(\nabla \times \vec{v})_x = \frac{\partial v_z}{\partial y} - \frac{\partial v_y}{\partial z}$$
+                        <p>The curl is calculated as:</p>
+                        $$\nabla \times \vec{v} = \hat{i}\left(\frac{\partial (y^2+z)}{\partial y} - \frac{\partial (z^2+cx)}{\partial z}\right) - \hat{j}\left(\frac{\partial (y^2+z)}{\partial x} - \frac{\partial (x^2+y)}{\partial z}\right) + \hat{k}\left(\frac{\partial (z^2+cx)}{\partial x} - \frac{\partial (x^2+y)}{\partial y}\right)$$
+                        $$\nabla \times \vec{v} = \hat{i}(2y - 2z) - \hat{j}(0 - 0) + \hat{k}(c - 1)$$
+                        <p>For the field to be irrotational, all components must be zero. Therefore, $c - 1 = 0$.</p>
+                        <p class="mt-2">Result: $c = 1$.</p>
+                    </div>
+
+                    <!-- Solution 8 (A3) -->
+                    <div class="solution-box mb-4">
+                        <h4 class="text-xl text-emerald-700 mb-2">Solution P8 (Advanced)</h4>
+                        <p>The direction of maximum increase is given by the Gradient $\nabla T$ evaluated at $P(2, 1, 0)$. The maximum rate of increase is the magnitude $|\nabla T|$.</p>
+                        <p>1. Calculate Gradient $\nabla T$:</p>
+                        $$\nabla T = \frac{\partial T}{\partial x}\hat{i} + \frac{\partial T}{\partial y}\hat{j} + \frac{\partial T}{\partial z}\hat{k}$$
+                        $$\frac{\partial T}{\partial x} = 2y^2, \quad \frac{\partial T}{\partial y} = 4xy, \quad \frac{\partial T}{\partial z} = \pi \cos(\pi z)$$
+                        <p>2. Evaluate $\nabla T$ at $P(2, 1, 0)$:</p>
+                        $$\nabla T |_{(2, 1, 0)} = 2(1)^2\hat{i} + 4(2)(1)\hat{j} + \pi \cos(0)\hat{k}$$
+                        $$\nabla T |_{(2, 1, 0)} = 2\hat{i} + 8\hat{j} + \pi\hat{k}$$
+                        <p>3. Maximum Rate (Magnitude):</p>
+                        $$|\nabla T| = \sqrt{2^2 + 8^2 + \pi^2} = \sqrt{4 + 64 + 9.87} \approx \sqrt{77.87} \approx 8.82$$
+                        <p class="mt-2">Result: Direction is $2\hat{i} + 8\hat{j} + \pi\hat{k}$. Maximum rate is $\approx 8.82\text{ K}/\text{unit distance}$.</p>
+                    </div>
+
+                    <h3 class="text-2xl text-indigo-700 mt-8 border-b border-indigo-200 pb-2 page-start">Irodov-Like / Conceptual Solutions</h3>
+
+                    <!-- Solution 9 (L1) -->
+                    <div class="solution-box mb-4">
+                        <h4 class="text-xl text-emerald-700 mb-2">Solution P9 (Irodov-Like / Conceptual)</h4>
+                        <p>Prove $\nabla \times (\phi \vec{A}) = (\nabla \phi) \times \vec{A} + \phi (\nabla \times \vec{A})$. We look at the $x$-component:</p>
+                        <p>The $x$-component of the LHS, $\nabla \times (\phi \vec{A})$, is:</p>
+                        $$(\text{LHS})_x = \frac{\partial}{\partial y}(\phi A_z) - \frac{\partial}{\partial z}(\phi A_y)$$
+                        <p>Using the product rule on each term:</p>
+                        $$(\text{LHS})_x = \left(\frac{\partial \phi}{\partial y} A_z + \phi \frac{\partial A_z}{\partial y}\right) - \left(\frac{\partial \phi}{\partial z} A_y + \phi \frac{\partial A_y}{\partial z}\right)$$
+                        $$\text{(LHS)}_x = \left(\frac{\partial \phi}{\partial y} A_z - \frac{\partial \phi}{\partial z} A_y\right) + \phi \left(\frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z}\right)$$
+                        <p>The first parenthesis is the $x$-component of the cross product $(\nabla \phi) \times \vec{A}$. The second parenthesis is the $x$-component of $\nabla \times \vec{A}$.</p>
+                        <p>Thus, $(\text{LHS})_x = [(\nabla \phi) \times \vec{A}]_x + [\phi (\nabla \times \vec{A})]_x$. Since this holds for the $x$-component, and similarly for the $y$ and $z$ components, the identity is proven.</p>
+                        <p class="mt-2">Result: Identity Proven (Product Rule for Curl)</p>
+                    </div>
+
+                    <!-- Solution 10 (L2) -->
+                    <div class="solution-box mb-4">
+                        <h4 class="text-xl text-emerald-700 mb-2">Solution P10 (Irodov-Like / Conceptual)</h4>
+                        <p>The position vector field is $\vec{r} = x\hat{i} + y\hat{j} + z\hat{k}$.</p>
+                        <p>1. **Divergence** ($\nabla \cdot \vec{r}$):</p>
+                        $$\nabla \cdot \vec{r} = \frac{\partial}{\partial x}(x) + \frac{\partial}{\partial y}(y) + \frac{\partial}{\partial z}(z) = 1 + 1 + 1 = 3$$
+                        <p class="mt-2">Divergence Result: $\nabla \cdot \vec{r} = 3$</p>
+                        <p>2. **Curl** ($\nabla \times \vec{r}$):</p>
+                        $$\nabla \times \vec{r} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ x & y & z \end{vmatrix}$$
+                        $$\nabla \times \vec{r} = \hat{i}\left(\frac{\partial z}{\partial y} - \frac{\partial y}{\partial z}\right) - \hat{j}\left(\frac{\partial z}{\partial x} - \frac{\partial x}{\partial z}\right) + \hat{k}\left(\frac{\partial y}{\partial x} - \frac{\partial x}{\partial y}\right) = \hat{i}(0-0) - \hat{j}(0-0) + \hat{k}(0-0) = \vec{0}$$
+                        <p class="mt-2">Curl Result: $\nabla \times \vec{r} = \vec{0}$</p>
+                        <p class="mt-4 text-blue-800">Physical Meaning:</p>
+                        <ul>
+                            <li>Divergence is $3$: A positive divergence indicates a source or outward flow from every point. For the position vector, this means the vector field constantly radiates away from the origin in all directions.</li>
+                            <li>Curl is $\vec{0}$: A zero curl indicates the field is irrotational (or conservative). There is no "swirling" or rotational component to the position vector field.</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </main>
