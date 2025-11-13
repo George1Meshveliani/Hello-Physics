@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Phever! A Kinematics & Dynamics Game Show</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Afacad:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. THE SETUP */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #e2e8f0; /* Light gray-blue background */
+            display: grid;
+            place-items: center;
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Afacad', sans-serif;
+        }
+
+        #slideshow-viewport {
+            width: 1280px;
+            max-width: 100%;
+            background-color: #334155; /* Dark blue-gray */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden; /* Ensures corners are rounded */
+        }
+        
+        #slides-wrapper {
+            position: relative;
+        }
+
+        .slide-container {
+            align-items: center;
+            background-color: #f8f9fa; /* Default light background */
+            display: none; /* Hide all slides by default */
+            flex-direction: column;
+            height: 720px;
+            justify-content: center;
+            overflow: hidden;
+            padding: 40px 60px;
+            position: relative;
+            width: 100%;
+        }
+
+        .slide-container.slide-active {
+            display: flex; /* Show only the active slide */
+        }
+
+        .slide-container > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 2. SLIDESHOW NAVIGATION */
+        .slide-nav {
+            background-color: #334155;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #475569;
+        }
+        
+        .slide-nav button {
+            background-color: #4f46e5; /* Indigo */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-family: 'Comfortaa', cursive;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        
+        .slide-nav button:hover {
+            background-color: #4338ca;
+        }
+        
+        .slide-nav button:active {
+            transform: scale(0.98);
+        }
+        
+        .slide-nav button:disabled {
+            background-color: #64748b; /* Gray */
+            cursor: not-allowed;
+        }
+
+        #slide-counter {
+            color: #f1f5f9; /* Light gray text */
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* 2. CONSISTENT TYPOGRAPHY */
+        .slide-container h1,
+        .slide-container h2 {
+            font-family: 'Comfortaa', cursive;
+            color: #1e293b;
+        }
+
+        .slide-container p,
+        .slide-container li,
+        .slide-container h3,
+        .slide-container th,
+        .slide-container td,
+        .slide-container .subtitle {
+            font-family: 'Afacad', sans-serif;
+            color: #334155;
+        }
+
+        .slide-container h3 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            margin-top: 7px;
+            margin-left: 2px;
+        }
+
+        .slide-container p,
+        .slide-container li {
+            font-weight: 400;
+            font-size: 22px; /* Slightly smaller to fit more text */
+            line-height: 1.4;
+            letter-spacing: 0.02px;
+            margin-left: 5px;
+        }
+
+        .slide-container .slide-title {
+            font-size: 52px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 30px;
+            text-align: left;
+            width: 100%;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        
+        /* 3. LAYOUT DEFINITIONS */
+
+        /* Layout: Title_Slide (Using Full_Background_Image) */
+        .title-layout {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .full-bg-image {
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #f1f5f9; /* Added a default bg color */
+        }
+        .full-bg-image::before {
+            /* Removed image overlay */
+            content: none;
+        }
+        .full-bg-image h1 {
+            color: #1e293b;
+            font-size: 120px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .full-bg-image .subtitle {
+            color: #334155;
+            font-size: 40px;
+            margin-top: 20px;
+        }
+        
+        /* Layout: Section_Title (New Layout) */
+        .section-title-layout {
+            text-align: center;
+            width: 100%;
+        }
+        .section-title-layout h2 {
+            font-size: 80px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+        .section-title-layout .subtitle {
+            font-size: 32px;
+            color: #ffffff;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+        .slide-container.section-title {
+            padding: 60px;
+        }
+        /* Section Title Colors */
+        .slide-container.bg-peach { background-color: #fdd5bdff; }
+        .slide-container.bg-purple { background-color: #bc84eeff; }
+        .slide-container.bg-orange { background-color: #ff823aff; }
+        .slide-container.bg-lime { background-color: #dcfd8bff; }
+
+        /* Layout: Image_Right_Text_Left (Adapted from Theme_2) */
+        .content-area {
+            align-items: center;
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            width: 100%;
+            height: calc(100% - 78px); /* Account for title */
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr; /* CHANGED: Was 1fr 1fr */
+            width: 100%;
+            gap: 40px;
+            height: 100%;
+            align-items: center;
+        }
+
+        .two-column .text-column {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* REMOVED .image-column */
+
+        .two-column .content-box {
+            background-color: #fdd5bdff; /* Peach */
+            border-radius: 30px;
+            padding: 38px;
+            height: auto;
+            width: 100%;
+        }
+        .two-column .content-box.bg-lime { background-color: #dcfd8bff; }
+        .two-column .content-box.bg-orange { background-color: #ff823aff; }
+        .two-column .content-box.bg-purple { background-color: #bc84eeff; }
+
+
+        .two-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .two-column li {
+            font-size: 22px;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+        }
+        .two-column .content-box li::before {
+            content: '\f140'; /* FontAwesome check square */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: #ff823aff; /* Orange */
+            position: absolute;
+            left: 0;
+            top: 5px;
+            font-size: 24px;
+        }
+        .two-column .content-box.bg-lime li::before { color: #84a02d; }
+        .two-column .content-box.bg-purple li::before { color: #5a3e73; }
+        .two-column .content-box.bg-orange li::before { color: #b34a15; }
+
+        /* REMOVED .image-wrapper styles */
+
+        /* Layout: Tiled_Text_With_Icons (Adapted from Theme_2) */
+        .tiled-content {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+            align-items: stretch;
+            height: 100%;
+        }
+
+        .tile {
+            flex: 1;
+            border-radius: 60px;
+            text-align: left;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tile h3 {
+            font-family: 'Comfortaa', cursive;
+            font-size: 40px;
+            color: #1e293b;
+            margin: 0 0 15px 0;
+        }
+
+        .tile p, .tile .formula-container {
+            font-size: 28px;
+            line-height: 1.3;
+        }
+        .tile .formula-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        /* MathML styles */
+        .formula-container math {
+            font-size: 32px;
+            font-family: 'Afacad', sans-serif;
+        }
+        .two-column .content-box math {
+            font-size: 28px;
+        }
+
+        .tiled-content .tile:nth-child(1) { background-color: #dcfd8bff; } /* Lime */
+        .tiled-content .tile:nth-child(2) { background-color: #bc84eeff; } /* Purple */
+        .tiled-content .tile:nth-child(3) { background-color: #ff823aff; } /* Orange */
+
+        /* Layout: Q&A (New Layout) */
+        .qa-layout {
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .qa-layout h2 {
+            font-size: 100px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+        .qa-layout p {
+            font-size: 32px;
+            color: #ffffff;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="slideshow-viewport">
+    
+    <div id="slides-wrapper">
+        <!-- Slide 1: Title_Slide (Using Full_Background_Image) -->
+        <!-- IMAGE REMOVED -->
+        <div class="slide-container full-bg-image slide-active" id="slide1">
+            <div class="title-layout">
+                <h1>Physics Phever!</h1>
+                <p class="subtitle">A Kinematics & Dynamics Game Show</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Section_Title -->
+        <div class="slide-container section-title bg-peach" id="slide2">
+            <div class="section-title-layout">
+                <h2>Warm-Up!</h2>
+                <p class="subtitle">SI Unit Madness</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Game 1 (SI Units) -->
+        <div class="slide-container" id="slide3">
+            <h2 class="slide-title">Game 1: Monkey Units!</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-lime">
+                            <h3>The Problem:</h3>
+                            <p>A researcher (who loves bananas) wrote down their notes. We need your help to convert them to proper SI units!</p>
+                            <p><strong>Task 1:</strong> A monkey's height is 5.2 bananas. (1 banana = 8.34 in). What is its height in <strong>meters</strong>? (1 in = 0.0254 m)</p>
+                            <p><strong>Task 2:</strong> Gravity is 9.81 m/s². What is this in <strong>bananas/eek²</strong>? (1 eek = 0.79 s)</p>
+                        </div>
+                    </div>
+                    <!-- IMAGE COLUMN REMOVED -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Section_Title -->
+        <div class="slide-container section-title bg-purple" id="slide4">
+            <div class="section-title-layout">
+                <h2>Round 1</h2>
+                <p class="subtitle">Motion Equation Mayhem</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Game 2 (Find the Fake) -->
+        <div class="slide-container" id="slide5">
+            <h2 class="slide-title">Game 2: Find the Fake!</h2>
+            <div class="content-area">
+                <div class="tiled-content">
+                    <!-- Tile 1 (Real) -->
+                    <div class="tile">
+                        <h3>This one REAL?</h3>
+                        <p>A classic kinematic equation:</p>
+                        <div class="formula-container">
+                            <math>
+                                <mi>d</mi><mo>=</mo><msub><mi>v</mi><mn>0</mn></msub><mi>t</mi><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>a</mi><msup><mi>t</mi><mn>2</mn></msup>
+                            </math>
+                        </div>
+                    </div>
+                    <!-- Tile 2 (Fake) -->
+                    <div class="tile">
+                        <h3>...or is THIS fake?</h3>
+                        <p>A classic... wait, is it?</p>
+                        <div class="formula-container">
+                            <math>
+                                <mi>d</mi><mo>=</mo><msub><mi>v</mi><mn>0</mn></msub><mi>t</mi><mo>+</mo><mi>a</mi><msup><mi>t</mi><mn>2</mn></msup>
+                            </math>
+                        </div>
+                    </div>
+                    <!-- Tile 3 (Real) -->
+                    <div class="tile">
+                        <h3>Wait, maybe it's ME!</h3>
+                        <p>The "timeless" equation:</p>
+                        <div class="formula-container">
+                            <math>
+                                <msup><mi>v</mi><mn>2</mn></msup><mo>=</mo><msubsup><mi>v</mi><mn>0</mn><mn>2</mn></msubsup><mo>+</mo><mn>2</mn><mi>a</mi><mi>d</mi>
+                            </math>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Problem 1 (Kinematics) -->
+        <div class="slide-container" id="slide6">
+            <h2 class="slide-title">Problem 1: Kangaroo Kapers</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-peach">
+                            <h3>The Problem:</h3>
+                            <p>A kangaroo is an amazing jumper. It can jump to a vertical height of <strong>2.62 m</strong>.</p>
+                            <p>Assuming it jumps straight up, what is its <strong>initial takeoff speed (v₀)</strong>?</p>
+                            <p>(Use g = 9.8 m/s² and ignore air resistance)</p>
+                            <p><strong>Hint:</strong> At the very top of the jump, its final velocity (v) is 0 m/s. Which equation should you use?</p>
+                        </div>
+                    </div>
+                    <!-- IMAGE COLUMN REMOVED -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: NEW Problem 2 (Kinematics) -->
+        <div class="slide-container" id="slide7">
+            <h2 class="slide-title">Problem 2: The Need for Speed</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <!-- IMAGE COLUMN REMOVED -->
+                    <div class="text-column">
+                        <div class="content-box bg-lime">
+                            <h3>The Problem:</h3>
+                            <p>A cheetah spots a gazelle <strong>100m</strong> away. The cheetah accelerates from rest at <strong>4 m/s²</strong>.</p>
+                            <p>The gazelle, seeing this, waits <strong>1 second</strong> and then accelerates from rest at <strong>2 m/s²</strong>.</p>
+                            <p><strong>Group Task:</strong> Set up the displacement equations for both animals. Does the cheetah catch the gazelle?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Section Title -->
+        <div class="slide-container section-title bg-orange" id="slide8">
+            <div class="section-title-layout">
+                <h2>Round 2</h2>
+                <p class="subtitle">Newton's Law Knockout!</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: NEW Task (Newton's 1st) -->
+        <div class="slide-container" id="slide9">
+            <h2 class="slide-title">Task 1: The Law of Laziness</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-purple">
+                            <h3>The Question (Inertia!):</h3>
+                            <p>Explain Newton's 1st Law (Inertia) based on this scenario:</p>
+                            <p>What happens to a rider on a skateboard if the skateboard suddenly hits a brick? <strong>Why?</strong></p>
+                            <p><strong>Hint:</strong> The rider and the board are separate objects! An object in motion...</p>
+                        </div>
+                    </div>
+                    <!-- IMAGE COLUMN REMOVED -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Problem 3 (Newton's 2nd) -->
+        <div class="slide-container" id="slide10">
+            <h2 class="slide-title">Problem 3: Elevator Antics</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <!-- IMAGE COLUMN REMOVED -->
+                    <div class="text-column">
+                        <div class="content-box bg-peach">
+                            <h3>The Problem (F=ma):</h3>
+                            <p>You are standing on a bathroom scale inside an elevator. Your mass is <strong>65 kg</strong>.</p>
+                            <p>The elevator suddenly accelerates <strong>DOWNWARDS</strong> at <strong>1.5 m/s²</strong>.</p>
+                            <p>What does the scale read in Newtons?</p>
+                            <p><strong>Hint:</strong> The scale reads the Normal Force (Fₙ). Draw a free-body diagram! Net Force = ma.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: NEW Problem 4 (Newton's 2nd/3rd) -->
+        <div class="slide-container" id="slide11">
+            <h2 class="slide-title">Problem 4: Tug-of-War!</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-lime">
+                            <h3>The Problem:</h3>
+                            <p>Team A pulls left with <strong>500 N</strong> of force. Team B pulls right with <strong>450 N</strong> of force.</p>
+                            <p>1. Which way does the rope accelerate?</p>
+                            <p>2. If the rope has a mass of 5 kg, what is its acceleration? (Hint: Find the *net* force first!)</p>
+                            <p>3. <strong>(Bonus):</strong> What's the action-reaction pair for Team A's pull on the rope?</p>
+                        </div>
+                    </div>
+                    <!-- IMAGE COLUMN REMOVED -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Section Title -->
+        <div class="slide-container section-title bg-lime" id="slide12">
+            <div class="section-title-layout">
+                <h2>Final Round</h2>
+                <p class="subtitle">Team Up!</p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Group Game (Angry Birds - REVISED) -->
+        <div class="slide-container" id="slide13">
+            <h2 class="slide-title">Group Game: Angry Physics!</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-purple">
+                            <h3>The Task (On Paper):</h3>
+                            <p>Design a level for a projectile game! Your team must draw and label:</p>
+                            <ul>
+                                <li>The launch angle (θ) & initial velocity (v₀).</li>
+                                <li>The point of <strong>maximum height</strong> (What is v_y here?).</li>
+                                <li>The <strong>force of gravity</strong> vector (always points down!).</li>
+                                <li>The <strong>velocity vector</strong> at 3 different points (it changes!).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- IMAGE COLUMN REMOVED -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Group Game (Bingo - REVISED) -->
+        <div class="slide-container" id="slide14">
+            <h2 class="slide-title">Group Game: Physics Bingo!</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <!-- IMAGE COLUMN REMOVED -->
+                    <div class="text-column">
+                        <div class="content-box bg-orange">
+                            <h3>How to Play:</h3>
+                            <p>1. Everyone draw a 3x3 grid on a piece of paper.</p>
+                            <p>2. Fill your grid with any 9 terms from the list below:</p>
+                            <p><strong>Terms:</strong> Inertia, Friction, Velocity, Gravity, Newton, Mass, Acceleration, Force, Vector, Scalar, Kinematics, Dynamics, m/s², Net Force</p>
+                            <p>I will read out the definitions. First team to get 3-in-a-row (BINGO!) wins!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Q&A -->
+        <div class="slide-container section-title bg-peach" id="slide15">
+            <div class="qa-layout">
+                <h2>You're Physics Stars!</h2>
+                <p>Great work, everyone! Any final questions?</p>
+            </div>
+        </div>
+    </div> <!-- End of #slides-wrapper -->
+
+    <!-- Slideshow Navigation -->
+    <div class="slide-nav">
+        <button id="prev-btn"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+        <span id="slide-counter">Slide 1 / 15</span>
+        <button id="next-btn">Next <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+</div> <!-- End of #slideshow-viewport -->
+
+<script>
+    // Wait for the DOM to be fully loaded before running the script
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get all the slides
+        const slides = document.querySelectorAll('.slide-container');
+        // Get navigation buttons
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        // Get the slide counter display
+        const slideCounter = document.getElementById('slide-counter');
+        
+        // Set the initial slide index
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        /**
+         * Shows a specific slide and hides all others.
+         * @param {number} n - The index of the slide to show.
+         */
+        function showSlide(n) {
+            // Remove 'slide-active' class from all slides
+            slides.forEach(slide => {
+                slide.classList.remove('slide-active');
+            });
+            
+            // Add 'slide-active' class to the target slide
+            slides[n].classList.add('slide-active');
+            
+            // Update the current slide index
+            currentSlide = n;
+            
+            // Update the slide counter text
+            slideCounter.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+            
+            // Update button states (disable at ends)
+            prevBtn.disabled = (currentSlide === 0);
+            nextBtn.disabled = (currentSlide === totalSlides - 1);
+        }
+
+        /**
+         * Moves to the next slide.
+         */
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        /**
+         * Moves to the previous slide.
+         */
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Add click event listeners to the buttons
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Add keyboard navigation (ArrowLeft and ArrowRight)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Show the first slide (index 0) on initial load
+        showSlide(0);
+    });
+</script>
+
+</body>
+</html>
