@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Potential, Capacitance, and Dielectrics</title>
+
+    <!-- MathJax Configuration -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                tags: 'all', // Number all display equations
+                processEscapes: true
+            },
+            svg: {
+                linebreaks: { automatic: true } // Handle long equations
+            }
+        };
+    </script>
+    <!-- MathJax CDN -->
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <!-- Embedded CSS for Styling and Printing -->
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            font-size: 17px;
+            color: #2c2c2c;
+            max-width: 900px;
+            margin: 2em auto;
+            padding: 0 20px;
+            background-color: #fdfdfd;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Typography */
+        h1 {
+            color: #1a0dab;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+            font-size: 2.5em;
+            margin-top: 1em;
+        }
+
+        h2 {
+            color: #1a0dab;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 5px;
+            margin-top: 2.5em;
+            font-size: 2em;
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 2em;
+            font-size: 1.5em;
+        }
+        
+        h4 {
+            color: #555;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        p {
+            margin-bottom: 1.2em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        /* MathJax Styling */
+        mjx-container {
+            /* Per request: DO NOT use horizontal scrolling. Rely on line breaking. */
+            overflow-x: hidden;
+            overflow-y: hidden;
+            max-width: 100%;
+            padding: 0.5em 0;
+            text-align: left !important;
+        }
+        
+        /* Ensure display math is block-level */
+        mjx-container[display="true"] {
+            display: block;
+            margin: 1.5em auto;
+            text-align: center !important;
+        }
+
+        /* Style for equation numbers */
+        .mjx-tag {
+            font-size: 0.9em;
+            padding-left: 1.5em;
+            color: #555;
+        }
+
+        /* Blockquotes for examples and proofs */
+        blockquote {
+            background: #f9f9f9;
+            border-left: 5px solid #ccc;
+            margin: 1.5em 0;
+            padding: 1em 1.5em;
+        }
+        
+        blockquote strong {
+            font-style: normal;
+            display: block;
+            margin-bottom: 0.5em;
+            color: #1a0dab;
+            font-size: 1.1em;
+        }
+        
+        /* Lists */
+        ul, ol {
+            padding-left: 1.5em;
+        }
+
+        /* Horizontal rule for sections */
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 3em 0;
+        }
+
+        /* ----- Print-Specific CSS ----- */
+        .no-print {
+            display: block; /* Show by default */
+            padding: 15px;
+            background-color: #fff9e6;
+            border: 1px solid #ffecb3;
+            border-radius: 5px;
+            margin-bottom: 2em;
+            text-align: center;
+        }
+
+        #download-btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #1a0dab;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #download-btn:hover {
+            background-color: #333;
+        }
+
+        #solutions-section {
+            /* This will start the solutions on a new page when printing */
+            page-break-before: always;
+        }
+
+        @media print {
+            /* Hide elements that should not be printed */
+            .no-print {
+                display: none !important;
+            }
+
+            /* Basic page setup */
+            body {
+                font-size: 11pt; /* Smaller font for print */
+                line-height: 1.5;
+                color: #000;
+                background-color: #fff;
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Remove default browser headers/footers */
+            @page {
+                size: A4;
+                margin: 2cm;
+                
+                /* This is a non-standard but often effective way
+                   to request clearing headers/footers */
+                @top-left { content: ""; }
+                @top-center { content: ""; }
+                @top-right { content: ""; }
+                @bottom-left { content: ""; }
+                @bottom-center { content: ""; }
+                @bottom-right { content: ""; }
+            }
+            
+            h1, h2, h3 {
+                color: #000 !important; /* Print in black */
+                border: none;
+                page-break-after: avoid;
+            }
+
+            /* Don't show link URLs */
+            a, a:visited {
+                text-decoration: none;
+                color: #000;
+            }
+            
+            a[href]:after {
+                content: none !important;
+            }
+            
+            /* Ensure MathJax scales well for print */
+            mjx-container {
+                overflow: hidden; /* Hide any overflow in print */
+            }
+            
+            blockquote {
+                background: #f0f0f0 !important;
+                border-left: 5px solid #999;
+                page-break-inside: avoid;
+            }
+            
+            img {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print">
+        <button id="download-btn" onclick="window.print()">Download as PDF</button>
+        <p style="font-size: 0.9em; color: #555; margin-top: 10px;">(This will open your browser's print dialog. Select "Save as PDF" as the destination.)</p>
+    </div>
+
+    <h1>Electric Potential, Capacitance, and Dielectrics</h1>
+
+    <hr>
+
+    <h2>1. Electric Potential</h2>
+
+    <p>The electrostatic force is a conservative force. This fundamental property allows us to define a scalar potential energy function, $U$, which simplifies many problems in electrostatics. From this, we derive an even more general scalar field, the electric potential $V$, which characterizes the electric field $\mathbf{E}$ itself.</p>
+
+    <h3>1.1. Electric Potential Energy ($U$)</h3>
+
+    <p>When a test charge $q_0$ moves from point A to point B under the influence of an electrostatic field $\mathbf{E}$, the work done <em>by the field</em> on the charge is given by the line integral:</p>
+    $$ W_{A \to B} = \int_A^B \mathbf{F}_e \cdot d\mathbf{l} = \int_A^B q_0 \mathbf{E} \cdot d\mathbf{l} \tag{1} $$
+    <p>For any static electric field, this integral is path-independent. This is the definition of a conservative force field. A key property of a conservative vector field is that its curl is zero:</p>
+    $$ \nabla \times \mathbf{E} = 0 \tag{2} $$
+
+    <blockquote>
+        <strong>Proof: The Electrostatic Field is Conservative ($\nabla \times \mathbf{E} = 0$)</strong>
+        <p>Let's prove this for a single static point charge $Q$ at the origin. The field is $\mathbf{E} = \frac{1}{4\pi\epsilon_0} \frac{Q}{r^2} \hat{\mathbf{r}}$.</p>
+        <p>In spherical coordinates, the curl $\nabla \times \mathbf{E}$ is:</p>
+        $$ \nabla \times \mathbf{E} = \frac{1}{r \sin\theta} \left( \frac{\partial}{\partial \theta} (E_\phi \sin\theta) - \frac{\partial E_\theta}{\partial \phi} \right) \hat{\mathbf{r}} + \frac{1}{r} \left( \frac{1}{\sin\theta} \frac{\partial E_r}{\partial \phi} - \frac{\partial}{\partial r} (r E_\phi) \right) \hat{\mathbf{\theta}} + \frac{1}{r} \left( \frac{\partial}{\partial r} (r E_\theta) - \frac{\partial E_r}{\partial \theta} \right) \hat{\mathbf{\phi}} $$
+        <p>Our field $\mathbf{E}$ has only a radial component: $E_r = \frac{Q}{4\pi\epsilon_0 r^2}$, $E_\theta = 0$, and $E_\phi = 0$.</p>
+        <p>Substituting these in:</p>
+        $$ \nabla \times \mathbf{E} = \frac{1}{r \sin\theta} (0 - 0) \hat{\mathbf{r}} + \frac{1}{r} \left( \frac{1}{\sin\theta} \frac{\partial E_r}{\partial \phi} - 0 \right) \hat{\mathbf{\theta}} + \frac{1}{r} \left( 0 - \frac{\partial E_r}{\partial \theta} \right) \hat{\mathbf{\phi}} $$
+        <p>Since $E_r$ depends only on $r$, $\frac{\partial E_r}{\partial \phi} = 0$ and $\frac{\partial E_r}{\partial \theta} = 0$.</p>
+        $$ \nabla \times \mathbf{E} = 0 + 0 + 0 = 0 $$
+        <p>By the superposition principle, any static charge distribution is a sum of point charges. Since the curl of the field from each point charge is zero, the curl of the total field (the sum of the curls) is also zero. Therefore, any electrostatic field is conservative.</p>
+    </blockquote>
+
+    <p>Because the field is conservative, we can define a scalar potential energy $U$. The change in potential energy, $\Delta U$, is defined as the <em>negative</em> of the work done by the conservative field. This is equivalent to the work an external agent must do to move the charge from A to B against the field, with no change in kinetic energy.</p>
+    $$ \Delta U = U_B - U_A = -W_{A \to B} = -\int_A^B q_0 \mathbf{E} \cdot d\mathbf{l} \tag{3} $$
+    <p>Only differences in potential energy are physically significant. We must establish a reference point. By universal convention, the potential energy $U$ is defined to be zero when all charges are infinitely separated ($r = \infty$).</p>
+    <p>Thus, the potential energy $U(\mathbf{r})$ of a test charge $q_0$ at a position $\mathbf{r}$ is the work done by an external agent to bring that charge from infinity to $\mathbf{r}$:</p>
+    $$ U(\mathbf{r}) = -\int_{\infty}^{\mathbf{r}} q_0 \mathbf{E} \cdot d\mathbf{l} \tag{4} $$
+    
+    <blockquote>
+        <strong>Proof: Potential Energy of two point charges $Q$ and $q_0$</strong>
+        <p>Let's find the potential energy $U(r)$ of a test charge $q_0$ at a distance $r$ from a source charge $Q$, using the reference $U(\infty) = 0$.</p>
+        <p>1. The electric field $\mathbf{E}$ from the source charge $Q$ at a position $\mathbf{r}'$ is $\mathbf{E}(\mathbf{r}') = \frac{1}{4\pi\epsilon_0} \frac{Q}{r'^2} \hat{\mathbf{r}}'$.</p>
+        <p>2. We use Eq. 4, bringing the charge $q_0$ from $r'=\infty$ to $r'=r$. We choose the most convenient path: a straight radial line. Along this path, the differential displacement vector is $d\mathbf{l} = dr' \hat{\mathbf{r}}'$.</p>
+        <p>3. The dot product simplifies: $\mathbf{E} \cdot d\mathbf{l} = \left( \frac{1}{4\pi\epsilon_0} \frac{Q}{r'^2} \hat{\mathbf{r}}' \right) \cdot (dr' \hat{\mathbf{r}}') = \frac{1}{4\pi\epsilon_0} \frac{Q}{r'^2} dr'$.</p>
+        <p>4. We now integrate:</p>
+        $$ U(r) = -\int_{\infty}^{r} q_0 \left( \frac{1}{4\pi\epsilon_0} \frac{Q}{r'^2} \right) dr' $$
+        $$ U(r) = -\frac{q_0 Q}{4\pi\epsilon_0} \int_{\infty}^{r} r'^{-2} dr' $$
+        <p>5. Solving the integral:</p>
+        $$ U(r) = -\frac{q_0 Q}{4\pi\epsilon_0} \left[ \frac{r'^{-1}}{-1} \right]_{\infty}^{r} = \frac{q_0 Q}{4\pi\epsilon_0} \left[ \frac{1}{r'} \right]_{\infty}^{r} $$
+        $$ U(r) = \frac{q_0 Q}{4\pi\epsilon_0} \left( \frac{1}{r} - \frac{1}{\infty} \right) $$
+        <p>6. This gives the final potential energy for the two-charge system:</p>
+        $$ U(r) = \frac{1}{4\pi\epsilon_0} \frac{q_0 Q}{r} \tag{5} $$
+    </blockquote>
+
+    <h4>1.1.5. Total Potential Energy of a System of Charges</h4>
+    <p>The total potential energy $U$ of a system is the total work required to assemble it, bringing charges in from infinity one by one.</p>
+    <ul>
+        <li>Bringing in charge $q_1$: $W_1 = 0$ (no field to work against).</li>
+        <li>Bringing in charge $q_2$: $W_2 = q_2 V_1(\mathbf{r}_2) = q_2 \left( \frac{1}{4\pi\epsilon_0} \frac{q_1}{r_{12}} \right)$, where $r_{12}$ is the distance between 1 and 2.</li>
+        <li>Bringing in charge $q_3$: $W_3 = q_3 (V_1(\mathbf{r}_3) + V_2(\mathbf{r}_3)) = \frac{1}{4\pi\epsilon_0} \left( \frac{q_3 q_1}{r_{13}} + \frac{q_3 q_2}{r_{23}} \right)$.</li>
+    </ul>
+    <p>The total energy $U = W_1 + W_2 + W_3 + \dots = \frac{1}{4\pi\epsilon_0} \left( \frac{q_1 q_2}{r_{12}} + \frac{q_1 q_3}{r_{13}} + \frac{q_2 q_3}{r_{23}} + \dots \right)$.</p>
+    <p>This can be written as a sum over all pairs $i, j$ where $i \ne j$, counting each pair once:</p>
+    $$ U = \sum_{i<j} \frac{1}{4\pi\epsilon_0} \frac{q_i q_j}{r_{ij}} $$
+    <p>This is often written in a way that counts each pair twice, then divides by 2:</p>
+    $$ U = \frac{1}{2} \sum_{i \ne j} \frac{1}{4\pi\epsilon_0} \frac{q_i q_j}{r_{ij}} = \frac{1}{2} \sum_i q_i \left( \sum_{j \ne i} \frac{1}{4\pi\epsilon_0} \frac{q_j}{r_{ij}} \right) $$
+    <p>The term in the parenthesis is just $V_i$, the total potential at $\mathbf{r}_i$ due to all *other* charges. Thus, for a discrete system:</p>
+    $$ U = \frac{1}{2} \sum_i q_i V(\mathbf{r}_i) \tag{6} $$
+    <p>For a continuous distribution, this becomes an integral:</p>
+    $$ U = \frac{1}{2} \int \rho(\mathbf{r}) V(\mathbf{r}) d\tau \tag{7} $$
+
+    <h3>1.2. Electric Potential ($V$)</h3>
+    <p>The potential energy $U$ is a property of the <em>system</em> of charges, and it depends on the test charge $q_0$. We can define a more general quantity, the <strong>electric potential</strong> $V$, which is a scalar property of the <em>field itself</em>, independent of any charge placed in it. It is defined as the potential energy per unit charge:</p>
+    $$ V = \frac{U}{q_0} \tag{8} $$
+    <p>The unit of electric potential is the **Volt (V)**, where $1 \text{ Volt} = 1 \text{ Joule / Coulomb}$. From this, the unit of electric field $\text{V/m}$ is often used, as $1 \text{ N/C} = 1 \text{ (J/C)/m} = 1 \text{ V/m}$.</p>
+    <p>The **potential difference** $\Delta V$ (or voltage) between two points is the change in potential energy per unit charge:</p>
+    $$ \Delta V = V_B - V_A = \frac{U_B - U_A}{q_0} = -\int_A^B \mathbf{E} \cdot d\mathbf{l} \tag{9} $$
+    <p>If we set the potential at infinity to zero, $V(\infty) = 0$, then the absolute potential $V(\mathbf{r})$ at any point $\mathbf{r}$ is the work per unit charge required to move a charge from infinity to $\mathbf{r}$:</p>
+    $$ V(\mathbf{r}) = -\int_{\infty}^{\mathbf{r}} \mathbf{E} \cdot d\mathbf{l} \tag{10} $$
+    <p>For a **point charge $Q$**, the potential at a distance $r$ is (from Eq. 5):</p>
+    $$ V(r) = \frac{U(r)}{q_0} = \frac{1}{4\pi\epsilon_0} \frac{Q}{r} \tag{11} $$
+
+    <h3>1.3. Calculating Electric Potential</h3>
+
+    <p>We can calculate $V$ in two primary ways:</p>
+    
+    <h4>1. From the Electric Field $\mathbf{E}$</h4>
+    <p>If $\mathbf{E}$ is known (e.g., from Gauss's Law), we can directly integrate using Eq. 7 or 8. This is useful for symmetric charge distributions like spheres, cylinders, and infinite planes.</p>
+
+    <h4>2. From the Charge Distribution (Superposition Principle)</h4>
+    <p>Since potential is a scalar, the total potential from a collection of charges is the simple algebraic sum of the potentials from each charge. This is almost always easier than the vector addition required for $\mathbf{E}$.</p>
+
+    <p>For a system of **discrete point charges** $q_i$ at positions $\mathbf{r}_i$:</p>
+    $$ V(\mathbf{r}) = \sum_i V_i = \sum_i \frac{1}{4\pi\epsilon_0} \frac{q_i}{|\mathbf{r} - \mathbf{r}_i|} \tag{12} $$
+    <p>For a **continuous charge distribution** $dq$:</p>
+    $$ V(\mathbf{r}) = \int dV = \int \frac{1}{4\pi\epsilon_0} \frac{dq}{r'} \tag{13} $$
+    <p>where $r'$ is the distance from the differential charge element $dq$ to the point $\mathbf{r}$. The integral is taken over the entire charge distribution.</p>
+    <ul>
+        <li>For a line charge: $dq = \lambda(\mathbf{r}') dl'$</li>
+        <li>For a surface charge: $dq = \sigma(\mathbf{r}') dA'$</li>
+        <li>For a volume charge: $dq = \rho(\mathbf{r}') d\tau'$</li>
+    </ul>
+    <p>So, for a volume charge distribution $\rho(\mathbf{r}')$, the potential at $\mathbf{r}$ is:</p>
+    $$ V(\mathbf{r}) = \frac{1}{4\pi\epsilon_0} \int_{Volume} \frac{\rho(\mathbf{r}') d\tau'}{|\mathbf{r} - \mathbf{r}'|} \tag{14} $$
+    <p>This integral is often simpler than finding $\mathbf{E}$ first, as it's a scalar integral.</p>
+
+    <blockquote>
+        <strong>Example: Potential of a Uniformly Charged Ring</strong>
+        <p><strong>Problem:</strong> Find the electric potential $V$ at a point $P$ on the central axis of a thin ring of radius $a$ and total charge $Q$. Point $P$ is at a distance $z$ from the center of the ring.</p>
+        
+        
+
+        <p><strong>Solution:</strong> We use the superposition principle (Eq. 11).</p>
+        <ol>
+            <li>Let the ring be in the $x$-$y$ plane, centered at the origin. Point $P$ is at $(0, 0, z)$.</li>
+            <li>Consider a differential charge element $dq$ on the ring.</li>
+            <li>The key insight is that <em>every</em> $dq$ on the ring is at the exact same distance $r'$ from point $P$.
+                $$ r' = \sqrt{z^2 + a^2} $$
+            </li>
+            <li>We integrate $V = \int dV = \int \frac{1}{4\pi\epsilon_0} \frac{dq}{r'}$.</li>
+            <li>Since $r'$ and $4\pi\epsilon_0$ are constants for this integral, we can pull them out of the integral:
+                $$ V(z) = \frac{1}{4\pi\epsilon_0 \sqrt{z^2 + a^2}} \int dq $$
+            </li>
+            <li>The integral $\int dq$ is just the total charge $Q$.</li>
+            <li>Therefore, the potential on the axis is:
+                $$ V(z) = \frac{1}{4\pi\epsilon_0} \frac{Q}{\sqrt{z^2 + a^2}} \tag{15} $$
+            </li>
+        </ol>
+        <p><strong>Analysis:</strong> Note the limiting case. As $z \to \infty$ ($z \gg a$), the term $\sqrt{z^2 + a^2} \approx \sqrt{z^2} = |z|$. Then $V(z) \approx \frac{1}{4\pi\epsilon_0} \frac{Q}{|z|}$, which is the potential of a point charge $Q$. This makes physical sense; from far away, the ring looks like a point.</p>
+    </blockquote>
+
+    <blockquote>
+        <strong>Example: Potential of a Uniformly Charged Disk</strong>
+        <p><strong>Problem:</strong> Find $V$ on the axis of a disk of radius $R$ and uniform surface charge density $\sigma$, at a distance $z$ from the center.</p>
+
+        <p><strong>Solution:</strong> We use the result for the ring (Eq. 15) and treat the disk as a continuous sum of concentric rings.</p>
+        <ol>
+            <li>Consider a thin ring (annulus) of radius $a$ and width $da$, where $0 \le a \le R$.</li>
+            <li>The area of this ring is $dA = (2\pi a) \, da$.</li>
+            <li>The charge $dq_{\text{ring}}$ on this ring is $dq_{\text{ring}} = \sigma \, dA = \sigma (2\pi a \, da)$.</li>
+            <li>Using Eq. 15, this ring produces a potential $dV$ at point $P$:
+                $$ dV = \frac{1}{4\pi\epsilon_0} \frac{dq_{\text{ring}}}{\sqrt{z^2 + a^2}} = \frac{1}{4\pi\epsilon_0} \frac{\sigma (2\pi a \, da)}{\sqrt{z^2 + a^2}} $$
+            </li>
+            <li>To find the total potential $V$, we integrate $dV$ from $a=0$ to $a=R$:
+                $$ V(z) = \int dV = \int_0^R \frac{\sigma (2\pi a \, da)}{4\pi\epsilon_0 \sqrt{z^2 + a^2}} = \frac{\sigma}{2\epsilon_0} \int_0^R \frac{a \, da}{\sqrt{z^2 + a^2}} $$
+            </li>
+            <li>We solve the integral using a $u$-substitution: Let $u = z^2 + a^2$. Then $du = 2a \, da$, so $a \, da = du/2$.
+                $$ \int \frac{a \, da}{\sqrt{u}} = \int \frac{du/2}{u^{1/2}} = \frac{1}{2} \int u^{-1/2} du = \frac{1}{2} \frac{u^{1/2}}{1/2} = u^{1/2} = \sqrt{z^2 + a^2} $$
+            </li>
+            <li>Applying the limits of integration:
+                $$ V(z) = \frac{\sigma}{2\epsilon_0} \left[ \sqrt{z^2 + a^2} \right]_0^R $$
+                $$ V(z) = \frac{\sigma}{2\epsilon_0} \left( \sqrt{z^2 + R^2} - \sqrt{z^2} \right) $$
+                $$ V(z) = \frac{\sigma}{2\epsilon_0} \left( \sqrt{z^2 + R^2} - |z| \right) \tag{16} $$
+            </li>
+        </ol>
+        <p><strong>Analysis:</strong> Consider the limit $R \to \infty$ (infinite plane). The $\sqrt{z^2 + R^2}$ term dominates. We can't use $V(\infty)=0$. Instead, let's find the field $E_z$ from this (see Eq. 18): $E_z = -\frac{\partial V}{\partial z} = -\frac{\sigma}{2\epsilon_0} \left( \frac{z}{\sqrt{z^2+R^2}} - \frac{z}{|z|} \right)$. As $R \to \infty$ for $z>0$, $E_z \to -\frac{\sigma}{2\epsilon_0}(0 - 1) = \frac{\sigma}{2\epsilon_0}$, which is the correct field for an infinite plane.</p>
+    </blockquote>
+
+    <h3>1.4. Equipotential Surfaces</h3>
+    <p>An **equipotential surface** is a surface (in 3D) or line (in 2D) where the electric potential $V$ is constant. </p>
+    <ul>
+        <li>By definition, the potential difference $\Delta V$ between any two points on the surface is zero.</li>
+        <li>From Eq. 9, $\Delta V = -\int \mathbf{E} \cdot d\mathbf{l}$. If $\Delta V = 0$ for any path $d\mathbf{l}$ along the surface, it must be that $\mathbf{E} \cdot d\mathbf{l} = 0$.</li>
+        <li>Since $d\mathbf{l}$ is tangent to the surface, this implies that the electric field $\mathbf{E}$ must be perpendicular (normal) to the equipotential surface at every point.</li>
+        <li></li>
+        <li>A conductor in electrostatic equilibrium is an equipotential volume. Since $\mathbf{E} = 0$ inside the conductor, $\Delta V = -\int \mathbf{E} \cdot d\mathbf{l} = 0$ between any two points. The surface of the conductor is therefore an equipotential surface.</li>
+    </ul>
+    
+    <h3>1.5. Potential Gradient</h3>
+    <p>We have a way to get $V$ from $\mathbf{E}$ (Eq. 10). We also need a way to get $\mathbf{E}$ from $V$. This relationship is fundamental to field theory.</p>
+    <p>Consider the change $dV$ in potential over an infinitesimal displacement $d\mathbf{l}$. From the definition of the differential of a scalar function $V(x, y, z)$, we have:</p>
+    $$ dV = \frac{\partial V}{\partial x} dx + \frac{\partial V}{\partial y} dy + \frac{\partial V}{\partial z} dz $$
+    <p>This can be written as the dot product of two vectors:</p>
+    $$ dV = \left( \hat{\mathbf{i}} \frac{\partial V}{\partial x} + \hat{\mathbf{j}} \frac{\partial V}{\partial y} + \hat{\mathbf{k}} \frac{\partial V}{\partial z} \right) \cdot \left( \hat{\mathbf{i}} dx + \hat{\mathbf{j}} dy + \hat{\mathbf{k}} dz \right) $$
+    <p>The first vector is the **gradient** of $V$, denoted $\nabla V$. The second is the displacement $d\mathbf{l}$.</p>
+    $$ dV = \nabla V \cdot d\mathbf{l} \tag{17} $$
+    <p>Now, compare this to the integral definition in differential form. From Eq. 9, $dV = -\mathbf{E} \cdot d\mathbf{l}$.</p>
+    <p>Equating the two expressions for $dV$:</p>
+    $$ \nabla V \cdot d\mathbf{l} = -\mathbf{E} \cdot d\mathbf{l} $$
+    $$ (\nabla V + \mathbf{E}) \cdot d\mathbf{l} = 0 $$
+    <p>Since this must be true for *any* arbitrary displacement $d\mathbf{l}$, the vector in parentheses must be zero.</p>
+    $$ \mathbf{E} = -\nabla V \tag{18} $$
+    <p>The electric field $\mathbf{E}$ is the negative gradient of the scalar potential $V$. The negative sign indicates that $\mathbf{E}$ points in the direction of the steepest <em>decrease</em> in potential (i.e., "downhill").</p>
+    <p>This can be seen component-by-component. If we choose $d\mathbf{l}$ to be purely in the x-direction, $d\mathbf{l} = dx \, \hat{\mathbf{i}}$, then $dV = -\mathbf{E} \cdot d\mathbf{l} = -E_x dx$.</p>
+    <p>This gives $E_x = -dV/dx$. If $V$ only depends on $x$, this is a total derivative. If $V$ depends on $x, y, z$, this is the partial derivative $E_x = -\partial V / \partial x$. Similarly, $E_y = -\partial V / \partial y$ and $E_z = -\partial V / \partial z$. Combining these gives $\mathbf{E} = -\nabla V$.</p>
+
+    <h4>Poisson's and Laplace's Equations</h4>
+    <p>This new relationship unlocks two fundamental differential equations of electrostatics.</p>
+    <p>Start with the differential form of Gauss's Law:</p>
+    $$ \nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0} $$
+    <p>Substitute $\mathbf{E} = -\nabla V$ into this equation:</p>
+    $$ \nabla \cdot (-\nabla V) = \frac{\rho}{\epsilon_0} $$
+    $$ \nabla^2 V = -\frac{\rho}{\epsilon_0} \tag{19} $$
+    <p>This is **Poisson's Equation**. The operator $\nabla^2$ is the **Laplacian**: $\nabla^2 = \nabla \cdot \nabla = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}$.</p>
+    <p>In a region of space that contains *no charge* ($\rho = 0$), Poisson's equation simplifies to:</p>
+    $$ \nabla^2 V = 0 \tag{20} $$
+    <p>This is **Laplace's Equation**. It is one of the most important equations in physics and engineering. It states that in any charge-free region, the potential $V$ is "smooth" and cannot have any local maxima or minima (a value at a point must be the average of the values surrounding it). Solving this equation with boundary conditions is a primary method of solving electrostatic problems.</p>
+
+    <hr>
+    
+    <h2>2. Capacitance and Dielectrics</h2>
+
+    <h3>2.1. Capacitors and Capacitance</h3>
+    <p>A **capacitor** is a device formed by two conductors, typically separated by an insulator (a vacuum or a dielectric material). Its purpose is to store electric potential energy and charge.</p>
+    <p>If a potential difference $V$ is applied across the two conductors (e.g., by a battery), a charge $+Q$ will build up on one conductor and $-Q$ on the other. It is found that the amount of charge $Q$ stored is directly proportional to the potential difference $V$ applied:</p>
+    $$ Q \propto V $$
+    <p>The constant of proportionality is called the **capacitance**, $C$:</p>
+    $$ C = \frac{Q}{V} \tag{21} $$
+    <p>The unit of capacitance is the **Farad (F)**, where $1 \text{ Farad} = 1 \text{ Coulomb / Volt}$. Capacitance is a purely geometric property; it depends only on the size, shape, and separation of the conductors (and the material between them). It does *not* depend on $Q$ or $V$.</p>
+
+    <blockquote>
+        <strong>Proof: Capacitance of a Parallel-Plate Capacitor</strong>
+        <p><strong>Problem:</strong> Find the capacitance of a capacitor made of two parallel plates of area $A$ separated by a distance $d$, with a vacuum in between. Assume $d \ll \sqrt{A}$ to neglect "fringing" fields at the edges.</p>
+        
+        [Image of parallel-plate capacitor]
+
+        <p>1. We place a charge $+Q$ on one plate and $-Q$ on the other. The surface charge density is $\sigma = Q/A$.</p>
+        <p>2. Assuming $d \ll \sqrt{A}$, the plates look like infinite planes. The electric field $\mathbf{E}$ between them is uniform. Using Gauss's Law on a pillbox surface enclosing the charge on the positive plate, the field from one plate is $E_1 = \sigma / (2\epsilon_0)$. The other plate creates an identical field in the same direction, so the total field is:</p>
+        $$ E = \frac{\sigma}{\epsilon_0} = \frac{Q}{\epsilon_0 A} $$
+        <p>3. We find the potential difference $V$ using Eq. 9. We integrate from the negative plate (A, at $x=0$) to the positive plate (B, at $x=d$) against the field. Let $\mathbf{E} = -E \hat{\mathbf{i}}$.</p>
+        $$ V = V_B - V_A = -\int_A^B \mathbf{E} \cdot d\mathbf{l} = -\int_0^d (-E \hat{\mathbf{i}}) \cdot (dx \hat{\mathbf{i}}) = E \int_0^d dx = Ed $$
+        <p>Note: $V$ is defined as the potential *difference*, so we take its positive value: $V = Ed$.</p>
+        <p>4. Substitute the expression for $E$:</p>
+        $$ V = \left( \frac{Q}{\epsilon_0 A} \right) d $$
+        <p>5. Use the definition $C = Q/V$:</p>
+        $$ C = \frac{Q}{Qd / (\epsilon_0 A)} $$
+        $$ C = \frac{\epsilon_0 A}{d} \tag{22} $$
+    </blockquote>
+
+    <blockquote>
+        <strong>Example: Capacitance of a Cylindrical Capacitor</strong>
+        <p><strong>Problem:</strong> Find the capacitance of two coaxial cylinders of length $L$, inner radius $a$, and outer radius $b$ ($L \gg b$).</p>
+        
+        
+
+        <p>1. Place charge $+Q$ on the inner cylinder and $-Q$ on the outer. The linear charge density is $\lambda = Q/L$.</p>
+        <p>2. Use Gauss's Law to find $\mathbf{E}$ in the region $a < r < b$. A cylindrical Gaussian surface of radius $r$ and length $L'$ gives:</p>
+        $$ \oint \mathbf{E} \cdot d\mathbf{A} = E (2\pi r L') = \frac{Q_{\text{enclosed}}}{\epsilon_0} = \frac{\lambda L'}{\epsilon_0} $$
+        $$ E(r) = \frac{\lambda}{2\pi \epsilon_0 r} = \frac{Q}{2\pi \epsilon_0 L r} $$
+        <p>3. Find the potential difference $V$ between the cylinders. We integrate $\mathbf{E}$ from $a$ to $b$:</p>
+        $$ V = V_a - V_b = -\int_b^a \mathbf{E} \cdot d\mathbf{l} = -\int_b^a E(r) \hat{\mathbf{r}} \cdot dr \hat{\mathbf{r}} = \int_a^b \frac{Q}{2\pi \epsilon_0 L r} dr $$
+        $$ V = \frac{Q}{2\pi \epsilon_0 L} \int_a^b \frac{dr}{r} = \frac{Q}{2\pi \epsilon_0 L} \left[ \ln(r) \right]_a^b $$
+        $$ V = \frac{Q}{2\pi \epsilon_0 L} \ln\left(\frac{b}{a}\right) $$
+        <p>4. Use the definition $C = Q/V$:</p>
+        $$ C = \frac{Q}{\frac{Q}{2\pi \epsilon_0 L} \ln(b/a)} $$
+        $$ C = \frac{2\pi \epsilon_0 L}{\ln(b/a)} \tag{23} $$
+    </blockquote>
+
+
+    <h3>2.2. Capacitors in Series and Parallel</h3>
+
+    <h4>Parallel Combination</h4>
+    
+    <p>When capacitors are connected in parallel, the potential difference $V$ across each capacitor is the same.</p>
+    <p>The total charge stored $Q_{eq}$ is the sum of the charges on each capacitor:</p>
+    $$ Q_{eq} = Q_1 + Q_2 + \dots = C_1 V + C_2 V + \dots = (C_1 + C_2 + \dots) V $$
+    <p>The equivalent capacitance $C_{eq} = Q_{eq} / V$ is therefore:</p>
+    $$ C_{eq} = \sum_i C_i \quad \text{(Parallel)} \tag{24} $$
+
+    <h4>Series Combination</h4>
+    
+    <p>When capacitors are connected in series, the charge $Q$ on each capacitor is the same. The total potential difference $V$ across the combination is the sum of the potential differences across each capacitor:</p>
+    $$ V = V_1 + V_2 + \dots = \frac{Q}{C_1} + \frac{Q}{C_2} + \dots = Q \left( \frac{1}{C_1} + \frac{1}{C_2} + \dots \right) $$
+    <p>The equivalent capacitance is $C_{eq} = Q / V$. Therefore, $V = Q / C_{eq}$.</p>
+    $$ \frac{Q}{C_{eq}} = Q \left( \sum_i \frac{1}{C_i} \right) $$
+    $$ \frac{1}{C_{eq}} = \sum_i \frac{1}{C_i} \quad \text{(Series)} \tag{25} $$
+
+    <h3>2.3. Energy Storage in Capacitors and Electric-Field Energy</h3>
+    <p>Work must be done to charge a capacitor, and this work is stored as electric potential energy $U$ in the electric field.</p>
+    
+    <blockquote>
+        <strong>Proof: Energy Stored in a Capacitor</strong>
+        <p>Let $q$ be the charge on the capacitor and $v$ be the potential difference at some intermediate stage of charging.</p>
+        <p>1. The work $dW$ required to move an infinitesimal charge $dq$ from the negative plate to the positive plate against the potential difference $v$ is:</p>
+        $$ dW = v \, dq $$
+        <p>2. We know $v = q/C$. Substituting this in:</p>
+        $$ dW = \left(\frac{q}{C}\right) dq $$
+        <p>3. To find the total work $W$ (which is stored as potential energy $U$) to charge the capacitor from $q=0$ to $q=Q$, we integrate:</p>
+        $$ U = W = \int_0^Q dW = \int_0^Q \frac{q}{C} dq $$
+        $$ U = \frac{1}{C} \left[ \frac{q^2}{2} \right]_0^Q $$
+        $$ U = \frac{Q^2}{2C} \tag{26} $$
+        <p>4. Using the relation $Q=CV$, we can write this in three equivalent forms:</p>
+        $$ U = \frac{Q^2}{2C} = \frac{1}{2} C V^2 = \frac{1}{2} Q V \tag{27} $$
+    </blockquote>
+
+    <h4>Energy Density of the Electric Field</h4>
+    <p>Where is this energy stored? It is stored in the electric field itself. We can find the energy per unit volume, or **energy density** $u_E$.</p>
+    <p>Let's use the parallel-plate capacitor as a model:</p>
+    <ul>
+        <li>$U = \frac{1}{2} C V^2$</li>
+        <li>$C = \epsilon_0 A / d$</li>
+        <li>The potential difference is $V = Ed$.</li>
+    </ul>
+    <p>Substitute $C$ and $V$ into the energy equation:</p>
+    $$ U = \frac{1}{2} \left( \frac{\epsilon_0 A}{d} \right) (Ed)^2 = \frac{1}{2} \frac{\epsilon_0 A}{d} E^2 d^2 = \frac{1}{2} \epsilon_0 E^2 (Ad) $$
+    <p>The term $(Ad)$ is the volume of space between the plates. The energy density $u_E$ is the total energy $U$ divided by this volume:</p>
+    $$ u_E = \frac{U}{\text{Volume}} = \frac{U}{Ad} $$
+    $$ u_E = \frac{1}{2} \epsilon_0 E^2 \tag{28} $$
+    <p>Although derived for a parallel-plate capacitor, this result is universally true. The total electric potential energy stored in any electrostatic system can be found by integrating the energy density over all space where the field exists:</p>
+    $$ U = \int_{\text{all space}} u_E \, d\tau = \int_{\text{all space}} \frac{1}{2} \epsilon_0 E^2 \, d\tau \tag{29} $$
+    <p>This can be shown to be equivalent to $U = \frac{1}{2} \int \rho V d\tau$ (Eq. 7) through integration by parts, which is a key identity in electrostatics.</p>
+
+    <h3>2.4. Dielectrics</h3>
+    <p>A **dielectric** is an insulating material. When a dielectric is inserted between the plates of a capacitor, the capacitance <em>increases</em>.</p>
+    <p>If $C_0$ is the capacitance with a vacuum, the capacitance $C$ with the dielectric is:</p>
+    $$ C = K C_0 \tag{30} $$
+    <p>where $K$ (kappa) is the **dielectric constant**, a dimensionless property of the material ($K \ge 1$). For a vacuum, $K=1$.</p>
+    <p>We can also define the **permittivity** of the dielectric, $\epsilon$:</p>
+    $$ \epsilon = K \epsilon_0 \tag{31} $$
+    <p>So, the capacitance of a parallel-plate capacitor filled with a dielectric is $C = \frac{K \epsilon_0 A}{d} = \frac{\epsilon A}{d}$.</pr>
+    <p>How does this happen?
+    <ul>
+        <li>If the capacitor is isolated (fixed $Q$), inserting a dielectric <em>decreases</em> the potential difference: $V = Q/C = Q/(KC_0) = V_0 / K$.</li>
+        <li>Since $V = Ed$ (for a uniform field), the net electric field $\mathbf{E}$ <em>inside</em> the dielectric must also be reduced:</li>
+    </ul>
+    $$ E = E_0 / K \tag{32} $$
+    <p>where $E_0$ is the field with a vacuum.</p>
+
+    <h3>2.5. Molecular Model of Induced Charge</h3>
+    <p>The reduction of the electric field $\mathbf{E}$ is due to **polarization** of the dielectric material.</p>
+    <ul>
+        <li><strong>Polar Molecules:</strong> Molecules like H₂O have a permanent dipole moment. In an external field $\mathbf{E}_0$, they experience a torque $\mathbf{\tau} = \mathbf{p} \times \mathbf{E}_0$ that tends to align them with the field.</li>
+        <li><strong>Nonpolar Molecules:</strong> Atoms and nonpolar molecules have no permanent dipole moment. An external field $\mathbf{E}_0$ distorts the electron cloud, separating the centers of positive and negative charge and *inducing* a dipole moment $\mathbf{p}$ that is parallel to $\mathbf{E}_0$.</li>
+    </ul>
+    <p>In both cases, the bulk material becomes polarized. While the interior of the dielectric remains neutral (charge from adjacent dipoles cancels), a net charge appears on the surfaces. This is called the **bound charge** or **induced charge** ($-Q_i$ and $+Q_i$).</p>
+    
+    
+
+    <p>This bound charge $\sigma_i = Q_i/A$ creates its own internal electric field, $\mathbf{E}_i$, which <em>opposes</em> the original external field $\mathbf{E}_0$ (from the free charge $\sigma = Q/A$ on the plates).</p>
+    <p>The <em>net</em> electric field $\mathbf{E}$ inside the dielectric is the vector sum:</p>
+    $$ \mathbf{E} = \mathbf{E}_0 + \mathbf{E}_i $$
+    <p>In magnitude (for parallel plates): $E = E_0 - E_i$.</p>
+    <p>We know $E = E_0 / K$, so $E_i = E_0 - E = E_0 - E_0/K = E_0 (1 - 1/K)$.</p>
+    <p>The fields $E_0$ and $E_i$ are related to their respective charge densities:</p>
+    <ul>
+        <li>$E_0 = \sigma / \epsilon_0$ (Field from <em>free charge</em> on plates)</li>
+        <li>$E_i = \sigma_i / \epsilon_0$ (Field from <em>bound charge</em> on dielectric surface)</li>
+    </ul>
+    <p>Substituting these into the relation for $E_i$:</p>
+    $$ \frac{\sigma_i}{\epsilon_0} = \frac{\sigma}{\epsilon_0} \left( 1 - \frac{1}{K} \right) $$
+    $$ \sigma_i = \sigma \left( 1 - \frac{1}{K} \right) \tag{33} $$
+    <p>This shows the induced bound charge is always less than the free charge.</p>
+    <p>The polarization of the material is described by the **Polarization vector $\mathbf{P}$**, defined as the net dipole moment per unit volume. For most (linear) dielectrics, $\mathbf{P}$ is proportional to the <em>net</em> field $\mathbf{E}$:</p>
+    $$ \mathbf{P} = \epsilon_0 \chi_e \mathbf{E} \tag{34} $$
+    <p>where $\chi_e$ (chi) is the **electric susceptibility**. It can be shown that $\sigma_i = \mathbf{P} \cdot \hat{\mathbf{n}}$ (where $\hat{\mathbf{n}}$ is the surface normal) and $K = 1 + \chi_e$.</p>
+
+
+    <h3>2.6. Gauss’s Law in Dielectrics</h3>
+    <p>Standard Gauss's Law, $\oint \mathbf{E} \cdot d\mathbf{A} = Q_{\text{enclosed}} / \epsilon_0$, is always true. But in a dielectric, $Q_{\text{enclosed}}$ is the <em>total</em> charge, which is the sum of the free charge ($Q_{\text{free}}$) we control and the bound charge ($Q_{\text{bound}}$) we don't.</p>
+    $$ \oint \mathbf{E} \cdot d\mathbf{A} = \frac{Q_{\text{free}} + Q_{\text{bound}}}{\epsilon_0} \tag{35} $$
+    <p>This is not very useful. We need a way to reformulate the law in terms of <em>free charge only</em>.</p>
+    <p>The bound charge $Q_{\text{bound}}$ can be related to the polarization vector $\mathbf{P}$ by $Q_{\text{bound}} = -\oint \mathbf{P} \cdot d\mathbf{A}$.</p>
+    <p>Substituting this into Eq. 35:</p>
+    $$ \oint \mathbf{E} \cdot d\mathbf{A} = \frac{1}{\epsilon_0} \left( Q_{\text{free}} - \oint \mathbf{P} \cdot d\mathbf{A} \right) $$
+    $$ \epsilon_0 \oint \mathbf{E} \cdot d\mathbf{A} + \oint \mathbf{P} \cdot d\mathbf{A} = Q_{\text{free}} $$
+    <p>We can combine the two integrals:</p>
+    $$ \oint (\epsilon_0 \mathbf{E} + \mathbf{P}) \cdot d\mathbf{A} = Q_{\text{free}} $$
+    <p>We define a new vector field, the **Electric Displacement $\mathbf{D}$**:</p>
+    $$ \mathbf{D} = \epsilon_0 \mathbf{E} + \mathbf{P} \tag{36} $$
+    <p>This gives us **Gauss's Law for Dielectrics (Integral Form)**:</p>
+    $$ \oint \mathbf{D} \cdot d\mathbf{A} = Q_{\text{free, enclosed}} \tag{37} $$
+    <p>This is a very powerful and general law, as it allows us to find the $\mathbf{D}$ field using only the <em>free charges</em> we place, regardless of the dielectric's response. The corresponding differential form is $\nabla \cdot \mathbf{D} = \rho_{\text{free}}$.</p>
+    <p>For a **linear, isotropic, homogeneous (LIH) dielectric**, we have the simple relationships:</p>
+    <ul>
+        <li>$\mathbf{P} = \epsilon_0 \chi_e \mathbf{E}$</li>
+        <li>$\mathbf{D} = \epsilon_0 \mathbf{E} + \mathbf{P} = \epsilon_0 \mathbf{E} + \epsilon_0 \chi_e \mathbf{E} = \epsilon_0 (1 + \chi_e) \mathbf{E}$</li>
+        <li>Since $K = 1 + \chi_e$:</li>
+    </ul>
+    $$ \mathbf{D} = \epsilon_0 K \mathbf{E} = \epsilon \mathbf{E} \tag{38} $$
+    <p>In this common case, $\mathbf{D}$ is just a scaled version of $\mathbf{E}$.</p>
+    <p>Energy density (Eq. 28) in a linear dielectric becomes:</p>
+    $$ u_E = \frac{1}{2} \epsilon E^2 = \frac{1}{2} K \epsilon_0 E^2 \tag{39} $$
+    <p>And the total energy (Eq. 29) can also be written in terms of $\mathbf{D}$ and $\mathbf{E}$:</p>
+    $$ U = \int_{\text{all space}} \frac{1}{2} (\mathbf{D} \cdot \mathbf{E}) \, d\tau \tag{40} $$
+
+    <hr>
+
+    <h2>3. Problems</h2>
+
+    <h3>3.1. Intermediate Problems</h3>
+    <ol>
+        <li><strong>(Potential from Line Charge)</strong> A thin rod of length $L$ has a uniform linear charge density $\lambda$. Find the electric potential $V$ at a point $P$ on the axis of the rod, at a distance $d$ from one end.</li>
+        
+        <li><strong>(Gradient)</strong> The electric potential in a region of space is given by $V(x, y, z) = A(x^2 y - 3y z^2)$. Find the electric field $\mathbf{E}(x, y, z)$.</li>
+
+        <li><strong>(Energy of Sphere)</strong> A solid conducting sphere of radius $R$ carries a total charge $Q$. Find the total electrostatic energy $U$ stored in its electric field. (Hint: Use $U = \int u_E d\tau$ over all space).</li>
+
+        <li><strong>(Capacitor Network)</strong> In the circuit shown, $C_1 = 2 \, \mu\text{F}$, $C_2 = 4 \, \mu\text{F}$, $C_3 = 6 \, \mu\text{F}$, and the applied voltage is $V = 10 \text{ V}$. $C_1$ and $C_2$ are in parallel, and this combination is in series with $C_3$. Find (a) the equivalent capacitance, (b) the total charge $Q_{eq}$ drawn from the source, and (c) the charge $Q_2$ on capacitor $C_2$.</li>
+
+        <li><strong>(Partial Dielectric)</strong> A parallel-plate capacitor has area $A$ and separation $d$. A slab of dielectric material with dielectric constant $K$ and thickness $t$ ($t < d$) is inserted parallel to the plates. Find the new capacitance. (Hint: Treat it as two capacitors in series).</li>
+    </ol>
+
+    <h3>3.2. Advanced Problems</h3>
+    <ol>
+        <li><strong>(Laplace's Equation)</strong> Two concentric conducting spherical shells have radii $R_1$ and $R_2$ (with $R_2 > R_1$). The inner shell is held at potential $V_1$ and the outer shell at $V_2$. Find the potential $V(r)$ in the region between the shells ($R_1 < r < R_2$).</li>
+        
+        <li><strong>(Force on Capacitor Plate)</strong> For a parallel-plate capacitor with plate separation $x$, the capacitance is $C(x) = \epsilon_0 A / x$. (a) Find the stored energy $U(x)$ if the capacitor is connected to a constant voltage $V$. (b) Find the stored energy $U(x)$ if the capacitor has a constant charge $Q$ (isolated). (c) The electrostatic force $F$ on the plates is given by $F = -dU/dx$. Find the force in both cases (constant $V$ and constant $Q$).</li>
+
+        <li><strong>(Dielectric Sphere in Field)</strong> A sphere of linear dielectric material (radius $R$, dielectric constant $K$) is placed in an initially uniform external electric field $\mathbf{E}_0$. The resulting field *inside* the sphere is found to be uniform. Find the net field $\mathbf{E}_{\text{in}}$ inside the sphere. (This is a classic problem; the solution requires separation of variables for Laplace's Eq., but the result is simple).</li>
+    </ol>
+
+    <h3>3.3. Irodov-like Problems</h3>
+    <ol>
+        <li><strong>(Non-uniform Dielectric)</strong> A spherical capacitor consists of two concentric spheres of radii $a$ and $b$ ($b > a$). The space between them is filled with a non-uniform dielectric material whose permittivity $\epsilon$ varies with the radius $r$ as $\epsilon(r) = \epsilon_1 (a/r)$. Find the capacitance of this device.</li>
+        
+        <li><strong>(Tilted-Plate Capacitor)</strong> A capacitor is formed by two square plates of side $L$ and separation $d$. The plates are *not* parallel. One side (at $x=0$) is separated by $d$, and the other side (at $x=L$) is separated by $3d$. The separation varies linearly. Assuming $d \ll L$, find the approximate capacitance. (Hint: Integrate the capacitance of differential strips $dC$).</li>
+    </ol>
+
+    <hr>
+
+    <!-- This section will start on a new page when printed -->
+    <div id="solutions-section">
+        <h2>4. Solutions to Problems</h2>
+
+        <h3>4.1. Intermediate Solutions</h3>
+        
+        <p><strong>1. (Potential from Line Charge)</strong></p>
+        <p><strong>Formula:</strong> $V = \int \frac{1}{4\pi\epsilon_0} \frac{dq}{r'}$</p>
+        <p>1. Place the rod on the $x$-axis from $x=d$ to $x=d+L$. Point $P$ is at the origin ($x=0$).</p>
+        <p>2. A differential element $dx'$ at position $x'$ has charge $dq = \lambda dx'$.</p>
+        <p>3. The distance $r'$ from $dq$ to $P$ is $r' = x'$.</p>
+        <p>4. Integrate over the length of the rod:</p>
+        $$ V = \int_{d}^{d+L} \frac{1}{4\pi\epsilon_0} \frac{\lambda dx'}{x'} = \frac{\lambda}{4\pi\epsilon_0} \int_{d}^{d+L} \frac{1}{x'} dx' $$
+        $$ V = \frac{\lambda}{4\pi\epsilon_0} \left[ \ln(x') \right]_{d}^{d+L} $$
+        $$ V = \frac{\lambda}{4\pi\epsilon_0} (\ln(d+L) - \ln(d)) $$
+        $$ V = \frac{\lambda}{4\pi\epsilon_0} \ln\left( \frac{d+L}{d} \right) = \frac{\lambda}{4\pi\epsilon_0} \ln\left( 1 + \frac{L}{d} \right) $$
+
+        <p><strong>2. (Gradient)</strong></p>
+        <p><strong>Formula:</strong> $\mathbf{E} = -\nabla V = - \left( \hat{\mathbf{i}} \frac{\partial V}{\partial x} + \hat{\mathbf{j}} \frac{\partial V}{\partial y} + \hat{\mathbf{k}} \frac{\partial V}{\partial z} \right)$</p>
+        <p>1. Given $V(x, y, z) = A(x^2 y - 3y z^2)$.</p>
+        <p>2. Calculate partial derivatives:</p>
+        $$ \frac{\partial V}{\partial x} = \frac{\partial}{\partial x} (A x^2 y - 3A y z^2) = 2Axy $$
+        $$ \frac{\partial V}{\partial y} = \frac{\partial}{\partial y} (A x^2 y - 3A y z^2) = Ax^2 - 3Az^2 $$
+        $$ \frac{\partial V}{\partial z} = \frac{\partial}{\partial z} (A x^2 y - 3A y z^2) = -6Ayz $$
+        <p>3. Substitute into the gradient formula:</p>
+        $$ \mathbf{E} = - \left[ \hat{\mathbf{i}} (2Axy) + \hat{\mathbf{j}} (Ax^2 - 3Az^2) + \hat{\mathbf{k}} (-6Ayz) \right] $$
+        $$ \mathbf{E}(x, y, z) = -2Axy \, \hat{\mathbf{i}} - A(x^2 - 3z^2) \, \hat{\mathbf{j}} + 6Ayz \, \hat{\mathbf{k}} $$
+
+        <p><strong>3. (Energy of Sphere)</strong></p>
+        <p><strong>Formula:</strong> $U = \int_{\text{all space}} u_E \, d\tau = \int \frac{1}{2} \epsilon_0 E^2 \, d\tau$</p>
+        <p>1. For a conducting sphere, charge $Q$ is on the surface. $\mathbf{E} = 0$ for $r < R$.</p>
+        <p>2. For $r > R$, the field is that of a point charge: $\mathbf{E}(r) = \frac{1}{4\pi\epsilon_0} \frac{Q}{r^2} \hat{\mathbf{r}}$.</p>
+        <p>3. The energy density $u_E$ for $r > R$ is:
+        $$ u_E = \frac{1}{2} \epsilon_0 E^2 = \frac{1}{2} \epsilon_0 \left( \frac{Q}{4\pi\epsilon_0 r^2} \right)^2 = \frac{Q^2}{32 \pi^2 \epsilon_0 r^4} $$
+        <p>4. We integrate this density over the volume *outside* the sphere. We use a volume element $d\tau$ in spherical coordinates: $d\tau = 4\pi r^2 dr$.</p>
+        $$ U = \int_{R}^{\infty} u_E \, d\tau = \int_{R}^{\infty} \left( \frac{Q^2}{32 \pi^2 \epsilon_0 r^4} \right) (4\pi r^2 dr) $$
+        $$ U = \frac{Q^2}{8 \pi \epsilon_0} \int_{R}^{\infty} \frac{1}{r^2} dr $$
+        $$ U = \frac{Q^2}{8 \pi \epsilon_0} \left[ -\frac{1}{r} \right]_{R}^{\infty} = \frac{Q^2}{8 \pi \epsilon_0} \left( 0 - \left(-\frac{1}{R}\right) \right) $$
+        $$ U = \frac{Q^2}{8 \pi \epsilon_0 R} $$
+        <p>(Alternatively: $U = \frac{1}{2}QV$. $V$ at the surface is $V = \frac{Q}{4\pi\epsilon_0 R}$. $U = \frac{1}{2}Q \left(\frac{Q}{4\pi\epsilon_0 R}\right) = \frac{Q^2}{8 \pi \epsilon_0 R}$. This is much faster and confirms the result.)</p>
+        
+        <p><strong>4. (Capacitor Network)</strong></p>
+        <p><strong>Formulas:</strong> $C_{eq, \text{parallel}} = \sum C_i$, $1/C_{eq, \text{series}} = \sum 1/C_i$, $Q=CV$</p>
+        <p>(a) Find equivalent capacitance $C_{12}$ for the parallel branch:</p>
+        $$ C_{12} = C_1 + C_2 = 2 \, \mu\text{F} + 4 \, \mu\text{F} = 6 \, \mu\text{F} $$
+        <p>This $C_{12}$ is in series with $C_3$. The total equivalent capacitance $C_{eq}$ is:</p>
+        $$ \frac{1}{C_{eq}} = \frac{1}{C_{12}} + \frac{1}{C_3} = \frac{1}{6 \, \mu\text{F}} + \frac{1}{6 \, \mu\text{F}} = \frac{2}{6 \, \mu\text{F}} = \frac{1}{3 \, \mu\text{F}} $$
+        $$ C_{eq} = 3 \, \mu\text{F} $$
+        <p>(b) Total charge $Q_{eq}$:</p>
+        $$ Q_{eq} = C_{eq} V = (3 \, \mu\text{F}) (10 \text{ V}) = 30 \, \mu\text{C} $$
+        <p>(c) For series components, $Q$ is the same. The charge on $C_{12}$ is $Q_{12} = Q_{eq} = 30 \, \mu\text{C}$.</p>
+        <p>The voltage across the parallel branch $C_{12}$ is:</p>
+        $$ V_{12} = \frac{Q_{12}}{C_{12}} = \frac{30 \, \mu\text{C}}{6 \, \mu\text{F}} = 5 \text{ V} $$
+        <p>This voltage $V_{12}$ is the voltage across both $C_1$ and $C_2$. The charge on $C_2$ is:</p>
+        $$ Q_2 = C_2 V_{12} = (4 \, \mu\text{F}) (5 \text{ V}) = 20 \, \mu\text{C} $$
+        
+        <p><strong>5. (Partial Dielectric)</strong></p>
+        <p><strong>Formulas:</strong> $C = \frac{K \epsilon_0 A}{d}$, $1/C_{eq, \text{series}} = \sum 1/C_i$</p>
+        <p>1. This setup is equivalent to two capacitors in series:</p>
+        <p>   - $C_1$: A capacitor filled with the dielectric, with area $A$ and thickness $t$.</p>
+        <p>   - $C_2$: A capacitor filled with vacuum (air, $K \approx 1$), with area $A$ and thickness $(d-t)$.</p>
+        <p>2. The capacitances are:</p>
+        $$ C_1 = \frac{K \epsilon_0 A}{t} $$
+        $$ C_2 = \frac{\epsilon_0 A}{d-t} $$
+        <p>3. For series combination, $1/C_{eq} = 1/C_1 + 1/C_2$:</p>
+        $$ \frac{1}{C_{eq}} = \frac{t}{K \epsilon_0 A} + \frac{d-t}{\epsilon_0 A} $$
+        $$ \frac{1}{C_{eq}} = \frac{1}{\epsilon_0 A} \left( \frac{t}{K} + (d-t) \right) $$
+        <p>4. Inverting to find $C_{eq}$:</p>
+        $$ C_{eq} = \frac{\epsilon_0 A}{\frac{t}{K} + d - t} = \frac{\epsilon_0 A}{d - t(1 - 1/K)} $$
+
+        <h3>4.2. Advanced Solutions</h3>
+        
+        <p><strong>1. (Laplace's Equation)</strong></p>
+        <p><strong>Formula:</strong> $\nabla^2 V = 0$. In spherical coordinates with only $r$-dependence: $\frac{1}{r^2}\frac{d}{dr}\left(r^2 \frac{dV}{dr}\right) = 0$.</p>
+        <p>1. $\frac{d}{dr}\left(r^2 \frac{dV}{dr}\right) = 0$.</p>
+        <p>2. Integrating once: $r^2 \frac{dV}{dr} = C_1$ (a constant).</p>
+        <p>3. $\frac{dV}{dr} = \frac{C_1}{r^2}$.</p>
+        <p>4. Integrating again: $V(r) = \int \frac{C_1}{r^2} dr = -\frac{C_1}{r} + C_2$. This is the general solution.</p>
+        <p>5. Apply boundary conditions (BCs):</p>
+        <p>   - BC 1: $V(R_1) = V_1 \implies V_1 = -C_1/R_1 + C_2$</p>
+        <p>   - BC 2: $V(R_2) = V_2 \implies V_2 = -C_1/R_2 + C_2$</p>
+        <p>6. Solve the $2 \times 2$ system for $C_1, C_2$. Subtract (BC 2) from (BC 1):</p>
+        $$ V_1 - V_2 = \left(-\frac{C_1}{R_1} + C_2\right) - \left(-\frac{C_1}{R_2} + C_2\right) = C_1 \left( \frac{1}{R_2} - \frac{1}{R_1} \right) $$
+        $$ V_1 - V_2 = C_1 \left( \frac{R_1 - R_2}{R_1 R_2} \right) \implies C_1 = -\frac{(V_1 - V_2)R_1 R_2}{R_2 - R_1} $$
+        <p>7. Find $C_2$ from (BC 2): $C_2 = V_2 + C_1/R_2 = V_2 - \frac{(V_1 - V_2)R_1}{R_2 - R_1} = \frac{V_2(R_2-R_1) - V_1 R_1 + V_2 R_1}{R_2 - R_1} = \frac{V_2 R_2 - V_1 R_1}{R_2 - R_1}$.</p>
+        <p>8. Substitute $C_1$ and $C_2$ back into $V(r)$:</p>
+        $$ V(r) = \frac{(V_1 - V_2)R_1 R_2}{r(R_2 - R_1)} + \frac{V_2 R_2 - V_1 R_1}{R_2 - R_1} $$
+
+        <p><strong>2. (Force on Capacitor Plate)</strong></p>
+        <p><strong>Formula:</strong> $U = \frac{1}{2}CV^2 = \frac{Q^2}{2C}$ and $F = -dU/dx$.</p>
+        <p>(a) <strong>Constant Voltage $V$:</strong></p>
+        $$ U(x) = \frac{1}{2} C(x) V^2 = \frac{1}{2} \left( \frac{\epsilon_0 A}{x} \right) V^2 $$
+        <p>The force is $F = -dU/dx$:</p>
+        $$ F = -\frac{d}{dx} \left[ \frac{\epsilon_0 A V^2}{2} x^{-1} \right] = -\left( \frac{\epsilon_0 A V^2}{2} \right) (-1) x^{-2} $$
+        $$ F = \frac{\epsilon_0 A V^2}{2 x^2} $$
+        <p>(b) <strong>Constant Charge $Q$:</strong></p>
+        $$ U(x) = \frac{Q^2}{2 C(x)} = \frac{Q^2}{2 (\epsilon_0 A / x)} = \frac{Q^2 x}{2 \epsilon_0 A} $$
+        <p>The force is $F = -dU/dx$:</p>
+        $$ F = -\frac{d}{dx} \left[ \frac{Q^2 x}{2 \epsilon_0 A} \right] = -\frac{Q^2}{2 \epsilon_0 A} $$
+        <p>(c) The results *look* different. Let's check consistency. $Q = CV = (\epsilon_0 A / x) V$. Substitute this $Q$ into the constant-charge force equation:</p>
+        $$ F = -\frac{((\epsilon_0 A / x) V)^2}{2 \epsilon_0 A} = -\frac{(\epsilon_0 A / x)^2 V^2}{2 \epsilon_0 A} = -\frac{\epsilon_0^2 A^2 V^2}{2 \epsilon_0 A x^2} = -\frac{\epsilon_0 A V^2}{2 x^2} $$
+        <p>The magnitudes are identical, but the signs are opposite! Why?</p>
+        <p> - At constant $Q$ (isolated), $F = -dU/dx$ gives the internal electrostatic force (plates attract, $F$ is negative, pulling to smaller $x$).</p>
+        <p> - At constant $V$ (connected to battery), $F = -dU/dx$ is not the whole story. The battery also does work $W_{\text{batt}} = V dQ$. The total energy change is $dU_{\text{total}} = dU_{\text{field}} + dW_{\text{mech}}$. The correct principle is $F = +dU/dx$ (for $U = \frac{1}{2}CV^2$). This is a known paradox. A simpler way: $F = -Q^2 / (2\epsilon_0 A)$ is the <em>true</em> force, independent of source. Using $Q = (\epsilon_0 A / x)V$, $F = -(\epsilon_0 A V/x)^2 / (2\epsilon_0 A) = -\epsilon_0 A V^2 / (2x^2)$. This attractive force (negative sign) has a magnitude $\frac{\epsilon_0 A V^2}{2 x^2}$. Both derivations agree in magnitude.</p>
+
+        <p><strong>3. (Dielectric Sphere in Field)</strong></p>
+        <p><strong>Formulas:</strong> $\mathbf{D} = \epsilon_0 K \mathbf{E}$, $\mathbf{D}_{\text{out}} = \epsilon_0 \mathbf{E}_{\text{out}}$, and boundary conditions (BCs) at $r=R$.</p>
+        <p>1. The boundary conditions for a dielectric *with no free charge* at $r=R$ are:</p>
+        <p>   - $V_{\text{in}} = V_{\text{out}}$ (Potential is continuous)</p>
+        <p>   - $D_{\text{in}, \perp} = D_{\text{out}, \perp}$ (Normal component of $\mathbf{D}$ is continuous)</p>
+        <p>2. The external field $\mathbf{E}_0$ creates a polarization field $\mathbf{P}$ inside, which creates its own internal field $\mathbf{E}_{\text{dipole}}$. The net internal field is $\mathbf{E}_{\text{in}} = \mathbf{E}_0 + \mathbf{E}_{\text{dipole}}$.</p>
+        <p>3. It is a known (and non-trivial) result from solving Laplace's equation that for a sphere, the polarization $\mathbf{P}$ is uniform, and the field $\mathbf{E}_{\text{dipole}}$ it produces <em>inside</em> the sphere is also uniform and given by $\mathbf{E}_{\text{dipole}} = -\frac{\mathbf{P}}{3 \epsilon_0}$.</p>
+        <p>4. $\mathbf{E}_{\text{in}} = \mathbf{E}_0 - \frac{\mathbf{P}}{3 \epsilon_0}$.</p>
+        <p>5. We also know $\mathbf{P} = \epsilon_0 \chi_e \mathbf{E}_{\text{in}} = \epsilon_0 (K-1) \mathbf{E}_{\text{in}}$.</p>
+        <p>6. Substitute (5) into (4):</p>
+        $$ \mathbf{E}_{\text{in}} = \mathbf{E}_0 - \frac{\epsilon_0 (K-1) \mathbf{E}_{\text{in}}}{3 \epsilon_0} = \mathbf{E}_0 - \left(\frac{K-1}{3}\right) \mathbf{E}_{\text{in}} $$
+        <p>7. Solve for $\mathbf{E}_{\text{in}}$:</p>
+        $$ \mathbf{E}_{\text{in}} \left( 1 + \frac{K-1}{3} \right) = \mathbf{E}_0 $$
+        $$ \mathbf{E}_{\text{in}} \left( \frac{3 + K - 1}{3} \right) = \mathbf{E}_0 $$
+        $$ \mathbf{E}_{\text{in}} \left( \frac{K+2}{3} \right) = \mathbf{E}_0 $$
+        $$ \mathbf{E}_{\text{in}} = \frac{3}{K+2} \mathbf{E}_0 $$
+
+        <h3>4.3. Irodov-like Solutions</h3>
+
+        <p><strong>1. (Non-uniform Dielectric)</strong></p>
+        <p><strong>Formulas:</strong> $\oint \mathbf{D} \cdot d\mathbf{A} = Q_{\text{free}}$, $\mathbf{D} = \epsilon \mathbf{E}$, $V = -\int \mathbf{E} \cdot d\mathbf{l}$</p>
+        <p>1. By symmetry, $\mathbf{D}$ is radial. Use a spherical Gaussian surface of radius $r$ ($a < r < b$):</p>
+        $$ \oint \mathbf{D} \cdot d\mathbf{A} = D(r) (4\pi r^2) = Q_{\text{free}} = Q $$
+        $$ \mathbf{D}(r) = \frac{Q}{4\pi r^2} \hat{\mathbf{r}} $$
+        <p>2. Find $\mathbf{E}$ using $\mathbf{D} = \epsilon(r) \mathbf{E}$:</p>
+        $$ \mathbf{E}(r) = \frac{\mathbf{D}(r)}{\epsilon(r)} = \frac{Q / (4\pi r^2)}{\epsilon_1 (a/r)} \hat{\mathbf{r}} = \frac{Q}{4\pi \epsilon_1 a r} \hat{\mathbf{r}} $$
+        <p>3. Find the potential difference $V$ between $a$ and $b$:</p>
+        $$ V = V_a - V_b = -\int_b^a \mathbf{E} \cdot d\mathbf{l} = \int_a^b E(r) dr $$
+        $$ V = \int_a^b \frac{Q}{4\pi \epsilon_1 a r} dr = \frac{Q}{4\pi \epsilon_1 a} \int_a^b \frac{1}{r} dr $$
+        $$ V = \frac{Q}{4\pi \epsilon_1 a} \left[ \ln(r) \right]_a^b = \frac{Q}{4\pi \epsilon_1 a} \ln\left(\frac{b}{a}\right) $$
+        <p>4. Find $C$ from $C = Q/V$:</p>
+        $$ C = \frac{Q}{\frac{Q}{4\pi \epsilon_1 a} \ln(b/a)} $$
+        $$ C = \frac{4\pi \epsilon_1 a}{\ln(b/a)} $$
+
+        <p><strong>2. (Tilted-Plate Capacitor)</strong></p>
+        <p><strong>Formula:</strong> $C_{eq} = \int dC$, where $dC = \frac{\epsilon_0 dA}{y(x)}$</p>
+        <p>1. Let the plates be in the $x$-$z$ plane, with $L$ in both directions. The separation $y$ is a function of $x$.</p>
+        <p>2. The separation $y(x)$ is linear. $y(0) = d$ and $y(L) = 3d$.</p>
+        <p>   Slope $m = (3d - d) / L = 2d/L$.</p>
+        <p>   Equation: $y(x) = mx + y(0) = \frac{2d}{L}x + d = d\left(1 + \frac{2x}{L}\right)$.</p>
+        <p>3. Consider a thin strip of the capacitor at position $x$ with width $dx$. The length of this strip (in $z$) is $L$.</p>
+        <p>4. The area of this strip is $dA = L \, dx$.</p>
+        <p>5. This strip acts as a differential capacitor $dC$ with separation $y(x)$.</p>
+        $$ dC = \frac{\epsilon_0 dA}{y(x)} = \frac{\epsilon_0 (L \, dx)}{d(1 + 2x/L)} $$
+        <p>6. All these differential strips are in parallel, so we integrate $dC$ to find $C_{eq}$:</p>
+        $$ C_{eq} = \int dC = \int_0^L \frac{\epsilon_0 L}{d(1 + 2x/L)} dx = \frac{\epsilon_0 L}{d} \int_0^L \frac{1}{1 + 2x/L} dx $$
+        <p>7. Use $u$-substitution: $u = 1 + 2x/L$, $du = (2/L) dx \implies dx = (L/2) du$.</p>
+        $$ \int \frac{1}{u} \left(\frac{L}{2} du\right) = \frac{L}{2} \ln(u) = \frac{L}{2} \ln\left(1 + \frac{2x}{L}\right) $$
+        <p>8. Apply limits:</p>
+        $$ C_{eq} = \frac{\epsilon_0 L}{d} \left[ \frac{L}{2} \ln\left(1 + \frac{2x}{L}\right) \right]_0^L $$
+        $$ C_{eq} = \frac{\epsilon_0 L^2}{2d} \left( \ln\left(1 + \frac{2L}{L}\right) - \ln(1 + 0) \right) $$
+        $$ C_{eq} = \frac{\epsilon_0 L^2}{2d} (\ln(3) - \ln(1)) $$
+        $$ C_{eq} = \frac{\epsilon_0 L^2}{2d} \ln(3) $$
+        <p>(Note: $L^2 = A$, the area of the plates. $C_{eq} = \frac{\epsilon_0 A \ln(3)}{2d}$.)
+    </div>
+
+</body>
+</html>
