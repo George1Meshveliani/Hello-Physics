@@ -8,7 +8,7 @@ Click the topic and Enjoy!
 - [`Motion`](https://george1meshveliani.github.io/Hello-Physics/Motion)
 - [`Force`](https://george1meshveliani.github.io/Hello-Physics/Force)
 - [`Density Questions`](https://george1meshveliani.github.io/Hello-Physics/DensityQeustions)
-- [`Some fun`](https://george1meshveliani.github.io/Hello-Physics/SomeFun).
+- [`Some fun`](https://george1meshveliani.github.io/Hello-Physics/SomeFun)
   
 #### Electricity and magnetism
 - [`Electric charge`](https://george1meshveliani.github.io/Hello-Physics/ElectricCharge)
