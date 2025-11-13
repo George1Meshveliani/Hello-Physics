@@ -1,1 +1,899 @@
-a
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Charge and Electric Field</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- MathJax for LaTeX rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                tags: 'all' // This enables equation numbering
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        /* Using Tailwind's font-sans as the base */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Set a consistent max-width for readability */
+        .content-container {
+            max-width: 800px;
+        }
+
+        /* Style for section headers */
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-top: 1.5em;
+            margin-bottom: 0.75em;
+        }
+
+        h1 {
+            font-size: 2.5rem; /* 40px */
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 2rem; /* 32px */
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.25rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem; /* 24px */
+        }
+        
+        p, li {
+            font-size: 1.125rem; /* 18px */
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Ensure MathJax equations are centered and have breathing room */
+        mjx-container[display="true"] {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto; /* Handle extremely wide equations on small screens */
+            overflow-y: hidden;
+        }
+        
+        /* Box for definitions or theorems */
+        .definition-box {
+            background-color: #f8fafc; /* gray-50 */
+            border-left: 4px solid #3b82f6; /* blue-500 */
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.25rem;
+        }
+        
+        /* Box for proofs */
+        .proof-box {
+            background-color: #fefce8; /* yellow-50 */
+            border: 1px solid #eab308; /* yellow-500 */
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+        }
+        .proof-box summary {
+            font-weight: 600;
+            font-size: 1.125rem;
+            cursor: pointer;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            /* Hide the download button and any other non-content UI */
+            .no-print {
+                display: none;
+            }
+
+            /* Ensure the main content uses the full page */
+            body, .printable-content {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* Create page breaks before new major sections */
+            .page-break {
+                page-break-before: always;
+            }
+            
+            /* Remove margins from the page itself */
+            @page {
+                margin: 0.75in;
+                size: A4;
+            }
+            
+            /* Prevent h1/h2 from being at the bottom of a page */
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+
+            /* Ensure proofs and definitions aren't split */
+            .definition-box, .proof-box {
+                page-break-inside: avoid;
+            }
+            
+            /* Remove box shadow from the main container */
+            .bg-white {
+                box-shadow: none !important;
+                border: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Download Button Header -->
+    <header class="bg-white p-4 shadow-md sticky top-0 z-10 no-print">
+        <div class="content-container mx-auto flex justify-between items-center">
+            <span class="text-lg font-semibold">Physics Documentation</span>
+            <button onclick="window.print()" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                Download as PDF
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Printable Content -->
+    <main class="printable-content bg-white p-8 md:p-12 lg:p-16 shadow-lg rounded-lg my-12 content-container mx-auto">
+    
+        <h1>Electric Charge and Electric Field</h1>
+        <p class="text-gray-600">An in-depth exploration of electrostatics, from fundamental principles to advanced applications using vector calculus.</p>
+
+        <!-- Table of Contents -->
+        <nav class="bg-gray-50 p-6 rounded-lg my-8">
+            <h3 class="mt-0">Table of Contents</h3>
+            <ol class="list-decimal list-inside">
+                <li><a href="#section1" class="text-blue-600 hover:underline">Electric Charge</a></li>
+                <li><a href="#section2" class="text-blue-600 hover:underline">Conductors, Insulators, and Induced Charges</a></li>
+                <li><a href="#section3" class="text-blue-600 hover:underline">Coulomb’s Law</a></li>
+                <li><a href="#section4" class="text-blue-600 hover:underline">Electric Field and Electric Forces</a></li>
+                <li><a href="#section5" class="text-blue-600 hover:underline">Electric Flux and Gauss's Law</a></li>
+                <li><a href="#section6" class="text-blue-600 hover:underline">Electric Field Lines</a></li>
+                <li><a href="#section7" class="text-blue-600 hover:underline">Charges on Conductors</a></li>
+                <li><a href="#section8" class="text-blue-600 hover:underline">Problems</a></li>
+                <li><a href="#section9" class="text-blue-600 hover:underline">Solutions</a></li>
+            </ol>
+        </nav>
+
+        <!-- SECTION 1: Electric Charge -->
+        <section id="section1">
+            <h2>1. Electric Charge</h2>
+            <p>Electric charge is a fundamental property of matter that causes it to experience a force when placed in an electromagnetic field. There are two types of electric charge: positive and negative, conventionally carried by protons and electrons, respectively.</p>
+            
+            <h3 class="mt-6">1.1 Properties of Electric Charge</h3>
+            
+            <h4>1.1.1 Quantization of Charge</h4>
+            <p>Charge is quantized, meaning it exists in discrete units. Any observable amount of charge $Q$ is an integer multiple of the elementary charge $e$.</p>
+            <div class="definition-box">
+                <strong>Quantization of Charge:</strong> The total charge $Q$ of an object is always an integer multiple $n$ of the elementary charge $e \approx 1.602 \times 10^{-19} \text{ Coulombs}$.
+                $$ Q = ne, \quad \text{where } n = 0, \pm 1, \pm 2, \ldots $$
+            </div>
+            
+            <h4>1.1.2 Conservation of Charge</h4>
+            <p>The net electric charge in an isolated system is conserved. Charge cannot be created or destroyed, only transferred from one object to another.</p>
+            <p>This empirical law is one of the fundamental conservation laws of physics. It can be expressed in a local, differential form known as the <strong>Continuity Equation</strong>. Let $\rho(\mathbf{r}, t)$ be the volume charge density and $\mathbf{J}(\mathbf{r}, t)$ be the current density (flow of charge per unit area). The continuity equation states:</p>
+            $$ \frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0 \tag{1.1} $$
+            <div class="proof-box">
+                <summary>Proof of the Continuity Equation (Integral Form)</summary>
+                <details>
+                    <p class="mt-4">Consider an arbitrary volume $V$ enclosed by a surface $S$. The total charge $Q$ inside this volume is $Q(t) = \int_V \rho(\mathbf{r}, t) \, dV$.</p>
+                    <p>The rate of change of this charge is $\frac{dQ}{dt} = \int_V \frac{\partial \rho}{\partial t} \, dV$.</p>
+                    <p>By conservation of charge, this rate of change must be equal to the net current $I$ flowing *out* of the surface $S$, with a negative sign (since $I_{out}$ decreases $Q$). The total outward current is the flux of the current density $\mathbf{J}$ through the surface $S$: $I_{out} = \oint_S \mathbf{J} \cdot d\mathbf{A}$.</p>
+                    <p>Therefore, $\frac{dQ}{dt} = -I_{out}$, which gives:
+                    $$ \int_V \frac{\partial \rho}{\partial t} \, dV = -\oint_S \mathbf{J} \cdot d\mathbf{A} $$
+                    Using the Divergence Theorem on the right-hand side ($\oint_S \mathbf{J} \cdot d\mathbf{A} = \int_V (\nabla \cdot \mathbf{J}) \, dV$), we get:
+                    $$ \int_V \frac{\partial \rho}{\partial t} \, dV = -\int_V (\nabla \cdot \mathbf{J}) \, dV $$
+                    $$ \int_V \left( \frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} \right) \, dV = 0 $$
+                    Since this must hold for any arbitrary volume $V$, the integrand itself must be zero everywhere.
+                    $$ \frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0 $$
+                    This completes the proof.
+                </details>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Conductors and Insulators -->
+        <div class="page-break"></div>
+        <section id="section2">
+            <h2>2. Conductors, Insulators, and Induced Charges</h2>
+            
+            <h3 class="mt-6">2.1 Conductors</h3>
+            <p>Materials in which electric charges (typically electrons) can move freely. In electrostatic equilibrium (no net motion of charge), the following conditions hold for a conductor:</p>
+            <ul>
+                <li>The electric field $\mathbf{E}$ is zero everywhere inside the conductor.</li>
+                <li>Any net charge on the conductor resides entirely on its surface(s).</li>
+                <li>The electric field just outside a charged conductor is perpendicular to the surface at every point.</li>
+            </ul>
+            
+            <h3 class="mt-6">2.2 Insulators (Dielectrics)</h3>
+            <p>Materials in which charges are not free to move. Electrons are tightly bound to atoms. When an insulator is placed in an electric field, it can be <strong>polarized</strong>: the charges within its atoms or molecules are displaced slightly, creating small electric dipoles.</p>
+            
+            <h3 class="mt-6">2.3 Induced Charges</h3>
+            <p><strong>In Conductors:</strong> If a conductor is brought near an external charge, the free charges within the conductor redistribute. For example, if a positive charge $+Q$ is brought near a neutral conductor, free electrons are attracted toward $+Q$, leaving a net positive charge on the far side. This separation of charge is called <strong>charge induction</strong>.</p>
+            
+            <p><strong>In Insulators:</strong> A similar effect, <strong>polarization</strong>, occurs in dielectrics. The external field causes the alignment of existing molecular dipoles or the creation of induced atomic dipoles. This results in a net surface charge on the dielectric, which partially-cancels the external field *inside* the material.</p>
+        </section>
+
+        <!-- SECTION 3: Coulomb's Law -->
+        <div class="page-break"></div>
+        <section id="section3">
+            <h2>3. Coulomb’s Law</h2>
+            <p>Coulomb's Law describes the electrostatic force between two stationary point charges.</p>
+            
+            <div class="definition-box">
+                <strong>Coulomb's Law:</strong> The vector force $\mathbf{F}_{12}$ exerted by a point charge $q_1$ on a second point charge $q_2$ is:
+                $$ \mathbf{F}_{12} = \frac{1}{4\pi\epsilon_0} \frac{q_1 q_2}{r_{12}^2} \hat{\mathbf{r}}_{12} \tag{3.1} $$
+                where:
+                <ul>
+                    <li>$\epsilon_0 \approx 8.854 \times 10^{-12} \text{ C}^2/(\text{N}\cdot\text{m}^2)$ is the permittivity of free space.</li>
+                    <li>$k = \frac{1}{4\pi\epsilon_0} \approx 8.99 \times 10^9 \text{ N}\cdot\text{m}^2/\text{C}^2$ is Coulomb's constant.</li>
+                    <li>$\mathbf{r}_{12}$ is the vector pointing from $q_1$ to $q_2$.</li>
+                    <li>$r_{12} = |\mathbf{r}_{12}|$ is the distance between the charges.</li>
+                    <li>$\hat{\mathbf{r}}_{12} = \frac{\mathbf{r}_{12}}{r_{12}}$ is the unit vector pointing from $q_1$ to $q_2$.</li>
+                </ul>
+            </div>
+            
+            <p>If $q_1$ is at position vector $\mathbf{r}_1$ and $q_2$ is at $\mathbf{r}_2$, then $\mathbf{r}_{12} = \mathbf{r}_2 - \mathbf{r}_1$. The law can be rewritten in terms of position vectors:</p>
+            $$ \mathbf{F}_{12} = \frac{1}{4\pi\epsilon_0} \frac{q_1 q_2}{|\mathbf{r}_2 - \mathbf{r}_1|^3} (\mathbf{r}_2 - \mathbf{r}_1) \tag{3.2} $$
+            
+            <h3 class="mt-6">3.1 Principle of Superposition</h3>
+            <p>The net electrostatic force on a charge $q_0$ due to a collection of other charges $q_1, q_2, \ldots, q_N$ is the vector sum of the individual forces exerted by each charge on $q_0$.</p>
+            $$ \mathbf{F}_{net} = \sum_{i=1}^N \mathbf{F}_{i0} = \frac{q_0}{4\pi\epsilon_0} \sum_{i=1}^N \frac{q_i}{|\mathbf{r}_0 - \mathbf{r}_i|^3} (\mathbf{r}_0 - \mathbf{r}_i) \tag{3.3} $$
+            <p>This principle is fundamental and holds because electrostatic forces are linear. The presence of other charges does not alter the force between any two charges.</p>
+        </section>
+
+        <!-- SECTION 4: Electric Field -->
+        <div class="page-break"></div>
+        <section id="section4">
+            <h2>4. Electric Field and Electric Forces</h2>
+            
+            <h3 class="mt-6">4.1 Definition of the Electric Field</h3>
+            <p>The electric field $\mathbf{E}$ at a point in space is defined as the electrostatic force $\mathbf{F}$ experienced by a small positive test charge $q_0$ placed at that point, divided by the charge $q_0$.</p>
+            
+            <div class="definition-box">
+                <strong>Electric Field:</strong>
+                $$ \mathbf{E}(\mathbf{r}) = \lim_{q_0 \to 0} \frac{\mathbf{F}(\mathbf{r})}{q_0} \tag{4.1} $$
+                The limit $q_0 \to 0$ is necessary so that the test charge does not itself disturb the charge distribution creating the field.
+            </div>
+            
+            <p>From this definition, the force on any charge $q$ placed in an electric field $\mathbf{E}$ is:</p>
+            $$ \mathbf{F} = q\mathbf{E} \tag{4.2} $$
+            
+            <h3 class="mt-6">4.2 Electric Field of a Point Charge</h3>
+            <p>Using Coulomb's Law (3.1) and the definition of $\mathbf{E}$ (4.1), the electric field $\mathbf{E}$ created by a source charge $q_s$ at a distance $r$ is:</p>
+            $$ \mathbf{E} = \frac{\mathbf{F}}{q_0} = \frac{1}{q_0} \left( \frac{1}{4\pi\epsilon_0} \frac{q_s q_0}{r^2} \hat{\mathbf{r}} \right) $$
+            $$ \mathbf{E}(\mathbf{r}) = \frac{1}{4\pi\epsilon_0} \frac{q_s}{r^2} \hat{\mathbf{r}} \tag{4.3} $$
+            
+            <h3 class="mt-6">4.3 Superposition of Electric Fields</h3>
+            <p>Just like forces, electric fields obey the principle of superposition. The total electric field at a point $\mathbf{r}$ due to a collection of $N$ point charges is the vector sum of the fields from each charge:</p>
+            $$ \mathbf{E}_{net}(\mathbf{r}) = \sum_{i=1}^N \mathbf{E}_i(\mathbf{r}) = \frac{1}{4\pi\epsilon_0} \sum_{i=1}^N \frac{q_i}{|\mathbf{r} - \mathbf{r}_i|^3} (\mathbf{r} - \mathbf{r}_i) \tag{4.4} $$
+            
+            <h3 class="mt-6">4.4 Example: Motion of a Charge in a Uniform Field</h3>
+            <p>If a particle of mass $m$ and charge $q$ is in a uniform electric field $\mathbf{E}$ (i.e., $\mathbf{E}$ is constant in space), the force on it is $\mathbf{F} = q\mathbf{E}$, which is constant. From Newton's second law, $\mathbf{F} = m\mathbf{a}$:</p>
+            $$ \mathbf{a} = \frac{q}{m} \mathbf{E} = \text{constant} \tag{4.5} $$
+            <p>This is a differential equation of motion. If $\mathbf{E} = E_y \hat{\mathbf{j}}$, the particle's motion is analogous to projectile motion under gravity.
+            Let $\mathbf{v}(t) = \frac{d\mathbf{r}}{dt}$ and $\mathbf{a}(t) = \frac{d^2\mathbf{r}}{dt^2}$.
+            $$ \frac{d^2\mathbf{r}}{dt^2} = \frac{q}{m} \mathbf{E} $$
+            Integrating with respect to time:
+            $$ \mathbf{v}(t) = \int \mathbf{a} \, dt = \mathbf{a}t + \mathbf{v}_0 = \left(\frac{q\mathbf{E}}{m}\right)t + \mathbf{v}_0 $$
+            Integrating again:
+            $$ \mathbf{r}(t) = \int \mathbf{v}(t) \, dt = \frac{1}{2}\mathbf{a}t^2 + \mathbf{v}_0 t + \mathbf{r}_0 = \frac{1}{2}\left(\frac{q\mathbf{E}}{m}\right)t^2 + \mathbf{v}_0 t + \mathbf{r}_0 $$
+            This describes a parabolic trajectory, just as in kinematics.
+            </p>
+        </section>
+
+        <!-- SECTION 5: E-Field Calculations -->
+        <div class="page-break"></div>
+        <section id="section5">
+            <h2>5. Electric Flux and Gauss's Law</h2>
+            <p>While direct integration (Coulomb's Law) is always valid, it can be mathematically difficult. For problems involving a high degree of symmetry, Gauss's Law provides a much more powerful and elegant method by relating electric fields to the "flux" they produce.</p>
+            
+            <h3 class="mt-6">5.1 Field from Continuous Distributions (Recap)</h3>
+            <p>For continuous charge distributions, we integrate the contributions from differential charge elements $dq$:</p>
+            $$ \mathbf{E}(\mathbf{r}) = \int d\mathbf{E} = \int \frac{1}{4\pi\epsilon_0} \frac{dq}{|\mathbf{r}'|^2} \hat{\mathbf{r}}' \tag{5.1} $$
+            <p>This method was used to derive the fields for a charged ring and disk below.</p>
+
+            <h4>5.1.1 Example 1: Field of a Uniformly Charged Ring</h4>
+            <p>Find the electric field at a point $P$ on the axis of a uniformly charged ring of radius $R$ and total charge $Q$. Let $P$ be at a distance $z$ from the center of the ring.</p>
+            
+            <div class="proof-box">
+                <summary>Proof: Field of a Ring on its Axis</summary>
+                <details>
+                    <p class="mt-4">Let the ring lie in the $xy$-plane, centered at the origin. The point $P$ is at $(0, 0, z)$.
+                    Consider a small element $dq$ on the ring. The distance from $dq$ to $P$ is $r = \sqrt{R^2 + z^2}$.
+                    The magnitude of the field $dE$ from $dq$ is:
+                    $$ dE = \frac{1}{4\pi\epsilon_0} \frac{dq}{r^2} = \frac{1}{4\pi\epsilon_0} \frac{dq}{R^2 + z^2} $$
+                    This field $d\mathbf{E}$ has a component $dE_z$ along the $z$-axis and a component $dE_\perp$ perpendicular to it.
+                    By symmetry, for every $dq$ on the ring, there is a diametrically opposite $dq'$ whose perpendicular field component $dE'_\perp$ cancels $dE_\perp$.
+                    Thus, only the $z$-components sum to a non-zero value.
+                    $$ dE_z = dE \cos\theta $$
+                    From the geometry, $\cos\theta = \frac{z}{r} = \frac{z}{\sqrt{R^2 + z^2}}$.
+                    $$ dE_z = \left( \frac{1}{4\pi\epsilon_0} \frac{dq}{R^2 + z^2} \right) \left( \frac{z}{\sqrt{R^2 + z^2}} \right) = \frac{z}{4\pi\epsilon_0 (R^2 + z^2)^{3/2}} dq $$
+                    To find the total field $E_z$, we integrate $dE_z$ over the entire ring. The term $\frac{z}{4\pi\epsilon_0 (R^2 + z^2)^{3/2}}$ is constant for all $dq$ on the ring.
+                    $$ E_z = \int dE_z = \frac{z}{4\pi\epsilon_0 (R^2 + z^2)^{3/2}} \int dq $$
+                    Since $\int dq$ is the total charge $Q$:
+                    $$ \mathbf{E}(z) = E_z \hat{\mathbf{k}} = \frac{1}{4\pi\epsilon_0} \frac{Qz}{(R^2 + z^2)^{3/2}} \hat{\mathbf{k}} \tag{5.2} $$
+                </details>
+            </div>
+            
+            <h4>5.1.2 Example 2: Field of a Uniformly Charged Disk</h4>
+            <p>Find the field on the axis of a disk of radius $a$ with uniform surface charge density $\sigma$, at a distance $z$ from the center.</p>
+            
+            <div class="proof-box">
+                <summary>Proof: Field of a Disk on its Axis</summary>
+                <details>
+                    <p class="mt-4">We use the superposition principle by treating the disk as a collection of concentric rings.
+                    Consider a thin ring of radius $r$ and thickness $dr$. Its area is $dA = 2\pi r \, dr$, and its charge is $dq = \sigma \, dA = \sigma (2\pi r \, dr)$.
+                    We can use the result for a ring (5.2) by replacing $Q$ with $dq$ and $R$ with $r$:
+                    $$ dE_z = \frac{1}{4\pi\epsilon_0} \frac{z \, (dq)}{(r^2 + z^2)^{3/2}} = \frac{1}{4\pi\epsilon_0} \frac{z \, (\sigma 2\pi r \, dr)}{(r^2 + z^2)^{3/2}} $$
+                    $$ dE_z = \frac{\sigma z}{2\epsilon_0} \frac{r \, dr}{(r^2 + z^2)^{3/2}} $$
+                    Now we integrate this from $r=0$ to $r=a$:
+                    $$ E_z = \int dE_z = \frac{\sigma z}{2\epsilon_0} \int_0^a (r^2 + z^2)^{-3/2} r \, dr $$
+                    We solve this integral using a $u$-substitution: $u = r^2 + z^2$, so $du = 2r \, dr$, and $r \, dr = \frac{1}{2} du$.
+                    The limits of integration change from $r=0 \to u=z^2$ and $r=a \to u=a^2 + z^2$.
+                    $$ \begin{align*} 
+                    E_z &= \frac{\sigma z}{2\epsilon_0} \int_{z^2}^{a^2+z^2} u^{-3/2} \left(\frac{1}{2} du\right) \\
+                    &= \frac{\sigma z}{4\epsilon_0} \left[ \frac{u^{-1/2}}{-1/2} \right]_{z^2}^{a^2+z^2} \\
+                    &= \frac{\sigma z}{4\epsilon_0} \left[ -2u^{-1/2} \right]_{z^2}^{a^2+z^2} \\
+                    &= -\frac{\sigma z}{2\epsilon_0} \left[ \frac{1}{\sqrt{a^2 + z^2}} - \frac{1}{\sqrt{z^2}} \right] \\
+                    &= \frac{\sigma}{2\epsilon_0} \left[ 1 - \frac{z}{\sqrt{a^2 + z^2}} \right] 
+                    \end{align*} $$
+                    The field is:
+                    $$ \mathbf{E}(z) = \frac{\sigma}{2\epsilon_0} \left[ 1 - \frac{z}{\sqrt{a^2 + z^2}} \right] \hat{\mathbf{k}} \tag{5.3} $$
+                    <strong>Limit:</strong> As $a \to \infty$ (an infinite plane of charge), the term $\frac{z}{\sqrt{a^2 + z^2}} \to 0$. The field becomes:
+                    $$ \mathbf{E}_{plane} = \frac{\sigma}{2\epsilon_0} \hat{\mathbf{k}} \tag{5.4} $$
+                    This is a crucial result: the field from an infinite plane of charge is uniform and does not depend on the distance $z$.
+                </details>
+            </div>
+
+            <h3 class="mt-6" id="section5-3">5.2 Charge and Electric Flux</h3>
+            <p>Electric flux, $\Phi_E$, is a measure of the "flow" of the electric field through a given surface. It quantifies how many electric field lines pass through a surface area.</p>
+            <p>For a uniform electric field $\mathbf{E}$ passing through a flat surface of area $A$, the flux is $\Phi_E = \mathbf{E} \cdot \mathbf{A} = EA \cos\theta$, where $\theta$ is the angle between the field $\mathbf{E}$ and the surface normal vector $\mathbf{A}$.</p>
+            
+            <div class="definition-box">
+                <strong>Electric Flux (General Definition):</strong>
+                <p class="mt-4">For a general, non-uniform field $\mathbf{E}$ and a curved surface $S$, we calculate the flux by integrating the field over the entire surface:</p>
+                $$ \Phi_E = \int_S \mathbf{E} \cdot d\mathbf{A} \tag{5.5} $$
+                <p class="mt-4">where $d\mathbf{A}$ is a differential vector area element on the surface $S$, defined as $d\mathbf{A} = \hat{\mathbf{n}} \, dA$, with $\hat{\mathbf{n}}$ being the unit vector normal (perpendicular) to the surface at that point.</p>
+            </div>
+            
+            <h3 class="mt-6">5.3 Calculating Electric Flux</h3>
+            <p><strong>Example: Flux through a Cube in a Uniform Field</strong></p>
+            <p>Let a uniform electric field be $\mathbf{E} = E_0 \hat{\mathbf{i}}$. Calculate the *net* flux through a closed cubic surface of side length $L$, aligned with the axes.</p>
+            <p>We must sum the flux through all 6 faces.
+            <ul>
+                <li><strong>Left Face (at $x=x_0$):</strong> The normal vector is $\hat{\mathbf{n}} = -\hat{\mathbf{i}}$. $d\mathbf{A} = -dA \, \hat{\mathbf{i}}$.
+                $\Phi_L = \int \mathbf{E} \cdot d\mathbf{A} = \int (E_0 \hat{\mathbf{i}}) \cdot (-dA \, \hat{\mathbf{i}}) = -E_0 \int dA = -E_0 L^2$.</li>
+                <li><strong>Right Face (at $x=x_0+L$):</strong> The normal vector is $\hat{\mathbf{n}} = +\hat{\mathbf{i}}$. $d\mathbf{A} = +dA \, \hat{\mathbf{i}}$.
+                $\Phi_R = \int \mathbf{E} \cdot d\mathbf{A} = \int (E_0 \hat{\mathbf{i}}) \cdot (+dA \, \hat{\mathbf{i}}) = +E_0 \int dA = +E_0 L^2$.</li>
+                <li><strong>Other 4 Faces (Top, Bottom, Front, Back):</strong> For all these faces, the normal vector $\hat{\mathbf{n}}$ is in the $\pm\hat{\mathbf{j}}$ or $\pm\hat{\mathbf{k}}$ direction. Therefore, $\mathbf{E} \cdot d\mathbf{A} = (E_0 \hat{\mathbf{i}}) \cdot (\hat{\mathbf{n}} \, dA) = 0$. The flux through all four is zero.</li>
+            </ul>
+            The net flux is $\Phi_{net} = \oint \mathbf{E} \cdot d\mathbf{A} = \Phi_L + \Phi_R + 0 + 0 + 0 + 0 = -E_0 L^2 + E_0 L^2 = 0$.</p>
+            <p>This is a key insight: for a uniform field, the net flux through any closed surface is zero, because any field line that enters the surface must also exit it. This implies there is no net charge inside the cube.</p>
+
+            <h3 class="mt-6">5.4 Gauss’s Law</h3>
+            <p>Gauss's Law provides the fundamental link between this concept of flux and its source: electric charge. It states that the net electric flux $\Phi_E$ through any hypothetical closed surface (a "Gaussian surface") is directly proportional to the net electric charge $Q_{enc}$ enclosed within that surface.</p>
+            
+            <div class="definition-box">
+                <strong>Gauss's Law (Integral Form):</strong>
+                $$ \Phi_E = \oint_S \mathbf{E} \cdot d\mathbf{A} = \frac{Q_{enc}}{\epsilon_0} \tag{5.6} $$
+                where $\oint_S$ denotes an integral over a closed surface, and $Q_{enc} = \int_V \rho \, dV$ is the total charge enclosed by $S$.
+            </div>
+            
+            <h3 class="mt-6">5.5 Gauss's Law (Differential Form)</h3>
+            <p>We can convert the integral form (5.6) into a local, differential equation.
+            By the Divergence Theorem, the flux integral can be rewritten as a volume integral:</p>
+            $$ \oint_S \mathbf{E} \cdot d\mathbf{A} = \int_V (\nabla \cdot \mathbf{E}) \, dV $$
+            We also write the enclosed charge as a volume integral of the charge density $\rho$:
+            $$ \frac{Q_{enc}}{\epsilon_0} = \int_V \frac{\rho}{\epsilon_0} \, dV $$
+            Equating the two expressions:
+            $$ \int_V (\nabla \cdot \mathbf{E}) \, dV = \int_V \frac{\rho}{\epsilon_0} \, dV $$
+            $$ \int_V \left( \nabla \cdot \mathbf{E} - \frac{\rho}{\epsilon_0} \right) \, dV = 0 $$
+            Since this must hold for any arbitrary volume $V$, the integrand must be zero.
+            <div class="definition-box">
+                <strong>Gauss's Law (Differential Form):</strong>
+                $$ \nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0} \tag{5.7} $$
+            </div>
+            <p>This is the first of Maxwell's Equations. It states that the divergence (outflow per unit volume) of the electric field at any point is proportional to the volume charge density at that point. In simpler terms, electric field lines originate on positive charges (sources, $\rho > 0$) and terminate on negative charges (sinks, $\rho < 0$).</p>
+            
+            <h3 class="mt-6">5.6 Applications of Gauss's Law</h3>
+            <p>Gauss's Law is most useful when the charge distribution has high symmetry (spherical, cylindrical, or planar), allowing us to find $|\mathbf{E}|$. The strategy is:
+            <ol>
+                <li>Identify the symmetry of the charge distribution.</li>
+                <li>Choose a Gaussian surface (e.g., sphere, cylinder) that matches this symmetry.</li>
+                <li>Use the symmetry to simplify the flux integral $\oint \mathbf{E} \cdot d\mathbf{A}$ to $E \cdot (\text{Area})$.</li>
+                <li>Calculate the charge enclosed, $Q_{enc}$, within your Gaussian surface.</li>
+                <li>Solve for $E$: $E \cdot (\text{Area}) = Q_{enc} / \epsilon_0$.</li>
+            </ol>
+            </p>
+
+            <h4>5.6.1 Application 1: Field of an Infinite Line of Charge</h4>
+            <p>Find the field at a distance $r$ from an infinite line with uniform line charge $\lambda$.</p>
+            <div class="proof-box">
+                <summary>Proof using Gauss's Law</summary>
+                <details>
+                    <p class="mt-4">
+                    <strong>1. Symmetry:</strong> By symmetry, the electric field $\mathbf{E}$ must point radially outward from the line and can only depend on the radial distance $r$. Thus, $\mathbf{E} = E(r) \hat{\mathbf{r}}$.
+                    <br><br>
+                    <strong>2. Gaussian Surface:</strong> We choose a closed cylinder of radius $r$ and length $L$, coaxial with the line of charge.
+                    <br><br>
+                    <strong>3. Calculate Flux:</strong> The flux integral $\oint \mathbf{E} \cdot d\mathbf{A}$ has three parts: the two end caps and the curved side.
+                    <ul>
+                        <li><strong>End Caps:</strong> $\mathbf{E}$ is parallel to the surface (or $\mathbf{E} \perp d\mathbf{A}$). So $\mathbf{E} \cdot d\mathbf{A} = 0$. The flux through the caps is zero.</li>
+                        <li><strong>Curved Side:</strong> $\mathbf{E}$ is parallel to $d\mathbf{A}$ (both point radially outward). So $\mathbf{E} \cdot d\mathbf{A} = E \, dA$. Since $E$ is constant at a given $r$, the flux is $\Phi_{side} = E \int dA = E(2\pi r L)$.</li>
+                    </ul>
+                    The total flux is $\Phi_E = E(2\pi r L)$.
+                    <br><br>
+                    <strong>4. Calculate Enclosed Charge:</strong> The length of the line charge inside the cylinder is $L$. The total enclosed charge is $Q_{enc} = \lambda L$.
+                    <br><br>
+                    <strong>5. Apply Gauss's Law:</strong> $\Phi_E = Q_{enc}/\epsilon_0$
+                    $$ E(2\pi r L) = \frac{\lambda L}{\epsilon_0} $$
+                    $$ E = \frac{\lambda}{2\pi\epsilon_0 r} \tag{5.8} $$
+                    This is a much simpler derivation than direct integration.
+                    </p>
+                </details>
+            </div>
+
+            <h4>5.6.2 Application 2: Field of a Uniformly Charged Sphere</h4>
+            <p>Find the field for a solid, non-conducting sphere of radius $R$ with a uniform volume charge density $\rho$ (total charge $Q = \rho \cdot \frac{4}{3}\pi R^3$).</p>
+            <div class="proof-box">
+                <summary>Proof using Gauss's Law</summary>
+                <details>
+                    <p class="mt-4">
+                    <strong>1. Symmetry:</strong> Spherical. The field must be radial: $\mathbf{E} = E(r) \hat{\mathbf{r}}$.
+                    <br><br>
+                    <strong>2. Gaussian Surface:</strong> A sphere of radius $r$.
+                    <br><br>
+                    <strong>3. Calculate Flux:</strong> $\mathbf{E}$ is parallel to $d\mathbf{A}$ everywhere on the surface, and $E(r)$ is constant.
+                    $\Phi_E = \oint \mathbf{E} \cdot d\mathbf{A} = \oint E(r) dA = E(r) \oint dA = E(r) (4\pi r^2)$.
+                    <br><br>
+                    <strong>4. Case 1: Outside ($r > R$)</strong>
+                    The Gaussian sphere encloses the entire charge $Q$.
+                    <br>
+                    <strong>Apply Law:</strong> $E(r) (4\pi r^2) = \frac{Q}{\epsilon_0} \implies E(r) = \frac{1}{4\pi\epsilon_0} \frac{Q}{r^2}$.
+                    <br>
+                    The field outside a uniform sphere is identical to that of a point charge $Q$ at its center.
+                    <br><br>
+                    <strong>5. Case 2: Inside ($r < R$)</strong>
+                    The Gaussian sphere of radius $r$ encloses only the charge within that radius.
+                    $Q_{enc} = \rho \cdot V_{enclosed} = \rho \left( \frac{4}{3}\pi r^3 \right)$.
+                    We can also express this in terms of $Q$: $\frac{Q_{enc}}{Q} = \frac{\rho \frac{4}{3}\pi r^3}{\rho \frac{4}{3}\pi R^3} = \frac{r^3}{R^3} \implies Q_{enc} = Q \frac{r^3}{R^3}$.
+                    <br>
+                    <strong>Apply Law:</strong> $E(r) (4\pi r^2) = \frac{Q_{enc}}{\epsilon_0} = \frac{\rho \frac{4}{3}\pi r^3}{\epsilon_0}$.
+                    $$ E(r) = \frac{\rho r}{3\epsilon_0} \tag{5.9} $$
+                    The field grows linearly from the center.
+                    </p>
+                </details>
+            </div>
+            
+            <h3 class="mt-6">5.7 The Curl of E</h3>
+            <p>A static electric field $\mathbf{E}$ is a <strong>conservative field</strong>. This means the line integral of $\mathbf{E}$ between two points is independent of the path taken. This is equivalent to stating that the line integral around any closed loop is zero:</p>
+            $$ \oint \mathbf{E} \cdot d\mathbf{l} = 0 $$
+            By Stokes's Theorem, $\oint \mathbf{E} \cdot d\mathbf{l} = \int_S (\nabla \times \mathbf{E}) \cdot d\mathbf{A}$. For this to be zero for *any* surface $S$, the integrand must be zero.
+            <div class="definition-box">
+                <strong>Curl of Electrostatic Field:</strong>
+                $$ \nabla \times \mathbf{E} = 0 \tag{5.10} $$
+            </div>
+            <p>This is another of Maxwell's Equations (for statics). In vector calculus, any field with zero curl can be expressed as the gradient of a scalar potential field, $V$.
+            $$ \mathbf{E} = -\nabla V $$
+            $V$ is the <strong>Electric Potential</strong>, which is a topic for further study.</p>
+        </section>
+
+        <!-- SECTION 6: Electric Field Lines -->
+        <div class="page-break"></div>
+        <section id="section6">
+            <h2>6. Electric Field Lines</h2>
+            <p>Electric field lines are a visual tool used to represent electric fields. They are not physical objects but provide a qualitative understanding of the field's direction and strength.</p>
+            
+            <h3 class="mt-6">6.1 Rules for Drawing Field Lines</h3>
+            <ol>
+                <li>Field lines originate on positive charges and terminate on negative charges (or at infinity).</li>
+                <li>The tangent to a field line at any point gives the direction of the electric field $\mathbf{E}$ at that point.</li>
+                <li>The density of field lines in a region (number of lines per unit area perpendicular to the lines) is proportional to the magnitude of the electric field $|\mathbf{E}|$ in that region.</li>
+                <li>Field lines can never cross. (If they did, $\mathbf{E}$ would have two different directions at the same point, which is impossible).</li>
+                <li>Field lines are always perpendicular to the surface of a conductor in electrostatic equilibrium.</li>
+            </ol>
+            
+        </section>
+
+        <!-- NEW SECTION 7 -->
+        <div class="page-break"></div>
+        <section id="section7">
+            <h2>7. Charges on Conductors</h2>
+            <p>Gauss's Law is an extremely powerful tool for understanding the behavior of conductors in electrostatic equilibrium (i.e., when no net motion of charge is occurring).</p>
+
+            <h3 class="mt-6">7.1 Property 1: $\mathbf{E} = 0$ Inside a Conductor</h3>
+            <p>In a conductor, charges are free to move. If an electric field $\mathbf{E}$ existed inside the conductor, it would exert a force $\mathbf{F} = q\mathbf{E}$ on the free charges, causing them to move. This movement would constitute a current. By definition, electrostatic equilibrium is the state where charges are *not* moving. Therefore, for equilibrium to be reached, the charges must redistribute themselves in such a way that they create an internal field $\mathbf{E}_{internal}$ that perfectly cancels any external field $\mathbf{E}_{external}$.</p>
+            <div class="definition-box">
+                <strong>Property 1:</strong> $\mathbf{E}_{net} = 0$ everywhere inside the bulk of a conductor in electrostatic equilibrium.
+            </div>
+
+            <h3 class="mt-6">7.2 Property 2: Net Charge Resides on the Surface</h3>
+            <p>We can prove this using Gauss's Law.
+            <div class="proof-box">
+                <summary>Proof: Charge on Surface</summary>
+                <details>
+                    <p class="mt-4">
+                    Consider a conductor of any shape. Now, draw a Gaussian surface $S$ just *inside* the physical surface of the conductor.
+                    <br><br>
+                    <strong>1.</strong> We know from Property 1 that $\mathbf{E} = 0$ everywhere inside the conductor.
+                    <br><br>
+                    <strong>2.</strong> Therefore, $\mathbf{E} = 0$ at every point on our chosen Gaussian surface $S$.
+                    <br><br>
+                    <strong>3.</strong> The electric flux through $S$ must be zero: $\Phi_E = \oint_S \mathbf{E} \cdot d\mathbf{A} = \oint_S (0) \cdot d\mathbf{A} = 0$.
+                    <br><br>
+                    <strong>4.</strong> From Gauss's Law (5.6), $\Phi_E = Q_{enc} / \epsilon_0$.
+                    <br><br>
+                    <strong>5.</strong> Since $\Phi_E = 0$, it must be true that $Q_{enc} = 0$.
+                    <br><br>
+                    This means there is no net charge anywhere inside our Gaussian surface. Since we can draw this surface arbitrarily close to the conductor's actual surface, this proves that no net charge can exist in the bulk (the interior) of the conductor.
+                    <br><br>
+                    <strong>Conclusion:</strong> If the conductor carries a net charge, that charge must reside entirely on its surface(s).
+                    </p>
+                </details>
+            </div>
+            
+            <h3 class="mt-6">7.3 Property 3: Electric Field at the Surface</h3>
+            <p>The electric field just outside a charged conductor must be perpendicular to the surface. If there were a tangential component $E_\parallel$, it would exert a force $F_\parallel = qE_\parallel$ on charges on the surface, causing them to move along the surface (a surface current), which violates electrostatic equilibrium.</p>
+            <p>We can use Gauss's Law to find the magnitude of this perpendicular field.
+            <div class="proof-box">
+                <summary>Proof: Field at Surface ($E = \sigma/\epsilon_0$)</summary>
+                <details>
+                    <p class="mt-4">
+                    Consider a small patch of the conductor's surface with local surface charge density $\sigma$.
+                    <br><br>
+                    <strong>1. Gaussian Surface:</strong> We use a small "pillbox" (a short cylinder) that straddles the surface. The top cap of area $A$ is just outside the conductor, and the bottom cap is just inside.
+                    <br><br>
+                    <strong>2. Calculate Flux:</strong> We find the flux $\Phi_E = \oint \mathbf{E} \cdot d\mathbf{A}$ through the pillbox's three parts:
+                    <ul>
+                        <li><strong>Bottom Cap (Inside):</strong> $\mathbf{E} = 0$ inside, so $\Phi_{bottom} = 0$.</li>
+                        <li><strong>Curved Side:</strong> We make the pillbox infinitely short, so the area of the side is zero and $\Phi_{side} = 0$. (Alternatively, $E_\parallel = 0$, so $\mathbf{E}$ is perpendicular to $d\mathbf{A}$ on the side).</li>
+                        <li><strong>Top Cap (Outside):</strong> $\mathbf{E}$ is perpendicular to the surface and points outward. $\mathbf{E}$ is parallel to $d\mathbf{A}$. $\Phi_{top} = \int \mathbf{E} \cdot d\mathbf{A} = EA$.</li>
+                    </ul>
+                    The total flux is $\Phi_E = EA$.
+                    <br><br>
+                    <strong>3. Calculate Enclosed Charge:</strong> The pillbox encloses the charge on the patch of surface area $A$. $Q_{enc} = \sigma A$.
+                    <br><br>
+                    <strong>4. Apply Law:</strong> $\Phi_E = Q_{enc} / \epsilon_0$
+                    $$ EA = \frac{\sigma A}{\epsilon_0} $$
+                    $$ E = \frac{\sigma}{\epsilon_0} \tag{7.1} $$
+                    <strong>Conclusion:</strong> The field just outside a conductor is perpendicular to the surface and has magnitude $E = \sigma/\epsilon_0$.
+                    </p>
+                </details>
+            </div>
+            
+            <h3 class="mt-6">7.4 Property 4: Conductor with a Cavity</h3>
+            <p>What if the conductor has a hollow, empty cavity inside it?</p>
+            <p><strong>Case 1: No charge in the cavity.</strong> Draw a Gaussian surface $S$ in the bulk of the conductor, enclosing the cavity.
+            Since $\mathbf{E}=0$ everywhere on $S$, $\Phi_E = 0$, and thus $Q_{enc} = 0$. This means there is no net charge on the inner surface of the cavity. If the conductor itself is charged, all charge must be on the *outer* surface.</p>
+            <p><strong>Case 2: Charge $+q$ is placed inside the cavity.</strong>
+            Again, draw the Gaussian surface $S$ in the conductor bulk, enclosing the cavity.
+            We still know $\mathbf{E}=0$ on $S$, so $\Phi_E = 0$ and $Q_{enc} = 0$.
+            But $Q_{enc}$ is the sum of the charge $+q$ and any charge induced on the inner surface, $q_{inner}$:
+            $$ Q_{enc} = +q + q_{inner} = 0 \implies q_{inner} = -q $$
+            A charge of $-q$ is induced on the inner surface of the cavity.
+            If the conductor was initially neutral, this $-q$ must have come from the free electrons in the conductor. This leaves a charge of $+q$ behind, which must reside on the outer surface (by Property 2). This is the principle of <strong>electrostatic shielding</strong>.</p>
+        </section>
+
+        
+        <!-- PROBLEMS -->
+        <div class="page-break"></div>
+        <section id="section8">
+            <h2>Problems</h2>
+            
+            <h3 class="mt-6">Intermediate Problems</h3>
+            <p><strong>Problem 1 (Intermediate):</strong> Four point charges are placed at the corners of a square with side length $a$. The charges are $q_1 = +q$, $q_2 = +q$, $q_3 = -q$, and $q_4 = -q$, placed at corners (0, a), (a, a), (a, 0), and (0, 0) respectively. What is the electric field $\mathbf{E}$ (magnitude and direction) at the center of the square?</p>
+            
+            <p><strong>Problem 2 (Intermediate):</strong> An electron (charge $-e$, mass $m_e$) is projected with an initial velocity $v_0 \hat{\mathbf{i}}$ into a uniform electric field $\mathbf{E} = E_0 \hat{\mathbf{j}}$. Find the equation of the particle's trajectory $y(x)$.</p>
+            
+            <p><strong>Problem 3 (Intermediate):</strong> A thin rod of length $L$ lies along the $x$-axis from $x=0$ to $x=L$. It carries a non-uniform line charge density $\lambda(x) = \alpha x$, where $\alpha$ is a positive constant. Find the electric field $\mathbf{E}$ at the point $x=-d$ (a distance $d$ to the left of the origin).</p>
+            
+            <p><strong>Problem 4 (Intermediate):</strong> A solid, non-conducting sphere of radius $R$ has a uniform volume charge density $\rho$. Find the electric field $\mathbf{E}$ at a point inside the sphere ($r < R$) and outside the sphere ($r > R$).</p>
+            
+            <p><strong>Problem 5 (Intermediate):</strong> An electric dipole consists of two charges $+q$ and $-q$ separated by a distance $2a$. Find the electric field at a point $P$ on the perpendicular bisector of the dipole, at a distance $z$ from its center. What is the approximate field for $z \gg a$?</p>
+
+            <h3 class="mt-6">Advanced Problems</h3>
+            <p><strong>Problem 6 (Advanced):</strong> A cube of side length $L$ is placed in a non-uniform electric field $\mathbf{E} = (c x^2) \hat{\mathbf{i}} + (b z) \hat{\mathbf{j}} + (d y) \hat{\mathbf{k}}$, where $b, c, d$ are constants. The cube's back-left-bottom corner is at the origin, and it extends along the positive x, y, and z axes. What is the net charge enclosed within the cube?</p>
+            
+            <p><strong>Problem 7 (Advanced):</strong> A thick spherical shell with inner radius $a$ and outer radius $b$ carries a volume charge density $\rho(r) = \frac{A}{r}$, where $A$ is a constant. Find the electric field $\mathbf{E}$ in all three regions: $r < a$, $a < r < b$, and $r > b$.</p>
+            
+            <p><strong>Problem 8 (Advanced):</strong> A finite line of charge of length $L$ with uniform line charge $\lambda$ is placed on the $y$-axis from $y=-L/2$ to $y=+L/2$. Find the electric field $\mathbf{E}$ at a point $(x, 0)$ on the $x$-axis. Show that your result reduces to the infinite line case (5.7) as $L \to \infty$.</p>
+
+            <h3 class="mt-6">Irodov-like Problems</h3>
+            <p><strong>Problem 9 (Irodov-like):</strong> A thin insulating thread is stretched along the $z$-axis. It carries a uniform line charge $\lambda$. A small bead of mass $m$ and charge $q$ is free to slide without friction on this thread. A fixed point charge $Q$ is located at $(d, 0, 0)$. Find the $z$-coordinate of the equilibrium position(s) of the bead.</p>
+            
+            <p><strong>Problem 10 (Irodov-like):</strong> An infinite, non-conducting plane at $z=0$ has a uniform surface charge density $\sigma$. A circular hole of radius $R$ is cut out from the plane, centered at the origin. Find the electric field at a point $P$ on the $z$-axis at $z=h$ (where $h>0$).</p>
+
+        </section>
+        
+        <!-- SOLUTIONS -->
+        <div class="page-break"></div>
+        <section id="section9">
+            <h2>Solutions</h2>
+            
+            <h3 class="mt-6">Solution 1 (Intermediate)</h3>
+            <p><strong>Principle:</strong> Superposition of electric fields. $\mathbf{E}_{net} = \sum \mathbf{E}_i$.
+            <br><strong>Formula:</strong> $\mathbf{E}_i = k \frac{q_i}{r_i^2} \hat{\mathbf{r}}_i$.
+            </p>
+            <p>The center of the square is at $(a/2, a/2)$. The distance $r$ from any corner to the center is the same: $r^2 = (a/2)^2 + (a/2)^2 = a^2/4 + a^2/4 = a^2/2$. So $r = a/\sqrt{2}$.
+            Let $E_0 = k \frac{q}{r^2} = k \frac{q}{a^2/2} = \frac{2kq}{a^2}$.
+            <ul>
+                <li>$\mathbf{E}_1$ (from $+q$ at (0, a)): points from (0, a) to (a/2, a/2). Vector is $(a/2, -a/2)$. Magnitude $E_0$.</li>
+                <li>$\mathbf{E}_2$ (from $+q$ at (a, a)): points from (a, a) to (a/2, a/2). Vector is $(-a/2, -a/2)$. Magnitude $E_0$.</li>
+                <li>$\mathbf{E}_3$ (from $-q$ at (a, 0)): points from (a/2, a/2) to (a, 0). Vector is $(a/2, -a/2)$. Magnitude $E_0$.</li>
+                <li>$\mathbf{E}_4$ (from $-q$ at (0, 0)): points from (a/2, a/2) to (0, 0). Vector is $(-a/2, -a/2)$. Magnitude $E_0$.</li>
+            </ul>
+            Let's sum the vectors:
+            $\mathbf{E}_{net} = \mathbf{E}_1 + \mathbf{E}_2 + \mathbf{E}_3 + \mathbf{E}_4$
+            $\mathbf{E}_1$ and $\mathbf{E}_3$ are in the same direction: $(a/2, -a/2)$. Total magnitude $2E_0$.
+            $\mathbf{E}_2$ and $\mathbf{E}_4$ are in the same direction: $(-a/2, -a/2)$. Total magnitude $2E_0$.
+            $\mathbf{E}_{net} = (2E_0 \text{ in dir } (\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}})) + (2E_0 \text{ in dir } (-\frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}}))$
+            $$ \mathbf{E}_{net} = 2E_0 (\frac{1}{\sqrt{2}}\hat{\mathbf{i}} - \frac{1}{\sqrt{2}}\hat{\mathbf{j}}) + 2E_0 (-\frac{1}{\sqrt{2}}\hat{\mathbf{i}} - \frac{1}{\sqrt{2}}\hat{\mathbf{j}}) $$
+            $$ \mathbf{E}_{net} = (\sqrt{2} E_0 \hat{\mathbf{i}} - \sqrt{2} E_0 \hat{\mathbf{j}}) + (-\sqrt{2} E_0 \hat{\mathbf{i}} - \sqrt{2} E_0 \hat{\mathbf{j}}) $$
+            $$ \mathbf{E}_{net} = 0 \hat{\mathbf{i}} - 2\sqrt{2} E_0 \hat{\mathbf{j}} = -2\sqrt{2} \left( \frac{2kq}{a^2} \right) \hat{\mathbf{j}} $$
+            <strong>Result:</strong> $\mathbf{E}_{net} = -\frac{4\sqrt{2} kq}{a^2} \hat{\mathbf{j}}$. (Magnitude $\frac{4\sqrt{2} kq}{a^2}$, pointing in the negative y-direction).
+            </p>
+            
+            <h3 class="mt-6">Solution 2 (Intermediate)</h3>
+            <p><strong>Principle:</strong> Newton's 2nd Law for constant acceleration.
+            <br><strong>Formulas:</strong> $\mathbf{F} = q\mathbf{E}$, $\mathbf{F} = m\mathbf{a}$, $\mathbf{r}(t) = \frac{1}{2}\mathbf{a}t^2 + \mathbf{v}_0 t$.
+            </p>
+            <p>The force on the electron is $\mathbf{F} = (-e) (E_0 \hat{\mathbf{j}}) = -eE_0 \hat{\mathbf{j}}$.
+            The acceleration is $\mathbf{a} = \frac{\mathbf{F}}{m_e} = -\frac{eE_0}{m_e} \hat{\mathbf{j}}$.
+            The motion is separated into components:
+            $$ a_x = 0, \quad a_y = -\frac{eE_0}{m_e} $$
+            Initial conditions: $v_{0x} = v_0$, $v_{0y} = 0$. $x_0 = 0$, $y_0 = 0$.
+            Position equations (from integrating acceleration):
+            $$ x(t) = v_0 t + x_0 \implies x(t) = v_0 t $$
+            $$ y(t) = \frac{1}{2} a_y t^2 + v_{0y} t + y_0 \implies y(t) = -\frac{1}{2} \left(\frac{eE_0}{m_e}\right) t^2 $$
+            To find the trajectory $y(x)$, we eliminate $t$. From the $x$ equation, $t = x/v_0$.
+            Substitute this into the $y$ equation:
+            $$ y(x) = -\frac{1}{2} \left(\frac{eE_0}{m_e}\right) \left(\frac{x}{v_0}\right)^2 $$
+            <strong>Result:</strong> $y(x) = -\left(\frac{eE_0}{2m_e v_0^2}\right) x^2$. This is the equation of a parabola opening downward.
+            </p>
+            
+            <h3 class="mt-6">Solution 3 (Intermediate)</h3>
+            <p><strong>Principle:</strong> Integration of continuous charge distribution.
+            <br><strong>Formula:</strong> $d\mathbf{E} = k \frac{dq}{r^2} \hat{\mathbf{r}}$.
+            </p>
+            <p>Let the point $P$ be at $x=-d$. Consider a charge element $dq$ at position $x'$ on the rod (where $0 \le x' \le L$).
+            The charge of this element is $dq = \lambda(x') dx' = \alpha x' dx'$.
+            The distance $r$ from $dq$ to $P$ is $r = x' - (-d) = x' + d$.
+            The field $d\mathbf{E}$ from $dq$ points to the left ($- \hat{\mathbf{i}}$ direction) since $P$ is to the left of the positive charge.
+            $$ dE = k \frac{dq}{r^2} = k \frac{\alpha x' dx'}{(x' + d)^2} $$
+            The total field $\mathbf{E} = E \hat{\mathbf{i}}$ will have $E = \int dE$.
+            $$ E = \int_0^L -k \frac{\alpha x' dx'}{(x' + d)^2} = -k\alpha \int_0^L \frac{x'}{(x' + d)^2} dx' $$
+            Use substitution $u = x' + d$, so $x' = u - d$ and $dx' = du$.
+            Limits: $x'=0 \to u=d$, $x'=L \to u=L+d$.
+            $$ E = -k\alpha \int_d^{L+d} \frac{u-d}{u^2} du = -k\alpha \int_d^{L+d} \left( \frac{1}{u} - \frac{d}{u^2} \right) du $$
+            $$ E = -k\alpha \left[ \ln|u| + \frac{d}{u} \right]_d^{L+d} $$
+            $$ E = -k\alpha \left( \left(\ln(L+d) + \frac{d}{L+d}\right) - \left(\ln(d) + \frac{d}{d}\right) \right) $$
+            $$ E = -k\alpha \left( \ln\left(\frac{L+d}{d}\right) + \frac{d}{L+d} - 1 \right) $$
+            $$ E = -k\alpha \left( \ln\left(1 + \frac{L}{d}\right) + \frac{d - (L+d)}{L+d} \right) $$
+            $$ E = -k\alpha \left( \ln\left(1 + \frac{L}{d}\right) - \frac{L}{L+d} \right) $$
+            <strong>Result:</strong> $\mathbf{E} = -k\alpha \left[ \ln\left(1 + \frac{L}{d}\right) - \frac{L}{L+d} \right] \hat{\mathbf{i}}$.
+            </p>
+
+            <h3 class="mt-6">Solution 4 (Intermediate)</h3>
+            <p><strong>Principle:</strong> Gauss's Law. $\oint \mathbf{E} \cdot d\mathbf{A} = Q_{enc}/\epsilon_0$.
+            <br><strong>Symmetry:</strong> Spherical. $\mathbf{E} = E(r) \hat{\mathbf{r}}$.
+            <br><strong>Gaussian Surface:</strong> A sphere of radius $r$. $\Phi_E = E(r) (4\pi r^2)$.
+            </p>
+            <p><strong>Case 1: Outside ($r > R$)</strong>
+            The enclosed charge $Q_{enc}$ is the total charge of the sphere, $Q = \rho V = \rho (\frac{4}{3}\pi R^3)$.
+            $$ E(r) (4\pi r^2) = \frac{Q_{enc}}{\epsilon_0} = \frac{\rho \frac{4}{3}\pi R^3}{\epsilon_0} $$
+            $$ E(r) = \frac{\rho R^3}{3\epsilon_0 r^2} $$
+            Or in terms of total charge $Q$:
+            <strong>Result ($r>R$):</strong> $E(r) = \frac{1}{4\pi\epsilon_0} \frac{Q}{r^2}$. (Same as a point charge $Q$ at the origin).
+            </p>
+            <p><strong>Case 2: Inside ($r < R$)</strong>
+            The Gaussian surface of radius $r$ only encloses the charge within that radius.
+            $Q_{enc} = \rho V' = \rho (\frac{4}{3}\pi r^3)$.
+            $$ E(r) (4\pi r^2) = \frac{Q_{enc}}{\epsilon_0} = \frac{\rho \frac{4}{3}\pi r^3}{\epsilon_0} $$
+            $$ E(r) = \frac{\rho r}{3\epsilon_0} $$
+            <strong>Result ($r<R$):</strong> $E(r) = \frac{\rho r}{3\epsilon_0}$. The field grows linearly from the center.
+            </p>
+            
+            <h3 class="mt-6">Solution 5 (Intermediate)</h3>
+            <p><strong>Principle:</strong> Superposition.
+            <br><strong>Symmetry:</strong> Perpendicular bisector.
+            </p>
+            <p>Let the dipole be on the $y$-axis, with $+q$ at $(0, a)$ and $-q$ at $(0, -a)$.
+            Let the point $P$ be on the bisector at $(z, 0)$.
+            The distance $r$ from either charge to $P$ is $r = \sqrt{z^2 + a^2}$.
+            The vector from $+q$ to $P$ is $\mathbf{r}_+ = z\hat{\mathbf{i}} - a\hat{\mathbf{j}}$.
+            The vector from $-q$ to $P$ is $\mathbf{r}_- = z\hat{\mathbf{i}} + a\hat{\mathbf{j}}$.
+            
+            The electric field from $+q$ is $\mathbf{E}_+ = k\frac{q}{|\mathbf{r}_+|^3} \mathbf{r}_+ = k\frac{q}{(z^2+a^2)^{3/2}} (z\hat{\mathbf{i}} - a\hat{\mathbf{j}})$.
+            The electric field from $-q$ is $\mathbf{E}_- = k\frac{(-q)}{|\mathbf{r}_-|^3} \mathbf{r}_- = k\frac{-q}{(z^2+a^2)^{3/2}} (z\hat{\mathbf{i}} + a\hat{\mathbf{j}})$.
+            
+            The net field $\mathbf{E}_{net}$ is the vector sum:
+            $$ \mathbf{E}_{net} = \mathbf{E}_+ + \mathbf{E}_- = \frac{kq}{(z^2+a^2)^{3/2}} \left[ (z\hat{\mathbf{i}} - a\hat{\mathbf{j}}) - (z\hat{\mathbf{i}} + a\hat{\mathbf{j}}) \right] $$
+            $$ \mathbf{E}_{net} = \frac{kq}{(z^2+a^2)^{3/2}} \left[ (z-z)\hat{\mathbf{i}} + (-a-a)\hat{\mathbf{j}} \right] $$
+            $$ \mathbf{E}_{net} = \frac{kq (-2a\hat{\mathbf{j}})}{(z^2+a^2)^{3/2}} $$
+            The dipole moment vector $\mathbf{p}$ points from $-q$ to $+q$, so $\mathbf{p} = (2a)\hat{\mathbf{j}}$.
+            <strong>Result:</strong> $\mathbf{E} = - \frac{k \mathbf{p}}{(z^2 + a^2)^{3/2}}$ (or $\mathbf{E} = - \frac{1}{4\pi\epsilon_0} \frac{\mathbf{p}}{(z^2 + a^2)^{3/2}}$).
+            <br><strong>Approximation ($z \gg a$):</strong>
+            $E \approx \frac{kp}{(z^2)^{3/2}} = \frac{kp}{z^3}$.
+            The field of a dipole falls off as $1/z^3$.
+            </p>
+            
+            <h3 class="mt-6">Solution 6 (Advanced)</h3>
+            <p><strong>Principle:</strong> Gauss's Law (Integral Form) $\oint \mathbf{E} \cdot d\mathbf{A} = Q_{enc}/\epsilon_0$.
+            <br><strong>Formula:</strong> $Q_{enc} = \epsilon_0 \oint \mathbf{E} \cdot d\mathbf{A}$. We must calculate the flux through all 6 faces.
+            $\mathbf{E} = E_x \hat{\mathbf{i}} + E_y \hat{\mathbf{j}} + E_z \hat{\mathbf{k}} = (c x^2) \hat{\mathbf{i}} + (b z) \hat{\mathbf{j}} + (d y) \hat{\mathbf{k}}$.
+            </p>
+            <p>The flux is $\int \mathbf{E} \cdot d\mathbf{A} = \int (E_x dA_x + E_y dA_y + E_z dA_z)$.
+            $d\mathbf{A}$ points outward from each face.
+            <ol>
+                <li><strong>Left Face (at $x=0$):</strong> $d\mathbf{A} = -dy dz \hat{\mathbf{i}}$. $\mathbf{E} \cdot d\mathbf{A} = -E_x dy dz = -(c \cdot 0^2) dy dz = 0$. $\Phi_L = 0$.</li>
+                <li><strong>Right Face (at $x=L$):</strong> $d\mathbf{A} = +dy dz \hat{\mathbf{i}}$. $\mathbf{E} \cdot d\mathbf{A} = E_x dy dz = (c L^2) dy dz$.
+                $\Phi_R = \int_0^L \int_0^L c L^2 dy dz = c L^2 (L)(L) = c L^4$.</li>
+                <li><strong>Bottom Face (at $y=0$):</strong> $d\mathbf{A} = -dx dz \hat{\mathbf{j}}$. $\mathbf{E} \cdot d\mathbf{A} = -E_y dx dz = -(b z) dx dz$.
+                $\Phi_B = \int_0^L \int_0^L -bz dx dz = -b \left(\int_0^L dx\right) \left(\int_0^L z dz\right) = -b (L) (\frac{1}{2}L^2) = -\frac{1}{2}b L^3$.</li>
+                <li><strong>Top Face (at $y=L$):</strong> $d\mathbf{A} = +dx dz \hat{\mathbf{j}}$. $\mathbf{E} \cdot d\mathbf{A} = E_y dx dz = (b z) dx dz$.
+                $\Phi_T = \int_0^L \int_0^L bz dx dz = b (L) (\frac{1}{2}L^2) = \frac{1}{2}b L^3$.</li>
+                <li><strong>Back Face (at $z=0$):</strong> $d\mathbf{A} = -dx dy \hat{\mathbf{k}}$. $\mathbf{E} \cdot d\mathbf{A} = -E_z dx dy = -(d y) dx dy$.
+                $\Phi_{Ba} = \int_0^L \int_0^L -dy dx dy = -d \left(\int_0^L dx\right) \left(\int_0^L y dy\right) = -d (L) (\frac{1}{2}L^2) = -\frac{1}{2}d L^3$.</li>
+                <li><strong>Front Face (at $z=L$):</strong> $d\mathbf{A} = +dx dy \hat{\mathbf{k}}$. $\mathbf{E} \cdot d\mathbf{A} = E_z dx dy = (d y) dx dy$.
+                $\Phi_F = \int_0^L \int_0^L dy dx dy = d (L) (\frac{1}{2}L^2) = \frac{1}{2}d L^3$.</li>
+            </ol>
+            $\Phi_{total} = \Phi_L + \Phi_R + \Phi_B + \Phi_T + \Phi_{Ba} + \Phi_F = 0 + cL^4 - \frac{1}{2}bL^3 + \frac{1}{2}bL^3 - \frac{1}{2}dL^3 + \frac{1}{2}dL^3 = cL^4$.
+            <br>
+            <strong>Alternatively (Differential Form):</strong> $Q_{enc} = \int_V \rho dV = \int_V \epsilon_0 (\nabla \cdot \mathbf{E}) dV$.
+            $$ \nabla \cdot \mathbf{E} = \frac{\partial E_x}{\partial x} + \frac{\partial E_y}{\partial y} + \frac{\partial E_z}{\partial z} $$
+            $$ \nabla \cdot \mathbf{E} = \frac{\partial (cx^2)}{\partial x} + \frac{\partial (bz)}{\partial y} + \frac{\partial (dy)}{\partial z} = 2cx + 0 + 0 = 2cx $$
+            $$ Q_{enc} = \epsilon_0 \int_V (2cx) dV = \epsilon_0 \int_0^L \int_0^L \int_0^L (2cx) dx dy dz $$
+            $$ Q_{enc} = 2c\epsilon_0 \left(\int_0^L x dx\right) \left(\int_0^L dy\right) \left(\int_0^L dz\right) $$
+            $$ Q_{enc} = 2c\epsilon_0 (\frac{1}{2}L^2) (L) (L) = c\epsilon_0 L^4 $$
+            <strong>Result:</strong> $Q_{enc} = \epsilon_0 \Phi_{total} = \epsilon_0 c L^4$. The differential form confirms this.
+            </p>
+            
+            <h3 class="mt-6">Solution 7 (Advanced)</h3>
+            <p><strong>Principle:</strong> Gauss's Law. $\oint \mathbf{E} \cdot d\mathbf{A} = Q_{enc}/\epsilon_0$.
+            <br><strong>Symmetry:</strong> Spherical. $\mathbf{E} = E(r) \hat{\mathbf{r}}$.
+            <br><strong>Gaussian Surface:</strong> Sphere of radius $r$. $\Phi_E = E(r) (4\pi r^2)$.
+            </p>
+            <p><strong>Region 1 ($r < a$):</strong> $Q_{enc} = 0$.
+            <br><strong>Result:</strong> $E(r) = 0$.
+            </p>
+            <p><strong>Region 2 ($a < r < b$):</strong>
+            $Q_{enc}$ is the charge in the shell from radius $a$ to $r$.
+            $$ Q_{enc} = \int_V \rho dV = \int_a^r \rho(r') (4\pi r'^2 dr') $$
+            $$ Q_{enc} = \int_a^r \left(\frac{A}{r'}\right) (4\pi r'^2 dr') = 4\pi A \int_a^r r' dr' $$
+            $$ Q_{enc} = 4\pi A \left[ \frac{1}{2}r'^2 \right]_a^r = 2\pi A (r^2 - a^2) $$
+            Apply Gauss's Law: $E(r) (4\pi r^2) = \frac{2\pi A (r^2 - a^2)}{\epsilon_0}$.
+            <br><strong>Result:</strong> $E(r) = \frac{A (r^2 - a^2)}{2\epsilon_0 r^2} = \frac{A}{2\epsilon_0} \left( 1 - \frac{a^2}{r^2} \right)$.
+            </p>
+            <p><strong>Region 3 ($r > b$):</strong>
+            $Q_{enc}$ is the total charge of the shell, from $a$ to $b$.
+            $Q_{enc, total} = 2\pi A (b^2 - a^2)$.
+            Apply Gauss's Law: $E(r) (4\pi r^2) = \frac{2\pi A (b^2 - a^2)}{\epsilon_0}$.
+            <br><strong>Result:</strong> $E(r) = \frac{A (b^2 - a^2)}{2\epsilon_0 r^2}$. (Falls off as $1/r^2$).
+            </p>
+            
+            <h3 class="mt-6">Solution 8 (Advanced)</h3>
+            <p><strong>Principle:</strong> Integration of continuous charge distribution.
+            <br><strong>Formula:</strong> $d\mathbf{E} = k \frac{dq}{r^2} \hat{\mathbf{r}}$.
+            </p>
+            <p>Point $P=(x,0)$. Charge element $dq = \lambda dy'$ at $(0, y')$.
+            Vector $\mathbf{r}$ from $dq$ to $P$ is $\mathbf{r} = x\hat{\mathbf{i}} - y'\hat{\mathbf{j}}$.
+            Distance $r = |\mathbf{r}| = \sqrt{x^2 + y'^2}$.
+            $$ d\mathbf{E} = k \frac{dq}{r^2} \hat{\mathbf{r}} = k \frac{\lambda dy'}{x^2 + y'^2} \frac{x\hat{\mathbf{i}} - y'\hat{\mathbf{j}}}{\sqrt{x^2 + y'^2}} $$
+            $$ d\mathbf{E} = \frac{k\lambda}{(x^2 + y'^2)^{3/2}} (x\hat{\mathbf{i}} - y'\hat{\mathbf{j}}) dy' $$
+            We must integrate $dE_x$ and $dE_y$ from $y'=-L/2$ to $y'=+L/2$.
+            $$ E_y = \int dE_y = \int_{-L/2}^{L/2} \frac{-k\lambda y'}{(x^2 + y'^2)^{3/2}} dy' $$
+            This is an integral of an odd function ($y'$) over a symmetric interval, so $E_y = 0$. This is also clear from symmetry.
+            $$ E_x = \int dE_x = \int_{-L/2}^{L/2} \frac{k\lambda x}{(x^2 + y'^2)^{3/2}} dy' $$
+            Use substitution $y' = x \tan\theta$, $dy' = x \sec^2\theta d\theta$.
+            $$ E_x = k\lambda x \int_{\theta_1}^{\theta_2} \frac{x \sec^2\theta d\theta}{(x^2 + x^2 \tan^2\theta)^{3/2}} = k\lambda x \int_{\theta_1}^{\theta_2} \frac{x \sec^2\theta d\theta}{x^3 \sec^3\theta} $$
+            $$ E_x = \frac{k\lambda}{x} \int_{\theta_1}^{\theta_2} \cos\theta d\theta = \frac{k\lambda}{x} [\sin\theta]_{\theta_1}^{\theta_2} $$
+            From $y' = x \tan\theta$, $\sin\theta = \frac{y'}{\sqrt{x^2 + y'^2}}$.
+            $$ E_x = \frac{k\lambda}{x} \left[ \frac{y'}{\sqrt{x^2 + y'^2}} \right]_{-L/2}^{L/2} $$
+            $$ E_x = \frac{k\lambda}{x} \left( \frac{L/2}{\sqrt{x^2 + (L/2)^2}} - \frac{-L/2}{\sqrt{x^2 + (-L/2)^2}} \right) $$
+            $$ E_x = \frac{k\lambda}{x} \frac{L}{\sqrt{x^2 + L^2/4}} = \frac{2k\lambda L}{x \sqrt{4x^2 + L^2}} $$
+            <strong>Result:</strong> $E_x = \frac{1}{4\pi\epsilon_0} \frac{2\lambda L}{x \sqrt{4x^2 + L^2}}$.
+            <br><strong>Limit ($L \to \infty$):</strong>
+            For $L \gg x$, $\sqrt{4x^2 + L^2} \approx \sqrt{L^2} = L$.
+            $$ E_x \approx \frac{1}{4\pi\epsilon_0} \frac{2\lambda L}{x (L)} = \frac{2\lambda}{4\pi\epsilon_0 x} = \frac{\lambda}{2\pi\epsilon_0 x} $$
+            This matches the result from Gauss's Law (5.7).
+            </p>
+            
+            <h3 class="mt-6">Solution 9 (Irodov-like)</h3>
+            <p><strong>Principle:</strong> Equilibrium of forces. $\sum \mathbf{F} = 0$.
+            </p>
+            <p>The bead is at $(0, 0, z)$. The fixed charge $Q$ is at $(d, 0, 0)$.
+            Forces on the bead:
+            1.  <strong>Force from thread $\mathbf{F}_\lambda$:</strong> The thread's $\mathbf{E}$ field is radial. Since the bead is *on* the thread, the field from the thread at the bead's location is undefined (or infinite). This problem implies the bead is constrained to the $z$-axis, so we only consider forces along the $z$-axis. The thread's own field $\mathbf{E}_\lambda$ is purely radial ($\mathbf{E}_\lambda = \frac{\lambda}{2\pi\epsilon_0 r} \hat{\mathbf{r}}$) and has no $z$-component. Thus, $\mathbf{F}_{\lambda, z} = 0$.
+            2.  <strong>Force from charge $Q$:</strong> $\mathbf{F}_Q = k \frac{q Q}{r^2} \hat{\mathbf{r}}$.
+                The vector from $Q$ to the bead is $\mathbf{r} = (0-d)\hat{\mathbf{i}} + (0-0)\hat{\mathbf{j}} + (z-0)\hat{\mathbf{k}} = -d\hat{\mathbf{i}} + z\hat{\mathbf{k}}$.
+                The distance is $r = \sqrt{d^2 + z^2}$.
+                The force is $\mathbf{F}_Q = k \frac{q Q}{d^2 + z^2} \frac{-d\hat{\mathbf{i}} + z\hat{\mathbf{k}}}{\sqrt{d^2 + z^2}} = \frac{k q Q}{(d^2 + z^2)^{3/2}} (-d\hat{\mathbf{i}} + z\hat{\mathbf{k}})$.
+            3.  <strong>Constraint Force $\mathbf{F}_N$:</strong> The thread exerts a normal force $\mathbf{F}_N$ to keep the bead on the $z$-axis. This force is purely radial (in the $xy$-plane) and has no $z$-component.
+            </I>
+            For equilibrium, the net force *along the $z$-axis* must be zero.
+            $$ \sum F_z = F_{Q, z} + F_{\lambda, z} + F_{N, z} = 0 $$
+            $$ F_{Q, z} = \frac{k q Q z}{(d^2 + z^2)^{3/2}} $$
+            $$ F_{\lambda, z} = 0 $$
+            $$ F_{N, z} = 0 $$
+            So, the equilibrium condition is $F_{Q, z} = 0$.
+            $$ \frac{k q Q z}{(d^2 + z^2)^{3/2}} = 0 $$
+            This equation is satisfied only when $z=0$.
+            
+            <strong>Analysis of Stability:</strong>
+            Let $U(z)$ be the potential energy associated with $F_{Q,z}$.
+            $F_z = -\frac{dU}{dz}$. For equilibrium, $\frac{dU}{dz} = 0$, which gives $z=0$.
+            For stability, we need $\frac{d^2U}{dz^2} > 0$ (a potential minimum).
+            Let's check the restoring force $F_z$. Assume $qQ > 0$.
+            - If $z > 0$, $F_z > 0$ (repels away from origin).
+            - If $z < 0$, $F_z < 0$ (repels away from origin).
+            This is an <strong>unstable</strong> equilibrium.
+            
+            If $qQ < 0$ (opposite charges):
+            - If $z > 0$, $F_z < 0$ (attracts toward origin).
+            - If $z < 0$, $F_z > 0$ (attracts toward origin).
+            This is a <strong>stable</strong> equilibrium.
+            
+            <strong>Result:</strong> The only equilibrium position is $z=0$. This equilibrium is stable if $q$ and $Q$ have opposite signs, and unstable if they have the same sign.
+            </p>
+            
+            <h3 class="mt-6">Solution 10 (Irodov-like)</h3>
+            <p><strong>Principle:</strong> Superposition.
+            <br>$\mathbf{E}_{total} = \mathbf{E}_{plane} + \mathbf{E}_{hole}$
+            <br>This can be rewritten as: $\mathbf{E}_{total} = \mathbf{E}_{solid \, plane} - \mathbf{E}_{disk}$.
+            </p>
+            <p>We are looking for the field of a plane with a hole. We can model this as:
+            (Field of a solid infinite plane with charge $\sigma$) + (Field of a disk with charge $-\sigma$)
+            
+            1.  <strong>Field of Solid Plane:</strong> From (5.4), $\mathbf{E}_{plane} = \frac{\sigma}{2\epsilon_0} \hat{\mathbf{k}}$.
+            
+            2.  <strong>Field of "Hole" (Disk with $-\sigma$):</strong> We need the field of a disk of radius $R$ and charge density $-\sigma$ at a distance $h$ on its axis. We use result (5.3) with $z=h$, $a=R$, and $\sigma \to -\sigma$.
+            $$ \mathbf{E}_{disk} = \frac{(-\sigma)}{2\epsilon_0} \left[ 1 - \frac{h}{\sqrt{R^2 + h^2}} \right] \hat{\mathbf{k}} $$
+            
+            3.  <strong>Total Field:</strong> Add the two fields.
+            $$ \mathbf{E}_{total} = \mathbf{E}_{plane} + \mathbf{E}_{disk} $$
+            $$ \mathbf{E}_{total} = \left( \frac{\sigma}{2\epsilon_0} \right) \hat{\mathbf{k}} + \left( -\frac{\sigma}{2\epsilon_0} \left[ 1 - \frac{h}{\sqrt{R^2 + h^2}} \right] \right) \hat{\mathbf{k}} $$
+            $$ \mathbf{E}_{total} = \frac{\sigma}{2\epsilon_0} \left( 1 - \left[ 1 - \frac{h}{\sqrt{R^2 + h^2}} \right] \right) \hat{\mathbf{k}} $$
+            $$ \mathbf{E}_{total} = \frac{\sigma}{2\epsilon_0} \left( 1 - 1 + \frac{h}{\sqrt{R^2 + h^2}} \right) \hat{\mathbf{k}} $$
+            <strong>Result:</strong> $\mathbf{E}_{total} = \frac{\sigma h}{2\epsilon_0 \sqrt{R^2 + h^2}} \hat{\mathbf{k}}$.
+            
+            <strong>Check Limits:</strong>
+            - As $h \to 0$ (approaching the center of the hole), $\mathbf{E} \to 0$. This makes sense, as a point in the middle of a hole in a plane should feel no net force by symmetry.
+            - As $h \to \infty$ ($R \ll h$), $\sqrt{R^2 + h^2} \approx h$. $\mathbf{E} \approx \frac{\sigma h}{2\epsilon_0 h} = \frac{\sigma}{2\epsilon_0} \hat{\mathbf{k}}$. This is correct, as from very far away, the hole is irrelevant and it looks like a solid infinite plane.
+            </p>
+            
+        </section>
+
+    </main>
+
+</body>
+</html>
