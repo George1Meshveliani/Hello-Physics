@@ -28,5 +28,5 @@ Click the topic and Enjoy!
 - [`Gravitation`](https://george1meshveliani.github.io/Hello-Physics/AdvancedGravitation)
 - [`Periodic Motion`](https://george1meshveliani.github.io/Hello-Physics/AdvancedPeriodicMotion)
 - [`Mechanical Waves`](https://george1meshveliani.github.io/Hello-Physics/AdvancedMechanicalWaves)
-- [`Electric charge, electric field, Gauss law`](https://george1meshveliani.github.io/Hello-Physics/AdvancedElectostatics)
+- [`Electric charge, electric field, Gauss law`](https://george1meshveliani.github.io/Hello-Physics/AdvancedElectrostatics)
 
