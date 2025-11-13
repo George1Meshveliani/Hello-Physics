@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shockingly Fun Physics! An E&M Game Show</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Afacad:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. THE SETUP */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #e2e8f0; /* Light gray-blue background */
+            display: grid;
+            place-items: center;
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Afacad', sans-serif;
+        }
+
+        #slideshow-viewport {
+            width: 1280px;
+            max-width: 100%;
+            background-color: #334155; /* Dark blue-gray */
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden; /* Ensures corners are rounded */
+        }
+        
+        #slides-wrapper {
+            position: relative;
+        }
+
+        .slide-container {
+            align-items: center;
+            background-color: #f8f9fa; /* Default light background */
+            display: none; /* Hide all slides by default */
+            flex-direction: column;
+            height: 720px;
+            justify-content: center;
+            overflow: hidden;
+            padding: 40px 60px;
+            position: relative;
+            width: 100%;
+        }
+
+        .slide-container.slide-active {
+            display: flex; /* Show only the active slide */
+        }
+
+        .slide-container > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 2. SLIDESHOW NAVIGATION */
+        .slide-nav {
+            background-color: #334155;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #475569;
+        }
+        
+        .slide-nav button {
+            background-color: #4f46e5; /* Indigo */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-family: 'Comfortaa', cursive;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        
+        .slide-nav button:hover {
+            background-color: #4338ca;
+        }
+        
+        .slide-nav button:active {
+            transform: scale(0.98);
+        }
+        
+        .slide-nav button:disabled {
+            background-color: #64748b; /* Gray */
+            cursor: not-allowed;
+        }
+
+        #slide-counter {
+            color: #f1f5f9; /* Light gray text */
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* 2. CONSISTENT TYPOGRAPHY */
+        .slide-container h1,
+        .slide-container h2 {
+            font-family: 'Comfortaa', cursive;
+            color: #1e293b;
+        }
+
+        .slide-container p,
+        .slide-container li,
+        .slide-container h3,
+        .slide-container th,
+        .slide-container td,
+        .slide-container .subtitle {
+            font-family: 'Afacad', sans-serif;
+            color: #334155;
+        }
+
+        .slide-container h3 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            margin-top: 7px;
+            margin-left: 2px;
+        }
+
+        .slide-container p,
+        .slide-container li {
+            font-weight: 400;
+            font-size: 22px; 
+            line-height: 1.4;
+            letter-spacing: 0.02px;
+            margin-left: 5px;
+        }
+
+        .slide-container .slide-title {
+            font-size: 52px;
+            font-weight: 500;
+            color: #000;
+            margin-bottom: 30px;
+            text-align: left;
+            width: 100%;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        
+        /* 3. LAYOUT DEFINITIONS */
+
+        /* Layout: Title_Slide (Using Full_Background_Image) */
+        .title-layout {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .full-bg-image {
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #f1f5f9; /* Added a default bg color */
+        }
+        .full-bg-image h1 {
+            color: #1e293b;
+            font-size: 100px; /* Slightly smaller for longer title */
+            font-weight: 700;
+            margin: 0;
+        }
+        .full-bg-image .subtitle {
+            color: #334155;
+            font-size: 36px;
+            margin-top: 20px;
+        }
+        
+        /* Layout: Section_Title (New Layout) */
+        .section-title-layout {
+            text-align: center;
+            width: 100%;
+        }
+        .section-title-layout h2 {
+            font-size: 80px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+        .section-title-layout .subtitle {
+            font-size: 32px;
+            color: #ffffff;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+        .slide-container.section-title {
+            padding: 60px;
+        }
+        /* Section Title Colors */
+        .slide-container.bg-peach { background-color: #fdd5bdff; }
+        .slide-container.bg-purple { background-color: #bc84eeff; }
+        .slide-container.bg-orange { background-color: #ff823aff; }
+        .slide-container.bg-lime { background-color: #dcfd8bff; }
+
+        /* Layout: Image_Right_Text_Left (Adapted from Theme_2) */
+        .content-area {
+            align-items: center;
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            width: 100%;
+            height: calc(100% - 78px); /* Account for title */
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr; /* Text-only, single column */
+            width: 100%;
+            gap: 40px;
+            height: 100%;
+            align-items: center;
+        }
+
+        .two-column .text-column {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .two-column .content-box {
+            background-color: #fdd5bdff; /* Peach */
+            border-radius: 30px;
+            padding: 38px;
+            height: auto;
+            width: 100%;
+        }
+        .two-column .content-box.bg-lime { background-color: #dcfd8bff; }
+        .two-column .content-box.bg-orange { background-color: #ff823aff; }
+        .two-column .content-box.bg-purple { background-color: #bc84eeff; }
+
+
+        .two-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .two-column li {
+            font-size: 22px;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+        }
+        .two-column .content-box li::before {
+            content: '\f0e7'; /* FontAwesome bolt */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: #ff823aff; /* Orange */
+            position: absolute;
+            left: 0;
+            top: 5px;
+            font-size: 24px;
+        }
+        .two-column .content-box.bg-lime li::before { color: #84a02d; }
+        .two-column .content-box.bg-purple li::before { color: #5a3e73; }
+        .two-column .content-box.bg-orange li::before { color: #b34a15; }
+
+        /* Layout: Tiled_Text_With_Icons (Adapted from Theme_2) */
+        .tiled-content {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+            align-items: stretch;
+            height: 100%;
+        }
+
+        .tile {
+            flex: 1;
+            border-radius: 60px;
+            text-align: left;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tile h3 {
+            font-family: 'Comfortaa', cursive;
+            font-size: 40px;
+            color: #1e293b;
+            margin: 0 0 15px 0;
+        }
+
+        .tile p, .tile .formula-container {
+            font-size: 24px; /* Adjusted for more text */
+            line-height: 1.3;
+        }
+        .tile .formula-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        /* MathML styles */
+        .formula-container math {
+            font-size: 28px; /* Adjusted font size */
+            font-family: 'Afacad', sans-serif;
+            color: #1e293b;
+        }
+        .two-column .content-box math {
+            font-size: 28px;
+        }
+
+        .tiled-content .tile:nth-child(1) { background-color: #dcfd8bff; } /* Lime */
+        .tiled-content .tile:nth-child(2) { background-color: #bc84eeff; } /* Purple */
+        .tiled-content .tile:nth-child(3) { background-color: #ff823aff; } /* Orange */
+
+        /* Layout: Q&A (New Layout) */
+        .qa-layout {
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .qa-layout h2 {
+            font-size: 100px;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+        .qa-layout p {
+            font-size: 32px;
+            color: #ffffff;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="slideshow-viewport">
+    
+    <div id="slides-wrapper">
+        <!-- Slide 1: Title_Slide -->
+        <div class="slide-container full-bg-image slide-active" id="slide1">
+            <div class="title-layout">
+                <h1>Shockingly Fun Physics!</h1>
+                <p class="subtitle">An Electricity & Magnetism Game Show</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Section_Title -->
+        <div class="slide-container section-title bg-peach" id="slide2">
+            <div class="section-title-layout">
+                <h2>Warm-Up!</h2>
+                <p class="subtitle">Charge Challenge</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Game 1 (Electric Charge) -->
+        <div class="slide-container" id="slide3">
+            <h2 class="slide-title">Game 1: Static Shock Scramble!</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-lime">
+                            <h3>Unscramble these key terms!</h3>
+                            <ul>
+                                <li>R-G-E-C-A-H</li>
+                                <li>L-O-C-O-U-B-M</li>
+                                <li>O-N-T-R-E-C-L-E</li>
+                                <li>T-I-S-C-T-A</li>
+                            </ul>
+                            <p><strong>Core Theory:</strong> Protons are (+), Electrons are (-). Opposites attract, likes repel! This is the basis of all electricity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- NEW Slide 4: Game 2 (Unit Match-Up) -->
+        <div class="slide-container" id="slide4">
+            <h2 class="slide-title">Game 2: Unit Match-Up!</h2>
+            <div class="content-area">
+                <div class="tiled-content">
+                    <div class="tile">
+                        <h3>Column 1 (Quantity)</h3>
+                        <p>1. Current</p>
+                        <p>2. Resistance</p>
+                        <p>3. Voltage</p>
+                        <p>4. Power</p>
+                    </div>
+                    <div class="tile">
+                        <h3>Column 2 (Unit)</h3>
+                        <p>A. Ohms</p>
+                        <p>B. Watts</p>
+                        <p>C. Amperes</p>
+                        <p>D. Volts</p>
+                    </div>
+                    <div class="tile">
+                        <h3>Your Task:</h3>
+                        <p>Match the Quantity to its correct Unit!</p>
+                        <p>Get ready... GO!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW Slide 5: Game 3 (Symbol Scramble) -->
+        <div class="slide-container" id="slide5">
+            <h2 class="slide-title">Game 3: Symbol Scramble!</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-orange">
+                            <h3>What's My Symbol?</h3>
+                            <p>We use letters as symbols in formulas. Write down the correct <strong>symbol</strong> for each quantity!</p>
+                            <ul>
+                                <li>Quantity: <strong>Current</strong> &nbsp;&nbsp;→&nbsp;&nbsp; Symbol: ?</li>
+                                <li>Quantity: <strong>Voltage</strong> &nbsp;&nbsp;→&nbsp;&nbsp; Symbol: ?</li>
+                                <li>Quantity: <strong>Resistance</strong> &nbsp;&nbsp;→&nbsp;&nbsp; Symbol: ?</li>
+                                <li>Quantity: <strong>Power</strong> &nbsp;&nbsp;→&nbsp;&nbsp; Symbol: ?</li>
+                                <li>Unit: <strong>Ohms</strong> &nbsp;&nbsp;→&nbsp;&nbsp; Symbol: ?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Slide 6: Section_Title (Was 4) -->
+        <div class="slide-container section-title bg-purple" id="slide6">
+            <div class="section-title-layout">
+                <h2>Round 1</h2>
+                <p class="subtitle">The "Big Three": V, I, R</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Theory 1 (The "Big Three") (Was 5) -->
+        <div class="slide-container" id="slide7">
+            <h2 class="slide-title">Meet the Players! (Theories)</h2>
+            <div class="content-area">
+                <div class="tiled-content">
+                    <div class="tile">
+                        <h3>Voltage (V)</h3>
+                        <p>The <strong>"PUSH"</strong> or "pressure" in a circuit. It's the potential difference that makes charge want to move.</p>
+                        <p>Analogy: The height of a waterfall.</p>
+                        <p><strong>Unit: Volts (V)</strong></p>
+                    </div>
+                    <div class="tile">
+                        <h3>Current (I)</h3>
+                        <p>The <strong>"FLOW"</strong> of electric charge (electrons) through a wire. It's how many charges pass a point per second.</p>
+                        <p>Analogy: The amount of water flowing.</p>
+                        <p><strong>Unit: Amperes (A)</strong></p>
+                    </div>
+                    <div class="tile">
+                        <h3>Resistance (R)</h3>
+                        <p>The <strong>"FRICTION"</strong> or opposition to the flow. It slows the current down and often creates heat.</p>
+                        <p>Analogy: A narrow pipe or rocks in the water.</p>
+                        <p><strong>Unit: Ohms (Ω)</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Theory 2 (Ohm's Law) (Was 6) -->
+        <div class="slide-container" id="slide8">
+            <h2 class="slide-title">The Main Event: Ohm's Law!</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-peach">
+                            <h3>The Theory:</h3>
+                            <p>This is the most important formula in basic electricity! It's the law that connects the "Big Three" (V, I, and R).</p>
+                            <div class="formula-container" style="text-align: center; margin: 20px 0;">
+                                <math>
+                                    <mi>V</mi><mo>=</mo><mi>I</mi><mo>×</mo><mi>R</mi>
+                                </math>
+                            </div>
+                            <p><strong>(Voltage = Current × Resistance)</strong></p>
+                            <p>You can rearrange it to find any value. This is the "F=ma" of electricity!</p>
+                            <div class="formula-container" style="text-align: center; margin-top: 15px;">
+                                <math>
+                                    <mi>I</mi><mo>=</mo><mfrac><mi>V</mi><mi>R</mi></mfrac>
+                                    <mspace width="30px"></mspace><mtext>and</mtext><mspace width="30px"></mspace>
+                                    <mi>R</mi><mo>=</mo><mfrac><mi>V</mi><mi>I</mi></mfrac>
+                                </math>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Problem 1 (Ohm's Law) (Was 7) -->
+        <div class="slide-container" id="slide9">
+            <h2 class="slide-title">Problem 1: The Toaster's Thirst</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-lime">
+                            <h3>The Problem:</h3>
+                            <p>A toaster is plugged into a <strong>120 V</strong> wall outlet (Voltage).</p>
+                            <p>It draws <strong>10 A</strong> of current (Current).</p>
+                            <p>What is the <strong>resistance</strong> of the toaster?</p>
+                            <p><strong>Hint:</strong> You're solving for R. Which version of Ohm's Law do you need?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Problem 2 (Ohm's Law) (Was 8) -->
+        <div class="slide-container" id="slide10">
+            <h2 class="slide-title">Problem 2: The LED's Limit</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-purple">
+                            <h3>The Problem:</h3>
+                            <p>A small LED has a resistance of <strong>300 Ω</strong> (Resistance).</p>
+                            <p>It can only handle <strong>0.03 A</strong> of current before it burns out (Current).</p>
+                            <p>What is the <strong>MAXIMUM voltage</strong> you can safely use?</p>
+                            <p><strong>Hint:</strong> You're solving for V. Don't fry the LED!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Section Title (Circuits) (Was 9) -->
+        <div class="slide-container section-title bg-orange" id="slide11">
+            <div class="section-title-layout">
+                <h2>Round 2</h2>
+                <p class="subtitle">Circuit Showdown!</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Theory 3 (Circuits) (Was 10) -->
+        <div class="slide-container" id="slide12">
+            <h2 class="slide-title">Theory: Two Ways to Wire</h2>
+            <div class="content-area">
+                <div class="tiled-content">
+                    <div class="tile">
+                        <h3>Series Circuits</h3>
+                        <p><strong>One single path</strong> for the current. The electrons have no other choice.</p>
+                        <p>If one bulb goes out, the path is broken and they <strong>all</strong> go out. (Like old holiday lights!)</p>
+                        <p>Total Resistance: <math><msub><mi>R</mi><mi>T</mi></msub><mo>=</mo><msub><mi>R</mi><mn>1</mn></msub><mo>+</mo><msub><mi>R</mi><mn>2</mn></msub><mo>+</mo><mo>...</mo></math></p>
+                    </div>
+                    <div class="tile">
+                        <h3>Parallel Circuits</h3>
+                        <p><strong>Multiple paths</strong> for the current. It splits up and rejoins later.</p>
+                        <p>If one bulb goes out, the other paths are still open, so the others <strong>stay lit</strong>.</p>
+                        <p>Total Resistance is tricky! <math><mfrac><mn>1</d><msub><mi>R</mi><mi>T</mi></msub></mfrac><mo>=</mo><mfrac><mn>1</d><msub><mi>R</mi><mn>1</mn></msub></mfrac><mo>+</mo><mfrac><mn>1</d><msub><mi>R</mi><mn>2</mn></msub></mfrac><mo>+</mo><mo>...</mo></math></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Group Game (Circuits) (Was 11) -->
+        <div class="slide-container" id="slide13">
+            <h2 class="slide-title">Group Game: Design-a-Circuit</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-peach">
+                            <h3>The Task (On Paper):</h3>
+                            <p>Your team must design a circuit for a new house. You have lights in the kitchen, bathroom, and bedroom.</p>
+                            <p><strong>Discuss:</strong> Should you use a <strong>series</strong> or a <strong>parallel</strong> circuit to wire the house?</p>
+                            <ul>
+                                <li>What happens in a <strong>series</strong> circuit if the bathroom light burns out?</li>
+                                <li>What happens in a <strong>parallel</strong> circuit?</li>
+                            </ul>
+                            <p>Draw a simple diagram of your choice and be ready to defend why it's the best design!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Section Title (Power & Safety) (Was 12) -->
+        <div class="slide-container section-title bg-lime" id="slide14">
+            <div class="section-title-layout">
+                <h2>Final Round</h2>
+                <p class="subtitle">Power, Energy & Staying Safe</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Theory 4 (Power & Energy) (Was 13) -->
+        <div class="slide-container" id="slide15">
+            <h2 class="slide-title">Theory: Power & Energy</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-orange">
+                            <h3>What do we pay for on the electric bill?</h3>
+                            <p><strong>Electrical Power (P):</strong> The <strong>rate</strong> at which energy is used. (How "powerful" a device is).</p>
+                            <p><strong>Unit: Watts (W)</strong></p>
+                            <p>Formulas: <math><mi>P</mi><mo>=</mo><mi>I</mi><mo>×</mo><mi>V</mi></math></p>
+                            
+                            <p style="margin-top: 20px;"><strong>Electrical Energy (E):</strong> The <strong>total</strong> power used over <strong>time</strong>. This is what you buy!</p>
+                            <p><strong>Unit: Kilowatt-hours (kWh)</strong></p>
+                            <p>Formula: <math><mi>E</mi><mo>=</mo><mi>P</mi><mo>×</mo><mi>t</mi></math> (Energy = Power × time)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Problem 3 (Power) (Was 14) -->
+        <div class="slide-container" id="slide16">
+            <h2 class="slide-title">Problem 3: The Power Guzzler</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-lime">
+                            <h3>The Problem:</h3>
+                            <p>Your new gaming PC runs on <strong>120 V</strong> and pulls <strong>5 A</strong> of current when you're in a big boss fight.</p>
+                            <p>1. How much <strong>power (in Watts)</strong> is it using? (Hint: P = I × V)</p>
+                            <p>2. If you game for <strong>4 hours</strong>, how much <strong>energy (in kWh)</strong> have you used? (Hint: E = P × t... but watch your units!)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Theory 5 (Electrical Safety) (Was 15) -->
+        <div class="slide-container" id="slide17">
+            <h2 class="slide-title">Theory: Don't Be a Statistic!</h2>
+            <div class="content-area">
+                <div class="tiled-content">
+                    <div class="tile">
+                        <h3>Fuses</h3>
+                        <p>A small wire designed to <strong>melt</strong> and break the circuit if the current gets too high.</p>
+                        <p>This is a one-time-use safety device. You have to replace it.</p>
+                    </div>
+                    <div class="tile">
+                        <h3>Circuit Breakers</h3>
+                        <p>A switch designed to <strong>trip</strong> (open) and break the circuit if the current is too high.</p>
+                        <p>It's reusable; you can just flip it back on (after fixing the problem!).</p>
+                    </div>
+                    <div class="tile">
+                        <h3>Why Bother?</h3>
+                        <p>Too much current (an "overload" or "short circuit") makes wires <strong>dangerously hot</strong> and can start fires!</p>
+                        <p>These devices are the #1 fire prevention tool in your home.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Section Title (Magnetism) (Was 16) -->
+        <div class="slide-container section-title bg-peach" id="slide18">
+            <div class="section-title-layout">
+                <h2>Coming Soon...</h2>
+                <p class="subtitle">The "Magnetism" Part!</p>
+            </div>
+        </div>
+
+        <!-- Slide 19: Teaser (Magnetism) (Was 17) -->
+        <div class="slide-container" id="slide19">
+            <h2 class="slide-title">The Other Half: Magnetism!</h2>
+            <div class="content-area">
+                <div class="two-column">
+                    <div class="text-column">
+                        <div class="content-box bg-purple">
+                            <h3>A Teaser for Next Time:</h3>
+                            <p>We didn't forget! But did you know electricity and magnetism are two sides of the same coin?</p>
+                            <ul>
+                                <li>A moving electric charge (a <strong>current</strong>) creates a <strong>magnetic field</strong>!</li>
+                                <li>A changing magnetic field creates an <strong>electric current</strong>!</li>
+                            </ul>
+                            <p>This is called <strong>Electromagnetism</strong>. It's how motors, generators, and speakers work. But that's a story for another day...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: Q&A (Was 18) -->
+        <div class="slide-container section-title bg-peach" id="slide20">
+            <div class="qa-layout">
+                <h2>You Survived the Shock!</h2>
+                <p>Great work, everyone! Any final questions?</p>
+            </div>
+        </div>
+    </div> <!-- End of #slides-wrapper -->
+
+    <!-- Slideshow Navigation -->
+    <div class="slide-nav">
+        <button id="prev-btn"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+        <span id="slide-counter">Slide 1 / 20</span>
+        <button id="next-btn">Next <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+
+</div> <!-- End of #slideshow-viewport -->
+
+<script>
+    // Wait for the DOM to be fully loaded before running the script
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get all the slides
+        const slides = document.querySelectorAll('.slide-container');
+        // Get navigation buttons
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        // Get the slide counter display
+        const slideCounter = document.getElementById('slide-counter');
+        
+        // Set the initial slide index
+        let currentSlide = 0;
+        const totalSlides = slides.length; // 20
+
+        /**
+         * Shows a specific slide and hides all others.
+         * @param {number} n - The index of the slide to show.
+         */
+        function showSlide(n) {
+            // Remove 'slide-active' class from all slides
+            slides.forEach(slide => {
+                slide.classList.remove('slide-active');
+            });
+            
+            // Add 'slide-active' class to the target slide
+            slides[n].classList.add('slide-active');
+            
+            // Update the current slide index
+            currentSlide = n;
+            
+            // Update the slide counter text
+            slideCounter.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+            
+            // Update button states (disable at ends)
+            prevBtn.disabled = (currentSlide === 0);
+            nextBtn.disabled = (currentSlide === totalSlides - 1);
+        }
+
+        /**
+         * Moves to the next slide.
+         */
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        /**
+         * Moves to the previous slide.
+         */
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Add click event listeners to the buttons
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Add keyboard navigation (ArrowLeft and ArrowRight)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Show the first slide (index 0) on initial load
+        showSlide(0);
+    });
+</script>
+
+</body>
+</html>
