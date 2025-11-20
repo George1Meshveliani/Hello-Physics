@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Documentation on Magnetism and Electromagnetism (Detailed Proofs)</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Explicit MathJax Configuration for TeX/LaTeX input -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                packages: {'[+]': ['ams', 'color']}
+            },
+            options: {
+                ignoreHtmlClass: 'no-mathjax',
+                processHtmlClass: 'mathjax-safe'
+            },
+            chtml: {
+                scale: 1.15 // Slightly larger scale for better readability
+            }
+        };
+    </script>
+    <!-- Load MathJax v3 -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        /* Base Styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            line-height: 1.75;
+        }
+        .container {
+            max-width: 800px;
+        }
+        
+        /* MathJax Configuration - ensures the output size is adequate */
+        .mjx-chtml {
+            font-size: 1.15em !important;
+        }
+        
+        /* Proof and Derivation Styling */
+        .proof-box {
+            border-left: 4px solid #3b82f6; /* Blue border */
+            padding: 1.25rem;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            background-color: #eff6ff; /* Light blue background */
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        .proof-title {
+            font-weight: 700;
+            color: #1e40af;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Print/PDF Specific CSS Rules --- */
+        @media print {
+            /* Hide the print button and any control elements */
+            .no-print {
+                display: none !important;
+            }
+            /* Remove header/footer (date, URL) typical of browser prints */
+            @page {
+                margin: 0.8in; /* Adequate margin for academic document */
+            }
+            
+            /* Enforce page breaks for main sections */
+            .section-break {
+                break-before: page;
+                margin-top: 0 !important; /* Remove top margin when breaking page */
+                padding-top: 0 !important;
+            }
+
+            /* Ensure content fills the width without horizontal scrolling issues */
+            .w-full { width: 100% !important; }
+            .mx-auto { margin-left: 0 !important; margin-right: 0 !important; }
+            .p-8 { padding: 0.5in !important; }
+
+            /* Ensure text contrast is high for B&W printing */
+            body, p, h1, h2, h3, h4, .text-gray-700, .text-gray-800 {
+                color: #000 !important;
+                background: #fff !important;
+            }
+
+            /* Style for equations and proofs in print */
+            .equation, .proof-box {
+                background-color: #f0f0f0 !important;
+                border-left-color: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 mathjax-safe">
+    <div class="container mx-auto bg-white shadow-xl rounded-xl p-6 sm:p-10">
+        <header class="text-center mb-10 pb-5 border-b-2 border-indigo-100">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-indigo-700">Advanced Electromagnetism: Detailed Mathematical Derivations</h1>
+            <p class="text-lg text-gray-600 mt-2">Proofs for Maxwell's Equations and Foundational Laws</p>
+        </header>
+
+        <!-- Print Button (Hidden during print) -->
+        <div class="no-print text-center mb-8">
+            <button onclick="window.print()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2v-6a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm3 0h4v3H8V4zm6 7a1 1 0 011 1v2a1 1 0 11-2 0v-2a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                Print / Download PDF
+            </button>
+        </div>
+
+        <!-- ======================================================================= -->
+        <!-- 1. The Electrostatic Foundation and Transition to Magnetostatics -->
+        <!-- ======================================================================= -->
+        <section class="mb-10">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2 section-break">1. Gauss's Law for Electric Fields (Maxwell I)</h2>
+            <p>Gauss's Law is defined by the flux of the electric field $\mathbf{E}$ through a closed surface $\mathcal{S}$ being proportional to the enclosed charge $Q_{\text{enc}}$.</p>
+            <h3 class="text-2xl font-semibold text-gray-700 mb-3">1.1 Integral and Differential Forms</h3>
+            <p>The integral form is:</p>
+            <div class="equation text-center my-4 p-3 bg-gray-50 rounded-lg">
+            $$\oint_{\mathcal{S}} \mathbf{E} \cdot d\mathbf{A} = \frac{Q_{\text{enc}}}{\epsilon_0} \tag{1.1}$$
+            </div>
+
+            <div class="proof-box">
+                <div class="proof-title">Proof of the Differential Form $\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}$</div>
+                <p>We start with the integral form (1.1). The enclosed charge $Q_{\text{enc}}$ can be expressed as an integral of the volume charge density $\rho$ over the enclosed volume $\mathcal{V}$:</p>
+                $$\oint_{\mathcal{S}} \mathbf{E} \cdot d\mathbf{A} = \frac{1}{\epsilon_0} \int_{\mathcal{V}} \rho \, d\tau$$
+                <p>Now, we apply the <strong>Divergence Theorem</strong> (or Gauss's Theorem) to the surface integral on the left side, which converts a surface integral into a volume integral over the volume $\mathcal{V}$ enclosed by $\mathcal{S}$:</p>
+                $$\oint_{\mathcal{S}} \mathbf{E} \cdot d\mathbf{A} = \int_{\mathcal{V}} (\nabla \cdot \mathbf{E}) \, d\tau$$
+                <p>Equating the two expressions for the volume integral:</p>
+                $$\int_{\mathcal{V}} (\nabla \cdot \mathbf{E}) \, d\tau = \int_{\mathcal{V}} \frac{\rho}{\epsilon_0} \, d\tau$$
+                <p>Since this equality must hold for *any* arbitrary volume $\mathcal{V}$, the integrands must be equal:</p>
+                $$\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0} \tag{1.2}$$
+                <p>This is the first of Maxwell's equations.</p>
+            </div>
+        </section>
+
+        <!-- ======================================================================= -->
+        <!-- 2. The Magnetic Field and Gauss's Law for Magnetism -->
+        <!-- ======================================================================= -->
+        <section class="mb-10 section-break">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">2. Gauss's Law for Magnetic Fields (Maxwell II)</h2>
+            <p>The absence of magnetic monopoles means that magnetic field lines ($\mathbf{B}$) always form closed loops, implying that the net magnetic flux out of any closed surface $\mathcal{S}$ is zero.</p>
+            <h3 class="text-2xl font-semibold text-gray-700 mb-3">2.1 Integral and Differential Forms</h3>
+            <p>The integral form is:</p>
+            <div class="equation text-center my-4 p-3 bg-gray-50 rounded-lg">
+            $$\oint_{\mathcal{S}} \mathbf{B} \cdot d\mathbf{A} = 0 \tag{2.1}$$
+            </div>
+            
+            <div class="proof-box">
+                <div class="proof-title">Proof of the Differential Form $\nabla \cdot \mathbf{B} = 0$</div>
+                <p>We apply the <strong>Divergence Theorem</strong> directly to the integral form (2.1), converting the surface integral of $\mathbf{B}$ into a volume integral of its divergence over the enclosed volume $\mathcal{V}$:</p>
+                $$\oint_{\mathcal{S}} \mathbf{B} \cdot d\mathbf{A} = \int_{\mathcal{V}} (\nabla \cdot \mathbf{B}) \, d\tau = 0$$
+                <p>Since the integral of $(\nabla \cdot \mathbf{B})$ must be zero for *any* arbitrary volume $\mathcal{V}$, the integrand itself must be zero everywhere:</p>
+                $$\nabla \cdot \mathbf{B} = 0 \tag{2.2}$$
+                <p>This is the second of Maxwell's equations, stating that the magnetic field is always solenoidal (divergence-free).</p>
+                <p>As a consequence, $\mathbf{B}$ can be written as the curl of a vector potential $\mathbf{A}$:</p>
+                $$\mathbf{B} = \nabla \times \mathbf{A} \tag{2.3}$$
+            </div>
+        </section>
+
+        <!-- ======================================================================= -->
+        <!-- 3. The Lorentz Force (The Link to Electromagnetism) -->
+        <!-- ======================================================================= -->
+        <section class="mb-10 section-break">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">3. The Lorentz Force Law</h2>
+            <p>The Lorentz Force Law defines the total electromagnetic force $\mathbf{F}$ on a point charge $q$ moving with velocity $\mathbf{v}$ through electromagnetic fields $\mathbf{E}$ and $\mathbf{B}$.</p>
+            <h3 class="text-2xl font-semibold text-gray-700 mb-3">3.1 Definition and Derivation</h3>
+            <p>The total force is:</p>
+            <div class="equation text-center my-4 p-3 bg-gray-50 rounded-lg">
+            $$\mathbf{F} = q (\mathbf{E} + \mathbf{v} \times \mathbf{B}) \tag{3.1}$$
+            </div>
+            
+
+            <div class="proof-box">
+                <div class="proof-title">Derivation of Force on a Current Element $d\mathbf{F} = I (d\mathbf{l} \times \mathbf{B})$</div>
+                <p>We consider a segment of current-carrying wire. The charge carriers (e.g., electrons) have charge $q$, average drift velocity $\mathbf{v}_d$, and density $n$ (charges per unit volume). The differential volume element $d\tau$ in the wire is $A \, d\mathbf{l}$, where $A$ is the cross-sectional area and $d\mathbf{l}$ points in the direction of the current.</p>
+                <p>The total charge in the volume element $d\tau$ is:</p>
+                $$dQ = n q d\tau = n q A \, dl$$
+                <p>The magnetic force on this differential charge element $dQ$ is (from $\mathbf{F}_{\text{mag}} = q (\mathbf{v} \times \mathbf{B})$):</p>
+                $$d\mathbf{F} = dQ (\mathbf{v}_d \times \mathbf{B}) = (n q A \, dl) (\mathbf{v}_d \times \mathbf{B})$$
+                <p>The current $I$ is related to the drift velocity by $I = n q A v_d$. By convention, we align the vector $d\mathbf{l}$ with the direction of the current, making $\mathbf{v}_d dl = v_d d\mathbf{l}$. Therefore:</p>
+                $$d\mathbf{F} = (n q A v_d) (d\mathbf{l} \times \mathbf{B}) = I (d\mathbf{l} \times \mathbf{B}) \tag{3.3}$$
+                <p>This expression is used in the Biot-Savart Law derivation and for calculating forces on wires.</p>
+            </div>
+        </section>
+
+        <!-- ======================================================================= -->
+        <!-- 4. Generating Magnetic Fields: Biot-Savart Law -->
+        <!-- ======================================================================= -->
+        <section class="mb-10 section-break">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">4. The Biot-Savart Law</h2>
+            <p>The Biot-Savart law calculates the magnetic field $\mathbf{B}$ generated by a steady electric current $I$. It is the magnetic analogue of Coulomb's Law in electrostatics.</p>
+            <h3 class="text-2xl font-semibold text-gray-700 mb-3">4.1 Differential Field Contribution</h3>
+            <p>The magnetic field $d\mathbf{B}$ due to a current element $I d\mathbf{l}$ is:</p>
+            <div class="equation text-center my-4 p-3 bg-gray-50 rounded-lg">
+            $$d\mathbf{B} = \frac{\mu_0}{4\pi} \frac{I (d\mathbf{l} \times \mathbf{\hat{r}})}{r^2} \tag{4.1}$$
+            </div>
+            
+
+            <div class="proof-box">
+                <div class="proof-title">Relationship to Vector Potential $\mathbf{A}$</div>
+                <p>Although the derivation of the Biot-Savart law from the fundamental principles of special relativity is complex, we can confirm its consistency using the vector potential $\mathbf{A}$ for steady currents:</p>
+                $$\mathbf{A}(\mathbf{r}) = \frac{\mu_0}{4\pi} \int_{\mathcal{V}} \frac{\mathbf{J}(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|} d\tau'$$
+                <p>For a line current $I$, the volume integral reduces to a line integral, substituting $\mathbf{J} d\tau'$ with $I d\mathbf{l}'$:</p>
+                $$\mathbf{A}(\mathbf{r}) = \frac{\mu_0 I}{4\pi} \oint_{\mathcal{C}} \frac{d\mathbf{l}'}{|\mathbf{r}-\mathbf{r}'|}$$
+                <p>We know $\mathbf{B} = \nabla \times \mathbf{A}$. Applying the curl operation to the line integral form of $\mathbf{A}$ yields the Biot-Savart Law (4.2) after using standard vector identities (like $\nabla (1/r) = -\mathbf{\hat{r}}/r^2$):</p>
+                $$\mathbf{B} = \nabla \times \mathbf{A} = \nabla \times \left( \frac{\mu_0 I}{4\pi} \oint_{\mathcal{C}} \frac{d\mathbf{l}'}{|\mathbf{r}-\mathbf{r}'|} \right) = \frac{\mu_0 I}{4\pi} \oint_{\mathcal{C}} \nabla \left(\frac{1}{|\mathbf{r}-\mathbf{r}'|}\right) \times d\mathbf{l}'$$
+                <p>Using the identity $\nabla (1/|\mathbf{r}-\mathbf{r}'|) = -\frac{\mathbf{\hat{r}}}{|\mathbf{r}-\mathbf{r}'|^2}$:</p>
+                $$\mathbf{B} = \frac{\mu_0 I}{4\pi} \oint_{\mathcal{C}} \frac{d\mathbf{l}' \times \mathbf{\hat{r}}}{|\mathbf{r}-\mathbf{r}'|^2} \tag{4.2}$$
+            </div>
+        </section>
+
+        <!-- ======================================================================= -->
+        <!-- 5. Ampère's Circuital Law and Proof -->
+        <!-- ======================================================================= -->
+        <section class="mb-10 section-break">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">5. Ampère's Circuital Law (Magnetostatics)</h2>
+            <p>Ampère's Law relates the circulation of the magnetic field $\mathbf{B}$ around a closed Amperian loop $\mathcal{C}$ to the total steady current $I_{\text{enc}}$ passing through the surface area defined by $\mathcal{C}$.</p>
+            <h3 class="2xl font-semibold text-gray-700 mb-3">5.1 Integral and Differential Forms (Magnetostatics)</h3>
+            <p>The integral form is:</p>
+            <div class="equation text-center my-4 p-3 bg-gray-50 rounded-lg">
+            $$\oint_{\mathcal{C}} \mathbf{B} \cdot d\mathbf{l} = \mu_0 I_{\text{enc}} \tag{5.1}$$
+            </div>
+            
+
+            <div class="proof-box">
+                <div class="proof-title">Proof of the Differential Form $\nabla \times \mathbf{B} = \mu_0 \mathbf{J}$</div>
+                <p>We start with the integral form (5.1). The enclosed current $I_{\text{enc}}$ can be written as the flux of the current density $\mathbf{J}$ through the surface $\mathcal{S}$ bounded by $\mathcal{C}$:</p>
+                $$\oint_{\mathcal{C}} \mathbf{B} \cdot d\mathbf{l} = \mu_0 \int_{\mathcal{S}} \mathbf{J} \cdot d\mathbf{A}$$
+                <p>Now, we apply <strong>Stokes' Theorem</strong> to the line integral on the left side, converting the line integral of $\mathbf{B}$ into a surface integral of its curl over the surface $\mathcal{S}$:</p>
+                $$\oint_{\mathcal{C}} \mathbf{B} \cdot d\mathbf{l} = \int_{\mathcal{S}} (\nabla \times \mathbf{B}) \cdot d\mathbf{A}$$
+                <p>Equating the two expressions for the surface integral:</p>
+                $$\int_{\mathcal{S}} (\nabla \times \mathbf{B}) \cdot d\mathbf{A} = \int_{\mathcal{S}} \mu_0 \mathbf{J} \cdot d\mathbf{A}$$
+                <p>Since this equality must hold for *any* arbitrary surface $\mathcal{S}$, the integrands must be equal:</p>
+                $$\nabla \times \mathbf{B} = \mu_0 \mathbf{J} \tag{5.2}$$
+                <p>This form is only valid for magnetostatics ($\nabla \cdot \mathbf{J}=0$).</p>
+            </div>
+        </section>
+
+        <!-- ======================================================================= -->
+        <!-- 6. Faraday's Law of Induction -->
+        <!-- ======================================================================= -->
+        <section class="mb-10 section-break">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">6. Faraday's Law of Induction (Maxwell III)</h2>
+            <p>Faraday's Law describes the phenomenon of electromagnetic induction: a changing magnetic flux ($\Phi_B$) through a surface induces a non-conservative electric field $\mathbf{E}$ that drives a current.</p>
+            <h3 class="2xl font-semibold text-gray-700 mb-3">6.1 Integral and Differential Forms</h3>
+            <p>The integral form (Motional and Transformer EMF) is:</p>
+            <div class="equation text-center my-4 p-3 bg-gray-50 rounded-lg">
+            $$\mathcal{E} = \oint_{\mathcal{C}} \mathbf{E} \cdot d\mathbf{l} = - \frac{d\Phi_B}{dt} = - \frac{d}{dt} \int_{\mathcal{S}} \mathbf{B} \cdot d\mathbf{A} \tag{6.1}$$
+            </div>
+
+            <div class="proof-box">
+                <div class="proof-title">Proof of the Differential Form $\nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t}$</div>
+                <p>We start with the integral form (6.1). Assuming the contour $\mathcal{C}$ is stationary ($\partial \mathcal{S} / \partial t = 0$), the time derivative can be brought inside the integral as a partial derivative:</p>
+                $$\oint_{\mathcal{C}} \mathbf{E} \cdot d\mathbf{l} = - \int_{\mathcal{S}} \frac{\partial \mathbf{B}}{\partial t} \cdot d\mathbf{A}$$
+                <p>Now, we apply <strong>Stokes' Theorem</strong> to the line integral on the left side, converting it into a surface integral of the curl of $\mathbf{E}$ over the surface $\mathcal{S}$ bounded by $\mathcal{C}$:</p>
+                $$\int_{\mathcal{S}} (\nabla \times \mathbf{E}) \cdot d\mathbf{A} = - \int_{\mathcal{S}} \frac{\partial \mathbf{B}}{\partial t} \cdot d\mathbf{A}$$
+                <p>Since this equality must hold for *any* arbitrary surface $\mathcal{S}$, the integrands must be equal:</p>
+                $$\nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t} \tag{6.2}$$
+                <p>This is the third of Maxwell's equations. It demonstrates that the electric field is no longer conservative ($\nabla \times \mathbf{E} \neq 0$) when the magnetic field is changing over time.</p>
+            </div>
+        </section>
+        
+        <!-- ======================================================================= -->
+        <!-- 7. Maxwell's Equations and the Wave Equation -->
+        <!-- ======================================================================= -->
+        <section class="mb-10 section-break">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">7. The Ampère-Maxwell Law (Maxwell IV) and Wave Equation</h2>
+            <p>The Ampère-Maxwell Law corrects the magnetostatic Ampère's Law (5.2) by adding the displacement current term, $\mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}$, ensuring the conservation of charge ($\nabla \cdot \mathbf{J} = -\partial \rho / \partial t$).</p>
+            <h3 class="2xl font-semibold text-gray-700 mb-3">7.1 The Complete Set of Maxwell's Equations</h3>
+            <p>In differential form, assuming linear, isotropic, homogeneous media (i.e., vacuum):</p>
+            <div class="equation text-center my-4 p-3 bg-gray-50 rounded-lg">
+            \begin{align}
+            \text{Gauss's Law for E:}\quad & \nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0} \tag{7.1} \\
+            \text{Gauss's Law for B:}\quad & \nabla \cdot \mathbf{B} = 0 \tag{7.2} \\
+            \text{Faraday's Law:}\quad & \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t} \tag{7.3} \\
+            \text{Ampère-Maxwell Law:}\quad & \nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t} \tag{7.4}
+            \end{align}
+            </div>
+
+            <h3 class="2xl font-semibold text-gray-700 mb-3">7.2 Proof of the Electromagnetic Wave Equation</h3>
+            <p>The existence of electromagnetic waves is derived by combining the two curl equations (7.3 and 7.4) in free space ($\rho=0, \mathbf{J}=0$).</p>
+            
+            <div class="proof-box">
+                <div class="proof-title">Derivation of the Wave Equation $\nabla^2 \mathbf{E} - \mu_0 \epsilon_0 \frac{\partial^2 \mathbf{E}}{\partial t^2} = 0$</div>
+                <p><strong>Step 1: Start with Faraday's Law (7.3) and take the curl of both sides.</strong></p>
+                $$\nabla \times (\nabla \times \mathbf{E}) = \nabla \times \left(-\frac{\partial \mathbf{B}}{\partial t}\right)$$
+                <p><strong>Step 2: Use the Vector Calculus Identity.</strong></p>
+                $$\nabla \times (\nabla \times \mathbf{V}) = \nabla (\nabla \cdot \mathbf{V}) - \nabla^2 \mathbf{V}$$
+                <p>Applying this to $\mathbf{E}$ and swapping the spatial ($\nabla \times$) and temporal ($\partial/\partial t$) derivatives on the right side:</p>
+                $$\nabla (\nabla \cdot \mathbf{E}) - \nabla^2 \mathbf{E} = -\frac{\partial}{\partial t} (\nabla \times \mathbf{B})$$
+                <p><strong>Step 3: Simplify using Maxwell I (7.1) and Substitute Maxwell IV (7.4).</strong></p>
+                <p>In free space ($\rho=0$), Gauss's Law (7.1) becomes $\nabla \cdot \mathbf{E} = 0$. The first term on the left vanishes. Also, in free space ($\mathbf{J}=0$), Ampère-Maxwell Law (7.4) simplifies to $\nabla \times \mathbf{B} = \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}$.</p>
+                $$(0) - \nabla^2 \mathbf{E} = -\frac{\partial}{\partial t} \left(\mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\right)$$
+                <p><strong>Step 4: Rearrange to the Standard Wave Equation Form.</strong></p>
+                $$-\nabla^2 \mathbf{E} = -\mu_0 \epsilon_0 \frac{\partial^2 \mathbf{E}}{\partial t^2}$$
+                $$\nabla^2 \mathbf{E} - \mu_0 \epsilon_0 \frac{\partial^2 \mathbf{E}}{\partial t^2} = 0 \tag{7.5}$$
+                <p>This is the standard 3D wave equation: $\nabla^2 \mathbf{E} - \frac{1}{v^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} = 0$. By comparison, the speed $v$ of the electromagnetic wave must be:</p>
+                $$v = c = \frac{1}{\sqrt{\mu_0 \epsilon_0}}$$
+                <p>A similar derivation by starting with the curl of the Ampère-Maxwell Law yields the identical wave equation for the magnetic field $\mathbf{B}$.</p>
+            </div>
+        </section>
+
+        <!-- ======================================================================= -->
+        <!-- 8. Problems -->
+        <!-- ======================================================================= -->
+        <section class="mb-10 section-break">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">8. Problems</h2>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-3">8.1 Intermediate Problems (5)</h3>
+            <ol class="list-decimal ml-6 space-y-3 text-gray-800">
+                <li>A proton ($q=1.60 \times 10^{-19} \text{ C}$, $m=1.67 \times 10^{-27} \text{ kg}$) is accelerated from rest through a potential difference of $V=5000 \text{ V}$. It then enters a uniform magnetic field $\mathbf{B}=0.40 \text{ T}$ perpendicular to its velocity. Calculate the radius $R$ of the circular path it follows.</li>
+                <li>A long, straight wire carries a current $I_1=15 \text{ A}$. A rectangular loop of wire, with dimensions $L=20 \text{ cm}$ and $W=10 \text{ cm}$, is placed $2 \text{ cm}$ away from the wire, with the long side parallel to $I_1$. The loop carries a current $I_2=5 \text{ A}$ in the same direction as $I_1$. Calculate the net magnetic force on the loop.</li>
+                <li>An electron moves in the field $\mathbf{E} = (10 \mathbf{\hat{i}} + 5 \mathbf{\hat{j}}) \text{ N/C}$. What constant magnetic field $\mathbf{B}$ (in the $\mathbf{\hat{k}}$ direction) is required for the electron to move undeflected with a velocity $\mathbf{v} = 1.0 \times 10^5 \mathbf{\hat{i}} \text{ m/s}$?</li>
+                <li>A square loop of wire with side length $L$ and resistance $R$ is pulled with a constant velocity $\mathbf{v}$ out of a region of uniform magnetic field $\mathbf{B}$. The field is perpendicular to the plane of the loop. Calculate the magnitude of the external force required to maintain the constant velocity.</li>
+                <li>A solenoid of length $l=50 \text{ cm}$ and radius $r=2 \text{ cm}$ has $N=400$ turns. A current $I=3 \text{ A}$ runs through the coil. Using Ampère's Law, calculate the magnitude of the magnetic field $\mathbf{B}$ at the center of the solenoid.</li>
+            </ol>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-3">8.2 Advanced Problems (3)</h3>
+            <ol class="list-decimal ml-6 space-y-3 text-gray-800" start="6">
+                <li>A spherical charge distribution of radius $R$ has a uniform volume charge density $\rho$. The sphere rotates with a constant angular velocity $\mathbf{\omega}$ about the $z$-axis. Derive the vector potential $\mathbf{A}(\mathbf{r})$ and the magnetic field $\mathbf{B}(\mathbf{r})$ for $r > R$ and $r < R$. (Hint: Calculate the current density $\mathbf{J}$ first).</li>
+                <li>Starting from the Biot-Savart Law (4.2), prove Ampère's Law in the differential form for magnetostatics ($\nabla \times \mathbf{B} = \mu_0 \mathbf{J}$). (Hint: Use the identity for $\nabla^2 (1/r)$).</li>
+                <li>Consider a long coaxial cable consisting of an inner conductor of radius $a$ and an outer conducting shell of inner radius $b$ and outer radius $c$. A current $I$ flows down the inner conductor and returns along the outer shell. Assume the current is uniformly distributed across the cross-sections. Find the magnetic field $\mathbf{B}(r)$ for all regions: $r < a$, $a < r < b$, $b < r < c$, and $r > c$.</li>
+            </ol>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-3">8.3 Irodov-Like Problems (2)</h3>
+            <ol class="list-decimal ml-6 space-y-3 text-gray-800" start="9">
+                <li>A thin, non-conducting ring of radius $R$ is charged with a linear charge density $\lambda = \lambda_0 \cos(\phi)$, where $\phi$ is the azimuthal angle. The ring rotates with a constant angular velocity $\omega$ about its axis (the $z$-axis). Determine the magnetic field strength $\mathbf{B}$ at the center of the ring.</li>
+                <li>Two narrow, parallel, co-planar metal strips, separated by a distance $L$, are connected by a resistor $R$. They are placed in a uniform magnetic field $\mathbf{B}$ perpendicular to their plane. A metal rod of negligible resistance moves with a constant velocity $\mathbf{v}$ perpendicular to the strips. Given the system's total inductance $L_{\text{ind}}$, write down the differential equation governing the current $I(t)$ in the circuit, and find $I(t)$ assuming $I(0)=0$.</li>
+            </ol>
+        </section>
+
+        <!-- ======================================================================= -->
+        <!-- 9. Solutions -->
+        <!-- ======================================================================= -->
+        <section class="mb-10 section-break">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">9. Solutions</h2>
+            <p class="text-lg font-medium text-gray-700 mb-6">Solutions are provided using a formula-first approach, showing the key mathematical steps.</p>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-3">9.1 Intermediate Solutions</h3>
+            <div class="space-y-6">
+                <!-- Solution 1 -->
+                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <p class="font-bold text-lg">Problem 1: Proton in Magnetic Field</p>
+                    <p><strong>Step 1: Calculate velocity $v$ from potential $V$ (Energy conservation).</strong></p>
+                    $$\frac{1}{2} m v^2 = q V \implies v = \sqrt{\frac{2 q V}{m}}$$
+                    <p><strong>Step 2: Use Lorentz Force for circular motion ($F_{\text{mag}} = F_{\text{cent}}$).</strong></p>
+                    $$q v B = \frac{m v^2}{R} \implies R = \frac{m v}{q B}$$
+                    <p><strong>Step 3: Substitute $v$ into the radius formula.</strong></p>
+                    $$R = \frac{m}{q B} \sqrt{\frac{2 q V}{m}} = \frac{1}{B} \sqrt{\frac{2 m V}{q}}$$
+                    <p><strong>Result:</strong> $R \approx 0.057 \text{ m}$.</p>
+                </div>
+
+                <!-- Solution 2 -->
+                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <p class="font-bold text-lg">Problem 2: Force on a Rectangular Loop</p>
+                    <p><strong>Step 1: Magnetic field $B(r)$ from the long wire.</strong></p>
+                    $$B(r) = \frac{\mu_0 I_1}{2\pi r}$$
+                    <p><strong>Step 2: Force on the inner ($F_{\text{in}}$) and outer ($F_{\text{out}}$) sides.</strong></p>
+                    $$F_{\text{in}} = I_2 L B(r_1) = I_2 L \frac{\mu_0 I_1}{2\pi d}$$
+                    $$F_{\text{out}} = I_2 L B(r_2) = I_2 L \frac{\mu_0 I_1}{2\pi (d+W)}$$
+                    <p><strong>Step 3: Calculate Net Force ($F_{\text{net}} = F_{\text{in}} - F_{\text{out}}$).</strong></p>
+                    $$F_{\text{net}} = \frac{\mu_0 I_1 I_2 L}{2\pi} \left( \frac{1}{d} - \frac{1}{d+W} \right) = \frac{\mu_0 I_1 I_2 L W}{2\pi d (d+W)}$$
+                    <p><strong>Result:</strong> $F_{\text{net}} \approx 1.0 \times 10^{-4} \text{ N}$ (Attractive, towards $I_1$).</p>
+                </div>
+
+                <!-- Solution 3 -->
+                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <p class="font-bold text-lg">Problem 3: Undeflected Electron Motion</p>
+                    <p><strong>Step 1: Set Total Force to Zero (Undeflected motion).</strong></p>
+                    $$\mathbf{F} = q (\mathbf{E} + \mathbf{v} \times \mathbf{B}) = 0 \implies \mathbf{E} = -(\mathbf{v} \times \mathbf{B})$$
+                    <p><strong>Step 2: Substitute vectors and calculate $\mathbf{v} \times \mathbf{B}$.</strong></p>
+                    $$\mathbf{v} \times \mathbf{B} = (v \mathbf{\hat{i}}) \times (B_z \mathbf{\hat{k}}) = v B_z (\mathbf{\hat{i}} \times \mathbf{\hat{k}}) = -v B_z \mathbf{\hat{j}}$$
+                    <p><strong>Step 3: Equate $\mathbf{E} = -(\mathbf{v} \times \mathbf{B})$ and solve for $B_z$.</strong></p>
+                    $$E_x \mathbf{\hat{i}} + E_y \mathbf{\hat{j}} = v B_z \mathbf{\hat{j}}$$
+                    $$B_z = \frac{E_y}{v}$$
+                    <p><strong>Result:</strong> $B_z = 5.0 \times 10^{-5} \text{ T}$. $\mathbf{B} = 5.0 \times 10^{-5} \mathbf{\hat{k}} \text{ T}$.</p>
+                </div>
+
+                <!-- Solution 4 -->
+                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <p class="font-bold text-lg">Problem 4: External Force on a Moving Loop (Motional EMF)</p>
+                    <p><strong>Step 1: Calculate induced EMF ($\mathcal{E}$) and current ($I$).</strong></p>
+                    $$\mathcal{E} = B L v$$
+                    $$I = \frac{\mathcal{E}}{R} = \frac{B L v}{R}$$
+                    <p><strong>Step 2: Calculate magnetic braking force ($F_{\text{mag}}$).</strong></p>
+                    $$F_{\text{mag}} = I L B = \left(\frac{B L v}{R}\right) L B = \frac{B^2 L^2 v}{R}$$
+                    <p><strong>Step 3: External force ($F_{\text{ext}}$) must balance $F_{\text{mag}}$.</strong></p>
+                    $$F_{\text{ext}} = \frac{B^2 L^2 v}{R}$$
+                </div>
+
+                <!-- Solution 5 -->
+                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <p class="font-bold text-lg">Problem 5: Magnetic Field of a Solenoid</p>
+                    <p><strong>Step 1: Apply Ampère's Law ($\oint \mathbf{B} \cdot d\mathbf{l} = \mu_0 I_{\text{enc}}$).</strong></p>
+                    $$B l_{\text{loop}} = \mu_0 (n l_{\text{loop}}) I$$
+                    <p><strong>Step 2: Solve for $B$, where $n=N/l$ is turns per unit length.</strong></p>
+                    $$B = \mu_0 n I = \mu_0 \frac{N}{l} I$$
+                    <p><strong>Result:</strong> $B \approx 3.02 \times 10^{-3} \text{ T}$.</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-3 section-break">9.2 Advanced Solutions</h3>
+            <div class="space-y-6">
+                <!-- Solution 6 -->
+                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <p class="font-bold text-lg">Problem 6: Rotating Uniformly Charged Sphere</p>
+                    <p><strong>Step 1: Current Density $\mathbf{J}$.</strong></p>
+                    $$\mathbf{J} = \rho \mathbf{v} = \rho (\mathbf{\omega} \times \mathbf{r}) = \rho \omega r \sin\theta \, \mathbf{\hat{\phi}}$$
+                    <p><strong>Step 2: Magnetic Moment $\mathbf{m}$ (for $r>R$).</strong></p>
+                    $$\mathbf{m} = \frac{1}{2} \int \mathbf{r} \times \mathbf{J} d\tau = \frac{4\pi \rho \omega R^5}{15} \mathbf{\hat{z}}$$
+                    <p><strong>Step 3: Vector Potential $\mathbf{A}(r>R)$.</strong></p>
+                    $$\mathbf{A}(\mathbf{r}) = \frac{\mu_0}{4\pi} \frac{\mathbf{m} \times \mathbf{\hat{r}}}{r^2} = \frac{\mu_0 \rho \omega R^5}{15} \frac{\sin\theta}{r^2} \mathbf{\hat{\phi}}$$
+                    <p><strong>Step 4: Magnetic Field $\mathbf{B}(r<R)$ (Uniform inside).</strong></p>
+                    $$\mathbf{B}(\mathbf{r}) = \frac{2\mu_0 \rho \omega}{15} (R^2 - r^2) \mathbf{\hat{z}}$$
+                </div>
+
+                <!-- Solution 7 -->
+                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <p class="font-bold text-lg">Problem 7: Proof of $\nabla \times \mathbf{B} = \mu_0 \mathbf{J}$ from Biot-Savart</p>
+                    <p><strong>Step 1: Start from the Vector Potential $\mathbf{A}$.</strong></p>
+                    $$\mathbf{A}(\mathbf{r}) = \frac{\mu_0}{4\pi} \int \frac{\mathbf{J}(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|} d\tau'$$
+                    <p><strong>Step 2: Calculate $\nabla \times \mathbf{B} = \nabla \times (\nabla \times \mathbf{A})$.</strong></p>
+                    $$\nabla \times \mathbf{B} = -\nabla^2 \mathbf{A} = -\nabla^2 \left( \frac{\mu_0}{4\pi} \int \frac{\mathbf{J}(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|} d\tau' \right)$$
+                    <p><strong>Step 3: Use the Laplacian Identity.</strong></p>
+                    $$\nabla \times \mathbf{B} = \frac{\mu_0}{4\pi} \int \mathbf{J}(\mathbf{r}') \left( -\nabla^2 \frac{1}{|\mathbf{r}-\mathbf{r}'|} \right) d\tau'$$
+                    <p><strong>Step 4: Substitute $-\nabla^2 (1/|\mathbf{r}-\mathbf{r}'|) = 4\pi \delta^3(\mathbf{r}-\mathbf{r}')$.</strong></p>
+                    $$\nabla \times \mathbf{B} = \frac{\mu_0}{4\pi} \int \mathbf{J}(\mathbf{r}') \left( 4\pi \delta^3(\mathbf{r}-\mathbf{r}') \right) d\tau'$$
+                    <p><strong>Step 5: Apply the Sifting Property.</strong></p>
+                    $$\nabla \times \mathbf{B} = \mu_0 \mathbf{J}(\mathbf{r})$$
+                </div>
+
+                <!-- Solution 8 -->
+                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <p class="font-bold text-lg">Problem 8: Magnetic Field in a Coaxial Cable</p>
+                    <p><strong>Use Ampère's Law:</strong> $B(r) 2\pi r = \mu_0 I_{\text{enc}}$</p>
+                    <p><strong>Case 1: $r < a$ (Inside inner conductor)</strong></p>
+                    $$I_{\text{enc}} = I \frac{r^2}{a^2} \implies B(r) = \frac{\mu_0 I r}{2\pi a^2}$$
+                    <p><strong>Case 2: $a < r < b$ (Between conductors)</strong></p>
+                    $$I_{\text{enc}} = I \implies B(r) = \frac{\mu_0 I}{2\pi r}$$
+                    <p><strong>Case 3: $b < r < c$ (Inside outer conductor)</strong></p>
+                    $$I_{\text{enc}} = I - I \frac{r^2 - b^2}{c^2 - b^2}$$
+                    $$B(r) = \frac{\mu_0 I}{2\pi r} \frac{c^2 - r^2}{c^2 - b^2}$$
+                    <p><strong>Case 4: $r > c$ (Outside cable)</strong></p>
+                    $$I_{\text{enc}} = I + (-I) = 0 \implies B(r) = 0$$
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-gray-700 mt-6 mb-3 section-break">9.3 Irodov-Like Solutions</h3>
+            <div class="space-y-6">
+                <!-- Solution 9 -->
+                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <p class="font-bold text-lg">Problem 9: Magnetic Field of a Rotating Charged Ring</p>
+                    <p><strong>Step 1: Calculate differential current $dI$ and differential field $dB$.</strong></p>
+                    $$dI = \frac{dQ}{T} = \frac{\lambda_0 R \omega}{2\pi} \cos(\phi) d\phi$$
+                    $$dB = \frac{\mu_0 dI}{2 R} = \frac{\mu_0 \lambda_0 \omega}{4\pi} \cos(\phi) d\phi$$
+                    <p><strong>Step 2: Integrate the $x$-component $dB_x = dB \cos\phi$.</strong></p>
+                    $$B_x = \int_0^{2\pi} \left( \frac{\mu_0 \lambda_0 \omega}{4\pi} \cos(\phi) \right) \cos(\phi) d\phi = \frac{\mu_0 \lambda_0 \omega}{4\pi} \int_0^{2\pi} \cos^2(\phi) d\phi$$
+                    <p><strong>Step 3: Evaluate integral $\int_0^{2\pi} \cos^2(\phi) d\phi = \pi$.</strong></p>
+                    $$B_x = \frac{\mu_0 \lambda_0 \omega}{4\pi} (\pi)$$
+                    <p><strong>Result:</strong> $\mathbf{B}$ at the center is $B_x = \frac{\mu_0 \lambda_0 \omega}{4}$.</p>
+                </div>
+
+                <!-- Solution 10 -->
+                <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <p class="font-bold text-lg">Problem 10: Circuit with Motional EMF and Inductance</p>
+                    <p><strong>Step 1: Apply Kirchhoff's Loop Rule ($\mathcal{E}_{\text{mot}} - IR - L_{\text{ind}} \frac{dI}{dt} = 0$).</strong></p>
+                    $$\mathcal{E}_{\text{mot}} = B L v$$
+                    <p><strong>Step 2: Differential Equation for $I(t)$.</strong></p>
+                    $$\frac{dI}{dt} + \frac{R}{L_{\text{ind}}} I = \frac{B L v}{L_{\text{ind}}}$$
+                    <p><strong>Step 3: Solve the ODE with initial condition $I(0)=0$.</strong></p>
+                    The solution is $I(t) = I_{\text{steady}} (1 - e^{-t/\tau})$, where $I_{\text{steady}} = BLv/R$ and $\tau = L_{\text{ind}}/R$.
+                    <p><strong>Result:</strong> The current as a function of time is:</p>
+                    $$I(t) = \frac{B L v}{R} \left( 1 - e^{-(R/L_{\text{ind}})t} \right)$$
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Print/Download Functionality
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Function to ensure MathJax is ready before printing
+            window.print = function() {
+                if (window.MathJax) {
+                    // Wait for MathJax rendering to complete before initiating print
+                    MathJax.startup.promise.then(() => {
+                        window.setTimeout(() => {
+                            window.open('', '_self', '').print();
+                        }, 500); // Small delay to ensure all glyphs are ready
+                    }).catch(error => {
+                        console.error("MathJax rendering error:", error);
+                        // Fallback print if MathJax fails
+                        window.open('', '_self', '').print();
+                    });
+                } else {
+                    // Fallback print if MathJax script fails to load
+                    window.open('', '_self', '').print();
+                }
+            };
+        });
+    </script>
+</body>
+</html>
