@@ -32,4 +32,4 @@ Click the topic and Enjoy!
 - [`Mechanical Waves`](https://george1meshveliani.github.io/Hello-Physics/AdvancedMechanicalWaves)
 - [`Electric charge, electric field, Gauss law`](https://george1meshveliani.github.io/Hello-Physics/AdvancedElectrostatics)
 - [`ELECTRIC POTENTIAL, CAPACITANCE AND DIELECTRICS`](https://george1meshveliani.github.io/Hello-Physics/AdvancedElectroStaticsTwo)
-- [`ELECTROMAGNETISM`](https://george1meshveliani.github.io/Hello-Physics/AdvancedElectroStaticsTwo)
+- [`ELECTROMAGNETISM`](https://george1meshveliani.github.io/Hello-Physics/AdvancedElectroMagnetism)
