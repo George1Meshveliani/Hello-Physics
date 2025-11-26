@@ -1,1 +1,493 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electromagnetic Waves: The Unified Theory of Light</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEnvironments: true,
+                processRefs: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Custom CSS for Printing Optimization -->
+    <style>
+        /* Base Styles for Inter font and general aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1f2937; /* Dark Gray */
+            padding-bottom: 50px;
+        }
+
+        /* Enforce page breaks for new major units during printing */
+        .page-break {
+            page-break-before: always;
+            break-before: page;
+        }
+
+        /* Print-specific media query to remove headers, footers, and links */
+        @media print {
+            body {
+                padding-top: 0;
+                padding-bottom: 0;
+                margin: 0;
+            }
+            /* Removes the print button and any utility/nav elements */
+            .no-print {
+                display: none !important;
+            }
+            /* Critical: Removes browser-added URL, date, header/footer */
+            @page {
+                size: A4;
+                margin: 1.5cm; /* Set a standard margin */
+                /* CSS property to suppress header/footer in some browsers */
+                orphans: 3;
+                widows: 3;
+            }
+        }
+
+        /* Aesthetics for the container and elements */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+        }
+        .header-box {
+            background-color: #1e3a8a; /* Dark Blue */
+            color: white;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            border-left: 5px solid #3b82f6; /* Blue border */
+            padding-left: 10px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #1e3a8a;
+        }
+        .proof-box {
+            background-color: #eff6ff; /* Lightest Blue */
+            border: 1px solid #bfdbfe;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4">
+
+    <div class="container">
+        <!-- Print Button (No Print) -->
+        <div class="no-print mb-6 text-center">
+            <button onclick="window.print()" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl shadow-lg transition duration-200">
+                Download PDF
+            </button>
+        </div>
+
+        <!-- Header -->
+        <header class="header-box mb-8">
+            <h1 class="text-4xl font-extrabold mb-2 text-center">ELECTROMAGNETIC WAVES</h1>
+            <p class="text-xl font-light text-center">The Unified Foundation of Classical Electrodynamics</p>
+        </header>
+
+        <!-- 1. Introduction: The Unification of Fields -->
+        <h2 class="section-title text-3xl font-bold" id="section-1">1. The Nature of Electromagnetic Waves</h2>
+        <div class="text-gray-700 leading-relaxed mb-6">
+            <p class="mb-4">
+                An electromagnetic wave (EM wave) is a disturbance that propagates through space, carrying energy. Crucially, it is not a mechanical wave requiring a medium; it is a self-propagating vibration of electric ($\mathbf{E}$) and magnetic ($\mathbf{B}$) fields. The fundamental insight is that a changing magnetic field creates an electric field (Faraday's Law), and a changing electric field creates a magnetic field (Ampère-Maxwell Law, including displacement current). This interdependence allows the two fields to continuously generate each other, leading to sustained propagation across vast distances.
+            </p>
+            <p>
+                The EM wave represents the ultimate synthesis of classical physics, unifying the previously separate phenomena of electricity, magnetism, and light into a single, cohesive framework.
+            </p>
+        </div>
+        [Image of Electromagnetic Wave Propagation]
+
+        <!-- 2. The Foundation: Maxwell's Equations -->
+        <div class="page-break"></div>
+        <h2 class="section-title text-3xl font-bold" id="section-2">2. Maxwell's Equations</h2>
+        <div class="text-gray-700 leading-relaxed mb-6">
+            
+            <h3 class="text-2xl font-semibold mt-4 mb-2">2.1. Maxwell's Equations in Free Space ($\rho=0, \mathbf{J}=0$)</h3>
+            <p class="mb-4">
+                In a vacuum, where there are no free charges ($\rho = 0$) and no free currents ($\mathbf{J} = \mathbf{0}$), the four fundamental equations simplify:
+            </p>
+            <ol class="list-decimal list-inside ml-4 space-y-2">
+                <li>
+                    Gauss's Law for Electricity:
+                    $$ \nabla \cdot \mathbf{E} = 0 \quad \quad (1) $$
+                </li>
+                <li>
+                    Gauss's Law for Magnetism:
+                    $$ \nabla \cdot \mathbf{B} = 0 \quad \quad (2) $$
+                </li>
+                <li>
+                    Faraday's Law of Induction:
+                    $$ \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t} \quad \quad (3) $$
+                </li>
+                <li>
+                    Ampère-Maxwell Law:
+                    $$ \nabla \times \mathbf{B} = \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t} \quad \quad (4) $$
+                </li>
+            </ol>
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">2.2. The General Maxwell's Equations (with Sources)</h3>
+            <p class="mb-4">
+                The full set of equations includes charge density ($\rho$) and current density ($\mathbf{J}$), which act as sources for the fields.
+            </p>
+            <ol class="list-decimal list-inside ml-4 space-y-2" start="5">
+                <li>
+                    Gauss's Law (General):
+                    $$ \nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0} \quad \quad (5) $$
+                </li>
+                <li>
+                    Gauss's Law for Magnetism:
+                    $$ \nabla \cdot \mathbf{B} = 0 \quad \quad (6) $$
+                </li>
+                <li>
+                    Faraday's Law:
+                    $$ \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t} \quad \quad (7) $$
+                </li>
+                <li>
+                    Ampère-Maxwell Law (General):
+                    $$ \nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t} \quad \quad (8) $$
+                </li>
+            </ol>
+        </div>
+
+        <!-- 3. Derivation of the Homogeneous Wave Equations and Speed of Light -->
+        <div class="page-break"></div>
+        <h2 class="section-title text-3xl font-bold" id="section-3">3. Derivation of the Homogeneous Wave Equations and Speed of Light ($c$)</h2>
+        <div class="text-gray-700 leading-relaxed mb-6">
+            <p class="mb-4">
+                The wave equation is derived directly from the coupled Maxwell's equations in free space (Eqs. 1-4). The key to decoupling the fields is the vector identity:
+                $$ \nabla \times (\nabla \times \mathbf{F}) = \nabla (\nabla \cdot \mathbf{F}) - \nabla^2 \mathbf{F} \quad \quad (9) $$
+            </p>
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">3.1. Derivation of the Wave Equation for $\mathbf{E}$</h3>
+            <div class="proof-box">
+                <p class="font-mono mb-2">Proof for $\mathbf{E}$:</p>
+                <p>1. Start with Faraday's Law (3):</p>
+                $$ \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t} \quad \quad (3) $$
+                <p>2. Take the curl ($\nabla \times$) of both sides:</p>
+                $$ \nabla \times (\nabla \times \mathbf{E}) = - \nabla \times \left( \frac{\partial \mathbf{B}}{\partial t} \right) = - \frac{\partial}{\partial t} \left( \nabla \times \mathbf{B} \right) \quad \quad (10) $$
+                <p>3. Simplify the LHS using the vector identity (9). Since $\nabla \cdot \mathbf{E} = 0$ (Eq. 1):</p>
+                $$ \nabla \times (\nabla \times \mathbf{E}) = \nabla (\nabla \cdot \mathbf{E}) - \nabla^2 \mathbf{E} = 0 - \nabla^2 \mathbf{E} = - \nabla^2 \mathbf{E} \quad \quad (11) $$
+                <p>4. Substitute the Ampère-Maxwell Law (4) into the RHS of (10):</p>
+                $$ - \frac{\partial}{\partial t} \left( \nabla \times \mathbf{B} \right) = - \frac{\partial}{\partial t} \left( \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t} \right) = - \mu_0 \epsilon_0 \frac{\partial^2 \mathbf{E}}{\partial t^2} \quad \quad (12) $$
+                <p>5. Equating (11) and (12) yields the 3D Wave Equation for the Electric Field:</p>
+                $$ \nabla^2 \mathbf{E} = \mu_0 \epsilon_0 \frac{\partial^2 \mathbf{E}}{\partial t^2} \quad \quad (13) $$
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">3.2. Derivation of the Wave Equation for $\mathbf{B}$</h3>
+            <div class="proof-box">
+                <p class="font-mono mb-2">Proof for $\mathbf{B}$:</p>
+                <p>1. Start with the Ampère-Maxwell Law (4):</p>
+                $$ \nabla \times \mathbf{B} = \mu_0 \epsilon_0 \frac{\partial \mathbf{E}}{\partial t} \quad \quad (4) $$
+                <p>2. Take the curl ($\nabla \times$) of both sides:</p>
+                $$ \nabla \times (\nabla \times \mathbf{B}) = \mu_0 \epsilon_0 \nabla \times \left( \frac{\partial \mathbf{E}}{\partial t} \right) = \mu_0 \epsilon_0 \frac{\partial}{\partial t} \left( \nabla \times \mathbf{E} \right) \quad \quad (14) $$
+                <p>3. Simplify the LHS using the vector identity (9). Since $\nabla \cdot \mathbf{B} = 0$ (Eq. 2):</p>
+                $$ \nabla \times (\nabla \times \mathbf{B}) = \nabla (\nabla \cdot \mathbf{B}) - \nabla^2 \mathbf{B} = 0 - \nabla^2 \mathbf{B} = - \nabla^2 \mathbf{B} \quad \quad (15) $$
+                <p>4. Substitute Faraday's Law (3) into the RHS of (14):</p>
+                $$ \mu_0 \epsilon_0 \frac{\partial}{\partial t} \left( - \frac{\partial \mathbf{B}}{\partial t} \right) = - \mu_0 \epsilon_0 \frac{\partial^2 \mathbf{B}}{\partial t^2} \quad \quad (16) $$
+                <p>5. Equating (15) and (16) yields the 3D Wave Equation for the Magnetic Field:</p>
+                $$ \nabla^2 \mathbf{B} = \mu_0 \epsilon_0 \frac{\partial^2 \mathbf{B}}{\partial t^2} \quad \quad (17) $$
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">3.3. The Speed of Light ($c$) - Proof by Comparison</h3>
+            <div class="proof-box">
+                <p class="font-mono mb-2">Proof of Propagation Speed ($c$):</p>
+                <p>The general form of a linear, homogeneous, 3D wave equation for any field $f$ (which could be displacement, pressure, or electric field component) propagating with velocity $v$ is:</p>
+                $$ \nabla^2 f = \frac{1}{v^2} \frac{\partial^2 f}{\partial t^2} \quad \quad (18) $$
+                <p>This equation dictates that the spatial curvature ($\nabla^2 f$, representing how the field changes over distance) must be proportional to the temporal acceleration ($\partial^2 f / \partial t^2$, representing how the field changes over time), with the proportionality constant being $1/v^2$.</p>
+
+                <p>We compare this general form (18) to the derived Electromagnetic Wave Equation for the electric field (Eq. 13):</p>
+                $$ \nabla^2 \mathbf{E} = \mu_0 \epsilon_0 \frac{\partial^2 \mathbf{E}}{\partial t^2} \quad \quad (13) $$
+
+                <p>By comparing the constants multiplying the time-derivative terms, we can establish the relationship:</p>
+                $$ \frac{1}{v^2} = \mu_0 \epsilon_0 $$
+                <p>Solving for the speed of propagation, $v$:</p>
+                $$ v = \frac{1}{\sqrt{\mu_0 \epsilon_0}} \quad \quad (19) $$
+
+                <p>This result shows that EM disturbances propagate at a constant speed determined solely by fundamental electromagnetic constants: the permeability of free space ($\mu_0$) and the permittivity of free space ($\epsilon_0$). When Maxwell calculated this speed using the experimentally known values for $\mu_0$ and $\epsilon_0$:</p>
+                $$ v = \frac{1}{\sqrt{(4\pi \times 10^{-7} \, \text{N/A}^2) \times (8.854 \times 10^{-12} \, \text{F/m})}} \approx 2.9979 \times 10^8 \, \text{m/s} $$
+                <p>This value was precisely the known speed of light, $c$. This mathematical identity led Maxwell to the profound conclusion that **light itself is an electromagnetic wave**.</p>
+                $$ v = c = \frac{1}{\sqrt{\mu_0 \epsilon_0}} \quad \quad (20) $$
+            </div>
+        </div>
+
+        <!-- 4. Electromagnetic Potentials and Gauge Choice -->
+        <div class="page-break"></div>
+        <h2 class="section-title text-3xl font-bold" id="section-4">4. Electromagnetic Potentials and Gauge Choice</h2>
+        <div class="text-gray-700 leading-relaxed mb-6">
+            <p class="mb-4">
+                To simplify the four coupled Maxwell equations (5)-(8) into two independent wave equations for the sources ($\rho$ and $\mathbf{J}$), we introduce the scalar potential ($\phi$) and the magnetic vector potential ($\mathbf{A}$).
+            </p>
+            <p class="mb-4">
+                The fields are defined in terms of the potentials as:
+            </p>
+            $$ \mathbf{B} = \nabla \times \mathbf{A} \quad \quad (21) $$
+            $$ \mathbf{E} = - \nabla \phi - \frac{\partial \mathbf{A}}{\partial t} \quad \quad (22) $$
+            <p class="mb-4">
+                The fields $\mathbf{E}$ and $\mathbf{B}$ are invariant under certain transformations of the potentials (Gauge freedom). We impose a **Gauge Condition** to decouple the resulting complex equations. The **Lorenz Gauge** condition is chosen for this purpose:
+            </p>
+            $$ \nabla \cdot \mathbf{A} + \mu_0 \epsilon_0 \frac{\partial \phi}{\partial t} = 0 \quad \quad (23) $$
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">4.1. Inhomogeneous Wave Equations (D'Alembertian)</h3>
+            <p class="mb-4">
+                Applying (21) and (22) into the General Maxwell's Equations (5) and (8), and utilizing the Lorenz Gauge (23), results in the Inhomogeneous Wave Equations:
+            </p>
+            $$ \nabla^2 \mathbf{A} - \mu_0 \epsilon_0 \frac{\partial^2 \mathbf{A}}{\partial t^2} = - \mu_0 \mathbf{J} \quad \quad (24) $$
+            $$ \nabla^2 \phi - \mu_0 \epsilon_0 \frac{\partial^2 \phi}{\partial t^2} = - \frac{\rho}{\epsilon_0} \quad \quad (25) $$
+            <p class="mt-4">
+                The operator $\nabla^2 - \mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2}$ is the **D'Alembertian operator** ($\Box^2$). These equations show that potentials, and thus the fields they create, are sourced by $\mathbf{J}$ and $\rho$, and propagate away from the sources at speed $c$.
+            </p>
+        </div>
+
+        <!-- 5. Energy Conservation: The Poynting Theorem -->
+        <div class="page-break"></div>
+        <h2 class="section-title text-3xl font-bold" id="section-5">5. Energy Conservation: The Poynting Theorem</h2>
+        <div class="text-gray-700 leading-relaxed mb-6">
+            <p class="mb-4">
+                The Poynting theorem describes the conservation of electromagnetic energy. It relates the work done on charges ($\mathbf{E} \cdot \mathbf{J}$), the change in stored field energy ($u$), and the flow of energy across the boundaries ($\mathbf{S}$).
+            </p>
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">5.1. Differential Form Derivation</h3>
+            <div class="proof-box">
+                <p class="font-mono mb-2">Proof:</p>
+                <p>1. Start with the rate of work done by the fields per unit volume, $\mathbf{E} \cdot \mathbf{J}$. Substitute $\mathbf{J}$ from the General Ampère-Maxwell Law (8):</p>
+                $$ \mathbf{E} \cdot \mathbf{J} = \frac{1}{\mu_0} \mathbf{E} \cdot (\nabla \times \mathbf{B}) - \epsilon_0 \mathbf{E} \cdot \frac{\partial \mathbf{E}}{\partial t} \quad \quad (26) $$
+                <p>2. Use the vector identity $\nabla \cdot (\mathbf{E} \times \mathbf{B}) = \mathbf{B} \cdot (\nabla \times \mathbf{E}) - \mathbf{E} \cdot (\nabla \times \mathbf{B})$ to isolate $\mathbf{E} \cdot (\nabla \times \mathbf{B})$.</p>
+                <p>3. Substitute the resulting expression and Faraday's Law (7), $\nabla \times \mathbf{E} = - \partial \mathbf{B} / \partial t$, into (26). Use the rule $\mathbf{F} \cdot \frac{\partial \mathbf{F}}{\partial t} = \frac{1}{2} \frac{\partial}{\partial t} (\mathbf{F}^2)$ for both fields:</p>
+                $$ \mathbf{E} \cdot \mathbf{J} = - \frac{\partial}{\partial t} \left( \frac{1}{2}\epsilon_0 E^2 + \frac{1}{2\mu_0} B^2 \right) - \nabla \cdot \left( \frac{1}{\mu_0} \mathbf{E} \times \mathbf{B} \right) \quad \quad (27) $$
+            </div>
+            <p class="mb-4">
+                This is the differential form of the Poynting Theorem. The terms are defined as:
+                $$ \mathbf{E} \cdot \mathbf{J} = \text{Power dissipated per unit volume (Joule heating).} $$
+                $$ u = \frac{1}{2}\epsilon_0 E^2 + \frac{1}{2\mu_0} B^2 = \text{Total energy density of the EM field.} \quad \quad (28) $$
+                $$ \mathbf{S} = \frac{1}{\mu_0} \mathbf{E} \times \mathbf{B} = \text{Poynting Vector (EM power flow per unit area).} \quad \quad (29) $$
+            </p>
+            <p class="mb-4">
+                The theorem (27) can be rewritten as:
+                $$ \nabla \cdot \mathbf{S} + \frac{\partial u}{\partial t} = - \mathbf{E} \cdot \mathbf{J} \quad \quad (30) $$
+            </p>
+        </div>
+
+        <!-- 6. Properties of EM Waves -->
+        <div class="page-break"></div>
+        <h2 class="section-title text-3xl font-bold" id="section-6">6. Properties of EM Waves: Transverse Nature and Field Relations</h2>
+        <div class="text-gray-700 leading-relaxed mb-6">
+            <p class="mb-4">
+                An EM wave is a **transverse wave**, meaning the fields oscillate perpendicular to the direction of propagation ($\mathbf{k}$). The fields $\mathbf{E}$ and $\mathbf{B}$ are also perpendicular to each other, forming a right-handed system $(\mathbf{E}, \mathbf{B}, \mathbf{k})$.
+            </p>
+            
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">6.1. Transverse Proof ($\mathbf{E} \perp \mathbf{k}$ and $\mathbf{B} \perp \mathbf{k}$)</h3>
+            <p class="mb-4">
+                By substituting the general plane wave solution $\mathbf{E}(\mathbf{r}, t) = \mathbf{E}_0 e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t)}$ into Gauss's Law ($\nabla \cdot \mathbf{E} = 0$, Eq. 1):
+                $$ \nabla \cdot \mathbf{E} = i (\mathbf{k} \cdot \mathbf{E}_0) e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t)} = 0 \quad \quad (31) $$
+                Since $i$ and the exponential term are non-zero, this necessitates $\mathbf{k} \cdot \mathbf{E}_0 = 0$. This confirms $\mathbf{E}$ is perpendicular to $\mathbf{k}$. The same process for $\mathbf{B}$ (Eq. 2) proves $\mathbf{k} \cdot \mathbf{B} = 0$, thus $\mathbf{B} \perp \mathbf{k}$.
+            </p>
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">6.2. Orthogonality ($\mathbf{E} \perp \mathbf{B}$) and Field Ratio</h3>
+            <p class="mb-4">
+                Substituting the plane wave solutions into Faraday's Law (3), $\nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t}$, yields:
+            </p>
+            $$ i \mathbf{k} \times \mathbf{E} = i \omega \mathbf{B} \quad \quad (32) $$
+            <p>Which simplifies to:</p>
+            $$ \mathbf{B} = \frac{1}{\omega} (\mathbf{k} \times \mathbf{E}) \quad \quad (33) $$
+            <p class="mb-4">
+                Equation (33) proves that $\mathbf{B}$ is perpendicular to both $\mathbf{k}$ and $\mathbf{E}$. Since $\omega/k = c$ (the phase speed), the magnitude relation is:
+            </p>
+            $$ B = \frac{k}{\omega} E = \frac{1}{c} E \quad \quad (34) $$
+            $$ \frac{E}{B} = c \quad \quad (35) $$
+            
+            <h3 class="text-2xl font-semibold mt-4 mb-2">6.3. Energy Density Equipartition</h3>
+            <p class="mb-4">
+                In free space, the energy is equally distributed between the electric and magnetic fields. Since $u_E = \frac{1}{2}\epsilon_0 E^2$ and $u_B = \frac{1}{2\mu_0} B^2$, substituting $E = cB$ and $c^2 = 1/(\mu_0 \epsilon_0)$ into $u_E$:
+            </p>
+            $$ u_E = \frac{1}{2} \epsilon_0 (cB)^2 = \frac{1}{2} \epsilon_0 \left( \frac{1}{\mu_0 \epsilon_0} \right) B^2 = \frac{1}{2\mu_0} B^2 = u_B \quad \quad (36) $$
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">6.4. Wave Impedance</h3>
+            <p class="mb-4">
+                The ratio of the electric field magnitude to the magnetic field magnitude, scaled by $\mu_0$, is the **Characteristic Impedance of Free Space** ($Z_0$):
+            </p>
+            $$ Z_0 = \mu_0 \frac{E}{B} = \mu_0 c = \sqrt{\frac{\mu_0}{\epsilon_0}} \approx 377 \, \Omega \quad \quad (37) $$
+        </div>
+
+        <!-- 7. Intensity and Radiation Pressure (NEW MATHEMATICAL SECTION) -->
+        <div class="page-break"></div>
+        <h2 class="section-title text-3xl font-bold" id="section-7">7. Intensity and Radiation Pressure</h2>
+        <div class="text-gray-700 leading-relaxed mb-6">
+            <p class="mb-4">
+                The flow of energy associated with an EM wave is quantified by its **Intensity ($I$)**, which is the time-averaged magnitude of the Poynting Vector $\mathbf{S}$.
+            </p>
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">7.1. Intensity Derivation (Average Power Flux)</h3>
+            <div class="proof-box">
+                <p class="font-mono mb-2">Derivation of $I_{avg}$:</p>
+                <p>For a plane wave, $\mathbf{E}$ and $\mathbf{B}$ are in phase, perpendicular, and the fields vary as $\cos(kx-\omega t)$. The instantaneous Poynting magnitude is:</p>
+                $$ S(t) = \frac{1}{\mu_0} |\mathbf{E} \times \mathbf{B}| = \frac{E B}{\mu_0} = \frac{E (E/c)}{\mu_0} = \frac{E^2}{\mu_0 c} $$
+                <p>If $E = E_0 \cos(kx-\omega t)$, then $E^2 = E_0^2 \cos^2(kx-\omega t)$. The time average of $\cos^2(\theta)$ over one cycle is $\langle \cos^2(\theta) \rangle = 1/2$.</p>
+                $$ I_{avg} = \langle S \rangle = \frac{\langle E^2 \rangle}{\mu_0 c} = \frac{E_0^2 / 2}{\mu_0 c} $$
+                <p>Using $c^2 = 1/(\mu_0 \epsilon_0)$, so $\frac{1}{\mu_0 c} = c \epsilon_0$:</p>
+                $$ I_{avg} = \frac{1}{2} E_0^2 (\epsilon_0 c) = \frac{1}{2} c \epsilon_0 E_0^2 \quad \quad (38) $$
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-4 mb-2">7.2. Radiation Pressure</h3>
+            <p class="mb-4">
+                Because EM waves carry momentum, they exert a pressure on any surface they strike. The pressure ($P_{rad}$) is the average momentum flux and is directly related to the wave intensity ($I_{avg}$):
+            </p>
+            <ol class="list-decimal list-inside ml-4 space-y-2">
+                <li>
+                    For a surface that **perfectly absorbs** all energy:
+                    $$ P_{rad} = \frac{I_{avg}}{c} \quad \quad (39) $$
+                </li>
+                <li>
+                    For a surface that **perfectly reflects** all energy:
+                    $$ P_{rad} = \frac{2 I_{avg}}{c} \quad \quad (40) $$
+                </li>
+            </ol>
+            <p class="mb-4">
+                This effect, though tiny, confirms the momentum-carrying nature of light and is critical in astrophysical processes.
+            </p>
+        </div>
+
+        <!-- 8. The Electromagnetic Spectrum -->
+        <div class="page-break"></div>
+        <h2 class="section-title text-3xl font-bold" id="section-8">8. The Electromagnetic Spectrum</h2>
+        <div class="text-gray-700 leading-relaxed mb-6">
+            <p class="mb-4">
+                The EM spectrum covers a vast range of waves, all propagating at speed $c$ in a vacuum and satisfying the derived wave equations. They are classified by frequency ($f$) or wavelength ($\lambda$), related by $c = f \lambda$.
+            </p>
+            [Image of the complete Electromagnetic Spectrum]
+            <p class="mb-4">
+                Light is simply the narrow band of the spectrum visible to the human eye. The mathematical framework developed here applies universally across the entire spectrum, from low-frequency radio waves to high-frequency gamma rays.
+            </p>
+        </div>
+
+        <!-- 9. Problems -->
+        <div class="page-break"></div>
+        <h2 class="section-title text-3xl font-bold" id="section-9">9. Problem Set</h2>
+
+        <h3 class="text-2xl font-semibold mt-4 mb-2">Intermediate Problems (5)</h3>
+        <ol class="list-decimal list-inside ml-4 space-y-3 text-gray-700">
+            <li>An EM wave has an electric field component given by $E_y = 100 \sin(1.0 \times 10^7 x - \omega t) \, \text{V/m}$. Find the frequency $f$ and the angular frequency $\omega$ of the wave.</li>
+            <li>If the peak magnetic field strength of a wave is $B_0 = 5.0 \times 10^{-11} \, \text{T}$, what is the peak electric field strength $E_0$?</li>
+            <li>A radio transmitter broadcasts at a frequency of $98.1 \, \text{MHz}$. Calculate the wavelength $\lambda$ of these waves.</li>
+            <li>The average intensity ($I_{avg}$) of an EM wave is given by the formula $I_{avg} = \frac{1}{2} c \epsilon_0 E_0^2$. Calculate the average intensity of an EM wave whose peak electric field strength is $10.0 \, \text{V/m}$.</li>
+            <li>An EM wave is propagating in the $+z$ direction. At a specific point in time and space, the magnetic field is $\mathbf{B} = (2.0 \times 10^{-7} \, \text{T}) \, \mathbf{\hat{x}}$. Determine the direction and magnitude of the electric field $\mathbf{E}$ at that point.</li>
+        </ol>
+
+        <h3 class="text-2xl font-semibold mt-4 mb-2">Advanced Problems (3)</h3>
+        <ol class="list-decimal list-inside ml-4 space-y-3 text-gray-700" start="6">
+            <li>A plane electromagnetic wave is propagating in a non-conducting, non-magnetic medium with permeability $\mu = \mu_0$ and permittivity $\epsilon = 4\epsilon_0$. Derive the wave speed $v$ in this medium and find the ratio of the magnitudes of the electric and magnetic fields, $E/B$, in this medium.</li>
+            <li>Show that the instantaneous energy density ($u$) of an EM wave is equally divided between the electric and magnetic fields in free space, i.e., $u_E = u_B$.</li>
+            <li>A black (perfectly absorbing) cube of mass $1.0 \, \text{kg}$ is suspended in space. If it is exposed to an EM wave with an average intensity of $I_{avg} = 1.0 \, \text{W/m}^2$ over a surface area of $0.01 \, \text{m}^2$, calculate the magnitude of the force $F$ exerted on the cube.</li>
+        </ol>
+
+        <h3 class="text-2xl font-semibold mt-4 mb-2">Irodov-Like Problems (2)</h3>
+        <ol class="list-decimal list-inside ml-4 space-y-3 text-gray-700" start="9">
+            <li>A plane electromagnetic wave is described by the magnetic field vector $\mathbf{B} = B_0 \mathbf{\hat{z}} \cos(\omega t + k x)$, where $B_0$ is a positive constant. Find the vector expression for the electric field $\mathbf{E}$ of this wave.</li>
+            <li>An EM wave in free space has an average intensity of $I_{avg} = 1.0 \, \text{kW/m}^2$. A fully absorbing surface of area $A = 0.50 \, \text{m}^2$ is placed perpendicular to the direction of propagation. Calculate the radiation pressure $P_{rad}$ exerted on the surface and the total force $F$ exerted by the wave.</li>
+        </ol>
+
+        <!-- 10. Solutions -->
+        <div class="page-break"></div>
+        <h2 class="section-title text-3xl font-bold" id="section-10">10. Solutions</h2>
+
+        <h3 class="text-2xl font-semibold mt-4 mb-2">10.1. Intermediate Solutions</h3>
+        <ol class="list-decimal list-inside ml-4 space-y-3 text-gray-700">
+            <li>
+                <p><strong>Formulas:</strong> $E_y = E_0 \sin(kx - \omega t)$, $k = \omega/c$, $f = \omega/(2\pi)$.</p>
+                <p><strong>Solution:</strong> From the equation, $k = 1.0 \times 10^7 \, \text{m}^{-1}$.</p>
+                $$ \omega = k c = (1.0 \times 10^7 \, \text{m}^{-1}) (3.0 \times 10^8 \, \text{m/s}) = 3.0 \times 10^{15} \, \text{rad/s} $$
+                $$ f = \frac{\omega}{2\pi} = \frac{3.0 \times 10^{15} \, \text{rad/s}}{2\pi} \approx 4.77 \times 10^{14} \, \text{Hz} $$
+            </li>
+            <li>
+                <p><strong>Formula:</strong> $E_0 / B_0 = c \quad \text{(Eq. 35)}$.</p>
+                <p><strong>Solution:</strong> The ratio of the field magnitudes equals the speed of light.</p>
+                $$ E_0 = B_0 c = (5.0 \times 10^{-11} \, \text{T}) (3.0 \times 10^8 \, \text{m/s}) = 15.0 \times 10^{-3} \, \text{V/m} = 15.0 \, \text{mV/m} $$
+            </li>
+            <li>
+                <p><strong>Formula:</strong> $\lambda = c/f$.</p>
+                <p><strong>Solution:</strong> Convert frequency to SI units: $f = 98.1 \, \text{MHz} = 98.1 \times 10^6 \, \text{Hz}$.</p>
+                $$ \lambda = \frac{3.0 \times 10^8 \, \text{m/s}}{98.1 \times 10^6 \, \text{Hz}} \approx 3.06 \, \text{m} $$
+            </li>
+            <li>
+                <p><strong>Formula:</strong> $I_{avg} = \frac{1}{2} c \epsilon_0 E_0^2 \quad \text{(Eq. 38)}$.</p>
+                <p><strong>Solution:</strong> Substitute values: $\epsilon_0 \approx 8.854 \times 10^{-12} \, \text{F/m}$.</p>
+                $$ I_{avg} = \frac{1}{2} (3.0 \times 10^8) (8.854 \times 10^{-12}) (10.0)^2 $$
+                $$ I_{avg} \approx 13.28 \, \text{W/m}^2 $$
+            </li>
+            <li>
+                <p><strong>Formulas:</strong> $\mathbf{S} \propto \mathbf{E} \times \mathbf{B} \quad \text{(Eq. 29)}$, $\frac{E}{B} = c \quad \text{(Eq. 35)}$.</p>
+                <p><strong>Solution:</strong> Propagation direction is $+z$, so $\mathbf{\hat{k}} = \mathbf{\hat{z}}$. Magnetic field is $\mathbf{\hat{B}} = \mathbf{\hat{x}}$. We must have $\mathbf{\hat{z}} \propto \mathbf{\hat{E}} \times \mathbf{\hat{x}}$. This requires $\mathbf{\hat{E}} = -\mathbf{\hat{y}}$ (since $(-\mathbf{\hat{y}}) \times (\mathbf{\hat{x}}) = \mathbf{\hat{z}}$). Thus, $\mathbf{E}$ is in the $-\mathbf{\hat{y}}$ direction.</p>
+                $$ E = B c = (2.0 \times 10^{-7} \, \text{T}) (3.0 \times 10^8 \, \text{m/s}) = 60.0 \, \text{V/m} $$
+                $$ \mathbf{E} = -60.0 \, \mathbf{\hat{y}} \, \text{V/m} $$
+            </li>
+        </ol>
+
+        <h3 class="text-2xl font-semibold mt-4 mb-2">10.2. Advanced Solutions</h3>
+        <ol class="list-decimal list-inside ml-4 space-y-3 text-gray-700" start="6">
+            <li>
+                <p><strong>Formula:</strong> $v = \frac{1}{\sqrt{\mu \epsilon}} \quad \text{(Generalization of Eq. 20)}$.</p>
+                <p><strong>Solution:</strong> In the medium, $\mu = \mu_0$ and $\epsilon = 4\epsilon_0$.</p>
+                $$ v = \frac{1}{\sqrt{\mu_0 (4\epsilon_0)}} = \frac{1}{2 \sqrt{\mu_0 \epsilon_0}} = \frac{c}{2} $$
+                <p>The wave speed is $v = c/2$. The ratio of fields $E/B$ equals the wave speed $v$ in any non-conducting medium. Thus:</p>
+                $$ \frac{E}{B} = v = \frac{c}{2} $$
+            </li>
+            <li>
+                <p><strong>Formulas:</strong> $u_E = \frac{1}{2}\epsilon_0 E^2$, $u_B = \frac{1}{2\mu_0} B^2$, $E/B = c \quad \text{(Eq. 35)}$, $c^2 = 1/(\mu_0 \epsilon_0) \quad \text{(From Eq. 20)}$.</p>
+                <p><strong>Proof:</strong> We wish to show $u_E = u_B$. Substitute $E = cB$ into the expression for $u_E$:</p>
+                $$ u_E = \frac{1}{2} \epsilon_0 E^2 = \frac{1}{2} \epsilon_0 (cB)^2 = \frac{1}{2} \epsilon_0 c^2 B^2 $$
+                <p>Now substitute the expression for $c^2$:</p>
+                $$ u_E = \frac{1}{2} \epsilon_0 \left( \frac{1}{\mu_0 \epsilon_0} \right) B^2 = \frac{1}{2} \frac{1}{\mu_0} B^2 = u_B $$
+            </li>
+            <li>
+                <p><strong>Formula:</strong> $F = P_{rad} A$, $P_{rad} = I_{avg}/c$ (absorbing surface) $\quad \text{(Eq. 39)}$.</p>
+                <p><strong>Solution:</strong> The total force exerted on the absorbing surface is $F = P_{rad} A = (I_{avg}/c) A$.</p>
+                $$ F = \frac{I_{avg} A}{c} = \frac{(1.0 \, \text{W/m}^2) (0.01 \, \text{m}^2)}{3.0 \times 10^8 \, \text{m/s}} $$
+                $$ F \approx 3.33 \times 10^{-11} \, \text{N} $$
+            </li>
+        </ol>
+
+        <h3 class="text-2xl font-semibold mt-4 mb-2">10.3. Irodov-Like Solutions</h3>
+        <ol class="list-decimal list-inside ml-4 space-y-3 text-gray-700" start="9">
+            <li>
+                <p><strong>Formulas:</strong> $\mathbf{B} = \frac{1}{\omega} (\mathbf{k} \times \mathbf{E}) \quad \text{(Eq. 33)}$, $\mathbf{E} \perp \mathbf{B}$, $E/B = c \quad \text{(Eq. 35)}$.</p>
+                <p><strong>Solution:</strong> The argument $\cos(\omega t + k x)$ means the wave propagates in the **$-x$ direction**. Thus, $\mathbf{\hat{k}} = -\mathbf{\hat{x}}$. The magnetic field direction is $\mathbf{\hat{B}} = \mathbf{\hat{z}}$.</p>
+                <p>The energy flow (Poynting) relation is $\mathbf{\hat{k}} \propto \mathbf{\hat{E}} \times \mathbf{\hat{B}}$.</p>
+                $$ -\mathbf{\hat{x}} \propto \mathbf{\hat{E}} \times \mathbf{\hat{z}} $$
+                <p>To satisfy the right-hand rule, $\mathbf{\hat{E}}$ must be in the $-\mathbf{\hat{y}}$ direction, since $(-\mathbf{\hat{y}}) \times (\mathbf{\hat{z}}) = -\mathbf{\hat{x}}$. The magnitude is $E = c B_0$.</p>
+                $$ \mathbf{E} = - c B_0 \mathbf{\hat{y}} \cos(\omega t + k x) $$
+            </li>
+            <li>
+                <p><strong>Formulas:</strong> $P_{rad} = I_{avg}/c$ (absorbing surface) $\quad \text{(Eq. 39)}$, $F = P_{rad} A$.</p>
+                <p><strong>Solution:</strong></p>
+                <p>Radiation Pressure:</p>
+                $$ P_{rad} = \frac{I_{avg}}{c} = \frac{1.0 \times 10^3 \, \text{W/m}^2}{3.0 \times 10^8 \, \text{m/s}} \approx 3.33 \times 10^{-6} \, \text{N/m}^2 \text{ (or Pa)} $$
+                <p>Total Force:</p>
+                $$ F = P_{rad} A = (3.33 \times 10^{-6} \, \text{N/m}^2) (0.50 \, \text{m}^2) \approx 1.67 \times 10^{-6} \, \text{N} $$
+            </li>
+        </ol>
+
+    </div>
+
+</body>
+</html>
