@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Dynamics: Forces, Energy, & Momentum</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. CORE SETUP */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #e2e8f0;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+    padding: 20px 0;
+    place-items: center;
+    margin: 0;
+}
+
+/* 2. SLIDE CONTAINER */
+.slide-container {
+    background-color: #f3f0df; /* Cream background */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    height: 720px;
+    width: 1280px;
+    overflow: hidden;
+    position: relative;
+    padding: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background Geometry for visual interest */
+.slide-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(17, 202, 160, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 0 0 0 100%;
+    z-index: 0;
+}
+
+.slide-container > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* 3. TYPOGRAPHY */
+h1, h2, h3, h4 {
+    font-family: 'Merriweather', serif;
+    color: #005088; /* Deep Blue */
+    margin: 0;
+}
+
+p, li, td, th, span, div {
+    font-family: 'DM Sans', sans-serif;
+    color: #334155;
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+h1 { font-size: 72px; font-weight: 900; letter-spacing: -1px; }
+h2.slide-title { 
+    font-size: 48px; 
+    margin-bottom: 40px; 
+    width: 100%; 
+    text-align: left;
+    border-bottom: 3px solid #11caa0;
+    padding-bottom: 10px;
+}
+h3 { font-size: 28px; font-weight: 700; margin-bottom: 15px; }
+
+/* 4. LAYOUT UTILITIES */
+.content-area {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    justify-content: center;
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    width: 100%;
+    align-items: center;
+}
+
+.two-column.tiled {
+    align-items: stretch;
+}
+
+.two-column.tiled > div {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-top: 5px solid #005088;
+}
+
+/* 5. SPECIFIC COMPONENT STYLES */
+
+/* Title Slide */
+.title-layout {
+    text-align: center;
+    max-width: 900px;
+}
+.title-layout h1 { color: #005088; margin-bottom: 20px; }
+.title-layout p.subtitle { 
+    font-size: 28px; 
+    color: #556; 
+    font-weight: 400;
+}
+.title-divider {
+    height: 4px;
+    width: 100px;
+    background-color: #11caa0;
+    margin: 30px auto;
+}
+
+/* Section Title */
+.section-title-layout {
+    background-color: #005088;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.section-title-layout h2 { color: #f3f0df; font-size: 64px; border: none; padding: 0; margin-bottom: 20px;}
+.section-title-layout p { color: #11caa0; font-size: 24px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;}
+
+/* Tiled Text with Icons */
+.tiled-content {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    justify-content: center;
+    align-items: stretch; /* Ensure tiles are same height */
+}
+.tile {
+    flex: 1;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border-bottom: 4px solid #11caa0;
+    display: flex;
+    flex-direction: column;
+}
+/* Special class for solution tiles to align text left */
+.tile.solution-tile {
+    text-align: left;
+    align-items: flex-start;
+}
+
+.tile .icon {
+    font-size: 48px;
+    color: #005088;
+    margin-bottom: 20px;
+    width: 100%; /* Center icon */
+}
+
+/* Images & SVGs */
+.image-wrapper {
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+}
+.image-wrapper img, .image-wrapper svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+.image-wrapper.contain-mode img {
+    object-fit: contain; 
+}
+
+/* Bleed Layout */
+.slide-container.bleed-image-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0;
+    align-items: start;
+    background-color: #fff; 
+}
+.bleed-text-side {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    background-color: #f3f0df;
+}
+.bleed-image-side {
+    width: 100%;
+    height: 720px; 
+    max-height: 720px;
+    object-fit: cover;
+    background: #eef2f6; /* Fallback for svg container */
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+th {
+    background-color: #005088;
+    color: #fff;
+    padding: 20px;
+    font-weight: 700;
+    text-align: left;
+    font-family: 'Merriweather', serif;
+}
+td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) { background-color: #f8fafc; }
+
+/* Rounded Image */
+.rounded-image-layout .image-wrapper {
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    border: 8px solid #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Tiled Images */
+.image-tile {
+    text-align: center;
+}
+.image-tile .image-wrapper {
+    height: 220px;
+    margin-bottom: 15px;
+}
+.image-tile p {
+    font-weight: 700;
+    color: #005088;
+}
+
+/* Lists */
+ul {
+    list-style: none;
+    padding: 0;
+}
+ul li {
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 15px;
+}
+ul li::before {
+    content: '\f058'; /* FontAwesome Check Circle */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #11caa0;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+/* Math */
+math {
+    font-size: 24px;
+    color: #005088;
+    font-family: 'Times New Roman', serif;
+}
+
+/* Problem Tags */
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 15px;
+}
+.tag.easy { background-color: #11caa0; }
+.tag.medium { background-color: #f59e0b; }
+.tag.hard { background-color: #ef4444; }
+
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide-container" id="slide1">
+    <div class="title-layout">
+        <h1>Dynamics: Forces, Energy, & Momentum</h1>
+        <div class="title-divider"></div>
+        <p class="subtitle">A comprehensive overview of the fundamental principles governing motion and interaction in our physical world.</p>
+    </div>
+</div>
+
+<!-- Slide 2: Section 1 -->
+<div class="slide-container" id="slide2">
+    <div class="section-title-layout">
+        <p>PART 1</p>
+        <h2>Forces & Newton's Laws</h2>
+    </div>
+</div>
+
+<!-- Slide 3: Newton's Laws (Tiled) -->
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Newton's Three Laws of Motion</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-anchor"></i></div>
+                <h3>1. Inertia</h3>
+                <p>An object at rest stays at rest, and an object in motion stays in motion unless acted upon by a net external force.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-rocket"></i></div>
+                <h3>2. Acceleration</h3>
+                <p>Force equals mass times acceleration. The acceleration is directly proportional to force and inversely proportional to mass.</p>
+                <div style="margin-top:10px;">
+                    <math display="block">
+                        <mi>F</mi><mo>=</mo><mi>m</mi><mi>a</mi>
+                    </math>
+                </div>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-handshake"></i></div>
+                <h3>3. Interaction</h3>
+                <p>For every action, there is an equal and opposite reaction. Forces always occur in pairs.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Free Body Diagrams -->
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">Visualizing Forces: Free Body Diagrams</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3>The Key to Problem Solving</h3>
+                <p>A Free Body Diagram (FBD) is a simplified sketch used to show all the forces acting on a specific object.</p>
+                <ul>
+                    <li>Isolate the object of interest.</li>
+                    <li>Represent the object as a dot or box.</li>
+                    <li>Draw vectors (arrows) for each force (Gravity, Normal, Friction, Tension).</li>
+                    <li>Label each vector clearly.</li>
+                </ul>
+            </div>
+            <div class="image-wrapper contain-mode">
+                <!-- SVG Diagram: Free Body Diagram -->
+                <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="500" height="400" fill="#f8fafc"/>
+                    <!-- Ramp -->
+                    <path d="M50 350 L450 350 L450 150 Z" fill="#e2e8f0" stroke="#334155" stroke-width="2"/>
+                    <!-- Block -->
+                    <g transform="translate(250, 250) rotate(-26.5)">
+                        <rect x="-40" y="-40" width="80" height="80" fill="#11caa0" stroke="#005088" stroke-width="2"/>
+                        <!-- Normal Force -->
+                        <line x1="0" y1="-40" x2="0" y2="-120" stroke="#005088" stroke-width="4" marker-end="url(#arrowhead)"/>
+                        <text x="10" y="-100" font-family="DM Sans" font-weight="bold" fill="#005088">N</text>
+                        <!-- Friction -->
+                        <line x1="40" y1="0" x2="100" y2="0" stroke="#005088" stroke-width="4" marker-end="url(#arrowhead)"/>
+                        <text x="80" y="-10" font-family="DM Sans" font-weight="bold" fill="#005088">f</text>
+                    </g>
+                    <!-- Gravity (needs to be straight down) -->
+                    <line x1="250" y1="250" x2="250" y2="350" stroke="#005088" stroke-width="4" marker-end="url(#arrowhead)"/>
+                    <text x="260" y="340" font-family="DM Sans" font-weight="bold" fill="#005088">mg</text>
+                    
+                    <!-- Arrowhead Definition -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#005088" />
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Section 2 -->
+<div class="slide-container" id="slide5">
+    <div class="section-title-layout">
+        <p>PART 2</p>
+        <h2>Conservation of Energy</h2>
+    </div>
+</div>
+
+<!-- Slide 6: Kinetic vs Potential -->
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">Forms of Mechanical Energy</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <h3>Kinetic Energy (KE)</h3>
+                <p>The energy of motion. Any object with mass that is moving possesses kinetic energy.</p>
+                <div style="margin-top: 20px; text-align: center;">
+                    <math display="block">
+                        <mi>KE</mi>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mn>1</mn>
+                            <mn>2</mn>
+                        </mfrac>
+                        <mi>m</mi>
+                        <msup>
+                            <mi>v</mi>
+                            <mn>2</mn>
+                        </msup>
+                    </math>
+                </div>
+            </div>
+            <div>
+                <h3>Gravitational Potential Energy (PE)</h3>
+                <p>Stored energy based on an object's position relative to a reference height.</p>
+                <div style="margin-top: 20px; text-align: center;">
+                    <math display="block">
+                        <mi>PE</mi>
+                        <mo>=</mo>
+                        <mi>m</mi>
+                        <mi>g</mi>
+                        <mi>h</mi>
+                    </math>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; font-weight: bold;">Principle: Total Mechanical Energy (KE + PE) remains constant in an isolated system.</p>
+    </div>
+</div>
+
+<!-- Slide 7: Roller Coaster Example (Bleed) -->
+<div class="slide-container bleed-image-layout" id="slide7">
+    <div class="bleed-text-side">
+        <h3>Example: The Roller Coaster</h3>
+        <p>A roller coaster is the classic example of energy conservation in action.</p>
+        <p><strong>Top of the Hill:</strong> Potential energy is at its maximum, while kinetic energy is nearly zero.</p>
+        <p><strong>Bottom of the Drop:</strong> Potential energy converts to kinetic energy, resulting in maximum speed.</p>
+        <p><strong>The Loop:</strong> A mix of KE and PE keeps the car moving safely through the inversion.</p>
+    </div>
+    <div class="bleed-image-side" style="overflow: hidden; display: flex; align-items: center; justify-content: center; background: #e0f2fe;">
+         <!-- SVG Illustration: Roller Coaster -->
+        <svg viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+            <path d="M-50 200 C 100 200, 200 700, 300 700 S 400 400, 450 400 S 500 700, 650 700" stroke="#cbd5e1" stroke-width="10" fill="none"/>
+            <path d="M-50 190 C 100 190, 200 690, 300 690 S 400 390, 450 390 S 500 690, 650 690" stroke="#005088" stroke-width="6" fill="none"/>
+            <!-- Supports -->
+            <line x1="100" y1="200" x2="100" y2="800" stroke="#94a3b8" stroke-width="4"/>
+            <line x1="300" y1="690" x2="300" y2="800" stroke="#94a3b8" stroke-width="4"/>
+            <line x1="450" y1="400" x2="450" y2="800" stroke="#94a3b8" stroke-width="4"/>
+            <!-- Cart -->
+            <rect x="50" y="240" width="40" height="20" fill="#ef4444" transform="rotate(30, 50, 240)"/>
+            <circle cx="60" cy="270" r="15" fill="#11caa0"/>
+        </svg>
+    </div>
+</div>
+
+<!-- Slide 8: Section 3 -->
+<div class="slide-container" id="slide8">
+    <div class="section-title-layout">
+        <p>PART 3</p>
+        <h2>Conservation of Momentum</h2>
+    </div>
+</div>
+
+<!-- Slide 9: Momentum Basics -->
+<div class="slide-container" id="slide9">
+    <h2 class="slide-title">Understanding Momentum</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3>"Mass in Motion"</h3>
+                <p>Momentum (p) is a vector quantity defined as the product of an object's mass and velocity.</p>
+                <div style="background: #fff; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 5px solid #11caa0;">
+                    <math display="block">
+                        <mi>p</mi>
+                        <mo>=</mo>
+                        <mi>m</mi>
+                        <mi>v</mi>
+                    </math>
+                </div>
+                <h3>Conservation Principle</h3>
+                <p>In a closed system with no external forces, the total momentum before an event equals the total momentum after the event.</p>
+                <math display="block">
+                    <msub><mi>p</mi><mi>initial</mi></msub>
+                    <mo>=</mo>
+                    <msub><mi>p</mi><mi>final</mi></msub>
+                </math>
+            </div>
+            <div style="background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <h4>Why it matters:</h4>
+                <ul style="margin-top: 20px;">
+                    <li>Explains recoil in cannons/rockets.</li>
+                    <li>Critical for analyzing car accidents.</li>
+                    <li>Used in sports (pool, bowling).</li>
+                    <li>Fundamental to particle physics.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: Collisions -->
+<div class="slide-container" id="slide10">
+    <h2 class="slide-title">Types of Collisions</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <h3>Elastic vs. Inelastic</h3>
+                <p><strong>Elastic Collision:</strong> Both momentum and Kinetic Energy are conserved. Objects bounce off each other perfectly (e.g., ideal gas molecules, billiard balls approx).</p>
+                <p><strong>Inelastic Collision:</strong> Only momentum is conserved. Kinetic Energy is lost to heat, sound, or deformation. Objects may stick together (e.g., car crash, clay hitting floor).</p>
+                <p><em>Note: In the real world, perfectly elastic collisions are rare.</em></p>
+            </div>
+            <div class="image-wrapper">
+                 <!-- SVG Illustration: Billiards -->
+                <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="500" height="400" fill="#065f46"/>
+                    <!-- Pocket -->
+                    <circle cx="480" cy="20" r="30" fill="#000"/>
+                    <!-- Cue Ball -->
+                    <circle cx="150" cy="200" r="30" fill="#fff" stroke="#e2e8f0" stroke-width="2"/>
+                    <!-- Motion Line -->
+                    <path d="M50 200 L110 200" stroke="rgba(255,255,255,0.5)" stroke-width="4" stroke-dasharray="8 4"/>
+                    <!-- Red Ball -->
+                    <circle cx="300" cy="200" r="30" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>
+                    <text x="290" y="210" fill="white" font-family="sans-serif" font-weight="bold" font-size="20">8</text>
+                    <!-- Collision Star -->
+                    <path d="M225 200 L240 190 L235 200 L240 210 Z" fill="#fbbf24"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 11: Formulas Table -->
+<div class="slide-container" id="slide11">
+    <h2 class="slide-title">Summary: Key Formulas & Units</h2>
+    <div class="content-area">
+        <table>
+            <thead>
+                <tr>
+                    <th>Concept</th>
+                    <th>Formula</th>
+                    <th>SI Unit</th>
+                    <th>Vector/Scalar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Force</td>
+                    <td><math><mi>F</mi><mo>=</mo><mi>m</mi><mi>a</mi></math></td>
+                    <td>Newton (N)</td>
+                    <td>Vector</td>
+                </tr>
+                <tr>
+                    <td>Kinetic Energy</td>
+                    <td><math><mi>KE</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup></math></td>
+                    <td>Joule (J)</td>
+                    <td>Scalar</td>
+                </tr>
+                <tr>
+                    <td>Potential Energy</td>
+                    <td><math><mi>PE</mi><mo>=</mo><mi>m</mi><mi>g</mi><mi>h</mi></math></td>
+                    <td>Joule (J)</td>
+                    <td>Scalar</td>
+                </tr>
+                <tr>
+                    <td>Momentum</td>
+                    <td><math><mi>p</mi><mo>=</mo><mi>m</mi><mi>v</mi></math></td>
+                    <td>kg·m/s</td>
+                    <td>Vector</td>
+                </tr>
+                <tr>
+                    <td>Impulse</td>
+                    <td><math><mi>J</mi><mo>=</mo><mi>F</mi><mi>&#916;</mi><mi>t</mi></math></td>
+                    <td>N·s</td>
+                    <td>Vector</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Slide 12: Practice Problems -->
+<div class="slide-container" id="slide12">
+    <h2 class="slide-title">Practice Problems</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <span class="tag easy">Simple</span>
+                <h3>Newton's Second Law</h3>
+                <p style="text-align: left; margin-top: 15px;">A 10 kg block is pushed across a frictionless surface with a net force of 50 N.</p>
+                <p style="text-align: left; font-weight: bold;">Calculate the acceleration of the block.</p>
+            </div>
+            <div class="tile">
+                <span class="tag medium">Intermediate</span>
+                <h3>Conservation of Energy</h3>
+                <p style="text-align: left; margin-top: 15px;">A 2 kg rock falls from a cliff that is 20 m high. Assume air resistance is negligible.</p>
+                <p style="text-align: left; font-weight: bold;">Use energy conservation to find its speed just before impact. (g = 10 m/s²)</p>
+            </div>
+            <div class="tile">
+                <span class="tag hard">Hard</span>
+                <h3>Inelastic Collision</h3>
+                <p style="text-align: left; margin-top: 15px;">A 2000 kg truck moving at 10 m/s collides with a stationary 1000 kg car. They lock bumpers and move together.</p>
+                <p style="text-align: left; font-weight: bold;">What is their final combined velocity?</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 13: Solutions -->
+<div class="slide-container" id="slide13">
+    <h2 class="slide-title">Solutions</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile solution-tile">
+                <span class="tag easy">Simple</span>
+                <p><strong>Given:</strong> m = 10 kg, F = 50 N</p>
+                <p><strong>Formula:</strong> <math><mi>F</mi><mo>=</mo><mi>m</mi><mi>a</mi></math> implies <math><mi>a</mi><mo>=</mo><mfrac><mi>F</mi><mi>m</mi></mfrac></math></p>
+                <p><strong>Calculation:</strong></p>
+                <math display="block">
+                    <mi>a</mi><mo>=</mo><mfrac><mn>50</mn><mn>10</mn></mfrac><mo>=</mo><mn>5</mn><mo> </mo><mi>m</mi><mo>/</mo><msup><mi>s</mi><mn>2</mn></msup>
+                </math>
+            </div>
+            <div class="tile solution-tile">
+                <span class="tag medium">Intermediate</span>
+                <p><strong>Given:</strong> m=2, h=20, g=10. Start v=0.</p>
+                <p><strong>Concept:</strong> <math><msub><mi>PE</mi><mi>top</mi></msub><mo>=</mo><msub><mi>KE</mi><mi>bottom</mi></msub></math></p>
+                <math display="block">
+                    <mi>m</mi><mi>g</mi><mi>h</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup>
+                </math>
+                <math display="block">
+                   <mn>10</mn><mo>(</mo><mn>20</mn><mo>)</mo><mo>=</mo><mn>0.5</mn><msup><mi>v</mi><mn>2</mn></msup>
+                </math>
+                <p>200 = 0.5v² → v² = 400</p>
+                <p><strong>v = 20 m/s</strong></p>
+            </div>
+            <div class="tile solution-tile">
+                <span class="tag hard">Hard</span>
+                <p><strong>Given:</strong> m1=2000, v1=10; m2=1000, v2=0.</p>
+                <p><strong>Formula:</strong> <math><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><msub><mi>p</mi><mi>f</mi></msub></math></p>
+                <math display="block">
+                    <msub><mi>m</mi><mn>1</mn></msub><msub><mi>v</mi><mn>1</mn></msub><mo>+</mo><msub><mi>m</mi><mn>2</mn></msub><msub><mi>v</mi><mn>2</mn></msub><mo>=</mo><mo>(</mo><msub><mi>m</mi><mn>1</mn></msub><mo>+</mo><msub><mi>m</mi><mn>2</mn></msub><mo>)</mo><msub><mi>v</mi><mi>f</mi></msub>
+                </math>
+                <math display="block">
+                    <mn>2000</mn><mo>(</mo><mn>10</mn><mo>)</mo><mo>+</mo><mn>0</mn><mo>=</mo><mn>3000</mn><msub><mi>v</mi><mi>f</mi></msub>
+                </math>
+                <p>20,000 = 3000 vf</p>
+                <p><strong>vf ≈ 6.67 m/s</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 14: Section 4 -->
+<div class="slide-container" id="slide14">
+    <div class="section-title-layout">
+        <p>PART 4</p>
+        <h2>Interactive Learning</h2>
+    </div>
+</div>
+
+<!-- Slide 15: Egg Drop Challenge -->
+<div class="slide-container" id="slide15">
+    <h2 class="slide-title">Group Activity: The Egg Drop Challenge</h2>
+    <div class="content-area">
+        <div class="two-column rounded-image-layout">
+            <div class="image-wrapper">
+                <!-- SVG Illustration: Egg Drop -->
+                 <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="200" cy="200" r="190" fill="#e0f2fe"/>
+                    <!-- Parachute -->
+                    <path d="M100 150 Q 200 50, 300 150" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/>
+                    <line x1="100" y1="150" x2="180" y2="250" stroke="#333" stroke-width="2"/>
+                    <line x1="300" y1="150" x2="220" y2="250" stroke="#333" stroke-width="2"/>
+                    <!-- Box -->
+                    <rect x="170" y="250" width="60" height="60" fill="#fbbf24" stroke="#d97706" stroke-width="3"/>
+                    <!-- Egg -->
+                    <ellipse cx="200" cy="270" rx="15" ry="20" fill="#fffbeb" stroke="#d1d5db"/>
+                 </svg>
+            </div>
+            <div>
+                <h3>The Mission</h3>
+                <p>Design a container that can protect a raw egg from a fall of 3 meters.</p>
+                <h4 style="margin-top: 20px; color: #005088;">Physics at Play:</h4>
+                <ul>
+                    <li><strong>Impulse:</strong> Increasing the time of impact to reduce force (<math><mi>F</mi><mo>=</mo><mfrac><mrow><mi>&#916;</mi><mi>p</mi></mrow><mrow><mi>&#916;</mi><mi>t</mi></mrow></mfrac></math>).</li>
+                    <li><strong>Air Resistance:</strong> Using parachutes to reach terminal velocity.</li>
+                    <li><strong>Energy Absorption:</strong> Crumple zones to dissipate kinetic energy.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 16: Real World Examples -->
+<div class="slide-container" id="slide16">
+    <h2 class="slide-title">Physics in the Real World</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="image-tile">
+                <div class="image-wrapper">
+                    <!-- SVG Rocket -->
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="200" height="200" fill="#f1f5f9"/>
+                        <path d="M100 40 L130 100 L120 160 L80 160 L70 100 Z" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+                        <circle cx="100" cy="90" r="10" fill="#bfdbfe"/>
+                        <!-- Flames -->
+                        <path d="M85 160 L100 190 L115 160 Z" fill="#f97316"/>
+                    </svg>
+                </div>
+                <p>Rocket Propulsion (Momentum)</p>
+            </div>
+            <div class="image-tile">
+                <div class="image-wrapper">
+                     <!-- SVG Crash -->
+                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="200" height="200" fill="#fef2f2"/>
+                        <rect x="30" y="80" width="60" height="40" fill="#64748b"/>
+                        <rect x="110" y="80" width="60" height="40" fill="#475569"/>
+                        <!-- Bang -->
+                        <path d="M90 100 L100 70 L110 100 L140 90 L110 110 L120 140 L100 120 L80 140 L90 110 L60 90 Z" fill="#ef4444"/>
+                    </svg>
+                </div>
+                <p>Safety Engineering (Impulse)</p>
+            </div>
+            <div class="image-tile">
+                <div class="image-wrapper">
+                    <!-- SVG Baseball -->
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="200" height="200" fill="#f0fdf4"/>
+                        <!-- Bat -->
+                        <rect x="50" y="50" width="120" height="20" transform="rotate(45, 110, 60)" fill="#d4a373" rx="5"/>
+                        <!-- Ball -->
+                        <circle cx="60" cy="140" r="15" fill="#fff" stroke="#dc2626" stroke-width="2"/>
+                        <!-- Motion -->
+                        <path d="M50 150 L80 120" stroke="#000" stroke-width="2" stroke-dasharray="4"/>
+                    </svg>
+                </div>
+                <p>Sports Dynamics (Energy Transfer)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 17: Q&A -->
+<div class="slide-container" id="slide17">
+    <div class="section-title-layout" style="background: #fff;">
+        <h2 style="color: #005088; font-size: 80px;">Questions?</h2>
+        <p style="color: #334155; font-size: 24px; text-transform: none; margin-top: 20px;">Thank you for exploring dynamics with us.</p>
+        <div style="margin-top: 40px; color: #64748b;">
+            <i class="fa-solid fa-flask" style="font-size: 40px; margin: 0 20px;"></i>
+            <i class="fa-solid fa-atom" style="font-size: 40px; margin: 0 20px;"></i>
+            <i class="fa-solid fa-calculator" style="font-size: 40px; margin: 0 20px;"></i>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
