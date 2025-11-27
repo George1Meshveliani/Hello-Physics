@@ -7,6 +7,7 @@ Click the topic and Enjoy!
 - [`Measuring time`](https://george1meshveliani.github.io/Hello-Physics/MeasuringTime)
 - [`Motion`](https://george1meshveliani.github.io/Hello-Physics/Motion)
 - [`Force`](https://george1meshveliani.github.io/Hello-Physics/Force)
+- [`Force`](https://george1meshveliani.github.io/Hello-Physics/MoreDynamics)
 - [`Density Questions`](https://george1meshveliani.github.io/Hello-Physics/DensityQeustions)
 - [`Some fun`](https://george1meshveliani.github.io/Hello-Physics/SomeFun)
   
