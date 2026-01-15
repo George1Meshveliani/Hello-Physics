@@ -10,6 +10,7 @@ Click the topic and Enjoy!
 - [`More Dynamics`](https://george1meshveliani.github.io/Hello-Physics/MoreDynamics)
 - [`Density Questions`](https://george1meshveliani.github.io/Hello-Physics/DensityQeustions)
 - [`Some fun`](https://george1meshveliani.github.io/Hello-Physics/SomeFun)
+- [`Problems Set 2`](https://george1meshveliani.github.io/Hello-Physics/PSONE)
   
 #### Electricity and magnetism
 - [`Electric charge`](https://george1meshveliani.github.io/Hello-Physics/ElectricCharge)
