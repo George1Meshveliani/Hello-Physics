@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kinematics & Dynamics Challenge</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+  <style>
+    .animate-slide {
+      animation: slideIn 0.25s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div class="min-h-screen p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- HEADER -->
+    <header class="mb-6 text-center">
+      <div class="flex justify-center mb-4">
+        <div class="bg-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-200">
+          🧠
+        </div>
+      </div>
+      <h1 class="text-4xl font-extrabold mb-2">Kinematics & Dynamics</h1>
+      <p class="text-slate-500 text-lg">
+        Understand motion, forces, and Newton’s laws from fundamentals to mastery.
+      </p>
+    </header>
+
+    <!-- FORMULA TOGGLE -->
+    <section class="mb-8 bg-white border border-indigo-100 rounded-2xl shadow-sm overflow-hidden">
+      <button onclick="toggleFormulas()"
+        class="w-full flex justify-between items-center p-4 bg-indigo-600 text-white font-bold">
+        <span>∑ MECHANICS FORMULA REFERENCE</span>
+        <span id="formulaArrow">▲</span>
+      </button>
+
+      <div id="formulaBox" class="p-4 grid md:grid-cols-2 gap-4 bg-indigo-50/30"></div>
+    </section>
+
+    <!-- TABS -->
+    <div class="flex bg-slate-200 p-1 rounded-xl mb-8">
+      <button class="tab-btn active" onclick="setTab('Easy')">Easy</button>
+      <button class="tab-btn" onclick="setTab('Intermediate')">Intermediate</button>
+      <button class="tab-btn" onclick="setTab('Advanced')">Advanced</button>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div id="questionList" class="space-y-4"></div>
+
+    <!-- FOOTER -->
+    <footer class="mt-12 text-center border-t pt-8 text-slate-400 text-sm">
+      Assumes constant acceleration unless stated otherwise.<br>
+      $g = 9.8\,\text{m/s}^2$
+    </footer>
+  </div>
+</div>
+
+<script>
+/* ---------- Math Rendering ---------- */
+function renderMath(el, text) {
+  const parts = text.split(/(\$[^$]+\$)/g);
+  el.innerHTML = "";
+  parts.forEach(part => {
+    if (part.startsWith("$")) {
+      const span = document.createElement("span");
+      katex.render(part.slice(1, -1), span, { throwOnError: false });
+      span.className = "mx-1 text-indigo-900";
+      el.appendChild(span);
+    } else {
+      el.appendChild(document.createTextNode(part));
+    }
+  });
+}
+
+/* ---------- DATA ---------- */
+const formulas = [
+  ["Displacement", "$s = ut + \\frac{1}{2}at^2$"],
+  ["Velocity", "$v = u + at$"],
+  ["Velocity Relation", "$v^2 = u^2 + 2as$"],
+  ["Newton's Second Law", "$\\vec{F} = m\\vec{a}$"],
+  ["Weight", "$W = mg$"],
+  ["Momentum", "$\\vec{p} = m\\vec{v}$"],
+  ["Impulse", "$J = F\\Delta t = \\Delta p$"],
+  ["Friction", "$f = \\mu N$"],
+  ["Centripetal Force", "$F = \\frac{mv^2}{r}$"]
+];
+
+const questions = {
+  Easy: [
+    {
+      q: "A car starts from rest and accelerates at $2\\,\\text{m/s}^2$ for $5$ s. Find its velocity.",
+      s: "$v = u + at = 0 + 2(5) = 10\\,\\text{m/s}$"
+    },
+    {
+      q: "How far does it travel in this time?",
+      s: "$s = ut + \\frac{1}{2}at^2 = 0 + \\frac{1}{2}(2)(25) = 25\\,\\text{m}$"
+    },
+    {
+      q: "What force acts on a $2$ kg mass accelerating at $3\\,\\text{m/s}^2$?",
+      s: "$F = ma = 2 \\times 3 = 6\\,\\text{N}$"
+    }
+  ],
+
+  Intermediate: [
+    {
+      q: "A ball is thrown vertically upward at $20\\,\\text{m/s}$. Find maximum height.",
+      s: "At top $v=0$: $0 = u^2 - 2gh \\Rightarrow h = \\frac{u^2}{2g} = \\frac{400}{19.6} \\approx 20.4\\,\\text{m}$"
+    },
+    {
+      q: "A $5$ kg block on a rough surface ($\\mu=0.2$). Find friction force.",
+      s: "$N = mg = 49\\,\\text{N}$, $f = \\mu N = 9.8\\,\\text{N}$"
+    },
+    {
+      q: "A particle moves in a circle of radius $2$ m at $4$ m/s. Find centripetal force if $m=1$ kg.",
+      s: "$F = \\frac{mv^2}{r} = \\frac{1\\cdot16}{2} = 8\\,\\text{N}$"
+    }
+  ],
+
+  Advanced: [
+    {
+      q: "A block slides down a $30^\\circ$ incline with friction $\\mu=0.1$. Find acceleration.",
+      s: "$a = g(\\sin\\theta - \\mu\\cos\\theta) = 9.8(0.5 - 0.1\\times0.866) \\approx 4.05\\,\\text{m/s}^2$"
+    },
+    {
+      q: "Derive stopping distance for a car braking with constant deceleration $a$.",
+      s: "Using $v^2 = u^2 + 2as$ with $v=0$: $s = \\frac{u^2}{2a}$"
+    },
+    {
+      q: "Explain why passengers lurch forward when a bus stops suddenly.",
+      s: "Due to inertia. The body tends to maintain its state of motion (Newton’s First Law)."
+    }
+  ]
+};
+
+let activeTab = "Easy";
+
+/* ---------- UI ---------- */
+function toggleFormulas() {
+  const box = document.getElementById("formulaBox");
+  const arrow = document.getElementById("formulaArrow");
+  box.classList.toggle("hidden");
+  arrow.textContent = box.classList.contains("hidden") ? "▼" : "▲";
+}
+
+function setTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  event.target.classList.add("active");
+  renderQuestions();
+}
+
+function renderQuestions() {
+  const list = document.getElementById("questionList");
+  list.innerHTML = "";
+
+  questions[activeTab].forEach(item => {
+    const card = document.createElement("div");
+    card.className = "bg-white rounded-2xl border shadow-sm p-6";
+
+    const q = document.createElement("div");
+    q.className = "text-lg mb-4";
+    renderMath(q, item.q);
+
+    const btn = document.createElement("button");
+    btn.className = "text-indigo-600 font-bold text-sm uppercase";
+    btn.textContent = "Show Solution";
+
+    const sol = document.createElement("div");
+    sol.className = "hidden mt-4 bg-slate-50 p-4 rounded-xl animate-slide";
+
+    const solText = document.createElement("div");
+    renderMath(solText, item.s);
+
+    sol.appendChild(solText);
+
+    btn.onclick = () => {
+      sol.classList.toggle("hidden");
+      btn.textContent = sol.classList.contains("hidden") ? "Show Solution" : "Hide Solution";
+    };
+
+    card.append(q, btn, sol);
+    list.appendChild(card);
+  });
+}
+
+/* ---------- INIT ---------- */
+window.onload = () => {
+  const fBox = document.getElementById("formulaBox");
+  formulas.forEach(([name, f]) => {
+    const row = document.createElement("div");
+    row.className = "flex justify-between border-b py-2";
+    const n = document.createElement("span");
+    n.textContent = name;
+    n.className = "font-semibold text-slate-600 text-sm";
+    const fx = document.createElement("span");
+    renderMath(fx, f);
+    row.append(n, fx);
+    fBox.appendChild(row);
+  });
+
+  renderQuestions();
+};
+</script>
+
+<style>
+.tab-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+}
+.tab-btn.active {
+  background: white;
+  color: #4f46e5;
+}
+</style>
+
+</body>
+</html>
