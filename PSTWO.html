@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Electromagnetism Challenge</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+  <style>
+    .animate-slide {
+      animation: slideIn 0.25s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div class="min-h-screen p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- HEADER -->
+    <header class="mb-6 text-center">
+      <div class="flex justify-center mb-4">
+        <div class="bg-blue-600 p-3 rounded-2xl shadow-lg shadow-blue-200">
+          ⚡
+        </div>
+      </div>
+      <h1 class="text-4xl font-extrabold mb-2">Electromagnetism Challenge</h1>
+      <p class="text-slate-500 text-lg">
+        Master the motion of particles in magnetic and electric fields.
+      </p>
+    </header>
+
+    <!-- FORMULA TOGGLE -->
+    <section class="mb-8 bg-white border border-blue-100 rounded-2xl shadow-sm overflow-hidden">
+      <button onclick="toggleFormulas()"
+        class="w-full flex justify-between items-center p-4 bg-blue-600 text-white font-bold">
+        <span>∑ PHYSICS FORMULA REFERENCE</span>
+        <span id="formulaArrow">▲</span>
+      </button>
+
+      <div id="formulaBox" class="p-4 grid md:grid-cols-2 gap-4 bg-blue-50/30"></div>
+    </section>
+
+    <!-- TABS -->
+    <div class="flex bg-slate-200 p-1 rounded-xl mb-8">
+      <button class="tab-btn active" onclick="setTab('Easy')">Easy</button>
+      <button class="tab-btn" onclick="setTab('Intermediate')">Intermediate</button>
+      <button class="tab-btn" onclick="setTab('Advanced')">Advanced</button>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div id="questionList" class="space-y-4"></div>
+
+    <!-- FOOTER -->
+    <footer class="mt-12 text-center border-t pt-8 text-slate-400 text-sm">
+      Constants:<br>
+      $e = 1.6 \times 10^{-19}$ C,
+      $c = 3 \times 10^{8}$ m/s,
+      $\mu_0 = 4\pi \times 10^{-7}$ T·m/A
+    </footer>
+  </div>
+</div>
+
+<script>
+/* ------------------ Math Rendering ------------------ */
+function renderMath(el, text) {
+  const parts = text.split(/(\$[^$]+\$)/g);
+  el.innerHTML = "";
+
+  parts.forEach(part => {
+    if (part.startsWith("$")) {
+      const span = document.createElement("span");
+      katex.render(part.slice(1, -1), span, { throwOnError: false });
+      span.className = "mx-1 text-blue-900";
+      el.appendChild(span);
+    } else {
+      el.appendChild(document.createTextNode(part));
+    }
+  });
+}
+
+/* ------------------ DATA ------------------ */
+const formulas = [
+  ["Lorentz Force", "$\\vec{F}=q(\\vec{E}+\\vec{v}\\times\\vec{B})$"],
+  ["Magnetic Force (Wire)", "$F=ILB\\sin\\theta$"],
+  ["Faraday's Law", "$\\epsilon=-N\\frac{\\Delta\\Phi}{\\Delta t}$"],
+  ["Ampère's Law", "$\\oint\\vec{B}\\cdot d\\vec{l}=\\mu_0 I$"],
+  ["Cyclotron Radius", "$r=\\frac{mv}{qB}$"],
+  ["Cyclotron Frequency", "$f=\\frac{qB}{2\\pi m}$"],
+];
+
+const questions = {
+  Easy: [
+    {
+      q: "A proton moves at $2\\times10^6$ m/s perpendicular to $0.5$ T. Find force.",
+      s: "$F=qvB=(1.6\\times10^{-19})(2\\times10^6)(0.5)=1.6\\times10^{-13}$ N"
+    },
+    {
+      q: "What is the work done by magnetic force?",
+      s: "Zero, since $\\vec{F}\\perp\\vec{v}$"
+    }
+  ],
+
+  Intermediate: [
+    {
+      q: "Find cyclotron frequency of electron in $1.2$ T field.",
+      s: "$f=\\frac{qB}{2\\pi m}\\approx3.36\\times10^{10}$ Hz"
+    }
+  ],
+
+  Advanced: [
+    {
+      q: "Find $E\\times B$ drift velocity.",
+      s: "$\\vec{v}=\\frac{\\vec{E}\\times\\vec{B}}{B^2}$"
+    }
+  ]
+};
+
+let activeTab = "Easy";
+
+/* ------------------ UI FUNCTIONS ------------------ */
+function toggleFormulas() {
+  const box = document.getElementById("formulaBox");
+  const arrow = document.getElementById("formulaArrow");
+  box.classList.toggle("hidden");
+  arrow.textContent = box.classList.contains("hidden") ? "▼" : "▲";
+}
+
+function setTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  event.target.classList.add("active");
+  renderQuestions();
+}
+
+function renderQuestions() {
+  const list = document.getElementById("questionList");
+  list.innerHTML = "";
+
+  questions[activeTab].forEach((item, i) => {
+    const card = document.createElement("div");
+    card.className = "bg-white rounded-2xl border shadow-sm p-6";
+
+    const q = document.createElement("div");
+    q.className = "text-lg mb-4";
+    renderMath(q, item.q);
+
+    const btn = document.createElement("button");
+    btn.className = "text-blue-600 font-bold text-sm uppercase";
+    btn.textContent = "Show Solution";
+
+    const sol = document.createElement("div");
+    sol.className = "hidden mt-4 bg-slate-50 p-4 rounded-xl animate-slide";
+
+    const solText = document.createElement("div");
+    renderMath(solText, item.s);
+
+    sol.appendChild(solText);
+
+    btn.onclick = () => {
+      sol.classList.toggle("hidden");
+      btn.textContent = sol.classList.contains("hidden")
+        ? "Show Solution"
+        : "Hide Solution";
+    };
+
+    card.append(q, btn, sol);
+    list.appendChild(card);
+  });
+}
+
+/* ------------------ INIT ------------------ */
+window.onload = () => {
+  const fBox = document.getElementById("formulaBox");
+  formulas.forEach(([name, f]) => {
+    const row = document.createElement("div");
+    row.className = "flex justify-between border-b py-2";
+    const n = document.createElement("span");
+    n.textContent = name;
+    n.className = "font-semibold text-slate-600 text-sm";
+    const fx = document.createElement("span");
+    renderMath(fx, f);
+    row.append(n, fx);
+    fBox.appendChild(row);
+  });
+
+  renderQuestions();
+};
+</script>
+
+<style>
+.tab-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+}
+.tab-btn.active {
+  background: white;
+  color: #2563eb;
+}
+</style>
+
+</body>
+</html>
+
