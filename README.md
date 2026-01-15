@@ -20,6 +20,7 @@ Click the topic and Enjoy!
 - [`Electric Charge Questions`](https://george1meshveliani.github.io/Hello-Physics/ECQuestions)
 - [`Questions`](https://george1meshveliani.github.io/Hello-Physics/EMQuestions)
 - [`EM Games`](https://george1meshveliani.github.io/Hello-Physics/EMGames)
+- [`Problems Set 2`](https://george1meshveliani.github.io/Hello-Physics/PSTWO)
 
 ### - Advanced Level -
 - [`Motion along straight line`](https://george1meshveliani.github.io/Hello-Physics/AdvancedMotion)
