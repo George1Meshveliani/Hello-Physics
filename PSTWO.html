@@ -38,7 +38,7 @@
       </div>
       <h1 class="text-4xl font-extrabold mb-2">Electromagnetism Challenge</h1>
       <p class="text-slate-500 text-lg">
-        Master the motion of particles in magnetic and electric fields.
+        Problem Set 2: Master the Lorentz force, magnetic fields, and electromagnetic induction.
       </p>
     </header>
 
@@ -46,7 +46,7 @@
     <section class="mb-8 bg-white border border-blue-100 rounded-2xl shadow-sm overflow-hidden">
       <button onclick="toggleFormulas()"
         class="w-full flex justify-between items-center p-4 bg-blue-600 text-white font-bold">
-        <span>∑ PHYSICS FORMULA REFERENCE</span>
+        <span>∑ ELECTROMAGNETISM FORMULA REFERENCE</span>
         <span id="formulaArrow">▲</span>
       </button>
 
@@ -55,9 +55,9 @@
 
     <!-- TABS -->
     <div class="flex bg-slate-200 p-1 rounded-xl mb-8">
-      <button class="tab-btn active" onclick="setTab('Easy')">Easy</button>
-      <button class="tab-btn" onclick="setTab('Intermediate')">Intermediate</button>
-      <button class="tab-btn" onclick="setTab('Advanced')">Advanced</button>
+      <button class="tab-btn active" onclick="setTab('Easy')">Easy (20)</button>
+      <button class="tab-btn" onclick="setTab('Intermediate')">Intermediate (20)</button>
+      <button class="tab-btn" onclick="setTab('Advanced')">Advanced (20)</button>
     </div>
 
     <!-- QUESTIONS -->
@@ -66,9 +66,11 @@
     <!-- FOOTER -->
     <footer class="mt-12 text-center border-t pt-8 text-slate-400 text-sm">
       Constants:<br>
-      $e = 1.6 \times 10^{-19}$ C,
-      $c = 3 \times 10^{8}$ m/s,
-      $\mu_0 = 4\pi \times 10^{-7}$ T·m/A
+      $e = 1.6 \times 10^{-19}\\,\\text{C}$, 
+      $m_e = 9.11 \times 10^{-31}\\,\\text{kg}$, 
+      $m_p = 1.67 \times 10^{-27}\\,\\text{kg}$,
+      $c = 3 \times 10^{8}\\,\\text{m/s}$,
+      $\mu_0 = 4\pi \times 10^{-7}\\,\\text{T}\\cdot\\text{m/A}$
     </footer>
   </div>
 </div>
@@ -93,37 +95,268 @@ function renderMath(el, text) {
 
 /* ------------------ DATA ------------------ */
 const formulas = [
-  ["Lorentz Force", "$\\vec{F}=q(\\vec{E}+\\vec{v}\\times\\vec{B})$"],
-  ["Magnetic Force (Wire)", "$F=ILB\\sin\\theta$"],
-  ["Faraday's Law", "$\\epsilon=-N\\frac{\\Delta\\Phi}{\\Delta t}$"],
-  ["Ampère's Law", "$\\oint\\vec{B}\\cdot d\\vec{l}=\\mu_0 I$"],
-  ["Cyclotron Radius", "$r=\\frac{mv}{qB}$"],
-  ["Cyclotron Frequency", "$f=\\frac{qB}{2\\pi m}$"],
+  ["Electric Force", "$\\vec{F} = q\\vec{E}$"],
+  ["Magnetic Force on Charge", "$\\vec{F} = qvB\\sin\\theta$"],
+  ["Lorentz Force", "$\\vec{F} = q\\vec{E} + q(\\vec{v} \\times \\vec{B})$"],
+  ["Force on Current-Carrying Wire", "$F = BIL\\sin\\theta$"],
+  ["Cyclotron Radius", "$r = \\frac{mv}{qB}$"],
+  ["Cyclotron Frequency", "$f = \\frac{qB}{2\\pi m}$"],
+  ["Faraday's Law (EMF)", "$\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$"],
+  ["Magnetic Flux", "$\\Phi = BA\\cos\\theta$"],
+  ["Ideal Transformer", "$\\frac{V_2}{V_1} = \\frac{N_2}{N_1}$"],
+  ["Transformer Power", "$V_1 I_1 = V_2 I_2$"],
+  ["Magnetic Field (Long Wire)", "$B = \\frac{\\mu_0 I}{2\\pi r}$"],
+  ["Magnetic Field (Solenoid)", "$B = \\mu_0 n I$"],
+  ["Motional EMF", "$\\varepsilon = BLv$"],
 ];
 
 const questions = {
   Easy: [
     {
-      q: "A proton moves at $2\\times10^6$ m/s perpendicular to $0.5$ T. Find force.",
-      s: "$F=qvB=(1.6\\times10^{-19})(2\\times10^6)(0.5)=1.6\\times10^{-13}$ N"
+      q: "1. A proton moves at $2 \\times 10^6\\,\\text{m/s}$ perpendicular to a $0.5\\,\\text{T}$ magnetic field. Find the magnetic force on it.",
+      s: "Using $F = qvB\\sin\\theta$ with $\\theta = 90°$:\n\n$F = qvB = (1.6 \\times 10^{-19})(2 \\times 10^6)(0.5)$\n\n$F = 1.6 \\times 10^{-13}\\,\\text{N}$"
     },
     {
-      q: "What is the work done by magnetic force?",
-      s: "Zero, since $\\vec{F}\\perp\\vec{v}$"
+      q: "2. An electron experiences a force of $3.2 \\times 10^{-14}\\,\\text{N}$ in a uniform electric field. Find the electric field strength.",
+      s: "Using $F = qE$:\n\n$E = \\frac{F}{q} = \\frac{3.2 \\times 10^{-14}}{1.6 \\times 10^{-19}}$\n\n$E = 2 \\times 10^{5}\\,\\text{N/C} = 200\\,\\text{kN/C}$"
+    },
+    {
+      q: "3. A $2\\,\\text{m}$ wire carrying $5\\,\\text{A}$ is placed perpendicular to a $0.3\\,\\text{T}$ magnetic field. Find the force on the wire.",
+      s: "Using $F = BIL\\sin\\theta$ with $\\theta = 90°$:\n\n$F = BIL = (0.3)(5)(2)$\n\n$F = 3\\,\\text{N}$"
+    },
+    {
+      q: "4. A transformer has 100 turns in the primary and 500 turns in the secondary. If the input voltage is $120\\,\\text{V}$, find the output voltage.",
+      s: "Using $\\frac{V_2}{V_1} = \\frac{N_2}{N_1}$:\n\n$V_2 = V_1 \\times \\frac{N_2}{N_1} = 120 \\times \\frac{500}{100}$\n\n$V_2 = 120 \\times 5 = 600\\,\\text{V}$"
+    },
+    {
+      q: "5. What is the magnetic flux through a $0.1\\,\\text{m}^2$ loop in a $0.5\\,\\text{T}$ field perpendicular to the loop?",
+      s: "Using $\\Phi = BA\\cos\\theta$ with $\\theta = 0°$:\n\n$\\Phi = BA = (0.5)(0.1)$\n\n$\\Phi = 0.05\\,\\text{Wb}$"
+    },
+    {
+      q: "6. A charge of $4\\,\\mu\\text{C}$ is placed in an electric field of $5000\\,\\text{N/C}$. Find the force on the charge.",
+      s: "Using $F = qE$:\n\n$F = (4 \\times 10^{-6})(5000)$\n\n$F = 0.02\\,\\text{N} = 20\\,\\text{mN}$"
+    },
+    {
+      q: "7. An electron moves at $10^7\\,\\text{m/s}$ perpendicular to a $0.2\\,\\text{T}$ magnetic field. Find the radius of its circular path.",
+      s: "Using $r = \\frac{mv}{qB}$:\n\n$r = \\frac{(9.11 \\times 10^{-31})(10^7)}{(1.6 \\times 10^{-19})(0.2)}$\n\n$r = \\frac{9.11 \\times 10^{-24}}{3.2 \\times 10^{-20}} = 2.85 \\times 10^{-4}\\,\\text{m}$\n\n$r = 0.285\\,\\text{mm}$"
+    },
+    {
+      q: "8. A step-down transformer has a turn ratio of 10:1. If the input voltage is $220\\,\\text{V}$, what is the output voltage?",
+      s: "Using $\\frac{V_2}{V_1} = \\frac{N_2}{N_1}$:\n\n$V_2 = V_1 \\times \\frac{N_2}{N_1} = 220 \\times \\frac{1}{10}$\n\n$V_2 = 22\\,\\text{V}$"
+    },
+    {
+      q: "9. A wire of length $0.5\\,\\text{m}$ moves at $4\\,\\text{m/s}$ perpendicular to a $0.8\\,\\text{T}$ magnetic field. Find the induced EMF.",
+      s: "Using motional EMF $\\varepsilon = BLv$:\n\n$\\varepsilon = (0.8)(0.5)(4)$\n\n$\\varepsilon = 1.6\\,\\text{V}$"
+    },
+    {
+      q: "10. What is the work done by the magnetic force on a charged particle moving in a magnetic field?",
+      s: "The work done by the magnetic force is always zero.\n\nReason: The magnetic force $\\vec{F} = q\\vec{v} \\times \\vec{B}$ is always perpendicular to the velocity $\\vec{v}$.\n\nSince $W = \\vec{F} \\cdot \\vec{d}$ and $\\vec{F} \\perp \\vec{v}$:\n\n$W = 0$"
+    },
+    {
+      q: "11. A $1.5\\,\\text{m}$ wire carrying $8\\,\\text{A}$ is placed at $30°$ to a $0.4\\,\\text{T}$ magnetic field. Find the force.",
+      s: "Using $F = BIL\\sin\\theta$:\n\n$F = (0.4)(8)(1.5)\\sin 30°$\n\n$F = (0.4)(8)(1.5)(0.5) = 2.4\\,\\text{N}$"
+    },
+    {
+      q: "12. The magnetic flux through a coil changes from $0.2\\,\\text{Wb}$ to $0.5\\,\\text{Wb}$ in $0.1\\,\\text{s}$. If the coil has 50 turns, find the induced EMF.",
+      s: "Using Faraday's Law $\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$:\n\n$\\varepsilon = N\\frac{\\Delta\\Phi}{\\Delta t} = 50 \\times \\frac{0.5 - 0.2}{0.1}$\n\n$\\varepsilon = 50 \\times 3 = 150\\,\\text{V}$"
+    },
+    {
+      q: "13. A proton moves parallel to a magnetic field of $1\\,\\text{T}$. What is the magnetic force on it?",
+      s: "When velocity is parallel to the magnetic field, $\\theta = 0°$:\n\n$F = qvB\\sin 0° = 0$\n\nThe magnetic force is zero when the charge moves parallel to the field."
+    },
+    {
+      q: "14. An ideal transformer has 200 primary turns and 50 secondary turns. If the primary current is $2\\,\\text{A}$, find the secondary current.",
+      s: "For an ideal transformer, power is conserved: $V_1 I_1 = V_2 I_2$\n\nUsing $\\frac{I_2}{I_1} = \\frac{N_1}{N_2}$:\n\n$I_2 = I_1 \\times \\frac{N_1}{N_2} = 2 \\times \\frac{200}{50}$\n\n$I_2 = 2 \\times 4 = 8\\,\\text{A}$"
+    },
+    {
+      q: "15. Calculate the magnetic field at a distance of $0.1\\,\\text{m}$ from a long straight wire carrying $10\\,\\text{A}$.",
+      s: "Using $B = \\frac{\\mu_0 I}{2\\pi r}$:\n\n$B = \\frac{(4\\pi \\times 10^{-7})(10)}{2\\pi (0.1)}$\n\n$B = \\frac{4 \\times 10^{-6}}{0.2} = 2 \\times 10^{-5}\\,\\text{T}$\n\n$B = 20\\,\\mu\\text{T}$"
+    },
+    {
+      q: "16. A rectangular coil of area $0.04\\,\\text{m}^2$ is placed in a $0.25\\,\\text{T}$ field at $60°$ to the field. Find the magnetic flux.",
+      s: "Using $\\Phi = BA\\cos\\theta$:\n\n$\\Phi = (0.25)(0.04)\\cos 60°$\n\n$\\Phi = (0.01)(0.5) = 0.005\\,\\text{Wb}$\n\n$\\Phi = 5\\,\\text{mWb}$"
+    },
+    {
+      q: "17. An electron accelerates through a potential difference of $100\\,\\text{V}$. What kinetic energy does it gain?",
+      s: "The kinetic energy gained equals the work done:\n\n$KE = qV = eV$\n\n$KE = (1.6 \\times 10^{-19})(100)$\n\n$KE = 1.6 \\times 10^{-17}\\,\\text{J}$\n\nOr simply: $KE = 100\\,\\text{eV}$"
+    },
+    {
+      q: "18. A solenoid has 500 turns per meter and carries $3\\,\\text{A}$. Find the magnetic field inside.",
+      s: "Using $B = \\mu_0 n I$:\n\n$B = (4\\pi \\times 10^{-7})(500)(3)$\n\n$B = 6000\\pi \\times 10^{-7}$\n\n$B = 1.88 \\times 10^{-3}\\,\\text{T} = 1.88\\,\\text{mT}$"
+    },
+    {
+      q: "19. A positive charge moves north in a magnetic field pointing east. In which direction is the magnetic force?",
+      s: "Using the right-hand rule for $\\vec{F} = q\\vec{v} \\times \\vec{B}$:\n\n$\\vec{v}$ points North, $\\vec{B}$ points East\n\n$\\vec{v} \\times \\vec{B}$ points upward (out of ground)\n\nFor positive charge: $\\vec{F}$ points upward."
+    },
+    {
+      q: "20. A transformer steps up voltage from $12\\,\\text{V}$ to $120\\,\\text{V}$. If the secondary has 1000 turns, how many turns are in the primary?",
+      s: "Using $\\frac{V_2}{V_1} = \\frac{N_2}{N_1}$:\n\n$\\frac{N_1}{N_2} = \\frac{V_1}{V_2}$\n\n$N_1 = N_2 \\times \\frac{V_1}{V_2} = 1000 \\times \\frac{12}{120}$\n\n$N_1 = 1000 \\times 0.1 = 100$ turns"
     }
   ],
 
   Intermediate: [
     {
-      q: "Find cyclotron frequency of electron in $1.2$ T field.",
-      s: "$f=\\frac{qB}{2\\pi m}\\approx3.36\\times10^{10}$ Hz"
+      q: "1. A proton ($m = 1.67 \\times 10^{-27}\\,\\text{kg}$) moves in a circle of radius $0.1\\,\\text{m}$ in a $0.5\\,\\text{T}$ field. Find its speed.",
+      s: "Using $r = \\frac{mv}{qB}$, solve for $v$:\n\n$v = \\frac{qBr}{m} = \\frac{(1.6 \\times 10^{-19})(0.5)(0.1)}{1.67 \\times 10^{-27}}$\n\n$v = \\frac{8 \\times 10^{-21}}{1.67 \\times 10^{-27}}$\n\n$v = 4.79 \\times 10^{6}\\,\\text{m/s}$"
+    },
+    {
+      q: "2. Find the cyclotron frequency of an electron in a $1.2\\,\\text{T}$ magnetic field.",
+      s: "Using $f = \\frac{qB}{2\\pi m}$:\n\n$f = \\frac{(1.6 \\times 10^{-19})(1.2)}{2\\pi (9.11 \\times 10^{-31})}$\n\n$f = \\frac{1.92 \\times 10^{-19}}{5.73 \\times 10^{-30}}$\n\n$f = 3.35 \\times 10^{10}\\,\\text{Hz} = 33.5\\,\\text{GHz}$"
+    },
+    {
+      q: "3. A charged particle enters a region with both $\\vec{E}$ and $\\vec{B}$ fields perpendicular to each other. For what velocity does the particle travel undeflected?",
+      s: "For undeflected motion, electric and magnetic forces must balance:\n\n$F_E = F_B$\n\n$qE = qvB$\n\n$v = \\frac{E}{B}$\n\nThis is the principle of a velocity selector."
+    },
+    {
+      q: "4. A rectangular loop ($10\\,\\text{cm} \\times 5\\,\\text{cm}$) carries $2\\,\\text{A}$ in a uniform $0.3\\,\\text{T}$ field. Find the maximum torque.",
+      s: "Using $\\tau = NIAB\\sin\\theta$ (max when $\\theta = 90°$):\n\nArea $A = 0.1 \\times 0.05 = 0.005\\,\\text{m}^2$\n\n$\\tau_{max} = NIAB = (1)(2)(0.005)(0.3)$\n\n$\\tau_{max} = 0.003\\,\\text{N}\\cdot\\text{m} = 3\\,\\text{mN}\\cdot\\text{m}$"
+    },
+    {
+      q: "5. A wire loop of area $0.2\\,\\text{m}^2$ rotates at $50\\,\\text{Hz}$ in a $0.4\\,\\text{T}$ field. Find the peak EMF.",
+      s: "Peak EMF for rotating coil: $\\varepsilon_0 = NAB\\omega$\n\n$\\omega = 2\\pi f = 2\\pi(50) = 100\\pi\\,\\text{rad/s}$\n\n$\\varepsilon_0 = (1)(0.2)(0.4)(100\\pi)$\n\n$\\varepsilon_0 = 8\\pi = 25.1\\,\\text{V}$"
+    },
+    {
+      q: "6. An electron moves at $5 \\times 10^6\\,\\text{m/s}$ at $45°$ to a $0.4\\,\\text{T}$ magnetic field. Find the magnetic force.",
+      s: "Using $F = qvB\\sin\\theta$:\n\n$F = (1.6 \\times 10^{-19})(5 \\times 10^6)(0.4)\\sin 45°$\n\n$F = (3.2 \\times 10^{-13})(0.707)$\n\n$F = 2.26 \\times 10^{-13}\\,\\text{N}$"
+    },
+    {
+      q: "7. A transformer with 95% efficiency has 500 primary turns and 50 secondary turns. If the input is $240\\,\\text{V}$ at $2\\,\\text{A}$, find the output current.",
+      s: "Output voltage: $V_2 = V_1 \\times \\frac{N_2}{N_1} = 240 \\times \\frac{50}{500} = 24\\,\\text{V}$\n\nInput power: $P_1 = V_1 I_1 = 240 \\times 2 = 480\\,\\text{W}$\n\nOutput power: $P_2 = 0.95 \\times P_1 = 0.95 \\times 480 = 456\\,\\text{W}$\n\nOutput current: $I_2 = \\frac{P_2}{V_2} = \\frac{456}{24} = 19\\,\\text{A}$"
+    },
+    {
+      q: "8. A proton and an alpha particle ($q = 2e$, $m = 4m_p$) enter the same magnetic field with the same speed. Find the ratio of their radii.",
+      s: "Using $r = \\frac{mv}{qB}$:\n\nFor proton: $r_p = \\frac{m_p v}{eB}$\n\nFor alpha: $r_\\alpha = \\frac{4m_p v}{2eB} = \\frac{2m_p v}{eB}$\n\nRatio: $\\frac{r_\\alpha}{r_p} = \\frac{2m_p v / eB}{m_p v / eB} = 2$"
+    },
+    {
+      q: "9. A metal rod of length $1\\,\\text{m}$ falls vertically at $5\\,\\text{m/s}$ through a horizontal magnetic field of $0.2\\,\\text{T}$. Find the induced EMF.",
+      s: "Using motional EMF $\\varepsilon = BLv$:\n\n$\\varepsilon = (0.2)(1)(5)$\n\n$\\varepsilon = 1\\,\\text{V}$"
+    },
+    {
+      q: "10. Two parallel wires $0.1\\,\\text{m}$ apart carry currents of $10\\,\\text{A}$ and $5\\,\\text{A}$ in the same direction. Find the force per unit length between them.",
+      s: "Using $\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi d}$:\n\n$\\frac{F}{L} = \\frac{(4\\pi \\times 10^{-7})(10)(5)}{2\\pi (0.1)}$\n\n$\\frac{F}{L} = \\frac{2 \\times 10^{-5}}{0.1} = 2 \\times 10^{-4}\\,\\text{N/m}$\n\nThe force is attractive (same direction currents)."
+    },
+    {
+      q: "11. A charged particle moves in a helical path in a uniform magnetic field. Explain why and find the pitch if $v_{\\parallel} = 3 \\times 10^5\\,\\text{m/s}$ and $T = 2 \\times 10^{-7}\\,\\text{s}$.",
+      s: "The particle has velocity components both parallel and perpendicular to $\\vec{B}$.\n\n$v_\\perp$ causes circular motion, $v_\\parallel$ causes linear motion along $\\vec{B}$.\n\nPitch $= v_\\parallel \\times T$\n\n$p = (3 \\times 10^5)(2 \\times 10^{-7})$\n\n$p = 0.06\\,\\text{m} = 6\\,\\text{cm}$"
+    },
+    {
+      q: "12. A square coil of side $0.2\\,\\text{m}$ with 100 turns rotates at $60\\,\\text{Hz}$ in a $0.5\\,\\text{T}$ field. Find the RMS EMF.",
+      s: "Peak EMF: $\\varepsilon_0 = NAB\\omega$\n\n$A = (0.2)^2 = 0.04\\,\\text{m}^2$\n\n$\\omega = 2\\pi f = 2\\pi(60) = 120\\pi\\,\\text{rad/s}$\n\n$\\varepsilon_0 = (100)(0.04)(0.5)(120\\pi) = 240\\pi\\,\\text{V}$\n\nRMS EMF: $\\varepsilon_{rms} = \\frac{\\varepsilon_0}{\\sqrt{2}} = \\frac{240\\pi}{\\sqrt{2}} = 533\\,\\text{V}$"
+    },
+    {
+      q: "13. An electron is accelerated through $10\\,\\text{kV}$ and enters a $0.1\\,\\text{T}$ field perpendicular to its velocity. Find the radius of its path.",
+      s: "First find velocity using $KE = eV$:\n\n$\\frac{1}{2}m_e v^2 = eV$\n\n$v = \\sqrt{\\frac{2eV}{m_e}} = \\sqrt{\\frac{2(1.6 \\times 10^{-19})(10^4)}{9.11 \\times 10^{-31}}}$\n\n$v = \\sqrt{3.51 \\times 10^{15}} = 5.93 \\times 10^7\\,\\text{m/s}$\n\nRadius: $r = \\frac{m_e v}{eB} = \\frac{(9.11 \\times 10^{-31})(5.93 \\times 10^7)}{(1.6 \\times 10^{-19})(0.1)}$\n\n$r = 3.38 \\times 10^{-3}\\,\\text{m} = 3.38\\,\\text{mm}$"
+    },
+    {
+      q: "14. A wire loop is pulled out of a magnetic field region at constant velocity. If $B = 0.5\\,\\text{T}$, $L = 0.1\\,\\text{m}$, and $v = 2\\,\\text{m/s}$, find the induced EMF.",
+      s: "As the loop exits the field, flux decreases.\n\nUsing motional EMF $\\varepsilon = BLv$:\n\n$\\varepsilon = (0.5)(0.1)(2)$\n\n$\\varepsilon = 0.1\\,\\text{V} = 100\\,\\text{mV}$"
+    },
+    {
+      q: "15. In a mass spectrometer, singly ionized carbon-12 atoms ($m = 12\\,\\text{u}$) are accelerated through $5\\,\\text{kV}$. In a $0.8\\,\\text{T}$ field, find the radius of their path.",
+      s: "Mass: $m = 12 \\times 1.66 \\times 10^{-27} = 1.99 \\times 10^{-26}\\,\\text{kg}$\n\nVelocity: $v = \\sqrt{\\frac{2qV}{m}} = \\sqrt{\\frac{2(1.6 \\times 10^{-19})(5000)}{1.99 \\times 10^{-26}}}$\n\n$v = \\sqrt{8.04 \\times 10^{10}} = 2.84 \\times 10^5\\,\\text{m/s}$\n\nRadius: $r = \\frac{mv}{qB} = \\frac{(1.99 \\times 10^{-26})(2.84 \\times 10^5)}{(1.6 \\times 10^{-19})(0.8)}$\n\n$r = 0.044\\,\\text{m} = 4.4\\,\\text{cm}$"
+    },
+    {
+      q: "16. A coil of 200 turns and area $0.01\\,\\text{m}^2$ is placed in a magnetic field. The field increases from $0$ to $0.5\\,\\text{T}$ in $0.02\\,\\text{s}$. Find the average induced EMF.",
+      s: "Using Faraday's Law $\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$:\n\n$\\Delta\\Phi = B_f A - B_i A = (0.5)(0.01) - 0 = 0.005\\,\\text{Wb}$\n\n$\\varepsilon = N\\frac{\\Delta\\Phi}{\\Delta t} = 200 \\times \\frac{0.005}{0.02}$\n\n$\\varepsilon = 200 \\times 0.25 = 50\\,\\text{V}$"
+    },
+    {
+      q: "17. A power station generates $10\\,\\text{MW}$ at $25\\,\\text{kV}$. What voltage should be used for transmission to reduce power loss by a factor of 100?",
+      s: "Power loss in transmission lines: $P_{loss} = I^2 R$\n\nSince $P = IV$, we have $I = \\frac{P}{V}$\n\n$P_{loss} \\propto \\frac{1}{V^2}$\n\nTo reduce loss by factor of 100:\n\n$\\frac{V_2^2}{V_1^2} = 100$\n\n$V_2 = V_1 \\times 10 = 25 \\times 10 = 250\\,\\text{kV}$"
+    },
+    {
+      q: "18. A DC motor has a back EMF of $110\\,\\text{V}$ when running at full speed. If the supply is $120\\,\\text{V}$ and armature resistance is $2\\,\\Omega$, find the current.",
+      s: "The net voltage across the armature resistance:\n\n$V_{net} = V_{supply} - \\varepsilon_{back} = 120 - 110 = 10\\,\\text{V}$\n\nCurrent: $I = \\frac{V_{net}}{R} = \\frac{10}{2} = 5\\,\\text{A}$"
+    },
+    {
+      q: "19. Determine the direction of induced current in a loop when a bar magnet's north pole approaches the loop.",
+      s: "As the north pole approaches, the magnetic flux through the loop increases.\n\nBy Lenz's Law, the induced current opposes this change.\n\nThe induced current creates a magnetic field that opposes the approaching north pole (acts like a north pole facing the magnet).\n\nUsing the right-hand rule: the induced current flows counterclockwise when viewed from the magnet's side."
+    },
+    {
+      q: "20. A Hall probe of thickness $2\\,\\text{mm}$ carries current $0.5\\,\\text{A}$ perpendicular to a $0.3\\,\\text{T}$ magnetic field. If the Hall voltage is $1.5\\,\\text{mV}$, find the charge carrier density.",
+      s: "Hall voltage: $V_H = \\frac{IB}{nqt}$\n\nSolving for $n$:\n\n$n = \\frac{IB}{V_H q t}$\n\n$n = \\frac{(0.5)(0.3)}{(1.5 \\times 10^{-3})(1.6 \\times 10^{-19})(2 \\times 10^{-3})}$\n\n$n = \\frac{0.15}{4.8 \\times 10^{-25}}$\n\n$n = 3.125 \\times 10^{23}\\,\\text{m}^{-3}$"
     }
   ],
 
   Advanced: [
     {
-      q: "Find $E\\times B$ drift velocity.",
-      s: "$\\vec{v}=\\frac{\\vec{E}\\times\\vec{B}}{B^2}$"
+      q: "1. Derive the formula for the $\\vec{E} \\times \\vec{B}$ drift velocity of a charged particle.",
+      s: "In crossed fields, the Lorentz force is:\n\n$\\vec{F} = q\\vec{E} + q\\vec{v} \\times \\vec{B}$\n\nFor drift (no net acceleration), $\\vec{F} = 0$:\n\n$q\\vec{E} = -q\\vec{v}_d \\times \\vec{B}$\n\nTaking cross product with $\\vec{B}$:\n\n$\\vec{E} \\times \\vec{B} = -(\\vec{v}_d \\times \\vec{B}) \\times \\vec{B}$\n\nUsing vector identity:\n\n$\\vec{v}_d = \\frac{\\vec{E} \\times \\vec{B}}{B^2}$\n\nThis drift is independent of charge sign and mass!"
+    },
+    {
+      q: "2. A cyclotron accelerates protons to $20\\,\\text{MeV}$. Find the magnetic field if the dee radius is $0.5\\,\\text{m}$.",
+      s: "At final energy: $KE = \\frac{1}{2}m_p v^2 = 20\\,\\text{MeV} = 20 \\times 1.6 \\times 10^{-13}\\,\\text{J}$\n\n$v = \\sqrt{\\frac{2 \\times KE}{m_p}} = \\sqrt{\\frac{2 \\times 3.2 \\times 10^{-12}}{1.67 \\times 10^{-27}}}$\n\n$v = \\sqrt{3.83 \\times 10^{15}} = 6.19 \\times 10^7\\,\\text{m/s}$\n\nUsing $r = \\frac{mv}{qB}$:\n\n$B = \\frac{m_p v}{q r} = \\frac{(1.67 \\times 10^{-27})(6.19 \\times 10^7)}{(1.6 \\times 10^{-19})(0.5)}$\n\n$B = 1.29\\,\\text{T}$"
+    },
+    {
+      q: "3. A conducting bar slides on rails in a magnetic field $B$. If the bar has mass $m$, length $L$, and the circuit resistance is $R$, find the terminal velocity when released from rest.",
+      s: "As the bar falls, motional EMF: $\\varepsilon = BLv$\n\nInduced current: $I = \\frac{BLv}{R}$\n\nMagnetic force on bar: $F = BIL = \\frac{B^2L^2v}{R}$\n\nAt terminal velocity, $mg = F$:\n\n$mg = \\frac{B^2L^2v_t}{R}$\n\n$v_t = \\frac{mgR}{B^2L^2}$"
+    },
+    {
+      q: "4. A betatron accelerates electrons. If the average magnetic field is $\\bar{B}$ and the field at radius $r$ is $B_r$, show that $\\bar{B} = 2B_r$ for the electron to stay at constant radius.",
+      s: "For circular orbit at radius $r$: $evB_r = \\frac{m_e v}{r}$ ... (1)\n\nFaraday's Law for the changing flux:\n\n$\\oint E \\cdot dl = -\\frac{d\\Phi}{dt}$\n\n$2\\pi r E = -\\frac{d(\\pi r^2 \\bar{B})}{dt} = -\\pi r^2 \\frac{d\\bar{B}}{dt}$\n\nThe induced electric field accelerates the electron:\n\n$eE = \\frac{dp}{dt}$\n\nDifferentiating (1) and combining:\n\n$\\frac{d(evB_r)}{dt} = \\frac{1}{r}\\frac{dp}{dt}$\n\nThis leads to: $\\bar{B} = 2B_r$\n\nThis is the betatron condition."
+    },
+    {
+      q: "5. Derive the self-inductance of a solenoid with $N$ turns, length $l$, and cross-sectional area $A$.",
+      s: "Magnetic field in solenoid: $B = \\mu_0 n I = \\frac{\\mu_0 N I}{l}$\n\nMagnetic flux through one turn: $\\Phi_1 = BA = \\frac{\\mu_0 N I A}{l}$\n\nTotal flux linkage: $\\Lambda = N\\Phi_1 = \\frac{\\mu_0 N^2 I A}{l}$\n\nSelf-inductance $L = \\frac{\\Lambda}{I}$:\n\n$L = \\frac{\\mu_0 N^2 A}{l}$\n\nOr: $L = \\mu_0 n^2 V$ where $V = Al$ is the volume."
+    },
+    {
+      q: "6. A particle with charge $q$ and mass $m$ enters a magnetic field at angle $\\theta$ to $\\vec{B}$. Describe its motion and find the pitch of the helix.",
+      s: "Velocity components:\n\n$v_\\parallel = v\\cos\\theta$ (along $\\vec{B}$) — unchanged\n\n$v_\\perp = v\\sin\\theta$ (perpendicular to $\\vec{B}$) — causes circular motion\n\nRadius of circular motion: $r = \\frac{mv_\\perp}{qB} = \\frac{mv\\sin\\theta}{qB}$\n\nPeriod: $T = \\frac{2\\pi m}{qB}$\n\nPitch (distance along $\\vec{B}$ per revolution):\n\n$p = v_\\parallel \\times T = v\\cos\\theta \\times \\frac{2\\pi m}{qB}$\n\n$p = \\frac{2\\pi mv\\cos\\theta}{qB}$"
+    },
+    {
+      q: "7. In a transformer, the primary has $N_1 = 1000$ turns and the secondary has $N_2 = 100$ turns. If the mutual inductance is $5\\,\\text{H}$, find the self-inductance of the primary (assume perfect coupling).",
+      s: "For a transformer with coupling coefficient $k = 1$:\n\n$M = k\\sqrt{L_1 L_2} = \\sqrt{L_1 L_2}$\n\nAlso, for an ideal transformer:\n\n$\\frac{L_1}{L_2} = \\left(\\frac{N_1}{N_2}\\right)^2 = \\left(\\frac{1000}{100}\\right)^2 = 100$\n\nFrom $M^2 = L_1 L_2$:\n\n$25 = L_1 \\times \\frac{L_1}{100}$\n\n$L_1^2 = 2500$\n\n$L_1 = 50\\,\\text{H}$"
+    },
+    {
+      q: "8. A magnetic dipole with moment $\\vec{\\mu}$ is placed in a non-uniform magnetic field. Derive the force on it.",
+      s: "The potential energy of a dipole in a field:\n\n$U = -\\vec{\\mu} \\cdot \\vec{B}$\n\nForce is the negative gradient of potential energy:\n\n$\\vec{F} = -\\nabla U = \\nabla(\\vec{\\mu} \\cdot \\vec{B})$\n\nFor a dipole aligned with $\\vec{B}$ (along $z$-axis):\n\n$\\vec{F} = \\mu \\nabla B$\n\nIn component form:\n\n$F_z = \\mu \\frac{\\partial B_z}{\\partial z}$\n\nThe dipole experiences a force toward regions of stronger field (if $\\vec{\\mu} \\parallel \\vec{B}$)."
+    },
+    {
+      q: "9. An LC circuit has $L = 10\\,\\text{mH}$ and $C = 100\\,\\mu\\text{F}$. Find the resonant frequency and the maximum current if the capacitor is initially charged to $50\\,\\text{V}$.",
+      s: "Resonant frequency:\n\n$f = \\frac{1}{2\\pi\\sqrt{LC}} = \\frac{1}{2\\pi\\sqrt{(10 \\times 10^{-3})(100 \\times 10^{-6})}}$\n\n$f = \\frac{1}{2\\pi\\sqrt{10^{-6}}} = \\frac{1}{2\\pi \\times 10^{-3}} = 159\\,\\text{Hz}$\n\nEnergy conservation: $\\frac{1}{2}CV_0^2 = \\frac{1}{2}LI_{max}^2$\n\n$I_{max} = V_0\\sqrt{\\frac{C}{L}} = 50\\sqrt{\\frac{100 \\times 10^{-6}}{10 \\times 10^{-3}}}$\n\n$I_{max} = 50\\sqrt{0.01} = 50 \\times 0.1 = 5\\,\\text{A}$"
+    },
+    {
+      q: "10. Derive the magnetic pressure exerted by a magnetic field on a conducting surface.",
+      s: "Energy density in a magnetic field:\n\n$u = \\frac{B^2}{2\\mu_0}$\n\nThe magnetic pressure (force per unit area) equals the energy density:\n\n$P = \\frac{B^2}{2\\mu_0}$\n\nThis can also be derived from the force on surface currents.\n\nFor $B = 1\\,\\text{T}$:\n\n$P = \\frac{1}{2 \\times 4\\pi \\times 10^{-7}} = \\frac{10^7}{8\\pi} \\approx 4 \\times 10^5\\,\\text{Pa}$\n\n$P \\approx 4\\,\\text{atm}$"
+    },
+    {
+      q: "11. A charged particle moves in combined uniform $\\vec{E}$ and $\\vec{B}$ fields where $\\vec{E} \\perp \\vec{B}$. If $|E| = 10^4\\,\\text{V/m}$ and $|B| = 0.1\\,\\text{T}$, find the velocity of particles that pass through undeflected. What type of device uses this principle?",
+      s: "For undeflected motion through crossed fields:\n\n$F_E = F_B$\n\n$qE = qvB$\n\n$v = \\frac{E}{B} = \\frac{10^4}{0.1} = 10^5\\,\\text{m/s}$\n\nThis is the principle of a velocity selector.\n\nApplications:\n1. Mass spectrometer (selects ions of specific velocity)\n2. Wien filter\n3. Particle accelerator beam preparation"
+    },
+    {
+      q: "12. A square loop of side $a$ moves with velocity $v$ into a region of uniform magnetic field $B$ (perpendicular to loop). Find the induced EMF and force as a function of position.",
+      s: "Phase 1: Loop entering (0 < x < a)\n\nFlux: $\\Phi = Bxa$ (where $x$ is length inside field)\n\nEMF: $\\varepsilon = -\\frac{d\\Phi}{dt} = -Ba\\frac{dx}{dt} = -Bav$\n\nCurrent: $I = \\frac{Bav}{R}$\n\nForce (opposing motion): $F = BIa = \\frac{B^2a^2v}{R}$\n\nPhase 2: Loop fully inside (a < x < L-a)\n\n$\\varepsilon = 0$, $F = 0$ (flux constant)\n\nPhase 3: Loop exiting\n\nSame magnitude EMF and force as Phase 1."
+    },
+    {
+      q: "13. An infinite solenoid has radius $R$ and $n$ turns per unit length carrying current $I = I_0\\cos(\\omega t)$. Find the induced electric field at distance $r$ from the axis (both $r < R$ and $r > R$).",
+      s: "Magnetic field in solenoid: $B = \\mu_0 n I_0 \\cos(\\omega t)$\n\nUsing Faraday's Law: $\\oint \\vec{E} \\cdot d\\vec{l} = -\\frac{d\\Phi}{dt}$\n\nBy symmetry, $\\vec{E}$ is circumferential.\n\nFor $r < R$ (inside):\n\n$E(2\\pi r) = -\\frac{d}{dt}[\\pi r^2 B]$\n\n$E = \\frac{\\mu_0 n I_0 \\omega r}{2}\\sin(\\omega t)$\n\nFor $r > R$ (outside):\n\n$E(2\\pi r) = -\\frac{d}{dt}[\\pi R^2 B]$\n\n$E = \\frac{\\mu_0 n I_0 \\omega R^2}{2r}\\sin(\\omega t)$"
+    },
+    {
+      q: "14. Derive the energy stored in an inductor and show that it equals $\\frac{1}{2}LI^2$.",
+      s: "Power delivered to inductor:\n\n$P = IV = I \\times L\\frac{dI}{dt}$\n\nEnergy stored:\n\n$U = \\int P\\,dt = \\int_0^I LI'\\,dI'$\n\n$U = L\\left[\\frac{I'^2}{2}\\right]_0^I = \\frac{1}{2}LI^2$\n\nAlternatively, using energy density:\n\n$u = \\frac{B^2}{2\\mu_0}$\n\nFor a solenoid: $B = \\mu_0 n I$, so:\n\n$u = \\frac{\\mu_0 n^2 I^2}{2}$\n\n$U = u \\times V = \\frac{\\mu_0 n^2 I^2}{2} \\times Al = \\frac{1}{2}LI^2$"
+    },
+    {
+      q: "15. A generator coil rotates at angular velocity $\\omega$ in magnetic field $B$. Derive expressions for the instantaneous EMF and power.",
+      s: "Flux through coil: $\\Phi = NBA\\cos(\\omega t)$\n\nInduced EMF (Faraday's Law):\n\n$\\varepsilon = -\\frac{d\\Phi}{dt} = NBA\\omega\\sin(\\omega t)$\n\nPeak EMF: $\\varepsilon_0 = NBA\\omega$\n\n$\\varepsilon = \\varepsilon_0 \\sin(\\omega t)$\n\nIf connected to resistance $R$:\n\n$I = \\frac{\\varepsilon_0}{R}\\sin(\\omega t)$\n\nInstantaneous power:\n\n$P = \\varepsilon I = \\frac{\\varepsilon_0^2}{R}\\sin^2(\\omega t)$\n\nAverage power:\n\n$\\bar{P} = \\frac{\\varepsilon_0^2}{2R} = \\frac{\\varepsilon_{rms}^2}{R}$"
+    },
+    {
+      q: "16. A rectangular loop (dimensions $a \\times b$) rotates about an axis parallel to the long side in a uniform field $B$. If the loop has resistance $R$ and moment of inertia $I$, find the equation of motion.",
+      s: "Flux: $\\Phi = Bab\\cos\\theta$\n\nInduced EMF: $\\varepsilon = Bab\\dot{\\theta}\\sin\\theta$\n\nCurrent: $i = \\frac{Bab\\dot{\\theta}\\sin\\theta}{R}$\n\nMagnetic torque on the loop:\n\n$\\tau = iAB\\sin\\theta = \\frac{B^2a^2b^2\\dot{\\theta}\\sin^2\\theta}{R}$\n\nThis torque opposes the rotation.\n\nEquation of motion:\n\n$I\\ddot{\\theta} = -\\frac{B^2a^2b^2}{R}\\dot{\\theta}\\sin^2\\theta$\n\nFor small oscillations: $I\\ddot{\\theta} \\approx -\\frac{B^2a^2b^2}{R}\\dot{\\theta}\\theta^2$"
+    },
+    {
+      q: "17. In a tokamak, plasma is confined by a helical magnetic field. If the toroidal field is $B_T$ and poloidal field is $B_P$, derive the condition for particle confinement.",
+      s: "The plasma is confined in a torus of major radius $R$ and minor radius $a$.\n\nToroidal field: $B_T = \\frac{\\mu_0 N I_T}{2\\pi R}$ (varies as $1/R$)\n\nPoloidal field: $B_P = \\frac{\\mu_0 I_P}{2\\pi a}$\n\nSafety factor (key for stability):\n\n$q = \\frac{a B_T}{R B_P}$\n\nFor MHD stability: $q > 1$ (typically $q > 2-3$)\n\nParticle confinement requires:\n\n1. Larmor radius $r_L = \\frac{mv_\\perp}{qB} << a$\n\n2. Drift velocity controlled by helical field configuration\n\n3. $\\beta = \\frac{p}{B^2/2\\mu_0} < \\beta_{crit}$"
+    },
+    {
+      q: "18. Derive the mutual inductance between two coaxial circular loops of radii $a$ and $b$ ($a << b$) separated by distance $d$.",
+      s: "The larger loop (radius $b$) carrying current $I$ creates field at distance $d$ along axis:\n\n$B = \\frac{\\mu_0 I b^2}{2(b^2 + d^2)^{3/2}}$\n\nFor $a << b$ and $d \\approx 0$:\n\n$B \\approx \\frac{\\mu_0 I}{2b}$\n\nFlux through smaller loop:\n\n$\\Phi = B \\times \\pi a^2 = \\frac{\\mu_0 I \\pi a^2}{2b}$\n\nMutual inductance:\n\n$M = \\frac{\\Phi}{I} = \\frac{\\mu_0 \\pi a^2}{2b}$\n\nFor general separation $d$:\n\n$M = \\frac{\\mu_0 \\pi a^2 b^2}{2(b^2 + d^2)^{3/2}}$"
+    },
+    {
+      q: "19. A conducting disk of radius $R$ rotates at angular velocity $\\omega$ in a uniform magnetic field $B$ perpendicular to the disk (Faraday disk generator). Find the EMF between center and rim.",
+      s: "Consider a radial strip at radius $r$, width $dr$.\n\nVelocity of strip: $v = \\omega r$\n\nMotional EMF in strip: $d\\varepsilon = Bv\\,dr = B\\omega r\\,dr$\n\nTotal EMF from center to rim:\n\n$\\varepsilon = \\int_0^R B\\omega r\\,dr = B\\omega\\left[\\frac{r^2}{2}\\right]_0^R$\n\n$\\varepsilon = \\frac{1}{2}B\\omega R^2$\n\nAlternatively, using flux:\n\nFlux swept per revolution: $\\Phi = B\\pi R^2$\n\nEMF = Rate of flux cutting = $\\frac{B\\pi R^2}{T} = \\frac{B\\pi R^2 \\omega}{2\\pi} = \\frac{B\\omega R^2}{2}$"
+    },
+    {
+      q: "20. A superconducting ring of inductance $L$ carries persistent current $I_0$. If a section becomes normal with resistance $R$, derive the time constant and energy dissipation.",
+      s: "When part of the ring becomes normal:\n\n$L\\frac{dI}{dt} + IR = 0$\n\nSolution: $I(t) = I_0 e^{-t/\\tau}$ where $\\tau = \\frac{L}{R}$\n\nInitial stored energy:\n\n$U_0 = \\frac{1}{2}LI_0^2$\n\nEnergy dissipated in resistance:\n\n$W = \\int_0^\\infty I^2 R\\,dt = \\int_0^\\infty I_0^2 e^{-2t/\\tau} R\\,dt$\n\n$W = I_0^2 R \\times \\frac{\\tau}{2} = I_0^2 R \\times \\frac{L}{2R} = \\frac{1}{2}LI_0^2$\n\nAll stored magnetic energy is dissipated as heat in the resistance.\n\nFor large magnets, this can cause a \"quench\" - rapid heating and potential damage."
     }
   ]
 };
@@ -165,6 +398,7 @@ function renderQuestions() {
     sol.className = "hidden mt-4 bg-slate-50 p-4 rounded-xl animate-slide";
 
     const solText = document.createElement("div");
+    solText.className = "whitespace-pre-line";
     renderMath(solText, item.s);
 
     sol.appendChild(solText);
@@ -216,4 +450,3 @@ window.onload = () => {
 
 </body>
 </html>
-
