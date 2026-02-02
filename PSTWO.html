@@ -64,13 +64,13 @@
     <div id="questionList" class="space-y-4"></div>
 
     <!-- FOOTER -->
-    <footer class="mt-12 text-center border-t pt-8 text-slate-400 text-sm">
-      Constants:<br>
-      $e = 1.6 \times 10^{-19}\\,\\text{C}$, 
-      $m_e = 9.11 \times 10^{-31}\\,\\text{kg}$, 
-      $m_p = 1.67 \times 10^{-27}\\,\\text{kg}$,
-      $c = 3 \times 10^{8}\\,\\text{m/s}$,
-      $\mu_0 = 4\pi \times 10^{-7}\\,\\text{T}\\cdot\\text{m/A}$
+    <footer class="mt-12 text-center border-t pt-8 text-slate-400 text-sm" id="pageFooter">
+      <span class="block font-medium text-slate-500 mb-1">Constants &amp; units</span>
+      <span id="footerMath">$e = 1.6 \times 10^{-19}\,\text{C}$,
+      $m_e = 9.11 \times 10^{-31}\,\text{kg}$,
+      $m_p = 1.67 \times 10^{-27}\,\text{kg}$,
+      $c = 3 \times 10^{8}\,\text{m/s}$,
+      $\mu_0 = 4\pi \times 10^{-7}\,\text{T}\cdot\text{m/A}$</span>
     </footer>
   </div>
 </div>
@@ -431,10 +431,19 @@ window.onload = () => {
   });
 
   renderQuestions();
+
+  // Render footer math (symbols and units) with KaTeX
+  const footerMath = document.getElementById('footerMath');
+  if (footerMath) {
+    const footerText = footerMath.textContent;
+    renderMath(footerMath, footerText);
+  }
 };
 </script>
 
 <style>
+#pageFooter .katex { font-size: 1em; }
+#pageFooter .katex, #pageFooter .katex * { color: inherit; }
 .tab-btn {
   flex: 1;
   padding: 0.75rem;

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DC Motor, AC Generator & Transformers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: { processHtmlClass: 'mathjax-safe' },
+            chtml: { scale: 1.1 }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; line-height: 1.75; }
+        .container { max-width: 880px; }
+        .mjx-chtml { font-size: 1.1em !important; }
+        .info-box { border-left: 4px solid #3b82f6; padding: 1rem 1.25rem; margin: 1rem 0; background-color: #eff6ff; border-radius: 0.5rem; }
+        .example-box { border-left: 4px solid #059669; padding: 1rem 1.25rem; margin: 1rem 0; background-color: #ecfdf5; border-radius: 0.5rem; }
+        .problem-box { border: 1px solid #e5e7eb; padding: 1rem 1.25rem; margin: 1rem 0; background-color: #f9fafb; border-radius: 0.5rem; }
+        .section-anchor { scroll-margin-top: 1rem; }
+        .diagram-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1rem; margin: 1rem 0; overflow-x: auto; }
+        .sim-box { background: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 100%); border: 1px solid #c7d2fe; border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0; }
+        .rotating-coil { animation: rotate-coil 4s linear infinite; transform-origin: center; }
+        .rotating-magnet { animation: rotate-magnet 3s linear infinite; transform-origin: center; }
+        .pulse-current { animation: pulse-current 1.5s ease-in-out infinite; }
+        .ac-wave { stroke-dasharray: 4 2; animation: dash 0.5s linear infinite; }
+        @keyframes rotate-coil { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes rotate-magnet { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes pulse-current { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes dash { to { stroke-dashoffset: -6; } }
+        .sim-paused .rotating-coil, .sim-paused .rotating-magnet { animation-play-state: paused; }
+        @media print {
+            .no-print { display: none !important; }
+            .rotating-coil, .rotating-magnet { animation: none !important; }
+            @page { margin: 0.8in; }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 mathjax-safe">
+    <div class="container mx-auto bg-white shadow-xl rounded-xl p-6 sm:p-10">
+        <header class="text-center mb-10 pb-5 border-b-2 border-indigo-100">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-indigo-700">DC Motor, AC Generator & Transformers</h1>
+            <p class="text-lg text-gray-600 mt-2">Core ideas, diagrams, simulations, and how they connect</p>
+        </header>
+
+        <nav class="no-print mb-8 p-4 bg-slate-50 rounded-xl">
+            <h3 class="font-semibold text-slate-700 mb-2">Sections (linkable)</h3>
+            <ul class="list-disc list-inside space-y-1 text-sm text-indigo-600">
+                <li><a href="#initials" class="hover:underline">Meaning of initials (DC, AC, EMF, …)</a></li>
+                <li><a href="#dc-motor" class="hover:underline">DC Motor</a></li>
+                <li><a href="#ac-generator" class="hover:underline">AC Generator</a></li>
+                <li><a href="#dc-vs-ac" class="hover:underline">DC vs AC – Differences & Usage</a></li>
+                <li><a href="#transformers" class="hover:underline">Transformers</a></li>
+                <li><a href="#how-they-connect" class="hover:underline">How AC Generator, Transformer & DC Motor Connect</a></li>
+                <li><a href="#simulations-comparison" class="hover:underline">Simulations & comparison</a></li>
+                <li><a href="#transformer-examples" class="hover:underline">Transformer Worked Examples</a></li>
+                <li><a href="#transformer-problems" class="hover:underline">15 Transformer Problems</a></li>
+            </ul>
+        </nav>
+
+        <div class="no-print text-center mb-6">
+            <button onclick="window.print()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow">Print / PDF</button>
+        </div>
+
+        <!-- ========== MEANING OF INITIALS ========== -->
+        <section id="initials" class="mb-10 section-anchor">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">Meaning of initials</h2>
+            <p class="mb-4">Abbreviations used in this topic:</p>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li><strong>DC</strong> = <strong>D</strong>irect <strong>C</strong>urrent — current that flows in one direction only (e.g. from a battery).</li>
+                <li><strong>AC</strong> = <strong>A</strong>lternating <strong>C</strong>urrent — current that reverses direction periodically (e.g. mains supply).</li>
+                <li><strong>EMF</strong> = <strong>E</strong>lectro<strong>m</strong>otive <strong>F</strong>orce — voltage produced by a source (battery, generator, or induction); unit: volt (V).</li>
+                <li><strong>N</strong> (in transformers) = number of <strong>turns</strong> of wire in a coil ($N_1$ primary, $N_2$ secondary).</li>
+                <li><strong>V</strong> = voltage (potential difference); <strong>I</strong> = current; <strong>P</strong> = power ($P = VI$).</li>
+            </ul>
+        </section>
+
+        <!-- ========== DC MOTOR ========== -->
+        <section id="dc-motor" class="mb-10 section-anchor">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">1. DC Motor – Structure, main idea & working principle</h2>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">1.1 Main idea</h3>
+            <p><strong>DC</strong> = Direct Current. A <strong>DC motor</strong> converts <strong>electrical energy</strong> (from a DC source) into <strong>mechanical energy</strong> (rotation). Core idea: a current-carrying conductor in a magnetic field experiences a force $\mathbf{F} = I \mathbf{L} \times \mathbf{B}$ ($F = BIL\sin\theta$). A coil in a field experiences a <strong>torque</strong> that rotates it.</p>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">1.2 Working principle</h3>
+            <p>Current from the supply flows through <strong>brushes</strong> → <strong>commutator</strong> (split ring) → <strong>armature coil</strong>. The coil sits in the magnetic field of the <strong>stator</strong>. The two sides of the coil get opposite forces, producing a torque. The <strong>commutator</strong> (split ring) reverses the current in the coil every half turn so the torque always acts in the same direction. <strong>Brushes</strong> are fixed contacts (often carbon) that press against the rotating commutator; they carry DC from the supply into the rotating coil.</p>
+
+            <div class="info-box">
+                <strong>What is a brush? What does it do?</strong><br>
+                A <strong>brush</strong> is a fixed block (often carbon or metal) that <em>presses against</em> the rotating part (commutator or slip ring). <strong>Role:</strong> it carries current between the <em>fixed</em> wires (supply or load) and the <em>rotating</em> coil, so the coil can turn while staying connected to the circuit. In a DC motor there are two brushes (+ and −); they touch the commutator so DC flows into the coil as it spins.
+            </div>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">1.3 Structure diagram</h3>
+            <div class="diagram-box">
+                <p class="text-sm text-gray-600 mb-2 font-medium">DC motor — main parts (simplified side view)</p>
+                <svg viewBox="0 0 340 230" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Stator magnets (N-S) -->
+                    <rect x="20" y="35" width="38" height="22" fill="#ef4444" stroke="#b91c1c" stroke-width="1"/>
+                    <text x="32" y="52" fill="white" font-size="11" font-weight="bold">N</text>
+                    <rect x="20" y="133" width="38" height="22" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1"/>
+                    <text x="32" y="150" fill="white" font-size="11" font-weight="bold">S</text>
+                    <rect x="282" y="35" width="38" height="22" fill="#ef4444" stroke="#b91c1c" stroke-width="1"/>
+                    <text x="294" y="52" fill="white" font-size="11" font-weight="bold">N</text>
+                    <rect x="282" y="133" width="38" height="22" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1"/>
+                    <text x="294" y="150" fill="white" font-size="11" font-weight="bold">S</text>
+                    <path d="M 58 46 Q 170 88 280 46" stroke="#94a3b8" stroke-width="0.5" fill="none" stroke-dasharray="3 2"/>
+                    <path d="M 58 144 Q 170 102 280 144" stroke="#94a3b8" stroke-width="0.5" fill="none" stroke-dasharray="3 2"/>
+                    <!-- Rotor coil -->
+                    <g class="rotating-coil" id="dc-coil">
+                        <rect x="130" y="65" width="80" height="70" fill="none" stroke="#059669" stroke-width="3" rx="4"/>
+                        <line x1="170" y1="65" x2="170" y2="135" stroke="#059669" stroke-width="2"/>
+                        <line x1="130" y1="100" x2="210" y2="100" stroke="#059669" stroke-width="2"/>
+                    </g>
+                    <circle cx="170" cy="100" r="6" fill="#64748b"/>
+                    <!-- Commutator (split ring) - circle with gap line so split is clear -->
+                    <circle cx="170" cy="100" r="20" fill="none" stroke="#78716c" stroke-width="5"/>
+                    <line x1="170" y1="80" x2="170" y2="120" stroke="#e2e8f0" stroke-width="5"/>
+                    <text x="170" y="218" text-anchor="middle" font-size="11" fill="#475569">Commutator (split ring)</text>
+                    <!-- Brushes: block shape + contact area touching commutator -->
+                    <rect x="72" y="85" width="18" height="30" fill="#57534e" stroke="#44403c" stroke-width="1" rx="2"/>
+                    <rect x="72" y="88" width="12" height="8" fill="#78716c" stroke="#57534e"/>
+                    <text x="81" y="128" text-anchor="middle" font-size="10" font-weight="bold" fill="#44403c">Brush</text>
+                    <text x="81" y="140" text-anchor="middle" font-size="9" fill="#64748b">(fixed,</text>
+                    <text x="81" y="150" text-anchor="middle" font-size="9" fill="#64748b">touches ring)</text>
+                    <rect x="250" y="85" width="18" height="30" fill="#57534e" stroke="#44403c" stroke-width="1" rx="2"/>
+                    <rect x="256" y="88" width="12" height="8" fill="#78716c" stroke="#57534e"/>
+                    <text x="259" y="128" text-anchor="middle" font-size="10" font-weight="bold" fill="#44403c">Brush</text>
+                    <!-- Wires to supply -->
+                    <path d="M 0 100 L 72 100" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowred)"/>
+                    <path d="M 268 100 L 340 100" stroke="#2563eb" stroke-width="2"/>
+                    <defs><marker id="arrowred" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#dc2626"/></marker></defs>
+                    <text x="18" y="105" font-size="10" fill="#dc2626">+ DC</text>
+                    <text x="318" y="105" font-size="10" fill="#2563eb">−</text>
+                </svg>
+                <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                    <li><strong>Stator</strong> — fixed N–S magnets create the field.</li>
+                    <li><strong>Rotor (armature)</strong> — coil (green) carries current and rotates.</li>
+                    <li><strong>Commutator</strong> — <em>split</em> ring (two halves). As the coil turns, the brushes contact opposite halves every half turn, so the current in the coil <em>reverses</em> → torque always in one direction (DC motor).</li>
+                    <li><strong>Brushes</strong> — fixed blocks that <em>slide on</em> the commutator; they carry DC from the supply to the rotating coil.</li>
+                </ul>
+            </div>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">1.4 Simulation</h3>
+            <div class="sim-box no-print">
+                <p class="text-sm font-medium text-gray-700 mb-2">Simulation: DC motor — coil rotation (animation)</p>
+                <p class="text-xs text-gray-600 mb-2">The green coil above rotates when the page is loaded. Commutator keeps torque direction fixed so rotation is continuous.</p>
+                <button type="button" onclick="document.getElementById('dc-motor').querySelector('.diagram-box').classList.toggle('sim-paused'); this.textContent = document.getElementById('dc-motor').querySelector('.diagram-box').classList.contains('sim-paused') ? 'Play' : 'Pause';" class="px-3 py-1 bg-indigo-600 text-white rounded text-sm">Pause</button>
+            </div>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">1.5 Back EMF</h3>
+            <p>When the coil rotates, it cuts flux → induced EMF opposes the supply (<strong>back EMF</strong> $\mathcal{E}_b$). So $I = (V - \mathcal{E}_b)/R$. Under load the motor slows, $\mathcal{E}_b$ drops, current increases.</p>
+        </section>
+
+        <!-- ========== AC GENERATOR ========== -->
+        <section id="ac-generator" class="mb-10 section-anchor">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">2. AC Generator – Structure, main idea & working principle</h2>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">2.1 Main idea</h3>
+            <p><strong>AC</strong> = Alternating Current. An <strong>AC generator</strong> (alternator) converts <strong>mechanical energy</strong> (rotation) into <strong>electrical energy</strong> as <strong>AC</strong>. Core idea: changing magnetic flux through a coil induces an EMF (Faraday’s law). Rotating a coil in a fixed field (or a magnet past a coil) makes the flux change periodically → sinusoidal AC output.</p>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">2.2 Working principle</h3>
+            <p>The coil (or magnet) is rotated by an external force (turbine, engine). Flux through the coil is $\Phi = NBA\cos(\omega t)$. Faraday’s law gives $\mathcal{E} = -d\Phi/dt = NBA\omega\sin(\omega t)$ → sinusoidal AC. <strong>Slip rings</strong> are <em>full</em> rings (no split). <strong>Brushes</strong> press against the slip rings and carry the AC from the rotating coil to the fixed load wires. Unlike the DC motor, there is no reversal of which brush touches which part of the ring — so the voltage from the coil is delivered as-is (AC).</p>
+
+            <div class="info-box">
+                <strong>Difference: commutator vs slip rings, and the role of brushes</strong><br>
+                <strong>DC motor:</strong> <em>Commutator</em> = <strong>split</strong> ring (two halves). Brushes touch the two halves; as the coil rotates, the connection to + and − swaps every half turn, so the <em>current in the coil</em> reverses → torque always the same direction. Brushes carry <strong>DC</strong> from the supply into the coil.<br>
+                <strong>AC generator:</strong> <em>Slip rings</em> = <strong>full</strong> rings (no split). Each end of the coil is connected to one ring. Brushes just take the voltage from the rotating coil to the load. The voltage from the coil is already <strong>AC</strong>; brushes do not reverse anything — they only provide a sliding contact so the rotating coil stays connected to the fixed circuit.
+            </div>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">2.3 Structure diagram</h3>
+            <div class="diagram-box">
+                <p class="text-sm text-gray-600 mb-2 font-medium">AC generator — coil, slip rings (full rings), brushes</p>
+                <svg viewBox="0 0 340 240" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Stator N-S -->
+                    <rect x="20" y="28" width="32" height="20" fill="#ef4444" stroke="#b91c1c"/>
+                    <text x="30" y="43" fill="white" font-size="10" font-weight="bold">N</text>
+                    <rect x="20" y="162" width="32" height="20" fill="#3b82f6" stroke="#1d4ed8"/>
+                    <text x="30" y="177" fill="white" font-size="10" font-weight="bold">S</text>
+                    <rect x="288" y="28" width="32" height="20" fill="#ef4444" stroke="#b91c1c"/>
+                    <text x="298" y="43" fill="white" font-size="10" font-weight="bold">N</text>
+                    <rect x="288" y="162" width="32" height="20" fill="#3b82f6" stroke="#1d4ed8"/>
+                    <text x="298" y="177" fill="white" font-size="10" font-weight="bold">S</text>
+                    <!-- Rotating coil -->
+                    <g class="rotating-magnet" id="ac-coil">
+                        <rect x="132" y="72" width="76" height="56" fill="none" stroke="#7c3aed" stroke-width="2.5" rx="3"/>
+                        <line x1="170" y1="72" x2="170" y2="128" stroke="#7c3aed" stroke-width="2"/>
+                        <line x1="132" y1="100" x2="208" y2="100" stroke="#7c3aed" stroke-width="2"/>
+                    </g>
+                    <circle cx="170" cy="100" r="5" fill="#64748b"/>
+                    <!-- Slip rings = full circles (no gap) -->
+                    <circle cx="170" cy="100" r="24" fill="none" stroke="#78716c" stroke-width="4"/>
+                    <circle cx="170" cy="100" r="32" fill="none" stroke="#78716c" stroke-width="4"/>
+                    <text x="170" y="228" text-anchor="middle" font-size="11" fill="#475569">Slip rings (full rings, no split)</text>
+                    <!-- Brushes: same style as DC motor - block touching ring -->
+                    <rect x="68" y="82" width="18" height="36" fill="#57534e" stroke="#44403c" stroke-width="1" rx="2"/>
+                    <rect x="68" y="85" width="12" height="10" fill="#78716c" stroke="#57534e"/>
+                    <text x="77" y="132" text-anchor="middle" font-size="10" font-weight="bold" fill="#44403c">Brush</text>
+                    <text x="77" y="142" text-anchor="middle" font-size="9" fill="#64748b">(touches ring,</text>
+                    <text x="77" y="152" text-anchor="middle" font-size="9" fill="#64748b">takes AC out)</text>
+                    <rect x="254" y="82" width="18" height="36" fill="#57534e" stroke="#44403c" stroke-width="1" rx="2"/>
+                    <rect x="260" y="85" width="12" height="10" fill="#78716c" stroke="#57534e"/>
+                    <text x="263" y="132" text-anchor="middle" font-size="10" font-weight="bold" fill="#44403c">Brush</text>
+                    <!-- Output wires (AC) -->
+                    <path d="M 0 98 L 68 98" stroke="#dc2626" stroke-width="2" class="pulse-current"/>
+                    <path d="M 272 98 L 340 98" stroke="#2563eb" stroke-width="2" class="pulse-current"/>
+                    <text x="8" y="103" font-size="10" fill="#475569">AC out</text>
+                    <text x="308" y="103" font-size="10" fill="#475569">AC out</text>
+                </svg>
+                <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                    <li><strong>Stator</strong> — fixed N–S magnets create the field.</li>
+                    <li><strong>Rotor</strong> — coil (purple) is rotated; flux through it changes → EMF is AC.</li>
+                    <li><strong>Slip rings</strong> — <em>full</em> rings (no split). The coil’s AC is fed out through them; no reversal of connection.</li>
+                    <li><strong>Brushes</strong> — fixed blocks sliding on the slip rings; they carry the AC from the rotating coil to the fixed output wires.</li>
+                </ul>
+            </div>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">2.4 Simulation</h3>
+            <div class="sim-box no-print">
+                <p class="text-sm font-medium text-gray-700 mb-2">Simulation: AC generator — coil rotation produces AC</p>
+                <p class="text-xs text-gray-600 mb-2">The coil above rotates; flux $\Phi$ through it varies as $\cos(\omega t)$ → EMF $\mathcal{E} = \mathcal{E}_0\sin(\omega t)$. Output is sinusoidal AC.</p>
+                <button type="button" onclick="var box = document.getElementById('ac-generator').querySelector('.diagram-box'); box.classList.toggle('sim-paused'); this.textContent = box.classList.contains('sim-paused') ? 'Play' : 'Pause';" class="px-3 py-1 bg-indigo-600 text-white rounded text-sm">Pause</button>
+            </div>
+
+            <div class="info-box mt-4">
+                <strong>Formula:</strong> $\mathcal{E} = NBA\omega\sin(\omega t)$, peak $\mathcal{E}_0 = NBA\omega$.
+            </div>
+        </section>
+
+        <!-- ========== DC vs AC ========== -->
+        <section id="dc-vs-ac" class="mb-10 section-anchor">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">3. DC vs AC – Differences & usage</h2>
+            <table class="w-full border border-gray-300 text-sm my-4">
+                <thead class="bg-indigo-50">
+                    <tr><th class="border border-gray-300 p-2 text-left">Aspect</th><th class="border border-gray-300 p-2 text-left">DC</th><th class="border border-gray-300 p-2 text-left">AC</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="border border-gray-300 p-2">Direction</td><td class="border border-gray-300 p-2">Constant</td><td class="border border-gray-300 p-2">Reverses periodically</td></tr>
+                    <tr><td class="border border-gray-300 p-2">Typical source</td><td class="border border-gray-300 p-2">Batteries, rectifiers</td><td class="border border-gray-300 p-2">Generators, mains</td></tr>
+                    <tr><td class="border border-gray-300 p-2">Transmission</td><td class="border border-gray-300 p-2">Hard to step up/down</td><td class="border border-gray-300 p-2">Transformers step up/down → less $I^2R$ loss</td></tr>
+                    <tr><td class="border border-gray-300 p-2">Motors</td><td class="border border-gray-300 p-2">DC motors: speed control, EVs, tools</td><td class="border border-gray-300 p-2">AC motors: industry, appliances</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ========== TRANSFORMERS ========== -->
+        <section id="transformers" class="mb-10 section-anchor">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">4. Transformers – Main idea, working principle & types</h2>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">4.1 Main idea</h3>
+            <p>A <strong>transformer</strong> has two coils (primary and secondary) on a common <strong>iron core</strong>. <strong>AC</strong> in the primary produces a <strong>changing magnetic flux</strong> in the core; by Faraday’s law this induces an EMF in the secondary. So electrical energy is transferred from primary to secondary <strong>without direct electrical connection</strong> — only by magnetic coupling.</p>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">4.2 Working principle</h3>
+            <p>Primary AC current $I_1$ creates a time-varying flux $\Phi$ in the core. The same $\Phi$ links the secondary. So $V_1 \approx -N_1 d\Phi/dt$ and $V_2 = -N_2 d\Phi/dt$, hence $\frac{V_2}{V_1} = \frac{N_2}{N_1}$. For an ideal transformer (no losses): $V_1 I_1 = V_2 I_2$, so $\frac{I_2}{I_1} = \frac{N_1}{N_2}$. <strong>It only works with AC</strong> because DC gives constant $\Phi$ and $d\Phi/dt = 0$ → no induced voltage.</p>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">4.3 Structure diagrams — two common types</h3>
+            <p class="text-sm text-gray-600 mb-2">Transformers can be wound in different ways. Two common structures:</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                <!-- (A) Side-by-side coils on same core -->
+                <div class="diagram-box">
+                    <p class="text-sm font-semibold text-gray-700 mb-2">(A) Coils on same core (side by side)</p>
+                    <svg viewBox="0 0 200 160" class="w-full max-w-xs mx-auto" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="30" width="160" height="100" fill="none" stroke="#57534e" stroke-width="6" rx="4"/>
+                        <rect x="26" y="36" width="148" height="88" fill="#f5f5f4" stroke="#a8a29e" stroke-width="1"/>
+                        <path d="M 45 50 L 45 110 M 55 50 L 55 110 M 65 50 L 65 110 M 75 50 L 75 110" stroke="#2563eb" stroke-width="2" fill="none"/>
+                        <text x="60" y="128" text-anchor="middle" font-size="9" fill="#1d4ed8">Primary $N_1$</text>
+                        <path d="M 125 45 L 125 115 M 135 45 L 135 115 M 145 45 L 145 115 M 155 45 L 155 115" stroke="#dc2626" stroke-width="2" fill="none"/>
+                        <text x="140" y="128" text-anchor="middle" font-size="9" fill="#b91c1c">Secondary $N_2$</text>
+                        <text x="100" y="88" text-anchor="middle" font-size="9" fill="#78716c">Iron core</text>
+                        <text x="35" y="82" font-size="8" fill="#475569">AC in</text>
+                        <text x="165" y="82" font-size="8" fill="#475569">AC out</text>
+                    </svg>
+                    <p class="text-xs text-gray-600 mt-1">Primary and secondary wound on the same core, on opposite sides.</p>
+                </div>
+
+                <!-- (B) Coil inside coil (concentric) -->
+                <div class="diagram-box">
+                    <p class="text-sm font-semibold text-gray-700 mb-2">(B) Coil inside coil (concentric)</p>
+                    <svg viewBox="0 0 200 160" class="w-full max-w-xs mx-auto" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Outer coil (primary) - rectangle around inner -->
+                        <rect x="35" y="25" width="130" height="110" fill="none" stroke="#2563eb" stroke-width="3" rx="4"/>
+                        <path d="M 50 45 L 50 115 M 65 45 L 65 115 M 80 45 L 80 115 M 95 45 L 95 115 M 105 45 L 105 115 M 120 45 L 120 115 M 135 45 L 135 115 M 150 45 L 150 115" stroke="#2563eb" stroke-width="1.5" fill="none"/>
+                        <text x="100" y="138" text-anchor="middle" font-size="9" fill="#1d4ed8">Primary $N_1$ (outer)</text>
+                        <!-- Inner coil (secondary) - smaller rectangle -->
+                        <rect x="70" y="55" width="60" height="50" fill="#fef2f2" stroke="#dc2626" stroke-width="2.5" rx="3"/>
+                        <path d="M 78 68 L 78 102 M 88 68 L 88 102 M 98 68 L 98 102 M 108 68 L 108 102 M 118 68 L 118 102" stroke="#dc2626" stroke-width="1.5" fill="none"/>
+                        <text x="100" y="118" text-anchor="middle" font-size="9" fill="#b91c1c">Secondary $N_2$ (inner)</text>
+                        <!-- Core (center) -->
+                        <rect x="82" y="67" width="36" height="26" fill="#e7e5e4" stroke="#78716c" stroke-width="1"/>
+                        <text x="100" y="82" text-anchor="middle" font-size="7" fill="#57534e">Core</text>
+                        <text x="45" y="82" font-size="8" fill="#475569">AC in</text>
+                        <text x="155" y="82" font-size="8" fill="#475569">AC out</text>
+                    </svg>
+                    <p class="text-xs text-gray-600 mt-1">Secondary wound inside the primary (or vice versa) on the same core.</p>
+                </div>
+            </div>
+
+            <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                <li><strong>Primary</strong> — coil connected to AC supply ($V_1$, $N_1$ turns).</li>
+                <li><strong>Secondary</strong> — coil where EMF is induced ($V_2$, $N_2$ turns).</li>
+                <li><strong>Core</strong> — iron (or ferrite) links flux between coils.</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">4.4 How they connect — with transformers</h3>
+            <p class="text-sm text-gray-600 mb-4">Main flow: AC generator → step-up transformer → grid → step-down transformer → AC loads. DC motors need DC, so they are fed from a rectifier (AC→DC) after the step-down transformer.</p>
+            <div class="diagram-box my-4 p-4">
+                <p class="text-base font-semibold text-gray-800 mb-3">Connection diagram</p>
+                <!-- Main flow: use a simple vertical list + horizontal diagram for clarity -->
+                <div class="space-y-4">
+                    <!-- Main path as big horizontal flow -->
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                        <div class="flex flex-col items-center justify-center rounded-lg border-2 border-indigo-500 bg-indigo-50 px-4 py-3 min-w-[100px] sm:min-w-[120px]">
+                            <span class="text-sm font-bold text-indigo-800">1</span>
+                            <span class="text-sm font-bold text-indigo-700">AC generator</span>
+                            <span class="text-xs text-indigo-600">produces AC</span>
+                        </div>
+                        <span class="text-xl text-slate-500 font-bold">→</span>
+                        <div class="flex flex-col items-center justify-center rounded-lg border-2 border-amber-500 bg-amber-50 px-4 py-3 min-w-[100px] sm:min-w-[120px]">
+                            <span class="text-sm font-bold text-amber-800">2</span>
+                            <span class="text-sm font-bold text-amber-700">Step-up</span>
+                            <span class="text-xs text-amber-700">transformer</span>
+                            <span class="text-xs text-slate-600">raises voltage</span>
+                        </div>
+                        <span class="text-xl text-slate-500 font-bold">→</span>
+                        <div class="flex flex-col items-center justify-center rounded-lg border-2 border-slate-400 bg-slate-100 px-4 py-3 min-w-[80px] sm:min-w-[90px]">
+                            <span class="text-sm font-bold text-slate-700">3</span>
+                            <span class="text-sm font-bold text-slate-700">Grid</span>
+                            <span class="text-xs text-slate-600">power lines</span>
+                        </div>
+                        <span class="text-xl text-slate-500 font-bold">→</span>
+                        <div class="flex flex-col items-center justify-center rounded-lg border-2 border-emerald-600 bg-emerald-50 px-4 py-3 min-w-[100px] sm:min-w-[120px]">
+                            <span class="text-sm font-bold text-emerald-800">4</span>
+                            <span class="text-sm font-bold text-emerald-700">Step-down</span>
+                            <span class="text-xs text-emerald-700">transformer</span>
+                            <span class="text-xs text-slate-600">lowers voltage</span>
+                        </div>
+                        <span class="text-xl text-slate-500 font-bold">→</span>
+                        <div class="flex flex-col items-center justify-center rounded-lg border-2 border-pink-500 bg-pink-50 px-4 py-3 min-w-[90px] sm:min-w-[100px]">
+                            <span class="text-sm font-bold text-pink-800">5</span>
+                            <span class="text-sm font-bold text-pink-700">AC load</span>
+                            <span class="text-xs text-pink-600">lights, appliances</span>
+                        </div>
+                    </div>
+                    <!-- Branch to DC motor -->
+                    <div class="border-t border-slate-300 pt-4 mt-4">
+                        <p class="text-xs font-semibold text-slate-600 mb-2">Branch for DC equipment (e.g. DC motor):</p>
+                        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                            <span class="text-sm text-slate-600">From step-down (4)</span>
+                            <span class="text-xl text-slate-500 font-bold">↓</span>
+                            <div class="flex flex-col items-center justify-center rounded-lg border-2 border-amber-600 border-dashed bg-amber-50/80 px-4 py-2 min-w-[100px]">
+                                <span class="text-sm font-bold text-amber-800">Rectifier</span>
+                                <span class="text-xs text-amber-700">AC → DC</span>
+                            </div>
+                            <span class="text-xl text-slate-500 font-bold">→</span>
+                            <div class="flex flex-col items-center justify-center rounded-lg border-2 border-blue-600 bg-blue-50 px-4 py-2 min-w-[100px]">
+                                <span class="text-sm font-bold text-blue-800">DC motor</span>
+                                <span class="text-xs text-blue-700">needs DC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mt-4 pt-3 border-t border-slate-200">Main path (1→2→3→4→5): AC from generator is stepped up for transmission, then stepped down for use. DC motors are not on the main path; they get DC from a rectifier fed by the step-down transformer.</p>
+            </div>
+
+            <h3 class="text-xl font-semibold text-gray-700 mt-6 mb-2">4.5 Types</h3>
+            <ul class="list-disc list-inside space-y-1 text-gray-700">
+                <li><strong>Step-up</strong> — $N_2 > N_1$ ⇒ $V_2 > V_1$. Used at power stations to raise voltage for transmission.</li>
+                <li><strong>Step-down</strong> — $N_2 < N_1$ ⇒ $V_2 < V_1$. Used to lower voltage for consumers.</li>
+                <li><strong>Isolation</strong> — $N_2 = N_1$; same voltage, galvanic isolation.</li>
+            </ul>
+            <div class="my-4 p-3 bg-gray-50 rounded-lg text-center">$\frac{V_2}{V_1} = \frac{N_2}{N_1}$, \quad $V_1 I_1 = V_2 I_2$</div>
+        </section>
+
+        <!-- ========== HOW THEY CONNECT ========== -->
+        <section id="how-they-connect" class="mb-10 section-anchor">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">5. How AC generator, transformer & DC motor connect</h2>
+            <p class="mb-4">In the grid: <strong>AC generator</strong> produces AC → <strong>step-up transformer</strong> raises voltage for transmission → power lines (<strong>grid</strong>) → <strong>step-down transformer</strong> lowers voltage → consumers. <strong>DC motors</strong> need DC, so they are fed from a <strong>rectifier</strong> (which converts AC to DC) after the step-down transformer. So: <em>AC generator → step-up transformer → grid → step-down transformer → AC loads</em>; and <em>step-down transformer → rectifier → DC motor</em>.</p>
+            <p class="text-sm text-gray-600">The connection diagram is shown alongside the transformer section above (§4.4).</p>
+        </section>
+
+        <!-- ========== SIMULATIONS & COMPARISON ========== -->
+        <section id="simulations-comparison" class="mb-10 section-anchor">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">6. Simulations & comparison</h2>
+            <p class="mb-4">Summary of equipment, types, similarities and differences:</p>
+            <table class="w-full border border-gray-300 text-sm my-4">
+                <thead class="bg-indigo-50">
+                    <tr><th class="border border-gray-300 p-2 text-left">Equipment</th><th class="border border-gray-300 p-2 text-left">Main function</th><th class="border border-gray-300 p-2 text-left">Types / notes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="border border-gray-300 p-2 font-medium">DC motor</td><td class="border border-gray-300 p-2">Electrical → mechanical (rotation)</td><td class="border border-gray-300 p-2">Brushed (commutator); brushless (electronic). Needs DC supply.</td></tr>
+                    <tr><td class="border border-gray-300 p-2 font-medium">AC generator</td><td class="border border-gray-300 p-2">Mechanical → electrical (AC)</td><td class="border border-gray-300 p-2">Slip rings; often rotor = magnet, stator = coil (large machines).</td></tr>
+                    <tr><td class="border border-gray-300 p-2 font-medium">Transformer</td><td class="border border-gray-300 p-2">AC voltage step-up or step-down</td><td class="border border-gray-300 p-2">Step-up, step-down, isolation. AC only.</td></tr>
+                </tbody>
+            </table>
+            <p class="mt-4"><strong>Similarities:</strong> All use magnetic fields and coils. Motor and generator are “inverse”: motor (current → motion), generator (motion → current). Transformer couples two AC circuits magnetically.</p>
+            <p><strong>Differences:</strong> DC motor uses commutator and DC; AC generator uses slip rings and outputs AC. Transformer has no moving parts and only works with AC; it does not convert mechanical ↔ electrical.</p>
+            <div class="sim-box no-print mt-4">
+                <p class="text-sm font-medium text-gray-700 mb-2">Where the simulations are</p>
+                <p class="text-xs text-gray-600">• <strong>DC motor</strong> — diagram in §1.3: green coil rotates (animation). Use Pause in §1.4. Brushes (dark blocks) touch the commutator (split ring).<br>• <strong>AC generator</strong> — diagram in §2.3: purple coil rotates; output is AC. Brushes touch the slip rings (full rings).<br>• <strong>Transformer</strong> — §4.3 shows two structures (side-by-side coils and coil-in-coil); §4.4 shows the connection diagram (generator → transformers → grid → loads and DC motor via rectifier).</p>
+            </div>
+        </section>
+
+        <!-- ========== TRANSFORMER WORKED EXAMPLES ========== -->
+        <section id="transformer-examples" class="mb-10 section-anchor">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">7. Transformer worked examples</h2>
+            <p>Use $\frac{V_2}{V_1} = \frac{N_2}{N_1}$ and $V_1 I_1 = V_2 I_2$.</p>
+            <div class="example-box mt-4"><strong>Example 1.</strong> Primary 200 turns, 120 V. Secondary 50 turns. $V_2 = 120 \cdot \frac{50}{200} = 30\ \text{V}$ (step-down).</div>
+            <div class="example-box"><strong>Example 2.</strong> Step-up 240 V → 1200 V, $N_1 = 100$. $N_2 = 100 \cdot \frac{1200}{240} = 500$ turns.</div>
+            <div class="example-box"><strong>Example 3.</strong> $V_1 = 220\ \text{V}$, $I_1 = 2\ \text{A}$, $V_2 = 44\ \text{V}$. $P = 440\ \text{W}$, $I_2 = 440/44 = 10\ \text{A}$.</div>
+        </section>
+
+        <!-- ========== 15 TRANSFORMER PROBLEMS ========== -->
+        <section id="transformer-problems" class="mb-10 section-anchor">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4 border-b pb-2">8. Fifteen transformer problems</h2>
+            <p class="text-gray-600 mb-4">Ideal transformers. Use $\frac{V_2}{V_1} = \frac{N_2}{N_1}$ and $V_1 I_1 = V_2 I_2$.</p>
+            <div class="problem-box"><strong>1.</strong> Primary 400 turns, 200 V. Secondary 100 turns. Find $V_2$ and type.</div>
+            <div class="problem-box"><strong>2.</strong> Step-down 240 V → 24 V. Primary 600 turns. Find $N_2$.</div>
+            <div class="problem-box"><strong>3.</strong> $V_1 = 110\ \text{V}$, $N_1 = 220$, $N_2 = 880$. Find $V_2$ and type.</div>
+            <div class="problem-box"><strong>4.</strong> Secondary 12 V, 5 A. Primary 240 V. Find $I_1$ and power.</div>
+            <div class="problem-box"><strong>5.</strong> Step-up 120 V → 600 V. Secondary 500 turns. Find $N_1$.</div>
+            <div class="problem-box"><strong>6.</strong> $N_1 = 300$, $N_2 = 75$, $V_1 = 120\ \text{V}$. Find $V_2$ and type.</div>
+            <div class="problem-box"><strong>7.</strong> Power output 1.2 kW at 48 V. Primary 240 V. Find $I_1$, $I_2$.</div>
+            <div class="problem-box"><strong>8.</strong> $V_2 = 36\ \text{V}$, $N_2 = 90$, $N_1 = 360$. Find $V_1$ and type.</div>
+            <div class="problem-box"><strong>9.</strong> Primary 2 A, 220 V. Secondary 44 V. Find secondary current and power.</div>
+            <div class="problem-box"><strong>10.</strong> Step-down 400 V → 80 V. $N_1 = 1000$. Find $N_2$.</div>
+            <div class="problem-box"><strong>11.</strong> $N_1 = 150$, $N_2 = 600$, $V_2 = 400\ \text{V}$. Find $V_1$ and type.</div>
+            <div class="problem-box"><strong>12.</strong> Load 0.5 kW at 24 V. Primary 240 V. Find $I_1$.</div>
+            <div class="problem-box"><strong>13.</strong> $V_1 = 230\ \text{V}$, $V_2 = 46\ \text{V}$, $N_2 = 100$. Find $N_1$ and type.</div>
+            <div class="problem-box"><strong>14.</strong> Secondary 6 V, 10 A. Primary 120 V. Find $I_1$ and type.</div>
+            <div class="problem-box"><strong>15.</strong> $N_1 = 500$, $N_2 = 500$, $V_1 = 200\ \text{V}$. Find $V_2$ and type.</div>
+            <div class="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+                <h4 class="font-semibold text-amber-800 mb-2">Answers (brief)</h4>
+                <p class="text-sm text-gray-700">1. 50 V, step-down &nbsp; 2. 60 &nbsp; 3. 440 V, step-up &nbsp; 4. 0.25 A, 60 W &nbsp; 5. 100 &nbsp; 6. 30 V, step-down &nbsp; 7. 5 A, 25 A &nbsp; 8. 144 V, step-down &nbsp; 9. 10 A, 440 W &nbsp; 10. 200 &nbsp; 11. 100 V, step-up &nbsp; 12. 2.08 A &nbsp; 13. 500, step-down &nbsp; 14. 0.5 A, step-down &nbsp; 15. 200 V, isolation</p>
+            </div>
+        </section>
+
+        <footer class="mt-12 pt-6 border-t text-center text-gray-500 text-sm">
+            DC Motor, AC Generator & Transformers · Hello Physics
+        </footer>
+    </div>
+</body>
+</html>

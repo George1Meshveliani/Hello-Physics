@@ -64,9 +64,9 @@
     <div id="questionList" class="space-y-4"></div>
 
     <!-- FOOTER -->
-    <footer class="mt-12 text-center border-t pt-8 text-slate-400 text-sm">
+    <footer class="mt-12 text-center border-t pt-8 text-slate-400 text-sm" id="pageFooter">
       Assumes constant acceleration unless stated otherwise.<br>
-      $g = 9.8\,\text{m/s}^2$
+      <span id="footerMath">$g = 9.8\,\text{m/s}^2$</span>
     </footer>
   </div>
 </div>
@@ -424,10 +424,19 @@ window.onload = () => {
   });
 
   renderQuestions();
+
+  // Render footer math (symbols and units) with KaTeX
+  const footerMath = document.getElementById('footerMath');
+  if (footerMath) {
+    const footerText = footerMath.textContent;
+    renderMath(footerMath, footerText);
+  }
 };
 </script>
 
 <style>
+#pageFooter .katex { font-size: 1em; }
+#pageFooter .katex, #pageFooter .katex * { color: inherit; }
 .tab-btn {
   flex: 1;
   padding: 0.75rem;

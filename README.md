@@ -17,6 +17,7 @@ Click the topic and Enjoy!
 - [`Current, voltage and resistance`](https://george1meshveliani.github.io/Hello-Physics/CurrentVoltageResistance)
 - [`Electrical energy and electrical power`](https://george1meshveliani.github.io/Hello-Physics/ElectricalEnergyElectricalPower)
 - [`Magnetism`](https://george1meshveliani.github.io/Hello-Physics/Magnetism)
+- [`DC Motor, AC Generator & Transformers`](https://george1meshveliani.github.io/Hello-Physics/DCMotorACGeneratorTransformers)
 - [`Electricity and magnetism summary`](https://george1meshveliani.github.io/Hello-Physics/EMSummary)
 - [`Electric Charge Questions`](https://george1meshveliani.github.io/Hello-Physics/ECQuestions)
 - [`Questions`](https://george1meshveliani.github.io/Hello-Physics/EMQuestions)
