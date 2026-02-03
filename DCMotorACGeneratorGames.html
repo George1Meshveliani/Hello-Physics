@@ -3,348 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DC Motor, AC Generator & Transformer Games</title>
+    <title>DC Motor, AC Generator & Transformers — Interactive Games</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .game-card { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 1rem; overflow: hidden; }
-        .instruction-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem 1.25rem; margin-bottom: 1rem; border-radius: 0 0.5rem 0.5rem 0; }
-        .result-correct { background: #dcfce7; color: #166534; }
-        .result-wrong { background: #fee2e2; color: #991b1b; }
-        .part-btn { transition: all 0.2s; cursor: pointer; }
-        .part-btn:hover { transform: scale(1.02); }
-        .part-btn.selected { ring: 2px; ring-color: #4f46e5; }
-        .order-item { cursor: grab; user-select: none; }
-        .order-item:active { cursor: grabbing; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #121212; color: #E0E0E0; }
+        .card { background-color: #1E1E1E; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); padding: 2rem; }
+        .game-section { scroll-margin-top: 2rem; }
+        .feedback-correct { background-color: rgba(34, 197, 94, 0.2); border: 1px solid #22c55e; color: #86efac; }
+        .feedback-incorrect { background-color: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #fca5a5; }
+        .part-option { cursor: pointer; transition: all 0.2s; }
+        .part-option:hover { background-color: #334155; }
+        .part-option.selected { background-color: #4f46e5; color: white; }
+        .part-option.correct { background-color: #22c55e; color: white; }
+        .part-option.wrong { background-color: #ef4444; color: white; }
+        .diagram-box { background: #0f172a; border: 2px solid #334155; border-radius: 8px; padding: 1.5rem; }
+        input[type="number"], input[type="text"] { background: #1e293b; border: 1px solid #475569; color: #e2e8f0; padding: 0.5rem 0.75rem; border-radius: 6px; }
+        .btn { padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: transform 0.1s, background 0.2s; }
+        .btn-primary { background: #4f46e5; color: white; border: none; }
+        .btn-primary:hover { background: #4338ca; }
+        .btn-secondary { background: #475569; color: #e2e8f0; border: none; }
+        .btn-secondary:hover { background: #64748b; }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen text-slate-800">
-    <div class="max-w-4xl mx-auto px-4 py-8">
-        <header class="text-center mb-10">
-            <h1 class="text-4xl font-extrabold text-indigo-700">DC Motor, AC Generator & Transformer Games</h1>
-            <p class="text-lg text-slate-600 mt-2">Interactive activities to understand motors, generators, and transformers</p>
-        </header>
+<body class="min-h-screen pb-20">
 
-        <nav class="mb-8 p-4 bg-white rounded-xl shadow-sm">
-            <h2 class="font-semibold text-slate-700 mb-2">Jump to a game</h2>
-            <div class="flex flex-wrap gap-2">
-                <a href="#game1" class="px-3 py-2 bg-indigo-100 text-indigo-700 rounded-lg text-sm font-medium hover:bg-indigo-200">1. DC Motor – Name the part</a>
-                <a href="#game2" class="px-3 py-2 bg-emerald-100 text-emerald-700 rounded-lg text-sm font-medium hover:bg-emerald-200">2. AC Generator – EMF calculator</a>
-                <a href="#game3" class="px-3 py-2 bg-amber-100 text-amber-700 rounded-lg text-sm font-medium hover:bg-amber-200">3. Transformer type quiz</a>
-                <a href="#game4" class="px-3 py-2 bg-rose-100 text-rose-700 rounded-lg text-sm font-medium hover:bg-rose-200">4. Transformer calculation</a>
-                <a href="#game5" class="px-3 py-2 bg-violet-100 text-violet-700 rounded-lg text-sm font-medium hover:bg-violet-200">5. Order the connection</a>
-                <a href="#game6" class="px-3 py-2 bg-cyan-100 text-cyan-700 rounded-lg text-sm font-medium hover:bg-cyan-200">6. Commutator vs slip rings</a>
-            </div>
-        </nav>
+    <!-- Header -->
+    <header class="bg-slate-900 border-b border-slate-700 py-4 px-6 sticky top-0 z-10">
+        <h1 class="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-orange-500">
+            DC Motor, AC Generator & Transformers
+        </h1>
+        <p class="text-slate-400 mt-1">Interactive games — instructions in each section</p>
+    </header>
 
-        <!-- ========== GAME 1: DC Motor – Name the part ========== -->
-        <section id="game1" class="game-card p-6 mb-8 scroll-mt-8">
-            <h2 class="text-2xl font-bold text-indigo-700 mb-2">Game 1: DC Motor – Name the part</h2>
-            <div class="instruction-box">
-                <strong>Instructions:</strong> Click on a part name below. Then click the correct part on the diagram (or match the number). When you select a part, you'll see its role. Try to name all four parts from memory first!
+    <main class="max-w-4xl mx-auto px-4 py-8 space-y-12">
+
+        <!-- Instructions -->
+        <section class="card border-l-4 border-amber-500">
+            <h2 class="text-xl font-semibold text-amber-400 mb-2">How to use this page</h2>
+            <p class="text-slate-300">Each section is a short game or activity. Read the <strong>Instructions</strong>, try the task, then use <strong>Check</strong> or <strong>Show solution</strong> where available. Some games use calculations (with $V$, $I$, $N$, turns ratio, etc.) and some focus on observations and concepts.</p>
+        </section>
+
+        <!-- ========== GAME 1: DC Motor — Label the parts ========== -->
+        <section id="game-dc-parts" class="game-section card">
+            <h2 class="text-2xl font-bold text-amber-400 mb-2">Game 1: DC Motor — Label the parts</h2>
+            <div class="text-slate-400 text-sm mb-4">DC Motor</div>
+            <p class="text-slate-300 mb-4"><strong>Instructions:</strong> Below are four parts of a simple DC motor. Match each label (A–D) to the correct part by clicking the option you think is right for each.</p>
+            <div class="diagram-box mb-4 inline-block">
+                <p class="text-slate-400 text-sm mb-2">Schematic: coil in magnetic field, with contacts</p>
+                <p><strong>A</strong> — where the coil is; <strong>B</strong> — reverses current every half turn; <strong>C</strong> — fixed contacts; <strong>D</strong> — magnet providing field</p>
             </div>
-            <div class="flex flex-wrap gap-3 mb-4">
-                <button type="button" class="part-btn px-4 py-2 bg-white border-2 border-slate-300 rounded-lg font-medium" data-part="stator">Stator</button>
-                <button type="button" class="part-btn px-4 py-2 bg-white border-2 border-slate-300 rounded-lg font-medium" data-part="rotor">Rotor (armature)</button>
-                <button type="button" class="part-btn px-4 py-2 bg-white border-2 border-slate-300 rounded-lg font-medium" data-part="commutator">Commutator</button>
-                <button type="button" class="part-btn px-4 py-2 bg-white border-2 border-slate-300 rounded-lg font-medium" data-part="brush">Brush</button>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-white p-4 rounded-xl border border-slate-200 text-sm">
-                    <p class="font-semibold text-slate-600 mb-2">Diagram (click a part number)</p>
-                    <div class="flex flex-wrap gap-4">
-                        <button type="button" class="diagram-part w-24 h-24 flex items-center justify-center rounded-xl border-2 border-slate-300 font-bold text-lg" data-part="stator">1</button>
-                        <button type="button" class="diagram-part w-24 h-24 flex items-center justify-center rounded-xl border-2 border-slate-300 font-bold text-lg" data-part="rotor">2</button>
-                        <button type="button" class="diagram-part w-24 h-24 flex items-center justify-center rounded-xl border-2 border-slate-300 font-bold text-lg" data-part="commutator">3</button>
-                        <button type="button" class="diagram-part w-24 h-24 flex items-center justify-center rounded-xl border-2 border-slate-300 font-bold text-lg" data-part="brush">4</button>
+            <div class="space-y-3">
+                <div>
+                    <span class="text-slate-300">Label <strong>A</strong> is:</span>
+                    <div class="flex flex-wrap gap-2 mt-1">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="A" data-answer="Rotor coil">Rotor coil</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="A" data-answer="Commutator">Commutator</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="A" data-answer="Brushes">Brushes</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="A" data-answer="Stator (magnet)">Stator (magnet)</button>
                     </div>
-                    <p class="mt-2 text-xs text-slate-500">1 = fixed magnets, 2 = rotating coil, 3 = split ring, 4 = fixed contact</p>
                 </div>
-                <div id="game1-feedback" class="bg-slate-50 p-4 rounded-xl border border-slate-200 min-h-[120px]">
-                    <p class="text-slate-500 italic">Select a part to see its name and role.</p>
+                <div>
+                    <span class="text-slate-300">Label <strong>B</strong> is:</span>
+                    <div class="flex flex-wrap gap-2 mt-1">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="B" data-answer="Rotor coil">Rotor coil</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="B" data-answer="Commutator">Commutator</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="B" data-answer="Brushes">Brushes</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="B" data-answer="Stator (magnet)">Stator (magnet)</button>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-slate-300">Label <strong>C</strong> is:</span>
+                    <div class="flex flex-wrap gap-2 mt-1">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="C" data-answer="Rotor coil">Rotor coil</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="C" data-answer="Commutator">Commutator</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="C" data-answer="Brushes">Brushes</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="C" data-answer="Stator (magnet)">Stator (magnet)</button>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-slate-300">Label <strong>D</strong> is:</span>
+                    <div class="flex flex-wrap gap-2 mt-1">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="D" data-answer="Rotor coil">Rotor coil</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="D" data-answer="Commutator">Commutator</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="D" data-answer="Brushes">Brushes</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="dc-parts" data-label="D" data-answer="Stator (magnet)">Stator (magnet)</button>
+                    </div>
                 </div>
             </div>
+            <div class="mt-4 flex gap-2">
+                <button type="button" id="check-dc-parts" class="btn btn-primary">Check answers</button>
+            </div>
+            <p id="feedback-dc-parts" class="mt-3 hidden rounded px-3 py-2"></p>
         </section>
 
-        <!-- ========== GAME 2: AC Generator – EMF calculator ========== -->
-        <section id="game2" class="game-card p-6 mb-8 scroll-mt-8">
-            <h2 class="text-2xl font-bold text-emerald-700 mb-2">Game 2: AC Generator – Peak EMF calculator</h2>
-            <div class="instruction-box">
-                <strong>Instructions:</strong> Use the formula peak EMF ε₀ = N × B × A × ω, where ω = 2πf (f = frequency in Hz). Enter N (turns), B (Tesla), A (m²), and f (Hz). Click Calculate and observe how changing each quantity affects the result.
+        <!-- ========== GAME 2: DC Motor — Back EMF calculation ========== -->
+        <section id="game-dc-calc" class="game-section card">
+            <h2 class="text-2xl font-bold text-amber-400 mb-2">Game 2: DC Motor — Back EMF calculation</h2>
+            <p class="text-slate-300 mb-4"><strong>Instructions:</strong> In a DC motor, the coil rotates in a magnetic field and generates a <em>back EMF</em> $\mathcal{E}_\text{back}$ that opposes the supply voltage. The net voltage driving current through the coil resistance $R$ is $V_\text{supply} - \mathcal{E}_\text{back} = I R$. So $\mathcal{E}_\text{back} = V_\text{supply} - I R$. Use this to find the back EMF.</p>
+            <div class="bg-slate-800/50 rounded-lg p-4 mb-4">
+                <p class="text-slate-300">A motor is connected to <strong>24 V</strong> and draws <strong>2 A</strong>. The resistance of the coil is <strong>3 Ω</strong>. What is the back EMF (in volts)?</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-4">
-                    <label class="block"><span class="font-medium">N (number of turns)</span><input type="number" id="inp-N" value="100" min="1" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2" step="1"></label>
-                    <label class="block"><span class="font-medium">B (magnetic field, T)</span><input type="number" id="inp-B" value="0.2" min="0.01" step="0.01" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2"></label>
-                    <label class="block"><span class="font-medium">A (area of coil, m²)</span><input type="number" id="inp-A" value="0.01" min="0.001" step="0.001" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2"></label>
-                    <label class="block"><span class="font-medium">f (frequency, Hz)</span><input type="number" id="inp-f" value="50" min="0.1" step="0.1" class="mt-1 w-full border border-slate-300 rounded-lg px-3 py-2"></label>
-                    <button type="button" id="btn-calc-emf" class="w-full py-3 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700">Calculate peak EMF</button>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">Back EMF =</label>
+                <input type="number" id="input-back-emf" step="0.1" placeholder="e.g. 18" class="w-24" />
+                <span class="text-slate-400">V</span>
+                <button type="button" id="check-back-emf" class="btn btn-primary ml-2">Check</button>
+            </div>
+            <p id="feedback-back-emf" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== GAME 3: AC Generator vs DC Motor — Observations ========== -->
+        <section id="game-ac-vs-dc" class="game-section card">
+            <h2 class="text-2xl font-bold text-amber-400 mb-2">Game 3: AC Generator vs DC Motor — Observations</h2>
+            <p class="text-slate-300 mb-4"><strong>Instructions:</strong> Choose the best answer for each question. Think about what <em>output</em> each device gives and what <em>parts</em> they use (commutator vs slip rings).</p>
+            <div class="space-y-4">
+                <div>
+                    <p class="text-slate-300 font-medium mb-2">1. Which device uses <strong>slip rings</strong> (and not a commutator)?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="ac-vs-dc" data-q="1" data-answer="AC generator">AC generator</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="ac-vs-dc" data-q="1" data-answer="DC motor">DC motor</button>
+                    </div>
                 </div>
-                <div id="game2-result" class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <p class="font-mono text-lg mb-2">ε₀ = N × B × A × 2πf</p>
-                    <p id="game2-answer" class="text-2xl font-bold text-emerald-700">—</p>
-                    <p class="text-sm text-slate-600 mt-4"><strong>Observation:</strong> Double N → peak EMF doubles. Double f → peak EMF doubles. Try it!</p>
+                <div>
+                    <p class="text-slate-300 font-medium mb-2">2. Which device produces <strong>DC</strong> (direct current) at its output?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="ac-vs-dc" data-q="2" data-answer="AC generator">AC generator</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="ac-vs-dc" data-q="2" data-answer="DC motor">DC motor</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="ac-vs-dc" data-q="2" data-answer="Neither">Neither</button>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-slate-300 font-medium mb-2">3. In a DC motor, what is the role of the <strong>commutator</strong>?</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="ac-vs-dc" data-q="3" data-answer="Reverse current in the coil every half turn so torque stays in one direction">Reverse current in the coil every half turn so torque stays in one direction</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="ac-vs-dc" data-q="3" data-answer="Produce alternating voltage">Produce alternating voltage</button>
+                    </div>
                 </div>
             </div>
+            <div class="mt-4">
+                <button type="button" id="check-ac-vs-dc" class="btn btn-primary">Check answers</button>
+            </div>
+            <p id="feedback-ac-vs-dc" class="mt-3 hidden rounded px-3 py-2"></p>
         </section>
 
-        <!-- ========== GAME 3: Transformer type quiz ========== -->
-        <section id="game3" class="game-card p-6 mb-8 scroll-mt-8">
-            <h2 class="text-2xl font-bold text-amber-700 mb-2">Game 3: Transformer type quiz</h2>
-            <div class="instruction-box">
-                <strong>Instructions:</strong> You are given primary and secondary turns (or voltages). Decide if the transformer is <strong>Step-up</strong> (V₂ > V₁), <strong>Step-down</strong> (V₂ < V₁), or <strong>Isolation</strong> (V₂ = V₁). Click your answer, then Check.
+        <!-- ========== GAME 4: Transformer — Step-up or Step-down? ========== -->
+        <section id="game-xformer-type" class="game-section card">
+            <h2 class="text-2xl font-bold text-amber-400 mb-2">Game 4: Transformer — Step-up or Step-down?</h2>
+            <p class="text-slate-300 mb-4"><strong>Instructions:</strong> For an ideal transformer, $\dfrac{V_1}{V_2} = \dfrac{N_1}{N_2}$. If $V_2 > V_1$ (more turns on secondary) it is a <strong>step-up</strong> transformer; if $V_2 < V_1$ it is <strong>step-down</strong>. Say which type each is.</p>
+            <div class="space-y-4">
+                <div class="bg-slate-800/50 rounded-lg p-4">
+                    <p class="text-slate-300 mb-2">(a) Primary 200 turns, Secondary 800 turns.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="xformer-type" data-q="a" data-answer="Step-up">Step-up</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="xformer-type" data-q="a" data-answer="Step-down">Step-down</button>
+                    </div>
+                </div>
+                <div class="bg-slate-800/50 rounded-lg p-4">
+                    <p class="text-slate-300 mb-2">(b) Primary 400 V, Secondary 100 V.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="xformer-type" data-q="b" data-answer="Step-up">Step-up</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="xformer-type" data-q="b" data-answer="Step-down">Step-down</button>
+                    </div>
+                </div>
             </div>
-            <div id="game3-question" class="p-4 bg-amber-50 rounded-xl border border-amber-200 mb-4">
-                <p class="text-lg font-medium">Primary: <span id="q3-N1">200</span> turns, <span id="q3-V1">120</span> V. Secondary: <span id="q3-N2">50</span> turns.</p>
-                <p class="text-slate-600 mt-1">What type is this transformer?</p>
+            <div class="mt-4">
+                <button type="button" id="check-xformer-type" class="btn btn-primary">Check answers</button>
             </div>
-            <div class="flex flex-wrap gap-3 mb-4">
-                <button type="button" class="quiz-option px-4 py-3 bg-white border-2 border-slate-300 rounded-xl font-medium" data-type="step-up">Step-up</button>
-                <button type="button" class="quiz-option px-4 py-3 bg-white border-2 border-slate-300 rounded-xl font-medium" data-type="step-down">Step-down</button>
-                <button type="button" class="quiz-option px-4 py-3 bg-white border-2 border-slate-300 rounded-xl font-medium" data-type="isolation">Isolation</button>
-            </div>
-            <button type="button" id="btn-check-type" class="px-6 py-2 bg-amber-600 text-white font-bold rounded-lg hover:bg-amber-700">Check answer</button>
-            <button type="button" id="btn-next-type" class="ml-3 px-6 py-2 bg-slate-600 text-white font-bold rounded-lg hover:bg-slate-700">Next question</button>
-            <div id="game3-feedback" class="mt-4 p-4 rounded-xl hidden"></div>
+            <p id="feedback-xformer-type" class="mt-3 hidden rounded px-3 py-2"></p>
         </section>
 
-        <!-- ========== GAME 4: Transformer calculation ========== -->
-        <section id="game4" class="game-card p-6 mb-8 scroll-mt-8">
-            <h2 class="text-2xl font-bold text-rose-700 mb-2">Game 4: Transformer calculation</h2>
-            <div class="instruction-box">
-                <strong>Instructions:</strong> Use V₂/V₁ = N₂/N₁. You are given V₁, N₁, and N₂. Calculate V₂ and type your answer (number only, e.g. 30). Then click Check.
+        <!-- ========== GAME 5: Transformer — Voltage and turns calculation ========== -->
+        <section id="game-xformer-calc" class="game-section card">
+            <h2 class="text-2xl font-bold text-amber-400 mb-2">Game 5: Transformer — Voltage and turns</h2>
+            <p class="text-slate-300 mb-4"><strong>Instructions:</strong> Use the turns ratio: $\dfrac{V_1}{V_2} = \dfrac{N_1}{N_2}$. So $V_2 = V_1 \cdot \dfrac{N_2}{N_1}$. Find the missing value and type it below.</p>
+            <div class="bg-slate-800/50 rounded-lg p-4 mb-4">
+                <p class="text-slate-300">Primary: $N_1 = 500$ turns, $V_1 = 220\ \text{V}$. Secondary: $N_2 = 100$ turns. What is the secondary voltage $V_2$ (in volts)?</p>
             </div>
-            <div id="game4-question" class="p-4 bg-rose-50 rounded-xl border border-rose-200 mb-4">
-                <p class="text-lg">V₁ = <span id="q4-V1">240</span> V, N₁ = <span id="q4-N1">600</span>, N₂ = <span id="q4-N2">150</span>. Find V₂ (Volts).</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">$V_2$ =</label>
+                <input type="number" id="input-v2" step="0.1" placeholder="e.g. 44" class="w-24" />
+                <span class="text-slate-400">V</span>
+                <button type="button" id="check-v2" class="btn btn-primary ml-2">Check</button>
             </div>
-            <div class="flex flex-wrap items-center gap-3">
-                <label class="font-medium">V₂ = <input type="number" id="inp-V2" class="w-24 border border-slate-300 rounded-lg px-3 py-2" placeholder="?"></label>
-                <span class="text-slate-500">V</span>
-                <button type="button" id="btn-check-V2" class="px-6 py-2 bg-rose-600 text-white font-bold rounded-lg hover:bg-rose-700">Check</button>
-            </div>
-            <div id="game4-feedback" class="mt-4 p-4 rounded-xl hidden"></div>
+            <p id="feedback-v2" class="mt-3 hidden rounded px-3 py-2"></p>
         </section>
 
-        <!-- ========== GAME 5: Order the connection ========== -->
-        <section id="game5" class="game-card p-6 mb-8 scroll-mt-8">
-            <h2 class="text-2xl font-bold text-violet-700 mb-2">Game 5: Order the connection</h2>
-            <div class="instruction-box">
-                <strong>Instructions:</strong> Put the steps in the correct order (from power generation to load). Click an item to move it up or use the arrows. Correct order: AC Generator → Step-up transformer → Grid → Step-down transformer → then either AC load (main path) or Rectifier → DC motor (branch). For this game, order the main path only: Generator, Step-up, Grid, Step-down, AC load.
+        <!-- ========== GAME 6: Transformer — Power and current ========== -->
+        <section id="game-xformer-power" class="game-section card">
+            <h2 class="text-2xl font-bold text-amber-400 mb-2">Game 6: Transformer — Power and current</h2>
+            <p class="text-slate-300 mb-4"><strong>Instructions:</strong> For an ideal transformer, power in ≈ power out: $P_1 = P_2$, so $V_1 I_1 = V_2 I_2$. Use this to find the unknown.</p>
+            <div class="bg-slate-800/50 rounded-lg p-4 mb-4">
+                <p class="text-slate-300">Primary: $V_1 = 200\ \text{V}$, $I_1 = 5\ \text{A}$. Secondary: $V_2 = 50\ \text{V}$. What is the secondary current $I_2$ (in amperes)?</p>
             </div>
-            <p class="text-sm text-slate-600 mb-2">Your order (click to select, then use arrows to move):</p>
-            <div id="game5-list" class="flex flex-wrap gap-2 mb-4">
-                <!-- filled by JS -->
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">$I_2$ =</label>
+                <input type="number" id="input-i2" step="0.1" placeholder="e.g. 20" class="w-24" />
+                <span class="text-slate-400">A</span>
+                <button type="button" id="check-i2" class="btn btn-primary ml-2">Check</button>
             </div>
-            <div class="flex gap-2 mb-4">
-                <button type="button" id="btn-move-up" class="px-4 py-2 bg-violet-100 text-violet-700 rounded-lg font-medium">↑ Move up</button>
-                <button type="button" id="btn-move-down" class="px-4 py-2 bg-violet-100 text-violet-700 rounded-lg font-medium">↓ Move down</button>
-            </div>
-            <button type="button" id="btn-check-order" class="px-6 py-2 bg-violet-600 text-white font-bold rounded-lg hover:bg-violet-700">Check order</button>
-            <div id="game5-feedback" class="mt-4 p-4 rounded-xl hidden"></div>
+            <p id="feedback-i2" class="mt-3 hidden rounded px-3 py-2"></p>
         </section>
 
-        <!-- ========== GAME 6: Commutator vs slip rings ========== -->
-        <section id="game6" class="game-card p-6 mb-8 scroll-mt-8">
-            <h2 class="text-2xl font-bold text-cyan-700 mb-2">Game 6: Commutator vs slip rings</h2>
-            <div class="instruction-box">
-                <strong>Instructions:</strong> Answer the multiple-choice question. Click an option (A, B, or C), then click Check. Try all questions!
+        <!-- ========== GAME 7: Match the transformer type (application) ========== -->
+        <section id="game-xformer-match" class="game-section card">
+            <h2 class="text-2xl font-bold text-amber-400 mb-2">Game 7: Where do we use which transformer?</h2>
+            <p class="text-slate-300 mb-4"><strong>Instructions:</strong> Match the application to the typical transformer type (step-up or step-down).</p>
+            <div class="space-y-3">
+                <div>
+                    <p class="text-slate-300 mb-1">Power station sending electricity to the grid (increase voltage for long-distance transmission):</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="xformer-match" data-q="grid" data-answer="Step-up">Step-up</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="xformer-match" data-q="grid" data-answer="Step-down">Step-down</button>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-slate-300 mb-1">Wall adapter for a laptop (e.g. 230 V down to 19 V):</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="xformer-match" data-q="laptop" data-answer="Step-up">Step-up</button>
+                        <button type="button" class="part-option px-3 py-1 rounded bg-slate-700" data-game="xformer-match" data-q="laptop" data-answer="Step-down">Step-down</button>
+                    </div>
+                </div>
             </div>
-            <div id="game6-question" class="p-4 bg-cyan-50 rounded-xl border border-cyan-200 mb-4">
-                <p class="text-lg font-medium" id="game6-text">In a DC motor, the current in the rotating coil is reversed every half turn by:</p>
-                <ul class="mt-2 space-y-2">
-                    <li><button type="button" class="mc-option w-full text-left px-4 py-2 bg-white border-2 border-slate-300 rounded-lg" data-opt="A">A. Slip rings</button></li>
-                    <li><button type="button" class="mc-option w-full text-left px-4 py-2 bg-white border-2 border-slate-300 rounded-lg" data-opt="B">B. Commutator</button></li>
-                    <li><button type="button" class="mc-option w-full text-left px-4 py-2 bg-white border-2 border-slate-300 rounded-lg" data-opt="C">C. Brushes</button></li>
-                </ul>
+            <div class="mt-4">
+                <button type="button" id="check-xformer-match" class="btn btn-primary">Check answers</button>
             </div>
-            <button type="button" id="btn-check-mc" class="px-6 py-2 bg-cyan-600 text-white font-bold rounded-lg hover:bg-cyan-700">Check answer</button>
-            <button type="button" id="btn-next-mc" class="ml-3 px-6 py-2 bg-slate-600 text-white font-bold rounded-lg hover:bg-slate-700">Next question</button>
-            <div id="game6-feedback" class="mt-4 p-4 rounded-xl hidden"></div>
+            <p id="feedback-xformer-match" class="mt-3 hidden rounded px-3 py-2"></p>
         </section>
 
-        <footer class="text-center text-slate-500 text-sm pt-8 border-t">
-            DC Motor, AC Generator & Transformer Games · Hello Physics
-        </footer>
-    </div>
+    </main>
 
     <script>
-        // ------- Game 1: DC Motor parts -------
-        const partRoles = {
-            stator: 'Stator: Fixed magnets (N–S) that create the magnetic field.',
-            rotor: 'Rotor (armature): The coil that carries current and rotates. The force on it produces torque.',
-            commutator: 'Commutator: A split ring that reverses the current in the coil every half turn so the torque always acts in one direction (DC motor).',
-            brush: 'Brush: A fixed block that presses against the commutator (or slip ring). It carries current between the fixed wires and the rotating coil.'
-        };
-        document.querySelectorAll('.part-btn, .diagram-part').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.part-btn').forEach(b => b.classList.remove('ring-2', 'ring-indigo-500'));
-                document.querySelectorAll('.diagram-part').forEach(b => b.classList.remove('ring-2', 'ring-indigo-500'));
-                const part = this.dataset.part;
-                this.classList.add('ring-2', 'ring-indigo-500');
-                document.getElementById('game1-feedback').innerHTML = '<p class="font-semibold">' + part.charAt(0).toUpperCase() + part.slice(1) + '</p><p class="text-slate-600 mt-1">' + partRoles[part] + '</p>';
-            });
-        });
+        (function () {
+            var correctDC = { A: 'Rotor coil', B: 'Commutator', C: 'Brushes', D: 'Stator (magnet)' };
+            var correctACvsDC = { '1': 'AC generator', '2': 'DC motor', '3': 'Reverse current in the coil every half turn so torque stays in one direction' };
+            var correctXformerType = { a: 'Step-up', b: 'Step-down' };
+            var correctXformerMatch = { grid: 'Step-up', laptop: 'Step-down' };
 
-        // ------- Game 2: EMF calculator -------
-        document.getElementById('btn-calc-emf').addEventListener('click', function() {
-            const N = parseFloat(document.getElementById('inp-N').value) || 0;
-            const B = parseFloat(document.getElementById('inp-B').value) || 0;
-            const A = parseFloat(document.getElementById('inp-A').value) || 0;
-            const f = parseFloat(document.getElementById('inp-f').value) || 0;
-            const omega = 2 * Math.PI * f;
-            const E0 = N * B * A * omega;
-            document.getElementById('game2-answer').textContent = 'ε₀ = ' + E0.toFixed(2) + ' V';
-        });
+            function showFeedback(elId, ok, msg) {
+                var el = document.getElementById(elId);
+                if (!el) return;
+                el.textContent = msg;
+                el.classList.remove('hidden', 'feedback-correct', 'feedback-incorrect');
+                el.classList.add(ok ? 'feedback-correct' : 'feedback-incorrect');
+            }
 
-        // ------- Game 3: Transformer type quiz -------
-        const typeQuestions = [
-            { N1: 200, V1: 120, N2: 50, type: 'step-down' },
-            { N1: 100, V1: 240, N2: 500, type: 'step-up' },
-            { N1: 500, V1: 220, N2: 500, type: 'isolation' },
-            { N1: 300, V1: 120, N2: 75, type: 'step-down' },
-            { N1: 150, V1: 100, N2: 600, type: 'step-up' }
-        ];
-        let typeIndex = 0;
-        let selectedType = null;
+            function clearPartOptions(game) {
+                document.querySelectorAll('.part-option[data-game="' + game + '"]').forEach(function (b) {
+                    b.classList.remove('selected', 'correct', 'wrong');
+                });
+            }
 
-        function showTypeQuestion() {
-            const q = typeQuestions[typeIndex];
-            document.getElementById('q3-N1').textContent = q.N1;
-            document.getElementById('q3-V1').textContent = q.V1;
-            document.getElementById('q3-N2').textContent = q.N2;
-            document.getElementById('game3-feedback').classList.add('hidden');
-            selectedType = null;
-            document.querySelectorAll('.quiz-option').forEach(b => { b.classList.remove('ring-2', 'ring-amber-500'); });
-        }
-        document.querySelectorAll('.quiz-option').forEach(b => {
-            b.addEventListener('click', function() {
-                document.querySelectorAll('.quiz-option').forEach(x => x.classList.remove('ring-2', 'ring-amber-500'));
-                this.classList.add('ring-2', 'ring-amber-500');
-                selectedType = this.dataset.type;
-            });
-        });
-        document.getElementById('btn-check-type').addEventListener('click', function() {
-            const fb = document.getElementById('game3-feedback');
-            if (selectedType === null) { fb.textContent = 'Select an option first.'; fb.className = 'mt-4 p-4 rounded-xl result-wrong'; fb.classList.remove('hidden'); return; }
-            const correct = typeQuestions[typeIndex].type === selectedType;
-            fb.textContent = correct ? 'Correct! Well done.' : 'Not quite. The correct answer is ' + typeQuestions[typeIndex].type + '.';
-            fb.className = 'mt-4 p-4 rounded-xl ' + (correct ? 'result-correct' : 'result-wrong');
-            fb.classList.remove('hidden');
-        });
-        document.getElementById('btn-next-type').addEventListener('click', function() {
-            typeIndex = (typeIndex + 1) % typeQuestions.length;
-            showTypeQuestion();
-        });
-        showTypeQuestion();
-
-        // ------- Game 4: Transformer calculation -------
-        const calcQuestions = [
-            { V1: 240, N1: 600, N2: 150 },
-            { V1: 120, N1: 200, N2: 50 },
-            { V1: 220, N1: 500, N2: 1000 }
-        ];
-        let calcIndex = 0;
-        function showCalcQuestion() {
-            const q = calcQuestions[calcIndex];
-            document.getElementById('q4-V1').textContent = q.V1;
-            document.getElementById('q4-N1').textContent = q.N1;
-            document.getElementById('q4-N2').textContent = q.N2;
-            document.getElementById('inp-V2').value = '';
-            document.getElementById('game4-feedback').classList.add('hidden');
-        }
-        document.getElementById('btn-check-V2').addEventListener('click', function() {
-            const q = calcQuestions[calcIndex];
-            const expected = (q.V1 * q.N2 / q.N1).toFixed(1);
-            const user = parseFloat(document.getElementById('inp-V2').value);
-            const fb = document.getElementById('game4-feedback');
-            const correct = user !== undefined && Math.abs(user - parseFloat(expected)) < 0.1;
-            fb.textContent = correct ? 'Correct! V₂ = ' + expected + ' V.' : 'The correct value is V₂ = ' + expected + ' V (using V₂/V₁ = N₂/N₁).';
-            fb.className = 'mt-4 p-4 rounded-xl ' + (correct ? 'result-correct' : 'result-wrong');
-            fb.classList.remove('hidden');
-        });
-        showCalcQuestion();
-
-        // ------- Game 5: Order the connection -------
-        const correctOrder = ['AC Generator', 'Step-up transformer', 'Grid', 'Step-down transformer', 'AC load'];
-        let orderItems = ['Step-down transformer', 'AC Generator', 'Grid', 'Step-up transformer', 'AC load'];
-        let selectedOrderIndex = -1;
-
-        function renderOrderList() {
-            const list = document.getElementById('game5-list');
-            list.innerHTML = orderItems.map((name, i) =>
-                '<button type="button" class="order-item px-4 py-2 rounded-lg border-2 ' + (selectedOrderIndex === i ? 'border-violet-500 bg-violet-100' : 'border-slate-300 bg-white') + '" data-idx="' + i + '">' + (i + 1) + '. ' + name + '</button>'
-            ).join('');
-            list.querySelectorAll('.order-item').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    selectedOrderIndex = parseInt(this.dataset.idx, 10);
-                    renderOrderList();
+            // Game 1: DC parts
+            document.querySelectorAll('.part-option[data-game="dc-parts"]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var label = this.getAttribute('data-label');
+                    clearPartOptions('dc-parts');
+                    document.querySelectorAll('.part-option[data-game="dc-parts"][data-label="' + label + '"]').forEach(function (b) { b.classList.remove('selected', 'correct', 'wrong'); });
+                    this.classList.add('selected');
                 });
             });
-        }
-        document.getElementById('btn-move-up').addEventListener('click', function() {
-            if (selectedOrderIndex <= 0) return;
-            [orderItems[selectedOrderIndex - 1], orderItems[selectedOrderIndex]] = [orderItems[selectedOrderIndex], orderItems[selectedOrderIndex - 1]];
-            selectedOrderIndex--;
-            renderOrderList();
-        });
-        document.getElementById('btn-move-down').addEventListener('click', function() {
-            if (selectedOrderIndex < 0 || selectedOrderIndex >= orderItems.length - 1) return;
-            [orderItems[selectedOrderIndex], orderItems[selectedOrderIndex + 1]] = [orderItems[selectedOrderIndex + 1], orderItems[selectedOrderIndex]];
-            selectedOrderIndex++;
-            renderOrderList();
-        });
-        document.getElementById('btn-check-order').addEventListener('click', function() {
-            const fb = document.getElementById('game5-feedback');
-            const correct = orderItems.length === correctOrder.length && orderItems.every((name, i) => name === correctOrder[i]);
-            fb.textContent = correct ? 'Correct order! Well done.' : 'Not quite. Correct order: ' + correctOrder.join(' → ') + '.';
-            fb.className = 'mt-4 p-4 rounded-xl ' + (correct ? 'result-correct' : 'result-wrong');
-            fb.classList.remove('hidden');
-        });
-        renderOrderList();
-
-        // ------- Game 6: Commutator vs slip rings MC -------
-        const mcQuestions = [
-            { q: 'In a DC motor, the current in the rotating coil is reversed every half turn by:', A: 'Slip rings', B: 'Commutator', C: 'Brushes', correct: 'B' },
-            { q: 'In an AC generator, the output is taken from the rotating coil using:', A: 'Commutator', B: 'Slip rings', C: 'Brushes only (no rings)', correct: 'B' },
-            { q: 'Which part carries current between the fixed wires and the rotating coil?', A: 'Commutator', B: 'Slip ring', C: 'Brush', correct: 'C' },
-            { q: 'Step-up transformer has:', A: 'N₂ > N₁', B: 'N₂ < N₁', C: 'N₂ = N₁', correct: 'A' },
-            { q: 'Transformer works only with:', A: 'DC', B: 'AC', C: 'Both', correct: 'B' }
-        ];
-        let mcIndex = 0;
-        let selectedMC = null;
-
-        function showMCQuestion() {
-            const q = mcQuestions[mcIndex];
-            document.getElementById('game6-text').textContent = q.q;
-            document.querySelectorAll('.mc-option').forEach((b, i) => {
-                const opt = ['A', 'B', 'C'][i];
-                b.textContent = opt + '. ' + q[opt];
-                b.dataset.opt = opt;
-                b.classList.remove('ring-2', 'ring-cyan-500');
+            document.getElementById('check-dc-parts').addEventListener('click', function () {
+                var ok = true;
+                ['A','B','C','D'].forEach(function (label) {
+                    var chosen = document.querySelector('.part-option[data-game="dc-parts"][data-label="' + label + '"].selected');
+                    var correct = correctDC[label];
+                    document.querySelectorAll('.part-option[data-game="dc-parts"][data-label="' + label + '"]').forEach(function (b) {
+                        b.classList.remove('selected', 'correct', 'wrong');
+                        if (b.getAttribute('data-answer') === correct) b.classList.add('correct');
+                        else if (chosen && b === chosen && b.getAttribute('data-answer') !== correct) { b.classList.add('wrong'); ok = false; }
+                    });
+                    if (chosen && chosen.getAttribute('data-answer') !== correct) ok = false;
+                });
+                showFeedback('feedback-dc-parts', ok, ok ? 'All correct! A = Rotor coil, B = Commutator, C = Brushes, D = Stator (magnet).' : 'Some answers are wrong. Correct: A = Rotor coil, B = Commutator, C = Brushes, D = Stator (magnet).');
             });
-            document.getElementById('game6-feedback').classList.add('hidden');
-            selectedMC = null;
-        }
-        document.querySelectorAll('.mc-option').forEach(b => {
-            b.addEventListener('click', function() {
-                document.querySelectorAll('.mc-option').forEach(x => x.classList.remove('ring-2', 'ring-cyan-500'));
-                this.classList.add('ring-2', 'ring-cyan-500');
-                selectedMC = this.dataset.opt;
+
+            // Game 2: Back EMF
+            document.getElementById('check-back-emf').addEventListener('click', function () {
+                var val = parseFloat(document.getElementById('input-back-emf').value);
+                var expected = 24 - 2 * 3; // 18
+                var ok = !isNaN(val) && Math.abs(val - expected) < 0.1;
+                showFeedback('feedback-back-emf', ok, ok ? 'Correct! ℰ_back = V_supply − I R = 24 − 6 = 18 V.' : 'Not quite. Use ℰ_back = V_supply − I R = 24 − (2)(3) = 18 V.');
             });
-        });
-        document.getElementById('btn-check-mc').addEventListener('click', function() {
-            const fb = document.getElementById('game6-feedback');
-            if (selectedMC === null) { fb.textContent = 'Select an option first.'; fb.className = 'mt-4 p-4 rounded-xl result-wrong'; fb.classList.remove('hidden'); return; }
-            const correct = mcQuestions[mcIndex].correct === selectedMC;
-            fb.textContent = correct ? 'Correct!' : 'Correct answer: ' + mcQuestions[mcIndex].correct + '.';
-            fb.className = 'mt-4 p-4 rounded-xl ' + (correct ? 'result-correct' : 'result-wrong');
-            fb.classList.remove('hidden');
-        });
-        document.getElementById('btn-next-mc').addEventListener('click', function() {
-            mcIndex = (mcIndex + 1) % mcQuestions.length;
-            showMCQuestion();
-        });
-        showMCQuestion();
+
+            // Game 3: AC vs DC
+            document.querySelectorAll('.part-option[data-game="ac-vs-dc"]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var q = this.getAttribute('data-q');
+                    document.querySelectorAll('.part-option[data-game="ac-vs-dc"][data-q="' + q + '"]').forEach(function (b) { b.classList.remove('selected'); });
+                    this.classList.add('selected');
+                });
+            });
+            document.getElementById('check-ac-vs-dc').addEventListener('click', function () {
+                var ok = true;
+                ['1','2','3'].forEach(function (q) {
+                    var chosen = document.querySelector('.part-option[data-game="ac-vs-dc"][data-q="' + q + '"].selected');
+                    var correct = correctACvsDC[q];
+                    document.querySelectorAll('.part-option[data-game="ac-vs-dc"][data-q="' + q + '"]').forEach(function (b) {
+                        b.classList.remove('correct', 'wrong');
+                        if (b.getAttribute('data-answer') === correct) b.classList.add('correct');
+                        else if (chosen && b === chosen) { b.classList.add('wrong'); ok = false; }
+                    });
+                    if (chosen && chosen.getAttribute('data-answer') !== correct) ok = false;
+                });
+                showFeedback('feedback-ac-vs-dc', ok, ok ? 'All correct!' : 'Check the wrong answers (green = correct, red = your wrong choice).');
+            });
+
+            // Game 4: Transformer type
+            document.querySelectorAll('.part-option[data-game="xformer-type"]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var q = this.getAttribute('data-q');
+                    document.querySelectorAll('.part-option[data-game="xformer-type"][data-q="' + q + '"]').forEach(function (b) { b.classList.remove('selected'); });
+                    this.classList.add('selected');
+                });
+            });
+            document.getElementById('check-xformer-type').addEventListener('click', function () {
+                var ok = true;
+                ['a','b'].forEach(function (q) {
+                    var chosen = document.querySelector('.part-option[data-game="xformer-type"][data-q="' + q + '"].selected');
+                    var correct = correctXformerType[q];
+                    document.querySelectorAll('.part-option[data-game="xformer-type"][data-q="' + q + '"]').forEach(function (b) {
+                        b.classList.remove('correct', 'wrong');
+                        if (b.getAttribute('data-answer') === correct) b.classList.add('correct');
+                        else if (chosen && b === chosen) { b.classList.add('wrong'); ok = false; }
+                    });
+                    if (chosen && chosen.getAttribute('data-answer') !== correct) ok = false;
+                });
+                showFeedback('feedback-xformer-type', ok, ok ? 'All correct! (a) N2 > N1 ⇒ step-up; (b) V2 < V1 ⇒ step-down.' : 'Check: (a) Step-up, (b) Step-down.');
+            });
+
+            // Game 5: V2
+            document.getElementById('check-v2').addEventListener('click', function () {
+                var val = parseFloat(document.getElementById('input-v2').value);
+                var expected = 220 * (100 / 500); // 44
+                var ok = !isNaN(val) && Math.abs(val - expected) < 0.1;
+                showFeedback('feedback-v2', ok, ok ? 'Correct! V2 = V1 × (N2/N1) = 220 × (100/500) = 44 V.' : 'Use V2 = V1 × (N2/N1) = 220 × (100/500) = 44 V.');
+            });
+
+            // Game 6: I2
+            document.getElementById('check-i2').addEventListener('click', function () {
+                var val = parseFloat(document.getElementById('input-i2').value);
+                var expected = (200 * 5) / 50; // 20
+                var ok = !isNaN(val) && Math.abs(val - expected) < 0.1;
+                showFeedback('feedback-i2', ok, ok ? 'Correct! V1 I1 = V2 I2 ⇒ I2 = (200×5)/50 = 20 A.' : 'Use V1 I1 = V2 I2 ⇒ I2 = (200×5)/50 = 20 A.');
+            });
+
+            // Game 7: Application match
+            document.querySelectorAll('.part-option[data-game="xformer-match"]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var q = this.getAttribute('data-q');
+                    document.querySelectorAll('.part-option[data-game="xformer-match"][data-q="' + q + '"]').forEach(function (b) { b.classList.remove('selected'); });
+                    this.classList.add('selected');
+                });
+            });
+            document.getElementById('check-xformer-match').addEventListener('click', function () {
+                var ok = true;
+                ['grid','laptop'].forEach(function (q) {
+                    var chosen = document.querySelector('.part-option[data-game="xformer-match"][data-q="' + q + '"].selected');
+                    var correct = correctXformerMatch[q];
+                    document.querySelectorAll('.part-option[data-game="xformer-match"][data-q="' + q + '"]').forEach(function (b) {
+                        b.classList.remove('correct', 'wrong');
+                        if (b.getAttribute('data-answer') === correct) b.classList.add('correct');
+                        else if (chosen && b === chosen) { b.classList.add('wrong'); ok = false; }
+                    });
+                    if (chosen && chosen.getAttribute('data-answer') !== correct) ok = false;
+                });
+                showFeedback('feedback-xformer-match', ok, ok ? 'All correct! Grid uses step-up; laptop adapter uses step-down.' : 'Grid → step-up; laptop (230 V → 19 V) → step-down.');
+            });
+        })();
     </script>
+
 </body>
 </html>

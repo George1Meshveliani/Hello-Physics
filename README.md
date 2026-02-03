@@ -1,13 +1,14 @@
 Click the topic and Enjoy!
 ### - Beginner Level -
 
-#### Mechanics
+#### Motion
 - [`Measuring length and volume`](https://george1meshveliani.github.io/Hello-Physics/LengthAndVolume)
 - [`Density`](https://george1meshveliani.github.io/Hello-Physics/Density)
 - [`Measuring time`](https://george1meshveliani.github.io/Hello-Physics/MeasuringTime)
 - [`Motion`](https://george1meshveliani.github.io/Hello-Physics/Motion)
 - [`Force`](https://george1meshveliani.github.io/Hello-Physics/Force)
 - [`More Dynamics`](https://george1meshveliani.github.io/Hello-Physics/MoreDynamics)
+- [`Turning forces`](https://george1meshveliani.github.io/Hello-Physics/TurningForces)
 - [`Density Questions`](https://george1meshveliani.github.io/Hello-Physics/DensityQeustions)
 - [`Some fun`](https://george1meshveliani.github.io/Hello-Physics/SomeFun)
 - [`Problems Set 1`](https://george1meshveliani.github.io/Hello-Physics/PSONE)
@@ -17,11 +18,11 @@ Click the topic and Enjoy!
 - [`Current, voltage and resistance`](https://george1meshveliani.github.io/Hello-Physics/CurrentVoltageResistance)
 - [`Electrical energy and electrical power`](https://george1meshveliani.github.io/Hello-Physics/ElectricalEnergyElectricalPower)
 - [`Magnetism`](https://george1meshveliani.github.io/Hello-Physics/Magnetism)
-- [`DC Motor, AC Generator & Transformers`](https://george1meshveliani.github.io/Hello-Physics/DCMotorACGeneratorTransformers)
 - [`Electricity and magnetism summary`](https://george1meshveliani.github.io/Hello-Physics/EMSummary)
 - [`Electric Charge Questions`](https://george1meshveliani.github.io/Hello-Physics/ECQuestions)
 - [`Questions`](https://george1meshveliani.github.io/Hello-Physics/EMQuestions)
 - [`EM Games`](https://george1meshveliani.github.io/Hello-Physics/EMGames)
+- [`DC Motor, AC Generator & Transformers — Games`](https://george1meshveliani.github.io/Hello-Physics/DCMotorACGeneratorGames)
 - [`Problems Set 2`](https://george1meshveliani.github.io/Hello-Physics/PSTWO)
 
 ### - Advanced Level -

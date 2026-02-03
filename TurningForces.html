@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Turning Forces — Moments & Equilibrium</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <style>
+    .animate-slide { animation: slideIn 0.25s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    .theory-card { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-left: 4px solid #4f46e5; }
+    .diagram-card { background: #fff; border: 1px solid #e2e8f0; }
+    .tab-btn { flex: 1; padding: 0.75rem; border-radius: 0.75rem; font-weight: 600; color: #475569; }
+    .tab-btn.active { background: white; color: #4f46e5; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div class="min-h-screen p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- HEADER -->
+    <header class="mb-8 text-center">
+      <h1 class="text-4xl font-extrabold text-slate-800 mb-2">Turning Forces</h1>
+      <p class="text-slate-600 text-lg">Moments, equilibrium, and centre of gravity — for high school physics</p>
+    </header>
+
+    <!-- ========== THEORY CONTENT ========== -->
+    <section class="space-y-8 mb-12">
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">1. What are turning forces?</h2>
+        <p class="text-slate-700 mb-4">A <strong>turning force</strong> (or <strong>moment of a force</strong>) is the effect of a force that causes an object to rotate about a point or axis. Everyday examples: opening a door, using a spanner, a seesaw, or a wheel. The rotation depends not only on the size of the force but also on the <strong>distance</strong> from the point about which the object turns (the <strong>pivot</strong>).</p>
+        <p class="text-slate-700">The pivot (or fulcrum) is the fixed point around which rotation can happen. The greater the distance from the pivot to the line of action of the force, the greater the turning effect.</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">2. Moment of a force — formula</h2>
+        <p class="text-slate-700 mb-4">The <strong>moment</strong> \(M\) of a force \(F\) about a pivot is:</p>
+        <div class="bg-white rounded-lg p-4 border border-indigo-100 text-center my-4">
+          <span id="formula-moment"></span>
+        </div>
+        <p class="text-slate-700 mb-2"><strong>\(F\)</strong> = force (in newtons, N)</p>
+        <p class="text-slate-700 mb-2"><strong>\(d\)</strong> = perpendicular distance from the pivot to the line of action of the force (in metres, m)</p>
+        <p class="text-slate-700">So <strong>moment</strong> is measured in <strong>newton-metres (N⋅m)</strong>. The perpendicular distance is the shortest distance from the pivot to the line along which the force acts. If the force is at an angle, you must use the component of the distance that is perpendicular to the force, or the component of the force that is perpendicular to the distance.</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">3. Drawing — force, pivot, and perpendicular distance</h2>
+        <p class="text-slate-700 mb-4">The diagram below shows a force \(F\) applied at a distance \(d\) from the pivot. The moment is \(M = F \times d\). Clockwise and anticlockwise moments are given a sign convention: often we take one direction as positive and the other as negative so that we can add them.</p>
+        <div class="diagram-card rounded-xl p-4 flex justify-center overflow-x-auto">
+          <svg viewBox="0 0 320 160" class="max-w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#4f46e5"/></marker></defs>
+            <!-- Bar -->
+            <line x1="40" y1="80" x2="280" y2="80" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
+            <!-- Pivot (triangle) -->
+            <path d="M160 80 L150 100 L170 100 Z" fill="#64748b"/>
+            <text x="160" y="120" text-anchor="middle" font-size="12" fill="#475569">pivot</text>
+            <!-- Perpendicular distance d -->
+            <line x1="240" y1="80" x2="240" y2="40" stroke="#059669" stroke-width="2" stroke-dasharray="4 2"/>
+            <text x="250" y="58" font-size="11" fill="#059669">d</text>
+            <!-- Force F (downward) -->
+            <line x1="240" y1="40" x2="240" y2="0" stroke="#4f46e5" stroke-width="3" marker-end="url(#arrowhead)"/>
+            <text x="255" y="18" font-size="12" fill="#4f46e5">F</text>
+            <!-- Label "line of action" -->
+            <text x="160" y="145" text-anchor="middle" font-size="11" fill="#64748b">Bar: distance d from pivot to line of action of F</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">4. Equilibrium of moments</h2>
+        <p class="text-slate-700 mb-4">When an object is not rotating (or is rotating at constant angular velocity), the moments about any pivot must balance. This is the <strong>principle of moments</strong>:</p>
+        <div class="bg-white rounded-lg p-4 border border-indigo-100 text-center my-4">
+          <span id="formula-equilibrium"></span>
+        </div>
+        <p class="text-slate-700">Sum of clockwise moments = sum of anticlockwise moments (about the same pivot). So you can set up an equation to find an unknown force or distance. For the object to be in full equilibrium, the resultant force must also be zero (so it does not accelerate).</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">5. Drawing — seesaw in equilibrium</h2>
+        <p class="text-slate-700 mb-4">Two children on a seesaw: their weights produce moments about the pivot. When the seesaw is balanced, the clockwise moment equals the anticlockwise moment: \(W_1 \times d_1 = W_2 \times d_2\).</p>
+        <div class="diagram-card rounded-xl p-4 flex justify-center overflow-x-auto">
+          <svg viewBox="0 0 340 140" class="max-w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <line x1="40" y1="70" x2="300" y2="70" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
+            <path d="M170 70 L160 95 L180 95 Z" fill="#64748b"/>
+            <text x="170" y="115" text-anchor="middle" font-size="11" fill="#475569">pivot</text>
+            <circle cx="100" cy="45" r="18" fill="#fbbf24" stroke="#b45309"/>
+            <text x="100" y="50" text-anchor="middle" font-size="10">W₁</text>
+            <line x1="100" y1="70" x2="100" y2="63" stroke="#64748b" stroke-width="1"/>
+            <text x="100" y="38" text-anchor="middle" font-size="9">d₁</text>
+            <circle cx="270" cy="45" r="18" fill="#60a5fa" stroke="#2563eb"/>
+            <text x="270" y="50" text-anchor="middle" font-size="10">W₂</text>
+            <line x1="270" y1="70" x2="270" y2="63" stroke="#64748b" stroke-width="1"/>
+            <text x="270" y="38" text-anchor="middle" font-size="9">d₂</text>
+            <text x="170" y="135" text-anchor="middle" font-size="10" fill="#64748b">Balanced: W₁×d₁ = W₂×d₂</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">6. Centre of gravity</h2>
+        <p class="text-slate-700 mb-4">The <strong>centre of gravity</strong> (CG) of an object is the point through which the entire weight of the object can be considered to act. For a uniform ruler, the centre of gravity is at its midpoint. For equilibrium on a pivot, the pivot is often directly under the centre of gravity so that the weight produces no moment about that pivot. If the line of action of the weight passes through the pivot, the object stays balanced.</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">7. Stability</h2>
+        <p class="text-slate-700 mb-4">An object is more <strong>stable</strong> if its centre of gravity is low and its base is wide. When an object is tilted, the line of action of its weight may pass outside the base; then the weight produces a moment that tips it over. So: low CG and wide base → line of action of weight stays inside the base for larger tilts → more stable.</p>
+      </div>
+
+      <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-4">
+        <h3 class="font-bold text-indigo-900 mb-2">Quick formula reference</h3>
+        <ul class="text-slate-700 space-y-1 text-sm">
+          <li>Moment: \(M = F \times d\) (with \(d\) perpendicular distance)</li>
+          <li>Equilibrium: sum of clockwise moments = sum of anticlockwise moments</li>
+          <li>Unit of moment: N⋅m</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== PROBLEMS SECTION ========== -->
+    <section class="mt-12">
+      <h2 class="text-3xl font-bold text-slate-800 mb-4">Problems</h2>
+      <p class="text-slate-600 mb-6">10 Easy, 10 Intermediate, 10 Advanced. Click <strong>Show solution</strong> to reveal the full solution.</p>
+
+      <div class="flex bg-slate-200 p-1 rounded-xl mb-8">
+        <button class="tab-btn active" onclick="setTab('Easy')">Easy (10)</button>
+        <button class="tab-btn" onclick="setTab('Intermediate')">Intermediate (10)</button>
+        <button class="tab-btn" onclick="setTab('Advanced')">Advanced (10)</button>
+      </div>
+
+      <div id="questionList" class="space-y-4"></div>
+    </section>
+
+    <footer class="mt-12 text-center border-t pt-8 text-slate-400 text-sm">
+      Turning forces — Moments &amp; equilibrium. Use \(g = 9.8\,\text{m/s}^2\) where needed.
+    </footer>
+  </div>
+</div>
+
+<script>
+/* ---------- Math rendering (KaTeX) ---------- */
+function renderMath(el, text) {
+  if (!el) return;
+  const parts = text.split(/(\$[^$]+\$)/g);
+  el.innerHTML = "";
+  parts.forEach(part => {
+    if (part.startsWith("$") && part.endsWith("$")) {
+      const span = document.createElement("span");
+      try { katex.render(part.slice(1, -1), span, { throwOnError: false }); } catch (_) {}
+      span.className = "mx-0.5 text-slate-800";
+      el.appendChild(span);
+    } else {
+      el.appendChild(document.createTextNode(part));
+    }
+  });
+}
+
+function renderBlock(el, text) {
+  if (!el) return;
+  const parts = text.split(/(\$[^$]+\$)/g);
+  el.innerHTML = "";
+  parts.forEach(part => {
+    if (part.startsWith("$") && part.endsWith("$")) {
+      const span = document.createElement("span");
+      try { katex.render(part.slice(1, -1), span, { displayMode: true, throwOnError: false }); } catch (_) {}
+      el.appendChild(span);
+    } else {
+      const p = document.createElement("span");
+      p.className = "whitespace-pre-line";
+      p.textContent = part;
+      el.appendChild(p);
+    }
+  });
+}
+
+/* ---------- Formula display ---------- */
+document.addEventListener("DOMContentLoaded", function () {
+  const mSpan = document.getElementById("formula-moment");
+  const eSpan = document.getElementById("formula-equilibrium");
+  if (mSpan) katex.render("M = F \\times d", mSpan, { displayMode: true, throwOnError: false });
+  if (eSpan) katex.render("\\sum \\text{clockwise moments} = \\sum \\text{anticlockwise moments}", eSpan, { displayMode: true, throwOnError: false });
+});
+
+/* ---------- Questions data ---------- */
+const questions = {
+  Easy: [
+    { q: "1. A force of $20\\,\\text{N}$ is applied at a perpendicular distance of $0.5\\,\\text{m}$ from a pivot. Calculate the moment.", s: "Moment $M = F \\times d = 20 \\times 0.5 = 10\\,\\text{N}\\!\\cdot\\text{m}$." },
+    { q: "2. A moment of $15\\,\\text{N}\\!\\cdot\\text{m}$ is produced by a force of $30\\,\\text{N}$. What is the perpendicular distance from the pivot to the line of action of the force?", s: "From $M = F \\times d$, we get $d = M/F = 15/30 = 0.5\\,\\text{m}$." },
+    { q: "3. A child of weight $300\\,\\text{N}$ sits $2\\,\\text{m}$ from the pivot of a seesaw. What is the moment of the child's weight about the pivot?", s: "The weight acts at $2\\,\\text{m}$ from the pivot, so $M = F \\times d = 300 \\times 2 = 600\\,\\text{N}\\!\\cdot\\text{m}$." },
+    { q: "4. Two forces act on a beam. Force A is $10\\,\\text{N}$ at $3\\,\\text{m}$ from the pivot (clockwise). Force B is $15\\,\\text{N}$ at $2\\,\\text{m}$ from the pivot (anticlockwise). Is the beam in equilibrium?", s: "Clockwise moment $= 10 \\times 3 = 30\\,\\text{N}\\!\\cdot\\text{m}$. Anticlockwise moment $= 15 \\times 2 = 30\\,\\text{N}\\!\\cdot\\text{m}$. They are equal, so yes, the beam is in equilibrium (for rotation about this pivot).", fig: '<div class="mb-3"><svg viewBox="0 0 280 100" class="w-full max-w-sm mx-auto block" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="50" x2="260" y2="50" stroke="#334155" stroke-width="3"/><path d="M140 50 L132 72 L148 72 Z" fill="#64748b"/><text x="140" y="88" text-anchor="middle" font-size="11" fill="#475569">pivot</text><text x="60" y="35" font-size="12">10 N</text><line x1="60" y1="50" x2="60" y2="30" stroke="#4f46e5" stroke-width="2"/><text x="220" y="35" font-size="12">15 N</text><line x1="220" y1="50" x2="220" y2="30" stroke="#059669" stroke-width="2"/><text x="60" y="58" font-size="10">3 m</text><text x="220" y="58" font-size="10">2 m</text></svg></div>' },
+    { q: "5. A uniform metre rule is pivoted at its centre. A weight of $4\\,\\text{N}$ hangs at the $20\\,\\text{cm}$ mark. What is the moment of this weight about the pivot? (Give magnitude.)", s: "The centre is at $50\\,\\text{cm}$. Distance from pivot to $20\\,\\text{cm}$ is $|50-20| = 30\\,\\text{cm} = 0.30\\,\\text{m}$. So $M = 4 \\times 0.30 = 1.2\\,\\text{N}\\!\\cdot\\text{m}$." },
+    { q: "6. To open a door, you push with a force of $25\\,\\text{N}$ at $0.8\\,\\text{m}$ from the hinges. What moment do you produce?", s: "$M = F \\times d = 25 \\times 0.8 = 20\\,\\text{N}\\!\\cdot\\text{m}$." },
+    { q: "7. A spanner is $0.25\\,\\text{m}$ long. What force applied at the end (perpendicular to the spanner) is needed to produce a moment of $50\\,\\text{N}\\!\\cdot\\text{m}$?", s: "$M = F \\times d \\Rightarrow F = M/d = 50/0.25 = 200\\,\\text{N}$." },
+    { q: "8. A uniform rod of length $2\\,\\text{m}$ has a weight of $20\\,\\text{N}$. It is pivoted at one end. What is the moment of its weight about that pivot? (Hint: the weight acts at the centre of the rod.)", s: "The centre of gravity is at the midpoint, $1\\,\\text{m}$ from the pivot. So $M = 20 \\times 1 = 20\\,\\text{N}\\!\\cdot\\text{m}$." },
+    { q: "9. Two children balance a seesaw. Child 1 has weight $200\\,\\text{N}$ and sits $1.5\\,\\text{m}$ from the pivot. Child 2 has weight $300\\,\\text{N}$. How far from the pivot must child 2 sit?", s: "For balance, $200 \\times 1.5 = 300 \\times d_2$, so $d_2 = (200 \\times 1.5)/300 = 1\\,\\text{m}$." },
+    { q: "10. A force of $12\\,\\text{N}$ acts at $2.5\\,\\text{m}$ from a pivot. Calculate the moment in N⋅m.", s: "$M = 12 \\times 2.5 = 30\\,\\text{N}\\!\\cdot\\text{m}$." }
+  ],
+  Intermediate: [
+    { q: "1. A uniform beam of length $4\\,\\text{m}$ and weight $60\\,\\text{N}$ is supported at its centre. A load of $40\\,\\text{N}$ is placed $1\\,\\text{m}$ from one end. What is the moment of the load about the support? What is the moment of the beam's weight about the support?", s: "Support is at the centre ($2\\,\\text{m}$ from each end). Load $40\\,\\text{N}$ at $1\\,\\text{m}$ from one end is $|2-1| = 1\\,\\text{m}$ from support. Moment of load $= 40 \\times 1 = 40\\,\\text{N}\\!\\cdot\\text{m}$. The beam's weight acts at the centre (support), so distance $= 0$ and moment of weight $= 0$." },
+    { q: "2. The diagram shows a light rod pivoted at P. A force of $8\\,\\text{N}$ acts downwards at point A, $1.2\\,\\text{m}$ from P. What is the moment of this force about P? (Assume the force is perpendicular to the rod.)", s: "$M = F \\times d = 8 \\times 1.2 = 9.6\\,\\text{N}\\!\\cdot\\text{m}$ (clockwise or anticlockwise depending on which side of P point A is)." },
+    { q: "3. A metre rule is pivoted at $30\\,\\text{cm}$. A weight of $5\\,\\text{N}$ hangs at the $10\\,\\text{cm}$ mark. Another weight $W$ hangs at the $80\\,\\text{cm}$ mark so that the rule is in equilibrium. Find $W$. (Assume the rule is light.)", s: "Distance of $5\\,\\text{N}$ from pivot $= 30 - 10 = 20\\,\\text{cm} = 0.20\\,\\text{m}$. Distance of $W$ from pivot $= 80 - 30 = 50\\,\\text{cm} = 0.50\\,\\text{m}$. For equilibrium: $5 \\times 0.20 = W \\times 0.50$, so $W = 1/0.50 = 2\\,\\text{N}$.", fig: '<div class="mb-3"><svg viewBox="0 0 320 90" class="w-full max-w-sm mx-auto block" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="45" x2="300" y2="45" stroke="#334155" stroke-width="2"/><text x="20" y="65" font-size="9">0</text><text x="95" y="65" font-size="9">10</text><text x="155" y="65" font-size="9">30</text><text x="260" y="65" font-size="9">80</text><text x="300" y="65" font-size="9">100 cm</text><path d="M155 45 L148 62 L162 62 Z" fill="#64748b"/><circle cx="95" cy="28" r="12" fill="#fbbf24"/><text x="95" y="32" text-anchor="middle" font-size="9">5 N</text><circle cx="260" cy="28" r="12" fill="#93c5fd"/><text x="260" y="32" text-anchor="middle" font-size="9">W</text></svg></div>' },
+    { q: "4. A uniform bar of weight $24\\,\\text{N}$ and length $1.2\\,\\text{m}$ is supported at one end. What is the moment of the weight about the support? Where does the weight act?", s: "Weight acts at the centre of the bar, so $0.6\\,\\text{m}$ from the support. Moment $= 24 \\times 0.6 = 14.4\\,\\text{N}\\!\\cdot\\text{m}$." },
+    { q: "5. Two masses hang from a light rod: $3\\,\\text{kg}$ at $0.5\\,\\text{m}$ from the pivot and $6\\,\\text{kg}$ at $1\\,\\text{m}$ on the other side. Is the rod in equilibrium? (Use $g = 10\\,\\text{m/s}^2$.)", s: "Weight of $3\\,\\text{kg}$ is $30\\,\\text{N}$, of $6\\,\\text{kg}$ is $60\\,\\text{N}$. Clockwise (e.g.) $= 30 \\times 0.5 = 15\\,\\text{N}\\!\\cdot\\text{m}$. Anticlockwise $= 60 \\times 1 = 60\\,\\text{N}\\!\\cdot\\text{m}$. They are not equal, so the rod is not in equilibrium." },
+    { q: "6. A door is $0.9\\,\\text{m}$ wide. The hinges are at the edge. You push at the far edge with a force of $40\\,\\text{N}$ at $30°$ to the plane of the door. What is the perpendicular distance from the hinge to the line of action of the force? Hence find the moment.", s: "If you push at the far edge, the distance from hinge to the point of application is $0.9\\,\\text{m}$. The component of the force perpendicular to the door is $40 \\sin 30° = 20\\,\\text{N}$. So moment $= 20 \\times 0.9 = 18\\,\\text{N}\\!\\cdot\\text{m}$. (Alternatively, perpendicular distance from hinge to line of action $= 0.9 \\sin 30° = 0.45\\,\\text{m}$, then $M = 40 \\times 0.45 = 18\\,\\text{N}\\!\\cdot\\text{m}$.)" },
+    { q: "7. A seesaw is balanced when a $25\\,\\text{kg}$ child sits $1.2\\,\\text{m}$ from the pivot and a $30\\,\\text{kg}$ child sits on the other side. How far from the pivot is the $30\\,\\text{kg}$ child? (Use $g = 10\\,\\text{m/s}^2$.)", s: "$W_1 = 250\\,\\text{N}$, $W_2 = 300\\,\\text{N}$. $250 \\times 1.2 = 300 \\times d_2$, so $d_2 = 300/300 = 1\\,\\text{m}$." },
+    { q: "8. A uniform plank of weight $100\\,\\text{N}$ and length $3\\,\\text{m}$ rests on two supports: one at end A and one at $1\\,\\text{m}$ from end B. The weight of the plank acts at its centre. Find the moment of the plank's weight about the support at A.", s: "Centre of plank is at $1.5\\,\\text{m}$ from A. So distance from support at A to CG is $1.5\\,\\text{m}$. Moment about A $= 100 \\times 1.5 = 150\\,\\text{N}\\!\\cdot\\text{m}$." },
+    { q: "9. A light rod of length $2\\,\\text{m}$ is pivoted at its centre. A force of $10\\,\\text{N}$ acts at one end perpendicular to the rod. What force applied at the other end (perpendicular to the rod) would balance it?", s: "Moment of first force $= 10 \\times 1 = 10\\,\\text{N}\\!\\cdot\\text{m}$. To balance, the other force must produce the same moment in the opposite direction: $F \\times 1 = 10$, so $F = 10\\,\\text{N}$." },
+    { q: "10. A beam is pivoted at its centre. On one side, a $4\\,\\text{N}$ weight hangs at $0.25\\,\\text{m}$ from the pivot. On the other side, a $2\\,\\text{N}$ weight hangs at distance $d$ from the pivot. Find $d$ for equilibrium.", s: "Clockwise $= 4 \\times 0.25 = 1\\,\\text{N}\\!\\cdot\\text{m}$. Anticlockwise $= 2 \\times d$. So $2d = 1$, hence $d = 0.5\\,\\text{m}$." }
+  ],
+  Advanced: [
+    { q: "1. A non-uniform metre rule is pivoted at $50\\,\\text{cm}$ and balances when a $100\\,\\text{g}$ mass hangs at $20\\,\\text{cm}$. The rule has a mass of $80\\,\\text{g}$. Where is the centre of gravity of the rule? (Use $g = 10\\,\\text{m/s}^2$.)", s: "Weight of rule $= 0.8\\,\\text{N}$, acts at distance $x$ from pivot (in cm: $50 - x$ if CG is between $20$ and $50$). Weight of mass $= 1\\,\\text{N}$ at $30\\,\\text{cm}$ from pivot. For balance: $1 \\times 30 = 0.8 \\times (50 - x)$ if CG is left of pivot, so $30 = 40 - 0.8x$, $0.8x = 10$, $x = 12.5\\,\\text{cm}$. So CG is at $50 - 12.5 = 37.5\\,\\text{cm}$ mark." },
+    { q: "2. A uniform ladder of length $5\\,\\text{m}$ and weight $200\\,\\text{N}$ leans against a smooth wall. The ladder's foot is $3\\,\\text{m}$ from the wall. The ladder is about to slip. Taking moments about the foot of the ladder, the normal reaction from the wall acts at the top of the ladder ($5\\,\\text{m}$ from the foot). The weight acts at the centre ($1.5\\,\\text{m}$ horizontally from the foot). Set up the equation for moments about the foot. (You do not need to solve for the reaction.)", s: "Let $R$ be the normal reaction from the wall. Moment of $R$ about the foot: $R \\times$ (vertical distance from foot to top). Vertical height of top $= \\sqrt{5^2 - 3^2} = 4\\,\\text{m}$. So moment $= R \\times 4$ (one direction). Weight $200\\,\\text{N}$ acts at midpoint: horizontal distance from foot $= 1.5\\,\\text{m}$. So moment of weight $= 200 \\times 1.5 = 300\\,\\text{N}\\!\\cdot\\text{m}$. Equate: $4R = 300$ (with correct sign convention), so $R = 75\\,\\text{N}$." },
+    { q: "3. A crane arm is $10\\,\\text{m}$ long and has a weight of $500\\,\\text{N}$ acting at its midpoint. It supports a load of $2000\\,\\text{N}$ at its end. The arm is pivoted at the base. Calculate the total clockwise moment about the pivot due to the arm and the load.", s: "Moment of arm weight $= 500 \\times 5 = 2500\\,\\text{N}\\!\\cdot\\text{m}$. Moment of load $= 2000 \\times 10 = 20000\\,\\text{N}\\!\\cdot\\text{m}$. Total $= 2500 + 20000 = 22500\\,\\text{N}\\!\\cdot\\text{m}$ (assuming both act in the same rotational direction)." },
+    { q: "4. A beam of length $L$ and weight $W$ is supported at both ends. A load $F$ is placed at $L/3$ from one end. By taking moments about one support, find the reaction at the other support.", s: "Let reactions be $R_1$ and $R_2$ at the two ends. Take moments about the end where $R_1$ acts. Moments: $R_2 \\times L$ (from $R_2$), $W \\times (L/2)$ (weight at centre), $F \\times (L/3)$ (load). Equilibrium: $R_2 L = W(L/2) + F(L/3)$, so $R_2 = W/2 + F/3$." },
+    { q: "5. A uniform rod of weight $40\\,\\text{N}$ and length $2\\,\\text{m}$ is hinged at one end and held horizontal by a string attached to the other end, the string making $30°$ with the rod. The tension in the string is $T$. By taking moments about the hinge, find $T$. (Hint: the perpendicular distance from the hinge to the line of action of $T$ is $2 \\sin 30° = 1\\,\\text{m}$.)", s: "Weight acts at $1\\,\\text{m}$ from hinge, moment $= 40 \\times 1 = 40\\,\\text{N}\\!\\cdot\\text{m}$. Tension $T$ acts along the string. Perpendicular distance from hinge to line of $T$ is $2 \\sin 30° = 1\\,\\text{m}$. So moment of $T = T \\times 1$. For equilibrium, $T \\times 1 = 40$, so $T = 40\\,\\text{N}$." },
+    { q: "6. Two masses $m_1 = 2\\,\\text{kg}$ and $m_2 = 5\\,\\text{kg}$ are hung from a light rod at distances $0.4\\,\\text{m}$ and $0.6\\,\\text{m}$ from a pivot. On which side of the pivot must a third mass $m_3 = 3\\,\\text{kg}$ be placed, and at what distance, so that the rod is in equilibrium? (Use $g = 10\\,\\text{m/s}^2$.)", s: "Moments: $20 \\times 0.4 = 8\\,\\text{N}\\!\\cdot\\text{m}$ (one side), $50 \\times 0.6 = 30\\,\\text{N}\\!\\cdot\\text{m}$ (other side). They are not equal. To balance, we need $30 - 8 = 22\\,\\text{N}\\!\\cdot\\text{m}$ from the $3\\,\\text{kg}$ mass ($30\\,\\text{N}$). So $30 \\times d = 22$, $d = 22/30 \\approx 0.733\\,\\text{m}$ on the side that has the smaller total moment (so the $3\\,\\text{kg}$ goes on the side of the $2\\,\\text{kg}$ to add anticlockwise moment)." },
+    { q: "7. A rectangular block of base $0.4\\,\\text{m} \\times 0.3\\,\\text{m}$ and height $0.5\\,\\text{m}$ stands on a horizontal surface. How far can it be tilted (angle with the vertical) before it topples? (The block topples when the line of action of the weight passes outside the base.)", s: "When the block is tilted, the line of action of the weight (through the centre of the block) must stay inside the base. The centre is at half the base dimensions. For toppling about one edge, the critical angle is when the vertical through the CG passes through that edge. For the $0.4\\,\\text{m}$ side: tan $\\theta = (0.4/2)/(0.5/2) = 0.2/0.25 = 0.8$, so $\\theta \\approx 38.7°$. For the $0.3\\,\\text{m}$ side: tan $\\phi = 0.15/0.25 = 0.6$, $\\phi \\approx 31°$. The smaller angle limits toppling, so it topples at about $31°$ when tilted along the shorter base edge." },
+    { q: "8. A uniform beam of length $6\\,\\text{m}$ and weight $120\\,\\text{N}$ is supported at points $1\\,\\text{m}$ from each end. A load of $60\\,\\text{N}$ is placed at the midpoint. Find the reaction at each support by taking moments.", s: "Let supports be at A ($1\\,\\text{m}$ from left) and B ($1\\,\\text{m}$ from right). Weight at $3\\,\\text{m}$, load at $3\\,\\text{m}$. Take moments about A: $R_B \\times 4 = 120 \\times 2 + 60 \\times 2 = 360$, so $R_B = 90\\,\\text{N}$. Then $R_A + R_B = 120 + 60 = 180$, so $R_A = 90\\,\\text{N}$.", fig: '<div class="mb-3"><svg viewBox="0 0 340 85" class="w-full max-w-sm mx-auto block" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="42" x2="320" y2="42" stroke="#334155" stroke-width="3"/><rect x="18" y="38" width="8" height="12" fill="#94a3b8"/><rect x="312" y="38" width="8" height="12" fill="#94a3b8"/><text x="22" y="75" font-size="10">A</text><text x="316" y="75" font-size="10">B</text><text x="170" y="28" font-size="11">120 N (beam)</text><text x="170" y="38" font-size="9">60 N (load)</text><line x1="170" y1="42" x2="170" y2="25" stroke="#6366f1" stroke-width="1"/><text x="55" y="55" font-size="9">1 m</text><text x="255" y="55" font-size="9">1 m</text><text x="170" y="55" font-size="9">centre</text></svg></div>' },
+    { q: "9. A force of $50\\,\\text{N}$ is applied at the end of a $0.6\\,\\text{m}$ wrench at an angle of $20°$ to the handle. What is the moment about the bolt (at the other end)?", s: "Perpendicular component of force to the handle $= 50 \\sin 20° \\approx 17.1\\,\\text{N}$. So moment $= 17.1 \\times 0.6 \\approx 10.26\\,\\text{N}\\!\\cdot\\text{m}$. (Or: perpendicular distance $= 0.6 \\sin 20°$, then $M = 50 \\times 0.6 \\sin 20°$.)" },
+    { q: "10. A uniform square lamina of side $a$ has its centre of gravity at the centre. It is pivoted at one corner. What is the perpendicular distance from the pivot to the line of action of the weight? Hence find the moment of the weight about the pivot.", s: "The diagonal has length $a\\sqrt{2}$. The centre is at half the diagonal from the pivot, so distance $= a\\sqrt{2}/2 = a/\\sqrt{2}$. If weight is $W$, moment $= W \\times (a/\\sqrt{2}) = Wa/\\sqrt{2}$." }
+  ]
+};
+
+/* Fix escaped backslash in data (for N·m) */
+function fix(s) {
+  if (typeof s !== "string") return s;
+  return s.replace(/\\cdot\\text{m}/g, "\\cdot\\text{m}");
+}
+
+let activeTab = "Easy";
+
+function setTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll(".tab-btn").forEach(b => { b.classList.toggle("active", b.textContent.startsWith(tab)); });
+  renderQuestions();
+}
+
+function renderQuestions() {
+  const list = document.getElementById("questionList");
+  if (!list) return;
+  list.innerHTML = "";
+  const arr = questions[activeTab] || [];
+  arr.forEach((item, idx) => {
+    const card = document.createElement("div");
+    card.className = "bg-white rounded-2xl border shadow-sm p-6";
+    if (item.fig) {
+      const figDiv = document.createElement("div");
+      figDiv.innerHTML = item.fig;
+      card.appendChild(figDiv);
+    }
+    const q = document.createElement("div");
+    q.className = "text-lg mb-4";
+    renderMath(q, fix(item.q));
+    const btn = document.createElement("button");
+    btn.className = "text-indigo-600 font-bold text-sm uppercase";
+    btn.textContent = "Show Solution";
+    const sol = document.createElement("div");
+    sol.className = "hidden mt-4 bg-slate-50 p-4 rounded-xl animate-slide";
+    const solText = document.createElement("div");
+    solText.className = "whitespace-pre-line";
+    renderMath(solText, fix(item.s));
+    sol.appendChild(solText);
+    btn.onclick = function () {
+      sol.classList.toggle("hidden");
+      btn.textContent = sol.classList.contains("hidden") ? "Show Solution" : "Hide Solution";
+    };
+    card.append(q, btn, sol);
+    list.appendChild(card);
+  });
+}
+
+/* Render solution with inline math (multiple $...$ segments) */
+function renderMathSol(el, text) {
+  el.innerHTML = "";
+  const parts = fix(text).split(/(\$[^$]+\$)/g);
+  parts.forEach(part => {
+    if (part.startsWith("$") && part.endsWith("$")) {
+      const span = document.createElement("span");
+      try { katex.render(part.slice(1, -1), span, { throwOnError: false }); } catch (_) {}
+      el.appendChild(span);
+    } else {
+      const t = document.createTextNode(part);
+      el.appendChild(t);
+    }
+  });
+}
+
+window.onload = function () {
+  renderQuestions();
+};
+</script>
+</body>
+</html>
