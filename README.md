@@ -1,7 +1,7 @@
 Click the topic and Enjoy!
 ### - Beginner Level -
 
-#### Motion
+#### Mechanics
 - [`Measuring length and volume`](https://george1meshveliani.github.io/Hello-Physics/LengthAndVolume)
 - [`Density`](https://george1meshveliani.github.io/Hello-Physics/Density)
 - [`Measuring time`](https://george1meshveliani.github.io/Hello-Physics/MeasuringTime)
