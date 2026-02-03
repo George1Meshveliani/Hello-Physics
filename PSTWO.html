@@ -55,9 +55,9 @@
 
     <!-- TABS -->
     <div class="flex bg-slate-200 p-1 rounded-xl mb-8">
-      <button class="tab-btn active" onclick="setTab('Easy')">Easy (20)</button>
-      <button class="tab-btn" onclick="setTab('Intermediate')">Intermediate (20)</button>
-      <button class="tab-btn" onclick="setTab('Advanced')">Advanced (20)</button>
+      <button class="tab-btn active" onclick="setTab('Easy')">Easy (25)</button>
+      <button class="tab-btn" onclick="setTab('Intermediate')">Intermediate (25)</button>
+      <button class="tab-btn" onclick="setTab('Advanced')">Advanced (25)</button>
     </div>
 
     <!-- QUESTIONS -->
@@ -95,19 +95,110 @@ function renderMath(el, text) {
 
 /* ------------------ DATA ------------------ */
 const formulas = [
-  ["Electric Force", "$\\vec{F} = q\\vec{E}$"],
-  ["Magnetic Force on Charge", "$\\vec{F} = qvB\\sin\\theta$"],
-  ["Lorentz Force", "$\\vec{F} = q\\vec{E} + q(\\vec{v} \\times \\vec{B})$"],
-  ["Force on Current-Carrying Wire", "$F = BIL\\sin\\theta$"],
-  ["Cyclotron Radius", "$r = \\frac{mv}{qB}$"],
-  ["Cyclotron Frequency", "$f = \\frac{qB}{2\\pi m}$"],
-  ["Faraday's Law (EMF)", "$\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$"],
-  ["Magnetic Flux", "$\\Phi = BA\\cos\\theta$"],
-  ["Ideal Transformer", "$\\frac{V_2}{V_1} = \\frac{N_2}{N_1}$"],
-  ["Transformer Power", "$V_1 I_1 = V_2 I_2$"],
-  ["Magnetic Field (Long Wire)", "$B = \\frac{\\mu_0 I}{2\\pi r}$"],
-  ["Magnetic Field (Solenoid)", "$B = \\mu_0 n I$"],
-  ["Motional EMF", "$\\varepsilon = BLv$"],
+  {
+    name: "Electric Force",
+    formula: "$\\vec{F} = q\\vec{E}$",
+    when: "When a charge is in an electric field and you need the force on it (or E from F and q).",
+    symbols: "F = force (N), q = charge (C), E = electric field strength (N/C or V/m).",
+    how: "F = qE in magnitude; direction: positive q along E, negative q opposite E. Use to find F, q, or E.",
+    problems: "Charges in uniform fields, deflection of beams, equilibrium of charged particles."
+  },
+  {
+    name: "Magnetic Force on Charge",
+    formula: "$\\vec{F} = qvB\\sin\\theta$",
+    when: "When a moving charge is in a magnetic field and you need the magnitude of the magnetic force (no E field).",
+    symbols: "F = force (N), q = charge (C), v = speed (m/s), B = magnetic flux density (T), θ = angle between v and B.",
+    how: "F = qvB when v ⊥ B (θ = 90°); F = 0 when v ∥ B. Direction: right-hand rule (F ⊥ v and B).",
+    problems: "Particles in magnetic fields, circular motion of charges, mass spectrometers, cyclotrons."
+  },
+  {
+    name: "Lorentz Force",
+    formula: "$\\vec{F} = q\\vec{E} + q(\\vec{v} \\times \\vec{B})$",
+    when: "When both electric and magnetic fields act on a moving charge; total electromagnetic force.",
+    symbols: "F = total force (N), q = charge (C), E = electric field (N/C), v = velocity (m/s), B = magnetic field (T).",
+    how: "Add electric force qE and magnetic force q(v × B). Use when both fields are present (e.g. velocity selectors).",
+    problems: "Velocity selectors, Hall effect, combined E and B deflection, cathode rays."
+  },
+  {
+    name: "Force on Current-Carrying Wire",
+    formula: "$F = BIL\\sin\\theta$",
+    when: "When a straight wire carrying current is in a magnetic field and you need the force on the wire.",
+    symbols: "F = force (N), B = magnetic flux density (T), I = current (A), L = length of wire in field (m), θ = angle between wire and B.",
+    how: "F = BIL when wire ⊥ B (θ = 90°). Direction: Fleming’s left-hand rule. Use to find F, B, I, or L.",
+    problems: "Motors, loudspeakers, force on rails, balancing magnetic force with weight."
+  },
+  {
+    name: "Cyclotron Radius",
+    formula: "$r = \\frac{mv}{qB}$",
+    when: "When a charged particle moves in a plane perpendicular to a uniform B field (circular path); radius of the circle.",
+    symbols: "r = radius (m), m = mass (kg), v = speed (m/s), q = charge (C), B = magnetic flux density (T).",
+    how: "Set centripetal force mv²/r equal to magnetic force qvB; solve for r = mv/(qB).",
+    problems: "Cyclotrons, mass spectrometers, radius of curvature in bubble chambers, particle identification."
+  },
+  {
+    name: "Cyclotron Frequency",
+    formula: "$f = \\frac{qB}{2\\pi m}$",
+    when: "When a charged particle moves in a circle in a uniform B field; frequency (and angular frequency) of the motion.",
+    symbols: "f = frequency (Hz), q = charge (C), B = magnetic flux density (T), m = mass (kg).",
+    how: "f = qB/(2πm); independent of speed and radius (for non-relativistic motion). Period T = 1/f.",
+    problems: "Cyclotron operation, time to complete orbits, resonance in particle accelerators."
+  },
+  {
+    name: "Faraday's Law (EMF)",
+    formula: "$\\varepsilon = -N\\frac{\\Delta\\Phi}{\\Delta t}$",
+    when: "When magnetic flux through a coil (or loop) changes; gives the induced EMF (and direction from Lenz’s law).",
+    symbols: "ε = induced EMF (V), N = number of turns, ΔΦ = change in magnetic flux (Wb), Δt = time interval (s). Minus sign: Lenz’s law.",
+    how: "Find ΔΦ (e.g. from B, A, or θ change), divide by Δt, multiply by N. Magnitude: ε = N|ΔΦ/Δt|.",
+    problems: "Moving magnets near coils, changing area or orientation, AC generators, transformers (conceptual)."
+  },
+  {
+    name: "Magnetic Flux",
+    formula: "$\\Phi = BA\\cos\\theta$",
+    when: "When you need the magnetic flux through a loop or surface for Faraday’s law or induction.",
+    symbols: "Φ = magnetic flux (Wb), B = magnetic flux density (T), A = area (m²), θ = angle between B and normal to area.",
+    how: "Φ = BA when B is perpendicular to the loop (θ = 0°); Φ = 0 when B is in the plane (θ = 90°).",
+    problems: "Flux through rotating coils, flux change for induced EMF, linking B and area."
+  },
+  {
+    name: "Ideal Transformer",
+    formula: "$\\frac{V_2}{V_1} = \\frac{N_2}{N_1}$",
+    when: "When you relate AC voltages and turns for an ideal transformer (no losses).",
+    symbols: "V₁ = primary voltage (V), V₂ = secondary voltage (V), N₁ = primary turns, N₂ = secondary turns.",
+    how: "V₂/V₁ = N₂/N₁. Step-up: N₂ > N₁ ⇒ V₂ > V₁; step-down: N₂ < N₁ ⇒ V₂ < V₁. Use with power relation for currents.",
+    problems: "Finding output voltage from turns, step-up/step-down identification, turns ratio from voltages."
+  },
+  {
+    name: "Transformer Power",
+    formula: "$V_1 I_1 = V_2 I_2$",
+    when: "When you assume an ideal transformer (input power = output power) and need current or power.",
+    symbols: "V₁, I₁ = primary voltage (V) and current (A); V₂, I₂ = secondary voltage (V) and current (A).",
+    how: "P_in = P_out ⇒ V₁I₁ = V₂I₂. Use with V₂/V₁ = N₂/N₁ to find I₁ or I₂ from the other side.",
+    problems: "Primary/secondary current, power delivered to load, efficiency (with losses)."
+  },
+  {
+    name: "Magnetic Field (Long Wire)",
+    formula: "$B = \\frac{\\mu_0 I}{2\\pi r}$",
+    when: "When you need the magnetic field magnitude at a distance from a long straight current-carrying wire.",
+    symbols: "B = magnetic flux density (T), μ₀ = 4π×10⁻⁷ T·m/A, I = current (A), r = perpendicular distance from wire (m).",
+    how: "B = μ₀I/(2πr). Direction: right-hand grip rule (thumb along I, fingers show B). Use for forces between wires.",
+    problems: "Field near a wire, two parallel wires (attraction/repulsion), magnitude at a point."
+  },
+  {
+    name: "Magnetic Field (Solenoid)",
+    formula: "$B = \\mu_0 n I$",
+    when: "When you need the magnetic field inside a long solenoid (uniform in the middle, far from ends).",
+    symbols: "B = magnetic flux density (T), μ₀ = 4π×10⁻⁷ T·m/A, n = number of turns per metre (m⁻¹), I = current (A).",
+    how: "B = μ₀nI; n = N/L if N turns over length L. Direction: right-hand rule along axis.",
+    problems: "Field inside a solenoid, design for a given B, electromagnets."
+  },
+  {
+    name: "Motional EMF",
+    formula: "$\\varepsilon = BLv$",
+    when: "When a straight conductor of length L moves at speed v perpendicular to a uniform B (and to its own length); EMF induced along the conductor.",
+    symbols: "ε = induced EMF (V), B = magnetic flux density (T), L = length of conductor (m), v = speed perpendicular to B and L (m/s).",
+    how: "ε = BLv. Use when a wire or rod moves through a B field (e.g. rails, dynamo). Direction from Lenz’s law.",
+    problems: "Moving rods on rails, simple generators, EMF from motion in a field."
+  }
 ];
 
 const questions = {
@@ -191,6 +282,26 @@ const questions = {
     {
       q: "20. A transformer steps up voltage from $12\\,\\text{V}$ to $120\\,\\text{V}$. If the secondary has 1000 turns, how many turns are in the primary?",
       s: "Using $\\frac{V_2}{V_1} = \\frac{N_2}{N_1}$:\n\n$\\frac{N_1}{N_2} = \\frac{V_1}{V_2}$\n\n$N_1 = N_2 \\times \\frac{V_1}{V_2} = 1000 \\times \\frac{12}{120}$\n\n$N_1 = 1000 \\times 0.1 = 100$ turns"
+    },
+    {
+      q: "21. (Transformer) The primary of a transformer has 300 turns and the secondary 150 turns. If the primary voltage is $240\\,\\text{V}$, find the secondary voltage. What type of transformer is this?",
+      s: "Using $\\frac{V_2}{V_1} = \\frac{N_2}{N_1}$: $V_2 = 240 \\times \\frac{150}{300} = 120\\,\\text{V}$.\n\nSince $N_2 < N_1$, $V_2 < V_1$: it is a **step-down** transformer."
+    },
+    {
+      q: "22. (Transformer type) A transformer has 200 turns on the primary and 800 turns on the secondary. Is it a step-up or step-down transformer? Explain using the turns ratio.",
+      s: "Turns ratio $N_2/N_1 = 800/200 = 4$. So $V_2/V_1 = 4$, meaning the secondary voltage is four times the primary.\n\n**Step-up** transformer (increases voltage)."
+    },
+    {
+      q: "23. (Transformer) An ideal transformer has $V_1 = 400\\,\\text{V}$, $V_2 = 100\\,\\text{V}$. If the primary current is $2\\,\\text{A}$, find the secondary current.",
+      s: "Power: $V_1 I_1 = V_2 I_2$, so $I_2 = \\frac{V_1 I_1}{V_2} = \\frac{400 \\times 2}{100} = 8\\,\\text{A}$."
+    },
+    {
+      q: "24. (Transformer type) The input voltage to a transformer is $230\\,\\text{V}$ and the output is $23\\,\\text{V}$. Conclude whether it is step-up or step-down and give the approximate turns ratio $N_2/N_1$.",
+      s: "Output voltage is lower than input: **step-down** transformer.\n\n$\\frac{V_2}{V_1} = \\frac{N_2}{N_1} = \\frac{23}{230} = 0.1$, so $N_2/N_1 = 1/10$ (secondary has one-tenth the turns of the primary)."
+    },
+    {
+      q: "25. (Transformer) A transformer has 500 secondary turns and a turns ratio $N_2/N_1 = 1/5$. If $V_1 = 220\\,\\text{V}$, find $V_2$ and the number of primary turns.",
+      s: "$V_2 = V_1 \\times \\frac{N_2}{N_1} = 220 \\times \\frac{1}{5} = 44\\,\\text{V}$.\n\n$N_2/N_1 = 1/5$ and $N_2 = 500$, so $N_1 = 5 \\times 500 = 2500$ turns."
     }
   ],
 
@@ -274,6 +385,26 @@ const questions = {
     {
       q: "20. A Hall probe of thickness $2\\,\\text{mm}$ carries current $0.5\\,\\text{A}$ perpendicular to a $0.3\\,\\text{T}$ magnetic field. If the Hall voltage is $1.5\\,\\text{mV}$, find the charge carrier density.",
       s: "Hall voltage: $V_H = \\frac{IB}{nqt}$\n\nSolving for $n$:\n\n$n = \\frac{IB}{V_H q t}$\n\n$n = \\frac{(0.5)(0.3)}{(1.5 \\times 10^{-3})(1.6 \\times 10^{-19})(2 \\times 10^{-3})}$\n\n$n = \\frac{0.15}{4.8 \\times 10^{-25}}$\n\n$n = 3.125 \\times 10^{23}\\,\\text{m}^{-3}$"
+    },
+    {
+      q: "21. (Transformer) A step-down transformer has $N_1 = 400$, $N_2 = 100$. The primary is connected to $200\\,\\text{V}$ AC. Find $V_2$. If the secondary supplies a load drawing $4\\,\\text{A}$, find the primary current.",
+      s: "$V_2 = V_1 \\times \\frac{N_2}{N_1} = 200 \\times \\frac{100}{400} = 50\\,\\text{V}$.\n\n$V_1 I_1 = V_2 I_2$ so $I_1 = \\frac{V_2 I_2}{V_1} = \\frac{50 \\times 4}{200} = 1\\,\\text{A}$."
+    },
+    {
+      q: "22. (Transformer type) A transformer is used at a power station to send electricity to the grid. The generator outputs $25\\,\\text{kV}$ and the transmission line operates at $250\\,\\text{kV}$. Is the transformer at the power station step-up or step-down? Why is this type used there?",
+      s: "The voltage is increased from $25\\,\\text{kV}$ to $250\\,\\text{kV}$: **step-up** transformer.\n\nIt is used at the power station to step up voltage for long-distance transmission so that the same power can be sent with lower current, reducing $I^2R$ losses in the lines."
+    },
+    {
+      q: "23. (Transformer) An ideal transformer has primary 220 V and secondary 11 V. The secondary current is $10\\,\\text{A}$. Find the primary current and the power delivered to the load.",
+      s: "$V_1 I_1 = V_2 I_2$, so $I_1 = \\frac{V_2 I_2}{V_1} = \\frac{11 \\times 10}{220} = 0.5\\,\\text{A}$.\n\nPower delivered $P = V_2 I_2 = 11 \\times 10 = 110\\,\\text{W}$."
+    },
+    {
+      q: "24. (Transformer type) A transformer has 1000 primary turns and 250 secondary turns. (a) Conclude its type. (b) If $V_1 = 240\\,\\text{V}$, find $V_2$.",
+      s: "(a) $N_2 < N_1$, so $V_2 < V_1$: **step-down** transformer.\n\n(b) $V_2 = V_1 \\times \\frac{N_2}{N_1} = 240 \\times \\frac{250}{1000} = 60\\,\\text{V}$."
+    },
+    {
+      q: "25. (Transformer) A transformer delivers $2\\,\\text{kW}$ to a load at $100\\,\\text{V}$. The primary is connected to $400\\,\\text{V}$. Find the primary and secondary currents (ideal transformer).",
+      s: "Power $P = 2000\\,\\text{W}$. Secondary current $I_2 = P/V_2 = 2000/100 = 20\\,\\text{A}$.\n\nPrimary: $V_1 I_1 = P$, so $I_1 = P/V_1 = 2000/400 = 5\\,\\text{A}$."
     }
   ],
 
@@ -357,6 +488,26 @@ const questions = {
     {
       q: "20. A superconducting ring of inductance $L$ carries persistent current $I_0$. If a section becomes normal with resistance $R$, derive the time constant and energy dissipation.",
       s: "When part of the ring becomes normal:\n\n$L\\frac{dI}{dt} + IR = 0$\n\nSolution: $I(t) = I_0 e^{-t/\\tau}$ where $\\tau = \\frac{L}{R}$\n\nInitial stored energy:\n\n$U_0 = \\frac{1}{2}LI_0^2$\n\nEnergy dissipated in resistance:\n\n$W = \\int_0^\\infty I^2 R\\,dt = \\int_0^\\infty I_0^2 e^{-2t/\\tau} R\\,dt$\n\n$W = I_0^2 R \\times \\frac{\\tau}{2} = I_0^2 R \\times \\frac{L}{2R} = \\frac{1}{2}LI_0^2$\n\nAll stored magnetic energy is dissipated as heat in the resistance.\n\nFor large magnets, this can cause a \"quench\" - rapid heating and potential damage."
+    },
+    {
+      q: "21. (Transformer) A transformer has efficiency $95\\%$. The primary draws $10\\,\\text{A}$ at $220\\,\\text{V}$. The secondary voltage is $44\\,\\text{V}$. Find the secondary current and the power lost.",
+      s: "Input power $P_{in} = V_1 I_1 = 220 \\times 10 = 2200\\,\\text{W}$.\n\nOutput power $P_{out} = 0.95 \\times 2200 = 2090\\,\\text{W}$.\n\n$I_2 = P_{out}/V_2 = 2090/44 \\approx 47.5\\,\\text{A}$.\n\nPower lost $= P_{in} - P_{out} = 110\\,\\text{W}$."
+    },
+    {
+      q: "22. (Transformer type) From the following data, conclude the transformer type and find the unknown. Primary: $N_1 = 600$, $V_1 = 330\\,\\text{V}$. Secondary: $N_2 = 120$, $V_2 = \\ ?$",
+      s: "$V_2 = V_1 \\times \\frac{N_2}{N_1} = 330 \\times \\frac{120}{600} = 66\\,\\text{V}$.\n\nSince $N_2 < N_1$ and $V_2 < V_1$, it is a **step-down** transformer."
+    },
+    {
+      q: "23. (Transformer) Two ideal transformers are in cascade: first has ratio $N_2/N_1 = 2$, second has ratio $N_2/N_1 = 5$. If the input to the first is $110\\,\\text{V}$, what is the output of the second?",
+      s: "After first: $V = 110 \\times 2 = 220\\,\\text{V}$.\n\nAfter second: $V_{out} = 220 \\times 5 = 1100\\,\\text{V}$.\n\nOr overall: $V_{out} = 110 \\times 2 \\times 5 = 1100\\,\\text{V}$."
+    },
+    {
+      q: "24. (Transformer type) A device is labelled \"Input: 230 V AC. Output: 12 V, 2 A.\" (a) Is the internal transformer step-up or step-down? (b) Estimate the primary current if it is ideal.",
+      s: "(a) Output voltage (12 V) is less than input (230 V): **step-down** transformer.\n\n(b) $V_1 I_1 = V_2 I_2$, so $I_1 = \\frac{V_2 I_2}{V_1} = \\frac{12 \\times 2}{230} \\approx 0.104\\,\\text{A}$."
+    },
+    {
+      q: "25. (Transformer) A step-up transformer has $V_1 = 11\\,\\text{kV}$, $V_2 = 132\\,\\text{kV}$. The transmission line carries $100\\,\\text{A}$ at $132\\,\\text{kV}$. Find the current in the primary winding (ideal transformer).",
+      s: "Power transmitted $P = V_2 I_2 = 132 \\times 10^3 \\times 100 = 13.2 \\times 10^6\\,\\text{W}$.\n\nPrimary: $V_1 I_1 = P$, so $I_1 = \\frac{P}{V_1} = \\frac{13.2 \\times 10^6}{11 \\times 10^3} = 1200\\,\\text{A}$."
     }
   ]
 };
@@ -418,16 +569,34 @@ function renderQuestions() {
 /* ------------------ INIT ------------------ */
 window.onload = () => {
   const fBox = document.getElementById("formulaBox");
-  formulas.forEach(([name, f]) => {
-    const row = document.createElement("div");
-    row.className = "flex justify-between border-b py-2";
+  fBox.className = "p-4 grid md:grid-cols-1 gap-4 bg-blue-50/30";
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  formulas.forEach(({ name, formula, when, symbols, how, problems }) => {
+    const card = document.createElement("div");
+    card.className = "bg-white border border-blue-100 rounded-xl p-4 shadow-sm";
+    const top = document.createElement("div");
+    top.className = "flex justify-between items-start gap-3 border-b border-blue-100 pb-3 mb-3";
     const n = document.createElement("span");
     n.textContent = name;
-    n.className = "font-semibold text-slate-600 text-sm";
+    n.className = "font-bold text-blue-800 text-sm shrink-0";
     const fx = document.createElement("span");
-    renderMath(fx, f);
-    row.append(n, fx);
-    fBox.appendChild(row);
+    renderMath(fx, formula);
+    fx.className = "text-right";
+    top.append(n, fx);
+    const details = document.createElement("div");
+    details.className = "text-sm text-slate-600 space-y-2";
+    details.innerHTML = [
+      "<p><strong class=\"text-slate-700\">When to use:</strong> " + escapeHtml(when) + "</p>",
+      "<p><strong class=\"text-slate-700\">Symbols & units:</strong> " + escapeHtml(symbols) + "</p>",
+      "<p><strong class=\"text-slate-700\">How to use:</strong> " + escapeHtml(how) + "</p>",
+      "<p><strong class=\"text-slate-700\">Typical problems:</strong> " + escapeHtml(problems) + "</p>"
+    ].join("");
+    card.append(top, details);
+    fBox.appendChild(card);
   });
 
   renderQuestions();

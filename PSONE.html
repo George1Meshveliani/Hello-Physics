@@ -90,24 +90,150 @@ function renderMath(el, text) {
 
 /* ---------- DATA ---------- */
 const formulas = [
-  ["Displacement", "$s = ut + \\frac{1}{2}at^2$"],
-  ["Velocity", "$v = u + at$"],
-  ["Velocity Relation", "$v^2 = u^2 + 2as$"],
-  ["Newton's Second Law", "$\\vec{F} = m\\vec{a}$"],
-  ["Weight", "$W = mg$"],
-  ["Momentum", "$\\vec{p} = m\\vec{v}$"],
-  ["Impulse", "$J = F\\Delta t = \\Delta p$"],
-  ["Friction", "$f = \\mu N$"],
-  ["Centripetal Force", "$F_c = \\frac{mv^2}{r}$"],
-  ["Kinetic Energy", "$KE = \\frac{1}{2}mv^2$"],
-  ["Potential Energy", "$PE = mgh$"],
-  ["Work", "$W = Fs\\cos\\theta$"],
-  ["Power", "$P = \\frac{W}{t} = Fv$"],
-  ["Hooke's Law", "$F = kx$"],
-  ["Elastic PE", "$U = \\frac{1}{2}kx^2$"],
-  ["Spring period", "$T = 2\\pi\\sqrt{m/k}$"],
-  ["Pendulum period", "$T = 2\\pi\\sqrt{L/g}$"],
-  ["Moment", "$M = F \\times d$"]
+  {
+    name: "Displacement",
+    formula: "$s = ut + \\frac{1}{2}at^2$",
+    when: "When you need distance (or displacement) traveled in a straight line under constant acceleration, and you know initial speed, time, and acceleration.",
+    symbols: "s = displacement (m), u = initial velocity (m/s), t = time (s), a = acceleration (m/s²).",
+    how: "Plug in u, t, and a; solve for s. Use when time is given and displacement is unknown.",
+    problems: "Projectiles (vertical or horizontal distance), cars braking or accelerating, objects dropped or thrown."
+  },
+  {
+    name: "Velocity",
+    formula: "$v = u + at$",
+    when: "When you need final velocity (or to find time or acceleration) for motion with constant acceleration.",
+    symbols: "v = final velocity (m/s), u = initial velocity (m/s), a = acceleration (m/s²), t = time (s).",
+    how: "Rearrange as needed: v = u + at, or t = (v − u)/a, or a = (v − u)/t.",
+    problems: "Finding speed after a given time, time to reach a speed, acceleration from speed change and time."
+  },
+  {
+    name: "Velocity Relation",
+    formula: "$v^2 = u^2 + 2as$",
+    when: "When you need to relate velocity, displacement, and acceleration without using time.",
+    symbols: "v = final velocity (m/s), u = initial velocity (m/s), a = acceleration (m/s²), s = displacement (m).",
+    how: "Use when time is not given or not needed. Solve for v, u, a, or s by rearranging.",
+    problems: "Stopping distance, height reached by a projectile, speed after moving a known distance."
+  },
+  {
+    name: "Newton's Second Law",
+    formula: "$\\vec{F} = m\\vec{a}$",
+    when: "Whenever you relate force, mass, and acceleration: net force causes acceleration.",
+    symbols: "F = net force (N), m = mass (kg), a = acceleration (m/s²).",
+    how: "F = ma for magnitude; direction of a is the same as net F. Rearrange to find F, m, or a.",
+    problems: "Pushing blocks, elevators, connected objects, rockets, any force–motion link."
+  },
+  {
+    name: "Weight",
+    formula: "$W = mg$",
+    when: "When you need the gravitational force (weight) on a mass near Earth’s surface.",
+    symbols: "W = weight (N), m = mass (kg), g = gravitational field strength (≈ 9.8 N/kg or m/s²).",
+    how: "Multiply mass by g. Use for normal reaction, tension in strings, or when “weight” is asked.",
+    problems: "Objects on scales, cables supporting loads, apparent weight in lifts."
+  },
+  {
+    name: "Momentum",
+    formula: "$\\vec{p} = m\\vec{v}$",
+    when: "When you need momentum for collisions, explosions, or conservation of momentum.",
+    symbols: "p = momentum (kg·m/s), m = mass (kg), v = velocity (m/s).",
+    how: "p = mv; momentum is a vector (same direction as v). Use in conservation: total p before = total p after.",
+    problems: "Collisions, recoil, rocket thrust, before/after speed or mass."
+  },
+  {
+    name: "Impulse",
+    formula: "$J = F\\Delta t = \\Delta p$",
+    when: "When a force acts for a short time and changes momentum; links force, time, and momentum change.",
+    symbols: "J = impulse (N·s), F = average force (N), Δt = time (s), Δp = change in momentum (kg·m/s).",
+    how: "J = F Δt or J = Δp. Use to find average force from momentum change and contact time (or vice versa).",
+    problems: "Balls hitting walls, airbags, catching or throwing, force during impact."
+  },
+  {
+    name: "Friction",
+    formula: "$f = \\mu N$",
+    when: "When you need the magnitude of kinetic (sliding) or maximum static friction between surfaces.",
+    symbols: "f = frictional force (N), μ = coefficient of friction (no unit), N = normal reaction (N).",
+    how: "f = μN. Use μ_k for sliding, μ_s for maximum static. N is often mg or a component of it.",
+    problems: "Blocks sliding or on the verge of sliding, braking, inclined planes with friction."
+  },
+  {
+    name: "Centripetal Force",
+    formula: "$F_c = \\frac{mv^2}{r}$",
+    when: "When an object moves in a circle (or arc) at constant speed; the net force toward the centre is centripetal.",
+    symbols: "F_c = centripetal force (N), m = mass (kg), v = speed (m/s), r = radius of path (m).",
+    how: "Set F_c equal to the net inward force (tension, friction, gravity, etc.) and solve for v, r, or force.",
+    problems: "Banked curves, conical pendulums, orbits, cars rounding bends, mass on a string."
+  },
+  {
+    name: "Kinetic Energy",
+    formula: "$KE = \\frac{1}{2}mv^2$",
+    when: "When you need the energy due to motion, or to use work–energy or conservation of energy.",
+    symbols: "KE = kinetic energy (J), m = mass (kg), v = speed (m/s).",
+    how: "KE = ½mv². Use in work–energy (work = ΔKE) or conservation of energy with PE.",
+    problems: "Speed after falling, stopping distance, collisions (if elastic), power and speed."
+  },
+  {
+    name: "Potential Energy",
+    formula: "$PE = mgh$",
+    when: "When you need gravitational potential energy near Earth (with a chosen reference level).",
+    symbols: "PE = gravitational PE (J), m = mass (kg), g = 9.8 N/kg, h = height above reference (m).",
+    how: "PE = mgh; only changes in PE matter. Use with KE for conservation of energy.",
+    problems: "Objects falling or thrown, roller coasters, pendulums, maximum height."
+  },
+  {
+    name: "Work",
+    formula: "$W = Fs\\cos\\theta$",
+    when: "When you need work done by a force over a displacement, or to link work to energy change.",
+    symbols: "W = work (J), F = force (N), s = displacement (m), θ = angle between F and s.",
+    how: "W = Fs when F and s are parallel; W = Fs cos θ in general. Work done = energy transferred.",
+    problems: "Pushing/pulling, work against friction or gravity, work–energy theorem."
+  },
+  {
+    name: "Power",
+    formula: "$P = \\frac{W}{t} = Fv$",
+    when: "When you need rate of doing work (or energy per second), or power at constant speed.",
+    symbols: "P = power (W), W = work (J), t = time (s), F = force (N), v = speed (m/s).",
+    how: "P = W/t for average power; P = Fv when force and velocity are in the same direction.",
+    problems: "Engines, climbing stairs, lifting at constant speed, comparing motors."
+  },
+  {
+    name: "Hooke's Law",
+    formula: "$F = kx$",
+    when: "When a spring (or elastic) is stretched or compressed within its elastic limit; force vs extension.",
+    symbols: "F = restoring force magnitude (N), k = spring constant (N/m), x = extension or compression from natural length (m).",
+    how: "F = kx. The spring exerts F in the direction that opposes x. Use to find k, F, or x.",
+    problems: "Springs in equilibrium, spring scales, combining springs, maximum extension."
+  },
+  {
+    name: "Elastic PE",
+    formula: "$U = \\frac{1}{2}kx^2$",
+    when: "When you need the energy stored in a spring (or elastic) that is extended or compressed by x.",
+    symbols: "U = elastic potential energy (J), k = spring constant (N/m), x = extension or compression from natural length (m).",
+    how: "U = ½kx². Use with KE and/or gravitational PE in conservation of energy for spring systems.",
+    problems: "Springs released from stretch, oscillating masses, maximum speed, energy in oscillations."
+  },
+  {
+    name: "Spring period",
+    formula: "$T = 2\\pi\\sqrt{m/k}$",
+    when: "When a mass on a spring oscillates in SHM (ideal spring, no damping); period of oscillation.",
+    symbols: "T = period (s), m = mass (kg), k = spring constant (N/m).",
+    how: "T = 2π√(m/k). Use to find T, m, or k. Frequency f = 1/T.",
+    problems: "Oscillation period, finding k from T and m, comparing different spring–mass systems."
+  },
+  {
+    name: "Pendulum period",
+    formula: "$T = 2\\pi\\sqrt{L/g}$",
+    when: "When a simple pendulum (small bob, light string) swings with small amplitude; period of oscillation.",
+    symbols: "T = period (s), L = length of pendulum (m), g = gravitational field strength (m/s² or N/kg).",
+    how: "T = 2π√(L/g). Independent of mass. Use to find T, L, or g. Only valid for small angles.",
+    problems: "Period of a pendulum, finding g, clock pendulums, length for a given period."
+  },
+  {
+    name: "Moment",
+    formula: "$M = F \\times d$",
+    when: "When you need the turning effect of a force about a pivot; equilibrium of moments.",
+    symbols: "M = moment (N·m), F = force (N), d = perpendicular distance from pivot to line of action of F (m).",
+    how: "M = Fd. Clockwise and anticlockwise moments balance when there is no rotation. Sign convention: one direction positive.",
+    problems: "Seesaws, levers, beams on pivots, finding unknown forces or distances for equilibrium."
+  }
 ];
 
 const questions = {
@@ -476,17 +602,35 @@ function renderQuestions() {
 /* ---------- INIT ---------- */
 window.onload = () => {
   const fBox = document.getElementById("formulaBox");
-  formulas.forEach(([name, f]) => {
-    const row = document.createElement("div");
-    row.className = "flex justify-between border-b py-2";
+  fBox.className = "p-4 grid md:grid-cols-1 gap-4 bg-indigo-50/30";
+  formulas.forEach(({ name, formula, when, symbols, how, problems }) => {
+    const card = document.createElement("div");
+    card.className = "bg-white border border-indigo-100 rounded-xl p-4 shadow-sm";
+    const top = document.createElement("div");
+    top.className = "flex justify-between items-start gap-3 border-b border-indigo-100 pb-3 mb-3";
     const n = document.createElement("span");
     n.textContent = name;
-    n.className = "font-semibold text-slate-600 text-sm";
+    n.className = "font-bold text-indigo-800 text-sm shrink-0";
     const fx = document.createElement("span");
-    renderMath(fx, f);
-    row.append(n, fx);
-    fBox.appendChild(row);
+    renderMath(fx, formula);
+    fx.className = "text-right";
+    top.append(n, fx);
+    const details = document.createElement("div");
+    details.className = "text-sm text-slate-600 space-y-2";
+    details.innerHTML = [
+      "<p><strong class=\"text-slate-700\">When to use:</strong> " + escapeHtml(when) + "</p>",
+      "<p><strong class=\"text-slate-700\">Symbols & units:</strong> " + escapeHtml(symbols) + "</p>",
+      "<p><strong class=\"text-slate-700\">How to use:</strong> " + escapeHtml(how) + "</p>",
+      "<p><strong class=\"text-slate-700\">Typical problems:</strong> " + escapeHtml(problems) + "</p>"
+    ].join("");
+    card.append(top, details);
+    fBox.appendChild(card);
   });
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
 
   renderQuestions();
 
