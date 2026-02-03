@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinematics & Dynamics — Interactive Games</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #121212; color: #E0E0E0; }
+        .card { background-color: #1E1E1E; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.3); padding: 2rem; }
+        .game-section { scroll-margin-top: 2rem; }
+        .feedback-correct { background-color: rgba(34, 197, 94, 0.2); border: 1px solid #22c55e; color: #86efac; }
+        .feedback-incorrect { background-color: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #fca5a5; }
+        .opt { cursor: pointer; transition: all 0.2s; }
+        .opt:hover { background-color: #334155; }
+        .opt.selected { background-color: #4f46e5; color: white; }
+        .opt.correct { background-color: #22c55e; color: white; }
+        .opt.wrong { background-color: #ef4444; color: white; }
+        .diagram-box { background: #0f172a; border: 2px solid #334155; border-radius: 8px; padding: 1.5rem; }
+        input[type="number"], input[type="text"] { background: #1e293b; border: 1px solid #475569; color: #e2e8f0; padding: 0.5rem 0.75rem; border-radius: 6px; }
+        .btn { padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: transform 0.1s, background 0.2s; }
+        .btn-primary { background: #4f46e5; color: white; border: none; }
+        .btn-primary:hover { background: #4338ca; }
+        .btn-secondary { background: #475569; color: #e2e8f0; border: none; }
+        .btn-secondary:hover { background: #64748b; }
+        .topic-tag { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }
+        .tag-kin { background: #1e3a5f; color: #93c5fd; }
+        .tag-work { background: #422006; color: #fcd34d; }
+        .tag-energy { background: #14532d; color: #86efac; }
+        .tag-momentum { background: #4c1d95; color: #e9d5ff; }
+        .tag-moments { background: #1e293b; color: #94a3b8; }
+        .tag-advanced { background: #7f1d1d; color: #fecaca; }
+        .hint-box { background: #1e3a5f; border: 1px solid #3b82f6; border-radius: 8px; padding: 0.75rem 1rem; margin-top: 0.5rem; font-size: 0.9rem; color: #93c5fd; }
+        .hint-box.hidden { display: none; }
+        .step-list { list-style: none; padding: 0; }
+        .step-list li { padding: 0.5rem 0.75rem; margin: 0.25rem 0; background: #334155; border-radius: 6px; cursor: pointer; user-select: none; }
+        .step-list li:hover { background: #475569; }
+        .step-list li.correct-order { border: 2px solid #22c55e; }
+    </style>
+</head>
+<body class="min-h-screen pb-20">
+
+    <header class="bg-slate-900 border-b border-slate-700 py-4 px-6 sticky top-0 z-10">
+        <h1 class="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+            Kinematics & Dynamics Games
+        </h1>
+        <p class="text-slate-400 mt-1">Work, energy, momentum, moments and more — interactive practice</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 space-y-12">
+
+        <section class="card border-l-4 border-cyan-500">
+            <h2 class="text-xl font-semibold text-cyan-400 mb-2">How to use this page</h2>
+            <p class="text-slate-300">Each section is a short game. Read the <strong>Instructions</strong>, answer or choose, then click <strong>Check</strong>. Type your answer in the box (no clues in placeholders). Some games have a <strong>Hint</strong> button or need two values. <strong>Challenge</strong> games are harder. Topics: kinematics, work, energy, momentum, moments, and mixed concepts. Use \(g = 10\,\text{m/s}^2\) where needed unless stated otherwise.</p>
+        </section>
+
+        <!-- ========== KINEMATICS: Match formula ========== -->
+        <section id="game-kin-formula" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 1: Kinematics — Match the formula</h2>
+            <span class="topic-tag tag-kin">Kinematics</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Match each quantity to the correct equation (constant acceleration in a straight line).</p>
+            <div class="space-y-3">
+                <div>
+                    <p class="text-slate-300 font-medium mb-1">Final velocity \(v\) when you know \(u\), \(a\), \(t\):</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="kin-f" data-a="v=u+at">\(v = u + at\)</button>
+                        <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="kin-f" data-a="v2=u2+2as">\(v^2 = u^2 + 2as\)</button>
+                        <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="kin-f" data-a="s=ut+half">\(s = ut + \frac{1}{2}at^2\)</button>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-slate-300 font-medium mb-1">Displacement \(s\) when you know \(u\), \(a\), \(t\):</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="kin-s" data-a="v=u+at">\(v = u + at\)</button>
+                        <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="kin-s" data-a="s=ut+half">\(s = ut + \frac{1}{2}at^2\)</button>
+                        <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="kin-s" data-a="v2=u2+2as">\(v^2 = u^2 + 2as\)</button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="check-kin-f" class="btn btn-primary mt-4">Check</button>
+            <p id="fb-kin-f" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== KINEMATICS: Calculation ========== -->
+        <section id="game-kin-calc" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 2: Kinematics — Find final velocity</h2>
+            <span class="topic-tag tag-kin">Kinematics</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Use \(v = u + at\). A car starts from rest (\(u=0\)) and accelerates at \(4\,\text{m/s}^2\) for \(5\,\text{s}\). What is the final velocity in m/s?</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(v\) =</label>
+                <input type="number" id="input-v" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">m/s</span>
+                <button type="button" id="check-v" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-v" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== WORK: W = F s ========== -->
+        <section id="game-work" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 3: Work — \(W = F \times s\)</h2>
+            <span class="topic-tag tag-work">Work</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Work done when force and displacement are in the same direction: \(W = F \times s\). A force of \(50\,\text{N}\) moves an object \(3\,\text{m}\) in the direction of the force. How much work is done (in joules)?</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(W\) =</label>
+                <input type="number" id="input-w" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">J</span>
+                <button type="button" id="check-w" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-w" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ENERGY: KE = ½mv² ========== -->
+        <section id="game-ke" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 4: Energy — Kinetic energy</h2>
+            <span class="topic-tag tag-energy">Energy</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Kinetic energy \(KE = \frac{1}{2}mv^2\). A \(2\,\text{kg}\) object moves at \(6\,\text{m/s}\). Find its KE in joules.</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(KE\) =</label>
+                <input type="number" id="input-ke" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">J</span>
+                <button type="button" id="check-ke" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-ke" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ENERGY: PE = mgh ========== -->
+        <section id="game-pe" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 5: Energy — Gravitational potential energy</h2>
+            <span class="topic-tag tag-energy">Energy</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> \(PE = mgh\). A \(5\,\text{kg}\) mass is raised by \(4\,\text{m}\). Use \(g = 10\,\text{m/s}^2\). Find PE in joules.</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(PE\) =</label>
+                <input type="number" id="input-pe" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">J</span>
+                <button type="button" id="check-pe" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-pe" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ENERGY: Conservation concept ========== -->
+        <section id="game-energy-concept" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 6: Energy — Where is it KE vs PE?</h2>
+            <span class="topic-tag tag-energy">Energy</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> A ball is thrown upwards. At the highest point of its path, what can you say about its kinetic and potential energy? (Assume no air resistance; total energy is conserved.)</p>
+            <div class="flex flex-wrap gap-2">
+                <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="energy-c" data-a="ke-max">KE is maximum, PE is zero</button>
+                <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="energy-c" data-a="pe-max">PE is maximum, KE is zero</button>
+                <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="energy-c" data-a="both-equal">KE and PE are equal</button>
+            </div>
+            <button type="button" id="check-energy-c" class="btn btn-primary mt-4">Check</button>
+            <p id="fb-energy-c" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== MOMENTUM: p = mv ========== -->
+        <section id="game-momentum" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 7: Momentum — \(p = mv\)</h2>
+            <span class="topic-tag tag-momentum">Momentum</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Momentum \(p = mv\). A \(3\,\text{kg}\) object moves at \(10\,\text{m/s}\). Find its momentum in \(\text{kg}\cdot\text{m/s}\).</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(p\) =</label>
+                <input type="number" id="input-p" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">kg⋅m/s</span>
+                <button type="button" id="check-p" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-p" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== MOMENTUM: Conservation ========== -->
+        <section id="game-momentum-cons" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 8: Momentum — Conservation</h2>
+            <span class="topic-tag tag-momentum">Momentum</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> In a closed system with no external force, total momentum is conserved. Ball A (2 kg) moves at 5 m/s. Ball B (3 kg) is at rest. They stick together after collision. What is the common speed after collision (in m/s)?</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">Speed =</label>
+                <input type="number" id="input-pcons" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">m/s</span>
+                <button type="button" id="check-pcons" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-pcons" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== MOMENTS: M = Fd ========== -->
+        <section id="game-moments" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 9: Moments — \(M = F \times d\)</h2>
+            <span class="topic-tag tag-moments">Moments</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Moment of a force about a pivot: \(M = F \times d\) (perpendicular distance). A force of \(20\,\text{N}\) acts at \(1.5\,\text{m}\) from the pivot. What is the moment in N⋅m?</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(M\) =</label>
+                <input type="number" id="input-mom" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">N⋅m</span>
+                <button type="button" id="check-mom" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-mom" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== MOMENTS: Equilibrium ========== -->
+        <section id="game-moments-eq" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 10: Moments — Equilibrium</h2>
+            <span class="topic-tag tag-moments">Moments</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> A light rod is balanced. On one side, \(12\,\text{N}\) at \(1\,\text{m}\) from the pivot. On the other side, a force \(F\) at \(2\,\text{m}\) from the pivot. Find \(F\) (in N) for equilibrium.</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(F\) =</label>
+                <input type="number" id="input-fe" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">N</span>
+                <button type="button" id="check-fe" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-fe" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== UNITS match ========== -->
+        <section id="game-units" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 11: Match quantity to unit</h2>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Match each physical quantity to its SI unit.</p>
+            <div class="space-y-3">
+                <div>
+                    <p class="text-slate-300">Work</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="opt px-3 py-1 rounded bg-slate-700" data-g="unit-w" data-a="J">J (joule)</button>
+                        <button type="button" class="opt px-3 py-1 rounded bg-slate-700" data-g="unit-w" data-a="N">N (newton)</button>
+                        <button type="button" class="opt px-3 py-1 rounded bg-slate-700" data-g="unit-w" data-a="W">W (watt)</button>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-slate-300">Momentum</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="opt px-3 py-1 rounded bg-slate-700" data-g="unit-p" data-a="kgms">kg⋅m/s</button>
+                        <button type="button" class="opt px-3 py-1 rounded bg-slate-700" data-g="unit-p" data-a="J">J</button>
+                        <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="unit-p" data-a="Nm">N⋅m</button>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-slate-300">Moment of a force</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="opt px-3 py-1 rounded bg-slate-700" data-g="unit-m" data-a="Nm">N⋅m</button>
+                        <button type="button" class="opt px-3 py-1 rounded bg-slate-700" data-g="unit-m" data-a="J">J</button>
+                        <button type="button" class="opt px-3 py-1 rounded bg-slate-700" data-g="unit-m" data-a="kgms">kg⋅m/s</button>
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="check-units" class="btn btn-primary mt-4">Check</button>
+            <p id="fb-units" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== WHICH FORMULA ========== -->
+        <section id="game-which" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 12: Which formula?</h2>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> You want to find the <strong>acceleration</strong> of an object. You know initial velocity \(u\), final velocity \(v\), and displacement \(s\). Which equation do you use?</p>
+            <div class="flex flex-wrap gap-2">
+                <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="which" data-a="v=u+at">\(v = u + at\)</button>
+                <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="which" data-a="v2=u2+2as">\(v^2 = u^2 + 2as\)</button>
+                <button type="button" class="opt px-3 py-1.5 rounded bg-slate-700" data-g="which" data-a="s=ut+half">\(s = ut + \frac{1}{2}at^2\)</button>
+            </div>
+            <button type="button" id="check-which" class="btn btn-primary mt-4">Check</button>
+            <p id="fb-which" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ADVANCED: Two-step kinematics ========== -->
+        <section id="game-twostep" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 13: Two-step kinematics <span class="topic-tag tag-advanced">Challenge</span></h2>
+            <span class="topic-tag tag-kin">Kinematics</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> A train slows from \(24\,\text{m/s}\) to \(8\,\text{m/s}\) in \(80\,\text{m}\). (a) Find the acceleration in \(\text{m/s}^2\) (use \(v^2 = u^2 + 2as\)). (b) Find the time taken in seconds (use \(v = u + at\)). Give both answers.</p>
+            <div class="flex flex-wrap items-center gap-3 mb-2">
+                <label class="text-slate-300">(a) \(a\) =</label>
+                <input type="number" id="input-a2" step="0.01" placeholder="?" class="w-24" />
+                <span class="text-slate-400">m/s²</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+                <label class="text-slate-300">(b) \(t\) =</label>
+                <input type="number" id="input-t2" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">s</span>
+            </div>
+            <button type="button" id="btn-hint-twostep" class="btn btn-secondary text-sm">Show hint</button>
+            <div id="hint-twostep" class="hint-box hidden">From \(v^2 = u^2 + 2as\): \(64 - 576 = 2a(80)\) so \(a = -3.2\,\text{m/s}^2\). Then \(v = u + at\) gives \(8 = 24 - 3.2t\) → \(t = 5\,\text{s}\).</div>
+            <button type="button" id="check-twostep" class="btn btn-primary mt-3">Check</button>
+            <p id="fb-twostep" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ADVANCED: Power ========== -->
+        <section id="game-power" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 14: Power <span class="topic-tag tag-advanced">Challenge</span></h2>
+            <span class="topic-tag tag-work">Work & Power</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> A crane lifts a \(400\,\text{kg}\) mass at constant speed through a height of \(12\,\text{m}\) in \(8\,\text{s}\). Use \(g = 10\,\text{m/s}^2\). What is the useful power output in watts? (Hint: \(P = W/t\), \(W = F \times s\); force needed = weight.)</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(P\) =</label>
+                <input type="number" id="input-power" step="1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">W</span>
+                <button type="button" id="check-power" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-power" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ADVANCED: Impulse ========== -->
+        <section id="game-impulse" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 15: Impulse <span class="topic-tag tag-advanced">Challenge</span></h2>
+            <span class="topic-tag tag-momentum">Momentum</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Impulse \(J = F \Delta t = \Delta p\). A \(0.5\,\text{kg}\) ball hits a wall at \(6\,\text{m/s}\) and rebounds at \(4\,\text{m/s}\) (same direction = opposite velocity). The contact lasts \(0.02\,\text{s}\). What is the average force (magnitude) exerted by the wall, in newtons?</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(F\) =</label>
+                <input type="number" id="input-impulse" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">N</span>
+                <button type="button" id="check-impulse" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-impulse" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ADVANCED: Energy conservation — speed ========== -->
+        <section id="game-energy-speed" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 16: Speed from energy <span class="topic-tag tag-advanced">Challenge</span></h2>
+            <span class="topic-tag tag-energy">Energy</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> A ball is released from rest at a height of \(20\,\text{m}\). Use \(g = 10\,\text{m/s}^2\) and assume no air resistance. Conservation of energy: loss in PE = gain in KE. What is its speed in m/s when it reaches the ground?</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(v\) =</label>
+                <input type="number" id="input-v-energy" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">m/s</span>
+                <button type="button" id="check-v-energy" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-v-energy" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ADVANCED: Spot the error ========== -->
+        <section id="game-spot-error" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 17: Spot the error <span class="topic-tag tag-advanced">Challenge</span></h2>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> To find how far a car travels in \(5\,\text{s}\) when it accelerates from rest at \(2\,\text{m/s}^2\), a student writes: “\(s = vt\), and \(v = 0 + 2 \times 5 = 10\), so \(s = 10 \times 5 = 50\,\text{m}\).” The numerical answer is correct, but which step is <strong>wrong in principle</strong>?</p>
+            <div class="flex flex-wrap gap-2">
+                <button type="button" class="opt px-3 py-2 rounded bg-slate-700 text-left max-w-md" data-g="error" data-a="s=vt">Using \(s = vt\) (constant-velocity formula when motion is accelerated)</button>
+                <button type="button" class="opt px-3 py-2 rounded bg-slate-700 text-left max-w-md" data-g="error" data-a="v=u+at">Using \(v = u + at\) to find final velocity</button>
+                <button type="button" class="opt px-3 py-2 rounded bg-slate-700 text-left max-w-md" data-g="error" data-a="numbers">The numbers 10 and 5</button>
+            </div>
+            <button type="button" id="check-error" class="btn btn-primary mt-4">Check</button>
+            <p id="fb-error" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ADVANCED: Order the steps ========== -->
+        <section id="game-order-steps" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 18: Order the steps <span class="topic-tag tag-advanced">Challenge</span></h2>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Put these steps in the correct order to find the <strong>momentum</strong> of a \(2\,\text{kg}\) object moving at \(7\,\text{m/s}\). Click a step to move it up (top = first step).</p>
+            <ul id="step-list" class="step-list">
+                <li data-order="2">Write the formula: \(p = mv\)</li>
+                <li data-order="4">State the answer with unit: \(14\,\text{kg}\cdot\text{m/s}\)</li>
+                <li data-order="1">Identify \(m = 2\,\text{kg}\), \(v = 7\,\text{m/s}\)</li>
+                <li data-order="3">Substitute: \(p = 2 \times 7 = 14\)</li>
+            </ul>
+            <button type="button" id="check-order" class="btn btn-primary mt-3">Check order</button>
+            <p id="fb-order" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ADVANCED: Beam — find distance ========== -->
+        <section id="game-beam-d" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 19: Moments — find the distance <span class="topic-tag tag-advanced">Challenge</span></h2>
+            <span class="topic-tag tag-moments">Moments</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> A light beam is in equilibrium. On one side, \(18\,\text{N}\) at \(1.2\,\text{m}\) from the pivot. On the other side, \(12\,\text{N}\) at distance \(d\) from the pivot. Find \(d\) in metres.</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(d\) =</label>
+                <input type="number" id="input-d-beam" step="0.01" placeholder="?" class="w-24" />
+                <span class="text-slate-400">m</span>
+                <button type="button" id="check-d-beam" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-d-beam" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ADVANCED: Elastic vs inelastic ========== -->
+        <section id="game-collision-type" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 20: Collisions <span class="topic-tag tag-advanced">Challenge</span></h2>
+            <span class="topic-tag tag-momentum">Momentum & Energy</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Which statement is <strong>true</strong>?</p>
+            <div class="flex flex-wrap gap-2">
+                <button type="button" class="opt px-3 py-2 rounded bg-slate-700 text-left max-w-md" data-g="coll" data-a="ke-cons">In an elastic collision, kinetic energy is conserved.</button>
+                <button type="button" class="opt px-3 py-2 rounded bg-slate-700 text-left max-w-md" data-g="coll" data-a="mom-always">Momentum is only conserved in elastic collisions.</button>
+                <button type="button" class="opt px-3 py-2 rounded bg-slate-700 text-left max-w-md" data-g="coll" data-a="inel-ke">In an inelastic collision, KE always increases.</button>
+            </div>
+            <button type="button" id="check-coll" class="btn btn-primary mt-4">Check</button>
+            <p id="fb-coll" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== STRETCHING SPRING ========== -->
+        <section id="game-spring" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 21: Stretching spring — Hooke's law</h2>
+            <span class="topic-tag tag-kin">Spring</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Hooke's law: \(F = kx\). A spring has \(k = 150\,\text{N/m}\). What force (in N) is needed to stretch it by \(0.08\,\text{m}\)?</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(F\) =</label>
+                <input type="number" id="input-spring-f" step="0.1" placeholder="?" class="w-24" />
+                <span class="text-slate-400">N</span>
+                <button type="button" id="check-spring-f" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-spring-f" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <section id="game-spring-pe" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 22: Stretching spring — Elastic PE</h2>
+            <span class="topic-tag tag-energy">Spring</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Elastic PE \(U = \frac{1}{2}kx^2\). A spring (\(k = 80\,\text{N/m}\)) is compressed by \(0.1\,\text{m}\). What is the stored energy in joules?</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(U\) =</label>
+                <input type="number" id="input-spring-u" step="0.01" placeholder="?" class="w-24" />
+                <span class="text-slate-400">J</span>
+                <button type="button" id="check-spring-u" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-spring-u" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <section id="game-spring-period" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 23: Spring — Period of oscillation</h2>
+            <span class="topic-tag tag-kin">Spring</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> Period \(T = 2\pi\sqrt{m/k}\). A \(0.4\,\text{kg}\) mass on a spring (\(k = 100\,\text{N/m}\)) oscillates. Find the period in seconds (round to 2 decimal places).</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(T\) =</label>
+                <input type="number" id="input-spring-t" step="0.01" placeholder="?" class="w-24" />
+                <span class="text-slate-400">s</span>
+                <button type="button" id="check-spring-t" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-spring-t" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== PENDULUM ========== -->
+        <section id="game-pendulum" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 24: Simple pendulum — Period</h2>
+            <span class="topic-tag tag-kin">Pendulum</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> For small angles, \(T = 2\pi\sqrt{L/g}\). A pendulum has length \(1\,\text{m}\). Use \(g = 10\,\text{m/s}^2\). Find the period in seconds (round to 2 decimal places).</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(T\) =</label>
+                <input type="number" id="input-pend-t" step="0.01" placeholder="?" class="w-24" />
+                <span class="text-slate-400">s</span>
+                <button type="button" id="check-pend-t" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-pend-t" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <section id="game-pendulum-length" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 25: Simple pendulum — Find length</h2>
+            <span class="topic-tag tag-kin">Pendulum</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> \(T = 2\pi\sqrt{L/g}\) so \(L = gT^2/(4\pi^2)\). A pendulum has period \(2\,\text{s}\). Use \(g = 10\,\text{m/s}^2\). Find the length in metres.</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(L\) =</label>
+                <input type="number" id="input-pend-l" step="0.01" placeholder="?" class="w-24" />
+                <span class="text-slate-400">m</span>
+                <button type="button" id="check-pend-l" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-pend-l" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <!-- ========== ELASTIC PENDULUM ========== -->
+        <section id="game-elastic-pend" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 26: Elastic pendulum — Vertical oscillation</h2>
+            <span class="topic-tag tag-energy">Elastic pendulum</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> A mass hangs from a vertical spring. For small vertical oscillations about equilibrium, the period is the same as for a horizontal spring: \(T = 2\pi\sqrt{m/k}\). A \(0.5\,\text{kg}\) mass on a spring (\(k = 50\,\text{N/m}\)) oscillates vertically. Find the period in seconds.</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <label class="text-slate-300">\(T\) =</label>
+                <input type="number" id="input-elastic-t" step="0.01" placeholder="?" class="w-24" />
+                <span class="text-slate-400">s</span>
+                <button type="button" id="check-elastic-t" class="btn btn-primary">Check</button>
+            </div>
+            <p id="fb-elastic-t" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+        <section id="game-elastic-pend-concept" class="game-section card">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-2">Game 27: Elastic pendulum — What changes the period?</h2>
+            <span class="topic-tag tag-kin">Elastic pendulum</span>
+            <p class="text-slate-300 mt-3 mb-4"><strong>Instructions:</strong> For the <strong>vertical</strong> oscillation of a mass on a spring (elastic pendulum), which of these changes the period?</p>
+            <div class="flex flex-wrap gap-2">
+                <button type="button" class="opt px-3 py-2 rounded bg-slate-700" data-g="elastic-c" data-a="mass">Changing the mass</button>
+                <button type="button" class="opt px-3 py-2 rounded bg-slate-700" data-g="elastic-c" data-a="gravity">Changing the gravitational field (e.g. different planet)</button>
+                <button type="button" class="opt px-3 py-2 rounded bg-slate-700" data-g="elastic-c" data-a="both">Both mass and gravity</button>
+                <button type="button" class="opt px-3 py-2 rounded bg-slate-700" data-g="elastic-c" data-a="k">Only the spring constant \(k\)</button>
+            </div>
+            <button type="button" id="check-elastic-c" class="btn btn-primary mt-4">Check</button>
+            <p id="fb-elastic-c" class="mt-3 hidden rounded px-3 py-2"></p>
+        </section>
+
+    </main>
+
+    <script>
+    function showFb(id, ok, msg) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = msg;
+        el.classList.remove('hidden', 'feedback-correct', 'feedback-incorrect');
+        el.classList.add(ok ? 'feedback-correct' : 'feedback-incorrect');
+    }
+
+    // Game 1: Kinematics formula match
+    var kinFCorrect = { 'kin-f': 'v=u+at', 'kin-s': 's=ut+half' };
+    document.querySelectorAll('.opt[data-g="kin-f"], .opt[data-g="kin-s"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var g = this.getAttribute('data-g');
+            document.querySelectorAll('.opt[data-g="' + g + '"]').forEach(function(b) { b.classList.remove('selected'); });
+            this.classList.add('selected');
+        });
+    });
+    document.getElementById('check-kin-f').addEventListener('click', function() {
+        var kf = document.querySelector('.opt[data-g="kin-f"].selected');
+        var ks = document.querySelector('.opt[data-g="kin-s"].selected');
+        var ok = kf && ks && kf.getAttribute('data-a') === 'v=u+at' && ks.getAttribute('data-a') === 's=ut+half';
+        document.querySelectorAll('.opt[data-g="kin-f"], .opt[data-g="kin-s"]').forEach(function(b) {
+            b.classList.remove('correct', 'wrong');
+            if (b.getAttribute('data-a') === kinFCorrect[b.getAttribute('data-g')]) b.classList.add('correct');
+            else if (b.classList.contains('selected') && b.getAttribute('data-a') !== kinFCorrect[b.getAttribute('data-g')]) b.classList.add('wrong');
+        });
+        showFb('fb-kin-f', ok, ok ? 'Correct!' : 'Check: v = u + at for final velocity; s = ut + ½at² for displacement.');
+    });
+
+    // Game 2: v = u + at  -> v = 0 + 4*5 = 20
+    document.getElementById('check-v').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-v').value);
+        showFb('fb-v', !isNaN(val) && Math.abs(val - 20) < 0.1, !isNaN(val) && Math.abs(val - 20) < 0.1 ? 'Correct! v = u + at = 0 + 4×5 = 20 m/s.' : 'Use v = u + at = 0 + 4×5 = 20 m/s.');
+    });
+
+    // Game 3: W = 50 * 3 = 150
+    document.getElementById('check-w').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-w').value);
+        showFb('fb-w', !isNaN(val) && Math.abs(val - 150) < 0.1, !isNaN(val) && Math.abs(val - 150) < 0.1 ? 'Correct! W = F×s = 50×3 = 150 J.' : 'W = F×s = 50×3 = 150 J.');
+    });
+
+    // Game 4: KE = 0.5 * 2 * 36 = 36
+    document.getElementById('check-ke').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-ke').value);
+        showFb('fb-ke', !isNaN(val) && Math.abs(val - 36) < 0.1, !isNaN(val) && Math.abs(val - 36) < 0.1 ? 'Correct! KE = ½mv² = ½×2×6² = 36 J.' : 'KE = ½mv² = ½×2×36 = 36 J.');
+    });
+
+    // Game 5: PE = 5*10*4 = 200
+    document.getElementById('check-pe').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-pe').value);
+        showFb('fb-pe', !isNaN(val) && Math.abs(val - 200) < 0.1, !isNaN(val) && Math.abs(val - 200) < 0.1 ? 'Correct! PE = mgh = 5×10×4 = 200 J.' : 'PE = mgh = 5×10×4 = 200 J.');
+    });
+
+    // Game 6: At top, PE max, KE = 0
+    document.querySelectorAll('.opt[data-g="energy-c"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.opt[data-g="energy-c"]').forEach(function(b) { b.classList.remove('selected'); });
+            this.classList.add('selected');
+        });
+    });
+    document.getElementById('check-energy-c').addEventListener('click', function() {
+        var sel = document.querySelector('.opt[data-g="energy-c"].selected');
+        var ok = sel && sel.getAttribute('data-a') === 'pe-max';
+        document.querySelectorAll('.opt[data-g="energy-c"]').forEach(function(b) {
+            b.classList.remove('correct', 'wrong');
+            if (b.getAttribute('data-a') === 'pe-max') b.classList.add('correct');
+            else if (b === sel) b.classList.add('wrong');
+        });
+        showFb('fb-energy-c', ok, ok ? 'Correct! At the top, speed is zero so KE = 0; height is max so PE is maximum.' : 'At the highest point the ball stops briefly: KE = 0, PE is maximum.');
+    });
+
+    // Game 7: p = 3*10 = 30
+    document.getElementById('check-p').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-p').value);
+        showFb('fb-p', !isNaN(val) && Math.abs(val - 30) < 0.1, !isNaN(val) && Math.abs(val - 30) < 0.1 ? 'Correct! p = mv = 3×10 = 30 kg⋅m/s.' : 'p = mv = 3×10 = 30 kg⋅m/s.');
+    });
+
+    // Game 8: (2*5 + 0) = (2+3)*v  -> v = 2
+    document.getElementById('check-pcons').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-pcons').value);
+        showFb('fb-pcons', !isNaN(val) && Math.abs(val - 2) < 0.1, !isNaN(val) && Math.abs(val - 2) < 0.1 ? 'Correct! (2×5 + 3×0) = (2+3)v ⇒ v = 2 m/s.' : 'Conservation: m₁u₁ + m₂u₂ = (m₁+m₂)v ⇒ 10 = 5v ⇒ v = 2 m/s.');
+    });
+
+    // Game 9: M = 20 * 1.5 = 30
+    document.getElementById('check-mom').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-mom').value);
+        showFb('fb-mom', !isNaN(val) && Math.abs(val - 30) < 0.1, !isNaN(val) && Math.abs(val - 30) < 0.1 ? 'Correct! M = F×d = 20×1.5 = 30 N⋅m.' : 'M = F×d = 20×1.5 = 30 N⋅m.');
+    });
+
+    // Game 10: 12*1 = F*2  -> F = 6
+    document.getElementById('check-fe').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-fe').value);
+        showFb('fb-fe', !isNaN(val) && Math.abs(val - 6) < 0.1, !isNaN(val) && Math.abs(val - 6) < 0.1 ? 'Correct! 12×1 = F×2 ⇒ F = 6 N.' : 'Equilibrium: 12×1 = F×2 ⇒ F = 6 N.');
+    });
+
+    // Game 11: Units — Work J, Momentum kg⋅m/s, Moment N⋅m
+    var unitCorrect = { 'unit-w': 'J', 'unit-p': 'kgms', 'unit-m': 'Nm' };
+    document.querySelectorAll('.opt[data-g^="unit-"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var g = this.getAttribute('data-g');
+            document.querySelectorAll('.opt[data-g="' + g + '"]').forEach(function(b) { b.classList.remove('selected'); });
+            this.classList.add('selected');
+        });
+    });
+    document.getElementById('check-units').addEventListener('click', function() {
+        var ok = true;
+        ['unit-w', 'unit-p', 'unit-m'].forEach(function(g) {
+            var sel = document.querySelector('.opt[data-g="' + g + '"].selected');
+            if (!sel || sel.getAttribute('data-a') !== unitCorrect[g]) ok = false;
+        });
+        document.querySelectorAll('.opt[data-g^="unit-"]').forEach(function(b) {
+            b.classList.remove('correct', 'wrong');
+            var g = b.getAttribute('data-g');
+            if (b.getAttribute('data-a') === unitCorrect[g]) b.classList.add('correct');
+            else if (b.classList.contains('selected')) b.classList.add('wrong');
+        });
+        showFb('fb-units', ok, ok ? 'All correct! Work → J; Momentum → kg⋅m/s; Moment → N⋅m.' : 'Work → J (joule); Momentum → kg⋅m/s; Moment of force → N⋅m.');
+    });
+
+    // Game 12: Which formula for a when you have u, v, s -> v² = u² + 2as
+    document.querySelectorAll('.opt[data-g="which"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.opt[data-g="which"]').forEach(function(b) { b.classList.remove('selected'); });
+            this.classList.add('selected');
+        });
+    });
+    document.getElementById('check-which').addEventListener('click', function() {
+        var sel = document.querySelector('.opt[data-g="which"].selected');
+        var ok = sel && sel.getAttribute('data-a') === 'v2=u2+2as';
+        document.querySelectorAll('.opt[data-g="which"]').forEach(function(b) {
+            b.classList.remove('correct', 'wrong');
+            if (b.getAttribute('data-a') === 'v2=u2+2as') b.classList.add('correct');
+            else if (b === sel) b.classList.add('wrong');
+        });
+        showFb('fb-which', ok, ok ? 'Correct! v² = u² + 2as can be rearranged to find a.' : 'Use v² = u² + 2as; rearrange to get a = (v² − u²)/(2s).');
+    });
+
+    // Game 13: Two-step kinematics — a = -3.2, t = 5
+    document.getElementById('btn-hint-twostep').addEventListener('click', function() {
+        var h = document.getElementById('hint-twostep');
+        h.classList.toggle('hidden');
+        this.textContent = h.classList.contains('hidden') ? 'Show hint' : 'Hide hint';
+    });
+    document.getElementById('check-twostep').addEventListener('click', function() {
+        var a = parseFloat(document.getElementById('input-a2').value);
+        var t = parseFloat(document.getElementById('input-t2').value);
+        var aOk = !isNaN(a) && Math.abs(a - (-3.2)) < 0.05;
+        var tOk = !isNaN(t) && Math.abs(t - 5) < 0.1;
+        var both = aOk && tOk;
+        showFb('fb-twostep', both, both ? 'Correct! a = -3.2 m/s², t = 5 s.' : (aOk && !tOk) ? '(a) is correct. (b) Use v = u + at → t = (v−u)/a = (8−24)/(−3.2) = 5 s.' : (!aOk && tOk) ? '(b) is correct. (a) From v² = u² + 2as: a = (v²−u²)/(2s) = (64−576)/160 = -3.2 m/s².' : 'From v² = u² + 2as get a = (64−576)/(2×80) = -3.2 m/s²; then v = u + at gives t = 5 s.');
+    });
+
+    // Game 14: Power — W = 400*10*12 = 48000, P = 48000/8 = 6000 W
+    document.getElementById('check-power').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-power').value);
+        var ok = !isNaN(val) && Math.abs(val - 6000) < 1;
+        showFb('fb-power', ok, ok ? 'Correct! W = mgh = 400×10×12 = 48000 J; P = W/t = 6000 W.' : 'P = W/t, W = F×s = mg×h = 400×10×12 = 48000 J, so P = 48000/8 = 6000 W.');
+    });
+
+    // Game 15: Impulse — Δp = 0.5*(-4 - 6) = -5, |F| = 5/0.02 = 250 N
+    document.getElementById('check-impulse').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-impulse').value);
+        var ok = !isNaN(val) && Math.abs(val - 250) < 1;
+        showFb('fb-impulse', ok, ok ? 'Correct! Δp = m(v_f − v_i) = 0.5×(−4−6) = −5; F = Δp/Δt = 5/0.02 = 250 N.' : 'Take rebound as opposite direction: v_f = −4 m/s. Δp = m(v_f−v_i) = 0.5×(−10) = −5 kg⋅m/s; F = |Δp|/Δt = 250 N.');
+    });
+
+    // Game 16: v = sqrt(2gh) = sqrt(400) = 20 m/s
+    document.getElementById('check-v-energy').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-v-energy').value);
+        var ok = !isNaN(val) && Math.abs(val - 20) < 0.2;
+        showFb('fb-v-energy', ok, ok ? 'Correct! mgh = ½mv² ⇒ v = √(2gh) = √(2×10×20) = 20 m/s.' : 'Conservation: mgh = ½mv² ⇒ v = √(2gh) = √(400) = 20 m/s.');
+    });
+
+    // Game 17: Spot the error — s = vt is wrong (constant v formula)
+    document.querySelectorAll('.opt[data-g="error"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.opt[data-g="error"]').forEach(function(b) { b.classList.remove('selected'); });
+            this.classList.add('selected');
+        });
+    });
+    document.getElementById('check-error').addEventListener('click', function() {
+        var sel = document.querySelector('.opt[data-g="error"].selected');
+        var ok = sel && sel.getAttribute('data-a') === 's=vt';
+        document.querySelectorAll('.opt[data-g="error"]').forEach(function(b) {
+            b.classList.remove('correct', 'wrong');
+            if (b.getAttribute('data-a') === 's=vt') b.classList.add('correct');
+            else if (b === sel) b.classList.add('wrong');
+        });
+        showFb('fb-error', ok, ok ? 'Correct! s = vt applies only when velocity is constant; here we have acceleration, so we should use s = ut + ½at².' : 'The mistake is using s = vt (constant-velocity formula) when the motion is accelerated.');
+    });
+
+    // Game 18: Order the steps — correct order 1,2,3,4 (by data-order)
+    var stepList = document.getElementById('step-list');
+    if (stepList) {
+        stepList.querySelectorAll('li').forEach(function(li) {
+            li.addEventListener('click', function() {
+                var prev = this.previousElementSibling;
+                if (prev) stepList.insertBefore(this, prev);
+            });
+        });
+    }
+    document.getElementById('check-order').addEventListener('click', function() {
+        var items = document.querySelectorAll('#step-list li');
+        var order = Array.from(items).map(function(el) { return parseInt(el.getAttribute('data-order'), 10); });
+        var correct = order[0] === 1 && order[1] === 2 && order[2] === 3 && order[3] === 4;
+        items.forEach(function(el) {
+            el.classList.toggle('correct-order', correct);
+        });
+        showFb('fb-order', correct, correct ? 'Correct order! Identify → Formula → Substitute → Answer.' : 'Correct order: (1) Identify m and v, (2) Formula p = mv, (3) Substitute, (4) Answer with unit.');
+    });
+
+    // Game 19: 18*1.2 = 12*d → d = 1.8 m
+    document.getElementById('check-d-beam').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-d-beam').value);
+        var ok = !isNaN(val) && Math.abs(val - 1.8) < 0.02;
+        showFb('fb-d-beam', ok, ok ? 'Correct! 18×1.2 = 12×d ⇒ d = 21.6/12 = 1.8 m.' : 'Equilibrium: 18×1.2 = 12×d ⇒ d = 21.6/12 = 1.8 m.');
+    });
+
+    // Game 20: Elastic collision — KE conserved
+    document.querySelectorAll('.opt[data-g="coll"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.opt[data-g="coll"]').forEach(function(b) { b.classList.remove('selected'); });
+            this.classList.add('selected');
+        });
+    });
+    document.getElementById('check-coll').addEventListener('click', function() {
+        var sel = document.querySelector('.opt[data-g="coll"].selected');
+        var ok = sel && sel.getAttribute('data-a') === 'ke-cons';
+        document.querySelectorAll('.opt[data-g="coll"]').forEach(function(b) {
+            b.classList.remove('correct', 'wrong');
+            if (b.getAttribute('data-a') === 'ke-cons') b.classList.add('correct');
+            else if (b === sel) b.classList.add('wrong');
+        });
+        showFb('fb-coll', ok, ok ? 'Correct! In an elastic collision, both momentum and kinetic energy are conserved.' : 'True: In an elastic collision, KE is conserved. Momentum is conserved in all collisions (no external force).');
+    });
+
+    // Game 21: F = kx = 150*0.08 = 12 N
+    document.getElementById('check-spring-f').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-spring-f').value);
+        var ok = !isNaN(val) && Math.abs(val - 12) < 0.1;
+        showFb('fb-spring-f', ok, ok ? 'Correct! F = kx = 150×0.08 = 12 N.' : 'Hooke\'s law: F = kx = 150×0.08 = 12 N.');
+    });
+    // Game 22: U = 0.5*80*0.01 = 0.4 J
+    document.getElementById('check-spring-u').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-spring-u').value);
+        var ok = !isNaN(val) && Math.abs(val - 0.4) < 0.02;
+        showFb('fb-spring-u', ok, ok ? 'Correct! U = ½kx² = ½(80)(0.1)² = 0.4 J.' : 'U = ½kx² = ½(80)(0.01) = 0.4 J.');
+    });
+    // Game 23: T = 2*pi*sqrt(0.4/100) = 2*pi*0.0632 ≈ 0.40 s
+    document.getElementById('check-spring-t').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-spring-t').value);
+        var expected = 2 * Math.PI * Math.sqrt(0.4/100);
+        var ok = !isNaN(val) && Math.abs(val - expected) < 0.02;
+        showFb('fb-spring-t', ok, ok ? 'Correct! T = 2π√(m/k) = 2π√(0.4/100) ≈ 0.40 s.' : 'T = 2π√(m/k) = 2π√(0.004) ≈ 0.40 s.');
+    });
+    // Game 24: T = 2*pi*sqrt(1/10) ≈ 1.99 s
+    document.getElementById('check-pend-t').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-pend-t').value);
+        var expected = 2 * Math.PI * Math.sqrt(1/10);
+        var ok = !isNaN(val) && Math.abs(val - expected) < 0.05;
+        showFb('fb-pend-t', ok, ok ? 'Correct! T = 2π√(L/g) = 2π√(0.1) ≈ 1.99 s.' : 'T = 2π√(L/g) = 2π√(1/10) ≈ 1.99 s.');
+    });
+    // Game 25: L = 10*4/(4*pi^2) = 40/(4*9.87) ≈ 1.01 m
+    document.getElementById('check-pend-l').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-pend-l').value);
+        var expected = 10 * 4 / (4 * Math.PI * Math.PI);
+        var ok = !isNaN(val) && Math.abs(val - expected) < 0.05;
+        showFb('fb-pend-l', ok, ok ? 'Correct! L = gT²/(4π²) = 10×4/(4π²) ≈ 1.01 m.' : 'L = gT²/(4π²) = 40/(4π²) ≈ 1.01 m.');
+    });
+    // Game 26: T = 2*pi*sqrt(0.5/50) ≈ 0.628 s
+    document.getElementById('check-elastic-t').addEventListener('click', function() {
+        var val = parseFloat(document.getElementById('input-elastic-t').value);
+        var expected = 2 * Math.PI * Math.sqrt(0.5/50);
+        var ok = !isNaN(val) && Math.abs(val - expected) < 0.02;
+        showFb('fb-elastic-t', ok, ok ? 'Correct! T = 2π√(m/k) = 2π√(0.5/50) ≈ 0.63 s.' : 'T = 2π√(m/k) = 2π√(0.01) ≈ 0.63 s.');
+    });
+    // Game 27: Period depends on m and k (T = 2π√(m/k)), not g. So "Changing the mass" is correct.
+    document.querySelectorAll('.opt[data-g="elastic-c"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.opt[data-g="elastic-c"]').forEach(function(b) { b.classList.remove('selected'); });
+            this.classList.add('selected');
+        });
+    });
+    document.getElementById('check-elastic-c').addEventListener('click', function() {
+        var sel = document.querySelector('.opt[data-g="elastic-c"].selected');
+        var ok = sel && sel.getAttribute('data-a') === 'mass';
+        document.querySelectorAll('.opt[data-g="elastic-c"]').forEach(function(b) {
+            b.classList.remove('correct', 'wrong');
+            if (b.getAttribute('data-a') === 'mass') b.classList.add('correct');
+            else if (b === sel) b.classList.add('wrong');
+        });
+        showFb('fb-elastic-c', ok, ok ? 'Correct! T = 2π√(m/k) — period depends on mass and k, not g (for vertical spring).' : 'For vertical spring oscillation T = 2π√(m/k); gravity only shifts equilibrium, so changing mass changes T.');
+    });
+    </script>
+</body>
+</html>

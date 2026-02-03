@@ -52,30 +52,39 @@
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
-        <h2 class="text-2xl font-bold text-slate-800 mb-3">3. Drawing — force, pivot, and perpendicular distance</h2>
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">3. Everyday examples of turning forces</h2>
+        <p class="text-slate-700 mb-3"><strong>Door:</strong> The hinge is the pivot. Pushing near the handle (large distance from the hinge) gives a big moment, so the door opens easily. Pushing close to the hinge (small \(d\)) gives a small moment — the door is hard to open.</p>
+        <p class="text-slate-700 mb-3"><strong>Spanner or wrench:</strong> The nut (or bolt head) is the pivot. You apply a force at the end of the handle. The longer the spanner, the larger \(d\), so the same force produces a larger moment and you can tighten or loosen the nut more easily.</p>
+        <p class="text-slate-700 mb-3"><strong>Crane:</strong> The tower is the pivot. The load at the end of the jib (arm) produces a clockwise moment. A counterweight on the other side produces an anticlockwise moment. To avoid tipping, the crane is designed so that these moments balance (or the counterweight is heavy enough to win).</p>
+        <p class="text-slate-700 mb-3"><strong>Bottle opener:</strong> The cap rim acts as the fulcrum (pivot). You push down on the handle. The long distance from the pivot to where you push gives a large moment, which overcomes the resistance of the cap — the “force wins” because of the large \(d\).</p>
+        <p class="text-slate-700"><strong>Wheel, steering wheel, or pedal:</strong> For a circular object rotating about its centre, the pivot is the axis. The perpendicular distance from the axis to the line of action of the force is the radius \(r\). So moment \(M = F \times r\). The same force applied further from the centre (larger \(r\)) produces a larger turning effect.</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">4. Drawing — force, pivot, and perpendicular distance</h2>
         <p class="text-slate-700 mb-4">The diagram below shows a force \(F\) applied at a distance \(d\) from the pivot. The moment is \(M = F \times d\). Clockwise and anticlockwise moments are given a sign convention: often we take one direction as positive and the other as negative so that we can add them.</p>
         <div class="diagram-card rounded-xl p-4 flex justify-center overflow-x-auto">
-          <svg viewBox="0 0 320 160" class="max-w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-            <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#4f46e5"/></marker></defs>
-            <!-- Bar -->
-            <line x1="40" y1="80" x2="280" y2="80" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
-            <!-- Pivot (triangle) -->
-            <path d="M160 80 L150 100 L170 100 Z" fill="#64748b"/>
-            <text x="160" y="120" text-anchor="middle" font-size="12" fill="#475569">pivot</text>
+          <svg viewBox="0 0 320 170" class="max-w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arrowhead-bar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#4f46e5"/></marker></defs>
+            <!-- Bar (thick beam) -->
+            <rect x="35" y="72" width="250" height="16" rx="3" fill="#475569" stroke="#334155"/>
+            <!-- Pivot (fulcrum) -->
+            <path d="M160 88 L152 115 L168 115 Z" fill="#64748b" stroke="#475569"/>
+            <rect x="155" y="115" width="10" height="18" fill="#94a3b8"/>
+            <text x="160" y="142" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">pivot</text>
             <!-- Perpendicular distance d -->
-            <line x1="240" y1="80" x2="240" y2="40" stroke="#059669" stroke-width="2" stroke-dasharray="4 2"/>
-            <text x="250" y="58" font-size="11" fill="#059669">d</text>
+            <line x1="240" y1="80" x2="240" y2="38" stroke="#059669" stroke-width="2" stroke-dasharray="5 3"/>
+            <text x="252" y="58" font-size="12" font-weight="bold" fill="#059669">d</text>
             <!-- Force F (downward) -->
-            <line x1="240" y1="40" x2="240" y2="0" stroke="#4f46e5" stroke-width="3" marker-end="url(#arrowhead)"/>
-            <text x="255" y="18" font-size="12" fill="#4f46e5">F</text>
-            <!-- Label "line of action" -->
-            <text x="160" y="145" text-anchor="middle" font-size="11" fill="#64748b">Bar: distance d from pivot to line of action of F</text>
+            <line x1="240" y1="38" x2="240" y2="8" stroke="#4f46e5" stroke-width="3" marker-end="url(#arrowhead-bar)"/>
+            <text x="258" y="24" font-size="13" font-weight="bold" fill="#4f46e5">F</text>
+            <text x="160" y="162" text-anchor="middle" font-size="11" fill="#64748b">Beam: moment M = F × d about the pivot</text>
           </svg>
         </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
-        <h2 class="text-2xl font-bold text-slate-800 mb-3">4. Equilibrium of moments</h2>
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">5. Equilibrium of moments</h2>
         <p class="text-slate-700 mb-4">When an object is not rotating (or is rotating at constant angular velocity), the moments about any pivot must balance. This is the <strong>principle of moments</strong>:</p>
         <div class="bg-white rounded-lg p-4 border border-indigo-100 text-center my-4">
           <span id="formula-equilibrium"></span>
@@ -84,33 +93,90 @@
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
-        <h2 class="text-2xl font-bold text-slate-800 mb-3">5. Drawing — seesaw in equilibrium</h2>
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">6. Drawing — seesaw in equilibrium</h2>
         <p class="text-slate-700 mb-4">Two children on a seesaw: their weights produce moments about the pivot. When the seesaw is balanced, the clockwise moment equals the anticlockwise moment: \(W_1 \times d_1 = W_2 \times d_2\).</p>
         <div class="diagram-card rounded-xl p-4 flex justify-center overflow-x-auto">
-          <svg viewBox="0 0 340 140" class="max-w-full h-auto" xmlns="http://www.w3.org/2000/svg">
-            <line x1="40" y1="70" x2="300" y2="70" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
-            <path d="M170 70 L160 95 L180 95 Z" fill="#64748b"/>
-            <text x="170" y="115" text-anchor="middle" font-size="11" fill="#475569">pivot</text>
-            <circle cx="100" cy="45" r="18" fill="#fbbf24" stroke="#b45309"/>
-            <text x="100" y="50" text-anchor="middle" font-size="10">W₁</text>
-            <line x1="100" y1="70" x2="100" y2="63" stroke="#64748b" stroke-width="1"/>
-            <text x="100" y="38" text-anchor="middle" font-size="9">d₁</text>
-            <circle cx="270" cy="45" r="18" fill="#60a5fa" stroke="#2563eb"/>
-            <text x="270" y="50" text-anchor="middle" font-size="10">W₂</text>
-            <line x1="270" y1="70" x2="270" y2="63" stroke="#64748b" stroke-width="1"/>
-            <text x="270" y="38" text-anchor="middle" font-size="9">d₂</text>
-            <text x="170" y="135" text-anchor="middle" font-size="10" fill="#64748b">Balanced: W₁×d₁ = W₂×d₂</text>
+          <svg viewBox="0 0 360 155" class="max-w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <rect x="165" y="75" width="30" height="35" fill="#94a3b8" stroke="#64748b"/>
+            <rect x="155" y="108" width="50" height="8" fill="#64748b"/>
+            <path d="M180 116 L172 140 L188 140 Z" fill="#475569"/>
+            <line x1="30" y1="72" x2="330" y2="72" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
+            <rect x="27" y="69" width="6" height="6" fill="#1e293b"/>
+            <rect x="327" y="69" width="6" height="6" fill="#1e293b"/>
+            <text x="180" y="152" text-anchor="middle" font-size="11" fill="#475569">pivot (fulcrum)</text>
+            <circle cx="95" cy="48" r="22" fill="#fbbf24" stroke="#b45309" stroke-width="2"/>
+            <text x="95" y="53" text-anchor="middle" font-size="11" font-weight="bold">W₁</text>
+            <line x1="95" y1="72" x2="95" y2="68" stroke="#64748b" stroke-width="2"/>
+            <text x="95" y="42" text-anchor="middle" font-size="10" fill="#059669">d₁</text>
+            <circle cx="265" cy="48" r="22" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+            <text x="265" y="53" text-anchor="middle" font-size="11" font-weight="bold">W₂</text>
+            <line x1="265" y1="72" x2="265" y2="68" stroke="#64748b" stroke-width="2"/>
+            <text x="265" y="42" text-anchor="middle" font-size="10" fill="#059669">d₂</text>
+            <text x="180" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#334155">Balanced: W₁×d₁ = W₂×d₂</text>
           </svg>
         </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
-        <h2 class="text-2xl font-bold text-slate-800 mb-3">6. Centre of gravity</h2>
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">7. Real-world examples with diagrams</h2>
+        <p class="text-slate-700 mb-4">Below: a <strong>crane</strong> (load and counterweight balance about the tower), a <strong>bottle opener</strong> (force at the handle “wins” because of large \(d\)), and a <strong>circular object</strong> (wheel or steering wheel — moment = \(F \times r\) where \(r\) is the radius).</p>
+
+        <p class="text-slate-700 font-semibold mb-2">Crane</p>
+        <div class="diagram-card rounded-lg p-3 mb-4 overflow-x-auto">
+          <svg viewBox="0 0 320 160" class="max-w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arr1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#dc2626"/></marker><marker id="arr2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2563eb"/></marker></defs>
+            <rect x="148" y="20" width="24" height="120" fill="#64748b" stroke="#475569"/>
+            <line x1="160" y1="25" x2="280" y2="55" stroke="#334155" stroke-width="5"/>
+            <rect x="268" y="50" width="24" height="28" fill="#94a3b8"/>
+            <text x="280" y="72" text-anchor="middle" font-size="9">load L</text>
+            <line x1="160" y1="25" x2="50" y2="55" stroke="#475569" stroke-width="4"/>
+            <rect x="38" y="50" width="24" height="22" fill="#f59e0b"/>
+            <text x="50" y="68" text-anchor="middle" font-size="9">C.W.</text>
+            <line x1="280" y1="78" x2="280" y2="95" stroke="#dc2626" stroke-width="2" marker-end="url(#arr1)"/>
+            <text x="290" y="90" font-size="10">L</text>
+            <line x1="50" y1="72" x2="50" y2="95" stroke="#2563eb" stroke-width="2" marker-end="url(#arr2)"/>
+            <text x="38" y="90" font-size="10">C</text>
+            <text x="160" y="148" text-anchor="middle" font-size="10" fill="#475569">Tower (pivot). No tip: moment of C = moment of L (about tower).</text>
+          </svg>
+        </div>
+
+        <p class="text-slate-700 font-semibold mb-2">Bottle opener (lever)</p>
+        <div class="diagram-card rounded-lg p-3 mb-4 overflow-x-auto">
+          <svg viewBox="0 0 300 130" class="max-w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arrF" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f46e5"/></marker></defs>
+            <ellipse cx="80" cy="75" rx="28" ry="12" fill="#94a3b8" stroke="#64748b"/>
+            <text x="80" y="78" text-anchor="middle" font-size="9">cap (pivot)</text>
+            <path d="M52 75 L30 50 L30 100 Z" fill="#64748b" stroke="#475569"/>
+            <line x1="30" y1="75" x2="30" y2="45" stroke="#4f46e5" stroke-width="3" marker-end="url(#arrF)"/>
+            <text x="18" y="38" font-size="11" font-weight="bold" fill="#4f46e5">F</text>
+            <line x1="30" y1="75" x2="80" y2="75" stroke="#059669" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="52" y="70" font-size="10" fill="#059669">d</text>
+            <text x="150" y="118" text-anchor="middle" font-size="10" fill="#64748b">Large d → large moment → cap opens (force “wins”).</text>
+          </svg>
+        </div>
+
+        <p class="text-slate-700 font-semibold mb-2">Circular object (wheel / steering wheel)</p>
+        <div class="diagram-card rounded-lg p-3 overflow-x-auto">
+          <svg viewBox="0 0 280 150" class="max-w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+            <defs><marker id="arrWheel" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7c3aed"/></marker></defs>
+            <circle cx="140" cy="75" r="50" fill="none" stroke="#334155" stroke-width="6"/>
+            <circle cx="140" cy="75" r="6" fill="#64748b"/>
+            <line x1="140" y1="75" x2="190" y2="75" stroke="#059669" stroke-width="2" stroke-dasharray="4 2"/>
+            <text x="165" y="70" font-size="11" fill="#059669">r</text>
+            <line x1="190" y1="75" x2="190" y2="25" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrWheel)"/>
+            <text x="200" y="48" font-size="12" font-weight="bold" fill="#7c3aed">F</text>
+            <text x="140" y="145" text-anchor="middle" font-size="10" fill="#475569">Axis (pivot). Moment M = F × r. Same F, larger r → larger turn.</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">8. Centre of gravity</h2>
         <p class="text-slate-700 mb-4">The <strong>centre of gravity</strong> (CG) of an object is the point through which the entire weight of the object can be considered to act. For a uniform ruler, the centre of gravity is at its midpoint. For equilibrium on a pivot, the pivot is often directly under the centre of gravity so that the weight produces no moment about that pivot. If the line of action of the weight passes through the pivot, the object stays balanced.</p>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
-        <h2 class="text-2xl font-bold text-slate-800 mb-3">7. Stability</h2>
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">9. Stability</h2>
         <p class="text-slate-700 mb-4">An object is more <strong>stable</strong> if its centre of gravity is low and its base is wide. When an object is tilted, the line of action of its weight may pass outside the base; then the weight produces a moment that tips it over. So: low CG and wide base → line of action of weight stays inside the base for larger tilts → more stable.</p>
       </div>
 

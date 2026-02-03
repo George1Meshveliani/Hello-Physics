@@ -55,9 +55,9 @@
 
     <!-- TABS -->
     <div class="flex bg-slate-200 p-1 rounded-xl mb-8">
-      <button class="tab-btn active" onclick="setTab('Easy')">Easy (20)</button>
-      <button class="tab-btn" onclick="setTab('Intermediate')">Intermediate (20)</button>
-      <button class="tab-btn" onclick="setTab('Advanced')">Advanced (20)</button>
+      <button class="tab-btn active" onclick="setTab('Easy')">Easy (40)</button>
+      <button class="tab-btn" onclick="setTab('Intermediate')">Intermediate (40)</button>
+      <button class="tab-btn" onclick="setTab('Advanced')">Advanced (40)</button>
     </div>
 
     <!-- QUESTIONS -->
@@ -102,7 +102,12 @@ const formulas = [
   ["Kinetic Energy", "$KE = \\frac{1}{2}mv^2$"],
   ["Potential Energy", "$PE = mgh$"],
   ["Work", "$W = Fs\\cos\\theta$"],
-  ["Power", "$P = \\frac{W}{t} = Fv$"]
+  ["Power", "$P = \\frac{W}{t} = Fv$"],
+  ["Hooke's Law", "$F = kx$"],
+  ["Elastic PE", "$U = \\frac{1}{2}kx^2$"],
+  ["Spring period", "$T = 2\\pi\\sqrt{m/k}$"],
+  ["Pendulum period", "$T = 2\\pi\\sqrt{L/g}$"],
+  ["Moment", "$M = F \\times d$"]
 ];
 
 const questions = {
@@ -186,7 +191,27 @@ const questions = {
     {
       q: "20. A body starts from rest and reaches $24\\,\\text{m/s}$ in $6\\,\\text{s}$. Find the distance traveled.",
       s: "First find acceleration: $a = \\frac{v-u}{t} = \\frac{24}{6} = 4\\,\\text{m/s}^2$\n\nUsing $s = ut + \\frac{1}{2}at^2$:\n\n$s = 0 + \\frac{1}{2}(4)(6)^2 = \\frac{1}{2}(4)(36) = 72\\,\\text{m}$"
-    }
+    },
+    { q: "21. A spring has $k = 100\\,\\text{N/m}$. What force is needed to stretch it by $0.05\\,\\text{m}$?", s: "Hooke's law: $F = kx = 100 \\times 0.05 = 5\\,\\text{N}$." },
+    { q: "22. A spring ($k = 60\\,\\text{N/m}$) is compressed by $0.1\\,\\text{m}$. Find the stored elastic potential energy.", s: "$U = \\frac{1}{2}kx^2 = \\frac{1}{2}(60)(0.1)^2 = 0.3\\,\\text{J}$." },
+    { q: "23. A simple pendulum has length $2\\,\\text{m}$. Find its period. Use $g = 10\\,\\text{m/s}^2$.", s: "$T = 2\\pi\\sqrt{L/g} = 2\\pi\\sqrt{2/10} = 2\\pi\\sqrt{0.2} \\approx 2.81\\,\\text{s}$." },
+    { q: "24. A $0.5\\,\\text{kg}$ mass on a spring ($k = 200\\,\\text{N/m}$) oscillates. Find the period.", s: "$T = 2\\pi\\sqrt{m/k} = 2\\pi\\sqrt{0.5/200} = 2\\pi(0.05) \\approx 0.314\\,\\text{s}$." },
+    { q: "25. A mass hangs from a vertical spring. For small vertical oscillations the period is $T = 2\\pi\\sqrt{m/k}$. If $m = 1\\,\\text{kg}$ and $k = 100\\,\\text{N/m}$, find $T$.", s: "$T = 2\\pi\\sqrt{1/100} = 2\\pi(0.1) \\approx 0.628\\,\\text{s}$." },
+    { q: "26. A force of $15\\,\\text{N}$ acts at a perpendicular distance of $0.4\\,\\text{m}$ from a pivot. Find the moment.", s: "$M = F \\times d = 15 \\times 0.4 = 6\\,\\text{N}\\cdot\\text{m}$." },
+    { q: "27. A light rod is balanced. On one side $8\\,\\text{N}$ at $1\\,\\text{m}$ from the pivot. On the other side, $4\\,\\text{N}$. How far from the pivot is the $4\\,\\text{N}$ force?", s: "Equilibrium: $8 \\times 1 = 4 \\times d$, so $d = 2\\,\\text{m}$." },
+    { q: "28. A uniform beam of weight $40\\,\\text{N}$ and length $2\\,\\text{m}$ is pivoted at one end. What is the moment of its weight about that pivot?", s: "Weight acts at centre, $1\\,\\text{m}$ from pivot. $M = 40 \\times 1 = 40\\,\\text{N}\\cdot\\text{m}$." },
+    { q: "29. Two children balance a seesaw. One weighs $250\\,\\text{N}$ and sits $1.2\\,\\text{m}$ from the pivot. The other weighs $300\\,\\text{N}$. How far from the pivot does the second sit?", s: "$250 \\times 1.2 = 300 \\times d$, so $d = 300/300 = 1\\,\\text{m}$." },
+    { q: "30. A spring stores $2\\,\\text{J}$ when stretched by $0.2\\,\\text{m}$. Find the spring constant.", s: "$U = \\frac{1}{2}kx^2$ so $2 = \\frac{1}{2}k(0.04)$, hence $k = 100\\,\\text{N/m}$." },
+    { q: "31. A simple pendulum has period $1.5\\,\\text{s}$. Use $g = 10\\,\\text{m/s}^2$. Find its length.", s: "$T = 2\\pi\\sqrt{L/g}$ so $L = gT^2/(4\\pi^2) = 10(2.25)/(4\\pi^2) \\approx 0.57\\,\\text{m}$." },
+    { q: "32. An elastic pendulum: $m = 2\\,\\text{kg}$, $k = 50\\,\\text{N/m}$. Find the period of vertical oscillation.", s: "$T = 2\\pi\\sqrt{m/k} = 2\\pi\\sqrt{2/50} = 2\\pi\\sqrt{0.04} \\approx 1.26\\,\\text{s}$." },
+    { q: "33. A moment of $20\\,\\text{N}\\cdot\\text{m}$ is produced by a force of $25\\,\\text{N}$. What is the perpendicular distance?", s: "$M = Fd$ so $d = M/F = 20/25 = 0.8\\,\\text{m}$." },
+    { q: "34. A spring is stretched by $0.12\\,\\text{m}$ and the force is $18\\,\\text{N}$. Find $k$.", s: "$F = kx$ so $k = F/x = 18/0.12 = 150\\,\\text{N/m}$." },
+    { q: "35. Pendulum length is increased from $L$ to $9L$. How does the period change?", s: "$T \\propto \\sqrt{L}$. New $T' = 2\\pi\\sqrt{9L/g} = 3(2\\pi\\sqrt{L/g}) = 3T$. Period triples." },
+    { q: "36. A vertical spring has $k = 80\\,\\text{N/m}$. A $2\\,\\text{kg}$ mass is hung from it. Find the equilibrium extension. Use $g = 10\\,\\text{m/s}^2$.", s: "At equilibrium $kx_0 = mg$, so $x_0 = 2(10)/80 = 0.25\\,\\text{m}$." },
+    { q: "37. A beam is pivoted at its centre. A $6\\,\\text{N}$ weight hangs at $0.5\\,\\text{m}$ on one side. What weight at $1\\,\\text{m}$ on the other side balances it?", s: "$6 \\times 0.5 = W \\times 1$, so $W = 3\\,\\text{N}$." },
+    { q: "38. A $0.2\\,\\text{kg}$ mass on a spring ($k = 80\\,\\text{N/m}$) is pulled $0.1\\,\\text{m}$ and released. Find the maximum speed. (Use energy.)", s: "$\\frac{1}{2}kA^2 = \\frac{1}{2}mv_{max}^2$. $0.5(80)(0.01) = 0.5(0.2)v^2$, so $v_{max} = \\sqrt{4} = 2\\,\\text{m/s}$." },
+    { q: "39. Two springs ($k_1 = k_2 = 100\\,\\text{N/m}$) are in series. Find the effective $k$.", s: "Series: $1/k_{eff} = 1/k_1 + 1/k_2 = 2/100$, so $k_{eff} = 50\\,\\text{N/m}$." },
+    { q: "40. A rod is balanced when a $10\\,\\text{N}$ weight is at $0.3\\,\\text{m}$ and another weight $W$ is at $0.6\\,\\text{m}$. Find $W$.", s: "$10 \\times 0.3 = W \\times 0.6$, so $W = 5\\,\\text{N}$." }
   ],
 
   Intermediate: [
@@ -269,7 +294,27 @@ const questions = {
     {
       q: "20. A block slides down a frictionless incline of height $3\\,\\text{m}$. Find its speed at the bottom.",
       s: "Energy conservation: $mgh = \\frac{1}{2}mv^2$\n\n$v = \\sqrt{2gh} = \\sqrt{2 \\times 9.8 \\times 3} = \\sqrt{58.8} = 7.67\\,\\text{m/s}$"
-    }
+    },
+    { q: "21. A spring ($k = 120\\,\\text{N/m}$) is stretched by $0.15\\,\\text{m}$. Find the force and the stored elastic PE.", s: "$F = kx = 18\\,\\text{N}$. $U = \\frac{1}{2}kx^2 = \\frac{1}{2}(120)(0.0225) = 1.35\\,\\text{J}$." },
+    { q: "22. A simple pendulum has period $2\\,\\text{s}$. Find its length. Use $g = 9.8\\,\\text{m/s}^2$.", s: "$L = gT^2/(4\\pi^2) = 9.8(4)/(4\\pi^2) \\approx 0.993\\,\\text{m}$." },
+    { q: "23. A $1\\,\\text{kg}$ mass on a spring has period $0.5\\,\\text{s}$. Find the spring constant.", s: "$T = 2\\pi\\sqrt{m/k}$ so $k = 4\\pi^2 m/T^2 = 4\\pi^2/0.25 \\approx 158\\,\\text{N/m}$." },
+    { q: "24. An elastic pendulum: $m = 0.5\\,\\text{kg}$, $k = 80\\,\\text{N/m}$. Find the period of vertical oscillation.", s: "$T = 2\\pi\\sqrt{m/k} = 2\\pi\\sqrt{0.5/80} \\approx 0.50\\,\\text{s}$." },
+    { q: "25. A beam is in equilibrium. $12\\,\\text{N}$ at $1.5\\,\\text{m}$ from pivot; $F$ at $0.9\\,\\text{m}$ on the other side. Find $F$.", s: "$12 \\times 1.5 = F \\times 0.9$, so $F = 20\\,\\text{N}$." },
+    { q: "26. A uniform rod of weight $30\\,\\text{N}$ and length $1.5\\,\\text{m}$ is pivoted at one end. Find the moment of its weight about the pivot.", s: "Weight at centre, $0.75\\,\\text{m}$ from pivot. $M = 30 \\times 0.75 = 22.5\\,\\text{N}\\cdot\\text{m}$." },
+    { q: "27. A spring is compressed $0.08\\,\\text{m}$ and stores $0.64\\,\\text{J}$. Find $k$.", s: "$U = \\frac{1}{2}kx^2$ so $0.64 = \\frac{1}{2}k(0.0064)$, $k = 200\\,\\text{N/m}$." },
+    { q: "28. Pendulum A has length $L$, pendulum B has length $4L$. What is the ratio $T_B/T_A$?", s: "$T \\propto \\sqrt{L}$, so $T_B/T_A = \\sqrt{4} = 2$." },
+    { q: "29. A mass on a spring oscillates with amplitude $A$. At $x = A/2$, what fraction of total energy is kinetic?", s: "Total $E = \\frac{1}{2}kA^2$. PE at $A/2$ is $\\frac{1}{8}kA^2 = E/4$. KE $= 3E/4$, so fraction $= 3/4$." },
+    { q: "30. A light rod is balanced. On one side $9\\,\\text{N}$ at $2\\,\\text{m}$; on the other $6\\,\\text{N}$. Find the distance of the $6\\,\\text{N}$ force.", s: "$9 \\times 2 = 6 \\times d$, so $d = 3\\,\\text{m}$." },
+    { q: "31. A block ($m = 2\\,\\text{kg}$) on a spring ($k = 50\\,\\text{N/m}$) is released from $x = 0.2\\,\\text{m}$. Find maximum speed.", s: "$\\frac{1}{2}kA^2 = \\frac{1}{2}mv_{max}^2$. $25(0.04) = 2v^2$, $v_{max} = \\sqrt{0.5} \\approx 0.71\\,\\text{m/s}$." },
+    { q: "32. A vertical spring has $k = 100\\,\\text{N/m}$. A $4\\,\\text{kg}$ mass is hung. Find equilibrium extension. Use $g = 10\\,\\text{m/s}^2$.", s: "$kx_0 = mg$, $x_0 = 40/100 = 0.4\\,\\text{m}$." },
+    { q: "33. Two springs in parallel have $k_1 = 100\\,\\text{N/m}$, $k_2 = 150\\,\\text{N/m}$. Find effective $k$.", s: "Parallel: $k_{eff} = k_1 + k_2 = 250\\,\\text{N/m}$." },
+    { q: "34. A metre rule is pivoted at $30\\,\\text{cm}$. A $4\\,\\text{N}$ weight at $10\\,\\text{cm}$ and $W$ at $80\\,\\text{cm}$ balance. Find $W$.", s: "$4 \\times 20 = W \\times 50$ (distances in cm), so $W = 1.6\\,\\text{N}$." },
+    { q: "35. A spring is cut in half. If original $k = 80\\,\\text{N/m}$, what is $k'$ for each half?", s: "$k \\propto 1/\\text{length}$, so $k' = 2k = 160\\,\\text{N/m}$." },
+    { q: "36. Elastic pendulum: does the period of vertical oscillation depend on $g$? (Yes/No and why.)", s: "No. $T = 2\\pi\\sqrt{m/k}$; $g$ only sets equilibrium position, not the oscillation period." },
+    { q: "37. A seesaw balances when child A ($200\\,\\text{N}$) sits $1.5\\,\\text{m}$ from pivot and child B ($250\\,\\text{N}$) sits on the other side. How far is B from the pivot?", s: "$200 \\times 1.5 = 250 \\times d$, $d = 1.2\\,\\text{m}$." },
+    { q: "38. A mass $m$ on a spring has angular frequency $\\omega = 10\\,\\text{rad/s}$. If $k = 200\\,\\text{N/m}$, find $m$.", s: "$\\omega^2 = k/m$ so $m = k/\\omega^2 = 200/100 = 2\\,\\text{kg}$." },
+    { q: "39. A beam pivoted at centre has $5\\,\\text{N}$ at $0.4\\,\\text{m}$ and $10\\,\\text{N}$ at $0.2\\,\\text{m}$ on the other side. Is it in equilibrium?", s: "Clockwise $5 \\times 0.4 = 2$; anticlockwise $10 \\times 0.2 = 2$. Yes, balanced." },
+    { q: "40. A simple pendulum on the Moon ($g_{moon} \\approx 1.6\\,\\text{m/s}^2$) has the same length as one on Earth. How does its period compare?", s: "$T \\propto 1/\\sqrt{g}$. So $T_{moon} = T_{earth}\\sqrt{g_{earth}/g_{moon}} \\approx 2.5\\, T_{earth}$ (longer on Moon)." }
   ],
 
   Advanced: [
@@ -352,7 +397,27 @@ const questions = {
     {
       q: "20. A mass $m$ slides on a frictionless hemispherical bowl of radius $R$. Starting from rest at the rim, find the normal force at the bottom.",
       s: "Using energy conservation at bottom (starting from height $h = R$):\n\n$mgR = \\frac{1}{2}mv^2$\n\n$v^2 = 2gR$\n\nAt bottom, centripetal acceleration required:\n\n$N - mg = \\frac{mv^2}{R}$\n\n$N = mg + \\frac{m(2gR)}{R}$\n\n$N = mg + 2mg = 3mg$"
-    }
+    },
+    { q: "21. A block ($m = 1\\,\\text{kg}$) on a spring ($k = 40\\,\\text{N/m}$) is released from $x = 0.3\\,\\text{m}$. Find the maximum speed.", s: "Energy: $E = \\frac{1}{2}kA^2 = 1.8\\,\\text{J}$. At equilibrium $\\frac{1}{2}mv_{max}^2 = 1.8$, $v_{max} = \\sqrt{3.6} \\approx 1.90\\,\\text{m/s}$." },
+    { q: "22. A simple pendulum of length $L$ has period $T$. If length becomes $9L$, find the new period.", s: "$T \\propto \\sqrt{L}$. New $T' = 2\\pi\\sqrt{9L/g} = 3T$." },
+    { q: "23. An elastic pendulum (mass on vertical spring): derive why the period of vertical oscillation is $T = 2\\pi\\sqrt{m/k}$ (independent of $g$).", s: "Equilibrium: $kx_0 = mg$. Displacement $y$ from equilibrium: $m\\ddot{y} = -ky$ (gravity cancels with equilibrium spring force). So $\\omega^2 = k/m$, $T = 2\\pi\\sqrt{m/k}$." },
+    { q: "24. Two springs ($k_1$, $k_2$) in series support a mass $m$. Find the period of vertical oscillation.", s: "Series: $1/k_{eff} = 1/k_1 + 1/k_2$. $T = 2\\pi\\sqrt{m/k_{eff}} = 2\\pi\\sqrt{m(k_1+k_2)/(k_1 k_2)}$." },
+    { q: "25. A uniform beam of length $4\\,\\text{m}$ and weight $80\\,\\text{N}$ is supported at points $1\\,\\text{m}$ from each end. Find the reaction at each support.", s: "Take moments about one support: $R_2 \\times 2 = 80 \\times 1$, $R_2 = 40\\,\\text{N}$. So $R_1 = 40\\,\\text{N}$." },
+    { q: "26. A mass on a spring oscillates. At what displacement (in terms of amplitude $A$) is the speed half the maximum speed?", s: "$v^2 = \\omega^2(A^2 - x^2)$. $v = v_{max}/2$ when $A^2 - x^2 = A^2/4$, so $x^2 = 3A^2/4$, $x = A\\sqrt{3}/2$." },
+    { q: "27. A simple pendulum has length $1.6\\,\\text{m}$. It is taken to a planet where $g = 4\\,\\text{m/s}^2$. Find the new period.", s: "$T = 2\\pi\\sqrt{L/g} = 2\\pi\\sqrt{1.6/4} = 2\\pi(0.632) \\approx 3.97\\,\\text{s}$." },
+    { q: "28. A spring of natural length $L_0$ and constant $k$ has a mass $m$ at the end. The system hangs vertically. Find the equilibrium extension and the period of small vertical oscillations.", s: "Equilibrium: $x_0 = mg/k$. Period $T = 2\\pi\\sqrt{m/k}$ (same as horizontal spring)." },
+    { q: "29. A beam is pivoted at its centre. Forces $3\\,\\text{N}$ at $2\\,\\text{m}$, $4\\,\\text{N}$ at $1.5\\,\\text{m}$, and $F$ at $1\\,\\text{m}$ (other side) produce equilibrium. Find $F$.", s: "Clockwise $= 3(2) + 4(1.5) = 6 + 6 = 12$. Anticlockwise $= F(1)$. So $F = 12\\,\\text{N}$." },
+    { q: "30. A mass $m$ oscillates on a spring. Show that the total energy $E = \\frac{1}{2}kA^2$ is constant.", s: "At any $x$: $E = \\frac{1}{2}kx^2 + \\frac{1}{2}mv^2$. Using $v^2 = \\omega^2(A^2-x^2)$ and $\\omega^2 = k/m$ gives $E = \\frac{1}{2}kA^2$." },
+    { q: "31. A physical pendulum is a uniform rod of length $L$ pivoted at one end. Show that $T = 2\\pi\\sqrt{2L/(3g)}$ for small angles.", s: "Moment of inertia $I = \\frac{1}{3}mL^2$, distance to CM $d = L/2$. $T = 2\\pi\\sqrt{I/(mgd)} = 2\\pi\\sqrt{(mL^2/3)/(mgL/2)} = 2\\pi\\sqrt{2L/(3g)}$." },
+    { q: "32. A spring is stretched by $0.2\\,\\text{m}$ and stores $4\\,\\text{J}$. The same spring is then compressed by $0.1\\,\\text{m}$. How much work was done to compress it?", s: "$U = \\frac{1}{2}kx^2$. From first: $4 = \\frac{1}{2}k(0.04)$, $k = 200\\,\\text{N/m}$. Work to compress $0.1\\,\\text{m}$ $= \\frac{1}{2}(200)(0.01) = 1\\,\\text{J}$." },
+    { q: "33. A light rod has weights $W_1 = 20\\,\\text{N}$ at $0.5\\,\\text{m}$ and $W_2 = 30\\,\\text{N}$ at $1\\,\\text{m}$ from the pivot (same side). Where must a third weight $15\\,\\text{N}$ be placed on the other side to balance?", s: "Clockwise $= 20(0.5) + 30(1) = 40$. So $15 \\times d = 40$, $d = 40/15 \\approx 2.67\\,\\text{m}$." },
+    { q: "34. Two masses $m_1$ and $m_2$ are connected by a spring of constant $k$ on a frictionless surface. Find the period of oscillation of the relative motion.", s: "Reduced mass $\\mu = m_1 m_2/(m_1+m_2)$. $T = 2\\pi\\sqrt{\\mu/k} = 2\\pi\\sqrt{m_1 m_2/(k(m_1+m_2))}$." },
+    { q: "35. A conical pendulum has string length $L$ and angle $\\theta$ with vertical. Find the period. (Hint: $T = 2\\pi\\sqrt{L\\cos\\theta/g}$.)", s: "Radius of circle $= L\\sin\\theta$. Force balance and geometry give $T = 2\\pi\\sqrt{L\\cos\\theta/g}$." },
+    { q: "36. A uniform ladder of weight $W$ and length $L$ leans on a smooth wall. Its foot is on rough ground. Take moments about the foot to find the normal reaction from the wall.", s: "Let $N$ be wall reaction. Moment of $N$ about foot $= N \\times$ (height of wall contact). Moment of weight $= W \\times (L/2)\\cos\\theta$. Equilibrium gives $N$ in terms of $W$, $L$, $\\theta$." },
+    { q: "37. A mass on a spring has amplitude $A$ and period $T$. At $t = T/6$, what is the displacement? (Assume $x = A$ at $t = 0$.)", s: "$x = A\\cos(\\omega t)$, $\\omega = 2\\pi/T$. At $t = T/6$, $\\omega t = \\pi/3$, $x = A\\cos(\\pi/3) = A/2$." },
+    { q: "38. A simple pendulum and a mass-spring system have the same period $T$ on Earth. Which (if either) changes period when taken to the Moon?", s: "Pendulum: $T = 2\\pi\\sqrt{L/g}$ depends on $g$; period increases on Moon. Spring: $T = 2\\pi\\sqrt{m/k}$ independent of $g$; period unchanged." },
+    { q: "39. A beam of length $6\\,\\text{m}$ and weight $120\\,\\text{N}$ is supported at $1\\,\\text{m}$ and $4\\,\\text{m}$ from one end. A load of $60\\,\\text{N}$ is at the midpoint. Find both support reactions.", s: "Take moments about first support: $R_2 \\times 3 = 120 \\times 2 + 60 \\times 2 = 360$, $R_2 = 120\\,\\text{N}$. $R_1 + R_2 = 180$, $R_1 = 60\\,\\text{N}$." },
+    { q: "40. An elastic pendulum (spring + gravity) has two modes: one mainly vertical (spring), one mainly swinging (pendulum). For small oscillations, the vertical mode has period $T_1 = 2\\pi\\sqrt{m/k}$. What sets the period of the swinging mode?", s: "The swinging mode is approximately that of a simple pendulum with length equal to the equilibrium length of the spring (natural length plus $mg/k$): $T_2 \\approx 2\\pi\\sqrt{(L_0 + mg/k)/g}$." }
   ]
 };
 

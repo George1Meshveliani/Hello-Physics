@@ -9,6 +9,8 @@ Click the topic and Enjoy!
 - [`Force`](https://george1meshveliani.github.io/Hello-Physics/Force)
 - [`More Dynamics`](https://george1meshveliani.github.io/Hello-Physics/MoreDynamics)
 - [`Turning forces`](https://george1meshveliani.github.io/Hello-Physics/TurningForces)
+- [`Stretching springs, SHM & pendulums`](https://george1meshveliani.github.io/Hello-Physics/StretchingSprings)
+- [`Kinematics & Dynamics Games`](https://george1meshveliani.github.io/Hello-Physics/KinematicsDynamicsGames)
 - [`Density Questions`](https://george1meshveliani.github.io/Hello-Physics/DensityQeustions)
 - [`Some fun`](https://george1meshveliani.github.io/Hello-Physics/SomeFun)
 - [`Problems Set 1`](https://george1meshveliani.github.io/Hello-Physics/PSONE)
