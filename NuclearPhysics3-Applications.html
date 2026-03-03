@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuclear Physics — Applications</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    .theory-card { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-left: 4px solid #dc2626; }
+    .formula-box { background: #fff; border: 1px solid #fca5a5; border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0; }
+    .example-box { background: #fee2e2; border: 1px solid #f87171; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div class="min-h-screen p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+
+    <header class="mb-8 text-center">
+      <h1 class="text-4xl font-extrabold text-slate-800 mb-2">Nuclear Physics — Topic 3</h1>
+      <p class="text-slate-600 text-lg">Applications: power reactors, half-life, dating, nuclear weapons, X-rays, and microwaves</p>
+    </header>
+
+    <section class="space-y-8 mb-12">
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">1. Half-life and decay law</h2>
+        <p class="text-slate-700 mb-4">Radioactive decay is random. The <strong>half-life</strong> \( t_{1/2} \) is the time for half of the nuclei in a sample to decay.</p>
+        <div class="formula-box">
+          \[ N(t) = N_0 \left(\frac{1}{2}\right)^{t/t_{1/2}} = N_0\, e^{-\lambda t}, \quad \lambda = \frac{\ln 2}{t_{1/2}} = \frac{0.693}{t_{1/2}} \]
+        </div>
+        <p class="text-slate-700 mb-4">So after one half-life, \( N = N_0/2 \); after two, \( N = N_0/4 \), etc. Activity (decays per second) is \( A = \lambda N \), and also halves every \( t_{1/2} \).</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">2. Dating (e.g. carbon-14)</h2>
+        <p class="text-slate-700 mb-4">Living organisms take in \( {}^{14}\text{C} \) (from cosmic rays) while alive. After death, \( {}^{14}\text{C} \) decays with half-life \( \approx 5730 \) years. By measuring the ratio of \( {}^{14}\text{C} \) to \( {}^{12}\text{C} \) in a sample and comparing to the ratio in living matter, we can estimate the time since death.</p>
+        <div class="formula-box">
+          \[ \frac{N}{N_0} = \left(\frac{1}{2}\right)^{t/t_{1/2}} \quad \Rightarrow \quad t = t_{1/2}\,\frac{\ln(N_0/N)}{\ln 2} \]
+        </div>
+        <p class="text-slate-700 mb-4">Same idea applies to other isotopes (e.g. uranium–lead for rocks). The physics: exponential decay gives a unique relation between remaining fraction and elapsed time.</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">3. Nuclear power reactors</h2>
+        <p class="text-slate-700 mb-4">Reactors use <strong>controlled fission</strong>: heavy nuclei (e.g. \( {}^{235}\text{U} \)) absorb a neutron and split into two lighter nuclei plus more neutrons. Those neutrons can cause further fissions (chain reaction).</p>
+        <p class="text-slate-700 mb-4"><strong>Physics:</strong> Fission releases energy because the binding energy per nucleon of the fragments is larger than for the heavy parent. The mass difference appears as kinetic energy of the fragments and radiation. Control rods (e.g. boron, cadmium) absorb neutrons to keep the reaction at a steady rate. Moderators (e.g. water, graphite) slow neutrons so they are more likely to cause fission in \( {}^{235}\text{U} \).</p>
+        <p class="text-slate-700 mb-4">Heat from the reactor is used to produce steam and drive turbines to generate electricity.</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">4. Nuclear bombs</h2>
+        <p class="text-slate-700 mb-4">A nuclear (fission) bomb uses an <strong>uncontrolled</strong> chain reaction: a supercritical mass of fissile material (e.g. \( {}^{235}\text{U} \) or \( {}^{239}\text{Pu} \)) is assembled so that many neutrons cause fissions in a very short time. Huge numbers of fissions release energy in a fraction of a second.</p>
+        <p class="text-slate-700 mb-4"><strong>Physics:</strong> Same fission process as in a reactor — \( E = \Delta m\, c^2 \) from the mass defect. The difference is geometry and control: the bomb is designed so that the reaction runs away (supercritical) instead of being stabilised. Fusion weapons (hydrogen bombs) use fission to trigger fusion of light nuclei, releasing even more energy.</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">5. X-ray machine</h2>
+        <p class="text-slate-700 mb-4">X-rays are high-energy photons (short wavelength, roughly 0.01–10 nm). In an X-ray tube, <strong>electrons</strong> are accelerated by a high voltage (e.g. tens of kV) and hit a metal target. Two processes produce X-rays:</p>
+        <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
+          <li><strong>Bremsstrahlung:</strong> Electrons are decelerated by the electric field of the nuclei; the lost kinetic energy is emitted as photons (continuous spectrum up to \( E = eV \), where \( V \) is the accelerating voltage).</li>
+          <li><strong>Characteristic X-rays:</strong> An electron knocks out an inner-shell electron from a target atom; an electron from a higher shell drops down, emitting a photon with energy equal to the level difference (sharp lines in the spectrum).</li>
+        </ul>
+        <p class="text-slate-700 mb-4">The physics is electromagnetic: accelerating (or decelerating) charges radiate; atomic transitions give discrete energies. X-rays pass through soft tissue but are absorbed or scattered more by dense material (bone, metal), producing contrast in images.</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">6. Microwave (oven and waves)</h2>
+        <p class="text-slate-700 mb-4"><strong>Microwaves</strong> are electromagnetic waves with wavelength roughly 1 mm–1 m (between radio and infrared). In a <strong>microwave oven</strong>:</p>
+        <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
+          <li>A magnetron produces microwaves (typically around 2.45 GHz, wavelength \( \approx 12\,\text{cm} \)).</li>
+          <li>Water molecules have an electric dipole moment. The oscillating electric field of the wave makes the dipoles flip back and forth. Energy is transferred from the field to the molecules (dielectric heating).</li>
+          <li>That kinetic energy becomes thermal energy (heat), so the food heats from within.</li>
+        </ul>
+        <p class="text-slate-700 mb-4"><strong>Physics:</strong> No nuclear processes are involved — it is classical electromagnetism. The frequency is chosen so that water absorbs it well. Metal reflects microwaves (hence metal containers are unsafe); non-polar materials (e.g. many plastics) absorb less and stay cooler.</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">7. Quick comparison</h2>
+        <ul class="text-slate-700 space-y-2">
+          <li><strong>Reactors:</strong> controlled fission, \( E = \Delta m\, c^2 \), chain reaction moderated and controlled.</li>
+          <li><strong>Half-life:</strong> exponential decay; used for dating and activity calculations.</li>
+          <li><strong>Nuclear bomb:</strong> uncontrolled fission (and possibly fusion), same mass–energy relation.</li>
+          <li><strong>X-ray:</strong> accelerated electrons → EM radiation; atomic transitions; imaging by differential absorption.</li>
+          <li><strong>Microwave:</strong> EM waves; dipole rotation in water; heating by dielectric loss, no nuclear physics.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <footer class="text-center text-slate-500 text-sm pt-8 border-t">
+      <a href="https://george1meshveliani.github.io/Hello-Physics/README" class="text-red-600 hover:underline">← Back to Hello Physics</a>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

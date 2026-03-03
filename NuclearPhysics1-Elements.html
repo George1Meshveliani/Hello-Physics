@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuclear Physics — Elements, Stability & the Strong Force</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    .theory-card { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-left: 4px solid #7c3aed; }
+    .formula-box { background: #fff; border: 1px solid #c4b5fd; border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0; }
+    .example-box { background: #ede9fe; border: 1px solid #a78bfa; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div class="min-h-screen p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+
+    <header class="mb-8 text-center">
+      <h1 class="text-4xl font-extrabold text-slate-800 mb-2">Nuclear Physics — Topic 1</h1>
+      <p class="text-slate-600 text-lg">Elements, atomic & mass numbers, stable vs unstable nuclei, terminology, strong force, and finding proton, neutron, electron numbers and masses</p>
+    </header>
+
+    <section class="space-y-8 mb-12">
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">1. Element numbers and notation</h2>
+        <p class="text-slate-700 mb-4">A nucleus is written as \( {}^A_Z X \), where:</p>
+        <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
+          <li><strong>\( Z \)</strong> = atomic number = number of <strong>protons</strong> (defines the element).</li>
+          <li><strong>\( N \)</strong> = number of <strong>neutrons</strong> (not shown in the symbol; we get it from \( N = A - Z \)).</li>
+          <li><strong>\( A \)</strong> = mass number = total number of <strong>nucleons</strong> (protons + neutrons), so \( A = Z + N \).</li>
+        </ul>
+        <div class="formula-box">
+          \[ A = Z + N \quad \Rightarrow \quad N = A - Z \]
+        </div>
+        <p class="text-slate-700">In a neutral atom, the number of <strong>electrons</strong> equals \( Z \). If the atom is ionised, electron count = \( Z - \text{(charge in units of } e\text{)} \).</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">2. Stable and unstable (radioactive) elements</h2>
+        <p class="text-slate-700 mb-4"><strong>Stable nuclei</strong> do not decay; they exist indefinitely. <strong>Unstable (radioactive) nuclei</strong> spontaneously decay (alpha, beta, or gamma) to become more stable.</p>
+        <p class="text-slate-700 mb-4">Stability depends on the ratio of neutrons to protons and on the total size of the nucleus. Light stable nuclei often have \( N \approx Z \). Heavier stable nuclei need more neutrons than protons (e.g. lead, uranium). Nuclei that are too proton-rich, neutron-rich, or too heavy tend to be unstable.</p>
+        <div class="example-box">
+          <strong>Examples:</strong> \( {}^4_2 \text{He} \), \( {}^{12}_6 \text{C} \), \( {}^{16}_8 \text{O} \) are stable. \( {}^{238}_{92} \text{U} \) is unstable (alpha decay). \( {}^14_6 \text{C} \) is unstable (beta minus decay).
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">3. Terminology</h2>
+        <ul class="text-slate-700 space-y-2">
+          <li><strong>Nucleon:</strong> a proton or a neutron.</li>
+          <li><strong>Isotopes:</strong> same \( Z \), different \( A \) (same element, different number of neutrons).</li>
+          <li><strong>Mass number \( A \):</strong> integer (protons + neutrons).</li>
+          <li><strong>Atomic mass (in u or kg):</strong> measured mass of the atom/nucleus; approximately \( A \times 1\,\text{u} \) where \( 1\,\text{u} \approx 1.66 \times 10^{-27}\,\text{kg} \).</li>
+          <li><strong>Binding energy:</strong> energy needed to break the nucleus into separate nucleons; related to mass defect via \( E = \Delta m\, c^2 \).</li>
+        </ul>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">4. Strong (nuclear) force</h2>
+        <p class="text-slate-700 mb-4">The <strong>strong force</strong> holds protons and neutrons together in the nucleus. It is:</p>
+        <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
+          <li><strong>Short range</strong> — acts only over roughly 1–3 fm (femtometres); outside that range it is negligible.</li>
+          <li><strong>Stronger than the electrostatic repulsion</strong> between protons at short range, so the nucleus does not fly apart.</li>
+          <li>Acts between <strong>nucleons</strong> (proton–proton, neutron–neutron, proton–neutron).</li>
+        </ul>
+        <p class="text-slate-700">For large nuclei, the short range means nucleons at the surface feel fewer neighbours, so binding per nucleon drops and very heavy nuclei can become unstable (e.g. fission or alpha decay).</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">5. How to find proton, neutron, and electron numbers and masses</h2>
+        <p class="text-slate-700 mb-4">From the symbol \( {}^A_Z X \):</p>
+        <div class="formula-box">
+          \[ \text{Protons: } Z, \qquad \text{Neutrons: } N = A - Z, \qquad \text{Electrons (neutral atom): } Z \]
+        </div>
+        <p class="text-slate-700 mb-4">For an ion with charge \( +q \) in units of \( e \) (e.g. \( +2 \)), electron count = \( Z - q \). For \( -q \), electron count = \( Z + q \).</p>
+        <p class="text-slate-700 mb-4"><strong>Masses (approximate):</strong></p>
+        <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
+          <li>Proton mass \( m_p \approx 1.67 \times 10^{-27}\,\text{kg} \approx 1\,\text{u} \).</li>
+          <li>Neutron mass \( m_n \approx 1.67 \times 10^{-27}\,\text{kg} \approx 1\,\text{u} \).</li>
+          <li>Electron mass \( m_e \approx 9.11 \times 10^{-31}\,\text{kg} \approx 0.00055\,\text{u} \) (often negligible for nuclear mass).</li>
+          <li>Nuclear mass \( \approx A \times 1\,\text{u} \) (slightly less due to binding energy).</li>
+        </ul>
+        <div class="example-box">
+          <strong>Example:</strong> \( {}^{35}_{17} \text{Cl} \). Protons = 17, neutrons = 35 − 17 = 18, electrons (neutral) = 17. Approximate mass of nucleus \( \approx 35\,\text{u} \).
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="text-center text-slate-500 text-sm pt-8 border-t">
+      <a href="https://george1meshveliani.github.io/Hello-Physics/README" class="text-violet-600 hover:underline">← Back to Hello Physics</a>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>
