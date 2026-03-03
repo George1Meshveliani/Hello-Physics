@@ -13,6 +13,7 @@
     .theory-card { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-left: 4px solid #dc2626; }
     .formula-box { background: #fff; border: 1px solid #fca5a5; border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0; }
     .example-box { background: #fee2e2; border: 1px solid #f87171; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    .proof-box { background: #fef2f2; border: 1px solid #f87171; border-left: 4px solid #b91c1c; border-radius: 8px; padding: 1rem; margin: 1rem 0; font-size: 0.95rem; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -29,65 +30,109 @@
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">1. Half-life and decay law</h2>
-        <p class="text-slate-700 mb-4">Radioactive decay is random. The <strong>half-life</strong> \( t_{1/2} \) is the time for half of the nuclei in a sample to decay.</p>
+        <p class="text-slate-700 mb-4">Radioactive decay is <strong>random</strong> and <strong>spontaneous</strong>: we cannot predict when a single nucleus will decay, but for a large number \( N \) of identical nuclei, the rate of decay (activity) is proportional to \( N \): \( dN/dt = -\lambda N \), where \( \lambda \) is the <strong>decay constant</strong> (probability per unit time).</p>
+        <div class="formula-box">
+          \[ \frac{dN}{dt} = -\lambda N \quad \Rightarrow \quad N(t) = N_0\, e^{-\lambda t} \]
+        </div>
+        <p class="text-slate-700 mb-4">The <strong>half-life</strong> \( t_{1/2} \) is the time for half of the nuclei to decay: \( N(t_{1/2}) = N_0/2 \). So \( e^{-\lambda t_{1/2}} = 1/2 \), hence \( \lambda t_{1/2} = \ln 2 \).</p>
         <div class="formula-box">
           \[ N(t) = N_0 \left(\frac{1}{2}\right)^{t/t_{1/2}} = N_0\, e^{-\lambda t}, \quad \lambda = \frac{\ln 2}{t_{1/2}} = \frac{0.693}{t_{1/2}} \]
         </div>
-        <p class="text-slate-700 mb-4">So after one half-life, \( N = N_0/2 \); after two, \( N = N_0/4 \), etc. Activity (decays per second) is \( A = \lambda N \), and also halves every \( t_{1/2} \).</p>
+        <div class="proof-box">
+          <strong>Derivation of \( N(t) = N_0 e^{-\lambda t} \):</strong> From \( dN/dt = -\lambda N \) we get \( dN/N = -\lambda\, dt \). Integrate: \( \ln N = -\lambda t + C \). At \( t = 0 \), \( N = N_0 \), so \( C = \ln N_0 \). Thus \( \ln(N/N_0) = -\lambda t \), i.e. \( N = N_0 e^{-\lambda t} \). The half-life is defined by \( N_0/2 = N_0 e^{-\lambda t_{1/2}} \), so \( e^{\lambda t_{1/2}} = 2 \), \( \lambda t_{1/2} = \ln 2 \), \( t_{1/2} = (\ln 2)/\lambda \).
+        </div>
+        <p class="text-slate-700 mb-4">After one half-life, \( N = N_0/2 \); after two, \( N = N_0/4 \); after \( n \) half-lives, \( N = N_0/2^n \). <strong>Activity</strong> (decays per second) is \( A = -\frac{dN}{dt} = \lambda N \), so \( A(t) = A_0 e^{-\lambda t} = A_0 (1/2)^{t/t_{1/2}} \); it also halves every \( t_{1/2} \). Unit: becquerel (Bq) = 1 decay/s; or curie (Ci) = \( 3.7 \times 10^{10}\,\text{Bq} \).</p>
+        <div class="example-box">
+          <strong>Example:</strong> A sample has \( 10^6 \) nuclei and \( t_{1/2} = 5 \) years. After 5 years, \( N \approx 5 \times 10^5 \). After 15 years (3 half-lives), \( N = 10^6/2^3 = 1.25 \times 10^5 \). Activity at \( t = 0 \): \( A_0 = \lambda N_0 = (\ln 2 / t_{1/2}) N_0 \). If \( t_{1/2} = 5 \) years \( \approx 1.58 \times 10^8\,\text{s} \), then \( \lambda \approx 4.4 \times 10^{-9}\,\text{s}^{-1} \), so \( A_0 \approx 4.4 \times 10^{-3}\,\text{Bq} \).
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">2. Dating (e.g. carbon-14)</h2>
-        <p class="text-slate-700 mb-4">Living organisms take in \( {}^{14}\text{C} \) (from cosmic rays) while alive. After death, \( {}^{14}\text{C} \) decays with half-life \( \approx 5730 \) years. By measuring the ratio of \( {}^{14}\text{C} \) to \( {}^{12}\text{C} \) in a sample and comparing to the ratio in living matter, we can estimate the time since death.</p>
+        <p class="text-slate-700 mb-4">Living organisms take in carbon from the environment (e.g. CO₂). A tiny fraction of carbon is \( {}^{14}\text{C} \) (created in the atmosphere by cosmic-ray neutrons hitting \( {}^{14}\text{N} \)). While the organism is alive, the ratio \( {}^{14}\text{C}/{}^{12}\text{C} \) in its body matches the atmosphere. After death, no new \( {}^{14}\text{C} \) is incorporated, and \( {}^{14}\text{C} \) decays by \( \beta^- \) with half-life \( t_{1/2} \approx 5730 \) years. By measuring the remaining ratio in the sample and comparing to the “living” ratio, we estimate the time since death.</p>
         <div class="formula-box">
-          \[ \frac{N}{N_0} = \left(\frac{1}{2}\right)^{t/t_{1/2}} \quad \Rightarrow \quad t = t_{1/2}\,\frac{\ln(N_0/N)}{\ln 2} \]
+          \[ \frac{N}{N_0} = \left(\frac{1}{2}\right)^{t/t_{1/2}} \quad \Rightarrow \quad t = t_{1/2}\,\frac{\ln(N_0/N)}{\ln 2} = t_{1/2}\,\frac{\ln(N_0/N)}{0.693} \]
         </div>
-        <p class="text-slate-700 mb-4">Same idea applies to other isotopes (e.g. uranium–lead for rocks). The physics: exponential decay gives a unique relation between remaining fraction and elapsed time.</p>
+        <div class="proof-box">
+          <strong>Derivation of the age \( t \):</strong> We have \( N/N_0 = e^{-\lambda t} = (1/2)^{t/t_{1/2}} \). Taking natural log: \( \ln(N/N_0) = -\lambda t = -(t/t_{1/2})\ln 2 \). So \( t = t_{1/2}\, \ln(N_0/N) / \ln 2 \). Thus if we measure \( N \) (e.g. from the activity or from mass spectrometry) and know \( N_0 \) (the ratio when the organism died, assumed equal to the atmospheric ratio at that time), we get \( t \). Corrections are needed for changes in atmospheric \( {}^{14}\text{C} \) over time (calibration curves).
+        </div>
+        <p class="text-slate-700 mb-4">The same idea applies to other isotopes: e.g. <strong>uranium–lead dating</strong> (for rocks, using \( {}^{238}\text{U} \to {}^{206}\text{Pb} \) and half-lives of billions of years), <strong>potassium–argon</strong>, etc. The physics is always: exponential decay gives a unique relation between the remaining fraction (or ratio) and the elapsed time.</p>
+        <div class="example-box">
+          <strong>Example:</strong> A piece of wood has \( N/N_0 = 1/4 \) for \( {}^{14}\text{C} \). So \( (1/2)^{t/t_{1/2}} = 1/4 = (1/2)^2 \), hence \( t/t_{1/2} = 2 \), \( t = 2 \times 5730 \approx 11\,460 \) years. If \( N/N_0 = 0.1 \), then \( \ln(N_0/N) = \ln 10 \approx 2.30 \), so \( t = 5730 \times 2.30 / 0.693 \approx 19\,000 \) years.
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">3. Nuclear power reactors</h2>
-        <p class="text-slate-700 mb-4">Reactors use <strong>controlled fission</strong>: heavy nuclei (e.g. \( {}^{235}\text{U} \)) absorb a neutron and split into two lighter nuclei plus more neutrons. Those neutrons can cause further fissions (chain reaction).</p>
-        <p class="text-slate-700 mb-4"><strong>Physics:</strong> Fission releases energy because the binding energy per nucleon of the fragments is larger than for the heavy parent. The mass difference appears as kinetic energy of the fragments and radiation. Control rods (e.g. boron, cadmium) absorb neutrons to keep the reaction at a steady rate. Moderators (e.g. water, graphite) slow neutrons so they are more likely to cause fission in \( {}^{235}\text{U} \).</p>
-        <p class="text-slate-700 mb-4">Heat from the reactor is used to produce steam and drive turbines to generate electricity.</p>
+        <p class="text-slate-700 mb-4">Reactors use <strong>controlled fission</strong>: heavy nuclei (e.g. \( {}^{235}\text{U} \)) absorb a neutron and split into two lighter nuclei (fission fragments) plus typically 2–3 fast neutrons. Those neutrons can cause further fissions in other \( {}^{235}\text{U} \) nuclei — a <strong>chain reaction</strong>. For a steady power output, on average one neutron from each fission triggers exactly one more fission (critical state).</p>
+        <div class="proof-box">
+          <strong>Why fission releases energy:</strong> The binding energy per nucleon is largest for nuclei with \( A \approx 56 \) (iron region) and decreases for very heavy nuclei. So when a heavy nucleus (e.g. \( A \approx 235 \)) splits into two medium-mass fragments, the total binding energy of the products is greater than that of the parent. The mass of the parent is larger than the sum of the masses of the fragments (plus neutrons); that mass difference \( \Delta m \) appears as kinetic energy: \( E = \Delta m\, c^2 \). Typically \( \sim 200\,\text{MeV} \) per fission, mostly as kinetic energy of the fragments (which then heat the surrounding material).
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Moderator:</strong> Fission neutrons are fast (MeV). \( {}^{235}\text{U} \) fissions more readily with <strong>thermal</strong> (slow) neutrons. A moderator (water, graphite) slows neutrons by elastic collisions. Slowed neutrons are more likely to cause fission and less likely to be captured without fission.</p>
+        <p class="text-slate-700 mb-4"><strong>Control rods:</strong> Rods of material that absorb neutrons (e.g. boron, cadmium) are inserted or withdrawn to adjust the number of neutrons available for fission. Inserting them deeper reduces the reaction rate (subcritical); withdrawing increases it. The reactor is run at critical (one neutron per fission on average) for steady power.</p>
+        <p class="text-slate-700 mb-4">Heat from the reactor core is removed by a coolant and used to produce steam, which drives turbines connected to generators. No combustion; the energy comes from nuclear binding energy.</p>
+        <div class="example-box">
+          <strong>Example:</strong> \( n + {}^{235}\text{U} \to {}^{236}\text{U}^* \to {}^{141}_{56}\text{Ba} + {}^{92}_{36}\text{Kr} + 3n \). Mass number: 1 + 235 = 236 = 141 + 92 + 3 ✓. Charge: 0 + 92 = 56 + 36 ✓. The three neutrons can each induce another fission if they hit \( {}^{235}\text{U} \) nuclei.
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">4. Nuclear bombs</h2>
-        <p class="text-slate-700 mb-4">A nuclear (fission) bomb uses an <strong>uncontrolled</strong> chain reaction: a supercritical mass of fissile material (e.g. \( {}^{235}\text{U} \) or \( {}^{239}\text{Pu} \)) is assembled so that many neutrons cause fissions in a very short time. Huge numbers of fissions release energy in a fraction of a second.</p>
-        <p class="text-slate-700 mb-4"><strong>Physics:</strong> Same fission process as in a reactor — \( E = \Delta m\, c^2 \) from the mass defect. The difference is geometry and control: the bomb is designed so that the reaction runs away (supercritical) instead of being stabilised. Fusion weapons (hydrogen bombs) use fission to trigger fusion of light nuclei, releasing even more energy.</p>
+        <p class="text-slate-700 mb-4">A nuclear (fission) bomb uses an <strong>uncontrolled</strong> chain reaction: a <strong>supercritical</strong> mass of fissile material (e.g. \( {}^{235}\text{U} \) or \( {}^{239}\text{Pu} \)) is assembled quickly (e.g. by bringing two subcritical pieces together, or by compressing a sphere). Once supercritical, more than one neutron per fission on average causes another fission, so the number of fissions grows rapidly. A huge number of fissions (and thus a huge release of energy) occurs in a fraction of a second before the device blows apart and the reaction stops.</p>
+        <div class="proof-box">
+          <strong>Criticality:</strong> If on average exactly one neutron from each fission causes another fission, the reaction is <strong>critical</strong> (steady). If the average is &lt; 1, it is <strong>subcritical</strong> (reaction dies out). If &gt; 1, it is <strong>supercritical</strong> (exponential growth). In a bomb, the goal is to make the assembly supercritical so that as many nuclei as possible fission before disassembly. Neutrons can escape from the surface; a larger mass has a smaller surface-to-volume ratio, so fewer neutrons escape — hence “critical mass” for a given geometry and enrichment.
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Physics:</strong> Same fission process as in a reactor — \( E = \Delta m\, c^2 \) from the mass defect; each fission releases \( \sim 200\,\text{MeV} \). The difference is that no moderator or control rods are used to stabilise; the assembly is designed to be supercritical and to release as much energy as possible in a short time. <strong>Fusion weapons</strong> (hydrogen bombs) use a fission “primary” to create the high temperature and pressure needed to ignite fusion of light nuclei (e.g. deuterium, tritium); fusion releases additional energy (binding energy per nucleon is large for light nuclei fusing toward the iron region).</p>
+        <div class="example-box">
+          <strong>Scale:</strong> 1 kg of \( {}^{235}\text{U} \) fully fissioned releases \( \sim 8 \times 10^{13}\,\text{J} \) (tens of kilotons TNT equivalent). Only a fraction of the fuel actually fissions in a weapon before the device disassembles; the “efficiency” depends on design and how long the supercritical state is maintained.
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">5. X-ray machine</h2>
-        <p class="text-slate-700 mb-4">X-rays are high-energy photons (short wavelength, roughly 0.01–10 nm). In an X-ray tube, <strong>electrons</strong> are accelerated by a high voltage (e.g. tens of kV) and hit a metal target. Two processes produce X-rays:</p>
+        <p class="text-slate-700 mb-4">X-rays are high-energy photons (wavelength roughly 0.01–10 nm, energy roughly 0.1–100 keV). In an <strong>X-ray tube</strong>, electrons are emitted from a cathode, accelerated by a high voltage \( V \) (e.g. 20–150 kV), and strike a metal target (e.g. tungsten). Two processes produce X-rays:</p>
         <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
-          <li><strong>Bremsstrahlung:</strong> Electrons are decelerated by the electric field of the nuclei; the lost kinetic energy is emitted as photons (continuous spectrum up to \( E = eV \), where \( V \) is the accelerating voltage).</li>
-          <li><strong>Characteristic X-rays:</strong> An electron knocks out an inner-shell electron from a target atom; an electron from a higher shell drops down, emitting a photon with energy equal to the level difference (sharp lines in the spectrum).</li>
+          <li><strong>Bremsstrahlung (“braking radiation”):</strong> An electron is decelerated in the electric field of a target nucleus. Accelerated (or decelerated) charges radiate electromagnetic energy. The electron can lose any fraction of its kinetic energy in a single photon, so the spectrum is <strong>continuous</strong> from zero up to a maximum. The maximum photon energy equals the kinetic energy of the electron: \( E_\text{max} = eV \) (if the electron is stopped in one event). So \( \lambda_\text{min} = hc/(eV) \).</li>
+          <li><strong>Characteristic X-rays:</strong> A fast electron knocks an inner-shell electron (e.g. K-shell) out of a target atom. An electron from a higher shell (e.g. L or M) drops into the vacancy; the energy difference is emitted as a photon. These energies are characteristic of the target element (e.g. tungsten K\(_\alpha\) lines at \( \sim 59\,\text{keV} \)), so they appear as <strong>sharp lines</strong> on top of the continuous bremsstrahlung spectrum.</li>
         </ul>
-        <p class="text-slate-700 mb-4">The physics is electromagnetic: accelerating (or decelerating) charges radiate; atomic transitions give discrete energies. X-rays pass through soft tissue but are absorbed or scattered more by dense material (bone, metal), producing contrast in images.</p>
+        <div class="proof-box">
+          <strong>Why \( E_\text{max} = eV \):</strong> The electron gains kinetic energy \( K = eV \) from the accelerating voltage. The maximum X-ray photon energy cannot exceed \( K \), because the electron cannot give up more energy than it has. So \( E_\gamma^\text{max} = eV \). Hence \( \nu_\text{max} = eV/h \) and \( \lambda_\text{min} = hc/(eV) \). For \( V = 100\,\text{kV} \), \( E_\text{max} = 100\,\text{keV} \), \( \lambda_\text{min} \approx 0.012\,\text{nm} \).
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Imaging:</strong> X-rays pass through soft tissue (low atomic number \( Z \), low absorption) but are absorbed or scattered more by dense material (bone: high \( Z \), more photoelectric absorption; metal even more). The shadow cast on a detector (film or digital) gives contrast: bones and metal appear lighter (less X-rays reached the detector); soft tissue appears darker. So the physics is differential absorption and scattering of EM waves by matter.</p>
+        <div class="example-box">
+          <strong>Example:</strong> A 80 kV tube produces bremsstrahlung with \( E_\gamma \) from 0 to 80 keV. The intensity is roughly flat up to \( E_\text{max} \) then drops. Tungsten target also gives characteristic K lines. In a chest X-ray, ribs and spine absorb more than lung tissue, so they appear whiter on the image.
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">6. Microwave (oven and waves)</h2>
-        <p class="text-slate-700 mb-4"><strong>Microwaves</strong> are electromagnetic waves with wavelength roughly 1 mm–1 m (between radio and infrared). In a <strong>microwave oven</strong>:</p>
+        <p class="text-slate-700 mb-4"><strong>Microwaves</strong> are electromagnetic waves with wavelength roughly 1 mm–1 m (frequency roughly 300 MHz–300 GHz), between radio and infrared. In a <strong>microwave oven</strong>:</p>
         <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
-          <li>A magnetron produces microwaves (typically around 2.45 GHz, wavelength \( \approx 12\,\text{cm} \)).</li>
-          <li>Water molecules have an electric dipole moment. The oscillating electric field of the wave makes the dipoles flip back and forth. Energy is transferred from the field to the molecules (dielectric heating).</li>
-          <li>That kinetic energy becomes thermal energy (heat), so the food heats from within.</li>
+          <li>A <strong>magnetron</strong> produces microwaves (typically \( f \approx 2.45\,\text{GHz} \), wavelength \( \lambda = c/f \approx 12\,\text{cm} \)). This frequency is in an allowed band for industrial use and is absorbed reasonably well by water.</li>
+          <li><strong>Dielectric heating:</strong> Water molecules have a permanent electric dipole moment (positive H side, negative O side). The oscillating \( \vec{E} \) field of the wave exerts a torque on the dipoles, making them rotate to align with the field. As the field reverses every half cycle, the dipoles keep flipping. This rotation is resisted by collisions with neighbouring molecules — energy is transferred from the field to the random kinetic energy of the molecules (heat). So the food (especially water-rich parts) heats from within.</li>
+          <li>Non-polar materials (e.g. many plastics, glass) absorb 2.45 GHz much less, so they heat less. Metal reflects microwaves (standing waves can form, and arcing can occur), so metal containers or foil are unsafe.</li>
         </ul>
-        <p class="text-slate-700 mb-4"><strong>Physics:</strong> No nuclear processes are involved — it is classical electromagnetism. The frequency is chosen so that water absorbs it well. Metal reflects microwaves (hence metal containers are unsafe); non-polar materials (e.g. many plastics) absorb less and stay cooler.</p>
+        <div class="proof-box">
+          <strong>Why dipole rotation heats:</strong> The torque on a dipole in a field \( \vec{E} \) is \( \vec{\tau} = \vec{p} \times \vec{E} \). So \( \vec{E} \) does work on the dipole as it rotates. In a time-varying field, the dipole constantly tries to align with \( \vec{E} \); when \( \vec{E} \) flips, the dipole flips. The energy delivered to the material is \( \sim \omega \varepsilon'' E^2 \) per unit volume per unit time, where \( \varepsilon'' \) is the imaginary part of the permittivity (loss factor). Water has a high loss factor at 2.45 GHz, so it heats efficiently.
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Physics summary:</strong> No nuclear processes — purely classical EM. The magnetron converts electrical energy into EM waves; the waves are absorbed by polar molecules (mainly water), converting EM energy into thermal energy. Microwaves do not “resonate” with water in a quantum sense; the heating is dielectric loss, not a single resonant transition.</p>
+        <div class="example-box">
+          <strong>Example:</strong> 2.45 GHz gives \( \lambda \approx 12\,\text{cm} \). In a typical oven cavity, standing waves can form, so some spots get higher \( E \) (hot spots) and others lower (cold spots). Rotating the food or using a turntable helps average the heating. Thick food heats mainly near the surface at first (penetration depth of microwaves in water is a few cm); conduction then spreads the heat inward.
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">7. Quick comparison</h2>
-        <ul class="text-slate-700 space-y-2">
-          <li><strong>Reactors:</strong> controlled fission, \( E = \Delta m\, c^2 \), chain reaction moderated and controlled.</li>
-          <li><strong>Half-life:</strong> exponential decay; used for dating and activity calculations.</li>
-          <li><strong>Nuclear bomb:</strong> uncontrolled fission (and possibly fusion), same mass–energy relation.</li>
-          <li><strong>X-ray:</strong> accelerated electrons → EM radiation; atomic transitions; imaging by differential absorption.</li>
-          <li><strong>Microwave:</strong> EM waves; dipole rotation in water; heating by dielectric loss, no nuclear physics.</li>
+        <ul class="text-slate-700 space-y-2 mb-4">
+          <li><strong>Reactors:</strong> Controlled fission; \( E = \Delta m\, c^2 \); chain reaction kept critical by moderator and control rods; heat → steam → electricity.</li>
+          <li><strong>Half-life:</strong> Exponential decay \( N = N_0 e^{-\lambda t} \), \( \lambda = \ln 2 / t_{1/2} \); used for dating (C-14, U-Pb, etc.) and activity calculations.</li>
+          <li><strong>Nuclear bomb:</strong> Uncontrolled fission (supercritical assembly); same \( E = \Delta m\, c^2 \); fusion weapons add fusion of light nuclei for extra energy.</li>
+          <li><strong>X-ray:</strong> Accelerated electrons hit target → bremsstrahlung (continuous) + characteristic lines; imaging by differential absorption (bone vs tissue).</li>
+          <li><strong>Microwave:</strong> EM waves at \( \sim 2.45\,\text{GHz} \); dielectric heating of water (dipole rotation); no nuclear physics.</li>
         </ul>
+        <div class="example-box">
+          <strong>Units reminder:</strong> Activity in Bq (decays/s) or Ci. Half-life in seconds for \( \lambda \) in s\(^{-1}\). Dating: use consistent units (e.g. years for \( t \) and \( t_{1/2} \)). Fission energy \( \sim 200\,\text{MeV} \) per fission; 1 eV \( \approx 1.6 \times 10^{-19}\,\text{J} \).
+        </div>
       </div>
 
     </section>

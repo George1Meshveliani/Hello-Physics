@@ -13,6 +13,7 @@
     .theory-card { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-left: 4px solid #059669; }
     .formula-box { background: #fff; border: 1px solid #6ee7b7; border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0; }
     .example-box { background: #d1fae5; border: 1px solid #34d399; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    .proof-box { background: #ecfdf5; border: 1px solid #34d399; border-left: 4px solid #047857; border-radius: 8px; padding: 1rem; margin: 1rem 0; font-size: 0.95rem; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -29,15 +30,21 @@
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">1. Alpha decay (\( \alpha \))</h2>
-        <p class="text-slate-700 mb-4">The nucleus emits an <strong>alpha particle</strong>, which is a \( {}^4_2 \text{He} \) nucleus (2 protons, 2 neutrons).</p>
+        <p class="text-slate-700 mb-4">The nucleus emits an <strong>alpha particle</strong>, which is a \( {}^4_2 \text{He} \) nucleus (2 protons, 2 neutrons). It is a very tightly bound cluster, so it is “pre-formed” inside heavy nuclei and can tunnel out.</p>
         <div class="formula-box">
           \[ {}^A_Z X \;\to\; {}^{A-4}_{Z-2} Y + {}^4_2 \text{He} \quad (\alpha) \]
         </div>
-        <p class="text-slate-700 mb-4"><strong>Why it happens:</strong> Heavy nuclei have many protons repelling each other. Emitting a tightly bound alpha reduces Coulomb repulsion and moves the nucleus toward the “valley of stability.” The process is allowed when the total mass of the products is less than the mass of the parent (so energy is released).</p>
-        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Alpha particles are heavy and doubly charged; they ionise strongly but penetrate only a few cm in air or a sheet of paper. They are stopped easily and are dangerous only if the source is inside the body.</p>
-        <p class="text-slate-700 mb-4"><strong>Energy:</strong> The decay energy \( Q \) appears as kinetic energy of the alpha and the recoiling daughter nucleus (and sometimes a gamma). \( Q = (m_\text{parent} - m_\text{daughter} - m_\alpha)c^2 \). Typically a few MeV.</p>
+        <p class="text-slate-700 mb-4"><strong>Why it happens:</strong> Heavy nuclei have many protons repelling each other (Coulomb force). The strong force is short-range, so nucleons at the surface are less bound. Emitting a tightly bound alpha (4 nucleons) reduces Coulomb repulsion and moves the nucleus toward the “valley of stability.” The process is allowed only when the total rest mass of the products is less than the rest mass of the parent, so that kinetic energy can be released (\( Q > 0 \)).</p>
+        <div class="proof-box">
+          <strong>Q-value (decay energy):</strong> By conservation of energy (rest mass + kinetic), \( m_P c^2 = m_D c^2 + m_\alpha c^2 + K_D + K_\alpha \), where \( m_P, m_D, m_\alpha \) are rest masses and \( K \) is kinetic energy. So \( Q = (m_P - m_D - m_\alpha)c^2 = K_D + K_\alpha \). For \( Q \leq 0 \) the decay cannot occur. Conservation of momentum (parent at rest) gives \( \vec{p}_D + \vec{p}_\alpha = 0 \), so the lighter alpha carries most of the kinetic energy: \( K_\alpha / K_D \approx m_D / m_\alpha \approx (A-4)/4 \).
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Alpha particles are heavy (\( \approx 4\,\text{u} \)) and doubly charged (\( +2e \)). They ionise matter strongly (many ion pairs per mm), so they lose energy quickly and penetrate only a few cm in air or a sheet of paper. They are stopped by skin; the main hazard is ingestion or inhalation of alpha emitters.</p>
+        <p class="text-slate-700 mb-4"><strong>Energy:</strong> Typically \( Q \approx 4\text{--}9\,\text{MeV} \) for natural alpha emitters. The alpha takes most of this as kinetic energy (recoil of the heavy daughter is small).</p>
         <div class="example-box">
-          <strong>Example:</strong> \( {}^{238}_{92} \text{U} \to {}^{234}_{90} \text{Th} + {}^4_2 \text{He} \). Mass number: 238 = 234 + 4. Charge: 92 = 90 + 2.
+          <strong>Example 1:</strong> \( {}^{238}_{92} \text{U} \to {}^{234}_{90} \text{Th} + {}^4_2 \text{He} \). Check: \( A \): 238 = 234 + 4 ✓. \( Z \): 92 = 90 + 2 ✓. Thorium-234 is the daughter; it is also radioactive (further decays).
+        </div>
+        <div class="example-box">
+          <strong>Example 2:</strong> \( {}^{226}_{88} \text{Ra} \to {}^{222}_{86} \text{Rn} + {}^4_2 \text{He} \). Radium-226 decays to radon-222 by alpha emission. \( N \) in parent: \( 226 - 88 = 138 \); in daughter: \( 222 - 86 = 136 \); alpha has 2 neutrons. Total neutrons: 136 + 2 = 138 ✓.
         </div>
       </div>
 
@@ -45,35 +52,54 @@
         <h2 class="text-2xl font-bold text-slate-800 mb-3">2. Beta decay (\( \beta^- \), \( \beta^+ \), electron capture)</h2>
         <p class="text-slate-700 mb-4"><strong>Beta minus (\( \beta^- \)):</strong> A neutron in the nucleus turns into a proton, emitting an electron and an antineutrino:</p>
         <div class="formula-box">
-          \[ {}^A_Z X \;\to\; {}^A_{Z+1} Y + e^- + \bar{\nu}_e \]
+          \[ n \;\to\; p + e^- + \bar{\nu}_e \quad \Rightarrow \quad {}^A_Z X \;\to\; {}^A_{Z+1} Y + e^- + \bar{\nu}_e \]
         </div>
-        <p class="text-slate-700 mb-4">The daughter has the same \( A \) but \( Z \) increases by 1. This happens in neutron-rich nuclei to move toward the stability line.</p>
-        <p class="text-slate-700 mb-4"><strong>Beta plus (\( \beta^+ \)):</strong> A proton turns into a neutron, emitting a positron and a neutrino: \( {}^A_Z X \to {}^A_{Z-1} Y + e^+ + \nu_e \). Occurs in proton-rich nuclei.</p>
-        <p class="text-slate-700 mb-4"><strong>Why it happens:</strong> The weak interaction changes a quark (e.g. down → up in \( \beta^- \)), converting a neutron to a proton or vice versa. The nucleus moves toward the optimal \( N/Z \) ratio.</p>
-        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Beta particles are light and charged; they penetrate more than alpha (metres in air, mm in tissue) and cause ionisation. They have a continuous energy spectrum (from 0 up to \( Q \)) because the energy is shared with the neutrino.</p>
-        <p class="text-slate-700 mb-4"><strong>Energy:</strong> \( Q = (m_\text{parent} - m_\text{daughter})c^2 \) (minus electron mass for \( \beta^- \)). The maximum kinetic energy of the beta equals \( Q \).</p>
+        <p class="text-slate-700 mb-4">The daughter has the same \( A \) but \( Z \) increases by 1 (one more proton, one fewer neutron). This happens in neutron-rich nuclei to move toward the stability line.</p>
+        <p class="text-slate-700 mb-4"><strong>Beta plus (\( \beta^+ \)):</strong> A proton turns into a neutron, emitting a positron and a neutrino: \( p \to n + e^+ + \nu_e \), so \( {}^A_Z X \to {}^A_{Z-1} Y + e^+ + \nu_e \). Occurs in proton-rich nuclei when energetically allowed (parent mass must exceed daughter mass by at least \( 2m_e c^2 \) for \( e^+ \) emission).</p>
+        <p class="text-slate-700 mb-4"><strong>Electron capture (EC):</strong> A proton captures an atomic electron and becomes a neutron, emitting a neutrino: \( p + e^- \to n + \nu_e \). So \( {}^A_Z X + e^- \to {}^A_{Z-1} Y + \nu_e \). Same change in \( Z \) as \( \beta^+ \), but no positron; often competes with \( \beta^+ \) in heavy atoms.</p>
+        <div class="proof-box">
+          <strong>Why the beta spectrum is continuous:</strong> In \( \beta^- \) decay, three bodies are produced: daughter nucleus, electron, antineutrino. Conservation of energy and momentum allows the kinetic energy to be shared in infinitely many ways. So the electron can have any kinetic energy from 0 up to \( Q \) (the “endpoint” energy). The neutrino carries the rest. In contrast, alpha decay gives two bodies (alpha + daughter), so the alpha has a unique kinetic energy (except when gamma is also emitted).
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Why it happens:</strong> The weak interaction changes a quark (e.g. down → up in \( \beta^- \)), converting a neutron to a proton or vice versa. The nucleus moves toward the optimal \( N/Z \) ratio for stability.</p>
+        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Beta particles are light (mass \( m_e \)) and singly charged; they penetrate more than alpha (metres in air, mm in tissue) and cause ionisation. They are stopped by a few mm of aluminium or plastic.</p>
+        <p class="text-slate-700 mb-4"><strong>Energy:</strong> For \( \beta^- \): \( Q = (m_P - m_D)c^2 \) (using atomic masses, the electron masses cancel in the difference). The maximum kinetic energy of the beta (endpoint) equals \( Q \). For \( \beta^+ \): \( Q = (m_P - m_D - 2m_e)c^2 \) because a positron is created.</p>
+        <div class="example-box">
+          <strong>Example 1 — \( {}^{14}_6 \text{C} \to {}^{14}_7 \text{N} + e^- + \bar{\nu}_e \):</strong> Carbon-14 has 6p, 8n (neutron-rich). One neutron becomes a proton, so daughter is nitrogen-14 (7p, 7n). \( A \) unchanged at 14; \( Z \) increases from 6 to 7.
+        </div>
+        <div class="example-box">
+          <strong>Example 2 — \( {}^{22}_{11} \text{Na} \to {}^{22}_{10} \text{Ne} + e^+ + \nu_e \):</strong> Sodium-22 is proton-rich (11p, 11n). One proton becomes a neutron, so daughter is neon-22 (10p, 12n). \( \beta^+ \) decay.
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">3. Gamma decay (\( \gamma \))</h2>
-        <p class="text-slate-700 mb-4">The nucleus is in an <strong>excited state</strong> (higher energy level) and drops to a lower state by emitting a <strong>gamma-ray photon</strong> (high-energy electromagnetic wave).</p>
+        <p class="text-slate-700 mb-4">The nucleus can exist in discrete <strong>energy levels</strong> (like atoms, but with much larger energy gaps). When it is in an <strong>excited state</strong> (higher level), it can drop to a lower state by emitting a <strong>gamma-ray photon</strong> — a high-energy EM wave (wavelength \( \sim 10^{-12}\,\text{m} \) or less).</p>
         <div class="formula-box">
           \[ {}^A_Z X^* \;\to\; {}^A_Z X + \gamma \]
         </div>
-        <p class="text-slate-700 mb-4">\( Z \) and \( A \) do not change — it is the same nucleus, just losing internal energy. No particles are ejected; only photons.</p>
-        <p class="text-slate-700 mb-4"><strong>Why it happens:</strong> After alpha or beta decay, the daughter nucleus is often left in an excited state. It relaxes by emitting one or more gamma photons. So gamma often accompanies alpha or beta.</p>
-        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Gamma rays are uncharged and very penetrating (many cm of lead or concrete to attenuate). They ionise indirectly (e.g. by knocking out electrons) and are dangerous externally because they pass through skin and tissue.</p>
-        <p class="text-slate-700 mb-4"><strong>Energy:</strong> \( E_\gamma = hf = \Delta E \), where \( \Delta E \) is the energy difference between the two nuclear levels. Typically keV to MeV.</p>
+        <p class="text-slate-700 mb-4">\( Z \) and \( A \) do not change — it is the same nuclide, just in a lower energy state. No nucleons or leptons are ejected; only a photon. So the mass of the nucleus is (in principle) unchanged; the photon carries away the energy difference.</p>
+        <div class="proof-box">
+          <strong>Energy and momentum of the photon:</strong> Conservation of energy: \( E^* = E + E_\gamma \), so \( E_\gamma = E^* - E = \Delta E \) (the level spacing). Conservation of momentum: the nucleus recoils in the opposite direction to the photon. So \( p_\gamma = E_\gamma/c \), and the recoil kinetic energy of the nucleus is \( K = p_\gamma^2/(2M) \approx E_\gamma^2/(2Mc^2) \). For a typical \( E_\gamma \sim 1\,\text{MeV} \) and \( M \sim 100\,\text{u} \), \( K \) is of order eV — negligible compared to \( E_\gamma \), so \( E_\gamma \approx \Delta E \) to high accuracy.
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Why it happens:</strong> After alpha or beta decay, the daughter nucleus is often left in an excited state (because the nucleons rearrange into a lower-energy configuration). It relaxes by emitting one or more gamma photons (sometimes in a “cascade”). So gamma radiation often accompanies alpha or beta decay.</p>
+        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Gamma rays are uncharged and have high energy; they penetrate matter deeply (many cm of lead or concrete to reduce intensity significantly). They ionise indirectly (e.g. photoelectric effect, Compton scattering, pair production) and are a major external radiation hazard.</p>
+        <p class="text-slate-700 mb-4"><strong>Energy:</strong> \( E_\gamma = hf = \Delta E \). Nuclear level spacings are typically keV to MeV, so gamma energies are in that range (much higher than visible light, \( \sim 1\,\text{eV} \)).</p>
+        <div class="example-box">
+          <strong>Example:</strong> After \( {}^{60}_{27} \text{Co} \) undergoes \( \beta^- \) decay to \( {}^{60}_{28} \text{Ni}^* \), the nickel-60 nucleus is excited and emits two gamma rays in succession (e.g. 1.17 MeV and 1.33 MeV) to reach the ground state. So a cobalt-60 source emits betas and two characteristic gammas.
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">4. Summary: radiation and energy</h2>
-        <ul class="text-slate-700 space-y-2">
-          <li><strong>Alpha:</strong> nucleus loses 2p + 2n; high ionisation, low penetration; energy \( Q \) shared between alpha and daughter.</li>
-          <li><strong>Beta:</strong> nucleus changes \( Z \) by ±1, \( A \) unchanged; continuous spectrum; energy \( Q \) shared between beta and neutrino.</li>
-          <li><strong>Gamma:</strong> same nucleus, lower energy state; photon carries \( \Delta E \); high penetration, no mass or charge change.</li>
+        <ul class="text-slate-700 space-y-2 mb-4">
+          <li><strong>Alpha:</strong> nucleus loses 2p + 2n (\( A \to A-4 \), \( Z \to Z-2 \)); high ionisation, low penetration; energy \( Q \) shared between alpha and daughter (alpha gets most); discrete alpha energy (or a few lines if gamma also emitted).</li>
+          <li><strong>Beta:</strong> nucleus changes \( Z \) by ±1, \( A \) unchanged; continuous energy spectrum from 0 to \( Q \); energy shared between beta and neutrino; moderate penetration.</li>
+          <li><strong>Gamma:</strong> same nucleus, lower energy state; photon carries \( E_\gamma = \Delta E \); high penetration; no mass or charge change; discrete line spectrum.</li>
         </ul>
-        <p class="text-slate-700 mt-4">All three are forms of <strong>ionising radiation</strong>: they can knock electrons out of atoms and damage tissue. Shielding and distance are used to reduce exposure.</p>
+        <p class="text-slate-700 mb-4">All three are forms of <strong>ionising radiation</strong>: they can knock electrons out of atoms and damage DNA/tissue. Shielding (alpha: paper; beta: plastic/aluminium; gamma: lead/concrete), distance, and limiting exposure time reduce dose.</p>
+        <div class="example-box">
+          <strong>Comparison example:</strong> \( {}^{238}\text{U} \) decays by alpha; the alpha has \( \approx 4.2\,\text{MeV} \) and is stopped by paper. The same source also emits low-energy gammas; those need lead to attenuate. A \( \beta^- \) source like \( {}^{90}\text{Sr} \) emits electrons with a continuous spectrum up to \( \approx 0.5\,\text{MeV} \); a few mm of metal stops them.
+        </div>
       </div>
 
     </section>

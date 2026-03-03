@@ -13,6 +13,7 @@
     .theory-card { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-left: 4px solid #7c3aed; }
     .formula-box { background: #fff; border: 1px solid #c4b5fd; border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0; }
     .example-box { background: #ede9fe; border: 1px solid #a78bfa; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    .proof-box { background: #f5f3ff; border: 1px solid #a78bfa; border-left: 4px solid #6d28d9; border-radius: 8px; padding: 1rem; margin: 1rem 0; font-size: 0.95rem; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -29,47 +30,73 @@
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">1. Element numbers and notation</h2>
-        <p class="text-slate-700 mb-4">A nucleus is written as \( {}^A_Z X \), where:</p>
+        <p class="text-slate-700 mb-4">A nucleus is written as \( {}^A_Z X \), where \( X \) is the chemical symbol. The subscript and superscript tell us exactly how many protons and nucleons the nucleus has:</p>
         <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
-          <li><strong>\( Z \)</strong> = atomic number = number of <strong>protons</strong> (defines the element).</li>
-          <li><strong>\( N \)</strong> = number of <strong>neutrons</strong> (not shown in the symbol; we get it from \( N = A - Z \)).</li>
-          <li><strong>\( A \)</strong> = mass number = total number of <strong>nucleons</strong> (protons + neutrons), so \( A = Z + N \).</li>
+          <li><strong>\( Z \)</strong> = atomic number = number of <strong>protons</strong>. The value of \( Z \) alone defines the element (e.g. \( Z = 6 \) is always carbon). It also equals the number of electrons in a neutral atom.</li>
+          <li><strong>\( N \)</strong> = number of <strong>neutrons</strong>. It is not written in the symbol but is found from \( N = A - Z \).</li>
+          <li><strong>\( A \)</strong> = mass number = total number of <strong>nucleons</strong> (protons + neutrons), so \( A = Z + N \). It is always an integer.</li>
         </ul>
         <div class="formula-box">
           \[ A = Z + N \quad \Rightarrow \quad N = A - Z \]
         </div>
-        <p class="text-slate-700">In a neutral atom, the number of <strong>electrons</strong> equals \( Z \). If the atom is ionised, electron count = \( Z - \text{(charge in units of } e\text{)} \).</p>
+        <p class="text-slate-700 mb-4">In a neutral atom, the number of <strong>electrons</strong> equals \( Z \). For an ion with charge \( +q \) in units of \( e \) (e.g. \( \text{Ca}^{2+} \) has \( q = 2 \)), electron count = \( Z - q \); for a negative ion (e.g. \( \text{Cl}^- \)), electron count = \( Z + |q| \).</p>
+        <div class="proof-box">
+          <strong>Why \( A = Z + N \):</strong> The nucleus contains only protons and neutrons. The total number of nucleons is by definition \( A \), so \( A = \#\text{protons} + \#\text{neutrons} = Z + N \). The mass number is approximately the mass in atomic mass units (u), because both the proton and the neutron have mass close to 1 u.
+        </div>
+        <div class="example-box">
+          <strong>Example 1 — \( {}^{35}_{17} \text{Cl} \):</strong> \( Z = 17 \) protons, \( A = 35 \), so \( N = 35 - 17 = 18 \) neutrons. Neutral chlorine has 17 electrons. The nucleus has 35 nucleons in total.
+        </div>
+        <div class="example-box">
+          <strong>Example 2 — \( {}^{238}_{92} \text{U} \):</strong> Uranium-238 has 92 protons and \( 238 - 92 = 146 \) neutrons. So \( A = 238 \), \( Z = 92 \), \( N = 146 \). A neutral U atom has 92 electrons.
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">2. Stable and unstable (radioactive) elements</h2>
-        <p class="text-slate-700 mb-4"><strong>Stable nuclei</strong> do not decay; they exist indefinitely. <strong>Unstable (radioactive) nuclei</strong> spontaneously decay (alpha, beta, or gamma) to become more stable.</p>
-        <p class="text-slate-700 mb-4">Stability depends on the ratio of neutrons to protons and on the total size of the nucleus. Light stable nuclei often have \( N \approx Z \). Heavier stable nuclei need more neutrons than protons (e.g. lead, uranium). Nuclei that are too proton-rich, neutron-rich, or too heavy tend to be unstable.</p>
+        <p class="text-slate-700 mb-4"><strong>Stable nuclei</strong> do not decay; they exist indefinitely. <strong>Unstable (radioactive) nuclei</strong> spontaneously decay (alpha, beta, or gamma) to become more stable. Whether a nucleus is stable depends on the balance between the strong (attractive) nuclear force and the Coulomb (repulsive) force between protons, and on the total number of nucleons.</p>
+        <p class="text-slate-700 mb-4">Stability depends on the ratio of neutrons to protons and on the total size of the nucleus. On a plot of \( N \) vs \( Z \) (the “valley of stability”), stable nuclei lie along a curve. Light stable nuclei often have \( N \approx Z \) (e.g. \( {}^{12}_6 \text{C} \), \( {}^{16}_8 \text{O} \)). Heavier stable nuclei need more neutrons than protons because the Coulomb repulsion between many protons is reduced by having extra neutrons (which add strong-force binding but no Coulomb repulsion). For example, \( {}^{208}_{82} \text{Pb} \) has \( N = 126 \), \( Z = 82 \). Nuclei that are too proton-rich, neutron-rich, or too heavy tend to be unstable and decay to move toward this valley.</p>
+        <div class="proof-box">
+          <strong>Why heavy nuclei need more neutrons:</strong> Protons repel each other electrically; neutrons do not. In a large nucleus, adding more neutrons increases the strong-force binding (which is attractive and short-range) without adding Coulomb repulsion. So the stable configuration for heavy elements has \( N > Z \). If \( N/Z \) is too high, the nucleus has “extra” neutrons and may undergo \( \beta^- \) decay (neutron → proton); if \( N/Z \) is too low, it may undergo \( \beta^+ \) decay or electron capture (proton → neutron).
+        </div>
         <div class="example-box">
-          <strong>Examples:</strong> \( {}^4_2 \text{He} \), \( {}^{12}_6 \text{C} \), \( {}^{16}_8 \text{O} \) are stable. \( {}^{238}_{92} \text{U} \) is unstable (alpha decay). \( {}^14_6 \text{C} \) is unstable (beta minus decay).
+          <strong>Stable examples:</strong> \( {}^4_2 \text{He} \) (2p, 2n), \( {}^{12}_6 \text{C} \) (6p, 6n), \( {}^{16}_8 \text{O} \) (8p, 8n), \( {}^{56}_{26} \text{Fe} \) (26p, 30n). <strong>Unstable examples:</strong> \( {}^{238}_{92} \text{U} \) — too heavy, alpha decay. \( {}^{14}_6 \text{C} \) — neutron-rich, \( \beta^- \) decay. \( {}^{22}_{11} \text{Na} \) — proton-rich, \( \beta^+ \) decay.
         </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">3. Terminology</h2>
-        <ul class="text-slate-700 space-y-2">
-          <li><strong>Nucleon:</strong> a proton or a neutron.</li>
-          <li><strong>Isotopes:</strong> same \( Z \), different \( A \) (same element, different number of neutrons).</li>
-          <li><strong>Mass number \( A \):</strong> integer (protons + neutrons).</li>
-          <li><strong>Atomic mass (in u or kg):</strong> measured mass of the atom/nucleus; approximately \( A \times 1\,\text{u} \) where \( 1\,\text{u} \approx 1.66 \times 10^{-27}\,\text{kg} \).</li>
-          <li><strong>Binding energy:</strong> energy needed to break the nucleus into separate nucleons; related to mass defect via \( E = \Delta m\, c^2 \).</li>
+        <ul class="text-slate-700 space-y-2 mb-4">
+          <li><strong>Nucleon:</strong> a proton or a neutron (the constituents of the nucleus).</li>
+          <li><strong>Isotopes:</strong> same \( Z \), different \( A \) — same element, different number of neutrons. E.g. \( {}^{35}_{17} \text{Cl} \) and \( {}^{37}_{17} \text{Cl} \) are isotopes of chlorine.</li>
+          <li><strong>Mass number \( A \):</strong> integer (protons + neutrons). Not the same as atomic mass; the latter is measured in u or kg and can be slightly less than \( A \) due to binding.</li>
+          <li><strong>Atomic mass (in u or kg):</strong> measured mass of the atom (or nucleus); approximately \( A \times 1\,\text{u} \) where \( 1\,\text{u} = 1.66054 \times 10^{-27}\,\text{kg} \) (one twelfth of the mass of \( {}^{12}\text{C} \)).</li>
+          <li><strong>Mass defect \( \Delta m \):</strong> \( \Delta m = Z m_p + N m_n - m_\text{nucleus} \). The nucleus weighs less than the sum of its free nucleons because energy was released when it formed.</li>
+          <li><strong>Binding energy:</strong> energy needed to break the nucleus into separate nucleons; \( E_B = \Delta m \cdot c^2 \). The greater \( E_B \) per nucleon, the more stable the nucleus (up to iron; beyond that, very heavy nuclei are less bound per nucleon).</li>
         </ul>
+        <div class="proof-box">
+          <strong>Proof of \( E_B = \Delta m\, c^2 \):</strong> If we could separate the nucleus into \( Z \) free protons and \( N \) free neutrons, the total rest mass would be \( Z m_p + N m_n \). The actual nucleus has rest mass \( m_\text{nucleus} \), so \( \Delta m = Z m_p + N m_n - m_\text{nucleus} > 0 \). By conservation of energy, the work we must supply to break the nucleus equals the binding energy \( E_B \). That work (in the form of energy input) effectively “adds” mass \( \Delta m \) to the system (since the final free nucleons have more rest mass than the nucleus). So \( E_B = \Delta m\, c^2 \).
+        </div>
+        <div class="example-box">
+          <strong>Example — isotopes of carbon:</strong> \( {}^{12}_6 \text{C} \) has 6p, 6n; \( {}^{13}_6 \text{C} \) has 6p, 7n; \( {}^{14}_6 \text{C} \) has 6p, 8n. All have \( Z = 6 \) (carbon). \( {}^{12}\text{C} \) and \( {}^{13}\text{C} \) are stable; \( {}^{14}\text{C} \) is radioactive (\( \beta^- \)).
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">4. Strong (nuclear) force</h2>
-        <p class="text-slate-700 mb-4">The <strong>strong force</strong> holds protons and neutrons together in the nucleus. It is:</p>
+        <p class="text-slate-700 mb-4">The <strong>strong force</strong> (strong nuclear force) holds protons and neutrons together in the nucleus. Without it, the Coulomb repulsion between protons would blow the nucleus apart. The strong force is:</p>
         <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
-          <li><strong>Short range</strong> — acts only over roughly 1–3 fm (femtometres); outside that range it is negligible.</li>
-          <li><strong>Stronger than the electrostatic repulsion</strong> between protons at short range, so the nucleus does not fly apart.</li>
-          <li>Acts between <strong>nucleons</strong> (proton–proton, neutron–neutron, proton–neutron).</li>
+          <li><strong>Short range</strong> — acts only over roughly 1–3 fm (1 fm = \( 10^{-15}\,\text{m} \)); beyond that it falls off very quickly. This is why nuclei have a limited size.</li>
+          <li><strong>Stronger than the electrostatic repulsion</strong> between protons at short range. At 1–2 fm the nuclear attraction wins; at larger distances Coulomb wins, so the force has an effective “range.”</li>
+          <li>Acts between <strong>nucleons</strong> (proton–proton, neutron–neutron, proton–neutron). It is charge-independent in first approximation.</li>
+          <li><strong>Saturating</strong> — each nucleon binds only with nearby neighbours, not with all nucleons. So total binding energy grows roughly with \( A \), and binding per nucleon is roughly constant for medium-mass nuclei (then drops for very heavy ones).</li>
         </ul>
-        <p class="text-slate-700">For large nuclei, the short range means nucleons at the surface feel fewer neighbours, so binding per nucleon drops and very heavy nuclei can become unstable (e.g. fission or alpha decay).</p>
+        <p class="text-slate-700 mb-4">For large nuclei, the short range means nucleons at the surface feel fewer neighbours (“surface effect”), so binding per nucleon drops. At the same time, Coulomb repulsion between many protons grows. Very heavy nuclei can therefore become unstable and undergo fission or alpha decay to reach a more bound configuration.</p>
+        <div class="proof-box">
+          <strong>Why the strong force is short range:</strong> In quantum field theory, the range of a force is related to the mass of the particle that mediates it: \( \text{range} \sim \hbar / (m c) \). The strong force between nucleons is mediated by pions (mass \( \approx 140\,\text{MeV}/c^2 \)), giving a range on the order of 1 fm. This is in contrast to the electromagnetic force (mediated by massless photons), which has infinite range.
+        </div>
+        <div class="example-box">
+          <strong>Example — \( {}^4_2 \text{He} \):</strong> The alpha particle is very tightly bound (high binding energy per nucleon). That is why heavy nuclei can “shed” an alpha: the alpha is like a pre-formed, very stable unit. Emitting it reduces Coulomb repulsion in the parent and releases energy.
+        </div>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
@@ -78,16 +105,25 @@
         <div class="formula-box">
           \[ \text{Protons: } Z, \qquad \text{Neutrons: } N = A - Z, \qquad \text{Electrons (neutral atom): } Z \]
         </div>
-        <p class="text-slate-700 mb-4">For an ion with charge \( +q \) in units of \( e \) (e.g. \( +2 \)), electron count = \( Z - q \). For \( -q \), electron count = \( Z + q \).</p>
+        <p class="text-slate-700 mb-4">For an ion: charge \( +q \) (e.g. \( \text{Fe}^{3+} \Rightarrow q = 3 \)) gives electron count = \( Z - q \). Charge \( -q \) (e.g. \( \text{O}^{2-} \Rightarrow q = 2 \)) gives electron count = \( Z + q \).</p>
         <p class="text-slate-700 mb-4"><strong>Masses (approximate):</strong></p>
         <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
-          <li>Proton mass \( m_p \approx 1.67 \times 10^{-27}\,\text{kg} \approx 1\,\text{u} \).</li>
-          <li>Neutron mass \( m_n \approx 1.67 \times 10^{-27}\,\text{kg} \approx 1\,\text{u} \).</li>
+          <li>Proton mass \( m_p \approx 1.673 \times 10^{-27}\,\text{kg} \approx 1.007\,\text{u} \).</li>
+          <li>Neutron mass \( m_n \approx 1.675 \times 10^{-27}\,\text{kg} \approx 1.009\,\text{u} \).</li>
           <li>Electron mass \( m_e \approx 9.11 \times 10^{-31}\,\text{kg} \approx 0.00055\,\text{u} \) (often negligible for nuclear mass).</li>
-          <li>Nuclear mass \( \approx A \times 1\,\text{u} \) (slightly less due to binding energy).</li>
+          <li>Nuclear mass \( \approx A \times 1\,\text{u} \) (slightly less due to binding energy; e.g. \( {}^{12}\text{C} \) has atomic mass 12.000 u by definition of u).</li>
         </ul>
+        <div class="proof-box">
+          <strong>Quick check for ions:</strong> In a neutral atom, total charge = 0, so \( Z e + (\text{number of electrons}) \times (-e) = 0 \Rightarrow \text{electrons} = Z \). For \( \text{Ca}^{2+} \), \( Z = 20 \), charge \( +2e \) means 2 fewer electrons than neutral, so electrons = \( 20 - 2 = 18 \).
+        </div>
         <div class="example-box">
-          <strong>Example:</strong> \( {}^{35}_{17} \text{Cl} \). Protons = 17, neutrons = 35 − 17 = 18, electrons (neutral) = 17. Approximate mass of nucleus \( \approx 35\,\text{u} \).
+          <strong>Example 1 — \( {}^{35}_{17} \text{Cl} \):</strong> Protons = 17, neutrons = 18, electrons (neutral) = 17. Nucleus mass \( \approx 35\,\text{u} \).
+        </div>
+        <div class="example-box">
+          <strong>Example 2 — \( {}^{56}_{26} \text{Fe}^{3+} \):</strong> Protons = 26, neutrons = \( 56 - 26 = 30 \). Charge +3 ⇒ electrons = \( 26 - 3 = 23 \). Mass of \( \text{Fe}^{3+} \) ion ≈ 56 u (electrons add only \( \approx 0.03\,\text{u} \), often ignored for “nuclear” mass).
+        </div>
+        <div class="example-box">
+          <strong>Example 3 — \( {}^{16}_8 \text{O}^{2-} \):</strong> Protons = 8, neutrons = 8. Charge \( -2 \) ⇒ electrons = \( 8 + 2 = 10 \). So the oxide ion has 8 protons, 8 neutrons, 10 electrons.
         </div>
       </div>
 
