@@ -14,6 +14,8 @@
     .formula-box { background: #fff; border: 1px solid #6ee7b7; border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0; }
     .example-box { background: #d1fae5; border: 1px solid #34d399; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
     .proof-box { background: #ecfdf5; border: 1px solid #34d399; border-left: 4px solid #047857; border-radius: 8px; padding: 1rem; margin: 1rem 0; font-size: 0.95rem; }
+    .problem-card { background: #fff; border: 1px solid #6ee7b7; border-radius: 12px; padding: 1.25rem; margin: 1rem 0; }
+    .solution-box { border-top: 1px solid #6ee7b7; margin-top: 0.75rem; padding-top: 0.75rem; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -102,6 +104,47 @@
         </div>
       </div>
 
+    </section>
+
+    <!-- Formula summary -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Formulas at a glance</h2>
+      <div class="bg-white border border-emerald-200 rounded-xl p-6 shadow-sm space-y-3 text-slate-700">
+        <p><strong>Alpha:</strong> \( {}^A_Z X \to {}^{A-4}_{Z-2} Y + {}^4_2\text{He} \). Decay energy \( Q = (m_P - m_D - m_\alpha)c^2 = K_\alpha + K_D \).</p>
+        <p><strong>Beta minus:</strong> \( {}^A_Z X \to {}^A_{Z+1} Y + e^- + \bar{\nu}_e \). Beta plus: \( {}^A_Z X \to {}^A_{Z-1} Y + e^+ + \nu_e \). Max beta KE \( = Q \).</p>
+        <p><strong>Gamma:</strong> \( {}^A_Z X^* \to {}^A_Z X + \gamma \). \( E_\gamma = \Delta E \) (level spacing).</p>
+        <p><strong>Q-value:</strong> decay allowed only if \( Q &gt; 0 \) (parent rest mass &gt; sum of products’ rest masses).</p>
+      </div>
+    </section>
+
+    <!-- Problems -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Problems</h2>
+      <p class="text-slate-600 mb-4">Click "Show solution" to reveal the answer.</p>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">1. Complete the alpha decay: \( {}^{226}_{88}\text{Ra} \to \ ?\ + {}^4_2\text{He} \). What is the daughter nucleus?</p>
+        <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( A - 4 = 222 \), \( Z - 2 = 86 \). Daughter: \( {}^{222}_{86}\text{Rn} \) (radon-222).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">2. \( {}^{14}_6\text{C} \) decays by \( \beta^- \). Write the full decay equation and name the daughter.</p>
+        <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( {}^{14}_6\text{C} \to {}^{14}_7\text{N} + e^- + \bar{\nu}_e \). Daughter is nitrogen-14 (\( {}^{14}_7\text{N} \)).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">3. Why does the beta particle have a continuous energy spectrum while the alpha particle has (almost) a single energy?</p>
+        <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> Alpha decay produces two bodies (alpha + daughter), so conservation of energy and momentum fix the kinetic energy of each. Beta decay produces three bodies (daughter + electron + neutrino); the total \( Q \) is shared between the electron and neutrino in infinitely many ways, so the electron can have any KE from 0 up to \( Q \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">4. A nucleus in an excited state 1.5 MeV above the ground state emits a gamma ray. What is the approximate energy of the photon? Does the mass number of the nucleus change?</p>
+        <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( E_\gamma \approx 1.5\,\text{MeV} \) (the level spacing; a tiny amount goes to nuclear recoil). The mass number \( A \) (and \( Z \)) do not change — it is the same nucleus in a lower energy state.</div>
+      </div>
     </section>
 
     <footer class="text-center text-slate-500 text-sm pt-8 border-t">
