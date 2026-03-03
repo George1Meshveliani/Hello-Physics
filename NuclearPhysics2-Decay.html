@@ -36,17 +36,23 @@
         <div class="formula-box">
           \[ {}^A_Z X \;\to\; {}^{A-4}_{Z-2} Y + {}^4_2 \text{He} \quad (\alpha) \]
         </div>
-        <p class="text-slate-700 mb-4"><strong>Why it happens:</strong> Heavy nuclei have many protons repelling each other (Coulomb force). The strong force is short-range, so nucleons at the surface are less bound. Emitting a tightly bound alpha (4 nucleons) reduces Coulomb repulsion and moves the nucleus toward the “valley of stability.” The process is allowed only when the total rest mass of the products is less than the rest mass of the parent, so that kinetic energy can be released (\( Q > 0 \)).</p>
-        <div class="proof-box">
-          <strong>Q-value (decay energy):</strong> By conservation of energy (rest mass + kinetic), \( m_P c^2 = m_D c^2 + m_\alpha c^2 + K_D + K_\alpha \), where \( m_P, m_D, m_\alpha \) are rest masses and \( K \) is kinetic energy. So \( Q = (m_P - m_D - m_\alpha)c^2 = K_D + K_\alpha \). For \( Q \leq 0 \) the decay cannot occur. Conservation of momentum (parent at rest) gives \( \vec{p}_D + \vec{p}_\alpha = 0 \), so the lighter alpha carries most of the kinetic energy: \( K_\alpha / K_D \approx m_D / m_\alpha \approx (A-4)/4 \).
+        <h3 class="text-xl font-bold text-slate-800 mt-6 mb-3">Forces and energies</h3>
+        <p class="text-slate-700 mb-4"><strong>Forces:</strong> Two main forces act in the nucleus. The <strong>strong nuclear force</strong> binds nucleons together but is <strong>short-range</strong> (a few fm). The <strong>Coulomb (electrostatic) force</strong> repels protons and has <strong>infinite range</strong>. In heavy nuclei, many protons repel each other; the strong force cannot hold all nucleons equally because those at the surface have fewer neighbours. Emitting an alpha removes two protons and two neutrons, reducing Coulomb repulsion and leaving a more bound daughter. The alpha is so tightly bound (high binding energy per nucleon) that it is energetically favourable for heavy nuclei to “shed” it when \( Q &gt; 0 \).</p>
+        <p class="text-slate-700 mb-4"><strong>Q-value (decay energy):</strong> By conservation of energy (rest mass + kinetic),</p>
+        <div class="formula-box">
+          \[ m_P c^2 = m_D c^2 + m_\alpha c^2 + K_D + K_\alpha \quad \Rightarrow \quad Q = (m_P - m_D - m_\alpha)c^2 = K_D + K_\alpha \]
         </div>
-        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Alpha particles are heavy (\( \approx 4\,\text{u} \)) and doubly charged (\( +2e \)). They ionise matter strongly (many ion pairs per mm), so they lose energy quickly and penetrate only a few cm in air or a sheet of paper. They are stopped by skin; the main hazard is ingestion or inhalation of alpha emitters.</p>
-        <p class="text-slate-700 mb-4"><strong>Energy:</strong> Typically \( Q \approx 4\text{--}9\,\text{MeV} \) for natural alpha emitters. The alpha takes most of this as kinetic energy (recoil of the heavy daughter is small).</p>
+        <p class="text-slate-700 mb-4">Decay is allowed only if \( Q &gt; 0 \) (parent rest mass greater than sum of products’ rest masses). All of \( Q \) appears as kinetic energy of the alpha and the recoiling daughter.</p>
+        <div class="proof-box">
+          <strong>Sharing of kinetic energy (recoil):</strong> Parent at rest, so total momentum zero: \( \vec{p}_D + \vec{p}_\alpha = 0 \), hence \( p_D = p_\alpha \). Kinetic energy \( K = p^2/(2m) \), so \( K_\alpha/K_D = m_D/m_\alpha \). For \( {}^{238}\text{U} \to {}^{234}\text{Th} + \alpha \), \( m_D/m_\alpha \approx 234/4 \approx 58.5 \), so the alpha gets about 58.5 times more kinetic energy than the daughter. So \( K_\alpha + K_D = Q \) and \( K_\alpha/K_D = m_D/m_\alpha \) give \( K_\alpha = Q \, m_D/(m_D + m_\alpha) \approx Q \times (1 - m_\alpha/m_D) \). Typically the alpha carries \( \approx 98\% \) of \( Q \).
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Alpha particles are heavy (\( \approx 4\,\text{u} \)) and doubly charged (\( +2e \)). The <strong>force</strong> on them in matter is mainly Coulomb (electric): they attract electrons and repel nuclei, losing energy by ionisation. They ionise strongly (many ion pairs per mm), so they lose energy quickly and penetrate only a few cm in air or a sheet of paper. Range \( R \propto E^3/2 \) roughly for alphas in air. They are stopped by skin; the main hazard is ingestion or inhalation of alpha emitters.</p>
+        <p class="text-slate-700 mb-4"><strong>Typical energies:</strong> \( Q \approx 4\text{--}9\,\text{MeV} \) for natural alpha emitters. Example: \( {}^{238}\text{U} \) has \( Q \approx 4.27\,\text{MeV} \); the alpha kinetic energy is \( \approx 4.20\,\text{MeV} \).</p>
         <div class="example-box">
           <strong>Example 1:</strong> \( {}^{238}_{92} \text{U} \to {}^{234}_{90} \text{Th} + {}^4_2 \text{He} \). Check: \( A \): 238 = 234 + 4 ✓. \( Z \): 92 = 90 + 2 ✓. Thorium-234 is the daughter; it is also radioactive (further decays).
         </div>
         <div class="example-box">
-          <strong>Example 2:</strong> \( {}^{226}_{88} \text{Ra} \to {}^{222}_{86} \text{Rn} + {}^4_2 \text{He} \). Radium-226 decays to radon-222 by alpha emission. \( N \) in parent: \( 226 - 88 = 138 \); in daughter: \( 222 - 86 = 136 \); alpha has 2 neutrons. Total neutrons: 136 + 2 = 138 ✓.
+          <strong>Example 2 — energy sharing:</strong> \( {}^{226}_{88} \text{Ra} \to {}^{222}_{86} \text{Rn} + \alpha \) with \( Q \approx 4.87\,\text{MeV} \). \( K_\alpha = Q \cdot m_D/(m_D + m_\alpha) \approx 4.87 \times 222/226 \approx 4.78\,\text{MeV} \), \( K_D \approx 0.09\,\text{MeV} \). So the alpha carries almost all the energy.
         </div>
       </div>
 
@@ -56,21 +62,51 @@
         <div class="formula-box">
           \[ n \;\to\; p + e^- + \bar{\nu}_e \quad \Rightarrow \quad {}^A_Z X \;\to\; {}^A_{Z+1} Y + e^- + \bar{\nu}_e \]
         </div>
-        <p class="text-slate-700 mb-4">The daughter has the same \( A \) but \( Z \) increases by 1 (one more proton, one fewer neutron). This happens in neutron-rich nuclei to move toward the stability line.</p>
-        <p class="text-slate-700 mb-4"><strong>Beta plus (\( \beta^+ \)):</strong> A proton turns into a neutron, emitting a positron and a neutrino: \( p \to n + e^+ + \nu_e \), so \( {}^A_Z X \to {}^A_{Z-1} Y + e^+ + \nu_e \). Occurs in proton-rich nuclei when energetically allowed (parent mass must exceed daughter mass by at least \( 2m_e c^2 \) for \( e^+ \) emission).</p>
-        <p class="text-slate-700 mb-4"><strong>Electron capture (EC):</strong> A proton captures an atomic electron and becomes a neutron, emitting a neutrino: \( p + e^- \to n + \nu_e \). So \( {}^A_Z X + e^- \to {}^A_{Z-1} Y + \nu_e \). Same change in \( Z \) as \( \beta^+ \), but no positron; often competes with \( \beta^+ \) in heavy atoms.</p>
+        <p class="text-slate-700 mb-4">The daughter has the same \( A \) but \( Z \) increases by 1 (one more proton, one fewer neutron). This happens in <strong>neutron-rich</strong> nuclei (\( N/Z \) too high) to move toward the stability line.</p>
+        <p class="text-slate-700 mb-4"><strong>Beta plus (\( \beta^+ \)):</strong> A proton turns into a neutron, emitting a positron and a neutrino:</p>
+        <div class="formula-box">
+          \[ p \;\to\; n + e^+ + \nu_e \quad \Rightarrow \quad {}^A_Z X \;\to\; {}^A_{Z-1} Y + e^+ + \nu_e \]
+        </div>
+        <p class="text-slate-700 mb-4">The daughter has the same \( A \) but \( Z \) decreases by 1. This happens in <strong>proton-rich</strong> nuclei (\( N/Z \) too low). For \( \beta^+ \) to be possible, the parent mass must exceed the daughter mass by at least \( 2m_e c^2 \) (the rest energy of the created positron plus the electron it eventually annihilates with).</p>
+        <p class="text-slate-700 mb-4"><strong>Electron capture (EC):</strong> \( p + e^- \to n + \nu_e \), so \( {}^A_Z X + e^- \to {}^A_{Z-1} Y + \nu_e \). Same \( Z \) change as \( \beta^+ \), but an atomic electron is absorbed; no positron. Often competes with \( \beta^+ \) in heavier atoms (inner-shell capture).</p>
+
+        <h3 class="text-xl font-bold text-slate-800 mt-6 mb-3">Difference between \( \beta^+ \) and \( \beta^- \) decay</h3>
+        <div class="overflow-x-auto my-4">
+          <table class="w-full border border-emerald-200 rounded-lg text-sm text-slate-700">
+            <thead><tr class="bg-emerald-50"><th class="border border-emerald-200 p-2">Property</th><th class="border border-emerald-200 p-2">\( \beta^- \) decay</th><th class="border border-emerald-200 p-2">\( \beta^+ \) decay</th></tr></thead>
+            <tbody>
+              <tr><td class="border border-emerald-200 p-2">Nucleon change</td><td class="border border-emerald-200 p-2">\( n \to p \) (neutron becomes proton)</td><td class="border border-emerald-200 p-2">\( p \to n \) (proton becomes neutron)</td></tr>
+              <tr><td class="border border-emerald-200 p-2">\( Z \) of daughter</td><td class="border border-emerald-200 p-2">\( Z + 1 \) (increases)</td><td class="border border-emerald-200 p-2">\( Z - 1 \) (decreases)</td></tr>
+              <tr><td class="border border-emerald-200 p-2">Particle emitted</td><td class="border border-emerald-200 p-2">Electron \( e^- \), antineutrino \( \bar{\nu}_e \)</td><td class="border border-emerald-200 p-2">Positron \( e^+ \), neutrino \( \nu_e \)</td></tr>
+              <tr><td class="border border-emerald-200 p-2">Type of nucleus</td><td class="border border-emerald-200 p-2">Neutron-rich (\( N \) too large)</td><td class="border border-emerald-200 p-2">Proton-rich (\( N \) too small)</td></tr>
+              <tr><td class="border border-emerald-200 p-2">Q-value (atomic masses)</td><td class="border border-emerald-200 p-2">\( Q = (m_P - m_D)c^2 \)</td><td class="border border-emerald-200 p-2">\( Q = (m_P - m_D - 2m_e)c^2 \)</td></tr>
+              <tr><td class="border border-emerald-200 p-2">Mass condition</td><td class="border border-emerald-200 p-2">\( m_P &gt; m_D \) (parent heavier than daughter atom)</td><td class="border border-emerald-200 p-2">\( m_P &gt; m_D + 2m_e \) (need extra \( 2m_e c^2 \) to create \( e^+ \))</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-slate-700 mb-4">So \( \beta^- \) and \( \beta^+ \) are opposite in direction: one increases \( Z \), the other decreases it; one emits an electron, the other a positron; one occurs when there are “too many” neutrons, the other when there are “too many” protons.</p>
+
+        <h3 class="text-xl font-bold text-slate-800 mt-6 mb-3">Energies and forces in more detail</h3>
+        <p class="text-slate-700 mb-4"><strong>Forces:</strong> Beta decay is caused by the <strong>weak nuclear force</strong> (weak interaction). It is the only force that can change a quark flavour: in \( \beta^- \), a down quark in the neutron becomes an up quark (so \( n \to p \)); in \( \beta^+ \), an up quark in the proton becomes a down quark (so \( p \to n \)). The electromagnetic and strong forces do not change quark type, so they cannot cause beta decay. The weak force is short-range and much weaker than the strong force at nuclear distances.</p>
+        <p class="text-slate-700 mb-4"><strong>Q-value formulas (using atomic masses):</strong> When we use <em>atomic</em> masses (neutral atom = nucleus + Z electrons), the number of electrons on each side can be chosen so that the electron masses cancel in the mass difference. For \( \beta^- \): parent atom has \( Z \) electrons, daughter atom has \( Z+1 \) electrons. The emitted electron “replaces” one of the daughter’s electrons in the count, so effectively we compare \( m_P(\text{atom}) \) with \( m_D(\text{atom}) \); the extra electron mass is already in \( m_D \). So:</p>
+        <div class="formula-box">
+          \[ Q_{\beta^-} = \bigl( m_P(\text{atom}) - m_D(\text{atom}) \bigr) c^2 \]
+        </div>
+        <p class="text-slate-700 mb-4">For \( \beta^+ \): parent has \( Z \) electrons, daughter has \( Z-1 \). We create a positron (mass \( m_e \)) and the positron eventually annihilates with an electron (another \( m_e \)), so we need at least \( 2m_e c^2 \) of rest mass to be converted. Thus:</p>
+        <div class="formula-box">
+          \[ Q_{\beta^+} = \bigl( m_P(\text{atom}) - m_D(\text{atom}) \bigr) c^2 - 2m_e c^2 \]
+        </div>
+        <p class="text-slate-700 mb-4">The maximum kinetic energy of the beta particle (electron or positron) equals \( Q \). The rest of \( Q \) is carried by the neutrino (and a tiny amount by the recoiling nucleus). So \( K_e + K_\nu + K_\text{recoil} = Q \); for most purposes \( K_\text{recoil} \approx 0 \), so \( K_e + K_\nu = Q \).</p>
         <div class="proof-box">
-          <strong>Why the beta spectrum is continuous:</strong> In \( \beta^- \) decay, three bodies are produced: daughter nucleus, electron, antineutrino. Conservation of energy and momentum allows the kinetic energy to be shared in infinitely many ways. So the electron can have any kinetic energy from 0 up to \( Q \) (the “endpoint” energy). The neutrino carries the rest. In contrast, alpha decay gives two bodies (alpha + daughter), so the alpha has a unique kinetic energy (except when gamma is also emitted).
-        </div>
-        <p class="text-slate-700 mb-4"><strong>Why it happens:</strong> The weak interaction changes a quark (e.g. down → up in \( \beta^- \)), converting a neutron to a proton or vice versa. The nucleus moves toward the optimal \( N/Z \) ratio for stability.</p>
-        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Beta particles are light (mass \( m_e \)) and singly charged; they penetrate more than alpha (metres in air, mm in tissue) and cause ionisation. They are stopped by a few mm of aluminium or plastic.</p>
-        <p class="text-slate-700 mb-4"><strong>Energy:</strong> For \( \beta^- \): \( Q = (m_P - m_D)c^2 \) (using atomic masses, the electron masses cancel in the difference). The maximum kinetic energy of the beta (endpoint) equals \( Q \). For \( \beta^+ \): \( Q = (m_P - m_D - 2m_e)c^2 \) because a positron is created.</p>
-        <div class="example-box">
-          <strong>Example 1 — \( {}^{14}_6 \text{C} \to {}^{14}_7 \text{N} + e^- + \bar{\nu}_e \):</strong> Carbon-14 has 6p, 8n (neutron-rich). One neutron becomes a proton, so daughter is nitrogen-14 (7p, 7n). \( A \) unchanged at 14; \( Z \) increases from 6 to 7.
+          <strong>Why the beta spectrum is continuous:</strong> Three bodies are produced: daughter nucleus, beta particle, neutrino. Conservation of energy and momentum allows the kinetic energy to be shared in infinitely many ways. So the beta can have any KE from 0 up to \( Q \) (the “endpoint”); the neutrino carries \( Q - K_e \). In contrast, alpha decay gives two bodies (alpha + daughter), so the alpha has a unique kinetic energy (momentum sharing is fixed).
         </div>
         <div class="example-box">
-          <strong>Example 2 — \( {}^{22}_{11} \text{Na} \to {}^{22}_{10} \text{Ne} + e^+ + \nu_e \):</strong> Sodium-22 is proton-rich (11p, 11n). One proton becomes a neutron, so daughter is neon-22 (10p, 12n). \( \beta^+ \) decay.
+          <strong>Example — \( \beta^- \):</strong> \( {}^{14}_6 \text{C} \to {}^{14}_7 \text{N} + e^- + \bar{\nu}_e \). Carbon-14 has 6p, 8n (neutron-rich). One neutron becomes a proton → nitrogen-14 (7p, 7n). \( A \) unchanged at 14; \( Z \) increases from 6 to 7. \( Q \approx 0.156\,\text{MeV} \); the electron has a continuous spectrum from 0 to 0.156 MeV.
         </div>
+        <div class="example-box">
+          <strong>Example — \( \beta^+ \):</strong> \( {}^{22}_{11} \text{Na} \to {}^{22}_{10} \text{Ne} + e^+ + \nu_e \). Sodium-22 is proton-rich (11p, 11n). One proton becomes a neutron → neon-22 (10p, 12n). \( Z \) decreases from 11 to 10. The positron spectrum has a maximum energy \( Q = (m_{\text{Na}} - m_{\text{Ne}} - 2m_e)c^2 \approx 1.82\,\text{MeV} \).
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Beta particles (electrons or positrons) are light (\( m_e \)) and singly charged. They penetrate more than alpha (metres in air, mm in tissue) and cause ionisation. Stopped by a few mm of aluminium or plastic. Positrons eventually annihilate with an electron, producing two 0.511 MeV gamma rays.</p>
       </div>
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
@@ -79,15 +115,20 @@
         <div class="formula-box">
           \[ {}^A_Z X^* \;\to\; {}^A_Z X + \gamma \]
         </div>
-        <p class="text-slate-700 mb-4">\( Z \) and \( A \) do not change — it is the same nuclide, just in a lower energy state. No nucleons or leptons are ejected; only a photon. So the mass of the nucleus is (in principle) unchanged; the photon carries away the energy difference.</p>
-        <div class="proof-box">
-          <strong>Energy and momentum of the photon:</strong> Conservation of energy: \( E^* = E + E_\gamma \), so \( E_\gamma = E^* - E = \Delta E \) (the level spacing). Conservation of momentum: the nucleus recoils in the opposite direction to the photon. So \( p_\gamma = E_\gamma/c \), and the recoil kinetic energy of the nucleus is \( K = p_\gamma^2/(2M) \approx E_\gamma^2/(2Mc^2) \). For a typical \( E_\gamma \sim 1\,\text{MeV} \) and \( M \sim 100\,\text{u} \), \( K \) is of order eV — negligible compared to \( E_\gamma \), so \( E_\gamma \approx \Delta E \) to high accuracy.
+        <p class="text-slate-700 mb-4">\( Z \) and \( A \) do not change — it is the same nuclide, just in a lower energy state. No nucleons or leptons are ejected; only a photon.</p>
+        <h3 class="text-xl font-bold text-slate-800 mt-6 mb-3">Forces and energies</h3>
+        <p class="text-slate-700 mb-4"><strong>Force:</strong> Gamma emission is an <strong>electromagnetic</strong> process. The excited nucleus has a different distribution of charge and current than the ground state; the transition is mediated by the electromagnetic field, so the photon is an EM wave. No weak or strong force is involved in the emission itself.</p>
+        <p class="text-slate-700 mb-4"><strong>Energy:</strong> Conservation of energy gives \( E_\gamma = \Delta E = E^* - E \), the level spacing. So \( E_\gamma = hf = hc/\lambda \). Nuclear level spacings are typically keV to MeV, so \( E_\gamma \sim 0.1\text{--}10\,\text{MeV} \).</p>
+        <div class="formula-box">
+          \[ E_\gamma = \Delta E, \qquad p_\gamma = \frac{E_\gamma}{c} \]
         </div>
-        <p class="text-slate-700 mb-4"><strong>Why it happens:</strong> After alpha or beta decay, the daughter nucleus is often left in an excited state (because the nucleons rearrange into a lower-energy configuration). It relaxes by emitting one or more gamma photons (sometimes in a “cascade”). So gamma radiation often accompanies alpha or beta decay.</p>
-        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Gamma rays are uncharged and have high energy; they penetrate matter deeply (many cm of lead or concrete to reduce intensity significantly). They ionise indirectly (e.g. photoelectric effect, Compton scattering, pair production) and are a major external radiation hazard.</p>
-        <p class="text-slate-700 mb-4"><strong>Energy:</strong> \( E_\gamma = hf = \Delta E \). Nuclear level spacings are typically keV to MeV, so gamma energies are in that range (much higher than visible light, \( \sim 1\,\text{eV} \)).</p>
+        <div class="proof-box">
+          <strong>Recoil of the nucleus:</strong> Conservation of momentum (initial nucleus at rest): \( \vec{p}_\gamma + \vec{p}_\text{recoil} = 0 \), so \( p_\text{recoil} = E_\gamma/c \). Recoil kinetic energy \( K_\text{recoil} = p^2/(2M) = E_\gamma^2/(2Mc^2) \). For \( E_\gamma = 1\,\text{MeV} \) and \( M = 100\,\text{u} \), \( K_\text{recoil} \approx 10^6/(2 \times 100 \times 931) \approx 5\,\text{eV} \), negligible compared to 1 MeV. So \( E_\gamma \approx \Delta E \) to high accuracy.
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Why it happens:</strong> After alpha or beta decay, the daughter nucleus is often left in an excited state. It relaxes by emitting one or more gamma photons (sometimes in a cascade). So gamma radiation often accompanies alpha or beta decay.</p>
+        <p class="text-slate-700 mb-4"><strong>Behaviour:</strong> Gamma rays are uncharged; they interact via the electromagnetic force (photoelectric, Compton, pair production). They penetrate matter deeply (many cm of lead or concrete). They are a major external radiation hazard.</p>
         <div class="example-box">
-          <strong>Example:</strong> After \( {}^{60}_{27} \text{Co} \) undergoes \( \beta^- \) decay to \( {}^{60}_{28} \text{Ni}^* \), the nickel-60 nucleus is excited and emits two gamma rays in succession (e.g. 1.17 MeV and 1.33 MeV) to reach the ground state. So a cobalt-60 source emits betas and two characteristic gammas.
+          <strong>Example:</strong> After \( {}^{60}_{27} \text{Co} \) undergoes \( \beta^- \) decay to \( {}^{60}_{28} \text{Ni}^* \), the nickel-60 nucleus is excited and emits two gamma rays in succession (1.17 MeV and 1.33 MeV) to reach the ground state. So a cobalt-60 source emits betas and two characteristic gammas; \( E_\gamma = \Delta E \) for each transition.
         </div>
       </div>
 
@@ -110,10 +151,11 @@
     <section class="mb-12">
       <h2 class="text-2xl font-bold text-slate-800 mb-4">Formulas at a glance</h2>
       <div class="bg-white border border-emerald-200 rounded-xl p-6 shadow-sm space-y-3 text-slate-700">
-        <p><strong>Alpha:</strong> \( {}^A_Z X \to {}^{A-4}_{Z-2} Y + {}^4_2\text{He} \). Decay energy \( Q = (m_P - m_D - m_\alpha)c^2 = K_\alpha + K_D \).</p>
-        <p><strong>Beta minus:</strong> \( {}^A_Z X \to {}^A_{Z+1} Y + e^- + \bar{\nu}_e \). Beta plus: \( {}^A_Z X \to {}^A_{Z-1} Y + e^+ + \nu_e \). Max beta KE \( = Q \).</p>
-        <p><strong>Gamma:</strong> \( {}^A_Z X^* \to {}^A_Z X + \gamma \). \( E_\gamma = \Delta E \) (level spacing).</p>
-        <p><strong>Q-value:</strong> decay allowed only if \( Q &gt; 0 \) (parent rest mass &gt; sum of products’ rest masses).</p>
+        <p><strong>Alpha:</strong> \( {}^A_Z X \to {}^{A-4}_{Z-2} Y + {}^4_2\text{He} \). \( Q = (m_P - m_D - m_\alpha)c^2 = K_\alpha + K_D \). \( K_\alpha/K_D = m_D/m_\alpha \).</p>
+        <p><strong>Beta minus:</strong> \( {}^A_Z X \to {}^A_{Z+1} Y + e^- + \bar{\nu}_e \). \( Q = (m_P - m_D)c^2 \) (atomic masses). Max \( K_e = Q \).</p>
+        <p><strong>Beta plus:</strong> \( {}^A_Z X \to {}^A_{Z-1} Y + e^+ + \nu_e \). \( Q = (m_P - m_D)c^2 - 2m_e c^2 \). Need \( m_P &gt; m_D + 2m_e \).</p>
+        <p><strong>Gamma:</strong> \( {}^A_Z X^* \to {}^A_Z X + \gamma \). \( E_\gamma = \Delta E \), \( p_\gamma = E_\gamma/c \).</p>
+        <p><strong>Decay allowed:</strong> only if \( Q &gt; 0 \) (parent rest mass &gt; sum of products’ rest masses).</p>
       </div>
     </section>
 
@@ -135,15 +177,51 @@
       </div>
 
       <div class="problem-card">
-        <p class="font-medium text-slate-800">3. Why does the beta particle have a continuous energy spectrum while the alpha particle has (almost) a single energy?</p>
+        <p class="font-medium text-slate-800">3. List three differences between \( \beta^+ \) and \( \beta^- \) decay.</p>
+        <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> (1) \( \beta^- \): neutron → proton, \( Z \) increases; \( \beta^+ \): proton → neutron, \( Z \) decreases. (2) \( \beta^- \) emits electron + antineutrino; \( \beta^+ \) emits positron + neutrino. (3) \( \beta^- \) occurs in neutron-rich nuclei; \( \beta^+ \) in proton-rich. (4) Q-value: \( \beta^- \) uses \( Q = (m_P - m_D)c^2 \); \( \beta^+ \) uses \( Q = (m_P - m_D)c^2 - 2m_e c^2 \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">4. Why does the beta particle have a continuous energy spectrum while the alpha particle has (almost) a single energy?</p>
         <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
         <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> Alpha decay produces two bodies (alpha + daughter), so conservation of energy and momentum fix the kinetic energy of each. Beta decay produces three bodies (daughter + electron + neutrino); the total \( Q \) is shared between the electron and neutrino in infinitely many ways, so the electron can have any KE from 0 up to \( Q \).</div>
       </div>
 
       <div class="problem-card">
-        <p class="font-medium text-slate-800">4. A nucleus in an excited state 1.5 MeV above the ground state emits a gamma ray. What is the approximate energy of the photon? Does the mass number of the nucleus change?</p>
+        <p class="font-medium text-slate-800">5. In the alpha decay \( {}^{238}_{92}\text{U} \to {}^{234}_{90}\text{Th} + {}^4_2\text{He} \), \( Q \approx 4.27\,\text{MeV} \). Estimate the kinetic energy of the alpha particle. (Use \( m_D/m_\alpha \approx 234/4 \).)</p>
+        <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( K_\alpha = Q \cdot m_D/(m_D + m_\alpha) \approx 4.27 \times 234/(234+4) = 4.27 \times 234/238 \approx 4.20\,\text{MeV} \). The daughter gets \( K_D \approx 0.07\,\text{MeV} \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">6. A nucleus in an excited state 1.5 MeV above the ground state emits a gamma ray. What is the approximate energy of the photon? Does the mass number change?</p>
         <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
         <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( E_\gamma \approx 1.5\,\text{MeV} \) (the level spacing; a tiny amount goes to nuclear recoil). The mass number \( A \) (and \( Z \)) do not change — it is the same nucleus in a lower energy state.</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">7. \( {}^{22}_{11}\text{Na} \) decays by \( \beta^+ \). Write the decay equation. Does the mass number change? Why does \( \beta^+ \) require \( m_P &gt; m_D + 2m_e \)?</p>
+        <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( {}^{22}_{11}\text{Na} \to {}^{22}_{10}\text{Ne} + e^+ + \nu_e \). Mass number \( A \) does not change (22). We need \( 2m_e c^2 \) because we <em>create</em> a positron (mass \( m_e \)) and the positron eventually annihilates with an electron (another \( m_e \)), so the minimum rest energy that must come from the mass difference is \( 2m_e c^2 \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">8. Which force is responsible for (a) alpha decay being energetically favourable in heavy nuclei, (b) beta decay occurring, (c) gamma emission?</p>
+        <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> (a) Coulomb repulsion (and strong force being short-range) makes heavy nuclei less bound; emitting an alpha reduces Coulomb repulsion. (b) The <strong>weak nuclear force</strong> (changes quark flavour: down↔up) is responsible for beta decay. (c) <strong>Electromagnetic force</strong> — the transition is an EM process; the photon is an electromagnetic wave.</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">9. The maximum kinetic energy of the electron in \( \beta^- \) decay of \( {}^{14}\text{C} \) is about 0.156 MeV. What is the Q-value for this decay? Where does the rest of the energy go?</p>
+        <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> The maximum KE of the electron equals \( Q \), so \( Q \approx 0.156\,\text{MeV} \). The rest of \( Q \) is shared between the electron and the antineutrino for each decay; when the electron has less than 0.156 MeV, the antineutrino carries \( Q - K_e \). A tiny amount goes to the recoiling daughter nucleus (negligible).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">10. Complete the decay: \( {}^{214}_{82}\text{Pb} \to \ ?\ + e^- + \bar{\nu}_e \). Is this \( \beta^- \) or \( \beta^+ \)? What is the daughter?</p>
+        <button type="button" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> This is \( \beta^- \) decay (electron and antineutrino emitted). \( Z \) increases by 1: daughter has \( Z = 83 \), \( A = 214 \). So daughter is \( {}^{214}_{83}\text{Bi} \) (bismuth-214).</div>
       </div>
     </section>
 
