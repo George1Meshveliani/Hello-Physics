@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluid Mechanics — Pressure, Pascal's Law &amp; Ideal Gas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    .theory-card { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-left: 4px solid #0d9488; }
+    .formula-box { background: #fff; border: 1px solid #5eead4; border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0; }
+    .example-box { background: #ccfbf1; border: 1px solid #2dd4bf; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    .proof-box { background: #f0fdfa; border: 1px solid #2dd4bf; border-left: 4px solid #0f766e; border-radius: 8px; padding: 1rem; margin: 1rem 0; font-size: 0.95rem; }
+    .problem-card { background: #fff; border: 1px solid #5eead4; border-radius: 12px; padding: 1.25rem; margin: 1rem 0; }
+    .solution-box { border-top: 1px solid #5eead4; margin-top: 0.75rem; padding-top: 0.75rem; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div class="min-h-screen p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+
+    <header class="mb-8 text-center">
+      <h1 class="text-4xl font-extrabold text-slate-800 mb-2">Fluid Mechanics</h1>
+      <p class="text-slate-600 text-lg">Pressure, its dependence on force, Pascal's law, pressure formulas, and the ideal gas law \( PV = nRT \)</p>
+    </header>
+
+    <section class="space-y-8 mb-12">
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">1. Pressure and its dependence on force</h2>
+        <p class="text-slate-700 mb-4"><strong>Pressure</strong> \( P \) is the force per unit area acting perpendicular to a surface. It tells us how much force is distributed over a given area.</p>
+        <div class="formula-box">
+          \[ P = \frac{F}{A} \]
+        </div>
+        <p class="text-slate-700 mb-4">where \( F \) is the magnitude of the force (in newtons, N) acting perpendicular to the surface, and \( A \) is the area (in m²). So pressure has units \( \text{N/m}^2 \), which is the <strong>pascal</strong> (Pa): \( 1\,\text{Pa} = 1\,\text{N/m}^2 \).</p>
+        <p class="text-slate-700 mb-4"><strong>Dependence on force:</strong> For the same area, a larger perpendicular force gives a larger pressure. For the same force, a smaller area gives a larger pressure (e.g. sharp knife cuts because the force is concentrated on a small area). So \( P \propto F \) when \( A \) is fixed, and \( P \propto 1/A \) when \( F \) is fixed.</p>
+        <div class="proof-box">
+          <strong>From force to pressure:</strong> If a fluid or solid pushes on a surface with a total force \( F \) spread over area \( A \), then the average pressure is \( P = F/A \). If the force is not uniform, we use \( P = dF/dA \) at a point (force per unit area on an infinitesimal area).
+        </div>
+        <div class="example-box">
+          <strong>Example:</strong> A force of 500 N is applied on an area of 0.25 m². Then \( P = F/A = 500/0.25 = 2000\,\text{Pa} = 2\,\text{kPa} \). If the same force were applied on 0.01 m², \( P = 500/0.01 = 50\,000\,\text{Pa} = 50\,\text{kPa} \).
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">2. Pascal's law</h2>
+        <p class="text-slate-700 mb-4"><strong>Pascal's law</strong> (Pascal’s principle) says: in a fluid at rest that is <strong>incompressible</strong> (or effectively so, like water or oil), a change in pressure applied at one place is transmitted <strong>undiminished</strong> to every part of the fluid and to the walls of the container.</p>
+        <div class="formula-box">
+          \[ \Delta P \text{ applied at one point } \Rightarrow \text{ same } \Delta P \text{ everywhere in the fluid} \]
+        </div>
+        <p class="text-slate-700 mb-4">So if you increase the pressure by \( \Delta P \) at the surface (e.g. by pushing a piston), that same \( \Delta P \) appears at every point in the fluid. This is the principle behind <strong>hydraulic lifts</strong>: a small force on a small piston creates a pressure increase that is transmitted to a large piston; the large piston has a larger area, so the total force on it is larger (\( F = P \times A \)).</p>
+        <div class="proof-box">
+          <strong>Why it holds (idea):</strong> In a fluid at rest, the pressure at a point is the same in all directions (isotropy). If the fluid is incompressible, compressing it at one place would require the whole fluid to respond together; in equilibrium, the pressure difference that balances the applied force is the same throughout. So the applied \( \Delta P \) is transmitted.
+        </div>
+        <div class="example-box">
+          <strong>Example — hydraulic lift:</strong> A small piston of area \( A_1 = 0.01\,\text{m}^2 \) is pushed with force \( F_1 = 100\,\text{N} \), so pressure increase \( \Delta P = F_1/A_1 = 10\,000\,\text{Pa} \). This same \( \Delta P \) acts on a large piston of area \( A_2 = 0.5\,\text{m}^2 \). Force on large piston \( F_2 = \Delta P \times A_2 = 10\,000 \times 0.5 = 5000\,\text{N} \). So a small force (100 N) lifts a large load (5000 N) — at the cost of moving the small piston a greater distance than the large one moves.
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">3. Connection between pressure, force, and Pascal's law</h2>
+        <p class="text-slate-700 mb-4">The link is:</p>
+        <ul class="list-disc list-inside text-slate-700 mb-4 space-y-1">
+          <li><strong>\( P = F/A \):</strong> pressure is force per unit area. So \( F = P \times A \). For a given pressure, a larger area gives a larger total force.</li>
+          <li><strong>Pascal's law:</strong> the pressure is the same throughout the fluid (after a change is applied). So at the small piston, \( P = F_1/A_1 \); at the large piston, the same \( P \) gives \( F_2 = P \times A_2 \). Hence \( F_2/A_2 = F_1/A_1 \), i.e. \( F_2 = F_1 \times (A_2/A_1) \). The force is multiplied by the ratio of areas.</li>
+        </ul>
+        <div class="formula-box">
+          \[ \frac{F_1}{A_1} = \frac{F_2}{A_2} = P \quad \Rightarrow \quad F_2 = F_1\,\frac{A_2}{A_1} \]
+        </div>
+        <p class="text-slate-700 mb-4">So Pascal's law plus \( P = F/A \) explains why hydraulics can amplify force: the same pressure \( P \) applied to a larger area \( A_2 \) produces a proportionally larger force \( F_2 \).</p>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">4. Pressure formulas</h2>
+        <p class="text-slate-700 mb-4"><strong>Definition (all situations):</strong></p>
+        <div class="formula-box">
+          \[ P = \frac{F_\perp}{A} \]
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Hydrostatic pressure</strong> (fluid at rest in a gravitational field): the pressure at depth \( h \) below the surface is greater than at the surface because of the weight of the fluid above:</p>
+        <div class="formula-box">
+          \[ P = P_0 + \rho g h \]
+        </div>
+        <p class="text-slate-700 mb-4">where \( P_0 \) is the pressure at the surface (e.g. atmospheric), \( \rho \) is the density of the fluid (kg/m³), \( g \) is the gravitational field strength (about 9.8 N/kg), and \( h \) is the depth (m). So pressure increases linearly with depth.</p>
+        <div class="proof-box">
+          <strong>Derivation of \( P = P_0 + \rho g h \):</strong> Consider a column of fluid of height \( h \) and cross-sectional area \( A \). Its weight is \( W = \rho V g = \rho A h g \). This weight is supported by the pressure difference between bottom and top: \( (P - P_0) A = W \), so \( P - P_0 = \rho g h \), hence \( P = P_0 + \rho g h \).
+        </div>
+        <p class="text-slate-700 mb-4"><strong>Atmospheric pressure</strong> at sea level is about \( 1.013 \times 10^5\,\text{Pa} = 101.3\,\text{kPa} \), often written as 1 atm. Gauge pressure is \( P - P_\text{atm} \); absolute pressure is \( P \).</p>
+        <div class="example-box">
+          <strong>Example:</strong> At what depth in water (\( \rho \approx 1000\,\text{kg/m}^3 \)) is the pressure twice atmospheric? \( P = P_0 + \rho g h = 2P_0 \Rightarrow \rho g h = P_0 \Rightarrow h = P_0/(\rho g) \approx 1.013\times 10^5/(1000 \times 9.8) \approx 10.3\,\text{m} \).
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">5. Ideal gas law: \( PV = nRT \)</h2>
+        <p class="text-slate-700 mb-4">For a dilute gas at low enough density and moderate temperature, pressure \( P \), volume \( V \), and temperature \( T \) are related by the <strong>ideal gas law</strong>:</p>
+        <div class="formula-box">
+          \[ PV = nRT \]
+        </div>
+        <p class="text-slate-700 mb-4">where \( n \) is the number of <strong>moles</strong> of gas, and \( R \) is the <strong>universal gas constant</strong>: \( R \approx 8.314\,\text{J/(mol}\cdot\text{K)} \). Temperature \( T \) must be in <strong>kelvins</strong> (K).</p>
+        <p class="text-slate-700 mb-4">So \( P \) depends on how much gas (n), how much space it has (V), and how hot it is (T). For a fixed amount of gas: \( P \propto T/V \); if \( T \) is constant, \( PV = \text{constant} \) (Boyle’s law); if \( V \) is constant, \( P \propto T \) (pressure law).</p>
+        <div class="formula-box">
+          \[ \text{Also: } PV = N k_B T \quad \text{where } N = \text{number of molecules},\quad k_B = \frac{R}{N_A} \approx 1.38 \times 10^{-23}\,\text{J/K} \]
+        </div>
+        <p class="text-slate-700 mb-4">Here \( N_A \) is Avogadro’s number (\( \approx 6.022 \times 10^{23} \) per mole), so \( n = N/N_A \) and \( R = N_A k_B \).</p>
+        <div class="proof-box">
+          <strong>Link to pressure as force per area:</strong> In kinetic theory, the pressure of a gas is due to molecules colliding with the walls. The force on the wall is the rate of change of momentum of the molecules; averaging over many collisions gives \( P \sim \rho \langle v^2 \rangle \), which can be shown to equal \( nRT/V \) for an ideal gas. So \( PV = nRT \) is consistent with \( P = F/A \) at the microscopic level.
+        </div>
+        <div class="example-box">
+          <strong>Example:</strong> A container of volume 0.5 m³ holds 2 mol of an ideal gas at 300 K. \( P = nRT/V = 2 \times 8.314 \times 300 / 0.5 \approx 9986\,\text{Pa} \approx 10\,\text{kPa} \). If the same gas is compressed to 0.2 m³ at the same temperature, \( P = 2 \times 8.314 \times 300 / 0.2 \approx 24\,942\,\text{Pa} \approx 25\,\text{kPa} \).
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">6. Other useful relations</h2>
+        <ul class="text-slate-700 space-y-2">
+          <li><strong>Density and moles:</strong> \( n = m/M \) where \( m \) is mass and \( M \) is molar mass. So \( \rho = m/V = n M/V \). From \( PV = nRT \), \( P = (n/V) RT = (\rho/M) RT \), so \( P = \rho R T / M \).</li>
+          <li><strong>Boyle’s law:</strong> \( T \) constant \( \Rightarrow PV = \text{constant} \Rightarrow P_1 V_1 = P_2 V_2 \).</li>
+          <li><strong>Charles’s law:</strong> \( P \) constant \( \Rightarrow V/T = \text{constant} \).</li>
+          <li><strong>Combined:</strong> \( \dfrac{P_1 V_1}{T_1} = \dfrac{P_2 V_2}{T_2} \) for a fixed amount of gas.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- Formula summary -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Formulas at a glance</h2>
+      <div class="bg-white border border-teal-200 rounded-xl p-6 shadow-sm space-y-3 text-slate-700">
+        <p><strong>Pressure (definition):</strong> \( P = F/A \), units Pa = N/m².</p>
+        <p><strong>Pascal's law:</strong> \( \Delta P \) transmitted unchanged in an incompressible fluid; \( F_1/A_1 = F_2/A_2 \).</p>
+        <p><strong>Hydrostatic:</strong> \( P = P_0 + \rho g h \).</p>
+        <p><strong>Ideal gas:</strong> \( PV = nRT \), \( R \approx 8.314\,\text{J/(mol}\cdot\text{K)} \); or \( PV = N k_B T \).</p>
+        <p><strong>Fixed amount of gas:</strong> \( P_1 V_1/T_1 = P_2 V_2/T_2 \).</p>
+      </div>
+    </section>
+
+    <!-- Problems -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Problems</h2>
+      <p class="text-slate-600 mb-4">Click "Show solution" to reveal the answer.</p>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">1. A force of 240 N is applied perpendicular to a surface of area 0.08 m². Find the pressure in pascals.</p>
+        <button type="button" class="mt-2 text-teal-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( P = F/A = 240/0.08 = 3000\,\text{Pa} = 3\,\text{kPa} \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">2. In a hydraulic system, the small piston has area 4 cm² and the large piston 100 cm². A force of 50 N is applied to the small piston. What force is produced on the large piston (assuming incompressible fluid)?</p>
+        <button type="button" class="mt-2 text-teal-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> By Pascal's law, \( P \) is the same, so \( F_2/F_1 = A_2/A_1 = 100/4 = 25 \). So \( F_2 = 25 \times 50 = 1250\,\text{N} \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">3. What is the gauge pressure at a depth of 5 m in water? Use \( \rho = 1000\,\text{kg/m}^3 \), \( g = 10\,\text{m/s}^2 \).</p>
+        <button type="button" class="mt-2 text-teal-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> Gauge pressure = \( P - P_\text{atm} = \rho g h = 1000 \times 10 \times 5 = 50\,000\,\text{Pa} = 50\,\text{kPa} \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">4. An ideal gas occupies 2 L at 100 kPa and 300 K. How many moles \( n \) are there? (Use \( R = 8.314\,\text{J/(mol}\cdot\text{K)} \); 2 L = 0.002 m³.)</p>
+        <button type="button" class="mt-2 text-teal-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( PV = nRT \Rightarrow n = PV/(RT) = (100\times 10^3 \times 0.002)/(8.314 \times 300) = 200/2494.2 \approx 0.080\,\text{mol} \).</div>
+      </div>
+    </section>
+
+    <footer class="text-center text-slate-500 text-sm pt-8 border-t">
+      <a href="https://george1meshveliani.github.io/Hello-Physics/README" class="text-teal-600 hover:underline">← Back to Hello Physics</a>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

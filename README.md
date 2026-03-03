@@ -32,6 +32,9 @@ Click the topic and Enjoy!
 - [`Alpha, beta & gamma decay`](https://george1meshveliani.github.io/Hello-Physics/NuclearPhysics2-Decay) — how decay works, why nuclei behave that way, energy and radiation
 - [`Applications`](https://george1meshveliani.github.io/Hello-Physics/NuclearPhysics3-Applications) — power reactors, half-life, dating, nuclear bombs, X-ray machines, microwaves and the physics behind them
 
+#### Fluid Mechanics
+- [`Pressure, Pascal's law & ideal gas`](https://george1meshveliani.github.io/Hello-Physics/FluidMechanics-PressureAndGases) — pressure and force (\(P = F/A\)), Pascal's law and its connection to force, hydrostatic pressure, pressure formulas, and \(PV = nRT\)
+
 ### - Advanced Level -
 - [`Motion along straight line`](https://george1meshveliani.github.io/Hello-Physics/AdvancedMotion)
 - [`Vectors`](https://george1meshveliani.github.io/Hello-Physics/Vectors)
