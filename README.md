@@ -41,3 +41,21 @@ Click the topic and Enjoy!
 - [`ELECTRIC POTENTIAL, CAPACITANCE AND DIELECTRICS`](https://george1meshveliani.github.io/Hello-Physics/AdvancedElectroStaticsTwo)
 - [`ELECTROMAGNETISM`](https://george1meshveliani.github.io/Hello-Physics/AdvancedElectroMagnetism)
 - [`ELECTROMAGNETIC WAVES`](https://george1meshveliani.github.io/Hello-Physics/AdvancedElectroMagneticWaves)
+
+---
+
+### My Favorite Books in Physics
+
+Click a title to open or download the PDF.
+
+| Book |
+|------|
+| [Landau & Lifshitz — Mechanics (3rd ed., 1976)](https://george1meshveliani.github.io/Hello-Physics/Vol%201%20-%20Landau,%20Lifshitz%20-%20Mechanics%20(3rd%20ed,%201976).pdf) |
+| [Shankar — Principles of Quantum Mechanics](https://george1meshveliani.github.io/Hello-Physics/Shankar%20-%20Principles%20of%20quantum%20mechanics.pdf) |
+| [Griffiths — Introduction to Electrodynamics (1999)](https://george1meshveliani.github.io/Hello-Physics/David%20J.%20Griffiths%20-%20Introduction%20to%20Electrodynamics-Prentice%20Hall%20(1999).pdf) |
+| [Griffiths — Introduction to Quantum Mechanics](https://george1meshveliani.github.io/Hello-Physics/Griffiths%20-%20Introduction%20to%20quantum%20mechanics.pdf) |
+| [Physics — Dynamics: Forces, Energy, and Momentum](https://george1meshveliani.github.io/Hello-Physics/Physics%20Dynamics%20-%20Forces,%20Energy,%20and%20Momentum.pdf) |
+| [Bellan — Fundamentals of Plasma Physics](https://george1meshveliani.github.io/Hello-Physics/Fundamentals%20Of%20Plasma%20Physics%20-%20Paul%20M.%20Bellan.pdf) |
+| [Krane — Introductory Nuclear Physics](https://george1meshveliani.github.io/Hello-Physics/Introductory-Nuclear-Physics-new-Krane.pdf) |
+| [Halliday et al. — Fundamentals of Physics (9th Extended)](https://george1meshveliani.github.io/Hello-Physics/Fundamentals%20of%20Physics%209th%20Extended.pdf) |
+| [Landau & Lifshitz — Quantum Mechanics](https://george1meshveliani.github.io/Hello-Physics/LandauLifshitz-QuantumMechanics.pdf) |
