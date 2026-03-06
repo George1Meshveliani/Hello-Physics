@@ -70,3 +70,14 @@ Click a title to open or download the PDF.
 | [Krane — Introductory Nuclear Physics](https://george1meshveliani.github.io/Hello-Physics/Introductory-Nuclear-Physics-new-Krane.pdf) |
 | [Halliday et al. — Fundamentals of Physics (9th Extended)](https://george1meshveliani.github.io/Hello-Physics/Fundamentals%20of%20Physics%209th%20Extended.pdf) |
 | [Landau & Lifshitz — Quantum Mechanics](https://george1meshveliani.github.io/Hello-Physics/LandauLifshitz-QuantumMechanics.pdf) |
+
+---
+
+### Some useful books from Mathematics
+
+Click a title to open or download the PDF.
+
+| Book |
+|------|
+| [Gilbert Strang — Linear Algebra and Its Applications](https://george1meshveliani.github.io/Hello-Physics/Gilbert_Strang_Linear_Algebra_and_Its_Applicatio_230928_225121.pdf) |
+| [Thomas — Calculus (Pearson, 2024)](https://george1meshveliani.github.io/Hello-Physics/Thomas%2C%20Pearson%20si%20%282024.pdf) |
