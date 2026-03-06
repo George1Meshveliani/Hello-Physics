@@ -35,6 +35,9 @@ Click the topic and Enjoy!
 #### Fluid Mechanics
 - [`Pressure, Pascal's law & ideal gas`](https://george1meshveliani.github.io/Hello-Physics/FluidMechanics-PressureAndGases) — pressure and force (\(P = F/A\)), Pascal's law and its connection to force, hydrostatic pressure, pressure formulas, and \(PV = nRT\)
 
+#### Thermal Physics
+- [`Specific heat capacity, heating & energy change`](https://george1meshveliani.github.io/Hello-Physics/ThermalPhysics-HeatCapacity) — temperature difference, heat \(Q = mc\Delta T\), specific heat capacity, energy change, energy loss, KE to heat, heating + kinetic; problems with hidden solutions
+
 ### - Advanced Level -
 - [`Motion along straight line`](https://george1meshveliani.github.io/Hello-Physics/AdvancedMotion)
 - [`Vectors`](https://george1meshveliani.github.io/Hello-Physics/Vectors)

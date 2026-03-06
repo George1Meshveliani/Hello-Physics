@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thermal Physics — Specific Heat Capacity, Heating &amp; Energy Change</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    .theory-card { background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border-left: 4px solid #ea580c; }
+    .formula-box { background: #fff; border: 1px solid #fdba74; border-radius: 8px; padding: 1rem; text-align: center; margin: 1rem 0; }
+    .example-box { background: #ffedd5; border: 1px solid #f97316; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    .proof-box { background: #fff7ed; border: 1px solid #f97316; border-left: 4px solid #c2410c; border-radius: 8px; padding: 1rem; margin: 1rem 0; font-size: 0.95rem; }
+    .problem-card { background: #fff; border: 1px solid #fdba74; border-radius: 12px; padding: 1.25rem; margin: 1rem 0; }
+    .solution-box { border-top: 1px solid #fdba74; margin-top: 0.75rem; padding-top: 0.75rem; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div class="min-h-screen p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+
+    <header class="mb-8 text-center">
+      <h1 class="text-4xl font-extrabold text-slate-800 mb-2">Thermal Physics</h1>
+      <p class="text-slate-600 text-lg">Specific heat capacity, heating, energy change, temperature difference, and energy transformation</p>
+    </header>
+
+    <section class="space-y-8 mb-12">
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">1. Temperature and temperature difference</h2>
+        <p class="text-slate-700 mb-4"><strong>Temperature</strong> \( T \) (in °C or K) measures how hot or cold a body is. The <strong>temperature difference</strong> \( \Delta T \) between two states is the change in temperature when the body is heated or cooled:</p>
+        <div class="formula-box">
+          \[ \Delta T = T_\text{final} - T_\text{initial} \]
+        </div>
+        <p class="text-slate-700 mb-4">When we <strong>heat</strong> a body (add thermal energy), its temperature usually increases, so \( \Delta T &gt; 0 \). When it <strong>cools</strong> (loses thermal energy), \( \Delta T &lt; 0 \). In formulas we often use \( |\Delta T| \) for the magnitude, or define \( \Delta T \) so that the heat added is positive. Units: degrees Celsius (°C) or kelvin (K); for <em>differences</em>, \( 1\,\text{K} = 1\,°\text{C} \).</p>
+        <div class="example-box">
+          <strong>Example:</strong> Water is heated from 20°C to 80°C. Then \( \Delta T = 80 - 20 = 60\,\text{K} \) (or 60°C). If it cools from 80°C to 20°C, \( \Delta T = 20 - 80 = -60\,\text{K} \); the <em>change</em> is −60 K (temperature decreased).
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">2. Heat and specific heat capacity</h2>
+        <p class="text-slate-700 mb-4"><strong>Heat</strong> \( Q \) is energy transferred because of a temperature difference. When we say “heat supplied” or “energy transferred by heating”, we mean \( Q \) (in joules, J). The amount of heat needed to change the temperature of a mass \( m \) by \( \Delta T \) depends on the material:</p>
+        <div class="formula-box">
+          \[ Q = m c \, \Delta T \]
+        </div>
+        <p class="text-slate-700 mb-4">where \( c \) is the <strong>specific heat capacity</strong> (or specific heat) of the material. It is the energy needed to raise the temperature of <strong>1 kg</strong> of the material by <strong>1 K</strong> (or 1°C). Units: \( c \) in \( \text{J/(kg}\cdot\text{K)} \) or \( \text{J/(kg}\cdot°\text{C)} \).</p>
+        <p class="text-slate-700 mb-4">So: same mass and same \( \Delta T \), a larger \( c \) means more heat is needed. Water has a high specific heat capacity (\( c \approx 4200\,\text{J/(kg}\cdot\text{K)} \)); metals have lower \( c \) (e.g. copper \( \approx 390 \), aluminium \( \approx 900 \)).</p>
+        <div class="proof-box">
+          <strong>Rearranging:</strong> \( c = Q/(m\,\Delta T) \); \( \Delta T = Q/(mc) \); \( m = Q/(c\,\Delta T) \). When the body <em>loses</em> heat (cools), \( Q &lt; 0 \) if we take \( Q \) as “heat added to the body”; then \( \Delta T &lt; 0 \). Alternatively, define \( Q \) as heat lost: \( Q_\text{lost} = mc|\Delta T| \).
+        </div>
+        <div class="example-box">
+          <strong>Example:</strong> Heating 2 kg of water (\( c = 4200\,\text{J/(kg}\cdot\text{K)} \)) by 10 K requires \( Q = mc\Delta T = 2 \times 4200 \times 10 = 84\,000\,\text{J} = 84\,\text{kJ} \).
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">3. Energy change and conservation</h2>
+        <p class="text-slate-700 mb-4">When we heat a body and it does not do work or change phase, the <strong>increase in thermal energy</strong> (internal energy) of the body equals the heat supplied: \( \Delta U = Q \). So the energy “stored” as higher temperature is \( Q = mc\Delta T \).</p>
+        <p class="text-slate-700 mb-4"><strong>Energy conservation:</strong> In an isolated system, total energy is constant. So: heat gained by one part = heat lost by another (if no other energy transfers). For two bodies in thermal contact reaching the same final temperature: \( Q_\text{gained} + Q_\text{lost} = 0 \), i.e. \( m_1 c_1 (T_f - T_1) + m_2 c_2 (T_f - T_2) = 0 \). Solve for final temperature \( T_f \).</p>
+        <div class="formula-box">
+          \[ \text{Heat lost by hot body} = \text{Heat gained by cold body} \quad \Rightarrow \quad m_1 c_1 (T_1 - T_f) = m_2 c_2 (T_f - T_2) \]
+        </div>
+        <div class="example-box">
+          <strong>Example:</strong> 0.5 kg water at 80°C is mixed with 1 kg water at 20°C (same \( c \)). Heat lost by hot = heat gained by cold: \( 0.5 \times c \times (80 - T_f) = 1 \times c \times (T_f - 20) \). So \( 40 - 0.5 T_f = T_f - 20 \), \( 60 = 1.5 T_f \), \( T_f = 40\,°\text{C} \).
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">4. Energy loss to the surroundings</h2>
+        <p class="text-slate-700 mb-4">In real situations, some heat is <strong>lost to the surroundings</strong> (air, container). So not all the energy supplied goes into raising the temperature of the body. We can write:</p>
+        <div class="formula-box">
+          \[ Q_\text{supplied} = Q_\text{to body} + Q_\text{lost} \quad \Rightarrow \quad Q_\text{to body} = mc\,\Delta T \]
+        </div>
+        <p class="text-slate-700 mb-4">If we assume no losses, \( Q_\text{supplied} = mc\Delta T \). If we know that a fraction is lost, then \( Q_\text{to body} = \eta \, Q_\text{supplied} \) (e.g. \( \eta = 0.8 \) for 80% useful heating), so \( mc\Delta T = \eta \, Q_\text{supplied} \). Alternatively, “energy loss” might be given directly: \( Q_\text{lost} = Q_\text{supplied} - mc\Delta T \).</p>
+        <div class="example-box">
+          <strong>Example:</strong> A heater supplies 50 kJ. Only 40 kJ goes to heating 2 kg water (\( c = 4200 \)). Then \( 40\,000 = 2 \times 4200 \times \Delta T \), so \( \Delta T = 40\,000/8400 \approx 4.76\,\text{K} \). The remaining 10 kJ is “lost” (e.g. to the container or air).
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">5. Energy transformation: work and kinetic energy to heat</h2>
+        <p class="text-slate-700 mb-4">Energy can be <strong>transformed</strong> from one form to another. When friction does work, <strong>work → heat</strong>: the loss of mechanical energy appears as thermal energy. When a moving object is brought to rest by friction, its <strong>kinetic energy</strong> is converted to heat:</p>
+        <div class="formula-box">
+          \[ \text{KE lost} = \frac{1}{2}mv^2 \quad \Rightarrow \quad Q = \frac{1}{2}mv^2 \quad \text{(if all KE becomes heat)} \]
+        </div>
+        <p class="text-slate-700 mb-4">So if a mass \( m \) moving at speed \( v \) is stopped and all its KE is converted to heating the object (or the surface), the heat produced is \( Q = \frac{1}{2}mv^2 \). This heat can then raise the temperature of a body: \( Q = mc\Delta T \), so \( \Delta T = Q/(mc) = (mv^2/2)/(mc) = v^2/(2c) \) for the body that absorbed the energy.</p>
+        <div class="example-box">
+          <strong>Example:</strong> A 2 kg block sliding at 3 m/s is stopped by friction. KE lost = \( \frac{1}{2} \times 2 \times 9 = 9\,\text{J} \). If all 9 J goes into heating the block (\( c = 500\,\text{J/(kg}\cdot\text{K)} \)), then \( 9 = 2 \times 500 \times \Delta T \), so \( \Delta T = 9/1000 = 0.009\,\text{K} \) (very small).
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">6. Heating and kinetic energy combined</h2>
+        <p class="text-slate-700 mb-4">Some problems combine <strong>thermal energy</strong> and <strong>kinetic energy</strong>. For example: a hot object is dropped; it has initial KE (or gains KE as it falls) and thermal energy; when it hits the ground, some KE may convert to heat. Or: total energy = KE + thermal (e.g. \( E = \frac{1}{2}mv^2 + mc\Delta T \) relative to a reference).</p>
+        <p class="text-slate-700 mb-4"><strong>Principle:</strong> Conserve total energy. If an object falls and hits the ground, \( \text{PE lost} = \text{KE gained} + \text{heat to surroundings} \), or \( \text{KE at impact} = \text{work done against friction} = Q \). If we heat a body and it also gains speed (e.g. in a closed system), \( Q_\text{supplied} = \Delta U + \Delta(\text{KE}) + \text{work} \) as appropriate.</p>
+        <div class="formula-box">
+          \[ \text{Energy in} = \text{Energy out} + \text{Change in stored energy} \]
+        </div>
+        <div class="example-box">
+          <strong>Example:</strong> A 1 kg metal ball (\( c = 400\,\text{J/(kg}\cdot\text{K)} \)) at 100°C is dropped from 10 m. It hits the ground at speed \( v = \sqrt{2gh} \approx 14\,\text{m/s} \). KE at impact \( = \frac{1}{2} \times 1 \times 14^2 \approx 98\,\text{J} \). If 50% of this KE is converted to heating the ball, \( Q = 49\,\text{J} \), so \( \Delta T = 49/(1 \times 400) \approx 0.12\,\text{K} \). The ball’s temperature rises slightly on impact.
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Formula summary -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Formulas at a glance</h2>
+      <div class="bg-white border border-orange-200 rounded-xl p-6 shadow-sm space-y-3 text-slate-700">
+        <p><strong>Temperature difference:</strong> \( \Delta T = T_\text{final} - T_\text{initial} \).</p>
+        <p><strong>Heat and specific heat capacity:</strong> \( Q = mc\,\Delta T \). \( c \) in \( \text{J/(kg}\cdot\text{K)} \).</p>
+        <p><strong>Rearranging:</strong> \( c = Q/(m\,\Delta T) \), \( \Delta T = Q/(mc) \), \( m = Q/(c\,\Delta T) \).</p>
+        <p><strong>Conservation (mix):</strong> heat lost = heat gained; \( m_1 c_1 (T_1 - T_f) = m_2 c_2 (T_f - T_2) \).</p>
+        <p><strong>KE to heat:</strong> \( Q = \frac{1}{2}mv^2 \) (when KE is fully converted to heat).</p>
+        <p><strong>Useful:</strong> water \( c \approx 4200\,\text{J/(kg}\cdot\text{K)} \).</p>
+      </div>
+    </section>
+
+    <!-- Problems -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Problems</h2>
+      <p class="text-slate-600 mb-4">Click "Show solution" to reveal the answer.</p>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">1. A 3 kg block of aluminium (\( c = 900\,\text{J/(kg}\cdot\text{K)} \)) is heated from 25°C to 75°C. How much heat is required?</p>
+        <button type="button" class="mt-2 text-orange-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( \Delta T = 75 - 25 = 50\,\text{K} \). \( Q = mc\Delta T = 3 \times 900 \times 50 = 135\,000\,\text{J} = 135\,\text{kJ} \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">2. Water of mass 1.5 kg is cooled from 60°C to 35°C. How much heat does it lose? (Use \( c = 4200\,\text{J/(kg}\cdot\text{K)} \) for water.)</p>
+        <button type="button" class="mt-2 text-orange-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( \Delta T = 35 - 60 = -25\,\text{K} \) (temperature decrease). Heat lost = \( |Q| = mc|\Delta T| = 1.5 \times 4200 \times 25 = 157\,500\,\text{J} = 157.5\,\text{kJ} \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">3. A heater supplies 126 kJ to 5 kg of water. If there is no energy loss, what is the rise in temperature? (\( c = 4200\,\text{J/(kg}\cdot\text{K)} \).)</p>
+        <button type="button" class="mt-2 text-orange-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( Q = mc\Delta T \Rightarrow \Delta T = Q/(mc) = 126\,000/(5 \times 4200) = 126\,000/21\,000 = 6\,\text{K} \). So the temperature rises by 6°C (or 6 K).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">4. 0.4 kg of water at 90°C is mixed with 0.6 kg of water at 20°C. Find the final temperature (same \( c \), no heat loss).</p>
+        <button type="button" class="mt-2 text-orange-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> Heat lost by hot = heat gained by cold: \( 0.4 \times c \times (90 - T_f) = 0.6 \times c \times (T_f - 20) \). Cancel \( c \): \( 36 - 0.4 T_f = 0.6 T_f - 12 \), \( 48 = T_f \), so \( T_f = 48\,°\text{C} \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">5. An electric heater supplies 200 kJ. Due to energy loss, only 150 kJ goes to heating 10 kg of water. What is the temperature rise of the water? (\( c = 4200\,\text{J/(kg}\cdot\text{K)} \).)</p>
+        <button type="button" class="mt-2 text-orange-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> Only \( Q = 150\,\text{kJ} = 150\,000\,\text{J} \) is used to heat the water. \( \Delta T = Q/(mc) = 150\,000/(10 \times 4200) = 150\,000/42\,000 \approx 3.57\,\text{K} \). The remaining 50 kJ is lost to the surroundings.</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">6. A 5 kg mass moving at 4 m/s is brought to rest by friction. If all the kinetic energy is converted to heat in the mass itself (\( c = 500\,\text{J/(kg}\cdot\text{K)} \)), find the temperature rise.</p>
+        <button type="button" class="mt-2 text-orange-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> KE lost = \( \frac{1}{2}mv^2 = \frac{1}{2} \times 5 \times 16 = 40\,\text{J} \). This becomes heat: \( Q = 40\,\text{J} = mc\Delta T \), so \( \Delta T = 40/(5 \times 500) = 40/2500 = 0.016\,\text{K} \). Very small rise because the KE is small.</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">7. A 2 kg copper block (\( c = 390\,\text{J/(kg}\cdot\text{K)} \)) at 150°C is dropped into 5 kg of water at 20°C. Find the final temperature. (No heat loss; water \( c = 4200\,\text{J/(kg}\cdot\text{K)} \).)</p>
+        <button type="button" class="mt-2 text-orange-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> Heat lost by copper = heat gained by water: \( m_c c_c (150 - T_f) = m_w c_w (T_f - 20) \). \( 2 \times 390 \times (150 - T_f) = 5 \times 4200 \times (T_f - 20) \). \( 780(150 - T_f) = 21\,000(T_f - 20) \), \( 117\,000 - 780 T_f = 21\,000 T_f - 420\,000 \), \( 537\,000 = 21\,780 T_f \), \( T_f \approx 24.7\,°\text{C} \). The water has much larger thermal capacity (\( m_w c_w \)), so the final temperature is close to the initial water temperature.</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">8. A 0.5 kg metal ball (\( c = 400\,\text{J/(kg}\cdot\text{K)} \)) at 80°C falls from rest through 20 m and hits the ground. If 30% of its kinetic energy at impact is converted to heating the ball, find the temperature rise of the ball. (Use \( g = 10\,\text{m/s}^2 \).)</p>
+        <button type="button" class="mt-2 text-orange-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> Speed at impact: \( v^2 = 2gh = 2 \times 10 \times 20 = 400 \), so \( v = 20\,\text{m/s} \). KE = \( \frac{1}{2} \times 0.5 \times 400 = 100\,\text{J} \). 30% to heat: \( Q = 0.30 \times 100 = 30\,\text{J} \). \( \Delta T = Q/(mc) = 30/(0.5 \times 400) = 30/200 = 0.15\,\text{K} \). So the ball’s temperature rises by 0.15 K (or 0.15°C) on impact.</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">9. To raise the temperature of 4 kg of a substance by 15 K, 72 kJ of heat is needed. Find the specific heat capacity of the substance.</p>
+        <button type="button" class="mt-2 text-orange-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( Q = mc\Delta T \Rightarrow c = Q/(m\Delta T) = 72\,000/(4 \times 15) = 72\,000/60 = 1200\,\text{J/(kg}\cdot\text{K)} \).</div>
+      </div>
+
+      <div class="problem-card">
+        <p class="font-medium text-slate-800">10. A 1 kg block at 25°C receives 50 kJ from a heater. If the block’s specific heat capacity is 500 J/(kg·K), what is its final temperature? (Assume no heat loss.)</p>
+        <button type="button" class="mt-2 text-orange-600 font-semibold text-sm hover:underline" onclick="this.nextElementSibling.classList.toggle('hidden'); this.textContent = this.nextElementSibling.classList.contains('hidden') ? 'Show solution' : 'Hide solution';">Show solution</button>
+        <div class="solution-box hidden text-slate-700"><strong>Solution:</strong> \( Q = mc\Delta T \Rightarrow \Delta T = Q/(mc) = 50\,000/(1 \times 500) = 100\,\text{K} \). Final temperature \( T_f = T_\text{initial} + \Delta T = 25 + 100 = 125\,°\text{C} \).</div>
+      </div>
+    </section>
+
+    <footer class="text-center text-slate-500 text-sm pt-8 border-t">
+      <a href="https://george1meshveliani.github.io/Hello-Physics/README" class="text-orange-600 hover:underline">← Back to Hello Physics</a>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>
