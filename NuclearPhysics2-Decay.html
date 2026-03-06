@@ -28,6 +28,27 @@
       <p class="text-slate-600 text-lg">Alpha, beta and gamma decay: how they work, why they happen, and energy & radiation</p>
     </header>
 
+    <!-- Notation: what the subscripts and symbols mean -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-3">Notation — what the indexes and symbols mean</h2>
+      <p class="text-slate-600 mb-3">In decay formulas we use subscripts to label which particle or nucleus we mean. Here is a short glossary:</p>
+      <div class="bg-white border border-emerald-200 rounded-xl p-5 shadow-sm text-slate-700 text-sm">
+        <ul class="space-y-2">
+          <li><strong>\( P \) (parent)</strong> — the nucleus <em>before</em> it decays. Example: in \( {}^{238}\text{U} \to {}^{234}\text{Th} + \alpha \), the parent is uranium-238.</li>
+          <li><strong>\( D \) (daughter)</strong> — the nucleus <em>after</em> the decay (the “leftover” nucleus). In the same example, the daughter is thorium-234.</li>
+          <li><strong>\( \alpha \) (alpha)</strong> — the alpha particle (\( {}^4_2\text{He} \)) emitted in alpha decay.</li>
+          <li><strong>\( m_P, m_D, m_\alpha \)</strong> — rest masses of the parent, daughter, and alpha particle (in kg or in atomic mass units u).</li>
+          <li><strong>\( K \) (kinetic energy)</strong> — \( K_\alpha \) = kinetic energy of the alpha particle; \( K_D \) = kinetic energy of the daughter nucleus (recoil); \( K_e \) = kinetic energy of the emitted electron or positron (beta particle); \( K_\nu \) = kinetic energy of the neutrino or antineutrino.</li>
+          <li><strong>\( p \) (momentum)</strong> — \( p_\alpha \), \( p_D \), \( p_\gamma \) = magnitude of momentum of the alpha, daughter, or gamma photon.</li>
+          <li><strong>\( Q \) (Q-value)</strong> — the total <em>decay energy</em> released (in MeV or J). It equals the sum of the kinetic energies of all products: e.g. in alpha decay \( Q = K_\alpha + K_D \).</li>
+          <li><strong>\( E_\gamma \)</strong> — energy of the gamma-ray photon. \( E_\gamma = \Delta E \) = energy difference between two nuclear levels.</li>
+          <li><strong>\( \Delta E \)</strong> — difference in energy between two states (e.g. excited state minus ground state).</li>
+          <li><strong>\( e^- \), \( e^+ \)</strong> — electron and positron. \( \nu_e \), \( \bar{\nu}_e \) — neutrino and antineutrino.</li>
+        </ul>
+        <p class="mt-3 text-slate-600">So when you see \( K_D \) or \( m_P \), the subscript tells you: <strong>D</strong> = daughter, <strong>P</strong> = parent, <strong>α</strong> = alpha particle, etc.</p>
+      </div>
+    </section>
+
     <section class="space-y-8 mb-12">
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
@@ -169,6 +190,7 @@
     <!-- Formula summary -->
     <section class="mb-12">
       <h2 class="text-2xl font-bold text-slate-800 mb-4">Formulas at a glance</h2>
+      <p class="text-slate-600 text-sm mb-2">Subscripts: P = parent, D = daughter, \( \alpha \) = alpha; \( K \) = kinetic energy, \( Q \) = decay energy. See <strong>Notation</strong> at the top for full list.</p>
       <div class="bg-white border border-emerald-200 rounded-xl p-6 shadow-sm space-y-3 text-slate-700">
         <p><strong>Alpha:</strong> \( {}^A_Z X \to {}^{A-4}_{Z-2} Y + {}^4_2\text{He} \). \( Q = (m_P - m_D - m_\alpha)c^2 = K_\alpha + K_D \). \( K_\alpha/K_D = m_D/m_\alpha \).</p>
         <p><strong>Beta minus:</strong> \( {}^A_Z X \to {}^A_{Z+1} Y + e^- + \bar{\nu}_e \). \( Q = (m_P - m_D)c^2 \) (atomic masses). Max \( K_e = Q \).</p>
