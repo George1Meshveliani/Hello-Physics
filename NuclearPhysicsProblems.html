@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nuclear Physics: Alpha, Beta, Gamma</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+  <style>
+    .animate-slide {
+      animation: slideIn 0.25s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div class="min-h-screen p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- HEADER -->
+    <header class="mb-6 text-center">
+      <div class="flex justify-center mb-4">
+        <div class="bg-emerald-600 p-3 rounded-2xl shadow-lg shadow-emerald-200">
+          ☢
+        </div>
+      </div>
+      <h1 class="text-4xl font-extrabold mb-2">Nuclear Physics Problems</h1>
+      <p class="text-slate-500 text-lg">
+        Alpha, beta-plus, beta-minus, and gamma decay — simple and medium level.
+      </p>
+    </header>
+
+    <!-- FORMULA TOGGLE -->
+    <section class="mb-8 bg-white border border-emerald-100 rounded-2xl shadow-sm overflow-hidden">
+      <button onclick="toggleFormulas()"
+        class="w-full flex justify-between items-center p-4 bg-emerald-600 text-white font-bold">
+        <span>∑ NUCLEAR DECAY FORMULA REFERENCE</span>
+        <span id="formulaArrow">▲</span>
+      </button>
+
+      <div id="formulaBox" class="p-4 grid md:grid-cols-2 gap-4 bg-emerald-50/30"></div>
+    </section>
+
+    <!-- TABS -->
+    <div class="flex bg-slate-200 p-1 rounded-xl mb-8">
+      <button class="tab-btn active" onclick="setTab('Simple')">Simple (20)</button>
+      <button class="tab-btn" onclick="setTab('Medium')">Medium (20)</button>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div id="questionList" class="space-y-4"></div>
+
+    <!-- FOOTER -->
+    <footer class="mt-12 text-center border-t pt-8 text-slate-400 text-sm">
+      Mass number $A$, atomic number $Z$. $1\\,\\text{u} = 931.5\\,\\text{MeV}/c^2$.
+    </footer>
+  </div>
+</div>
+
+<script>
+/* ------------------ Math Rendering ------------------ */
+function renderMath(el, text) {
+  const parts = text.split(/(\$[^$]+\$)/g);
+  el.innerHTML = "";
+
+  parts.forEach(part => {
+    if (part.startsWith("$")) {
+      const span = document.createElement("span");
+      katex.render(part.slice(1, -1), span, { throwOnError: false });
+      span.className = "mx-1 text-emerald-900";
+      el.appendChild(span);
+    } else {
+      el.appendChild(document.createTextNode(part));
+    }
+  });
+}
+
+/* ------------------ DATA ------------------ */
+const formulas = [
+  ["Decay law", "$N(t) = N_0 e^{-\\lambda t}$"],
+  ["Half-life", "$T_{1/2} = \\frac{\\ln 2}{\\lambda} = \\frac{0.693}{\\lambda}$"],
+  ["Activity", "$A = \\lambda N$, $A(t) = A_0 e^{-\\lambda t}$"],
+  ["Alpha decay", "${}^{A}_{Z}X \\to {}^{A-4}_{Z-2}Y + {}^4_2\\alpha$"],
+  ["Beta-minus", "${}^{A}_{Z}X \\to {}^{A}_{Z+1}Y + e^- + \\bar{\\nu}_e$"],
+  ["Beta-plus", "${}^{A}_{Z}X \\to {}^{A}_{Z-1}Y + e^+ + \\nu_e$"],
+  ["Gamma decay", "${}^{A}_{Z}X^* \\to {}^{A}_{Z}X + \\gamma$ (no $A$, $Z$ change)"],
+  ["Number after $n$ half-lives", "$N = N_0 \\cdot 2^{-n}$"],
+];
+
+const questions = {
+  Simple: [
+    {
+      q: "1. In alpha decay, by how much does the mass number $A$ of the nucleus change?",
+      s: "In alpha decay, the parent emits a helium-4 nucleus (${}^4_2\\alpha$).\n\nSo the mass number decreases by 4: $\\Delta A = -4$."
+    },
+    {
+      q: "2. In alpha decay, by how much does the atomic number $Z$ change?",
+      s: "The alpha particle has $Z = 2$. So the daughter nucleus has 2 fewer protons: $\\Delta Z = -2$."
+    },
+    {
+      q: "3. Complete the alpha decay: ${}^{238}_{92}\\mathrm{U} \\to \\,?\\, + {}^4_2\\alpha$.",
+      s: "Alpha: $A$ decreases by 4, $Z$ by 2.\n\nDaughter: $A = 238 - 4 = 234$, $Z = 92 - 2 = 90$.\n\nElement with $Z = 90$ is thorium (Th).\n\nAnswer: ${}^{238}_{92}\\mathrm{U} \\to {}^{234}_{90}\\mathrm{Th} + {}^4_2\\alpha$."
+    },
+    {
+      q: "4. In beta-minus ($\\beta^-$) decay, what happens to $Z$ and $A$?",
+      s: "In $\\beta^-$ decay, a neutron becomes a proton plus an electron (and antineutrino). So the nucleus gains one proton: $\\Delta Z = +1$. Mass number is unchanged: $\\Delta A = 0$."
+    },
+    {
+      q: "5. Complete the beta-minus decay: $\${}^{14}_{6}\\mathrm{C}$ \\to \\,?\\, + e^- + \\bar{\\nu}_e$.",
+      s: "Beta-minus: $A$ unchanged, $Z$ increases by 1.\n\nDaughter: $A = 14$, $Z = 6 + 1 = 7$ (nitrogen).\n\nAnswer: $\${}^{14}_{6}\\mathrm{C}$ \\to \${}^{14}_{7}\\mathrm{N}$ + e^- + \\bar{\\nu}_e$."
+    },
+    {
+      q: "6. In beta-plus ($\\beta^+$) decay, what happens to $Z$ and $A$?",
+      s: "In $\\beta^+$ decay, a proton becomes a neutron plus a positron (and neutrino). So the nucleus loses one proton: $\\Delta Z = -1$. Mass number is unchanged: $\\Delta A = 0$."
+    },
+    {
+      q: "7. Complete the beta-plus decay: $\${}^{11}_{6}\\mathrm{C}$ \\to \\,?\\, + e^+ + \\nu_e$.",
+      s: "Beta-plus: $A$ unchanged, $Z$ decreases by 1.\n\nDaughter: $A = 11$, $Z = 6 - 1 = 5$ (boron).\n\nAnswer: $\${}^{11}_{6}\\mathrm{C}$ \\to \${}^{11}_{5}\\mathrm{B}$ + e^+ + \\nu_e$."
+    },
+    {
+      q: "8. In gamma ($\\gamma$) decay, do $A$ and $Z$ change?",
+      s: "No. Gamma decay is emission of a photon from an excited nucleus. Only energy is released; the nucleus drops to a lower energy state. So $\\Delta A = 0$ and $\\Delta Z = 0$."
+    },
+    {
+      q: "9. Which type of decay only changes the energy state of the nucleus (same isotope)?",
+      s: "Gamma decay. The nucleus stays the same isotope ($A$ and $Z$ unchanged); only internal energy (excitation) is lost as a $\\gamma$ photon."
+    },
+    {
+      q: "10. Radium-226 decays by alpha. What is the mass number and atomic number of the daughter? ($Z = 88$ for Ra.)",
+      s: "Alpha: $A \\to A - 4$, $Z \\to Z - 2$.\n\nDaughter: $A = 226 - 4 = 222$, $Z = 88 - 2 = 86$ (radon).\n\nAnswer: $\${}^{222}_{86}\\mathrm{Rn}$$."
+    },
+    {
+      q: "11. Strontium-90 decays by $\\beta^-$. What is the daughter nucleus? ($Z = 38$ for Sr.)",
+      s: "Beta-minus: $A$ unchanged, $Z$ increases by 1.\n\nDaughter: $A = 90$, $Z = 38 + 1 = 39$ (yttrium).\n\nAnswer: $\${}^{90}_{39}\\mathrm{Y}$$."
+    },
+    {
+      q: "12. Carbon-11 decays by $\\beta^+$. What is the daughter nucleus?",
+      s: "Beta-plus: $A$ unchanged, $Z$ decreases by 1.\n\nCarbon has $Z = 6$. Daughter: $A = 11$, $Z = 5$ (boron).\n\nAnswer: $\${}^{11}_{5}\\mathrm{B}$$."
+    },
+    {
+      q: "13. A nucleus emits ${}^4_2\\alpha$. Which decay is this?",
+      s: "Emission of a helium-4 nucleus (${}^4_2\\alpha$) is alpha decay."
+    },
+    {
+      q: "14. A nucleus changes from $Z$ to $Z+1$ with the same $A$. Which decay is this?",
+      s: "Same $A$, $Z$ increases by 1: that is beta-minus decay (neutron $\\to$ proton + $e^-$ + $\\bar{\\nu}_e$)."
+    },
+    {
+      q: "15. A nucleus changes from $Z$ to $Z-1$ with the same $A$. Which decay is this?",
+      s: "Same $A$, $Z$ decreases by 1: that is beta-plus decay (proton $\\to$ neutron + $e^+$ + $\\nu_e$)."
+    },
+    {
+      q: "16. After an alpha or beta decay, the daughter is often left in an excited state. What usually happens next?",
+      s: "The excited daughter nucleus typically emits one or more gamma ($\\gamma$) photons to reach the ground state. So we often see alpha or beta followed by gamma."
+    },
+    {
+      q: "17. What is the half-life $T_{1/2}$ in terms of the decay constant $\\lambda$?",
+      s: "$T_{1/2} = \\frac{\\ln 2}{\\lambda} = \\frac{0.693}{\\lambda}$.\n\nAfter one half-life, $N = N_0/2$; after $n$ half-lives, $N = N_0 \\cdot 2^{-n}$."
+    },
+    {
+      q: "18. A sample has initial activity $A_0$. What is the activity after one half-life?",
+      s: "Activity $A = \\lambda N$ and $N(t) = N_0 e^{-\\lambda t}$.\n\nSo $A(t) = A_0 e^{-\\lambda t}$. After one half-life $t = T_{1/2}$, $e^{-\\lambda T_{1/2}} = \\frac{1}{2}$.\n\nActivity after one half-life: $A = \\frac{A_0}{2}$."
+    },
+    {
+      q: "19. How many half-lives must pass for the number of nuclei to drop to $\\frac{1}{8}$ of the initial?",
+      s: "$N = N_0 \\cdot 2^{-n}$. We want $\\frac{N}{N_0} = \\frac{1}{8} = 2^{-3}$.\n\nSo $n = 3$ half-lives."
+    },
+    {
+      q: "20. Identify the decay: ${}^{212}_{84}\\mathrm{Po} \\to {}^{208}_{82}\\mathrm{Pb} + \\text{?}$.",
+      s: "$A$: 212 $\\to$ 208 (decrease by 4). $Z$: 84 $\\to$ 82 (decrease by 2).\n\nThis is alpha decay. The missing particle is ${}^4_2\\alpha$ (helium-4 nucleus)."
+    }
+  ],
+
+  Medium: [
+    {
+      q: "1. A sample of radon-222 ($T_{1/2} = 3.82\\,\\text{d}$) has $5.0 \\times 10^{12}$ nuclei. Find the decay constant $\\lambda$ (in $\\text{s}^{-1}$) and the initial activity.",
+      s: "$\\lambda = \\frac{\\ln 2}{T_{1/2}} = \\frac{0.693}{3.82 \\times 24 \\times 3600}\\,\\text{s}^{-1} = \\frac{0.693}{330\\,048} = 2.10 \\times 10^{-6}\\,\\text{s}^{-1}$.\n\nActivity $A_0 = \\lambda N_0 = (2.10 \\times 10^{-6})(5.0 \\times 10^{12}) = 1.05 \\times 10^7\\,\\text{Bq}$."
+    },
+    {
+      q: "2. Phosphorus-32 decays by $\\beta^-$ to sulfur-32. Write the full decay equation and state what else is emitted.",
+      s: "${}^{32}_{15}\\mathrm{P} \\to {}^{32}_{16}\\mathrm{S} + e^- + \\bar{\\nu}_e$.\n\nBesides the electron ($e^-$), an electron antineutrino ($\\bar{\\nu}_e$) is emitted to conserve lepton number and share kinetic energy."
+    },
+    {
+      q: "3. Fluorine-18 is used in PET imaging and decays by $\\beta^+$. Write the decay equation and name the daughter.",
+      s: "Beta-plus: $A$ unchanged, $Z$ decreases by 1. Fluorine has $Z = 9$.\n\n${}^{18}_{9}\\mathrm{F} \\to {}^{18}_{8}\\mathrm{O} + e^+ + \\nu_e$.\n\nThe daughter is oxygen-18 (${}^{18}_{8}\\mathrm{O}$)."
+    },
+    {
+      q: "4. Uranium-238 decays to thorium-234. Which decay type is this? Write the full equation.",
+      s: "238 $\\to$ 234 ($\\Delta A = -4$) and 92 $\\to$ 90 ($\\Delta Z = -2$): alpha decay.\n\n${}^{238}_{92}\\mathrm{U} \\to {}^{234}_{90}\\mathrm{Th} + {}^4_2\\alpha$."
+    },
+    {
+      q: "5. A sample starts with $N_0$ nuclei. After 2 half-lives, what fraction of nuclei remain? What fraction have decayed?",
+      s: "After $n$ half-lives: $N = N_0 \\cdot 2^{-n}$.\n\nFor $n = 2$: $N = N_0/4$. Fraction remaining: $\\frac{1}{4}$.\n\nFraction decayed: $1 - \\frac{1}{4} = \\frac{3}{4}$."
+    },
+    {
+      q: "6. The activity of a source drops from $800\\,\\text{Bq}$ to $100\\,\\text{Bq}$. How many half-lives have passed?",
+      s: "$A = A_0 \\cdot 2^{-n}$ so $\\frac{A}{A_0} = 2^{-n}$.\n\n$\\frac{100}{800} = \\frac{1}{8} = 2^{-3}$ $\\Rightarrow$ $n = 3$ half-lives."
+    },
+    {
+      q: "7. In a decay chain, a nucleus first undergoes alpha decay, then the daughter undergoes beta-minus decay. For ${}^{228}_{88}\\mathrm{Ra}$, find the two daughters in sequence.",
+      s: "First (alpha): ${}^{228}_{88}\\mathrm{Ra} \\to {}^{224}_{86}\\mathrm{Rn} + {}^4_2\\alpha$.\n\nSecond ($\\beta^-$ from ${}^{224}_{86}\\mathrm{Rn}$): ${}^{224}_{86}\\mathrm{Rn} \\to {}^{224}_{87}\\mathrm{Fr} + e^- + \\bar{\\nu}_e$.\n\nSo: Ra-228 $\\to$ Rn-224 $\\to$ Fr-224."
+    },
+    {
+      q: "8. Cobalt-60 decays by $\\beta^-$ to nickel-60, and the nickel-60 is produced in an excited state, then emits two gamma photons. Why does $\\gamma$ emission not change the identity of the nucleus?",
+      s: "Gamma decay is emission of a photon from an excited nuclear state. It only carries away energy (and angular momentum), not nucleons. So mass number $A$ and atomic number $Z$ stay the same — same isotope, lower energy state."
+    },
+    {
+      q: "9. The half-life of iodine-131 is 8.0 days. What is the decay constant $\\lambda$ in $\\text{d}^{-1}$?",
+      s: "$\\lambda = \\frac{\\ln 2}{T_{1/2}} = \\frac{0.693}{8.0} = 0.0866\\,\\text{d}^{-1}$ (about $8.66 \\times 10^{-2}\\,\\text{d}^{-1}$)."
+    },
+    {
+      q: "10. A nucleus ${}^{A}_{Z}X$ decays by emitting two alpha particles in succession. What are the new $A$ and $Z$?",
+      s: "Each alpha: $\\Delta A = -4$, $\\Delta Z = -2$.\n\nAfter two alphas: $A' = A - 8$, $Z' = Z - 4$."
+    },
+    {
+      q: "11. Potassium-40 can decay by $\\beta^-$ to calcium-40 or by $\\beta^+$ (or electron capture) to argon-40. For the $\\beta^-$ branch, write the equation.",
+      s: "${}^{40}_{19}\\mathrm{K} \\to {}^{40}_{20}\\mathrm{Ca} + e^- + \\bar{\\nu}_e$.\n\n($Z = 19$ for K, $Z = 20$ for Ca; $A$ stays 40.)"
+    },
+    {
+      q: "12. Thorium-234 decays by $\\beta^-$ to protactinium-234. Write the equation. What else is emitted?",
+      s: "${}^{234}_{90}\\mathrm{Th} \\to {}^{234}_{91}\\mathrm{Pa} + e^- + \\bar{\\nu}_e$.\n\nAn electron antineutrino $\\bar{\\nu}_e$ is also emitted."
+    },
+    {
+      q: "13. Polonium-214 decays by alpha to lead-210. Write the equation. (Po has $Z=84$, Pb has $Z=82$.)",
+      s: "${}^{214}_{84}\\mathrm{Po} \\to {}^{210}_{82}\\mathrm{Pb} + {}^4_2\\alpha$.\n\nCheck: $214 - 4 = 210$, $84 - 2 = 82$."
+    },
+    {
+      q: "14. If a nucleus has too many neutrons (above the valley of stability), it tends to decay by $\\beta^-$ or $\\beta^+$?",
+      s: "Too many neutrons: it tends to undergo beta-minus decay ($n \\to p + e^- + \\bar{\\nu}_e$), converting a neutron into a proton and moving toward the stability line."
+    },
+    {
+      q: "15. If a nucleus has too many protons (above the valley of stability), it may decay by $\\beta^+$ or electron capture. What happens to $Z$ in $\\beta^+$ decay?",
+      s: "In beta-plus decay a proton becomes a neutron, so $Z$ decreases by 1. That reduces the proton excess and moves the nucleus toward stability."
+    },
+    {
+      q: "16. The decay constant of a radioisotope is $2.0 \\times 10^{-5}\\,\\text{s}^{-1}$. Find its half-life in seconds and in hours.",
+      s: "$T_{1/2} = \\frac{\\ln 2}{\\lambda} = \\frac{0.693}{2.0 \\times 10^{-5}} = 34\\,650\\,\\text{s}$.\n\nIn hours: $\\frac{34\\,650}{3600} = 9.6\\,\\text{h}$ (approximately)."
+    },
+    {
+      q: "17. After gamma emission, are the mass number and atomic number of the nucleus different?",
+      s: "No. Gamma decay does not change $A$ or $Z$. Only the internal energy state of the nucleus changes; the isotope remains the same."
+    },
+    {
+      q: "18. Radium-226 undergoes alpha decay to radon-222. Radon-222 is also alpha-active. Write both decay equations.",
+      s: "${}^{226}_{88}\\mathrm{Ra} \\to {}^{222}_{86}\\mathrm{Rn} + {}^4_2\\alpha$.\n\n${}^{222}_{86}\\mathrm{Rn} \\to {}^{218}_{84}\\mathrm{Po} + {}^4_2\\alpha$ (polonium-218)."
+    },
+    {
+      q: "19. A source has activity $400\\,\\text{Bq}$ and half-life $1\\,\\text{h}$. Estimate the number of radioactive nuclei present. ($1\\,\\text{Bq} = 1\\,\\text{s}^{-1}$.)",
+      s: "$A = \\lambda N$, and $\\lambda = \\frac{\\ln 2}{T_{1/2}} = \\frac{0.693}{3600}\\,\\text{s}^{-1}$.\n\n$N = \\frac{A}{\\lambda} = \\frac{400}{0.693/3600} = \\frac{400 \\times 3600}{0.693} \\approx 2.08 \\times 10^6$ nuclei."
+    },
+    {
+      q: "20. Complete the decay and identify the type: ${}^{234}_{91}\\mathrm{Pa} \\to {}^{234}_{92}\\mathrm{U} + \\,?$.",
+      s: "$A$ unchanged (234), $Z$ increases by 1 (91 $\\to$ 92). This is beta-minus decay.\n\n${}^{234}_{91}\\mathrm{Pa} \\to {}^{234}_{92}\\mathrm{U} + e^- + \\bar{\\nu}_e$."
+    }
+  ]
+};
+
+let activeTab = "Simple";
+
+/* ------------------ UI FUNCTIONS ------------------ */
+function toggleFormulas() {
+  const box = document.getElementById("formulaBox");
+  const arrow = document.getElementById("formulaArrow");
+  box.classList.toggle("hidden");
+  arrow.textContent = box.classList.contains("hidden") ? "▼" : "▲";
+}
+
+function setTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  event.target.classList.add("active");
+  renderQuestions();
+}
+
+function renderQuestions() {
+  const list = document.getElementById("questionList");
+  list.innerHTML = "";
+
+  questions[activeTab].forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "bg-white rounded-2xl border shadow-sm p-6";
+
+    const q = document.createElement("div");
+    q.className = "text-lg mb-4";
+    renderMath(q, item.q);
+
+    const btn = document.createElement("button");
+    btn.className = "text-emerald-600 font-bold text-sm uppercase";
+    btn.textContent = "Show Solution";
+
+    const sol = document.createElement("div");
+    sol.className = "hidden mt-4 bg-slate-50 p-4 rounded-xl animate-slide";
+
+    const solText = document.createElement("div");
+    solText.className = "whitespace-pre-line";
+    renderMath(solText, item.s);
+
+    sol.appendChild(solText);
+
+    btn.onclick = () => {
+      sol.classList.toggle("hidden");
+      btn.textContent = sol.classList.contains("hidden")
+        ? "Show Solution"
+        : "Hide Solution";
+    };
+
+    card.append(q, btn, sol);
+    list.appendChild(card);
+  });
+}
+
+/* ------------------ INIT ------------------ */
+window.onload = () => {
+  const fBox = document.getElementById("formulaBox");
+  formulas.forEach(([name, f]) => {
+    const row = document.createElement("div");
+    row.className = "flex justify-between border-b py-2";
+    const n = document.createElement("span");
+    n.textContent = name;
+    n.className = "font-semibold text-slate-600 text-sm";
+    const fx = document.createElement("span");
+    renderMath(fx, f);
+    row.append(n, fx);
+    fBox.appendChild(row);
+  });
+
+  renderQuestions();
+};
+</script>
+
+<style>
+.tab-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+}
+.tab-btn.active {
+  background: white;
+  color: #059669;
+}
+</style>
+
+</body>
+</html>
