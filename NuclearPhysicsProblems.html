@@ -55,7 +55,7 @@
 
     <!-- TABS -->
     <div class="flex bg-slate-200 p-1 rounded-xl mb-8">
-      <button class="tab-btn active" onclick="setTab('Simple')">Simple (20)</button>
+      <button class="tab-btn active" onclick="setTab('Simple')">Simple (40)</button>
       <button class="tab-btn" onclick="setTab('Medium')">Medium (20)</button>
     </div>
 
@@ -101,86 +101,86 @@ const formulas = [
 
 const questions = {
   Simple: [
-    {
-      q: "1. In alpha decay, by how much does the mass number $A$ of the nucleus change?",
-      s: "In alpha decay, the parent emits a helium-4 nucleus (${}^4_2\\alpha$).\n\nSo the mass number decreases by 4: $\\Delta A = -4$."
-    },
-    {
-      q: "2. In alpha decay, by how much does the atomic number $Z$ change?",
-      s: "The alpha particle has $Z = 2$. So the daughter nucleus has 2 fewer protons: $\\Delta Z = -2$."
-    },
-    {
-      q: "3. Complete the alpha decay: ${}^{238}_{92}\\mathrm{U} \\to \\,?\\, + {}^4_2\\alpha$.",
-      s: "Alpha: $A$ decreases by 4, $Z$ by 2.\n\nDaughter: $A = 238 - 4 = 234$, $Z = 92 - 2 = 90$.\n\nElement with $Z = 90$ is thorium (Th).\n\nAnswer: ${}^{238}_{92}\\mathrm{U} \\to {}^{234}_{90}\\mathrm{Th} + {}^4_2\\alpha$."
-    },
-    {
-      q: "4. In beta-minus ($\\beta^-$) decay, what happens to $Z$ and $A$?",
-      s: "In $\\beta^-$ decay, a neutron becomes a proton plus an electron (and antineutrino). So the nucleus gains one proton: $\\Delta Z = +1$. Mass number is unchanged: $\\Delta A = 0$."
-    },
-    {
-      q: "5. Complete the beta-minus decay: $\${}^{14}_{6}\\mathrm{C}$ \\to \\,?\\, + e^- + \\bar{\\nu}_e$.",
-      s: "Beta-minus: $A$ unchanged, $Z$ increases by 1.\n\nDaughter: $A = 14$, $Z = 6 + 1 = 7$ (nitrogen).\n\nAnswer: $\${}^{14}_{6}\\mathrm{C}$ \\to \${}^{14}_{7}\\mathrm{N}$ + e^- + \\bar{\\nu}_e$."
-    },
-    {
-      q: "6. In beta-plus ($\\beta^+$) decay, what happens to $Z$ and $A$?",
-      s: "In $\\beta^+$ decay, a proton becomes a neutron plus a positron (and neutrino). So the nucleus loses one proton: $\\Delta Z = -1$. Mass number is unchanged: $\\Delta A = 0$."
-    },
-    {
-      q: "7. Complete the beta-plus decay: $\${}^{11}_{6}\\mathrm{C}$ \\to \\,?\\, + e^+ + \\nu_e$.",
-      s: "Beta-plus: $A$ unchanged, $Z$ decreases by 1.\n\nDaughter: $A = 11$, $Z = 6 - 1 = 5$ (boron).\n\nAnswer: $\${}^{11}_{6}\\mathrm{C}$ \\to \${}^{11}_{5}\\mathrm{B}$ + e^+ + \\nu_e$."
-    },
-    {
-      q: "8. In gamma ($\\gamma$) decay, do $A$ and $Z$ change?",
-      s: "No. Gamma decay is emission of a photon from an excited nucleus. Only energy is released; the nucleus drops to a lower energy state. So $\\Delta A = 0$ and $\\Delta Z = 0$."
-    },
-    {
-      q: "9. Which type of decay only changes the energy state of the nucleus (same isotope)?",
-      s: "Gamma decay. The nucleus stays the same isotope ($A$ and $Z$ unchanged); only internal energy (excitation) is lost as a $\\gamma$ photon."
-    },
-    {
-      q: "10. Radium-226 decays by alpha. What is the mass number and atomic number of the daughter? ($Z = 88$ for Ra.)",
-      s: "Alpha: $A \\to A - 4$, $Z \\to Z - 2$.\n\nDaughter: $A = 226 - 4 = 222$, $Z = 88 - 2 = 86$ (radon).\n\nAnswer: $\${}^{222}_{86}\\mathrm{Rn}$$."
-    },
-    {
-      q: "11. Strontium-90 decays by $\\beta^-$. What is the daughter nucleus? ($Z = 38$ for Sr.)",
-      s: "Beta-minus: $A$ unchanged, $Z$ increases by 1.\n\nDaughter: $A = 90$, $Z = 38 + 1 = 39$ (yttrium).\n\nAnswer: $\${}^{90}_{39}\\mathrm{Y}$$."
-    },
-    {
-      q: "12. Carbon-11 decays by $\\beta^+$. What is the daughter nucleus?",
-      s: "Beta-plus: $A$ unchanged, $Z$ decreases by 1.\n\nCarbon has $Z = 6$. Daughter: $A = 11$, $Z = 5$ (boron).\n\nAnswer: $\${}^{11}_{5}\\mathrm{B}$$."
-    },
-    {
-      q: "13. A nucleus emits ${}^4_2\\alpha$. Which decay is this?",
-      s: "Emission of a helium-4 nucleus (${}^4_2\\alpha$) is alpha decay."
-    },
-    {
-      q: "14. A nucleus changes from $Z$ to $Z+1$ with the same $A$. Which decay is this?",
-      s: "Same $A$, $Z$ increases by 1: that is beta-minus decay (neutron $\\to$ proton + $e^-$ + $\\bar{\\nu}_e$)."
-    },
-    {
-      q: "15. A nucleus changes from $Z$ to $Z-1$ with the same $A$. Which decay is this?",
-      s: "Same $A$, $Z$ decreases by 1: that is beta-plus decay (proton $\\to$ neutron + $e^+$ + $\\nu_e$)."
-    },
-    {
-      q: "16. After an alpha or beta decay, the daughter is often left in an excited state. What usually happens next?",
-      s: "The excited daughter nucleus typically emits one or more gamma ($\\gamma$) photons to reach the ground state. So we often see alpha or beta followed by gamma."
-    },
-    {
-      q: "17. What is the half-life $T_{1/2}$ in terms of the decay constant $\\lambda$?",
-      s: "$T_{1/2} = \\frac{\\ln 2}{\\lambda} = \\frac{0.693}{\\lambda}$.\n\nAfter one half-life, $N = N_0/2$; after $n$ half-lives, $N = N_0 \\cdot 2^{-n}$."
-    },
-    {
-      q: "18. A sample has initial activity $A_0$. What is the activity after one half-life?",
-      s: "Activity $A = \\lambda N$ and $N(t) = N_0 e^{-\\lambda t}$.\n\nSo $A(t) = A_0 e^{-\\lambda t}$. After one half-life $t = T_{1/2}$, $e^{-\\lambda T_{1/2}} = \\frac{1}{2}$.\n\nActivity after one half-life: $A = \\frac{A_0}{2}$."
-    },
-    {
-      q: "19. How many half-lives must pass for the number of nuclei to drop to $\\frac{1}{8}$ of the initial?",
-      s: "$N = N_0 \\cdot 2^{-n}$. We want $\\frac{N}{N_0} = \\frac{1}{8} = 2^{-3}$.\n\nSo $n = 3$ half-lives."
-    },
-    {
-      q: "20. Identify the decay: ${}^{212}_{84}\\mathrm{Po} \\to {}^{208}_{82}\\mathrm{Pb} + \\text{?}$.",
-      s: "$A$: 212 $\\to$ 208 (decrease by 4). $Z$: 84 $\\to$ 82 (decrease by 2).\n\nThis is alpha decay. The missing particle is ${}^4_2\\alpha$ (helium-4 nucleus)."
-    }
+    { q: "1. In alpha decay, by how much does the mass number $A$ change? By how much does the atomic number $Z$ change?",
+      s: "Alpha decay emits a helium-4 nucleus (${}^4_2\\alpha$). So $\\Delta A = -4$ and $\\Delta Z = -2$." },
+    { q: "2. Complete the alpha decay (find the daughter): ${}^{238}_{92}\\mathrm{U} \\to \\,?\\, + {}^4_2\\alpha$.",
+      s: "Alpha: $A$ decreases by 4, $Z$ by 2. Daughter: $A = 234$, $Z = 90$ (thorium).\n\n${}^{238}_{92}\\mathrm{U} \\to {}^{234}_{90}\\mathrm{Th} + {}^4_2\\alpha$." },
+    { q: "3. How many protons and how many neutrons are in ${}^{226}_{88}\\mathrm{Ra}$? (Radium-226.)",
+      s: "Protons $= Z = 88$. Neutrons $= A - Z = 226 - 88 = 138$." },
+    { q: "4. Radium-226 (${}^{226}_{88}\\mathrm{Ra}$) decays by alpha. What are the mass number $A$ and atomic number $Z$ of the daughter? How many protons and neutrons does the daughter have?",
+      s: "Daughter: $A = 222$, $Z = 86$ (radon, Rn). Protons $= 86$, neutrons $= 222 - 86 = 136$." },
+    { q: "5. In beta-minus decay, what happens to $A$ and $Z$?",
+      s: "A neutron turns into a proton: $\\Delta Z = +1$, $\\Delta A = 0$." },
+    { q: "6. Complete the beta-minus decay: ${}^{14}_{6}\\mathrm{C} \\to \\,?\\, + e^- + \\bar{\\nu}_e$.",
+      s: "Beta-minus: $A$ unchanged, $Z$ increases by 1. Daughter: $A = 14$, $Z = 7$ (nitrogen).\n\n${}^{14}_{6}\\mathrm{C} \\to {}^{14}_{7}\\mathrm{N} + e^- + \\bar{\\nu}_e$." },
+    { q: "7. How many protons and neutrons in ${}^{14}_{6}\\mathrm{C}$? In the daughter nucleus after this $\\beta^-$ decay?",
+      s: "Carbon-14: protons $= 6$, neutrons $= 14 - 6 = 8$.\n\nDaughter ${}^{14}_{7}\\mathrm{N}$: protons $= 7$, neutrons $= 14 - 7 = 7$." },
+    { q: "8. Strontium-90 (${}^{90}_{38}\\mathrm{Sr}$) decays by $\\beta^-$. What is the daughter? How many neutrons does the daughter nucleus have?",
+      s: "Daughter: $A = 90$, $Z = 39$ (yttrium, ${}^{90}_{39}\\mathrm{Y}$). Neutrons $= 90 - 39 = 51$." },
+    { q: "9. In beta-plus decay, what happens to $A$ and $Z$?",
+      s: "A proton turns into a neutron: $\\Delta Z = -1$, $\\Delta A = 0$." },
+    { q: "10. Complete the beta-plus decay: ${}^{11}_{6}\\mathrm{C} \\to \\,?\\, + e^+ + \\nu_e$.",
+      s: "Beta-plus: $A$ unchanged, $Z$ decreases by 1. Daughter: $A = 11$, $Z = 5$ (boron).\n\n${}^{11}_{6}\\mathrm{C} \\to {}^{11}_{5}\\mathrm{B} + e^+ + \\nu_e$." },
+    { q: "11. How many protons and neutrons in ${}^{18}_{9}\\mathrm{F}$ (fluorine-18)? In the daughter nucleus after $\\beta^+$ decay?",
+      s: "Fluorine-18: protons $= 9$, neutrons $= 9$.\n\nDaughter ${}^{18}_{8}\\mathrm{O}$: protons $= 8$, neutrons $= 18 - 8 = 10$." },
+    { q: "12. In gamma decay, do $A$ and $Z$ change? What is emitted?",
+      s: "No change: $\\Delta A = 0$, $\\Delta Z = 0$. A gamma photon ($\\gamma$) is emitted; the nucleus drops to a lower energy state." },
+    { q: "13. In gamma decay, do the number of protons and the number of neutrons in the nucleus change?",
+      s: "No. Gamma decay only releases energy (a photon). The same isotope remains; proton and neutron counts are unchanged." },
+    { q: "14. Identify the decay type and the missing particle: ${}^{212}_{84}\\mathrm{Po} \\to {}^{208}_{82}\\mathrm{Pb} + \\,?$.",
+      s: "$A$ decreases by 4, $Z$ by 2 $\\Rightarrow$ alpha decay. Missing particle: ${}^4_2\\alpha$." },
+    { q: "15. Identify the decay type and the missing particle(s): ${}^{234}_{90}\\mathrm{Th} \\to {}^{234}_{91}\\mathrm{Pa} + \\,?$.",
+      s: "$A$ unchanged, $Z$ increases by 1 $\\Rightarrow$ beta-minus. Missing: $e^- + \\bar{\\nu}_e$." },
+    { q: "16. Identify the decay type and the missing particle(s): ${}^{11}_{6}\\mathrm{C} \\to {}^{11}_{5}\\mathrm{B} + \\,?$.",
+      s: "$A$ unchanged, $Z$ decreases by 1 $\\Rightarrow$ beta-plus. Missing: $e^+ + \\nu_e$." },
+    { q: "17. Find the missing mass number: ${}^{A}_{92}\\mathrm{U} \\to {}^{234}_{90}\\mathrm{Th} + {}^4_2\\alpha$. What is $A$?",
+      s: "Alpha: daughter $A = 234$, so parent $A = 234 + 4 = 238$. So $A = 238$." },
+    { q: "18. In the decay ${}^{32}_{15}\\mathrm{P} \\to {}^{32}_{Z}\\mathrm{Y} + e^- + \\bar{\\nu}_e$, find $Z$ and name the daughter element.",
+      s: "Beta-minus: $Z$ of daughter $= 15 + 1 = 16$. Element with $Z = 16$ is sulfur (S)." },
+    { q: "19. In the decay ${}^{18}_{9}\\mathrm{F} \\to {}^{18}_{Z}\\mathrm{Y} + e^+ + \\nu_e$, find $Z$ and name the daughter element.",
+      s: "Beta-plus: $Z$ of daughter $= 9 - 1 = 8$. Element with $Z = 8$ is oxygen (O)." },
+    { q: "20. In a neutral atom of ${}^{14}_{6}\\mathrm{C}$, how many electrons? After $\\beta^-$ decay, the daughter is ${}^{14}_{7}\\mathrm{N}$. In a neutral nitrogen atom, how many electrons?",
+      s: "Neutral atom: electrons $= Z$. Carbon-14: 6 electrons. Neutral nitrogen-14: 7 electrons." },
+    { q: "21. In a neutral atom of ${}^{11}_{5}\\mathrm{B}$ (the daughter of ${}^{11}_{6}\\mathrm{C}$ after $\\beta^+$ decay), how many electrons?",
+      s: "For a neutral atom, electrons $= Z = 5$." },
+    { q: "22. Polonium-214 has $Z = 84$. How many protons, neutrons, and electrons in a neutral ${}^{214}_{84}\\mathrm{Po}$ atom? After alpha decay the daughter is lead (Pb). How many p, n, e in a neutral daughter atom?",
+      s: "Po-214 (neutral): protons $= 84$, neutrons $= 130$, electrons $= 84$.\n\nDaughter ${}^{210}_{82}\\mathrm{Pb}$ (neutral): protons $= 82$, neutrons $= 128$, electrons $= 82$." },
+    { q: "23. After an alpha or beta decay, the daughter nucleus is often in an excited state. What type of decay usually happens next?",
+      s: "Gamma decay. The nucleus emits one or more $\\gamma$ photons to reach the ground state." },
+    { q: "24. What is the half-life $T_{1/2}$ in terms of the decay constant $\\lambda$? After $n$ half-lives, what fraction of nuclei remain?",
+      s: "$T_{1/2} = \\frac{\\ln 2}{\\lambda} = \\frac{0.693}{\\lambda}$. After $n$ half-lives: $N = N_0 \\cdot 2^{-n}$ (fraction $2^{-n}$)." },
+    { q: "25. A sample has initial activity $A_0$. What is the activity after one half-life?",
+      s: "Activity $A(t) = A_0 e^{-\\lambda t}$. After one half-life, $A = A_0/2$." },
+    { q: "26. How many half-lives must pass for the number of nuclei to drop to $\\frac{1}{8}$ of the initial?",
+      s: "$N/N_0 = 2^{-n} = 1/8 = 2^{-3}$, so $n = 3$ half-lives." },
+    { q: "27. Complete and identify the decay: ${}^{234}_{91}\\mathrm{Pa} \\to {}^{234}_{92}\\mathrm{U} + \\,?$.",
+      s: "$A$ unchanged, $Z$ increases by 1 $\\Rightarrow$ beta-minus. ${}^{234}_{91}\\mathrm{Pa} \\to {}^{234}_{92}\\mathrm{U} + e^- + \\bar{\\nu}_e$." },
+    { q: "28. Write the full alpha decay for radium-226 (${}^{226}_{88}\\mathrm{Ra}$). Give the daughter's $A$, $Z$, and symbol.",
+      s: "${}^{226}_{88}\\mathrm{Ra} \\to {}^{222}_{86}\\mathrm{Rn} + {}^4_2\\alpha$. Daughter: $A = 222$, $Z = 86$, radon (Rn)." },
+    { q: "29. Write the full beta-minus decay for phosphorus-32 (${}^{32}_{15}\\mathrm{P}$). Give the daughter's $A$, $Z$, and symbol.",
+      s: "${}^{32}_{15}\\mathrm{P} \\to {}^{32}_{16}\\mathrm{S} + e^- + \\bar{\\nu}_e$. Daughter: $A = 32$, $Z = 16$, sulfur (S)." },
+    { q: "30. Write the full beta-plus decay for carbon-11. Give the daughter's $A$, $Z$, and symbol.",
+      s: "${}^{11}_{6}\\mathrm{C} \\to {}^{11}_{5}\\mathrm{B} + e^+ + \\nu_e$. Daughter: $A = 11$, $Z = 5$, boron (B)." },
+    { q: "31. A nucleus has $A = 222$, $Z = 86$. It decays by alpha. What are $A$ and $Z$ of the daughter?",
+      s: "Alpha: $A' = 222 - 4 = 218$, $Z' = 86 - 2 = 84$." },
+    { q: "32. A nucleus has $A = 40$, $Z = 19$. It decays by $\\beta^-$. What are $A$ and $Z$ of the daughter?",
+      s: "Beta-minus: $A' = 40$, $Z' = 19 + 1 = 20$." },
+    { q: "33. A nucleus has $A = 18$, $Z = 9$. It decays by $\\beta^+$. What are $A$ and $Z$ of the daughter?",
+      s: "Beta-plus: $A' = 18$, $Z' = 9 - 1 = 8$." },
+    { q: "34. In gamma decay, do the parent and daughter have the same $A$ and $Z$?",
+      s: "Yes. Gamma decay does not change $A$ or $Z$; only the energy state of the nucleus changes." },
+    { q: "35. How many neutrons in ${}^{238}_{92}\\mathrm{U}$? How many protons and neutrons in the alpha particle ${}^4_2\\alpha$?",
+      s: "Uranium-238: neutrons $= 238 - 92 = 146$.\n\nAlpha particle: protons $= 2$, neutrons $= 4 - 2 = 2$." },
+    { q: "36. In a neutral atom of ${}^{90}_{38}\\mathrm{Sr}$, how many electrons? In a neutral atom of the daughter ${}^{90}_{39}\\mathrm{Y}$ after $\\beta^-$ decay?",
+      s: "Neutral atom: electrons $= Z$. Sr-90: 38 electrons. Y-90: 39 electrons." },
+    { q: "37. Fill in the indices: ${}^{226}_{88}\\mathrm{Ra} \\to {}^{\\,?\\,}_{\\,?\\,}\\mathrm{Rn} + {}^4_2\\alpha$.",
+      s: "Alpha: daughter $A = 226 - 4 = 222$, $Z = 88 - 2 = 86$. So ${}^{222}_{86}\\mathrm{Rn}$." },
+    { q: "38. Fill in the indices: ${}^{14}_{6}\\mathrm{C} \\to {}^{\\,?\\,}_{\\,?\\,}\\mathrm{N} + e^- + \\bar{\\nu}_e$.",
+      s: "Beta-minus: daughter $A = 14$, $Z = 7$. So ${}^{14}_{7}\\mathrm{N}$." },
+    { q: "39. Fill in the indices: ${}^{11}_{6}\\mathrm{C} \\to {}^{\\,?\\,}_{\\,?\\,}\\mathrm{B} + e^+ + \\nu_e$.",
+      s: "Beta-plus: daughter $A = 11$, $Z = 5$. So ${}^{11}_{5}\\mathrm{B}$." },
+    { q: "40. Name all four types of nuclear decay or transformation we have used. For each, state the change in $A$ and $Z$.",
+      s: "(1) Alpha: $\\Delta A = -4$, $\\Delta Z = -2$.\n(2) Beta-minus: $\\Delta A = 0$, $\\Delta Z = +1$.\n(3) Beta-plus: $\\Delta A = 0$, $\\Delta Z = -1$.\n(4) Gamma: $\\Delta A = 0$, $\\Delta Z = 0$." }
   ],
 
   Medium: [
