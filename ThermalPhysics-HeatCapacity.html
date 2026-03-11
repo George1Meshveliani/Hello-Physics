@@ -31,6 +31,21 @@
     <section class="space-y-8 mb-12">
 
       <div class="theory-card rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-slate-800 mb-3">Quick: Temperature scale conversion (°C, K, °F)</h2>
+        <p class="text-slate-700 mb-4">Convert between <strong>Celsius</strong> (°C), <strong>Kelvin</strong> (K), and <strong>Fahrenheit</strong> (°F) using these formulas:</p>
+        <div class="formula-box">
+          \[ T_\text{K} = T_\text{C} + 273.15 \qquad \Leftrightarrow \qquad T_\text{C} = T_\text{K} - 273.15 \]
+        </div>
+        <div class="formula-box">
+          \[ T_\text{F} = \frac{9}{5}\,T_\text{C} + 32 \qquad \Leftrightarrow \qquad T_\text{C} = \frac{5}{9}(T_\text{F} - 32) \]
+        </div>
+        <p class="text-slate-700 mb-2">Combining: \( T_\text{F} = \frac{9}{5}(T_\text{K} - 273.15) + 32 \) and \( T_\text{K} = \frac{5}{9}(T_\text{F} - 32) + 273.15 \). For <em>temperature differences</em>, \( 1\,\text{K} = 1\,°\text{C} \), and \( \Delta T_\text{F} = \frac{9}{5}\,\Delta T_\text{C} \).</p>
+        <div class="example-box">
+          <strong>Examples:</strong> 0°C = 273.15 K = 32°F. 100°C = 373.15 K = 212°F. 25°C = 298.15 K = 77°F. Body temperature 37°C = 310.15 K ≈ 98.6°F.
+        </div>
+      </div>
+
+      <div class="theory-card rounded-xl p-6 shadow-sm">
         <h2 class="text-2xl font-bold text-slate-800 mb-3">1. Temperature and temperature difference</h2>
         <p class="text-slate-700 mb-4"><strong>Temperature</strong> \( T \) (in °C or K) measures how hot or cold a body is. The <strong>temperature difference</strong> \( \Delta T \) between two states is the change in temperature when the body is heated or cooled:</p>
         <div class="formula-box">
@@ -112,6 +127,7 @@
     <section class="mb-12">
       <h2 class="text-2xl font-bold text-slate-800 mb-4">Formulas at a glance</h2>
       <div class="bg-white border border-orange-200 rounded-xl p-6 shadow-sm space-y-3 text-slate-700">
+        <p><strong>Temperature conversion:</strong> \( T_\text{K} = T_\text{C} + 273.15 \); \( T_\text{F} = \frac{9}{5}T_\text{C} + 32 \); \( T_\text{C} = \frac{5}{9}(T_\text{F} - 32) \).</p>
         <p><strong>Temperature difference:</strong> \( \Delta T = T_\text{final} - T_\text{initial} \).</p>
         <p><strong>Heat and specific heat capacity:</strong> \( Q = mc\,\Delta T \). \( c \) in \( \text{J/(kg}\cdot\text{K)} \).</p>
         <p><strong>Rearranging:</strong> \( c = Q/(m\,\Delta T) \), \( \Delta T = Q/(mc) \), \( m = Q/(c\,\Delta T) \).</p>
