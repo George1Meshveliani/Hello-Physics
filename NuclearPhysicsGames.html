@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuclear Physics — Decay Games</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    .game-card { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border: 2px solid #059669; border-radius: 1rem; }
+    .tap-btn { transition: transform 0.15s, box-shadow 0.15s; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    .tap-btn:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3); }
+    .tap-btn:active { transform: scale(0.98); }
+    .tap-btn.correct { animation: correctPop 0.5s ease; background: #059669 !important; color: white; }
+    .tap-btn.wrong { animation: wrongShake 0.4s ease; }
+    @keyframes correctPop { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
+    @keyframes wrongShake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+    .nucleus { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.25rem; background: radial-gradient(circle at 30% 30%, #86efac, #059669); color: #022c22; box-shadow: inset 0 -4px 8px rgba(0,0,0,0.15); }
+    .nucleus.decaying { animation: nucleusPulse 0.6s ease forwards; }
+    @keyframes nucleusPulse { 0% { transform: scale(1); opacity: 1; } 40% { transform: scale(1.2); opacity: 0.9; } 100% { transform: scale(0); opacity: 0; } }
+    .particle { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: bold; opacity: 0; }
+    .particle.alpha { width: 36px; height: 36px; background: #fde047; color: #713f12; }
+    .particle.beta { width: 28px; height: 28px; background: #93c5fd; color: #1e3a8a; }
+    .particle.gamma { width: 24px; height: 24px; background: #f9a8d4; color: #831843; }
+    .particle.fly { animation: particleFly 1s ease forwards; }
+    @keyframes particleFly {
+      0% { opacity: 0; transform: translate(0, 0) scale(0.3); }
+      30% { opacity: 1; transform: translate(20px, -30px) scale(1); }
+      100% { opacity: 1; transform: translate(80px, -60px) scale(0.8); }
+    }
+    #g3-daughter { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0); }
+    .daughter-appear { animation: daughterAppear 0.6s ease 0.4s forwards; opacity: 0; }
+    @keyframes daughterAppear { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+    #g3-particle { left: 50%; top: 50%; }
+    .confetti { position: fixed; pointer-events: none; z-index: 100; }
+    .score-badge { min-width: 2.5rem; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div class="min-h-screen p-4 md:p-8 pb-20">
+  <div class="max-w-3xl mx-auto">
+
+    <header class="mb-8 text-center">
+      <div class="flex justify-center mb-4">
+        <div class="bg-emerald-600 p-4 rounded-2xl shadow-lg shadow-emerald-200 text-4xl">
+          ☢
+        </div>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-2">Nuclear Decay Games</h1>
+      <p class="text-slate-600">Interactive questions and animations — tap to play!</p>
+      <p class="mt-4 text-sm text-slate-500"><a href="https://george1meshveliani.github.io/Hello-Physics/README" class="text-emerald-600 hover:underline">← Back to Hello Physics</a></p>
+    </header>
+
+    <!-- Game 1: What type of decay? -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-2">1. What type of decay?</h2>
+      <p class="text-slate-600 text-sm mb-4">Tap the correct decay type for the change shown.</p>
+      <div id="g1-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[3rem] p-3 bg-white/70 rounded-lg"></div>
+      <div class="grid grid-cols-2 gap-3">
+        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-emerald-100 border-2 border-emerald-300 text-emerald-900 font-bold" data-choice="alpha">Alpha (α)</button>
+        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-blue-100 border-2 border-blue-300 text-blue-900 font-bold" data-choice="beta-">Beta-minus (β⁻)</button>
+        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-amber-100 border-2 border-amber-300 text-amber-900 font-bold" data-choice="beta+">Beta-plus (β⁺)</button>
+        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-pink-100 border-2 border-pink-300 text-pink-900 font-bold" data-choice="gamma">Gamma (γ)</button>
+      </div>
+      <p id="g1-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
+      <button type="button" id="g1-next" class="mt-3 text-emerald-600 font-semibold text-sm hover:underline hidden">Next question →</button>
+    </section>
+
+    <!-- Game 2: Complete the daughter -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-2">2. Complete the daughter nucleus</h2>
+      <p class="text-slate-600 text-sm mb-4">Parent decays as shown. Tap the correct daughter.</p>
+      <div id="g2-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[3rem] p-3 bg-white/70 rounded-lg"></div>
+      <div id="g2-choices" class="grid grid-cols-2 gap-3"></div>
+      <p id="g2-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
+      <button type="button" id="g2-next" class="mt-3 text-emerald-600 font-semibold text-sm hover:underline hidden">Next →</button>
+    </section>
+
+    <!-- Game 3: Decay animation -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-2">3. Watch a decay</h2>
+      <p class="text-slate-600 text-sm mb-4">Choose a decay type and tap "Decay!" to see an animation.</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <button type="button" class="decay-type-btn tap-btn py-2 px-4 rounded-lg bg-emerald-200 border-2 border-emerald-400 font-semibold" data-type="alpha">Alpha</button>
+        <button type="button" class="decay-type-btn tap-btn py-2 px-4 rounded-lg bg-blue-200 border-2 border-blue-400 font-semibold" data-type="beta-">β⁻</button>
+        <button type="button" class="decay-type-btn tap-btn py-2 px-4 rounded-lg bg-amber-200 border-2 border-amber-400 font-semibold" data-type="beta+">β⁺</button>
+        <button type="button" class="decay-type-btn tap-btn py-2 px-4 rounded-lg bg-pink-200 border-2 border-pink-400 font-semibold" data-type="gamma">Gamma</button>
+      </div>
+      <div id="g3-stage" class="relative h-48 flex items-center justify-center bg-slate-100 rounded-xl overflow-hidden">
+        <div id="g3-parent" class="nucleus">238<br>92<br>U</div>
+        <div id="g3-particle" class="particle"></div>
+        <div id="g3-daughter" class="nucleus daughter-appear absolute" style="display:none;"></div>
+      </div>
+      <button type="button" id="g3-go" class="tap-btn mt-4 w-full py-4 rounded-xl bg-emerald-600 text-white font-bold text-lg">Decay!</button>
+    </section>
+
+    <!-- Game 4: Quick quiz -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-2">4. Quick quiz</h2>
+      <p class="text-slate-600 text-sm mb-4">Tap the correct answer. Score: <span id="g4-score" class="score-badge font-bold text-emerald-600">0</span> / <span id="g4-total">0</span></p>
+      <div id="g4-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[4rem] p-3 bg-white/70 rounded-lg"></div>
+      <div id="g4-choices" class="space-y-2"></div>
+      <p id="g4-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
+      <button type="button" id="g4-next" class="mt-3 text-emerald-600 font-semibold text-sm hover:underline hidden">Next question →</button>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  // —— Game 1: What type of decay? ——
+  const g1Questions = [
+    { q: "Mass number A decreases by 4, atomic number Z decreases by 2.", a: "alpha" },
+    { q: "A stays the same, Z increases by 1.", a: "beta-" },
+    { q: "A stays the same, Z decreases by 1.", a: "beta+" },
+    { q: "A and Z both stay the same; only energy is emitted.", a: "gamma" },
+    { q: "²³⁸₉₂ U → ²³⁴₉₀ Th + ? (missing particle: helium-4 nucleus)", a: "alpha" },
+    { q: "¹⁴₆ C → ¹⁴₇ N + e⁻ + ν̄", a: "beta-" },
+    { q: "¹¹₆ C → ¹¹₅ B + e⁺ + ν", a: "beta+" },
+    { q: "Excited nucleus emits a photon and keeps same A and Z.", a: "gamma" },
+  ];
+  let g1Index = 0;
+  const g1QuestionEl = document.getElementById('g1-question');
+  const g1FeedbackEl = document.getElementById('g1-feedback');
+  const g1NextBtn = document.getElementById('g1-next');
+
+  const game1Section = document.querySelector('.game-card');
+
+  function g1Show() {
+    const d = g1Questions[g1Index];
+    g1QuestionEl.textContent = d.q;
+    g1FeedbackEl.textContent = '';
+    g1NextBtn.classList.add('hidden');
+    game1Section.querySelectorAll('.tap-btn[data-choice]').forEach(b => {
+      b.classList.remove('correct', 'wrong');
+      b.disabled = false;
+    });
+  }
+
+  game1Section.querySelectorAll('.tap-btn[data-choice]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const choice = this.getAttribute('data-choice');
+      const correct = g1Questions[g1Index].a;
+      const buttons = game1Section.querySelectorAll('.tap-btn[data-choice]');
+      buttons.forEach(b => b.disabled = true);
+      if (choice === correct) {
+        this.classList.add('correct');
+        g1FeedbackEl.textContent = 'Correct!';
+        g1FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-emerald-600';
+      } else {
+        this.classList.add('wrong');
+        const rightBtn = Array.from(buttons).find(b => b.getAttribute('data-choice') === correct);
+        if (rightBtn) rightBtn.classList.add('correct');
+        g1FeedbackEl.textContent = 'Not quite. The answer is ' + (correct === 'alpha' ? 'Alpha' : correct === 'beta-' ? 'Beta-minus' : correct === 'beta+' ? 'Beta-plus' : 'Gamma') + '.';
+        g1FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+      }
+      g1NextBtn.classList.remove('hidden');
+    });
+  });
+
+  g1NextBtn.addEventListener('click', function() {
+    g1Index = (g1Index + 1) % g1Questions.length;
+    g1Show();
+  });
+
+  g1Show();
+
+  // —— Game 2: Complete the daughter ——
+  const g2Questions = [
+    { parent: "²³⁸₉₂ U", decay: "alpha", options: ["²³⁴₉₀ Th", "²³⁴₉₁ Pa", "²³⁸₉₀ Th", "²³⁶₉₀ Th"], a: 0 },
+    { parent: "¹⁴₆ C", decay: "β⁻", options: ["¹⁴₇ N", "¹⁴₅ B", "¹⁰₆ C", "¹⁴₆ N"], a: 0 },
+    { parent: "¹¹₆ C", decay: "β⁺", options: ["¹¹₅ B", "¹¹₇ N", "¹⁰₅ B", "¹¹₆ B"], a: 0 },
+    { parent: "²²⁶₈₈ Ra", decay: "alpha", options: ["²²²₈₆ Rn", "²²⁶₈₆ Rn", "²²⁴₈₆ Rn", "²³⁰₈₆ Rn"], a: 0 },
+    { parent: "⁹⁰₃₈ Sr", decay: "β⁻", options: ["⁹⁰₃₉ Y", "⁹⁰₃₇ Rb", "⁸⁹₃₉ Y", "⁹¹₃₉ Y"], a: 0 },
+  ];
+  let g2Index = 0;
+  const g2QuestionEl = document.getElementById('g2-question');
+  const g2ChoicesEl = document.getElementById('g2-choices');
+  const g2FeedbackEl = document.getElementById('g2-feedback');
+  const g2NextBtn = document.getElementById('g2-next');
+
+  function g2Show() {
+    const d = g2Questions[g2Index];
+    g2QuestionEl.textContent = d.parent + ' → ? (decay: ' + d.decay + ')';
+    g2ChoicesEl.innerHTML = '';
+    d.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tap-btn py-4 px-4 rounded-xl bg-white border-2 border-emerald-300 text-slate-800 font-semibold';
+      btn.textContent = opt;
+      btn.addEventListener('click', function() {
+        g2ChoicesEl.querySelectorAll('button').forEach(b => b.disabled = true);
+        if (i === d.a) {
+          this.classList.add('correct');
+          g2FeedbackEl.textContent = 'Correct!';
+          g2FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-emerald-600';
+        } else {
+          this.classList.add('wrong');
+          g2ChoicesEl.children[d.a].classList.add('correct');
+          g2FeedbackEl.textContent = 'The correct daughter is ' + d.options[d.a] + '.';
+          g2FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+        }
+        g2NextBtn.classList.remove('hidden');
+      });
+      g2ChoicesEl.appendChild(btn);
+    });
+    g2FeedbackEl.textContent = '';
+    g2NextBtn.classList.add('hidden');
+  }
+
+  g2NextBtn.addEventListener('click', function() {
+    g2Index = (g2Index + 1) % g2Questions.length;
+    g2Show();
+  });
+
+  g2Show();
+
+  // —— Game 3: Decay animation ——
+  const g3Config = {
+    'alpha': { parent: '238\n92\nU', daughter: '234\n90\nTh', particle: 'α', particleClass: 'alpha' },
+    'beta-': { parent: '14\n6\nC', daughter: '14\n7\nN', particle: 'β⁻', particleClass: 'beta' },
+    'beta+': { parent: '11\n6\nC', daughter: '11\n5\nB', particle: 'β⁺', particleClass: 'beta' },
+    'gamma': { parent: '60\n27\nCo*', daughter: '60\n27\nCo', particle: 'γ', particleClass: 'gamma' },
+  };
+  let g3Type = 'alpha';
+  const stage = document.getElementById('g3-stage');
+  const parentEl = document.getElementById('g3-parent');
+  const particleEl = document.getElementById('g3-particle');
+  const daughterEl = document.getElementById('g3-daughter');
+  const goBtn = document.getElementById('g3-go');
+
+  document.querySelectorAll('.decay-type-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.decay-type-btn').forEach(b => b.classList.remove('ring-4', 'ring-emerald-500'));
+      this.classList.add('ring-4', 'ring-emerald-500');
+      g3Type = this.getAttribute('data-type');
+    });
+  });
+
+  goBtn.addEventListener('click', function() {
+    const cfg = g3Config[g3Type];
+    parentEl.innerHTML = cfg.parent.replace(/\n/g, '<br>');
+    parentEl.classList.remove('decaying');
+    parentEl.style.display = 'flex';
+    parentEl.style.transform = 'scale(1)';
+    parentEl.style.opacity = '1';
+    daughterEl.style.display = 'none';
+    daughterEl.classList.remove('daughter-appear');
+    daughterEl.innerHTML = cfg.daughter.replace(/\n/g, '<br>');
+    particleEl.textContent = '';
+    particleEl.className = 'particle ' + cfg.particleClass;
+    particleEl.classList.remove('fly');
+
+    void parentEl.offsetWidth;
+    parentEl.classList.add('decaying');
+    particleEl.textContent = cfg.particle;
+    particleEl.classList.add('fly');
+    daughterEl.style.display = 'flex';
+    daughterEl.style.opacity = '0';
+    daughterEl.style.transform = 'scale(0)';
+    daughterEl.classList.add('daughter-appear');
+
+    setTimeout(function() {
+      parentEl.style.display = 'none';
+      parentEl.classList.remove('decaying');
+    }, 650);
+    setTimeout(function() {
+      parentEl.style.display = 'flex';
+      parentEl.style.opacity = '1';
+      parentEl.style.transform = 'scale(1)';
+      daughterEl.style.display = 'none';
+      daughterEl.classList.remove('daughter-appear');
+      particleEl.classList.remove('fly');
+      particleEl.style.opacity = '0';
+      const cfg = g3Config[g3Type];
+      parentEl.innerHTML = cfg.parent.replace(/\n/g, '<br>');
+    }, 2500);
+  });
+
+  // —— Game 4: Quick quiz ——
+  const g4Questions = [
+    { q: "In alpha decay, how does Z change?", opts: ["Z increases by 2", "Z decreases by 2", "Z stays the same", "Z decreases by 1"], a: 1 },
+    { q: "What is emitted in beta-minus decay?", opts: ["Alpha particle", "Electron and antineutrino", "Positron and neutrino", "Gamma photon"], a: 1 },
+    { q: "Gamma decay changes which of these?", opts: ["Mass number A", "Atomic number Z", "Neither A nor Z", "Both A and Z"], a: 2 },
+    { q: "After β⁻ decay, the daughter has ___ proton(s) than the parent.", opts: ["1 more", "1 fewer", "2 fewer", "same number"], a: 0 },
+    { q: "The alpha particle is the same as:", opts: ["A neutron", "Helium-4 nucleus", "An electron", "A photon"], a: 1 },
+  ];
+  let g4Index = 0;
+  let g4Score = 0;
+  const g4QuestionEl = document.getElementById('g4-question');
+  const g4ChoicesEl = document.getElementById('g4-choices');
+  const g4FeedbackEl = document.getElementById('g4-feedback');
+  const g4ScoreEl = document.getElementById('g4-score');
+  const g4TotalEl = document.getElementById('g4-total');
+  const g4NextBtn = document.getElementById('g4-next');
+
+  function g4Show() {
+    const d = g4Questions[g4Index];
+    g4QuestionEl.textContent = d.q;
+    g4TotalEl.textContent = g4Questions.length;
+    g4ScoreEl.textContent = g4Score;
+    g4ChoicesEl.innerHTML = '';
+    d.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tap-btn w-full py-4 px-4 rounded-xl bg-white border-2 border-emerald-300 text-left font-medium text-slate-800';
+      btn.textContent = opt;
+      btn.addEventListener('click', function() {
+        g4ChoicesEl.querySelectorAll('button').forEach(b => b.disabled = true);
+        if (i === d.a) {
+          this.classList.add('correct');
+          g4Score++;
+          g4ScoreEl.textContent = g4Score;
+          g4FeedbackEl.textContent = 'Correct!';
+          g4FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-emerald-600';
+        } else {
+          this.classList.add('wrong');
+          g4ChoicesEl.children[d.a].classList.add('correct');
+          g4FeedbackEl.textContent = 'Correct answer: ' + d.opts[d.a];
+          g4FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+        }
+        g4NextBtn.classList.remove('hidden');
+      });
+      g4ChoicesEl.appendChild(btn);
+    });
+    g4FeedbackEl.textContent = '';
+    g4NextBtn.classList.add('hidden');
+  }
+
+  g4NextBtn.addEventListener('click', function() {
+    g4Index = (g4Index + 1) % g4Questions.length;
+    if (g4Index === 0) g4Score = 0;
+    g4Show();
+  });
+
+  g4Show();
+})();
+</script>
+
+</body>
+</html>

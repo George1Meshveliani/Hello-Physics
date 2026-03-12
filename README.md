@@ -32,6 +32,7 @@ Click the topic and Enjoy!
 - [`Alpha, beta & gamma decay`](https://george1meshveliani.github.io/Hello-Physics/NuclearPhysics2-Decay) — how decay works, why nuclei behave that way, energy and radiation
 - [`Applications`](https://george1meshveliani.github.io/Hello-Physics/NuclearPhysics3-Applications) — power reactors, half-life, dating, nuclear bombs, X-ray machines, microwaves and the physics behind them
 - [`Nuclear Physics Problems`](https://george1meshveliani.github.io/Hello-Physics/NuclearPhysicsProblems) — alpha, beta⁺, beta⁻, gamma: simple and medium problem set with solutions
+- [`Nuclear Physics — Decay Games`](https://george1meshveliani.github.io/Hello-Physics/NuclearPhysicsGames) — interactive questions and animations: identify decay type, complete the daughter nucleus, watch decay animations, quick quiz (touch-friendly)
 
 #### Fluid Mechanics
 - [`Pressure, Pascal's law & ideal gas`](https://george1meshveliani.github.io/Hello-Physics/FluidMechanics-PressureAndGases) — pressure and force (\(P = F/A\)), Pascal's law and its connection to force, hydrostatic pressure, pressure formulas, and \(PV = nRT\)
