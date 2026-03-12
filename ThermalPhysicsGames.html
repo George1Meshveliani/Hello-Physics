@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thermal Physics — Heat & Temperature Games</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    .game-card {
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 50%, #fed7aa 100%);
+      border: 2px solid #ea580c;
+      border-radius: 1.25rem;
+      box-shadow: 0 4px 20px rgba(234, 88, 12, 0.15);
+    }
+    .tap-btn {
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tap-btn:hover { transform: scale(1.03); box-shadow: 0 6px 16px rgba(234, 88, 12, 0.25); }
+    .tap-btn:active { transform: scale(0.97); }
+    .tap-btn.correct {
+      animation: correctBounce 0.6s ease;
+      background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+      color: white;
+      border-color: #15803d !important;
+    }
+    .tap-btn.wrong { animation: wrongShake 0.45s ease; }
+    @keyframes correctBounce {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.12); }
+      50% { transform: scale(0.95); }
+      70% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes wrongShake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+
+    /* Thermometer */
+    .thermometer-wrap {
+      width: 48px;
+      height: 140px;
+      background: linear-gradient(to top, #dc2626 0%, #f97316 50%, #fbbf24 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: inset 0 0 12px rgba(0,0,0,0.2);
+    }
+    .thermometer-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0%;
+      background: linear-gradient(to top, #7c2d12, #ea580c);
+      border-radius: 0 0 24px 24px;
+      transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .thermometer-fill.rise { animation: tempRise 1s ease forwards; }
+    @keyframes tempRise {
+      from { height: 0%; }
+      to { height: var(--fill, 60%); }
+    }
+
+    /* Beakers / mixing */
+    .beaker {
+      width: 70px;
+      height: 90px;
+      border: 4px solid #78716c;
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 -4px 12px rgba(0,0,0,0.1);
+    }
+    .beaker-liquid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70%;
+      border-radius: 0 0 8px 8px;
+      transition: height 0.5s ease, background 0.6s ease;
+    }
+    .beaker.hot .beaker-liquid { background: linear-gradient(to top, #b91c1c, #ef4444); }
+    .beaker.cold .beaker-liquid { background: linear-gradient(to top, #0369a1, #0ea5e9); }
+    .beaker.mixed .beaker-liquid { background: linear-gradient(to top, #c2410c, #f97316); }
+    .beaker.merge-anim .beaker-liquid { animation: liquidMerge 1.2s ease forwards; }
+    @keyframes liquidMerge {
+      0% { height: 70%; filter: brightness(1); }
+      50% { height: 85%; filter: brightness(1.2); }
+      100% { height: 70%; filter: brightness(1); }
+    }
+
+    /* Heat glow */
+    .heat-glow {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fef3c7, #f59e0b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
+    }
+    .heat-glow.heating { animation: heatPulse 0.8s ease infinite; }
+    @keyframes heatPulse {
+      0%,100% { transform: scale(1); box-shadow: 0 0 30px rgba(245, 158, 11, 0.6); }
+      50% { transform: scale(1.08); box-shadow: 0 0 45px rgba(245, 158, 11, 0.9); }
+    }
+
+    /* Confetti container */
+    .confetti-zone { position: fixed; inset: 0; pointer-events: none; z-index: 100; overflow: hidden; }
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      animation: confettiFall 2s ease-out forwards;
+    }
+    @keyframes confettiFall {
+      0% { opacity: 1; transform: translateY(-20px) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+    }
+
+    /* Fire / sparkle on correct */
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #fbbf24;
+      border-radius: 50%;
+      animation: sparkleOut 0.8s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes sparkleOut {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0) translate(calc(var(--x)*30px), calc(var(--y)*30px)); }
+    }
+
+    .score-flame { display: inline-block; animation: flameWiggle 0.5s ease; }
+    @keyframes flameWiggle {
+      0%,100% { transform: scale(1) rotate(-2deg); }
+      50% { transform: scale(1.2) rotate(2deg); }
+    }
+
+    .temp-bar-bg {
+      height: 24px;
+      background: linear-gradient(to right, #0ea5e9, #f97316);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .temp-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0369a1, #ea580c);
+      border-radius: 12px;
+      width: 0%;
+      transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .temp-bar-fill.animate-in { animation: barFill 1s ease forwards; }
+    @keyframes barFill {
+      from { width: 0%; }
+      to { width: var(--to, 60%); }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div id="confetti-zone" class="confetti-zone" aria-hidden="true"></div>
+
+<div class="min-h-screen p-4 md:p-8 pb-24">
+  <div class="max-w-3xl mx-auto">
+
+    <header class="mb-8 text-center">
+      <div class="flex justify-center mb-4">
+        <div class="heat-glow text-4xl">🌡️</div>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-2">Thermal Physics Games</h1>
+      <p class="text-slate-600">Heat, temperature & mixing — tap, play, animate!</p>
+      <p class="mt-4 text-sm text-slate-500"><a href="https://george1meshveliani.github.io/Hello-Physics/README" class="text-orange-600 hover:underline font-medium">← Back to Hello Physics</a></p>
+    </header>
+
+    <!-- Game 1: Temperature conversion -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-1">1. Temperature conversion</h2>
+      <p class="text-slate-600 text-sm mb-4">Tap the correct equivalent. Watch the thermometer rise when you're right!</p>
+      <div class="flex flex-wrap items-center gap-6 mb-4">
+        <div class="thermometer-wrap flex-shrink-0">
+          <div id="t1-fill" class="thermometer-fill" style="height: 0%"></div>
+        </div>
+        <div id="g1-question" class="text-lg font-medium text-slate-800 flex-1 min-h-[3rem] p-3 bg-white/80 rounded-xl shadow-sm"></div>
+      </div>
+      <div id="g1-choices" class="grid grid-cols-2 gap-3"></div>
+      <p id="g1-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
+      <button type="button" id="g1-next" class="mt-3 text-orange-600 font-semibold text-sm hover:underline hidden">Next →</button>
+    </section>
+
+    <!-- Game 2: Q = mcΔT -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-1">2. Heat it up! \( Q = mc\Delta T \)</h2>
+      <p class="text-slate-600 text-sm mb-4">Find the missing value. Correct answer heats the beaker!</p>
+      <div class="flex flex-wrap items-center justify-center gap-6 mb-4">
+        <div id="g2-heat-icon" class="heat-glow text-3xl">🥤</div>
+        <div class="flex-1 min-w-[200px]">
+          <div class="temp-bar-bg mb-2">
+            <div id="g2-bar" class="temp-bar-fill" style="width: 0%"></div>
+          </div>
+          <p class="text-xs text-slate-500">Heat added → temperature rise</p>
+        </div>
+      </div>
+      <div id="g2-question" class="text-lg font-medium text-slate-800 mb-4 p-3 bg-white/80 rounded-xl shadow-sm"></div>
+      <div id="g2-choices" class="grid grid-cols-2 gap-3"></div>
+      <p id="g2-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
+      <button type="button" id="g2-next" class="mt-3 text-orange-600 font-semibold text-sm hover:underline hidden">Next →</button>
+    </section>
+
+    <!-- Game 3: Mixing -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-1">3. Mix it!</h2>
+      <p class="text-slate-600 text-sm mb-4">Hot + cold water. Tap the final temperature — then watch them mix!</p>
+      <div id="g3-stage" class="flex flex-wrap items-end justify-center gap-8 py-6 mb-4 bg-white/50 rounded-xl">
+        <div class="text-center">
+          <div id="g3-beaker-hot" class="beaker hot mx-auto">
+            <div class="beaker-liquid"></div>
+          </div>
+          <p id="g3-t-hot" class="text-sm font-bold text-red-600 mt-2">90°C</p>
+          <p class="text-xs text-slate-500">0.4 kg</p>
+        </div>
+        <div class="text-2xl text-slate-400 self-center">+</div>
+        <div class="text-center">
+          <div id="g3-beaker-cold" class="beaker cold mx-auto">
+            <div class="beaker-liquid"></div>
+          </div>
+          <p id="g3-t-cold" class="text-sm font-bold text-blue-600 mt-2">20°C</p>
+          <p class="text-xs text-slate-500">0.6 kg</p>
+        </div>
+      </div>
+      <p class="text-center text-slate-600 mb-3">Final temperature = ?</p>
+      <div id="g3-choices" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+      <p id="g3-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
+      <button type="button" id="g3-next" class="mt-3 text-orange-600 font-semibold text-sm hover:underline hidden">Next mix →</button>
+    </section>
+
+    <!-- Game 4: Quick quiz with confetti -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-1">4. Quick quiz</h2>
+      <p class="text-slate-600 text-sm mb-4">Score: <span id="g4-score" class="score-flame font-bold text-orange-500">0</span> / <span id="g4-total">0</span> — get it right for a celebration!</p>
+      <div id="g4-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[4rem] p-3 bg-white/80 rounded-xl shadow-sm"></div>
+      <div id="g4-choices" class="space-y-2"></div>
+      <p id="g4-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
+      <button type="button" id="g4-next" class="mt-3 text-orange-600 font-semibold text-sm hover:underline hidden">Next →</button>
+    </section>
+
+    <!-- Game 5: KE to heat -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-1">5. Kinetic energy → heat</h2>
+      <p class="text-slate-600 text-sm mb-4">Block slides then stops. What happens to the energy? Tap the right idea!</p>
+      <div id="g5-scene" class="relative h-32 mb-4 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl overflow-hidden flex items-center">
+        <div id="g5-block" class="w-14 h-12 bg-amber-600 rounded-lg shadow-lg flex items-center justify-center text-white font-bold text-sm ml-4">m</div>
+      </div>
+      <div id="g5-question" class="text-lg font-medium text-slate-800 mb-4 p-3 bg-white/80 rounded-xl shadow-sm"></div>
+      <div id="g5-choices" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+      <p id="g5-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
+      <button type="button" id="g5-next" class="mt-3 text-orange-600 font-semibold text-sm hover:underline hidden">Next →</button>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  function confetti() {
+    const zone = document.getElementById('confetti-zone');
+    const colors = ['#f97316', '#eab308', '#22c55e', '#0ea5e9', '#a855f7'];
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      p.style.animationDelay = Math.random() * 0.5 + 's';
+      p.style.animationDuration = (1.5 + Math.random()) + 's';
+      zone.appendChild(p);
+      setTimeout(() => p.remove(), 2500);
+    }
+  }
+
+  function sparkle(parent) {
+    for (let i = 0; i < 8; i++) {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.setProperty('--x', (Math.random() - 0.5) * 2);
+      s.style.setProperty('--y', (Math.random() - 0.5) * 2);
+      parent.appendChild(s);
+      setTimeout(() => s.remove(), 900);
+    }
+  }
+
+  // —— Game 1: Temperature conversion ——
+  const g1Data = [
+    { q: "0°C in Kelvin?", opts: ["273 K", "0 K", "32 K", "100 K"], a: 0 },
+    { q: "100°C in Fahrenheit?", opts: ["212°F", "180°F", "373°F", "100°F"], a: 0 },
+    { q: "Room temperature ~25°C in Kelvin?", opts: ["298 K", "273 K", "25 K", "248 K"], a: 0 },
+    { q: "32°F in Celsius?", opts: ["0°C", "32°C", "100°C", "273°C"], a: 0 },
+    { q: "Boiling water 100°C in Kelvin?", opts: ["373 K", "273 K", "100 K", "212 K"], a: 0 },
+  ];
+  let g1Idx = 0;
+  const t1Fill = document.getElementById('t1-fill');
+  const g1Question = document.getElementById('g1-question');
+  const g1Choices = document.getElementById('g1-choices');
+  const g1Feedback = document.getElementById('g1-feedback');
+  const g1Next = document.getElementById('g1-next');
+  const game1Card = document.querySelectorAll('.game-card')[0];
+
+  function g1Show() {
+    const d = g1Data[g1Idx];
+    g1Question.textContent = d.q;
+    g1Feedback.textContent = '';
+    g1Next.classList.add('hidden');
+    t1Fill.style.height = '0%';
+    t1Fill.classList.remove('rise');
+    g1Choices.innerHTML = '';
+    d.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tap-btn py-4 px-4 rounded-xl bg-orange-100 border-2 border-orange-300 font-semibold text-slate-800';
+      btn.textContent = opt;
+      btn.addEventListener('click', function() {
+        game1Card.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
+        if (i === d.a) {
+          this.classList.add('correct');
+          g1Feedback.textContent = 'Correct!';
+          g1Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
+          t1Fill.style.setProperty('--fill', (60 + Math.random() * 30) + '%');
+          t1Fill.classList.add('rise');
+          sparkle(g1Question);
+        } else {
+          this.classList.add('wrong');
+          g1Choices.children[d.a].classList.add('correct');
+          g1Feedback.textContent = 'Answer: ' + d.opts[d.a];
+          g1Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+        }
+        g1Next.classList.remove('hidden');
+      });
+      g1Choices.appendChild(btn);
+    });
+  }
+  g1Next.addEventListener('click', function() {
+    g1Idx = (g1Idx + 1) % g1Data.length;
+    game1Card.querySelectorAll('.tap-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+    g1Show();
+  });
+  g1Show();
+
+  // —— Game 2: Q = mcΔT ——
+  const g2Data = [
+    { q: "2 kg water, c=4200, ΔT=10 K. Q = ?", opts: ["84 kJ", "42 kJ", "8.4 kJ", "840 kJ"], a: 0 },
+    { q: "Q=21 kJ, m=1 kg, c=4200. ΔT = ?", opts: ["5 K", "10 K", "21 K", "2 K"], a: 0 },
+    { q: "Q=36 kJ, ΔT=20 K, c=900. m = ?", opts: ["2 kg", "1 kg", "4 kg", "0.5 kg"], a: 0 },
+    { q: "0.5 kg copper, c=390, heated 80 K. Q = ?", opts: ["15.6 kJ", "31.2 kJ", "7.8 kJ", "156 kJ"], a: 0 },
+    { q: "4 kg, ΔT=15 K, Q=72 kJ. c = ?", opts: ["1200 J/(kg·K)", "480 J/(kg·K)", "2400 J/(kg·K)", "720 J/(kg·K)"], a: 0 },
+  ];
+  let g2Idx = 0;
+  const g2HeatIcon = document.getElementById('g2-heat-icon');
+  const g2Bar = document.getElementById('g2-bar');
+  const g2Question = document.getElementById('g2-question');
+  const g2Choices = document.getElementById('g2-choices');
+  const g2Feedback = document.getElementById('g2-feedback');
+  const g2Next = document.getElementById('g2-next');
+  const game2Card = document.querySelectorAll('.game-card')[1];
+
+  function g2Show() {
+    const d = g2Data[g2Idx];
+    g2Question.textContent = d.q;
+    g2Feedback.textContent = '';
+    g2Next.classList.add('hidden');
+    g2Bar.style.width = '0%';
+    g2Bar.classList.remove('animate-in');
+    g2HeatIcon.classList.remove('heating');
+    g2Choices.innerHTML = '';
+    d.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tap-btn py-4 px-4 rounded-xl bg-amber-100 border-2 border-amber-300 font-semibold text-slate-800';
+      btn.textContent = opt;
+      btn.addEventListener('click', function() {
+        game2Card.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
+        if (i === d.a) {
+          this.classList.add('correct');
+          g2Feedback.textContent = 'Correct! Heat added — temperature rises!';
+          g2Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
+          g2HeatIcon.classList.add('heating');
+          g2Bar.style.setProperty('--to', '85%');
+          g2Bar.classList.add('animate-in');
+          sparkle(g2Question);
+        } else {
+          this.classList.add('wrong');
+          g2Choices.children[d.a].classList.add('correct');
+          g2Feedback.textContent = 'Correct: ' + d.opts[d.a];
+          g2Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+        }
+        g2Next.classList.remove('hidden');
+      });
+      g2Choices.appendChild(btn);
+    });
+  }
+  g2Next.addEventListener('click', function() {
+    g2Idx = (g2Idx + 1) % g2Data.length;
+    game2Card.querySelectorAll('.tap-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+    g2Show();
+  });
+  g2Show();
+
+  // —— Game 3: Mixing ——
+  const g3Data = [
+    { m1: 0.4, t1: 90, m2: 0.6, t2: 20, a: 48 },
+    { m1: 0.5, t1: 80, m2: 0.5, t2: 30, a: 55 },
+    { m1: 1, t1: 70, m2: 1, t2: 30, a: 50 },
+    { m1: 0.25, t1: 100, m2: 0.75, t2: 20, a: 40 },
+  ];
+  let g3Idx = 0;
+  const g3Stage = document.getElementById('g3-stage');
+  const g3BeakerHot = document.getElementById('g3-beaker-hot');
+  const g3BeakerCold = document.getElementById('g3-beaker-cold');
+  const g3THot = document.getElementById('g3-t-hot');
+  const g3TCold = document.getElementById('g3-t-cold');
+  const g3Choices = document.getElementById('g3-choices');
+  const g3Feedback = document.getElementById('g3-feedback');
+  const g3Next = document.getElementById('g3-next');
+  const game3Card = document.querySelectorAll('.game-card')[2];
+
+  function g3Tf(m1, t1, m2, t2) {
+    return Math.round((m1 * t1 + m2 * t2) / (m1 + m2));
+  }
+
+  function g3Show() {
+    const d = g3Data[g3Idx];
+    const tf = g3Tf(d.m1, d.t1, d.m2, d.t2);
+    g3THot.textContent = d.t1 + '°C';
+    g3TCold.textContent = d.t2 + '°C';
+    g3BeakerHot.classList.remove('merge-anim');
+    g3BeakerCold.classList.remove('merge-anim');
+    g3BeakerHot.classList.add('hot');
+    g3BeakerCold.classList.add('cold');
+    g3Feedback.textContent = '';
+    g3Next.classList.add('hidden');
+    const opts = [tf, tf - 10, tf + 8, tf + 15].sort(() => Math.random() - 0.5);
+    g3Choices.innerHTML = '';
+    opts.forEach((val, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tap-btn py-4 px-4 rounded-xl bg-white/90 border-2 border-orange-300 font-bold text-slate-800';
+      btn.textContent = val + '°C';
+      btn.dataset.val = val;
+      btn.addEventListener('click', function() {
+        game3Card.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
+        const correct = (val === tf);
+        if (correct) {
+          this.classList.add('correct');
+          g3Feedback.textContent = 'Correct! Final T = ' + tf + '°C. Mixing...';
+          g3Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
+          g3BeakerHot.classList.add('merge-anim');
+          g3BeakerCold.classList.add('merge-anim');
+          setTimeout(() => {
+            g3BeakerHot.classList.remove('hot');
+            g3BeakerHot.classList.add('mixed');
+            g3BeakerCold.classList.remove('cold');
+            g3BeakerCold.classList.add('mixed');
+          }, 400);
+          sparkle(g3Stage);
+        } else {
+          this.classList.add('wrong');
+          const right = Array.from(g3Choices.children).find(b => parseInt(b.dataset.val) === tf);
+          if (right) right.classList.add('correct');
+          g3Feedback.textContent = 'Final temperature = ' + tf + '°C (same mass → average of temps; different masses → weighted average).';
+          g3Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+        }
+        g3Next.classList.remove('hidden');
+      });
+      g3Choices.appendChild(btn);
+    });
+  }
+  g3Next.addEventListener('click', function() {
+    g3Idx = (g3Idx + 1) % g3Data.length;
+    game3Card.querySelectorAll('.tap-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+    g3Show();
+  });
+  g3Show();
+
+  // —— Game 4: Quick quiz + confetti ——
+  const g4Data = [
+    { q: "Heat capacity formula?", opts: ["Q = mcΔT", "Q = mv", "E = mc²", "F = ma"], a: 0 },
+    { q: "When you mix hot and cold water (no loss), heat lost by hot = ?", opts: ["Heat gained by cold", "Zero", "Heat gained by cold + loss", "Mass × c"], a: 0 },
+    { q: "KE of a moving object that stops (friction) is converted to:", opts: ["Heat", "Light", "Sound only", "Nothing"], a: 0 },
+    { q: "Specific heat c is energy to heat 1 kg by:", opts: ["1 K (or 1°C)", "100 K", "0 K", "273 K"], a: 0 },
+    { q: "Temperature difference ΔT = ?", opts: ["T_final − T_initial", "T_initial − T_final", "T_final + T_initial", "T_final / T_initial"], a: 0 },
+  ];
+  let g4Idx = 0, g4Score = 0;
+  const g4Question = document.getElementById('g4-question');
+  const g4Choices = document.getElementById('g4-choices');
+  const g4Feedback = document.getElementById('g4-feedback');
+  const g4ScoreEl = document.getElementById('g4-score');
+  const g4TotalEl = document.getElementById('g4-total');
+  const g4Next = document.getElementById('g4-next');
+  const game4Card = document.querySelectorAll('.game-card')[3];
+
+  function g4Show() {
+    const d = g4Data[g4Idx];
+    g4Question.textContent = d.q;
+    g4TotalEl.textContent = g4Data.length;
+    g4ScoreEl.textContent = g4Score;
+    g4Feedback.textContent = '';
+    g4Next.classList.add('hidden');
+    g4Choices.innerHTML = '';
+    d.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tap-btn w-full py-4 px-4 rounded-xl bg-orange-100 border-2 border-orange-300 text-left font-medium text-slate-800';
+      btn.textContent = opt;
+      btn.addEventListener('click', function() {
+        game4Card.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
+        if (i === d.a) {
+          this.classList.add('correct');
+          g4Score++;
+          g4ScoreEl.textContent = g4Score;
+          g4ScoreEl.classList.add('score-flame');
+          g4Feedback.textContent = 'Correct!';
+          g4Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
+          confetti();
+          sparkle(g4Question);
+        } else {
+          this.classList.add('wrong');
+          g4Choices.children[d.a].classList.add('correct');
+          g4Feedback.textContent = 'Answer: ' + d.opts[d.a];
+          g4Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+        }
+        g4Next.classList.remove('hidden');
+      });
+      g4Choices.appendChild(btn);
+    });
+  }
+  g4Next.addEventListener('click', function() {
+    g4Idx = (g4Idx + 1) % g4Data.length;
+    if (g4Idx === 0) g4Score = 0;
+    game4Card.querySelectorAll('.tap-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+    g4Show();
+  });
+  g4Show();
+
+  // —— Game 5: KE → heat ——
+  const g5Data = [
+    { q: "A block slides on a rough surface and stops. What happens to its kinetic energy?", opts: ["It is converted to heat (thermal energy).", "It disappears.", "It stays in the block as KE.", "It becomes potential energy."], a: 0 },
+    { q: "Formula for KE converted to heat when mass m stops from speed v?", opts: ["Q = ½mv²", "Q = mv", "Q = mcΔT only", "Q = mgh"], a: 0 },
+    { q: "If 50 J of KE becomes heat in a 1 kg block (c=500), the temperature rise is:", opts: ["0.1 K", "1 K", "50 K", "0.01 K"], a: 0 },
+  ];
+  let g5Idx = 0;
+  const g5Block = document.getElementById('g5-block');
+  const g5Scene = document.getElementById('g5-scene');
+  const g5Question = document.getElementById('g5-question');
+  const g5Choices = document.getElementById('g5-choices');
+  const g5Feedback = document.getElementById('g5-feedback');
+  const g5Next = document.getElementById('g5-next');
+  const game5Card = document.querySelectorAll('.game-card')[4];
+
+  function g5AnimateSlide() {
+    g5Block.style.transition = 'transform 0.8s ease';
+    g5Block.style.transform = 'translateX(0)';
+    setTimeout(() => {
+      g5Block.style.transform = 'translateX(180px)';
+      g5Block.style.background = 'linear-gradient(135deg, #b45309, #ea580c)';
+    }, 100);
+    setTimeout(() => {
+      g5Block.style.transform = 'translateX(0)';
+      g5Block.style.background = '#b45309';
+    }, 2000);
+  }
+
+  function g5Show() {
+    const d = g5Data[g5Idx];
+    g5Question.textContent = d.q;
+    g5Feedback.textContent = '';
+    g5Next.classList.add('hidden');
+    g5Choices.innerHTML = '';
+    d.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tap-btn py-4 px-4 rounded-xl bg-amber-100 border-2 border-amber-300 text-left font-medium text-slate-800';
+      btn.textContent = opt;
+      btn.addEventListener('click', function() {
+        game5Card.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
+        if (i === d.a) {
+          this.classList.add('correct');
+          g5Feedback.textContent = 'Correct! KE → heat when friction stops the block.';
+          g5Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
+          g5AnimateSlide();
+          sparkle(g5Question);
+        } else {
+          this.classList.add('wrong');
+          g5Choices.children[d.a].classList.add('correct');
+          g5Feedback.textContent = 'Answer: ' + d.opts[d.a];
+          g5Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+        }
+        g5Next.classList.remove('hidden');
+      });
+      g5Choices.appendChild(btn);
+    });
+  }
+  g5Next.addEventListener('click', function() {
+    g5Idx = (g5Idx + 1) % g5Data.length;
+    game5Card.querySelectorAll('.tap-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+    g5Show();
+  });
+  g5Show();
+})();
+</script>
+
+</body>
+</html>

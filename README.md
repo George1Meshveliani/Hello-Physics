@@ -39,6 +39,7 @@ Click the topic and Enjoy!
 
 #### Thermal Physics
 - [`Specific heat capacity, heating & energy change`](https://george1meshveliani.github.io/Hello-Physics/ThermalPhysics-HeatCapacity) — temperature difference, heat \(Q = mc\Delta T\), specific heat capacity, energy change, energy loss, KE to heat, heating + kinetic; problems with hidden solutions
+- [`Thermal Physics — Games`](https://george1meshveliani.github.io/Hello-Physics/ThermalPhysicsGames) — interactive games: temperature conversion (thermometer animation), \(Q = mc\Delta T\) (heat bar), mixing hot & cold (beaker animation), quick quiz (confetti), KE → heat (sliding block); touch-friendly and animated
 
 ### - Advanced Level -
 - [`Motion along straight line`](https://george1meshveliani.github.io/Hello-Physics/AdvancedMotion)
