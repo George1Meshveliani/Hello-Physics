@@ -5,342 +5,580 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nuclear Physics — Decay Games</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
-  </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
     .game-card { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border: 2px solid #059669; border-radius: 1rem; }
     .tap-btn { transition: transform 0.15s, box-shadow 0.15s; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
-    .tap-btn:hover { transform: scale(1.02); box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3); }
-    .tap-btn:active { transform: scale(0.98); }
-    .tap-btn.correct { animation: correctPop 0.5s ease; background: #059669 !important; color: white; }
+    .tap-btn:hover { transform: scale(1.03); box-shadow: 0 4px 14px rgba(5,150,105,0.35); }
+    .tap-btn:active { transform: scale(0.97); }
+    .tap-btn.correct { animation: correctPop 0.55s ease; background: #059669 !important; color: white !important; border-color: #047857 !important; }
     .tap-btn.wrong { animation: wrongShake 0.4s ease; }
-    @keyframes correctPop { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
-    @keyframes wrongShake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
-    .nucleus { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.25rem; background: radial-gradient(circle at 30% 30%, #86efac, #059669); color: #022c22; box-shadow: inset 0 -4px 8px rgba(0,0,0,0.15); }
-    .nucleus.decaying { animation: nucleusPulse 0.6s ease forwards; }
-    @keyframes nucleusPulse { 0% { transform: scale(1); opacity: 1; } 40% { transform: scale(1.2); opacity: 0.9; } 100% { transform: scale(0); opacity: 0; } }
-    .particle { position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: bold; opacity: 0; }
-    .particle.alpha { width: 36px; height: 36px; background: #fde047; color: #713f12; }
-    .particle.beta { width: 28px; height: 28px; background: #93c5fd; color: #1e3a8a; }
-    .particle.gamma { width: 24px; height: 24px; background: #f9a8d4; color: #831843; }
-    .particle.fly { animation: particleFly 1s ease forwards; }
-    @keyframes particleFly {
-      0% { opacity: 0; transform: translate(0, 0) scale(0.3); }
-      30% { opacity: 1; transform: translate(20px, -30px) scale(1); }
-      100% { opacity: 1; transform: translate(80px, -60px) scale(0.8); }
+    @keyframes correctPop { 0%{transform:scale(1)} 40%{transform:scale(1.1)} 70%{transform:scale(0.95)} 100%{transform:scale(1)} }
+    @keyframes wrongShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-7px)} 75%{transform:translateX(7px)} }
+
+    /* ── Spinning atom ── */
+    .atom-wrap { position:relative; width:90px; height:90px; }
+    .atom-core { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:22px; height:22px; border-radius:50%;
+      background:radial-gradient(circle at 35% 35%,#fde68a,#d97706);
+      box-shadow:0 0 20px rgba(217,119,6,0.9),0 0 40px rgba(217,119,6,0.4);
+      animation:coreGlow 1.5s ease-in-out infinite alternate; z-index:2; }
+    @keyframes coreGlow {
+      from { box-shadow:0 0 15px rgba(217,119,6,0.8),0 0 30px rgba(5,150,105,0.3); }
+      to   { box-shadow:0 0 30px rgba(217,119,6,1),  0 0 60px rgba(5,150,105,0.6); }
     }
-    #g3-daughter { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0); }
-    .daughter-appear { animation: daughterAppear 0.6s ease 0.4s forwards; opacity: 0; }
-    @keyframes daughterAppear { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
-    #g3-particle { left: 50%; top: 50%; }
-    .confetti { position: fixed; pointer-events: none; z-index: 100; }
-    .score-badge { min-width: 2.5rem; }
+    .e-arm { position:absolute; top:50%; left:50%; width:40px; height:2px;
+      margin-top:-1px; transform-origin:0 50%; }
+    .e-arm:nth-child(2){ animation:arm1 1.8s linear infinite; }
+    .e-arm:nth-child(3){ animation:arm2 2.5s linear infinite; }
+    .e-arm:nth-child(4){ animation:arm3 3.3s linear infinite; }
+    @keyframes arm1 { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+    @keyframes arm2 { from{transform:rotate(120deg)} to{transform:rotate(480deg)} }
+    @keyframes arm3 { from{transform:rotate(240deg)} to{transform:rotate(600deg)} }
+    .e-dot { position:absolute; right:-4px; top:50%; margin-top:-4px;
+      width:8px; height:8px; border-radius:50%;
+      background:#60a5fa; box-shadow:0 0 8px #60a5fa; }
+    .orbit-ring { position:absolute; top:50%; left:50%; border:1.5px solid rgba(5,150,105,0.45); border-radius:50%; }
+    .orbit-ring:nth-of-type(1){ width:80px;height:28px;margin:-14px -40px;transform:rotate(0deg); }
+    .orbit-ring:nth-of-type(2){ width:80px;height:28px;margin:-14px -40px;transform:rotate(60deg); }
+    .orbit-ring:nth-of-type(3){ width:80px;height:28px;margin:-14px -40px;transform:rotate(-60deg); }
+
+    /* ── Nucleus ── */
+    .nucleus { width:86px; height:86px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-weight:bold; font-size:0.95rem; line-height:1.3; text-align:center;
+      background:radial-gradient(circle at 30% 30%,#86efac,#059669);
+      color:#022c22; animation:nucGlow 2s ease-in-out infinite; }
+    @keyframes nucGlow {
+      0%,100%{ box-shadow:0 0 12px rgba(5,150,105,0.4),inset 0 -4px 8px rgba(0,0,0,0.15); }
+      50%    { box-shadow:0 0 35px rgba(5,150,105,0.85),0 0 60px rgba(5,150,105,0.3),inset 0 -4px 8px rgba(0,0,0,0.15); }
+    }
+    .nucleus.shake { animation:nucShake 0.5s ease; }
+    @keyframes nucShake {
+      0%,100%{transform:translate(0,0) scale(1)}
+      15%{transform:translate(-3px,-3px) scale(1.06)}
+      35%{transform:translate(3px,-3px) scale(1.09)}
+      55%{transform:translate(-3px,3px) scale(1.09)}
+      75%{transform:translate(3px,3px) scale(1.06)}
+    }
+    .nucleus.pop-out { animation:nucPopOut 0.5s ease forwards; }
+    @keyframes nucPopOut { 0%{transform:scale(1);opacity:1} 40%{transform:scale(1.25);filter:brightness(1.8)} 100%{transform:scale(0);opacity:0} }
+    .nucleus.pop-in  { animation:nucPopIn 0.45s ease forwards; }
+    @keyframes nucPopIn { from{transform:scale(0.2);opacity:0} to{transform:scale(1);opacity:1} }
+
+    /* ── Particles ── */
+    .particle { position:absolute; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-size:0.8rem; font-weight:bold; opacity:0; pointer-events:none; }
+    .particle.alpha { width:36px;height:36px; background:radial-gradient(circle at 35% 35%,#fef08a,#ca8a04); color:#713f12; box-shadow:0 0 12px rgba(202,138,4,0.8); }
+    .particle.beta  { width:26px;height:26px; background:radial-gradient(circle at 35% 35%,#bfdbfe,#2563eb); color:#1e3a8a; box-shadow:0 0 10px rgba(37,99,235,0.8); }
+    .particle.neut  { width:22px;height:22px; background:radial-gradient(circle at 35% 35%,#fce7f3,#db2777); color:#831843; box-shadow:0 0 12px rgba(219,39,119,0.8); }
+    .fly-ne { animation:flyNE 1.2s ease forwards; }
+    .fly-nw { animation:flyNW 1.2s ease forwards; }
+    .fly-se { animation:flySE 1.2s ease forwards; }
+    .fly-sw { animation:flySW 1.2s ease forwards; }
+    @keyframes flyNE { 0%{opacity:0;transform:translate(0,0) scale(0.2)} 20%{opacity:1} 100%{opacity:0.5;transform:translate(115px,-90px) scale(1.1)} }
+    @keyframes flyNW { 0%{opacity:0;transform:translate(0,0) scale(0.2)} 20%{opacity:1} 100%{opacity:0.5;transform:translate(-95px,-80px) scale(1.1)} }
+    @keyframes flySE { 0%{opacity:0;transform:translate(0,0) scale(0.2)} 20%{opacity:1} 100%{opacity:0.5;transform:translate(85px,75px) scale(0.9)} }
+    @keyframes flySW { 0%{opacity:0;transform:translate(0,0) scale(0.2)} 20%{opacity:1} 100%{opacity:0.5;transform:translate(-75px,65px) scale(0.9)} }
+
+    /* ── Decay rings ── */
+    .decay-ring { position:absolute; border-radius:50%; border:2px solid rgba(52,211,153,0.7);
+      top:50%; left:50%; transform:translate(-50%,-50%);
+      animation:ringExpand 0.9s ease-out forwards; pointer-events:none; }
+    @keyframes ringExpand {
+      0%  { width:20px;height:20px;opacity:0.9; }
+      100%{ width:220px;height:220px;opacity:0; }
+    }
+
+    /* ── Screen flash ── */
+    .stage-flash { position:absolute; inset:0; background:white; opacity:0; pointer-events:none; border-radius:0.75rem; }
+    .stage-flash.on { animation:flashOut 0.45s ease; }
+    @keyframes flashOut { 0%{opacity:0} 15%{opacity:0.85} 100%{opacity:0} }
+
+    /* ── Equation display ── */
+    .eq-box { background:rgba(255,255,255,0.12); border-radius:0.5rem; padding:0.4rem 0.8rem;
+      font-family:monospace; font-size:0.95rem; text-align:center; color:#d1fae5; min-height:1.8rem;
+      transition: opacity 0.3s; }
+
+    /* ── Progress bar ── */
+    .pbar-bg { height:6px; background:#d1fae5; border-radius:3px; overflow:hidden; margin-bottom:0.75rem; }
+    .pbar-fill { height:100%; background:#059669; border-radius:3px; transition:width 0.4s ease; }
+
+    /* ── Confetti ── */
+    .confetti-zone { position:fixed; inset:0; pointer-events:none; z-index:200; overflow:hidden; }
+    .cp { position:absolute; animation:cpFall 2.2s ease-out forwards; border-radius:2px; }
+    @keyframes cpFall { 0%{opacity:1;transform:translateY(-10px) rotate(0deg)} 100%{opacity:0;transform:translateY(100vh) rotate(540deg)} }
+
+    /* ── Score pulse ── */
+    .score-pop { animation:scorePop 0.4s ease; }
+    @keyframes scorePop { 0%{transform:scale(1)} 50%{transform:scale(1.5)} 100%{transform:scale(1)} }
+
+    /* ── Half-life atoms ── */
+    .atom-dot { width:14px; height:14px; border-radius:50%; display:inline-block; margin:2px;
+      background:radial-gradient(circle at 35% 35%,#86efac,#059669);
+      box-shadow:0 0 5px rgba(5,150,105,0.7); transition:all 0.45s ease; cursor:default; }
+    .atom-dot.gone { background:#374151 !important; box-shadow:none !important; transform:scale(0.55); opacity:0.35; }
+    .atom-dot.popping { animation:atomPop 0.45s ease forwards; }
+    @keyframes atomPop { 0%{transform:scale(1)} 45%{transform:scale(1.6);filter:brightness(2)} 100%{transform:scale(0.55);opacity:0.35} }
+    .hl-bar-bg { height:12px; border-radius:6px; background:#d1fae5; overflow:hidden; }
+    .hl-bar-fill { height:100%; background:linear-gradient(to right,#059669,#34d399); border-radius:6px; transition:width 0.9s ease; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
+
+<div id="confetti-zone" class="confetti-zone" aria-hidden="true"></div>
 
 <div class="min-h-screen p-4 md:p-8 pb-20">
   <div class="max-w-3xl mx-auto">
 
     <header class="mb-8 text-center">
       <div class="flex justify-center mb-4">
-        <div class="bg-emerald-600 p-4 rounded-2xl shadow-lg shadow-emerald-200 text-4xl">
-          ☢
+        <div class="atom-wrap">
+          <div class="orbit-ring"></div><div class="orbit-ring"></div><div class="orbit-ring"></div>
+          <div class="e-arm"><div class="e-dot"></div></div>
+          <div class="e-arm"><div class="e-dot"></div></div>
+          <div class="e-arm"><div class="e-dot"></div></div>
+          <div class="atom-core"></div>
         </div>
       </div>
       <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-2">Nuclear Decay Games</h1>
-      <p class="text-slate-600">Interactive questions and animations — tap to play!</p>
+      <p class="text-slate-600">Interactive questions & animations — tap to play!</p>
       <p class="mt-4 text-sm text-slate-500"><a href="https://george1meshveliani.github.io/Hello-Physics/README" class="text-emerald-600 hover:underline">← Back to Hello Physics</a></p>
     </header>
 
-    <!-- Game 1: What type of decay? -->
+    <!-- Game 1 -->
     <section class="game-card p-6 mb-8">
-      <h2 class="text-xl font-bold text-slate-800 mb-2">1. What type of decay?</h2>
-      <p class="text-slate-600 text-sm mb-4">Tap the correct decay type for the change shown.</p>
-      <div id="g1-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[3rem] p-3 bg-white/70 rounded-lg"></div>
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-xl font-bold text-slate-800">1. What type of decay?</h2>
+        <span id="g1-counter" class="text-sm text-emerald-700 font-semibold">1 / 10</span>
+      </div>
+      <div class="pbar-bg"><div id="g1-pbar" class="pbar-fill" style="width:10%"></div></div>
+      <p class="text-slate-600 text-sm mb-4">Tap the correct decay type for the nuclear change shown.</p>
+      <div id="g1-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[3rem] p-3 bg-white/70 rounded-lg leading-relaxed"></div>
       <div class="grid grid-cols-2 gap-3">
-        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-emerald-100 border-2 border-emerald-300 text-emerald-900 font-bold" data-choice="alpha">Alpha (α)</button>
-        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-blue-100 border-2 border-blue-300 text-blue-900 font-bold" data-choice="beta-">Beta-minus (β⁻)</button>
-        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-amber-100 border-2 border-amber-300 text-amber-900 font-bold" data-choice="beta+">Beta-plus (β⁺)</button>
-        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-pink-100 border-2 border-pink-300 text-pink-900 font-bold" data-choice="gamma">Gamma (γ)</button>
+        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-emerald-100 border-2 border-emerald-300 text-emerald-900 font-bold" data-choice="alpha">⚛ Alpha (α)</button>
+        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-blue-100 border-2 border-blue-300 text-blue-900 font-bold" data-choice="beta-">⚡ Beta-minus (β⁻)</button>
+        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-amber-100 border-2 border-amber-300 text-amber-900 font-bold" data-choice="beta+">✦ Beta-plus (β⁺)</button>
+        <button type="button" class="tap-btn col-span-2 md:col-span-1 py-4 px-4 rounded-xl bg-pink-100 border-2 border-pink-300 text-pink-900 font-bold" data-choice="gamma">◎ Gamma (γ)</button>
       </div>
       <p id="g1-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
       <button type="button" id="g1-next" class="mt-3 text-emerald-600 font-semibold text-sm hover:underline hidden">Next question →</button>
     </section>
 
-    <!-- Game 2: Complete the daughter -->
+    <!-- Game 2 -->
     <section class="game-card p-6 mb-8">
-      <h2 class="text-xl font-bold text-slate-800 mb-2">2. Complete the daughter nucleus</h2>
-      <p class="text-slate-600 text-sm mb-4">Parent decays as shown. Tap the correct daughter.</p>
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-xl font-bold text-slate-800">2. Complete the daughter nucleus</h2>
+        <span id="g2-counter" class="text-sm text-emerald-700 font-semibold">1 / 7</span>
+      </div>
+      <div class="pbar-bg"><div id="g2-pbar" class="pbar-fill" style="width:14%"></div></div>
+      <p class="text-slate-600 text-sm mb-4">Parent decays as shown — tap the correct daughter.</p>
       <div id="g2-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[3rem] p-3 bg-white/70 rounded-lg"></div>
       <div id="g2-choices" class="grid grid-cols-2 gap-3"></div>
       <p id="g2-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
       <button type="button" id="g2-next" class="mt-3 text-emerald-600 font-semibold text-sm hover:underline hidden">Next →</button>
     </section>
 
-    <!-- Game 3: Decay animation -->
+    <!-- Game 3 -->
     <section class="game-card p-6 mb-8">
       <h2 class="text-xl font-bold text-slate-800 mb-2">3. Watch a decay</h2>
-      <p class="text-slate-600 text-sm mb-4">Choose a decay type and tap "Decay!" to see an animation.</p>
+      <p class="text-slate-600 text-sm mb-4">Choose a decay type then hit <strong>Decay!</strong> to watch the animation.</p>
       <div class="flex flex-wrap gap-2 mb-4">
-        <button type="button" class="decay-type-btn tap-btn py-2 px-4 rounded-lg bg-emerald-200 border-2 border-emerald-400 font-semibold" data-type="alpha">Alpha</button>
-        <button type="button" class="decay-type-btn tap-btn py-2 px-4 rounded-lg bg-blue-200 border-2 border-blue-400 font-semibold" data-type="beta-">β⁻</button>
-        <button type="button" class="decay-type-btn tap-btn py-2 px-4 rounded-lg bg-amber-200 border-2 border-amber-400 font-semibold" data-type="beta+">β⁺</button>
-        <button type="button" class="decay-type-btn tap-btn py-2 px-4 rounded-lg bg-pink-200 border-2 border-pink-400 font-semibold" data-type="gamma">Gamma</button>
+        <button type="button" class="decay-btn tap-btn py-2 px-4 rounded-lg bg-emerald-200 border-2 border-emerald-400 font-semibold ring-4 ring-emerald-500" data-type="alpha">Alpha (α)</button>
+        <button type="button" class="decay-btn tap-btn py-2 px-4 rounded-lg bg-blue-200 border-2 border-blue-400 font-semibold" data-type="beta-">β⁻</button>
+        <button type="button" class="decay-btn tap-btn py-2 px-4 rounded-lg bg-amber-200 border-2 border-amber-400 font-semibold" data-type="beta+">β⁺</button>
+        <button type="button" class="decay-btn tap-btn py-2 px-4 rounded-lg bg-pink-200 border-2 border-pink-400 font-semibold" data-type="gamma">Gamma (γ)</button>
       </div>
-      <div id="g3-stage" class="relative h-48 flex items-center justify-center bg-slate-100 rounded-xl overflow-hidden">
-        <div id="g3-parent" class="nucleus">238<br>92<br>U</div>
-        <div id="g3-particle" class="particle"></div>
-        <div id="g3-daughter" class="nucleus daughter-appear absolute" style="display:none;"></div>
+      <div id="g3-stage" class="relative h-56 flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl overflow-hidden mb-3">
+        <div id="g3-flash" class="stage-flash"></div>
+        <div id="g3-stars" class="absolute inset-0 pointer-events-none"></div>
+        <div id="g3-parent" class="nucleus z-10" style="color:#d1fae5"></div>
+        <div id="g3-p1" class="particle" style="left:50%;top:50%;"></div>
+        <div id="g3-p2" class="particle" style="left:50%;top:50%;"></div>
+        <div id="g3-daughter" class="nucleus z-10" style="display:none;color:#d1fae5;background:radial-gradient(circle at 30% 30%,#6ee7b7,#0d9488);"></div>
       </div>
-      <button type="button" id="g3-go" class="tap-btn mt-4 w-full py-4 rounded-xl bg-emerald-600 text-white font-bold text-lg">Decay!</button>
+      <div id="g3-eq" class="eq-box mb-3" style="background:rgba(30,41,59,0.7)">Choose a decay type above, then tap Decay!</div>
+      <button type="button" id="g3-go" class="tap-btn w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg shadow-lg">⚛ Decay!</button>
     </section>
 
-    <!-- Game 4: Quick quiz -->
+    <!-- Game 4 -->
     <section class="game-card p-6 mb-8">
-      <h2 class="text-xl font-bold text-slate-800 mb-2">4. Quick quiz</h2>
-      <p class="text-slate-600 text-sm mb-4">Tap the correct answer. Score: <span id="g4-score" class="score-badge font-bold text-emerald-600">0</span> / <span id="g4-total">0</span></p>
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-xl font-bold text-slate-800">4. Quick quiz</h2>
+        <span class="text-sm font-semibold text-emerald-700">Score: <span id="g4-score" class="font-extrabold text-emerald-600">0</span> / <span id="g4-total">0</span></span>
+      </div>
+      <div class="pbar-bg"><div id="g4-pbar" class="pbar-fill" style="width:0%"></div></div>
       <div id="g4-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[4rem] p-3 bg-white/70 rounded-lg"></div>
       <div id="g4-choices" class="space-y-2"></div>
       <p id="g4-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
       <button type="button" id="g4-next" class="mt-3 text-emerald-600 font-semibold text-sm hover:underline hidden">Next question →</button>
     </section>
 
+    <!-- Game 5: Half-life simulator -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-1">5. Half-life simulator</h2>
+      <p class="text-slate-600 text-sm mb-4">Each click = one half-life passes. Watch the exponential decay!</p>
+      <div class="flex flex-wrap items-center gap-4 mb-3">
+        <div class="flex-1 min-w-[180px]">
+          <div class="flex justify-between text-xs text-slate-500 mb-1">
+            <span>Active atoms: <span id="hl-count" class="font-bold text-emerald-600 text-base">32</span> / 32</span>
+            <span>t½ elapsed: <span id="hl-n" class="font-bold text-slate-700">0</span></span>
+          </div>
+          <div class="hl-bar-bg"><div id="hl-bar" class="hl-bar-fill" style="width:100%"></div></div>
+          <p id="hl-formula" class="text-xs text-slate-500 mt-1 font-mono">N = 32 × (½)⁰ = 32</p>
+        </div>
+      </div>
+      <div id="hl-grid" class="flex flex-wrap justify-center gap-0.5 p-4 bg-slate-800 rounded-xl mb-3 min-h-[80px]"></div>
+      <div class="text-center text-xs text-slate-500 mb-3">
+        <span class="inline-block w-3 h-3 rounded-full bg-emerald-500 shadow mr-1 align-middle"></span>Active &nbsp;
+        <span class="inline-block w-3 h-3 rounded-full bg-slate-600 mr-1 align-middle opacity-40"></span>Decayed
+      </div>
+      <div class="flex gap-3">
+        <button type="button" id="hl-step" class="tap-btn flex-1 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold">⏩ One half-life passes</button>
+        <button type="button" id="hl-reset" class="tap-btn py-3 px-5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold">↺ Reset</button>
+      </div>
+      <p id="hl-msg" class="mt-3 text-sm font-medium text-emerald-700 min-h-[1.5rem]"></p>
+    </section>
+
   </div>
 </div>
 
 <script>
-(function() {
-  // —— Game 1: What type of decay? ——
-  const g1Questions = [
-    { q: "Mass number A decreases by 4, atomic number Z decreases by 2.", a: "alpha" },
-    { q: "A stays the same, Z increases by 1.", a: "beta-" },
-    { q: "A stays the same, Z decreases by 1.", a: "beta+" },
-    { q: "A and Z both stay the same; only energy is emitted.", a: "gamma" },
-    { q: "²³⁸₉₂ U → ²³⁴₉₀ Th + ? (missing particle: helium-4 nucleus)", a: "alpha" },
-    { q: "¹⁴₆ C → ¹⁴₇ N + e⁻ + ν̄", a: "beta-" },
-    { q: "¹¹₆ C → ¹¹₅ B + e⁺ + ν", a: "beta+" },
-    { q: "Excited nucleus emits a photon and keeps same A and Z.", a: "gamma" },
-  ];
-  let g1Index = 0;
-  const g1QuestionEl = document.getElementById('g1-question');
-  const g1FeedbackEl = document.getElementById('g1-feedback');
-  const g1NextBtn = document.getElementById('g1-next');
+(function(){
 
-  const game1Section = document.querySelector('.game-card');
-
-  function g1Show() {
-    const d = g1Questions[g1Index];
-    g1QuestionEl.textContent = d.q;
-    g1FeedbackEl.textContent = '';
-    g1NextBtn.classList.add('hidden');
-    game1Section.querySelectorAll('.tap-btn[data-choice]').forEach(b => {
-      b.classList.remove('correct', 'wrong');
-      b.disabled = false;
-    });
+  /* ── Confetti ── */
+  function confetti(){
+    const z=document.getElementById('confetti-zone');
+    const cols=['#059669','#34d399','#fde047','#60a5fa','#f472b6','#a78bfa','#fb923c'];
+    for(let i=0;i<55;i++){
+      const p=document.createElement('div'); p.className='cp';
+      const size=6+Math.random()*8;
+      p.style.cssText=`left:${Math.random()*100}%;width:${size}px;height:${size}px;
+        background:${cols[Math.floor(Math.random()*cols.length)]};
+        animation-delay:${Math.random()*0.5}s;animation-duration:${1.4+Math.random()*1}s;
+        border-radius:${Math.random()>0.5?'50%':'2px'};`;
+      z.appendChild(p); setTimeout(()=>p.remove(),2700);
+    }
   }
 
-  game1Section.querySelectorAll('.tap-btn[data-choice]').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const choice = this.getAttribute('data-choice');
-      const correct = g1Questions[g1Index].a;
-      const buttons = game1Section.querySelectorAll('.tap-btn[data-choice]');
-      buttons.forEach(b => b.disabled = true);
-      if (choice === correct) {
+  /* ── Stars for Game 3 stage ── */
+  (function(){
+    const s=document.getElementById('g3-stars');
+    for(let i=0;i<35;i++){
+      const d=document.createElement('div');
+      const sz=Math.random()<0.3?2:1;
+      d.style.cssText=`position:absolute;width:${sz}px;height:${sz}px;background:white;border-radius:50%;
+        opacity:${0.2+Math.random()*0.5};left:${Math.random()*100}%;top:${Math.random()*100}%;`;
+      s.appendChild(d);
+    }
+  })();
+
+  /* ── Game 1 ── */
+  const g1Qs=[
+    {q:"Mass number A decreases by 4 and atomic number Z decreases by 2.",a:"alpha"},
+    {q:"A stays the same, Z increases by 1 — a neutron becomes a proton.",a:"beta-"},
+    {q:"A stays the same, Z decreases by 1 — a proton becomes a neutron.",a:"beta+"},
+    {q:"A and Z both stay the same; only a high-energy photon is emitted.",a:"gamma"},
+    {q:"²³⁸₉₂U → ²³⁴₉₀Th + ? (missing particle is a helium-4 nucleus)",a:"alpha"},
+    {q:"¹⁴₆C → ¹⁴₇N + e⁻ + ν̄  (Z goes from 6 to 7, A unchanged)",a:"beta-"},
+    {q:"¹¹₆C → ¹¹₅B + e⁺ + ν  (Z goes from 6 to 5, A unchanged)",a:"beta+"},
+    {q:"Excited ⁶⁰₂₇Co* emits a photon and becomes ⁶⁰₂₇Co — same A and Z.",a:"gamma"},
+    {q:"²²⁶₈₈Ra loses 2 protons and 2 neutrons simultaneously.",a:"alpha"},
+    {q:"A nucleus emits a positron and a neutrino; Z drops by 1.",a:"beta+"},
+  ];
+  let g1i=0;
+  const g1q=document.getElementById('g1-question');
+  const g1fb=document.getElementById('g1-feedback');
+  const g1nx=document.getElementById('g1-next');
+  const g1ctr=document.getElementById('g1-counter');
+  const g1pb=document.getElementById('g1-pbar');
+  const g1sec=document.querySelector('.game-card');
+  const names={alpha:'Alpha',['beta-']:'Beta-minus',['beta+']:'Beta-plus',gamma:'Gamma'};
+
+  function g1Show(){
+    const d=g1Qs[g1i];
+    g1q.textContent=d.q; g1fb.textContent=''; g1nx.classList.add('hidden');
+    g1ctr.textContent=(g1i+1)+' / '+g1Qs.length;
+    g1pb.style.width=((g1i+1)/g1Qs.length*100)+'%';
+    g1sec.querySelectorAll('[data-choice]').forEach(b=>{b.classList.remove('correct','wrong');b.disabled=false;});
+  }
+  g1sec.querySelectorAll('[data-choice]').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      const choice=this.dataset.choice, correct=g1Qs[g1i].a;
+      g1sec.querySelectorAll('[data-choice]').forEach(b=>b.disabled=true);
+      if(choice===correct){
         this.classList.add('correct');
-        g1FeedbackEl.textContent = 'Correct!';
-        g1FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-emerald-600';
+        g1fb.textContent='Correct! ✓'; g1fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-emerald-600';
+        confetti();
       } else {
         this.classList.add('wrong');
-        const rightBtn = Array.from(buttons).find(b => b.getAttribute('data-choice') === correct);
-        if (rightBtn) rightBtn.classList.add('correct');
-        g1FeedbackEl.textContent = 'Not quite. The answer is ' + (correct === 'alpha' ? 'Alpha' : correct === 'beta-' ? 'Beta-minus' : correct === 'beta+' ? 'Beta-plus' : 'Gamma') + '.';
-        g1FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+        g1sec.querySelector('[data-choice="'+correct+'"]').classList.add('correct');
+        g1fb.textContent='Not quite — the answer is '+names[correct]+'.';
+        g1fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
       }
-      g1NextBtn.classList.remove('hidden');
+      g1nx.classList.remove('hidden');
     });
   });
-
-  g1NextBtn.addEventListener('click', function() {
-    g1Index = (g1Index + 1) % g1Questions.length;
-    g1Show();
-  });
-
+  g1nx.addEventListener('click',()=>{g1i=(g1i+1)%g1Qs.length;g1Show();});
   g1Show();
 
-  // —— Game 2: Complete the daughter ——
-  const g2Questions = [
-    { parent: "²³⁸₉₂ U", decay: "alpha", options: ["²³⁴₉₀ Th", "²³⁴₉₁ Pa", "²³⁸₉₀ Th", "²³⁶₉₀ Th"], a: 0 },
-    { parent: "¹⁴₆ C", decay: "β⁻", options: ["¹⁴₇ N", "¹⁴₅ B", "¹⁰₆ C", "¹⁴₆ N"], a: 0 },
-    { parent: "¹¹₆ C", decay: "β⁺", options: ["¹¹₅ B", "¹¹₇ N", "¹⁰₅ B", "¹¹₆ B"], a: 0 },
-    { parent: "²²⁶₈₈ Ra", decay: "alpha", options: ["²²²₈₆ Rn", "²²⁶₈₆ Rn", "²²⁴₈₆ Rn", "²³⁰₈₆ Rn"], a: 0 },
-    { parent: "⁹⁰₃₈ Sr", decay: "β⁻", options: ["⁹⁰₃₉ Y", "⁹⁰₃₇ Rb", "⁸⁹₃₉ Y", "⁹¹₃₉ Y"], a: 0 },
+  /* ── Game 2 ── */
+  const g2Qs=[
+    {parent:"²³⁸₉₂U", decay:"alpha (α)", opts:["²³⁴₉₀Th","²³⁴₉₁Pa","²³⁸₉₀Th","²³⁶₉₀Th"], a:0},
+    {parent:"¹⁴₆C",   decay:"β⁻",        opts:["¹⁴₇N","¹⁴₅B","¹⁰₆C","¹⁴₆N"],           a:0},
+    {parent:"¹¹₆C",   decay:"β⁺",        opts:["¹¹₅B","¹¹₇N","¹⁰₅B","¹¹₆B"],           a:0},
+    {parent:"²²⁶₈₈Ra",decay:"alpha (α)", opts:["²²²₈₆Rn","²²⁶₈₆Rn","²²⁴₈₆Rn","²³⁰₈₆Rn"],a:0},
+    {parent:"⁹⁰₃₈Sr", decay:"β⁻",        opts:["⁹⁰₃₉Y","⁹⁰₃₇Rb","⁸⁹₃₉Y","⁹¹₃₉Y"],     a:0},
+    {parent:"²¹⁰₈₂Pb",decay:"β⁻",        opts:["²¹⁰₈₃Bi","²¹⁰₈₁Tl","²⁰⁶₈₂Pb","²¹⁰₈₄Po"],a:0},
+    {parent:"²¹⁰₈₄Po",decay:"alpha (α)", opts:["²⁰⁶₈₂Pb","²⁰⁶₈₃Bi","²¹⁰₈₂Pb","²⁰⁸₈₂Pb"],a:0},
   ];
-  let g2Index = 0;
-  const g2QuestionEl = document.getElementById('g2-question');
-  const g2ChoicesEl = document.getElementById('g2-choices');
-  const g2FeedbackEl = document.getElementById('g2-feedback');
-  const g2NextBtn = document.getElementById('g2-next');
+  let g2i=0;
+  const g2q=document.getElementById('g2-question');
+  const g2ch=document.getElementById('g2-choices');
+  const g2fb=document.getElementById('g2-feedback');
+  const g2nx=document.getElementById('g2-next');
+  const g2ctr=document.getElementById('g2-counter');
+  const g2pb=document.getElementById('g2-pbar');
 
-  function g2Show() {
-    const d = g2Questions[g2Index];
-    g2QuestionEl.textContent = d.parent + ' → ? (decay: ' + d.decay + ')';
-    g2ChoicesEl.innerHTML = '';
-    d.options.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'tap-btn py-4 px-4 rounded-xl bg-white border-2 border-emerald-300 text-slate-800 font-semibold';
-      btn.textContent = opt;
-      btn.addEventListener('click', function() {
-        g2ChoicesEl.querySelectorAll('button').forEach(b => b.disabled = true);
-        if (i === d.a) {
-          this.classList.add('correct');
-          g2FeedbackEl.textContent = 'Correct!';
-          g2FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-emerald-600';
+  function g2Show(){
+    const d=g2Qs[g2i];
+    g2q.textContent=d.parent+' → ?  (decay: '+d.decay+')';
+    g2ctr.textContent=(g2i+1)+' / '+g2Qs.length;
+    g2pb.style.width=((g2i+1)/g2Qs.length*100)+'%';
+    g2ch.innerHTML=''; g2fb.textContent=''; g2nx.classList.add('hidden');
+    d.opts.forEach((opt,i)=>{
+      const b=document.createElement('button'); b.type='button';
+      b.className='tap-btn py-4 px-4 rounded-xl bg-white border-2 border-emerald-300 text-slate-800 font-semibold';
+      b.textContent=opt;
+      b.addEventListener('click',function(){
+        g2ch.querySelectorAll('button').forEach(x=>x.disabled=true);
+        if(i===d.a){
+          this.classList.add('correct'); confetti();
+          g2fb.textContent='Correct! ✓'; g2fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-emerald-600';
         } else {
-          this.classList.add('wrong');
-          g2ChoicesEl.children[d.a].classList.add('correct');
-          g2FeedbackEl.textContent = 'The correct daughter is ' + d.options[d.a] + '.';
-          g2FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+          this.classList.add('wrong'); g2ch.children[d.a].classList.add('correct');
+          g2fb.textContent='The correct daughter is '+d.opts[d.a]+'.';
+          g2fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
         }
-        g2NextBtn.classList.remove('hidden');
+        g2nx.classList.remove('hidden');
       });
-      g2ChoicesEl.appendChild(btn);
+      g2ch.appendChild(b);
     });
-    g2FeedbackEl.textContent = '';
-    g2NextBtn.classList.add('hidden');
   }
-
-  g2NextBtn.addEventListener('click', function() {
-    g2Index = (g2Index + 1) % g2Questions.length;
-    g2Show();
-  });
-
+  g2nx.addEventListener('click',()=>{g2i=(g2i+1)%g2Qs.length;g2Show();});
   g2Show();
 
-  // —— Game 3: Decay animation ——
-  const g3Config = {
-    'alpha': { parent: '238\n92\nU', daughter: '234\n90\nTh', particle: 'α', particleClass: 'alpha' },
-    'beta-': { parent: '14\n6\nC', daughter: '14\n7\nN', particle: 'β⁻', particleClass: 'beta' },
-    'beta+': { parent: '11\n6\nC', daughter: '11\n5\nB', particle: 'β⁺', particleClass: 'beta' },
-    'gamma': { parent: '60\n27\nCo*', daughter: '60\n27\nCo', particle: 'γ', particleClass: 'gamma' },
+  /* ── Game 3: Decay animation ── */
+  const g3Cfg={
+    alpha:{
+      parent:'238\n92\nU', daughter:'234\n90\nTh',
+      p1:{cls:'alpha',label:'α',fly:'fly-ne'},
+      p2:null,
+      eq:'²³⁸U  →  ²³⁴Th  +  ⁴He (α)',
+    },
+    'beta-':{
+      parent:'14\n6\nC', daughter:'14\n7\nN',
+      p1:{cls:'beta',label:'e⁻',fly:'fly-ne'},
+      p2:{cls:'neut',label:'ν̄',fly:'fly-nw'},
+      eq:'¹⁴C  →  ¹⁴N  +  e⁻  +  ν̄ₑ',
+    },
+    'beta+':{
+      parent:'11\n6\nC', daughter:'11\n5\nB',
+      p1:{cls:'beta',label:'e⁺',fly:'fly-ne'},
+      p2:{cls:'neut',label:'ν',fly:'fly-sw'},
+      eq:'¹¹C  →  ¹¹B  +  e⁺  +  νₑ',
+    },
+    gamma:{
+      parent:'60\n27\nCo*', daughter:'60\n27\nCo',
+      p1:{cls:'neut',label:'γ',fly:'fly-se'},
+      p2:null,
+      eq:'⁶⁰Co*  →  ⁶⁰Co  +  γ photon',
+    },
   };
-  let g3Type = 'alpha';
-  const stage = document.getElementById('g3-stage');
-  const parentEl = document.getElementById('g3-parent');
-  const particleEl = document.getElementById('g3-particle');
-  const daughterEl = document.getElementById('g3-daughter');
-  const goBtn = document.getElementById('g3-go');
 
-  document.querySelectorAll('.decay-type-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.decay-type-btn').forEach(b => b.classList.remove('ring-4', 'ring-emerald-500'));
-      this.classList.add('ring-4', 'ring-emerald-500');
-      g3Type = this.getAttribute('data-type');
-    });
-  });
+  let g3type='alpha', g3busy=false;
+  const g3stage=document.getElementById('g3-stage');
+  const g3flash=document.getElementById('g3-flash');
+  const g3par=document.getElementById('g3-parent');
+  const g3p1=document.getElementById('g3-p1');
+  const g3p2=document.getElementById('g3-p2');
+  const g3dau=document.getElementById('g3-daughter');
+  const g3eq=document.getElementById('g3-eq');
+  const g3go=document.getElementById('g3-go');
 
-  goBtn.addEventListener('click', function() {
-    const cfg = g3Config[g3Type];
-    parentEl.innerHTML = cfg.parent.replace(/\n/g, '<br>');
-    parentEl.classList.remove('decaying');
-    parentEl.style.display = 'flex';
-    parentEl.style.transform = 'scale(1)';
-    parentEl.style.opacity = '1';
-    daughterEl.style.display = 'none';
-    daughterEl.classList.remove('daughter-appear');
-    daughterEl.innerHTML = cfg.daughter.replace(/\n/g, '<br>');
-    particleEl.textContent = '';
-    particleEl.className = 'particle ' + cfg.particleClass;
-    particleEl.classList.remove('fly');
-
-    void parentEl.offsetWidth;
-    parentEl.classList.add('decaying');
-    particleEl.textContent = cfg.particle;
-    particleEl.classList.add('fly');
-    daughterEl.style.display = 'flex';
-    daughterEl.style.opacity = '0';
-    daughterEl.style.transform = 'scale(0)';
-    daughterEl.classList.add('daughter-appear');
-
-    setTimeout(function() {
-      parentEl.style.display = 'none';
-      parentEl.classList.remove('decaying');
-    }, 650);
-    setTimeout(function() {
-      parentEl.style.display = 'flex';
-      parentEl.style.opacity = '1';
-      parentEl.style.transform = 'scale(1)';
-      daughterEl.style.display = 'none';
-      daughterEl.classList.remove('daughter-appear');
-      particleEl.classList.remove('fly');
-      particleEl.style.opacity = '0';
-      const cfg = g3Config[g3Type];
-      parentEl.innerHTML = cfg.parent.replace(/\n/g, '<br>');
-    }, 2500);
-  });
-
-  // —— Game 4: Quick quiz ——
-  const g4Questions = [
-    { q: "In alpha decay, how does Z change?", opts: ["Z increases by 2", "Z decreases by 2", "Z stays the same", "Z decreases by 1"], a: 1 },
-    { q: "What is emitted in beta-minus decay?", opts: ["Alpha particle", "Electron and antineutrino", "Positron and neutrino", "Gamma photon"], a: 1 },
-    { q: "Gamma decay changes which of these?", opts: ["Mass number A", "Atomic number Z", "Neither A nor Z", "Both A and Z"], a: 2 },
-    { q: "After β⁻ decay, the daughter has ___ proton(s) than the parent.", opts: ["1 more", "1 fewer", "2 fewer", "same number"], a: 0 },
-    { q: "The alpha particle is the same as:", opts: ["A neutron", "Helium-4 nucleus", "An electron", "A photon"], a: 1 },
-  ];
-  let g4Index = 0;
-  let g4Score = 0;
-  const g4QuestionEl = document.getElementById('g4-question');
-  const g4ChoicesEl = document.getElementById('g4-choices');
-  const g4FeedbackEl = document.getElementById('g4-feedback');
-  const g4ScoreEl = document.getElementById('g4-score');
-  const g4TotalEl = document.getElementById('g4-total');
-  const g4NextBtn = document.getElementById('g4-next');
-
-  function g4Show() {
-    const d = g4Questions[g4Index];
-    g4QuestionEl.textContent = d.q;
-    g4TotalEl.textContent = g4Questions.length;
-    g4ScoreEl.textContent = g4Score;
-    g4ChoicesEl.innerHTML = '';
-    d.opts.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'tap-btn w-full py-4 px-4 rounded-xl bg-white border-2 border-emerald-300 text-left font-medium text-slate-800';
-      btn.textContent = opt;
-      btn.addEventListener('click', function() {
-        g4ChoicesEl.querySelectorAll('button').forEach(b => b.disabled = true);
-        if (i === d.a) {
-          this.classList.add('correct');
-          g4Score++;
-          g4ScoreEl.textContent = g4Score;
-          g4FeedbackEl.textContent = 'Correct!';
-          g4FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-emerald-600';
-        } else {
-          this.classList.add('wrong');
-          g4ChoicesEl.children[d.a].classList.add('correct');
-          g4FeedbackEl.textContent = 'Correct answer: ' + d.opts[d.a];
-          g4FeedbackEl.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
-        }
-        g4NextBtn.classList.remove('hidden');
-      });
-      g4ChoicesEl.appendChild(btn);
-    });
-    g4FeedbackEl.textContent = '';
-    g4NextBtn.classList.add('hidden');
+  function g3SetParent(cfg){
+    g3par.innerHTML=cfg.parent.replace(/\n/g,'<br>');
+    g3par.style.display='flex'; g3par.style.opacity='1'; g3par.style.transform='';
+    g3par.className='nucleus z-10'; g3par.style.color='#d1fae5';
   }
 
-  g4NextBtn.addEventListener('click', function() {
-    g4Index = (g4Index + 1) % g4Questions.length;
-    if (g4Index === 0) g4Score = 0;
-    g4Show();
+  document.querySelectorAll('.decay-btn').forEach(b=>{
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.decay-btn').forEach(x=>x.classList.remove('ring-4','ring-emerald-500'));
+      this.classList.add('ring-4','ring-emerald-500');
+      g3type=this.dataset.type;
+      if(!g3busy) g3SetParent(g3Cfg[g3type]);
+    });
   });
 
+  // init parent label
+  g3SetParent(g3Cfg['alpha']);
+
+  g3go.addEventListener('click',function(){
+    if(g3busy) return; g3busy=true; g3go.disabled=true;
+    const cfg=g3Cfg[g3type];
+
+    // reset
+    g3SetParent(cfg);
+    g3dau.style.display='none';
+    [g3p1,g3p2].forEach(p=>{ p.className='particle'; p.textContent=''; p.style.opacity='0'; });
+    g3flash.classList.remove('on'); g3eq.textContent='';
+
+    // Step 1 – shake
+    void g3par.offsetWidth;
+    g3par.classList.add('shake');
+
+    // Step 2 – decay
+    setTimeout(()=>{
+      g3par.classList.remove('shake');
+      g3par.classList.add('pop-out');
+      g3flash.classList.add('on');
+
+      // ripple rings
+      for(let r=0;r<3;r++){
+        const ring=document.createElement('div'); ring.className='decay-ring';
+        ring.style.animationDelay=(r*0.18)+'s';
+        g3stage.appendChild(ring);
+        setTimeout(()=>ring.remove(),1200);
+      }
+
+      // particles
+      function launchParticle(el, pc){
+        el.className='particle '+pc.cls;
+        el.textContent=pc.label;
+        el.style.opacity='0';
+        void el.offsetWidth;
+        el.classList.add(pc.fly);
+      }
+      launchParticle(g3p1, cfg.p1);
+      if(cfg.p2) launchParticle(g3p2, cfg.p2);
+
+      // daughter
+      setTimeout(()=>{
+        g3par.style.display='none';
+        g3dau.innerHTML=cfg.daughter.replace(/\n/g,'<br>');
+        g3dau.style.display='flex'; g3dau.style.opacity='1';
+        g3dau.classList.remove('pop-in'); void g3dau.offsetWidth;
+        g3dau.classList.add('pop-in');
+        g3eq.textContent=cfg.eq;
+      },420);
+
+      // reset after viewing
+      setTimeout(()=>{
+        g3SetParent(cfg);
+        g3dau.style.display='none'; g3dau.classList.remove('pop-in');
+        [g3p1,g3p2].forEach(p=>{ p.className='particle'; p.textContent=''; p.style.opacity='0'; });
+        g3flash.classList.remove('on'); g3eq.textContent='';
+        g3go.disabled=false; g3busy=false;
+      },3500);
+    },580);
+  });
+
+  /* ── Game 4 ── */
+  const g4Qs=[
+    {q:"In alpha decay, how does Z change?",opts:["Z increases by 2","Z decreases by 2","Z stays the same","Z decreases by 1"],a:1},
+    {q:"What is emitted in beta-minus (β⁻) decay?",opts:["Alpha particle","Electron + antineutrino","Positron + neutrino","Gamma photon"],a:1},
+    {q:"Gamma decay changes which nuclear property?",opts:["Mass number A","Atomic number Z","Neither A nor Z","Both A and Z"],a:2},
+    {q:"After β⁻ decay, the daughter has ___ proton(s) compared to the parent.",opts:["1 more","1 fewer","2 fewer","Same number"],a:0},
+    {q:"The alpha particle is identical to:",opts:["A lone neutron","A helium-4 nucleus","An electron","A proton"],a:1},
+    {q:"In β⁺ decay, a proton converts to:",opts:["Neutron + positron + neutrino","Neutron + electron + antineutrino","Two protons","An alpha particle"],a:0},
+    {q:"Which decay does NOT change the atomic number Z?",opts:["Alpha","Beta-minus","Beta-plus","Gamma"],a:3},
+    {q:"Which radiation has the greatest penetrating power?",opts:["Alpha (α)","Beta (β)","Gamma (γ)","All equal"],a:2},
+  ];
+  let g4i=0, g4score=0;
+  const g4q=document.getElementById('g4-question');
+  const g4ch=document.getElementById('g4-choices');
+  const g4fb=document.getElementById('g4-feedback');
+  const g4sc=document.getElementById('g4-score');
+  const g4tot=document.getElementById('g4-total');
+  const g4nx=document.getElementById('g4-next');
+  const g4pb=document.getElementById('g4-pbar');
+
+  function g4Show(){
+    const d=g4Qs[g4i];
+    g4q.textContent=d.q; g4tot.textContent=g4Qs.length; g4sc.textContent=g4score;
+    g4pb.style.width=(g4i/g4Qs.length*100)+'%';
+    g4ch.innerHTML=''; g4fb.textContent=''; g4nx.classList.add('hidden');
+    d.opts.forEach((opt,i)=>{
+      const b=document.createElement('button'); b.type='button';
+      b.className='tap-btn w-full py-4 px-4 rounded-xl bg-white border-2 border-emerald-300 text-left font-medium text-slate-800';
+      b.textContent=opt;
+      b.addEventListener('click',function(){
+        g4ch.querySelectorAll('button').forEach(x=>x.disabled=true);
+        if(i===d.a){
+          this.classList.add('correct'); g4score++; g4sc.textContent=g4score;
+          g4sc.classList.add('score-pop'); setTimeout(()=>g4sc.classList.remove('score-pop'),400);
+          g4fb.textContent='Correct! ✓'; g4fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-emerald-600';
+          confetti();
+        } else {
+          this.classList.add('wrong'); g4ch.children[d.a].classList.add('correct');
+          g4fb.textContent='Correct answer: '+d.opts[d.a];
+          g4fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+        }
+        g4nx.classList.remove('hidden');
+      });
+      g4ch.appendChild(b);
+    });
+  }
+  g4nx.addEventListener('click',()=>{g4i=(g4i+1)%g4Qs.length;if(g4i===0)g4score=0;g4Show();});
   g4Show();
+
+  /* ── Game 5: Half-life ── */
+  const N0=32;
+  let hlAtoms=[], hlN=0;
+  const hlGrid=document.getElementById('hl-grid');
+  const hlCount=document.getElementById('hl-count');
+  const hlNEl=document.getElementById('hl-n');
+  const hlBar=document.getElementById('hl-bar');
+  const hlFormula=document.getElementById('hl-formula');
+  const hlMsg=document.getElementById('hl-msg');
+  const hlStep=document.getElementById('hl-step');
+  const hlReset=document.getElementById('hl-reset');
+
+  function hlInit(){
+    hlAtoms=Array(N0).fill(true); hlN=0;
+    hlGrid.innerHTML='';
+    hlAtoms.forEach((_,i)=>{
+      const d=document.createElement('div'); d.className='atom-dot'; d.id='hla'+i;
+      hlGrid.appendChild(d);
+    });
+    hlCount.textContent=N0; hlNEl.textContent=0;
+    hlBar.style.width='100%';
+    hlFormula.textContent='N = 32 × (½)⁰ = 32';
+    hlMsg.textContent='Press "One half-life passes" to start!';
+    hlStep.disabled=false;
+  }
+
+  hlStep.addEventListener('click',function(){
+    const active=hlAtoms.map((a,i)=>a?i:-1).filter(i=>i>=0);
+    if(!active.length){ hlMsg.textContent='All atoms have decayed!'; return; }
+    const toDecay=active.filter(()=>Math.random()<0.5);
+    const decaying=toDecay.length?toDecay:[active[Math.floor(Math.random()*active.length)]];
+    decaying.forEach(i=>{
+      hlAtoms[i]=false;
+      const dot=document.getElementById('hla'+i);
+      if(dot){ dot.classList.add('popping'); setTimeout(()=>dot.classList.add('gone'),450); }
+    });
+    hlN++;
+    const rem=hlAtoms.filter(a=>a).length;
+    hlCount.textContent=rem; hlNEl.textContent=hlN;
+    hlBar.style.width=(rem/N0*100)+'%';
+    hlFormula.textContent='N = 32 × (½)^'+hlN+' ≈ '+Math.round(N0*Math.pow(0.5,hlN))+' (ideal) | actual: '+rem;
+    if(rem===0){ hlMsg.textContent='All '+N0+' atoms decayed! Perfect exponential decay.'; hlStep.disabled=true; }
+    else { hlMsg.textContent='After '+hlN+' half-life'+(hlN>1?'s':'')+': '+rem+' atoms remain (≈'+Math.round(N0*Math.pow(0.5,hlN))+' expected).'; }
+  });
+  hlReset.addEventListener('click',hlInit);
+  hlInit();
+
 })();
 </script>
-
 </body>
 </html>

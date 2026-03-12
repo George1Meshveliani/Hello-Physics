@@ -3,176 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thermal Physics — Heat & Temperature Games</title>
+  <title>Thermal Physics — Heat &amp; Temperature Games</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
-  </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
     .game-card {
-      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 50%, #fed7aa 100%);
-      border: 2px solid #ea580c;
-      border-radius: 1.25rem;
-      box-shadow: 0 4px 20px rgba(234, 88, 12, 0.15);
+      background: linear-gradient(135deg,#fff7ed 0%,#ffedd5 50%,#fed7aa 100%);
+      border: 2px solid #ea580c; border-radius: 1.25rem;
+      box-shadow: 0 4px 20px rgba(234,88,12,0.15);
     }
-    .tap-btn {
-      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .tap-btn:hover { transform: scale(1.03); box-shadow: 0 6px 16px rgba(234, 88, 12, 0.25); }
-    .tap-btn:active { transform: scale(0.97); }
-    .tap-btn.correct {
-      animation: correctBounce 0.6s ease;
-      background: linear-gradient(135deg, #22c55e, #16a34a) !important;
-      color: white;
-      border-color: #15803d !important;
-    }
-    .tap-btn.wrong { animation: wrongShake 0.45s ease; }
-    @keyframes correctBounce {
-      0% { transform: scale(1); }
-      30% { transform: scale(1.12); }
-      50% { transform: scale(0.95); }
-      70% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    @keyframes wrongShake {
-      0%,100% { transform: translateX(0); }
-      20% { transform: translateX(-8px); }
-      40% { transform: translateX(8px); }
-      60% { transform: translateX(-5px); }
-      80% { transform: translateX(5px); }
-    }
+    .tap-btn { transition:transform 0.18s,box-shadow 0.18s; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+    .tap-btn:hover { transform:scale(1.03); box-shadow:0 6px 18px rgba(234,88,12,0.28); }
+    .tap-btn:active { transform:scale(0.97); }
+    .tap-btn.correct { animation:correctBounce 0.6s ease; background:linear-gradient(135deg,#22c55e,#16a34a)!important; color:white!important; border-color:#15803d!important; }
+    .tap-btn.wrong   { animation:wrongShake 0.45s ease; }
+    @keyframes correctBounce { 0%{transform:scale(1)} 30%{transform:scale(1.12)} 55%{transform:scale(0.95)} 75%{transform:scale(1.05)} 100%{transform:scale(1)} }
+    @keyframes wrongShake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)} }
 
-    /* Thermometer */
-    .thermometer-wrap {
-      width: 48px;
-      height: 140px;
-      background: linear-gradient(to top, #dc2626 0%, #f97316 50%, #fbbf24 100%);
-      border-radius: 24px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: inset 0 0 12px rgba(0,0,0,0.2);
+    /* ── Flame header ── */
+    .flame-wrap { position:relative; width:70px; height:90px; display:flex; align-items:flex-end; justify-content:center; }
+    .flame { position:absolute; bottom:0; border-radius:50% 50% 30% 30% / 60% 60% 40% 40%; animation:flameDance 0.7s ease-in-out infinite alternate; }
+    .flame-outer { width:50px; height:70px; background:linear-gradient(to top,#dc2626,#f97316,#fbbf24); opacity:0.9; animation-duration:0.65s; }
+    .flame-mid   { width:34px; height:52px; background:linear-gradient(to top,#c2410c,#fb923c,#fde68a); left:50%;transform:translateX(-50%); animation-duration:0.75s; animation-direction:alternate-reverse; }
+    .flame-inner { width:18px; height:30px; background:linear-gradient(to top,#7c2d12,#fbbf24,#fef9c3); left:50%;transform:translateX(-50%); animation-duration:0.55s; }
+    @keyframes flameDance {
+      0%  { transform:scaleX(1)    scaleY(1)    rotate(-1deg); }
+      100%{ transform:scaleX(0.88) scaleY(1.08) rotate(2deg); }
     }
-    .thermometer-fill {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 0%;
-      background: linear-gradient(to top, #7c2d12, #ea580c);
-      border-radius: 0 0 24px 24px;
-      transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .thermometer-fill.rise { animation: tempRise 1s ease forwards; }
-    @keyframes tempRise {
-      from { height: 0%; }
-      to { height: var(--fill, 60%); }
-    }
+    .flame-mid   { animation:flameDance2 0.75s ease-in-out infinite alternate; }
+    .flame-inner { animation:flameDance3 0.55s ease-in-out infinite alternate; }
+    @keyframes flameDance2 { 0%{transform:translateX(-50%) scaleX(1.05) scaleY(1) rotate(1deg)} 100%{transform:translateX(-50%) scaleX(0.9) scaleY(1.1) rotate(-2deg)} }
+    @keyframes flameDance3 { 0%{transform:translateX(-50%) scaleX(1) rotate(-2deg)} 100%{transform:translateX(-50%) scaleX(0.85) rotate(3deg)} }
 
-    /* Beakers / mixing */
-    .beaker {
-      width: 70px;
-      height: 90px;
-      border: 4px solid #78716c;
-      border-top: none;
-      border-radius: 0 0 12px 12px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: inset 0 -4px 12px rgba(0,0,0,0.1);
-    }
-    .beaker-liquid {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 70%;
-      border-radius: 0 0 8px 8px;
-      transition: height 0.5s ease, background 0.6s ease;
-    }
-    .beaker.hot .beaker-liquid { background: linear-gradient(to top, #b91c1c, #ef4444); }
-    .beaker.cold .beaker-liquid { background: linear-gradient(to top, #0369a1, #0ea5e9); }
-    .beaker.mixed .beaker-liquid { background: linear-gradient(to top, #c2410c, #f97316); }
-    .beaker.merge-anim .beaker-liquid { animation: liquidMerge 1.2s ease forwards; }
-    @keyframes liquidMerge {
-      0% { height: 70%; filter: brightness(1); }
-      50% { height: 85%; filter: brightness(1.2); }
-      100% { height: 70%; filter: brightness(1); }
-    }
+    /* ── Progress bar ── */
+    .pbar-bg   { height:6px; background:#fed7aa; border-radius:3px; overflow:hidden; margin-bottom:0.75rem; }
+    .pbar-fill { height:100%; background:#ea580c; border-radius:3px; transition:width 0.4s ease; }
 
-    /* Heat glow */
-    .heat-glow {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #fef3c7, #f59e0b);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
-    }
-    .heat-glow.heating { animation: heatPulse 0.8s ease infinite; }
-    @keyframes heatPulse {
-      0%,100% { transform: scale(1); box-shadow: 0 0 30px rgba(245, 158, 11, 0.6); }
-      50% { transform: scale(1.08); box-shadow: 0 0 45px rgba(245, 158, 11, 0.9); }
-    }
+    /* ── Thermometer ── */
+    .thermo-wrap { width:44px; height:130px; background:linear-gradient(to top,#dc2626,#f97316,#fbbf24); border-radius:22px; overflow:hidden; position:relative; box-shadow:inset 0 0 10px rgba(0,0,0,0.2); flex-shrink:0; }
+    .thermo-fill { position:absolute; bottom:0; left:0; right:0; height:0%; background:linear-gradient(to top,#7c2d12,#ea580c); border-radius:0 0 22px 22px; transition:height 0.9s cubic-bezier(0.34,1.56,0.64,1); }
 
-    /* Confetti container */
-    .confetti-zone { position: fixed; inset: 0; pointer-events: none; z-index: 100; overflow: hidden; }
-    .confetti-piece {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
-      animation: confettiFall 2s ease-out forwards;
-    }
-    @keyframes confettiFall {
-      0% { opacity: 1; transform: translateY(-20px) rotate(0deg); }
-      100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
-    }
+    /* ── Beakers ── */
+    .beaker { width:72px; height:88px; border:4px solid #78716c; border-top:none; border-radius:0 0 14px 14px; position:relative; overflow:hidden; box-shadow:inset 0 -4px 12px rgba(0,0,0,0.1); }
+    .beaker-liquid { position:absolute; bottom:0; left:0; right:0; height:70%; border-radius:0 0 10px 10px; transition:height 0.5s ease,background 0.7s ease; }
+    .beaker.hot  .beaker-liquid { background:linear-gradient(to top,#b91c1c,#ef4444); }
+    .beaker.cold .beaker-liquid { background:linear-gradient(to top,#0369a1,#0ea5e9); }
+    .beaker.mixed .beaker-liquid { background:linear-gradient(to top,#c2410c,#f97316); }
+    .beaker.merge-anim .beaker-liquid { animation:liquidMerge 1.1s ease forwards; }
+    @keyframes liquidMerge { 0%{height:70%;filter:brightness(1)} 50%{height:88%;filter:brightness(1.3)} 100%{height:70%;filter:brightness(1)} }
 
-    /* Fire / sparkle on correct */
-    .sparkle {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: #fbbf24;
-      border-radius: 50%;
-      animation: sparkleOut 0.8s ease-out forwards;
-      pointer-events: none;
-    }
-    @keyframes sparkleOut {
-      0% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(0) translate(calc(var(--x)*30px), calc(var(--y)*30px)); }
-    }
+    /* ── Steam bubbles ── */
+    .steam-bubble { position:absolute; border-radius:50%; background:rgba(255,255,255,0.65); animation:steamRise var(--dur,1.4s) ease-out forwards; pointer-events:none; }
+    @keyframes steamRise { 0%{opacity:0.8;transform:translateY(0) scale(0.5)} 100%{opacity:0;transform:translateY(-70px) scale(2)} }
 
-    .score-flame { display: inline-block; animation: flameWiggle 0.5s ease; }
-    @keyframes flameWiggle {
-      0%,100% { transform: scale(1) rotate(-2deg); }
-      50% { transform: scale(1.2) rotate(2deg); }
-    }
+    /* ── Pour stream ── */
+    .pour-stream { position:absolute; width:7px; border-radius:4px; animation:pourDown 0.9s ease-in forwards; pointer-events:none; }
+    @keyframes pourDown { 0%{height:0;opacity:0.9;top:0} 100%{height:70px;opacity:0.2;top:20px} }
 
-    .temp-bar-bg {
-      height: 24px;
-      background: linear-gradient(to right, #0ea5e9, #f97316);
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-    }
-    .temp-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #0369a1, #ea580c);
-      border-radius: 12px;
-      width: 0%;
-      transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .temp-bar-fill.animate-in { animation: barFill 1s ease forwards; }
-    @keyframes barFill {
-      from { width: 0%; }
-      to { width: var(--to, 60%); }
-    }
+    /* ── Heat glow ── */
+    .heat-glow { width:90px; height:90px; border-radius:50%; background:radial-gradient(circle at 30% 30%,#fef3c7,#f59e0b); display:flex; align-items:center; justify-content:center; font-size:2.2rem; box-shadow:0 0 28px rgba(245,158,11,0.65); }
+    .heat-glow.heating { animation:heatPulse 0.7s ease infinite; }
+    @keyframes heatPulse { 0%,100%{transform:scale(1);box-shadow:0 0 28px rgba(245,158,11,0.65)} 50%{transform:scale(1.09);box-shadow:0 0 50px rgba(245,158,11,0.95)} }
+
+    /* ── Temperature bar ── */
+    .temp-bar-bg   { height:22px; background:linear-gradient(to right,#0ea5e9,#f97316); border-radius:11px; overflow:hidden; position:relative; }
+    .temp-bar-fill { height:100%; background:linear-gradient(90deg,#0369a1,#ea580c); border-radius:11px; width:0%; transition:width 1s cubic-bezier(0.34,1.56,0.64,1); }
+
+    /* ── Block & sparks (Game 5) ── */
+    .spark { position:absolute; border-radius:50%; pointer-events:none; animation:sparkFly var(--dur,0.55s) ease-out forwards; }
+    @keyframes sparkFly { 0%{opacity:1;transform:translate(0,0) scale(1)} 100%{opacity:0;transform:translate(var(--sx,15px),var(--sy,-25px)) scale(0.3)} }
+    .heat-shimmer { position:absolute; pointer-events:none; animation:shimmerRise 0.9s ease-out forwards; }
+    @keyframes shimmerRise { 0%{opacity:0.7;transform:translateY(0) scaleX(1)} 100%{opacity:0;transform:translateY(-30px) scaleX(1.5)} }
+
+    /* ── Confetti ── */
+    .confetti-zone { position:fixed; inset:0; pointer-events:none; z-index:200; overflow:hidden; }
+    .cp { position:absolute; border-radius:2px; animation:cpFall 2.2s ease-out forwards; }
+    @keyframes cpFall { 0%{opacity:1;transform:translateY(-10px) rotate(0deg)} 100%{opacity:0;transform:translateY(100vh) rotate(540deg)} }
+
+    /* ── Sparkle on correct ── */
+    .sparkle { position:absolute; border-radius:50%; background:#fbbf24; pointer-events:none; animation:sparkleOut 0.8s ease-out forwards; }
+    @keyframes sparkleOut { 0%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(0) translate(var(--sx,20px),var(--sy,-20px))} }
+
+    .score-pop { animation:scorePop 0.4s ease; }
+    @keyframes scorePop { 50%{transform:scale(1.5);color:#ea580c} }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -184,22 +96,30 @@
 
     <header class="mb-8 text-center">
       <div class="flex justify-center mb-4">
-        <div class="heat-glow text-4xl">🌡️</div>
+        <div class="flame-wrap">
+          <div class="flame flame-outer"></div>
+          <div class="flame flame-mid"></div>
+          <div class="flame flame-inner"></div>
+        </div>
       </div>
       <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-2">Thermal Physics Games</h1>
-      <p class="text-slate-600">Heat, temperature & mixing — tap, play, animate!</p>
+      <p class="text-slate-600">Heat, temperature &amp; mixing — tap, play, animate!</p>
       <p class="mt-4 text-sm text-slate-500"><a href="https://george1meshveliani.github.io/Hello-Physics/README" class="text-orange-600 hover:underline font-medium">← Back to Hello Physics</a></p>
     </header>
 
     <!-- Game 1: Temperature conversion -->
     <section class="game-card p-6 mb-8">
-      <h2 class="text-xl font-bold text-slate-800 mb-1">1. Temperature conversion</h2>
-      <p class="text-slate-600 text-sm mb-4">Tap the correct equivalent. Watch the thermometer rise when you're right!</p>
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-xl font-bold text-slate-800">1. Temperature conversion</h2>
+        <span id="g1-ctr" class="text-sm text-orange-600 font-semibold">1 / 6</span>
+      </div>
+      <div class="pbar-bg"><div id="g1-pbar" class="pbar-fill" style="width:17%"></div></div>
+      <p class="text-slate-600 text-sm mb-4">Tap the right answer — watch the thermometer rise when you're correct!</p>
       <div class="flex flex-wrap items-center gap-6 mb-4">
-        <div class="thermometer-wrap flex-shrink-0">
-          <div id="t1-fill" class="thermometer-fill" style="height: 0%"></div>
+        <div class="thermo-wrap">
+          <div id="t1-fill" class="thermo-fill"></div>
         </div>
-        <div id="g1-question" class="text-lg font-medium text-slate-800 flex-1 min-h-[3rem] p-3 bg-white/80 rounded-xl shadow-sm"></div>
+        <div id="g1-question" class="text-lg font-medium text-slate-800 flex-1 min-h-[3rem] p-3 bg-white/80 rounded-xl shadow-sm relative overflow-hidden"></div>
       </div>
       <div id="g1-choices" class="grid grid-cols-2 gap-3"></div>
       <p id="g1-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
@@ -208,18 +128,20 @@
 
     <!-- Game 2: Q = mcΔT -->
     <section class="game-card p-6 mb-8">
-      <h2 class="text-xl font-bold text-slate-800 mb-1">2. Heat it up! \( Q = mc\Delta T \)</h2>
-      <p class="text-slate-600 text-sm mb-4">Find the missing value. Correct answer heats the beaker!</p>
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-xl font-bold text-slate-800">2. Heat it up! Q = mcΔT</h2>
+        <span id="g2-ctr" class="text-sm text-orange-600 font-semibold">1 / 6</span>
+      </div>
+      <div class="pbar-bg"><div id="g2-pbar" class="pbar-fill" style="width:17%"></div></div>
+      <p class="text-slate-600 text-sm mb-4">Find the missing value. Correct answer heats the bar!</p>
       <div class="flex flex-wrap items-center justify-center gap-6 mb-4">
-        <div id="g2-heat-icon" class="heat-glow text-3xl">🥤</div>
-        <div class="flex-1 min-w-[200px]">
-          <div class="temp-bar-bg mb-2">
-            <div id="g2-bar" class="temp-bar-fill" style="width: 0%"></div>
-          </div>
-          <p class="text-xs text-slate-500">Heat added → temperature rise</p>
+        <div id="g2-glow" class="heat-glow">🥤</div>
+        <div class="flex-1 min-w-[180px]">
+          <div class="temp-bar-bg mb-2"><div id="g2-bar" class="temp-bar-fill"></div></div>
+          <p class="text-xs text-slate-500">Heat added → temperature rises</p>
         </div>
       </div>
-      <div id="g2-question" class="text-lg font-medium text-slate-800 mb-4 p-3 bg-white/80 rounded-xl shadow-sm"></div>
+      <div id="g2-question" class="text-lg font-medium text-slate-800 mb-4 p-3 bg-white/80 rounded-xl shadow-sm relative overflow-hidden"></div>
       <div id="g2-choices" class="grid grid-cols-2 gap-3"></div>
       <p id="g2-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
       <button type="button" id="g2-next" class="mt-3 text-orange-600 font-semibold text-sm hover:underline hidden">Next →</button>
@@ -228,46 +150,62 @@
     <!-- Game 3: Mixing -->
     <section class="game-card p-6 mb-8">
       <h2 class="text-xl font-bold text-slate-800 mb-1">3. Mix it!</h2>
-      <p class="text-slate-600 text-sm mb-4">Hot + cold water. Tap the final temperature — then watch them mix!</p>
-      <div id="g3-stage" class="flex flex-wrap items-end justify-center gap-8 py-6 mb-4 bg-white/50 rounded-xl">
-        <div class="text-center">
-          <div id="g3-beaker-hot" class="beaker hot mx-auto">
+      <p class="text-slate-600 text-sm mb-4">Hot + cold water — tap the final temperature, then watch them mix!</p>
+      <div id="g3-stage" class="relative flex flex-wrap items-end justify-center gap-8 py-6 mb-4 bg-white/50 rounded-xl overflow-hidden">
+        <!-- Hot beaker -->
+        <div class="text-center relative">
+          <div id="g3-steam" class="absolute inset-0 pointer-events-none overflow-hidden" style="bottom:auto;height:60px;top:-60px;width:72px;"></div>
+          <div id="g3-hot" class="beaker hot mx-auto">
             <div class="beaker-liquid"></div>
           </div>
-          <p id="g3-t-hot" class="text-sm font-bold text-red-600 mt-2">90°C</p>
-          <p class="text-xs text-slate-500">0.4 kg</p>
+          <p id="g3-th" class="text-sm font-bold text-red-600 mt-2">90°C</p>
+          <p class="text-xs text-slate-500">m₁ kg</p>
         </div>
         <div class="text-2xl text-slate-400 self-center">+</div>
+        <!-- Cold beaker -->
         <div class="text-center">
-          <div id="g3-beaker-cold" class="beaker cold mx-auto">
+          <div id="g3-cold" class="beaker cold mx-auto">
             <div class="beaker-liquid"></div>
           </div>
-          <p id="g3-t-cold" class="text-sm font-bold text-blue-600 mt-2">20°C</p>
-          <p class="text-xs text-slate-500">0.6 kg</p>
+          <p id="g3-tc" class="text-sm font-bold text-blue-600 mt-2">20°C</p>
+          <p class="text-xs text-slate-500">m₂ kg</p>
         </div>
+        <!-- Pour stream placeholder -->
+        <div id="g3-pour" class="hidden absolute" style="left:50%;top:20px;"></div>
       </div>
-      <p class="text-center text-slate-600 mb-3">Final temperature = ?</p>
+      <p class="text-center text-slate-700 font-medium mb-3">Final temperature = ?</p>
       <div id="g3-choices" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
       <p id="g3-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
       <button type="button" id="g3-next" class="mt-3 text-orange-600 font-semibold text-sm hover:underline hidden">Next mix →</button>
     </section>
 
-    <!-- Game 4: Quick quiz with confetti -->
+    <!-- Game 4: Quick quiz -->
     <section class="game-card p-6 mb-8">
-      <h2 class="text-xl font-bold text-slate-800 mb-1">4. Quick quiz</h2>
-      <p class="text-slate-600 text-sm mb-4">Score: <span id="g4-score" class="score-flame font-bold text-orange-500">0</span> / <span id="g4-total">0</span> — get it right for a celebration!</p>
-      <div id="g4-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[4rem] p-3 bg-white/80 rounded-xl shadow-sm"></div>
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-xl font-bold text-slate-800">4. Quick quiz</h2>
+        <span class="text-sm font-semibold text-orange-700">Score: <span id="g4-score" class="font-extrabold text-orange-500">0</span> / <span id="g4-total">0</span></span>
+      </div>
+      <div class="pbar-bg"><div id="g4-pbar" class="pbar-fill" style="width:0%"></div></div>
+      <div id="g4-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[4rem] p-3 bg-white/80 rounded-xl shadow-sm relative overflow-hidden"></div>
       <div id="g4-choices" class="space-y-2"></div>
       <p id="g4-feedback" class="mt-3 text-sm font-medium min-h-[1.5rem]"></p>
       <button type="button" id="g4-next" class="mt-3 text-orange-600 font-semibold text-sm hover:underline hidden">Next →</button>
     </section>
 
-    <!-- Game 5: KE to heat -->
+    <!-- Game 5: KE → heat -->
     <section class="game-card p-6 mb-8">
-      <h2 class="text-xl font-bold text-slate-800 mb-1">5. Kinetic energy → heat</h2>
-      <p class="text-slate-600 text-sm mb-4">Block slides then stops. What happens to the energy? Tap the right idea!</p>
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-xl font-bold text-slate-800">5. Kinetic energy → heat</h2>
+        <span id="g5-ctr" class="text-sm text-orange-600 font-semibold">1 / 4</span>
+      </div>
+      <div class="pbar-bg"><div id="g5-pbar" class="pbar-fill" style="width:25%"></div></div>
+      <p class="text-slate-600 text-sm mb-4">Block slides and stops — what happens to the energy?</p>
       <div id="g5-scene" class="relative h-32 mb-4 bg-gradient-to-r from-slate-100 to-slate-200 rounded-xl overflow-hidden flex items-center">
-        <div id="g5-block" class="w-14 h-12 bg-amber-600 rounded-lg shadow-lg flex items-center justify-center text-white font-bold text-sm ml-4">m</div>
+        <!-- Ground texture -->
+        <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-slate-300 to-slate-400 opacity-60"></div>
+        <div id="g5-block" class="relative w-14 h-12 bg-amber-600 rounded-lg shadow-lg flex items-center justify-center text-white font-bold text-sm ml-4 z-10">m</div>
+        <div id="g5-sparks" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+        <div id="g5-heat-waves" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
       </div>
       <div id="g5-question" class="text-lg font-medium text-slate-800 mb-4 p-3 bg-white/80 rounded-xl shadow-sm"></div>
       <div id="g5-choices" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
@@ -279,350 +217,378 @@
 </div>
 
 <script>
-(function() {
-  function confetti() {
-    const zone = document.getElementById('confetti-zone');
-    const colors = ['#f97316', '#eab308', '#22c55e', '#0ea5e9', '#a855f7'];
-    for (let i = 0; i < 40; i++) {
-      const p = document.createElement('div');
-      p.className = 'confetti-piece';
-      p.style.left = Math.random() * 100 + '%';
-      p.style.background = colors[Math.floor(Math.random() * colors.length)];
-      p.style.animationDelay = Math.random() * 0.5 + 's';
-      p.style.animationDuration = (1.5 + Math.random()) + 's';
-      zone.appendChild(p);
-      setTimeout(() => p.remove(), 2500);
+(function(){
+
+  /* ── Confetti ── */
+  function confetti(){
+    const z=document.getElementById('confetti-zone');
+    const cols=['#f97316','#eab308','#22c55e','#0ea5e9','#a855f7','#ec4899'];
+    for(let i=0;i<55;i++){
+      const p=document.createElement('div'); p.className='cp';
+      const sz=6+Math.random()*8;
+      p.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${sz}px;
+        background:${cols[Math.floor(Math.random()*cols.length)]};
+        animation-delay:${Math.random()*0.5}s;animation-duration:${1.4+Math.random()}s;
+        border-radius:${Math.random()>0.5?'50%':'2px'};`;
+      z.appendChild(p); setTimeout(()=>p.remove(),2700);
     }
   }
 
-  function sparkle(parent) {
-    for (let i = 0; i < 8; i++) {
-      const s = document.createElement('div');
-      s.className = 'sparkle';
-      s.style.setProperty('--x', (Math.random() - 0.5) * 2);
-      s.style.setProperty('--y', (Math.random() - 0.5) * 2);
-      parent.appendChild(s);
-      setTimeout(() => s.remove(), 900);
+  function sparkle(parent){
+    for(let i=0;i<10;i++){
+      const s=document.createElement('div'); s.className='sparkle';
+      const sz=5+Math.random()*7;
+      s.style.cssText=`width:${sz}px;height:${sz}px;
+        --sx:${(Math.random()-0.5)*60}px;--sy:${(Math.random()-0.5)*60}px;
+        top:${20+Math.random()*60}%;left:${20+Math.random()*60}%;`;
+      parent.appendChild(s); setTimeout(()=>s.remove(),900);
     }
   }
 
-  // —— Game 1: Temperature conversion ——
-  const g1Data = [
-    { q: "0°C in Kelvin?", opts: ["273 K", "0 K", "32 K", "100 K"], a: 0 },
-    { q: "100°C in Fahrenheit?", opts: ["212°F", "180°F", "373°F", "100°F"], a: 0 },
-    { q: "Room temperature ~25°C in Kelvin?", opts: ["298 K", "273 K", "25 K", "248 K"], a: 0 },
-    { q: "32°F in Celsius?", opts: ["0°C", "32°C", "100°C", "273°C"], a: 0 },
-    { q: "Boiling water 100°C in Kelvin?", opts: ["373 K", "273 K", "100 K", "212 K"], a: 0 },
+  /* ── Game 1: Temperature conversion ── */
+  const g1Data=[
+    {q:"0°C in Kelvin?",          opts:["273 K","0 K","32 K","100 K"],       a:0},
+    {q:"100°C in Fahrenheit?",    opts:["212°F","180°F","373°F","100°F"],     a:0},
+    {q:"~25°C (room temp) in Kelvin?", opts:["298 K","273 K","25 K","248 K"],a:0},
+    {q:"32°F in Celsius?",        opts:["0°C","32°C","100°C","−32°C"],        a:0},
+    {q:"Boiling water (100°C) in Kelvin?", opts:["373 K","273 K","100 K","212 K"],a:0},
+    {q:"Absolute zero 0 K in Celsius?",    opts:["−273°C","0°C","−100°C","−373°C"],a:0},
   ];
-  let g1Idx = 0;
-  const t1Fill = document.getElementById('t1-fill');
-  const g1Question = document.getElementById('g1-question');
-  const g1Choices = document.getElementById('g1-choices');
-  const g1Feedback = document.getElementById('g1-feedback');
-  const g1Next = document.getElementById('g1-next');
-  const game1Card = document.querySelectorAll('.game-card')[0];
+  let g1i=0;
+  const t1Fill=document.getElementById('t1-fill');
+  const g1q=document.getElementById('g1-question');
+  const g1ch=document.getElementById('g1-choices');
+  const g1fb=document.getElementById('g1-feedback');
+  const g1nx=document.getElementById('g1-next');
+  const g1ctr=document.getElementById('g1-ctr');
+  const g1pb=document.getElementById('g1-pbar');
+  const game1=document.querySelectorAll('.game-card')[0];
 
-  function g1Show() {
-    const d = g1Data[g1Idx];
-    g1Question.textContent = d.q;
-    g1Feedback.textContent = '';
-    g1Next.classList.add('hidden');
-    t1Fill.style.height = '0%';
-    t1Fill.classList.remove('rise');
-    g1Choices.innerHTML = '';
-    d.opts.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'tap-btn py-4 px-4 rounded-xl bg-orange-100 border-2 border-orange-300 font-semibold text-slate-800';
-      btn.textContent = opt;
-      btn.addEventListener('click', function() {
-        game1Card.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
-        if (i === d.a) {
-          this.classList.add('correct');
-          g1Feedback.textContent = 'Correct!';
-          g1Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
-          t1Fill.style.setProperty('--fill', (60 + Math.random() * 30) + '%');
-          t1Fill.classList.add('rise');
-          sparkle(g1Question);
+  function g1Show(){
+    const d=g1Data[g1i];
+    g1q.textContent=d.q; g1fb.textContent=''; g1nx.classList.add('hidden');
+    g1ctr.textContent=(g1i+1)+' / '+g1Data.length;
+    g1pb.style.width=((g1i+1)/g1Data.length*100)+'%';
+    t1Fill.style.height='0%';
+    g1ch.innerHTML='';
+    d.opts.forEach((opt,i)=>{
+      const b=document.createElement('button'); b.type='button';
+      b.className='tap-btn py-4 px-4 rounded-xl bg-orange-100 border-2 border-orange-300 font-semibold text-slate-800';
+      b.textContent=opt;
+      b.addEventListener('click',function(){
+        game1.querySelectorAll('.tap-btn').forEach(x=>x.disabled=true);
+        if(i===d.a){
+          this.classList.add('correct'); confetti();
+          g1fb.textContent='Correct! ✓'; g1fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
+          t1Fill.style.height=(55+Math.random()*35)+'%';
+          sparkle(g1q);
         } else {
-          this.classList.add('wrong');
-          g1Choices.children[d.a].classList.add('correct');
-          g1Feedback.textContent = 'Answer: ' + d.opts[d.a];
-          g1Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+          this.classList.add('wrong'); g1ch.children[d.a].classList.add('correct');
+          g1fb.textContent='Answer: '+d.opts[d.a]; g1fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
         }
-        g1Next.classList.remove('hidden');
+        g1nx.classList.remove('hidden');
       });
-      g1Choices.appendChild(btn);
+      g1ch.appendChild(b);
     });
   }
-  g1Next.addEventListener('click', function() {
-    g1Idx = (g1Idx + 1) % g1Data.length;
-    game1Card.querySelectorAll('.tap-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+  g1nx.addEventListener('click',()=>{
+    g1i=(g1i+1)%g1Data.length;
+    game1.querySelectorAll('.tap-btn').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong');});
     g1Show();
   });
   g1Show();
 
-  // —— Game 2: Q = mcΔT ——
-  const g2Data = [
-    { q: "2 kg water, c=4200, ΔT=10 K. Q = ?", opts: ["84 kJ", "42 kJ", "8.4 kJ", "840 kJ"], a: 0 },
-    { q: "Q=21 kJ, m=1 kg, c=4200. ΔT = ?", opts: ["5 K", "10 K", "21 K", "2 K"], a: 0 },
-    { q: "Q=36 kJ, ΔT=20 K, c=900. m = ?", opts: ["2 kg", "1 kg", "4 kg", "0.5 kg"], a: 0 },
-    { q: "0.5 kg copper, c=390, heated 80 K. Q = ?", opts: ["15.6 kJ", "31.2 kJ", "7.8 kJ", "156 kJ"], a: 0 },
-    { q: "4 kg, ΔT=15 K, Q=72 kJ. c = ?", opts: ["1200 J/(kg·K)", "480 J/(kg·K)", "2400 J/(kg·K)", "720 J/(kg·K)"], a: 0 },
+  /* ── Game 2: Q = mcΔT ── */
+  const g2Data=[
+    {q:"2 kg water (c = 4200 J/kg·K), ΔT = 10 K. Q = ?",                   opts:["84 kJ","42 kJ","8.4 kJ","840 kJ"],          a:0},
+    {q:"Q = 21 kJ, m = 1 kg, c = 4200 J/kg·K. ΔT = ?",                     opts:["5 K","10 K","21 K","2 K"],                  a:0},
+    {q:"Q = 36 kJ, ΔT = 20 K, c = 900 J/kg·K. m = ?",                      opts:["2 kg","1 kg","4 kg","0.5 kg"],              a:0},
+    {q:"0.5 kg copper (c = 390), heated by 80 K. Q = ?",                    opts:["15.6 kJ","31.2 kJ","7.8 kJ","156 kJ"],     a:0},
+    {q:"4 kg, ΔT = 15 K, Q = 72 kJ. Specific heat c = ?",                  opts:["1200 J/kg·K","480 J/kg·K","2400 J/kg·K","720 J/kg·K"],a:0},
+    {q:"Q = 126 kJ, m = 3 kg, c = 4200 J/kg·K. ΔT = ?",                   opts:["10 K","5 K","15 K","21 K"],                 a:0},
   ];
-  let g2Idx = 0;
-  const g2HeatIcon = document.getElementById('g2-heat-icon');
-  const g2Bar = document.getElementById('g2-bar');
-  const g2Question = document.getElementById('g2-question');
-  const g2Choices = document.getElementById('g2-choices');
-  const g2Feedback = document.getElementById('g2-feedback');
-  const g2Next = document.getElementById('g2-next');
-  const game2Card = document.querySelectorAll('.game-card')[1];
+  let g2i=0;
+  const g2glow=document.getElementById('g2-glow');
+  const g2bar=document.getElementById('g2-bar');
+  const g2q=document.getElementById('g2-question');
+  const g2ch=document.getElementById('g2-choices');
+  const g2fb=document.getElementById('g2-feedback');
+  const g2nx=document.getElementById('g2-next');
+  const g2ctr=document.getElementById('g2-ctr');
+  const g2pb=document.getElementById('g2-pbar');
+  const game2=document.querySelectorAll('.game-card')[1];
 
-  function g2Show() {
-    const d = g2Data[g2Idx];
-    g2Question.textContent = d.q;
-    g2Feedback.textContent = '';
-    g2Next.classList.add('hidden');
-    g2Bar.style.width = '0%';
-    g2Bar.classList.remove('animate-in');
-    g2HeatIcon.classList.remove('heating');
-    g2Choices.innerHTML = '';
-    d.opts.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'tap-btn py-4 px-4 rounded-xl bg-amber-100 border-2 border-amber-300 font-semibold text-slate-800';
-      btn.textContent = opt;
-      btn.addEventListener('click', function() {
-        game2Card.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
-        if (i === d.a) {
-          this.classList.add('correct');
-          g2Feedback.textContent = 'Correct! Heat added — temperature rises!';
-          g2Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
-          g2HeatIcon.classList.add('heating');
-          g2Bar.style.setProperty('--to', '85%');
-          g2Bar.classList.add('animate-in');
-          sparkle(g2Question);
+  function g2Show(){
+    const d=g2Data[g2i];
+    g2q.textContent=d.q; g2fb.textContent=''; g2nx.classList.add('hidden');
+    g2ctr.textContent=(g2i+1)+' / '+g2Data.length;
+    g2pb.style.width=((g2i+1)/g2Data.length*100)+'%';
+    g2bar.style.width='0%'; g2glow.classList.remove('heating');
+    g2ch.innerHTML='';
+    d.opts.forEach((opt,i)=>{
+      const b=document.createElement('button'); b.type='button';
+      b.className='tap-btn py-4 px-4 rounded-xl bg-amber-100 border-2 border-amber-300 font-semibold text-slate-800';
+      b.textContent=opt;
+      b.addEventListener('click',function(){
+        game2.querySelectorAll('.tap-btn').forEach(x=>x.disabled=true);
+        if(i===d.a){
+          this.classList.add('correct'); confetti();
+          g2fb.textContent='Correct! Heat added — temperature rises!'; g2fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
+          g2glow.classList.add('heating'); g2bar.style.width='88%';
+          sparkle(g2q);
         } else {
-          this.classList.add('wrong');
-          g2Choices.children[d.a].classList.add('correct');
-          g2Feedback.textContent = 'Correct: ' + d.opts[d.a];
-          g2Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+          this.classList.add('wrong'); g2ch.children[d.a].classList.add('correct');
+          g2fb.textContent='Correct: '+d.opts[d.a]; g2fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
         }
-        g2Next.classList.remove('hidden');
+        g2nx.classList.remove('hidden');
       });
-      g2Choices.appendChild(btn);
+      g2ch.appendChild(b);
     });
   }
-  g2Next.addEventListener('click', function() {
-    g2Idx = (g2Idx + 1) % g2Data.length;
-    game2Card.querySelectorAll('.tap-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+  g2nx.addEventListener('click',()=>{
+    g2i=(g2i+1)%g2Data.length;
+    game2.querySelectorAll('.tap-btn').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong');});
     g2Show();
   });
   g2Show();
 
-  // —— Game 3: Mixing ——
-  const g3Data = [
-    { m1: 0.4, t1: 90, m2: 0.6, t2: 20, a: 48 },
-    { m1: 0.5, t1: 80, m2: 0.5, t2: 30, a: 55 },
-    { m1: 1, t1: 70, m2: 1, t2: 30, a: 50 },
-    { m1: 0.25, t1: 100, m2: 0.75, t2: 20, a: 40 },
+  /* ── Game 3: Mixing ── */
+  const g3Data=[
+    {m1:0.4,t1:90,m2:0.6,t2:20, label1:'0.4 kg', label2:'0.6 kg'},
+    {m1:0.5,t1:80,m2:0.5,t2:30, label1:'0.5 kg', label2:'0.5 kg'},
+    {m1:1,  t1:70,m2:1,  t2:30, label1:'1.0 kg', label2:'1.0 kg'},
+    {m1:0.25,t1:100,m2:0.75,t2:20,label1:'0.25 kg',label2:'0.75 kg'},
   ];
-  let g3Idx = 0;
-  const g3Stage = document.getElementById('g3-stage');
-  const g3BeakerHot = document.getElementById('g3-beaker-hot');
-  const g3BeakerCold = document.getElementById('g3-beaker-cold');
-  const g3THot = document.getElementById('g3-t-hot');
-  const g3TCold = document.getElementById('g3-t-cold');
-  const g3Choices = document.getElementById('g3-choices');
-  const g3Feedback = document.getElementById('g3-feedback');
-  const g3Next = document.getElementById('g3-next');
-  const game3Card = document.querySelectorAll('.game-card')[2];
+  let g3i=0;
+  const g3hot=document.getElementById('g3-hot');
+  const g3cold=document.getElementById('g3-cold');
+  const g3th=document.getElementById('g3-th');
+  const g3tc=document.getElementById('g3-tc');
+  const g3stage=document.getElementById('g3-stage');
+  const g3steam=document.getElementById('g3-steam');
+  const g3ch=document.getElementById('g3-choices');
+  const g3fb=document.getElementById('g3-feedback');
+  const g3nx=document.getElementById('g3-next');
+  const game3=document.querySelectorAll('.game-card')[2];
+  let steamInterval=null;
 
-  function g3Tf(m1, t1, m2, t2) {
-    return Math.round((m1 * t1 + m2 * t2) / (m1 + m2));
+  function startSteam(){
+    if(steamInterval) clearInterval(steamInterval);
+    steamInterval=setInterval(()=>{
+      const b=document.createElement('div'); b.className='steam-bubble';
+      const sz=5+Math.random()*10;
+      b.style.cssText=`width:${sz}px;height:${sz}px;--dur:${1+Math.random()*0.8}s;
+        left:${10+Math.random()*50}px;bottom:0;`;
+      g3steam.appendChild(b);
+      setTimeout(()=>b.remove(),1900);
+    },280);
   }
 
-  function g3Show() {
-    const d = g3Data[g3Idx];
-    const tf = g3Tf(d.m1, d.t1, d.m2, d.t2);
-    g3THot.textContent = d.t1 + '°C';
-    g3TCold.textContent = d.t2 + '°C';
-    g3BeakerHot.classList.remove('merge-anim');
-    g3BeakerCold.classList.remove('merge-anim');
-    g3BeakerHot.classList.add('hot');
-    g3BeakerCold.classList.add('cold');
-    g3Feedback.textContent = '';
-    g3Next.classList.add('hidden');
-    const opts = [tf, tf - 10, tf + 8, tf + 15].sort(() => Math.random() - 0.5);
-    g3Choices.innerHTML = '';
-    opts.forEach((val, i) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'tap-btn py-4 px-4 rounded-xl bg-white/90 border-2 border-orange-300 font-bold text-slate-800';
-      btn.textContent = val + '°C';
-      btn.dataset.val = val;
-      btn.addEventListener('click', function() {
-        game3Card.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
-        const correct = (val === tf);
-        if (correct) {
-          this.classList.add('correct');
-          g3Feedback.textContent = 'Correct! Final T = ' + tf + '°C. Mixing...';
-          g3Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
-          g3BeakerHot.classList.add('merge-anim');
-          g3BeakerCold.classList.add('merge-anim');
-          setTimeout(() => {
-            g3BeakerHot.classList.remove('hot');
-            g3BeakerHot.classList.add('mixed');
-            g3BeakerCold.classList.remove('cold');
-            g3BeakerCold.classList.add('mixed');
-          }, 400);
-          sparkle(g3Stage);
+  function stopSteam(){ clearInterval(steamInterval); steamInterval=null; }
+
+  function g3Tf(d){ return Math.round((d.m1*d.t1+d.m2*d.t2)/(d.m1+d.m2)); }
+
+  function g3Show(){
+    const d=g3Data[g3i]; const tf=g3Tf(d);
+    g3th.textContent=d.t1+'°C'; g3tc.textContent=d.t2+'°C';
+    // reset mass labels
+    g3th.nextElementSibling.textContent=d.label1;
+    g3tc.nextElementSibling.textContent=d.label2;
+    g3hot.className='beaker hot mx-auto'; g3cold.className='beaker cold mx-auto';
+    g3fb.textContent=''; g3nx.classList.add('hidden');
+    stopSteam(); startSteam();
+    const spread=[tf,tf-10,tf+8,tf+15].sort(()=>Math.random()-0.5);
+    g3ch.innerHTML='';
+    spread.forEach(val=>{
+      const b=document.createElement('button'); b.type='button';
+      b.className='tap-btn py-4 px-4 rounded-xl bg-white/90 border-2 border-orange-300 font-bold text-slate-800';
+      b.textContent=val+'°C'; b.dataset.val=val;
+      b.addEventListener('click',function(){
+        game3.querySelectorAll('.tap-btn').forEach(x=>x.disabled=true);
+        stopSteam();
+        if(val===tf){
+          this.classList.add('correct'); confetti();
+          g3fb.textContent='Correct! Tf = '+tf+'°C. Mixing…'; g3fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
+          // Pour animation
+          const stream=document.createElement('div'); stream.className='pour-stream';
+          stream.style.cssText='left:calc(50% - 4px);top:10px;background:linear-gradient(to bottom,rgba(239,68,68,0.8),rgba(249,115,22,0.4));';
+          g3stage.appendChild(stream); setTimeout(()=>stream.remove(),1100);
+          setTimeout(()=>{
+            g3hot.className='beaker mixed mx-auto'; g3cold.className='beaker mixed mx-auto';
+            g3hot.classList.add('merge-anim'); g3cold.classList.add('merge-anim');
+          },400);
+          sparkle(g3stage);
         } else {
-          this.classList.add('wrong');
-          const right = Array.from(g3Choices.children).find(b => parseInt(b.dataset.val) === tf);
-          if (right) right.classList.add('correct');
-          g3Feedback.textContent = 'Final temperature = ' + tf + '°C (same mass → average of temps; different masses → weighted average).';
-          g3Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+          const right=Array.from(g3ch.children).find(b=>parseInt(b.dataset.val)===tf);
+          this.classList.add('wrong'); if(right) right.classList.add('correct');
+          g3fb.textContent='Final T = '+tf+'°C. Use: Tf = (m₁T₁ + m₂T₂)/(m₁+m₂)';
+          g3fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
         }
-        g3Next.classList.remove('hidden');
+        g3nx.classList.remove('hidden');
       });
-      g3Choices.appendChild(btn);
+      g3ch.appendChild(b);
     });
   }
-  g3Next.addEventListener('click', function() {
-    g3Idx = (g3Idx + 1) % g3Data.length;
-    game3Card.querySelectorAll('.tap-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+  g3nx.addEventListener('click',()=>{
+    g3i=(g3i+1)%g3Data.length;
+    game3.querySelectorAll('.tap-btn').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong');});
     g3Show();
   });
   g3Show();
 
-  // —— Game 4: Quick quiz + confetti ——
-  const g4Data = [
-    { q: "Heat capacity formula?", opts: ["Q = mcΔT", "Q = mv", "E = mc²", "F = ma"], a: 0 },
-    { q: "When you mix hot and cold water (no loss), heat lost by hot = ?", opts: ["Heat gained by cold", "Zero", "Heat gained by cold + loss", "Mass × c"], a: 0 },
-    { q: "KE of a moving object that stops (friction) is converted to:", opts: ["Heat", "Light", "Sound only", "Nothing"], a: 0 },
-    { q: "Specific heat c is energy to heat 1 kg by:", opts: ["1 K (or 1°C)", "100 K", "0 K", "273 K"], a: 0 },
-    { q: "Temperature difference ΔT = ?", opts: ["T_final − T_initial", "T_initial − T_final", "T_final + T_initial", "T_final / T_initial"], a: 0 },
+  /* ── Game 4: Quick quiz ── */
+  const g4Data=[
+    {q:"Heat capacity formula?",                             opts:["Q = mcΔT","Q = mv","E = mc²","F = ma"],                          a:0},
+    {q:"When hot and cold water mix (no heat loss), heat lost by hot equals:",opts:["Heat gained by cold","Zero","Mass × c","Potential energy"],a:0},
+    {q:"Kinetic energy of a moving object that stops (friction) converts to:",opts:["Heat","Light","Sound only","Nothing — it vanishes"],   a:0},
+    {q:"Specific heat capacity c is energy needed to raise 1 kg by:",        opts:["1 K (or 1°C)","100 K","0 K","273 K"],                  a:0},
+    {q:"ΔT = ?",                                            opts:["T_final − T_initial","T_initial − T_final","T_f + T_i","T_f / T_i"], a:0},
+    {q:"Temperature in Kelvin equals temperature in °C:",   opts:["Plus 273","Minus 273","Times 1.8 + 32","Divided by 100"],          a:0},
+    {q:"Two objects reach thermal equilibrium when:",       opts:["They have the same temperature","They have the same mass","They have the same heat","They stop moving"],a:0},
+    {q:"Which substance has the highest specific heat capacity?", opts:["Water (4200)","Copper (390)","Iron (450)","Gold (130)"],      a:0},
   ];
-  let g4Idx = 0, g4Score = 0;
-  const g4Question = document.getElementById('g4-question');
-  const g4Choices = document.getElementById('g4-choices');
-  const g4Feedback = document.getElementById('g4-feedback');
-  const g4ScoreEl = document.getElementById('g4-score');
-  const g4TotalEl = document.getElementById('g4-total');
-  const g4Next = document.getElementById('g4-next');
-  const game4Card = document.querySelectorAll('.game-card')[3];
+  let g4i=0,g4score=0;
+  const g4q=document.getElementById('g4-question');
+  const g4ch=document.getElementById('g4-choices');
+  const g4fb=document.getElementById('g4-feedback');
+  const g4sc=document.getElementById('g4-score');
+  const g4tot=document.getElementById('g4-total');
+  const g4nx=document.getElementById('g4-next');
+  const g4pb=document.getElementById('g4-pbar');
+  const game4=document.querySelectorAll('.game-card')[3];
 
-  function g4Show() {
-    const d = g4Data[g4Idx];
-    g4Question.textContent = d.q;
-    g4TotalEl.textContent = g4Data.length;
-    g4ScoreEl.textContent = g4Score;
-    g4Feedback.textContent = '';
-    g4Next.classList.add('hidden');
-    g4Choices.innerHTML = '';
-    d.opts.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'tap-btn w-full py-4 px-4 rounded-xl bg-orange-100 border-2 border-orange-300 text-left font-medium text-slate-800';
-      btn.textContent = opt;
-      btn.addEventListener('click', function() {
-        game4Card.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
-        if (i === d.a) {
-          this.classList.add('correct');
-          g4Score++;
-          g4ScoreEl.textContent = g4Score;
-          g4ScoreEl.classList.add('score-flame');
-          g4Feedback.textContent = 'Correct!';
-          g4Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
-          confetti();
-          sparkle(g4Question);
+  function g4Show(){
+    const d=g4Data[g4i];
+    g4q.textContent=d.q; g4tot.textContent=g4Data.length; g4sc.textContent=g4score;
+    g4pb.style.width=(g4i/g4Data.length*100)+'%';
+    g4ch.innerHTML=''; g4fb.textContent=''; g4nx.classList.add('hidden');
+    d.opts.forEach((opt,i)=>{
+      const b=document.createElement('button'); b.type='button';
+      b.className='tap-btn w-full py-4 px-4 rounded-xl bg-orange-100 border-2 border-orange-300 text-left font-medium text-slate-800';
+      b.textContent=opt;
+      b.addEventListener('click',function(){
+        game4.querySelectorAll('.tap-btn').forEach(x=>x.disabled=true);
+        if(i===d.a){
+          this.classList.add('correct'); g4score++; g4sc.textContent=g4score;
+          g4sc.classList.add('score-pop'); setTimeout(()=>g4sc.classList.remove('score-pop'),400);
+          g4fb.textContent='Correct! ✓'; g4fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
+          confetti(); sparkle(g4q);
         } else {
-          this.classList.add('wrong');
-          g4Choices.children[d.a].classList.add('correct');
-          g4Feedback.textContent = 'Answer: ' + d.opts[d.a];
-          g4Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+          this.classList.add('wrong'); g4ch.children[d.a].classList.add('correct');
+          g4fb.textContent='Answer: '+d.opts[d.a]; g4fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
         }
-        g4Next.classList.remove('hidden');
+        g4nx.classList.remove('hidden');
       });
-      g4Choices.appendChild(btn);
+      g4ch.appendChild(b);
     });
   }
-  g4Next.addEventListener('click', function() {
-    g4Idx = (g4Idx + 1) % g4Data.length;
-    if (g4Idx === 0) g4Score = 0;
-    game4Card.querySelectorAll('.tap-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+  g4nx.addEventListener('click',()=>{
+    g4i=(g4i+1)%g4Data.length; if(g4i===0)g4score=0;
+    game4.querySelectorAll('.tap-btn').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong');});
     g4Show();
   });
   g4Show();
 
-  // —— Game 5: KE → heat ——
-  const g5Data = [
-    { q: "A block slides on a rough surface and stops. What happens to its kinetic energy?", opts: ["It is converted to heat (thermal energy).", "It disappears.", "It stays in the block as KE.", "It becomes potential energy."], a: 0 },
-    { q: "Formula for KE converted to heat when mass m stops from speed v?", opts: ["Q = ½mv²", "Q = mv", "Q = mcΔT only", "Q = mgh"], a: 0 },
-    { q: "If 50 J of KE becomes heat in a 1 kg block (c=500), the temperature rise is:", opts: ["0.1 K", "1 K", "50 K", "0.01 K"], a: 0 },
+  /* ── Game 5: KE → heat ── */
+  const g5Data=[
+    {q:"A block slides on a rough surface and stops. Where does its kinetic energy go?", opts:["Converted to heat (thermal energy)","Disappears entirely","Stays as KE inside the block","Becomes potential energy"],a:0},
+    {q:"Formula for KE converted to heat when mass m stops from speed v?",              opts:["Q = ½mv²","Q = mv","Q = mgh","Q = mcΔT only"],a:0},
+    {q:"50 J of KE heats a 1 kg block (c = 500 J/kg·K). Temperature rise = ?",         opts:["0.1 K","1 K","50 K","0.01 K"],                 a:0},
+    {q:"Why does friction cause heating?",                                               opts:["KE converts to thermal energy via microscopic collisions","Friction adds mass","Sound energy is stored","Cold air is added"],a:0},
   ];
-  let g5Idx = 0;
-  const g5Block = document.getElementById('g5-block');
-  const g5Scene = document.getElementById('g5-scene');
-  const g5Question = document.getElementById('g5-question');
-  const g5Choices = document.getElementById('g5-choices');
-  const g5Feedback = document.getElementById('g5-feedback');
-  const g5Next = document.getElementById('g5-next');
-  const game5Card = document.querySelectorAll('.game-card')[4];
+  let g5i=0;
+  const g5block=document.getElementById('g5-block');
+  const g5sparks=document.getElementById('g5-sparks');
+  const g5waves=document.getElementById('g5-heat-waves');
+  const g5q=document.getElementById('g5-question');
+  const g5ch=document.getElementById('g5-choices');
+  const g5fb=document.getElementById('g5-feedback');
+  const g5nx=document.getElementById('g5-next');
+  const g5ctr=document.getElementById('g5-ctr');
+  const g5pb=document.getElementById('g5-pbar');
+  const game5=document.querySelectorAll('.game-card')[4];
 
-  function g5AnimateSlide() {
-    g5Block.style.transition = 'transform 0.8s ease';
-    g5Block.style.transform = 'translateX(0)';
-    setTimeout(() => {
-      g5Block.style.transform = 'translateX(180px)';
-      g5Block.style.background = 'linear-gradient(135deg, #b45309, #ea580c)';
-    }, 100);
-    setTimeout(() => {
-      g5Block.style.transform = 'translateX(0)';
-      g5Block.style.background = '#b45309';
-    }, 2000);
+  function g5Sparks(){
+    for(let j=0;j<12;j++){
+      setTimeout(()=>{
+        const s=document.createElement('div'); s.className='spark';
+        const sx=(Math.random()-0.5)*50, sy=-(15+Math.random()*35);
+        const dur=(0.35+Math.random()*0.35)+'s';
+        s.style.cssText=`width:5px;height:5px;--sx:${sx}px;--sy:${sy}px;--dur:${dur};
+          background:${Math.random()>0.5?'#f97316':'#fbbf24'};
+          left:${g5block.offsetLeft+5+Math.random()*30}px;
+          bottom:${g5block.offsetTop+g5block.offsetHeight-4}px;`;
+        g5sparks.appendChild(s); setTimeout(()=>s.remove(),500);
+      }, j*60);
+    }
   }
 
-  function g5Show() {
-    const d = g5Data[g5Idx];
-    g5Question.textContent = d.q;
-    g5Feedback.textContent = '';
-    g5Next.classList.add('hidden');
-    g5Choices.innerHTML = '';
-    d.opts.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'tap-btn py-4 px-4 rounded-xl bg-amber-100 border-2 border-amber-300 text-left font-medium text-slate-800';
-      btn.textContent = opt;
-      btn.addEventListener('click', function() {
-        game5Card.querySelectorAll('.tap-btn').forEach(b => b.disabled = true);
-        if (i === d.a) {
-          this.classList.add('correct');
-          g5Feedback.textContent = 'Correct! KE → heat when friction stops the block.';
-          g5Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
+  function g5AnimateSlide(){
+    g5block.style.transition='none';
+    g5block.style.transform='translateX(0)';
+    g5block.style.background='#b45309';
+    void g5block.offsetWidth;
+    g5block.style.transition='transform 0.85s cubic-bezier(0.25,0.46,0.45,0.94)';
+    g5block.style.transform='translateX(180px)';
+    // sparks during slide
+    let t=100;
+    while(t<800){ setTimeout(g5Sparks,t); t+=150; }
+    // stop + heat up
+    setTimeout(()=>{
+      g5block.style.transition='background 0.6s ease';
+      g5block.style.background='linear-gradient(135deg,#b45309,#ef4444)';
+      // heat shimmer
+      for(let w=0;w<4;w++){
+        setTimeout(()=>{
+          const hw=document.createElement('div'); hw.className='heat-shimmer';
+          hw.style.cssText=`width:${20+Math.random()*20}px;height:3px;border-radius:2px;
+            background:rgba(239,68,68,0.5);
+            left:${g5block.offsetLeft+Math.random()*40}px;
+            bottom:${g5block.offsetTop+g5block.offsetHeight}px;`;
+          g5waves.appendChild(hw); setTimeout(()=>hw.remove(),950);
+        },w*120);
+      }
+      setTimeout(()=>{
+        g5block.style.transition='transform 0.5s ease, background 0.5s ease';
+        g5block.style.transform='translateX(0)';
+        g5block.style.background='#b45309';
+      },1800);
+    },900);
+  }
+
+  function g5Show(){
+    const d=g5Data[g5i];
+    g5q.textContent=d.q; g5fb.textContent=''; g5nx.classList.add('hidden');
+    g5ctr.textContent=(g5i+1)+' / '+g5Data.length;
+    g5pb.style.width=((g5i+1)/g5Data.length*100)+'%';
+    g5ch.innerHTML='';
+    d.opts.forEach((opt,i)=>{
+      const b=document.createElement('button'); b.type='button';
+      b.className='tap-btn py-4 px-4 rounded-xl bg-amber-100 border-2 border-amber-300 text-left font-medium text-slate-800';
+      b.textContent=opt;
+      b.addEventListener('click',function(){
+        game5.querySelectorAll('.tap-btn').forEach(x=>x.disabled=true);
+        if(i===d.a){
+          this.classList.add('correct'); confetti();
+          g5fb.textContent='Correct! KE → heat when friction stops the block.'; g5fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-green-600';
           g5AnimateSlide();
-          sparkle(g5Question);
         } else {
-          this.classList.add('wrong');
-          g5Choices.children[d.a].classList.add('correct');
-          g5Feedback.textContent = 'Answer: ' + d.opts[d.a];
-          g5Feedback.className = 'mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
+          this.classList.add('wrong'); g5ch.children[d.a].classList.add('correct');
+          g5fb.textContent='Answer: '+d.opts[d.a]; g5fb.className='mt-3 text-sm font-medium min-h-[1.5rem] text-amber-700';
         }
-        g5Next.classList.remove('hidden');
+        g5nx.classList.remove('hidden');
       });
-      g5Choices.appendChild(btn);
+      g5ch.appendChild(b);
     });
   }
-  g5Next.addEventListener('click', function() {
-    g5Idx = (g5Idx + 1) % g5Data.length;
-    game5Card.querySelectorAll('.tap-btn').forEach(b => { b.disabled = false; b.classList.remove('correct', 'wrong'); });
+  g5nx.addEventListener('click',()=>{
+    g5i=(g5i+1)%g5Data.length;
+    game5.querySelectorAll('.tap-btn').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong');});
     g5Show();
   });
   g5Show();
+
 })();
 </script>
-
 </body>
 </html>
