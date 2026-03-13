@@ -120,6 +120,35 @@
     @keyframes atomPop { 0%{transform:scale(1)} 45%{transform:scale(1.6);filter:brightness(2)} 100%{transform:scale(0.55);opacity:0.35} }
     .hl-bar-bg { height:12px; border-radius:6px; background:#d1fae5; overflow:hidden; }
     .hl-bar-fill { height:100%; background:linear-gradient(to right,#059669,#34d399); border-radius:6px; transition:width 0.9s ease; }
+
+    /* ── Game 6: Radiation beams & shields ── */
+    .rad-beam { height:8px; border-radius:4px; position:relative; overflow:hidden; flex:1; margin:0 10px; }
+    .rad-beam::after { content:''; position:absolute; inset:0;
+      background:repeating-linear-gradient(90deg,transparent 0,transparent 8px,rgba(255,255,255,0.55) 8px,rgba(255,255,255,0.55) 14px);
+      animation:beamFlow 0.28s linear infinite; }
+    @keyframes beamFlow { from{transform:translateX(-14px)} to{transform:translateX(0)} }
+    .rad-beam.alpha { background:rgba(202,138,4,0.9); }
+    .rad-beam.beta  { background:rgba(37,99,235,0.9); }
+    .rad-beam.gamma { background:rgba(219,39,119,0.9); }
+    .beam-stop { animation:beamHalt 0.5s ease forwards; }
+    @keyframes beamHalt { to{transform:scaleX(0);transform-origin:left;opacity:0} }
+    .shield-ok  { animation:shieldOK 0.55s ease; }
+    @keyframes shieldOK { 0%{filter:brightness(1)} 35%{filter:brightness(2.2) drop-shadow(0 0 10px #22c55e)} 100%{filter:brightness(1)} }
+    .shield-bad { animation:shieldBAD 0.4s ease; }
+    @keyframes shieldBAD { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+    /* ── Game 7: Decay chain ── */
+    .chain-node { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-size:0.6rem; font-weight:bold; text-align:center; line-height:1.3; flex-shrink:0;
+      border:2px solid #475569; background:#1e293b; color:#64748b; transition:all 0.5s; }
+    .chain-node.active { background:radial-gradient(circle at 30% 30%,#86efac,#059669); border-color:#059669; color:#d1fae5;
+      box-shadow:0 0 22px rgba(5,150,105,0.9),0 0 44px rgba(5,150,105,0.4); animation:chainPulse 1.4s ease-in-out infinite; transform:scale(1.2); }
+    @keyframes chainPulse { 0%,100%{box-shadow:0 0 18px rgba(5,150,105,0.6)} 50%{box-shadow:0 0 40px rgba(5,150,105,1),0 0 65px rgba(5,150,105,0.4)} }
+    .chain-node.done { background:#0f172a; border-color:#334155; color:#475569; transform:scale(0.88); opacity:0.65; }
+    .chain-node.stable { background:linear-gradient(135deg,#fef3c7,#fbbf24); border-color:#f59e0b; color:#78350f; font-size:0.62rem; }
+    .chain-arr { display:flex; flex-direction:column; align-items:center; flex-shrink:0; padding:0 1px; gap:0; }
+    .chain-arr span { font-size:0.9rem; color:#475569; line-height:1; }
+    .chain-arr small { font-size:0.5rem; color:#94a3b8; font-weight:bold; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
@@ -236,6 +265,61 @@
         <button type="button" id="hl-reset" class="tap-btn py-3 px-5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold">↺ Reset</button>
       </div>
       <p id="hl-msg" class="mt-3 text-sm font-medium text-emerald-700 min-h-[1.5rem]"></p>
+    </section>
+
+    <!-- Game 6: Radiation Shield Challenge -->
+    <section class="game-card p-6 mb-8">
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-xl font-bold text-slate-800">6. Radiation Shield Challenge</h2>
+        <span id="g6-ctr" class="text-sm text-emerald-700 font-semibold">1 / 7</span>
+      </div>
+      <div class="pbar-bg"><div id="g6-pbar" class="pbar-fill" style="width:14%"></div></div>
+      <p class="text-slate-600 text-sm mb-3">Which material stops this radiation? Tap the correct shield!</p>
+      <!-- Animated stage -->
+      <div class="relative h-24 flex items-center bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl overflow-hidden mb-3 px-3">
+        <div class="w-11 h-11 rounded-full flex items-center justify-center text-xl flex-shrink-0 z-10"
+             style="background:radial-gradient(circle at 35% 35%,#fde68a,#d97706);box-shadow:0 0 18px rgba(217,119,6,0.9)">☢</div>
+        <div id="g6-beam" class="rad-beam alpha" style="transition:opacity 0.4s,transform 0.4s;transform-origin:left"></div>
+        <div id="g6-shield-vis" class="w-10 h-20 rounded-lg flex items-center justify-center text-2xl z-10 flex-shrink-0 bg-slate-600">?</div>
+      </div>
+      <div class="text-center text-xs font-semibold py-1 mb-3 bg-slate-800 text-yellow-300 rounded-lg">
+        Radiation: <span id="g6-rad-label"></span>
+      </div>
+      <div id="g6-question" class="text-lg font-medium text-slate-800 mb-4 min-h-[3rem] p-3 bg-white/70 rounded-lg"></div>
+      <div id="g6-opts" class="grid grid-cols-2 gap-3"></div>
+      <p id="g6-feedback" class="mt-3 text-sm font-medium min-h-[2rem]"></p>
+      <button type="button" id="g6-next" class="mt-2 text-emerald-600 font-semibold text-sm hover:underline hidden">Next →</button>
+    </section>
+
+    <!-- Game 7: Decay Chain Explorer -->
+    <section class="game-card p-6 mb-8">
+      <h2 class="text-xl font-bold text-slate-800 mb-1">7. Decay Chain Explorer</h2>
+      <p class="text-slate-600 text-sm mb-4">Navigate the full <strong>Uranium-238</strong> decay chain! Identify each step to advance.</p>
+      <!-- Chain visual -->
+      <div class="overflow-x-auto pb-2 mb-4">
+        <div id="g7-chain" class="flex items-center gap-1 min-w-max px-2 py-3 bg-slate-800 rounded-xl"></div>
+      </div>
+      <!-- Current nucleus -->
+      <div class="flex items-center gap-4 mb-4 p-3 bg-white/60 rounded-xl">
+        <div id="g7-nucleus" class="nucleus flex-shrink-0" style="width:72px;height:72px;font-size:0.85rem;line-height:1.3;color:#d1fae5"></div>
+        <div>
+          <p class="text-xs text-slate-500 mb-0.5">Current nucleus</p>
+          <p id="g7-name" class="font-extrabold text-slate-800 text-lg leading-tight"></p>
+          <p id="g7-info" class="text-xs text-slate-500 mt-0.5"></p>
+        </div>
+      </div>
+      <p id="g7-question" class="text-base font-medium text-slate-800 mb-3 p-3 bg-white/70 rounded-lg min-h-[2.5rem]"></p>
+      <div class="grid grid-cols-2 gap-3" id="g7-opts">
+        <button type="button" class="g7-btn tap-btn py-4 px-4 rounded-xl bg-emerald-100 border-2 border-emerald-300 text-emerald-900 font-bold" data-t="alpha">⚛ Alpha (α)</button>
+        <button type="button" class="g7-btn tap-btn py-4 px-4 rounded-xl bg-blue-100 border-2 border-blue-300 text-blue-900 font-bold" data-t="beta-">⚡ Beta-minus (β⁻)</button>
+        <button type="button" class="g7-btn tap-btn py-4 px-4 rounded-xl bg-amber-100 border-2 border-amber-300 text-amber-900 font-bold" data-t="beta+">✦ Beta-plus (β⁺)</button>
+        <button type="button" class="g7-btn tap-btn py-4 px-4 rounded-xl bg-pink-100 border-2 border-pink-300 text-pink-900 font-bold" data-t="gamma">◎ Gamma (γ)</button>
+      </div>
+      <p id="g7-feedback" class="mt-3 text-sm font-medium min-h-[2rem]"></p>
+      <div class="flex gap-3 mt-2">
+        <button type="button" id="g7-next" class="text-emerald-600 font-semibold text-sm hover:underline hidden">Next step →</button>
+        <button type="button" id="g7-restart" class="text-slate-400 font-semibold text-sm hover:underline hidden">↺ Restart</button>
+      </div>
     </section>
 
   </div>
@@ -577,6 +661,177 @@
   });
   hlReset.addEventListener('click',hlInit);
   hlInit();
+
+  /* ── Game 6: Radiation Shield Challenge ── */
+  const g6Qs=[
+    { radLabel:'Alpha particle (α)', beamCls:'alpha',
+      q:'Which material is sufficient to stop alpha (α) radiation?',
+      opts:['📄 Paper / skin','🔩 Aluminium sheet','⬛ Thick lead','🪨 Concrete wall'], a:0,
+      fact:'Alpha particles (+2 charge, large mass) are stopped by just a sheet of paper or a few cm of air.' },
+    { radLabel:'Beta particle (β)', beamCls:'beta',
+      q:'Which material stops beta (β) particles effectively?',
+      opts:['📄 Paper / skin','🔩 Aluminium sheet','⬛ Thick lead','🪨 Concrete wall'], a:1,
+      fact:'Beta particles (fast electrons) pass through paper but are absorbed by a few mm of aluminium.' },
+    { radLabel:'Gamma ray (γ)', beamCls:'gamma',
+      q:'Which material significantly attenuates gamma (γ) radiation?',
+      opts:['📄 Paper / skin','🔩 Aluminium sheet','⬛ Thick lead','🪨 Concrete wall'], a:2,
+      fact:'Gamma rays are high-energy photons — thick lead (Z=82) or dense concrete is needed to absorb them.' },
+    { radLabel:'Alpha particle (α)', beamCls:'alpha',
+      q:'In order of increasing penetrating power, which is correct?',
+      opts:['α < β < γ','γ < β < α','β < α < γ','α < γ < β'], a:0,
+      fact:'Alpha is least penetrating (stopped by paper), beta is medium (stopped by Al), gamma is most penetrating.' },
+    { radLabel:'Gamma ray (γ)', beamCls:'gamma',
+      q:'Medical X-ray staff wear lead aprons because lead absorbs:',
+      opts:['Only alpha particles','Only beta particles','X-rays and gamma photons','Sound waves only'], a:2,
+      fact:'Lead\'s high atomic number (Z=82) and density make it ideal for absorbing gamma-range photons.' },
+    { radLabel:'Beta particle (β)', beamCls:'beta',
+      q:'Why is alpha radiation externally harmless but dangerous if inhaled?',
+      opts:['Skin stops it externally; inside it irradiates organs directly','It glows radioactively inside','It becomes gamma inside the body','It loses charge in air'], a:0,
+      fact:'Skin provides sufficient alpha shielding. But ingested/inhaled alpha sources deliver high-LET radiation directly to sensitive tissues.' },
+    { radLabel:'Alpha particle (α)', beamCls:'alpha',
+      q:'Approximate range of alpha particles in air:',
+      opts:['~5 cm','~50 cm','~5 metres','~50 metres'], a:0,
+      fact:'Alpha particles lose energy rapidly through ionisation of air molecules, travelling only ~5 cm before stopping.' },
+  ];
+  let g6i=0;
+  const g6beam=document.getElementById('g6-beam');
+  const g6shvis=document.getElementById('g6-shield-vis');
+  const g6rl=document.getElementById('g6-rad-label');
+  const g6q=document.getElementById('g6-question');
+  const g6opts=document.getElementById('g6-opts');
+  const g6fb=document.getElementById('g6-feedback');
+  const g6nx=document.getElementById('g6-next');
+  const g6ctr=document.getElementById('g6-ctr');
+  const g6pb=document.getElementById('g6-pbar');
+
+  function g6Show(){
+    const d=g6Qs[g6i];
+    g6ctr.textContent=(g6i+1)+' / '+g6Qs.length;
+    g6pb.style.width=((g6i+1)/g6Qs.length*100)+'%';
+    g6beam.className='rad-beam '+d.beamCls;
+    g6beam.style.opacity='1'; g6beam.style.transform='';
+    g6shvis.textContent='?'; g6shvis.style.background='#4b5563'; g6shvis.className='w-10 h-20 rounded-lg flex items-center justify-center text-2xl z-10 flex-shrink-0 bg-slate-600';
+    g6rl.textContent=d.radLabel;
+    g6q.textContent=d.q; g6fb.textContent=''; g6nx.classList.add('hidden');
+    g6opts.innerHTML='';
+    const icons=['📄','🔩','⬛','🪨'];
+    d.opts.forEach((opt,i)=>{
+      const b=document.createElement('button'); b.type='button';
+      b.className='tap-btn py-3 px-3 rounded-xl bg-white border-2 border-emerald-300 text-slate-800 font-semibold text-sm';
+      b.textContent=opt;
+      b.addEventListener('click',function(){
+        g6opts.querySelectorAll('button').forEach(x=>x.disabled=true);
+        g6shvis.textContent=icons[i];
+        if(i===d.a){
+          this.classList.add('correct'); confetti();
+          g6beam.style.transition='opacity 0.5s ease,transform 0.5s ease';
+          g6beam.style.opacity='0'; g6beam.style.transform='scaleX(0.05)';
+          g6shvis.classList.add('shield-ok');
+          setTimeout(()=>g6shvis.classList.remove('shield-ok'),600);
+          g6fb.innerHTML='✓ Correct! <em class="not-italic text-slate-600 font-normal">'+d.fact+'</em>';
+          g6fb.className='mt-3 text-sm font-medium min-h-[2rem] text-emerald-600';
+        } else {
+          this.classList.add('wrong'); g6opts.children[d.a].classList.add('correct');
+          g6shvis.classList.add('shield-bad');
+          setTimeout(()=>g6shvis.classList.remove('shield-bad'),500);
+          g6fb.innerHTML='✗ Answer: '+d.opts[d.a]+'. <em class="not-italic text-slate-600 font-normal">'+d.fact+'</em>';
+          g6fb.className='mt-3 text-sm font-medium min-h-[2rem] text-amber-700';
+        }
+        g6nx.classList.remove('hidden');
+      });
+      g6opts.appendChild(b);
+    });
+  }
+  g6nx.addEventListener('click',()=>{g6i=(g6i+1)%g6Qs.length;g6Show();});
+  g6Show();
+
+  /* ── Game 7: Decay Chain Explorer ── */
+  const g7Chain=[
+    { label:'²³⁸₉₂U',  html:'²³⁸<br>₉₂U',  next:'²³⁴₉₀Th', type:'alpha', name:'Alpha (α)',
+      fact:'U-238 (t½ = 4.5 billion years) alpha-decays: A−4, Z−2.' },
+    { label:'²³⁴₉₀Th', html:'²³⁴<br>₉₀Th', next:'²³⁴₉₁Pa', type:'beta-', name:'Beta-minus (β⁻)',
+      fact:'Th-234 (t½ = 24 days) beta-minus decays: a neutron → proton, Z+1.' },
+    { label:'²³⁴₉₁Pa', html:'²³⁴<br>₉₁Pa', next:'²³⁴₉₂U',  type:'beta-', name:'Beta-minus (β⁻)',
+      fact:'Pa-234 (t½ = 1.2 min) beta-minus decays again: Z increases by 1.' },
+    { label:'²³⁴₉₂U',  html:'²³⁴<br>₉₂U',  next:'²³⁰₉₀Th', type:'alpha', name:'Alpha (α)',
+      fact:'U-234 (t½ = 245,000 years) alpha-decays: A−4, Z−2.' },
+    { label:'²³⁰₉₀Th', html:'²³⁰<br>₉₀Th', next:'²²⁶₈₈Ra', type:'alpha', name:'Alpha (α)',
+      fact:'Th-230 (t½ = 75,400 years) alpha-decays.' },
+    { label:'²²⁶₈₈Ra', html:'²²⁶<br>₈₈Ra', next:'²²²₈₆Rn', type:'alpha', name:'Alpha (α)',
+      fact:'Radium-226 (Marie Curie\'s discovery! t½ = 1,600 years) alpha-decays.' },
+    { label:'²²²₈₆Rn', html:'²²²<br>₈₆Rn', next:'²⁰⁶₈₂Pb', type:'alpha', name:'Alpha (α)',
+      fact:'Radon-222 (t½ = 3.8 days) is a radioactive gas — a health risk in buildings.' },
+  ];
+  let g7step=0;
+  const g7chainEl=document.getElementById('g7-chain');
+  const g7nucEl=document.getElementById('g7-nucleus');
+  const g7nameEl=document.getElementById('g7-name');
+  const g7infoEl=document.getElementById('g7-info');
+  const g7qEl=document.getElementById('g7-question');
+  const g7fb=document.getElementById('g7-feedback');
+  const g7nx=document.getElementById('g7-next');
+  const g7rst=document.getElementById('g7-restart');
+
+  function g7BuildChain(){
+    g7chainEl.innerHTML='';
+    g7Chain.forEach((s,i)=>{
+      const n=document.createElement('div');
+      n.className='chain-node'+(i<g7step?' done':i===g7step?' active':'');
+      n.innerHTML=s.html; n.id='g7n'+i;
+      g7chainEl.appendChild(n);
+      const a=document.createElement('div'); a.className='chain-arr';
+      const typeSymbol=s.type==='alpha'?'α':s.type==='beta-'?'β⁻':'β⁺';
+      a.innerHTML='<span>→</span><small>'+typeSymbol+'</small>';
+      g7chainEl.appendChild(a);
+    });
+    const stable=document.createElement('div');
+    stable.className='chain-node'+(g7step>=g7Chain.length?' stable':'');
+    stable.innerHTML='²⁰⁶<br>₈₂Pb<br>★';
+    g7chainEl.appendChild(stable);
+    const active=document.getElementById('g7n'+g7step);
+    if(active) setTimeout(()=>active.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}),80);
+  }
+
+  function g7Show(){
+    if(g7step>=g7Chain.length){
+      g7nucEl.innerHTML='²⁰⁶<br>₈₂Pb';
+      g7nameEl.textContent='²⁰⁶₈₂Pb — Stable Lead ★';
+      g7infoEl.textContent='End of the U-238 decay series — Lead-206 is stable.';
+      g7qEl.textContent='You did it! All 7 steps completed. ²³⁸U ultimately becomes stable ²⁰⁶Pb via 7 recorded decays (plus further steps omitted here).';
+      document.querySelectorAll('.g7-btn').forEach(b=>b.disabled=true);
+      g7fb.textContent=''; g7nx.classList.add('hidden'); g7rst.classList.remove('hidden');
+      confetti(); g7BuildChain(); return;
+    }
+    const d=g7Chain[g7step];
+    g7nucEl.innerHTML=d.html;
+    g7nameEl.textContent=d.label;
+    g7infoEl.textContent='Step '+(g7step+1)+' / '+g7Chain.length+' — decays to: '+d.next;
+    g7qEl.textContent='What type of decay does '+d.label+' undergo to become '+d.next+'?';
+    g7fb.textContent=''; g7nx.classList.add('hidden'); g7rst.classList.add('hidden');
+    document.querySelectorAll('.g7-btn').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong');});
+    g7BuildChain();
+  }
+
+  document.querySelectorAll('.g7-btn').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      const d=g7Chain[g7step];
+      document.querySelectorAll('.g7-btn').forEach(b=>b.disabled=true);
+      if(this.dataset.t===d.type){
+        this.classList.add('correct'); confetti();
+        g7fb.innerHTML='✓ '+d.name+'! <em class="not-italic text-slate-600 font-normal">'+d.fact+'</em>';
+        g7fb.className='mt-3 text-sm font-medium min-h-[2rem] text-emerald-600';
+      } else {
+        this.classList.add('wrong');
+        document.querySelector('.g7-btn[data-t="'+d.type+'"]').classList.add('correct');
+        g7fb.innerHTML='It was '+d.name+'. <em class="not-italic text-slate-600 font-normal">'+d.fact+'</em>';
+        g7fb.className='mt-3 text-sm font-medium min-h-[2rem] text-amber-700';
+      }
+      g7nx.classList.remove('hidden');
+    });
+  });
+  g7nx.addEventListener('click',()=>{g7step++;g7Show();});
+  g7rst.addEventListener('click',()=>{g7step=0;g7Show();});
+  g7Show();
 
 })();
 </script>
