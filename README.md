@@ -14,6 +14,7 @@ Click the topic and Enjoy!
 - [`Density Questions`](https://george1meshveliani.github.io/Hello-Physics/DensityQeustions)
 - [`Some fun`](https://george1meshveliani.github.io/Hello-Physics/SomeFun)
 - [`Problems Set 1`](https://george1meshveliani.github.io/Hello-Physics/PSONE)
+- [`Problems Set 3: Gravity, Circular Motion & Interaction Forces`](https://george1meshveliani.github.io/Hello-Physics/PSTHREE) — gravitational force, Newton's 2nd & 3rd laws, circular dynamics, planetary orbits, interaction pairs; problems with hidden solutions
   
 #### Electricity and magnetism
 - [`Electric charge`](https://george1meshveliani.github.io/Hello-Physics/ElectricCharge)

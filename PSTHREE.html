@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gravity, Circular Motion & Interaction Forces</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KaTeX -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+  <style>
+    .animate-slide {
+      animation: slideIn 0.25s ease-out;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+<div class="min-h-screen p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+
+    <!-- HEADER -->
+    <header class="mb-6 text-center">
+      <div class="flex justify-center mb-4">
+        <div class="bg-emerald-600 p-3 rounded-2xl shadow-lg shadow-emerald-200">
+          🪐
+        </div>
+      </div>
+      <h1 class="text-4xl font-extrabold mb-2">Gravity, Circular Motion & Interaction Forces</h1>
+      <p class="text-slate-500 text-lg">
+        Problem Set 3: Gravitational force, Newton's laws, planetary orbits, circular dynamics and action–reaction pairs.
+      </p>
+    </header>
+
+    <!-- FORMULA TOGGLE -->
+    <section class="mb-8 bg-white border border-emerald-100 rounded-2xl shadow-sm overflow-hidden">
+      <button onclick="toggleFormulas()"
+        class="w-full flex justify-between items-center p-4 bg-emerald-600 text-white font-bold">
+        <span>∑ GRAVITY & CIRCULAR MOTION FORMULA REFERENCE</span>
+        <span id="formulaArrow">▲</span>
+      </button>
+      <div id="formulaBox" class="p-4 grid md:grid-cols-2 gap-4 bg-emerald-50/30"></div>
+    </section>
+
+    <!-- TABS -->
+    <div class="flex bg-slate-200 p-1 rounded-xl mb-8">
+      <button class="tab-btn active" onclick="setTab('Easy')">Easy (20)</button>
+      <button class="tab-btn" onclick="setTab('Intermediate')">Intermediate (20)</button>
+      <button class="tab-btn" onclick="setTab('Advanced')">Advanced (20)</button>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div id="questionList" class="space-y-4"></div>
+
+    <!-- FOOTER -->
+    <footer class="mt-12 text-center border-t pt-8 text-slate-400 text-sm" id="pageFooter">
+      Use $G = 6.674 \times 10^{-11}\,\text{N·m}^2/\text{kg}^2$ unless stated otherwise.
+      $g_{\text{Earth}} = 9.8\,\text{m/s}^2$,&nbsp;
+      $M_{\text{Earth}} = 5.97 \times 10^{24}\,\text{kg}$,&nbsp;
+      $R_{\text{Earth}} = 6.37 \times 10^6\,\text{m}$.<br>
+      $M_{\text{Sun}} = 1.99 \times 10^{30}\,\text{kg}$,&nbsp;
+      $M_{\text{Moon}} = 7.35 \times 10^{22}\,\text{kg}$,&nbsp;
+      $R_{\text{Earth–Moon}} = 3.84 \times 10^8\,\text{m}$.
+    </footer>
+  </div>
+</div>
+
+<script>
+/* ---------- Math Rendering ---------- */
+function renderMath(el, text) {
+  const parts = text.split(/(\$[^$]+\$)/g);
+  el.innerHTML = "";
+  parts.forEach(part => {
+    if (part.startsWith("$")) {
+      const span = document.createElement("span");
+      katex.render(part.slice(1, -1), span, { throwOnError: false });
+      span.className = "mx-1 text-emerald-900";
+      el.appendChild(span);
+    } else {
+      el.appendChild(document.createTextNode(part));
+    }
+  });
+}
+
+/* ---------- DATA ---------- */
+const formulas = [
+  {
+    name: "Newton's Law of Gravitation",
+    formula: "$F = \\dfrac{Gm_1 m_2}{r^2}$",
+    when: "Whenever you need the gravitational attraction between any two masses separated by distance r.",
+    symbols: "G = 6.674×10⁻¹¹ N·m²/kg², m₁, m₂ = masses (kg), r = centre-to-centre distance (m).",
+    how: "Plug in both masses and the separation. Force doubles if either mass doubles; quadruples if r halves.",
+    problems: "Planet–star attraction, Earth–Moon force, satellite weight, interaction pairs."
+  },
+  {
+    name: "Gravitational Field Strength",
+    formula: "$g = \\dfrac{GM}{r^2}$",
+    when: "When you need the gravitational acceleration (or field strength) at distance r from a mass M.",
+    symbols: "g = field strength / acceleration (m/s² or N/kg), G = gravitational constant, M = source mass (kg), r = distance from centre (m).",
+    how: "Use at Earth's surface (r = R_E) to verify g ≈ 9.8 m/s². At altitude h, r = R_E + h.",
+    problems: "Surface gravity on different planets, field at orbital height, comparing g on Moon and Earth."
+  },
+  {
+    name: "Centripetal Acceleration",
+    formula: "$a_c = \\dfrac{v^2}{r} = \\omega^2 r$",
+    when: "When an object moves in a circle at constant speed; the acceleration always points toward the centre.",
+    symbols: "aₒ = centripetal acceleration (m/s²), v = speed (m/s), r = radius (m), ω = angular velocity (rad/s).",
+    how: "Calculate a_c, then use Newton's 2nd law to find the net inward force = m·a_c.",
+    problems: "Car on a curve, satellite orbit, ball on a string, conical pendulum, banked track."
+  },
+  {
+    name: "Centripetal Force",
+    formula: "$F_c = \\dfrac{mv^2}{r} = m\\omega^2 r$",
+    when: "The net force needed to keep mass m moving in a circle of radius r at speed v.",
+    symbols: "F_c = centripetal force (N), m = mass (kg), v = speed (m/s), r = radius (m).",
+    how: "Set F_c equal to the actual force (gravity, tension, friction, normal minus weight, etc.) and solve.",
+    problems: "Orbital speed, loop-the-loop, car rounding a bend, satellite altitude."
+  },
+  {
+    name: "Angular Velocity",
+    formula: "$\\omega = \\dfrac{2\\pi}{T} = \\dfrac{v}{r}$",
+    when: "When you need to relate rotational speed (rad/s) to period T or to linear speed v.",
+    symbols: "ω = angular velocity (rad/s), T = period (s), v = tangential speed (m/s), r = radius (m).",
+    how: "ω = 2π/T for one full revolution. v = ωr gives tangential speed.",
+    problems: "Geostationary orbit, Earth rotation, uniform circular motion calculations."
+  },
+  {
+    name: "Orbital Speed",
+    formula: "$v_{\\text{orb}} = \\sqrt{\\dfrac{GM}{r}}$",
+    when: "When finding the speed needed for a circular orbit at radius r around a mass M.",
+    symbols: "v_orb = orbital speed (m/s), G = gravitational constant, M = central mass (kg), r = orbital radius (m).",
+    how: "Derived by setting gravitational force equal to centripetal force. Speed decreases as r increases.",
+    problems: "Satellite speed, Moon's orbital speed, comparing orbits at different altitudes."
+  },
+  {
+    name: "Orbital Period (Kepler III)",
+    formula: "$T^2 = \\dfrac{4\\pi^2}{GM}\\,r^3$",
+    when: "When relating the period T and orbital radius r for a circular orbit around mass M.",
+    symbols: "T = period (s), G = gravitational constant, M = central mass (kg), r = orbital radius (m).",
+    how: "Derived from orbital speed. T² ∝ r³ (Kepler's third law). Use to find T, r, or M from the other two.",
+    problems: "Satellite period, planet orbital data to find solar mass, comparing two orbits."
+  },
+  {
+    name: "Newton's Second Law",
+    formula: "$\\vec{F}_{\\text{net}} = m\\vec{a}$",
+    when: "Whenever you need to relate net force, mass, and acceleration.",
+    symbols: "F_net = net force (N), m = mass (kg), a = acceleration (m/s²).",
+    how: "Identify all forces, sum them vectorially to get F_net, then a = F_net / m.",
+    problems: "Object under gravity and normal force, centripetal acceleration from gravity, two-body problem."
+  },
+  {
+    name: "Newton's Third Law",
+    formula: "$\\vec{F}_{AB} = -\\vec{F}_{BA}$",
+    when: "Always: every force has an equal, opposite reaction force on the other object.",
+    symbols: "F_AB = force exerted by A on B; F_BA = force exerted by B on A. They are equal in magnitude, opposite in direction.",
+    how: "Identify the interaction pair: same magnitude, opposite direction, act on different objects, same type of force.",
+    problems: "Earth–satellite gravity pair, rocket thrust, book on table, swimming, collisions."
+  },
+  {
+    name: "Escape Velocity",
+    formula: "$v_{\\text{esc}} = \\sqrt{\\dfrac{2GM}{r}}$",
+    when: "When finding the minimum launch speed to escape a planet's gravity starting from radius r.",
+    symbols: "v_esc = escape velocity (m/s), G = gravitational constant, M = planet mass (kg), r = launch radius (m).",
+    how: "Set KE = magnitude of gravitational PE: ½mv² = GMm/r. Note: v_esc = √2 · v_orb.",
+    problems: "Escape from Earth, Moon, or other planets; comparing escape speeds on different bodies."
+  },
+  {
+    name: "Gravitational PE",
+    formula: "$U = -\\dfrac{GMm}{r}$",
+    when: "When you need gravitational potential energy for objects not near a planet's surface (where mgh does not apply).",
+    symbols: "U = gravitational PE (J), G = gravitational constant, M = source mass (kg), m = object mass (kg), r = separation (m).",
+    how: "U is negative (bound system); U → 0 as r → ∞. Total mechanical energy E = ½mv² + U.",
+    problems: "Orbital energy, escape energy, energy change when changing orbit, binding energy."
+  },
+  {
+    name: "Weight / Surface Gravity",
+    formula: "$W = mg = \\dfrac{GMm}{R^2}$",
+    when: "When you need weight at the surface of a planet of mass M and radius R.",
+    symbols: "W = weight (N), m = object mass (kg), g = GM/R² at the surface.",
+    how: "Both forms are equivalent at the surface. Use the second form when comparing planets with different M and R.",
+    problems: "Weight on Moon, Mars, or a neutron star surface; comparing surface gravities."
+  }
+];
+
+const questions = {
+  Easy: [
+    {
+      q: "1. Calculate the gravitational force between two $1000\\,\\text{kg}$ cars parked $2\\,\\text{m}$ apart. ($G = 6.674\\times10^{-11}\\,\\text{N·m}^2/\\text{kg}^2$)",
+      s: "Using $F = \\dfrac{Gm_1 m_2}{r^2}$:\n\n$F = \\dfrac{6.674\\times10^{-11}\\times1000\\times1000}{2^2} = \\dfrac{6.674\\times10^{-5}}{4} = 1.67\\times10^{-5}\\,\\text{N}$\n\nThe force is tiny — about $17\\,\\mu\\text{N}$ — which is why we don't feel gravity between everyday objects."
+    },
+    {
+      q: "2. A satellite of mass $500\\,\\text{kg}$ orbits Earth at speed $7800\\,\\text{m/s}$ at radius $6.67\\times10^6\\,\\text{m}$. What centripetal force is required?",
+      s: "Using $F_c = \\dfrac{mv^2}{r}$:\n\n$F_c = \\dfrac{500\\times(7800)^2}{6.67\\times10^6} = \\dfrac{500\\times6.084\\times10^7}{6.67\\times10^6} = \\dfrac{3.042\\times10^{10}}{6.67\\times10^6} \\approx 4560\\,\\text{N}$\n\nThis centripetal force is provided entirely by Earth's gravity."
+    },
+    {
+      q: "3. A car travels around a circular track of radius $50\\,\\text{m}$ at $20\\,\\text{m/s}$. Find the centripetal acceleration.",
+      s: "Using $a_c = \\dfrac{v^2}{r}$:\n\n$a_c = \\dfrac{(20)^2}{50} = \\dfrac{400}{50} = 8\\,\\text{m/s}^2$\n\nThe driver experiences an inward acceleration of $8\\,\\text{m/s}^2$, comparable to $g$."
+    },
+    {
+      q: "4. A planet has twice Earth's mass and the same radius. What is the surface gravitational field strength? ($g_E = 9.8\\,\\text{m/s}^2$)",
+      s: "Since $g = \\dfrac{GM}{R^2}$, doubling $M$ with the same $R$ doubles $g$:\n\n$g' = 2\\times9.8 = 19.6\\,\\text{m/s}^2$"
+    },
+    {
+      q: "5. The Moon orbits Earth with a period of $27.3\\,\\text{days}$ and orbital radius $3.84\\times10^8\\,\\text{m}$. Find its orbital speed.",
+      s: "Convert period: $T = 27.3\\times24\\times3600 = 2.36\\times10^6\\,\\text{s}$\n\nOrbital speed: $v = \\dfrac{2\\pi r}{T} = \\dfrac{2\\pi\\times3.84\\times10^8}{2.36\\times10^6} \\approx \\dfrac{2.413\\times10^9}{2.36\\times10^6} \\approx 1023\\,\\text{m/s} \\approx 1.02\\,\\text{km/s}$"
+    },
+    {
+      q: "6. A $2\\,\\text{kg}$ ball is swung in a horizontal circle of radius $1.5\\,\\text{m}$ with period $2\\,\\text{s}$. Find the centripetal force.",
+      s: "Angular velocity: $\\omega = \\dfrac{2\\pi}{T} = \\dfrac{2\\pi}{2} = \\pi\\,\\text{rad/s}$\n\nCentripetal force: $F_c = m\\omega^2 r = 2\\times\\pi^2\\times1.5 = 3\\pi^2 \\approx 29.6\\,\\text{N}$"
+    },
+    {
+      q: "7. By Newton's Third Law, if Earth pulls the Moon with force $F$, what is the force the Moon exerts on Earth?",
+      s: "Newton's Third Law states that forces come in equal and opposite pairs acting on different objects.\n\nThe Moon exerts a force of magnitude $F$ on Earth, directed toward the Moon — equal in magnitude but opposite in direction to Earth's pull on the Moon.\n\nBoth forces are gravitational in nature and both are part of the same interaction pair."
+    },
+    {
+      q: "8. The gravitational force between two objects is $80\\,\\text{N}$. If the distance between them is doubled, what is the new force?",
+      s: "Gravitational force $\\propto \\dfrac{1}{r^2}$. Doubling $r$ multiplies $r^2$ by $4$, so force is divided by $4$:\n\n$F' = \\dfrac{80}{4} = 20\\,\\text{N}$"
+    },
+    {
+      q: "9. A $60\\,\\text{kg}$ person stands on the Moon's surface ($g_\\text{Moon} = 1.62\\,\\text{m/s}^2$). What is their weight on the Moon?",
+      s: "Weight $W = mg$:\n\n$W = 60\\times1.62 = 97.2\\,\\text{N}$\n\nFor comparison, on Earth their weight would be $60\\times9.8 = 588\\,\\text{N}$."
+    },
+    {
+      q: "10. A satellite completes one full orbit of radius $r = 8\\times10^6\\,\\text{m}$ in $T = 7200\\,\\text{s}$. Find its orbital speed.",
+      s: "Orbital speed: $v = \\dfrac{2\\pi r}{T} = \\dfrac{2\\pi\\times8\\times10^6}{7200} = \\dfrac{5.027\\times10^7}{7200} \\approx 6982\\,\\text{m/s} \\approx 7.0\\,\\text{km/s}$"
+    },
+    {
+      q: "11. A $5\\,\\text{kg}$ block rests on a table. Identify the Newton's Third Law interaction pair for the contact force between the block and the table.",
+      s: "The table pushes up on the block with normal force $N$ (upward).\n\nBy Newton's Third Law, the block pushes down on the table with force $N$ (downward).\n\nThese two forces are equal in magnitude, opposite in direction, act on different objects (block vs. table), and are both contact (normal) forces — a valid action–reaction pair.\n\nNote: the block's weight $mg$ downward and $N$ upward on the block are NOT a Newton's 3rd law pair — they act on the same object and are different types of force."
+    },
+    {
+      q: "12. Estimate the gravitational force between Earth ($M_E = 5.97\\times10^{24}\\,\\text{kg}$) and a $70\\,\\text{kg}$ person standing on its surface ($R_E = 6.37\\times10^6\\,\\text{m}$).",
+      s: "$F = \\dfrac{GM_E m}{R_E^2} = \\dfrac{6.674\\times10^{-11}\\times5.97\\times10^{24}\\times70}{(6.37\\times10^6)^2}$\n\n$= \\dfrac{6.674\\times10^{-11}\\times4.179\\times10^{26}}{4.058\\times10^{13}} = \\dfrac{2.787\\times10^{16}}{4.058\\times10^{13}} \\approx 687\\,\\text{N}$\n\nThis equals $mg = 70\\times9.8 = 686\\,\\text{N}$ ✓ — confirming $g = GM_E/R_E^2$."
+    },
+    {
+      q: "13. A stone of mass $0.5\\,\\text{kg}$ is tied to a string and whirled in a vertical circle of radius $0.8\\,\\text{m}$ at constant speed $4\\,\\text{m/s}$. Find the centripetal force needed.",
+      s: "$F_c = \\dfrac{mv^2}{r} = \\dfrac{0.5\\times16}{0.8} = \\dfrac{8}{0.8} = 10\\,\\text{N}$\n\nThis force is provided by the combination of tension and gravity (which component helps or opposes depends on position in the circle)."
+    },
+    {
+      q: "14. What is the angular velocity of the Earth as it rotates once per $24\\,\\text{hours}$?",
+      s: "Convert period: $T = 24\\times3600 = 86400\\,\\text{s}$\n\n$\\omega = \\dfrac{2\\pi}{T} = \\dfrac{2\\pi}{86400} \\approx 7.27\\times10^{-5}\\,\\text{rad/s}$"
+    },
+    {
+      q: "15. If the gravitational force between two equal masses separated by $1\\,\\text{m}$ is $6.674\\times10^{-11}\\,\\text{N}$, what is the mass of each object?",
+      s: "Using $F = \\dfrac{Gm^2}{r^2}$:\n\n$m^2 = \\dfrac{Fr^2}{G} = \\dfrac{6.674\\times10^{-11}\\times1^2}{6.674\\times10^{-11}} = 1$\n\n$m = 1\\,\\text{kg}$\n\nThis makes sense: $G$ is defined so that two $1\\,\\text{kg}$ masses $1\\,\\text{m}$ apart exert $G\\,\\text{N}$ on each other."
+    },
+    {
+      q: "16. A rocket exerts a thrust force of $5\\times10^5\\,\\text{N}$ on exhaust gases downward. By Newton's Third Law, what force is exerted on the rocket, and in which direction?",
+      s: "Newton's Third Law: the exhaust gases exert an equal and opposite force on the rocket.\n\nForce on rocket $= 5\\times10^5\\,\\text{N}$ upward.\n\nThis is the reaction force — same magnitude, opposite direction, and acts on the other member of the interaction pair (the rocket instead of the exhaust gases)."
+    },
+    {
+      q: "17. A planet has the same mass as Earth but twice the radius. What is the surface gravity?",
+      s: "$g' = \\dfrac{GM_E}{(2R_E)^2} = \\dfrac{GM_E}{4R_E^2} = \\dfrac{g_E}{4} = \\dfrac{9.8}{4} = 2.45\\,\\text{m/s}^2$\n\nDouble the radius reduces surface gravity by a factor of 4."
+    },
+    {
+      q: "18. A $1200\\,\\text{kg}$ car rounds a flat curve of radius $80\\,\\text{m}$ at $15\\,\\text{m/s}$. What friction force is required?",
+      s: "The friction force provides centripetal force:\n\n$f = F_c = \\dfrac{mv^2}{r} = \\dfrac{1200\\times225}{80} = \\dfrac{270000}{80} = 3375\\,\\text{N}$"
+    },
+    {
+      q: "19. By Newton's Third Law, when a swimming person pushes water backward, what happens to the swimmer?",
+      s: "Newton's Third Law: when the swimmer's hands/feet push water backward with force $F$, the water pushes the swimmer forward with equal force $F$.\n\nThis reaction force accelerates the swimmer forward. The two forces act on different objects (swimmer vs. water) and are equal in magnitude, opposite in direction."
+    },
+    {
+      q: "20. A $3\\,\\text{kg}$ object moves in a circle of radius $2\\,\\text{m}$ with angular velocity $4\\,\\text{rad/s}$. Find the centripetal force.",
+      s: "$F_c = m\\omega^2 r = 3\\times16\\times2 = 96\\,\\text{N}$\n\nDirection: toward the centre of the circle at every point along the path."
+    }
+  ],
+
+  Intermediate: [
+    {
+      q: "1. A satellite orbits Earth at altitude $h = 300\\,\\text{km}$ ($R_E = 6.37\\times10^6\\,\\text{m}$, $M_E = 5.97\\times10^{24}\\,\\text{kg}$). Find its orbital speed.",
+      s: "Orbital radius: $r = R_E + h = 6.37\\times10^6 + 3\\times10^5 = 6.67\\times10^6\\,\\text{m}$\n\nSet gravitational force equal to centripetal force:\n$\\dfrac{GM_E m}{r^2} = \\dfrac{mv^2}{r}$\n\n$v = \\sqrt{\\dfrac{GM_E}{r}} = \\sqrt{\\dfrac{6.674\\times10^{-11}\\times5.97\\times10^{24}}{6.67\\times10^6}}$\n\n$= \\sqrt{\\dfrac{3.984\\times10^{14}}{6.67\\times10^6}} = \\sqrt{5.974\\times10^7} \\approx 7729\\,\\text{m/s} \\approx 7.7\\,\\text{km/s}$"
+    },
+    {
+      q: "2. Two masses $m_1 = 3\\,\\text{kg}$ and $m_2 = 5\\,\\text{kg}$ are on a frictionless surface, connected by a string. A $16\\,\\text{N}$ force pulls $m_2$. Find the tension in the string and the acceleration of the system.",
+      s: "Total mass: $m = 3 + 5 = 8\\,\\text{kg}$\n\nAcceleration: $a = \\dfrac{F}{m} = \\dfrac{16}{8} = 2\\,\\text{m/s}^2$\n\nFor $m_1$ alone, the string tension provides its acceleration:\n$T = m_1 a = 3\\times2 = 6\\,\\text{N}$\n\nNewton's 3rd law check: the string pulls $m_1$ forward at $6\\,\\text{N}$; $m_1$ pulls the string (and hence $m_2$'s rear) backward at $6\\,\\text{N}$. These are an interaction pair."
+    },
+    {
+      q: "3. Find the orbital period of the International Space Station orbiting at $r = 6.67\\times10^6\\,\\text{m}$ from Earth's centre.",
+      s: "Using Kepler's third law: $T = 2\\pi\\sqrt{\\dfrac{r^3}{GM_E}}$\n\n$T = 2\\pi\\sqrt{\\dfrac{(6.67\\times10^6)^3}{6.674\\times10^{-11}\\times5.97\\times10^{24}}}$\n\n$= 2\\pi\\sqrt{\\dfrac{2.965\\times10^{20}}{3.985\\times10^{14}}} = 2\\pi\\sqrt{7.441\\times10^5} = 2\\pi\\times862.6 \\approx 5419\\,\\text{s} \\approx 90.3\\,\\text{min}$"
+    },
+    {
+      q: "4. A ball of mass $0.3\\,\\text{kg}$ is attached to a $1.2\\,\\text{m}$ string and swung in a vertical circle. At the top of the circle it moves at $6\\,\\text{m/s}$. Find the string tension at the top.",
+      s: "At the top, both tension $T$ and weight $mg$ point toward the centre (downward):\n\n$T + mg = \\dfrac{mv^2}{r}$\n\n$T = \\dfrac{mv^2}{r} - mg = m\\left(\\dfrac{v^2}{r} - g\\right) = 0.3\\left(\\dfrac{36}{1.2} - 9.8\\right) = 0.3(30 - 9.8) = 0.3\\times20.2 = 6.06\\,\\text{N}$"
+    },
+    {
+      q: "5. Use Newton's Law of Gravitation to estimate Earth's mass, given that the Moon's orbital radius is $3.84\\times10^8\\,\\text{m}$ and its period is $2.36\\times10^6\\,\\text{s}$.",
+      s: "Set gravity = centripetal force for the Moon:\n$\\dfrac{GM_E m}{r^2} = \\dfrac{m(2\\pi r/T)^2}{r} = \\dfrac{4\\pi^2 m r}{T^2}$\n\n$M_E = \\dfrac{4\\pi^2 r^3}{GT^2} = \\dfrac{4\\pi^2\\times(3.84\\times10^8)^3}{6.674\\times10^{-11}\\times(2.36\\times10^6)^2}$\n\n$= \\dfrac{4\\pi^2\\times5.662\\times10^{25}}{6.674\\times10^{-11}\\times5.570\\times10^{12}} = \\dfrac{2.235\\times10^{27}}{3.717\\times10^{2}} \\approx 6.01\\times10^{24}\\,\\text{kg}$ ✓"
+    },
+    {
+      q: "6. A conical pendulum has a string of length $L = 0.5\\,\\text{m}$ making angle $\\theta = 30°$ with the vertical. Find the period of revolution.",
+      s: "Vertical balance: $T_s \\cos\\theta = mg$ → $T_s = \\dfrac{mg}{\\cos\\theta}$\n\nCentripetal force: $T_s \\sin\\theta = \\dfrac{mv^2}{r}$, with $r = L\\sin\\theta$\n\nDividing: $\\tan\\theta = \\dfrac{v^2}{rg} = \\dfrac{\\omega^2 r}{g}$\n\n$\\omega^2 = \\dfrac{g\\tan\\theta}{r} = \\dfrac{g\\tan\\theta}{L\\sin\\theta} = \\dfrac{g}{L\\cos\\theta}$\n\n$T = \\dfrac{2\\pi}{\\omega} = 2\\pi\\sqrt{\\dfrac{L\\cos\\theta}{g}} = 2\\pi\\sqrt{\\dfrac{0.5\\times\\cos30°}{9.8}} = 2\\pi\\sqrt{\\dfrac{0.5\\times0.866}{9.8}} = 2\\pi\\sqrt{0.0442} \\approx 1.32\\,\\text{s}$"
+    },
+    {
+      q: "7. Two stars of masses $M_1 = 2\\times10^{30}\\,\\text{kg}$ and $M_2 = 4\\times10^{30}\\,\\text{kg}$ are separated by $5\\times10^{11}\\,\\text{m}$. Find the gravitational force each exerts on the other and identify the Newton's Third Law pair.",
+      s: "$F = \\dfrac{GM_1 M_2}{r^2} = \\dfrac{6.674\\times10^{-11}\\times2\\times10^{30}\\times4\\times10^{30}}{(5\\times10^{11})^2}$\n\n$= \\dfrac{6.674\\times10^{-11}\\times8\\times10^{60}}{2.5\\times10^{23}} = \\dfrac{5.339\\times10^{50}}{2.5\\times10^{23}} \\approx 2.14\\times10^{27}\\,\\text{N}$\n\nNewton's Third Law: $M_1$ pulls $M_2$ toward it with $2.14\\times10^{27}\\,\\text{N}$; $M_2$ pulls $M_1$ toward it with exactly $2.14\\times10^{27}\\,\\text{N}$ — equal magnitude, opposite directions, different objects. They form one interaction pair."
+    },
+    {
+      q: "8. A geostationary satellite orbits Earth with the same period as Earth's rotation ($T = 24\\,\\text{h}$). Find its orbital radius.",
+      s: "Using $T^2 = \\dfrac{4\\pi^2 r^3}{GM_E}$:\n\n$r^3 = \\dfrac{GM_E T^2}{4\\pi^2} = \\dfrac{6.674\\times10^{-11}\\times5.97\\times10^{24}\\times(86400)^2}{4\\pi^2}$\n\n$= \\dfrac{3.985\\times10^{14}\\times7.465\\times10^9}{39.48} = \\dfrac{2.974\\times10^{24}}{39.48} = 7.533\\times10^{22}\\,\\text{m}^3$\n\n$r = (7.533\\times10^{22})^{1/3} \\approx 4.22\\times10^7\\,\\text{m} \\approx 42200\\,\\text{km}$\n\nThis is about $6.6\\,R_E$ above Earth's centre."
+    },
+    {
+      q: "9. A $1000\\,\\text{kg}$ car goes over a circular hill of radius $40\\,\\text{m}$ at speed $v$. Find the maximum speed at which the car stays in contact with the road.",
+      s: "At the top of the hill, centripetal acceleration is provided by the net downward force:\n\n$mg - N = \\dfrac{mv^2}{r}$\n\nContact is lost when $N = 0$:\n\n$mg = \\dfrac{mv_{\\max}^2}{r}$\n\n$v_{\\max} = \\sqrt{gr} = \\sqrt{9.8\\times40} = \\sqrt{392} \\approx 19.8\\,\\text{m/s} \\approx 71\\,\\text{km/h}$"
+    },
+    {
+      q: "10. Planet X orbits its star at $r = 1.5\\times10^{11}\\,\\text{m}$ with period $3.156\\times10^7\\,\\text{s}$ (1 Earth year). Planet Y orbits the same star at $r_Y = 4\\times r_X$. Find Planet Y's period.",
+      s: "By Kepler's Third Law: $T^2 \\propto r^3$, so $\\dfrac{T_Y^2}{T_X^2} = \\left(\\dfrac{r_Y}{r_X}\\right)^3 = 4^3 = 64$\n\n$T_Y = T_X\\sqrt{64} = T_X\\times8 = 8\\times3.156\\times10^7 = 2.525\\times10^8\\,\\text{s} \\approx 8\\,\\text{years}$"
+    },
+    {
+      q: "11. An object is dropped from rest at height $h = 3R_E$ above Earth's surface (i.e. at $r = 4R_E$ from Earth's centre). Using energy conservation, find its speed when it reaches the surface.",
+      s: "Gravitational PE: $U = -\\dfrac{GM_E m}{r}$\n\nEnergy conservation: $\\dfrac{1}{2}mv^2 - \\dfrac{GM_E m}{R_E} = 0 - \\dfrac{GM_E m}{4R_E}$\n\n$\\dfrac{1}{2}v^2 = GM_E\\left(\\dfrac{1}{R_E} - \\dfrac{1}{4R_E}\\right) = \\dfrac{3GM_E}{4R_E}$\n\n$v = \\sqrt{\\dfrac{3GM_E}{2R_E}} = \\sqrt{\\dfrac{3\\times3.985\\times10^{14}}{2\\times6.37\\times10^6}} = \\sqrt{9.396\\times10^7} \\approx 9693\\,\\text{m/s} \\approx 9.7\\,\\text{km/s}$"
+    },
+    {
+      q: "12. A satellite of mass $m$ orbits Earth at radius $r$. Show that its total mechanical energy is $E = -\\dfrac{GM_E m}{2r}$.",
+      s: "For a circular orbit, gravity provides centripetal force:\n$\\dfrac{GM_E m}{r^2} = \\dfrac{mv^2}{r}$ → $v^2 = \\dfrac{GM_E}{r}$\n\nKinetic energy: $KE = \\dfrac{1}{2}mv^2 = \\dfrac{GM_E m}{2r}$\n\nGravitational PE: $U = -\\dfrac{GM_E m}{r}$\n\nTotal: $E = KE + U = \\dfrac{GM_E m}{2r} - \\dfrac{GM_E m}{r} = -\\dfrac{GM_E m}{2r}$ ✓\n\nThe negative sign means the satellite is bound. Higher orbit → less negative energy → more total energy."
+    },
+    {
+      q: "13. A person of mass $m$ stands on a scale inside a car that rounds a flat circular path of radius $R$ at speed $v$. The car moves in a horizontal plane. The scale reads normal force only. What does the scale read?",
+      s: "The scale measures the vertical normal force $N$. Since the circular motion is horizontal, vertical equilibrium still applies:\n\n$N = mg$\n\nThe scale reads $mg$, unchanged. The centripetal force is provided by horizontal friction from the car seat/floor, not by $N$.\n\nIf the circular path were vertical (a loop), the analysis would change at the top and bottom."
+    },
+    {
+      q: "14. Derive the orbital speed of the Moon around Earth given only $G$, $M_E$, and the Earth–Moon distance $r = 3.84\\times10^8\\,\\text{m}$.",
+      s: "Set gravitational attraction equal to centripetal force:\n$\\dfrac{GM_E m_\\text{Moon}}{r^2} = \\dfrac{m_\\text{Moon} v^2}{r}$\n\n$v = \\sqrt{\\dfrac{GM_E}{r}} = \\sqrt{\\dfrac{6.674\\times10^{-11}\\times5.97\\times10^{24}}{3.84\\times10^8}}$\n\n$= \\sqrt{\\dfrac{3.985\\times10^{14}}{3.84\\times10^8}} = \\sqrt{1.038\\times10^6} \\approx 1019\\,\\text{m/s} \\approx 1.02\\,\\text{km/s}$"
+    },
+    {
+      q: "15. A $500\\,\\text{kg}$ spacecraft is midway between Earth ($M_E = 5.97\\times10^{24}\\,\\text{kg}$) and Moon ($M_M = 7.35\\times10^{22}\\,\\text{kg}$), at distance $d = 1.92\\times10^8\\,\\text{m}$ from each. Find the net gravitational force on the spacecraft.",
+      s: "Force from Earth (toward Earth):\n$F_E = \\dfrac{GM_E m}{d^2} = \\dfrac{6.674\\times10^{-11}\\times5.97\\times10^{24}\\times500}{(1.92\\times10^8)^2} = \\dfrac{1.992\\times10^{17}}{3.686\\times10^{16}} \\approx 5.40\\,\\text{N}$\n\nForce from Moon (toward Moon, opposite direction):\n$F_M = \\dfrac{GM_M m}{d^2} = \\dfrac{6.674\\times10^{-11}\\times7.35\\times10^{22}\\times500}{3.686\\times10^{16}} = \\dfrac{2.452\\times10^{15}}{3.686\\times10^{16}} \\approx 0.0665\\,\\text{N}$\n\nNet force $= 5.40 - 0.0665 \\approx 5.33\\,\\text{N}$ toward Earth.\n\n(The Lagrange point L1 where net force = 0 is closer to the Moon.)"
+    },
+    {
+      q: "16. A smooth circular loop-the-loop has radius $R = 5\\,\\text{m}$. What is the minimum speed at the top of the loop to maintain contact?",
+      s: "At the top, minimum contact means $N = 0$, so gravity alone provides centripetal force:\n\n$mg = \\dfrac{mv_{\\min}^2}{R}$\n\n$v_{\\min} = \\sqrt{gR} = \\sqrt{9.8\\times5} = \\sqrt{49} = 7\\,\\text{m/s}$\n\nAny slower and the object would leave the track; exactly $7\\,\\text{m/s}$ is the critical speed."
+    },
+    {
+      q: "17. A $2\\,\\text{kg}$ ball and a $6\\,\\text{kg}$ ball attract each other gravitationally. The $6\\,\\text{kg}$ ball accelerates at $a_2$. What is the acceleration of the $2\\,\\text{kg}$ ball relative to $a_2$?",
+      s: "By Newton's Third Law, both balls experience the same magnitude of gravitational force $F$.\n\nFor the $6\\,\\text{kg}$ ball: $F = 6a_2$\n\nFor the $2\\,\\text{kg}$ ball: $F = 2a_1$\n\nSince $F$ is the same:\n$2a_1 = 6a_2$ → $a_1 = 3a_2$\n\nThe lighter ball accelerates three times more than the heavier one — same force, less mass."
+    },
+    {
+      q: "18. An astronaut weighs $784\\,\\text{N}$ on Earth. At what altitude (in Earth radii) above the surface will they weigh $196\\,\\text{N}$?",
+      s: "Weight ratio: $\\dfrac{W_h}{W_0} = \\dfrac{R_E^2}{(R_E + h)^2} = \\dfrac{196}{784} = \\dfrac{1}{4}$\n\n$(R_E + h)^2 = 4R_E^2$ → $R_E + h = 2R_E$ → $h = R_E$\n\nAt one Earth radius above the surface (i.e. $r = 2R_E$), the weight is one quarter of its surface value."
+    },
+    {
+      q: "19. A planet of mass $M_P$ and radius $R_P$ has the same average density as Earth but twice Earth's radius. Compare its surface gravity to Earth's $g_E$.",
+      s: "Same density means $\\dfrac{M_P}{\\frac{4}{3}\\pi R_P^3} = \\dfrac{M_E}{\\frac{4}{3}\\pi R_E^3}$, so $\\dfrac{M_P}{M_E} = \\left(\\dfrac{R_P}{R_E}\\right)^3 = 8$.\n\nSurface gravity: $g_P = \\dfrac{GM_P}{R_P^2} = \\dfrac{G\\cdot8M_E}{(2R_E)^2} = \\dfrac{8GM_E}{4R_E^2} = 2\\cdot\\dfrac{GM_E}{R_E^2} = 2g_E$\n\nFor a planet of uniform density, $g \\propto R$, so doubling the radius doubles surface gravity."
+    },
+    {
+      q: "20. Two satellites of masses $m$ and $4m$ orbit Earth at the same radius $r$. Compare their orbital speeds, periods, and centripetal accelerations.",
+      s: "Orbital speed: $v = \\sqrt{\\dfrac{GM_E}{r}}$ — depends only on $r$ and $M_E$, not on satellite mass.\n\n$\\Rightarrow$ Both have the same speed, same period, and same centripetal acceleration.\n\nHowever, the centripetal force on the heavier satellite is four times larger ($F_c = mv^2/r$), and this is provided by the four-times-larger gravitational force — consistent with Newton's 2nd and 3rd laws.\n\nNewton's 3rd Law: Earth pulls each satellite; each satellite pulls Earth with an equal force. The $4m$ satellite pulls Earth four times harder, but Earth is so massive the effect is negligible."
+    }
+  ],
+
+  Advanced: [
+    {
+      q: "1. Derive Kepler's Third Law ($T^2 \\propto r^3$) for circular orbits from Newton's Law of Universal Gravitation.",
+      s: "For a circular orbit, gravitational force provides centripetal force:\n\n$\\dfrac{GMm}{r^2} = \\dfrac{mv^2}{r}$ → $v^2 = \\dfrac{GM}{r}$ … (i)\n\nThe orbital circumference is $2\\pi r$, traversed at speed $v$ in time $T$:\n\n$v = \\dfrac{2\\pi r}{T}$ → $v^2 = \\dfrac{4\\pi^2 r^2}{T^2}$ … (ii)\n\nEquating (i) and (ii):\n\n$\\dfrac{4\\pi^2 r^2}{T^2} = \\dfrac{GM}{r}$\n\n$T^2 = \\dfrac{4\\pi^2}{GM}\\,r^3$ ✓\n\nSince $\\dfrac{4\\pi^2}{GM}$ is constant for a given central mass $M$, we have $T^2 \\propto r^3$ — Kepler's Third Law."
+    },
+    {
+      q: "2. Two planets orbit the same star. Planet A is at radius $r$ with period $T$. Planet B is at radius $r/2$. Using Kepler's Third Law, find Planet B's period and orbital speed relative to Planet A's.",
+      s: "Kepler's Third Law: $T^2 \\propto r^3$.\n\n$\\dfrac{T_B^2}{T_A^2} = \\left(\\dfrac{r_B}{r_A}\\right)^3 = \\left(\\dfrac{1}{2}\\right)^3 = \\dfrac{1}{8}$\n\n$T_B = \\dfrac{T_A}{2\\sqrt{2}} = \\dfrac{T}{2\\sqrt{2}}$\n\nOrbital speed: $v = \\dfrac{2\\pi r}{T} \\propto \\dfrac{r}{T} \\propto \\dfrac{r}{r^{3/2}} = r^{-1/2}$\n\n$\\dfrac{v_B}{v_A} = \\sqrt{\\dfrac{r_A}{r_B}} = \\sqrt{2}$\n\nPlanet B is closer, has a shorter period, and moves $\\sqrt{2}$ times faster."
+    },
+    {
+      q: "3. Derive the escape velocity from a planet of mass $M$ and radius $R$. Show that $v_{\\text{esc}} = \\sqrt{2}\\,v_{\\text{orb}}$ where $v_{\\text{orb}}$ is the surface orbital speed.",
+      s: "For escape: total mechanical energy $\\geq 0$ (object reaches $r \\to \\infty$ with zero KE at minimum):\n\n$\\dfrac{1}{2}mv_{\\text{esc}}^2 - \\dfrac{GMm}{R} = 0$\n\n$v_{\\text{esc}} = \\sqrt{\\dfrac{2GM}{R}}$\n\nSurface orbital speed (setting $F_g = F_c$ at $r = R$):\n\n$v_{\\text{orb}} = \\sqrt{\\dfrac{GM}{R}}$\n\nTherefore:\n$\\dfrac{v_{\\text{esc}}}{v_{\\text{orb}}} = \\sqrt{\\dfrac{2GM/R}{GM/R}} = \\sqrt{2}$ ✓\n\nFor Earth: $v_{\\text{esc}} = \\sqrt{2}\\times7910 \\approx 11{,}185\\,\\text{m/s} \\approx 11.2\\,\\text{km/s}$."
+    },
+    {
+      q: "4. A binary star system consists of stars of masses $M$ and $2M$ separated by distance $d$. They orbit their common centre of mass. Find the radius of each star's circular orbit and the period.",
+      s: "Centre of mass from $M$: $r_1 = \\dfrac{2M}{M + 2M}d = \\dfrac{2d}{3}$; from $2M$: $r_2 = \\dfrac{d}{3}$.\n\nBoth stars complete one revolution in period $T$, so $\\omega = 2\\pi/T$ is the same for both.\n\nFor star of mass $M$ (orbit radius $r_1 = 2d/3$):\n$\\dfrac{GM\\cdot2M}{d^2} = M\\omega^2 r_1 = M\\omega^2\\dfrac{2d}{3}$\n\n$\\dfrac{2GM}{d^2} = \\omega^2\\dfrac{2d}{3}$ → $\\omega^2 = \\dfrac{3GM}{d^3}$\n\n$T = \\dfrac{2\\pi}{\\omega} = 2\\pi\\sqrt{\\dfrac{d^3}{3GM}}$\n\nNewton's 3rd Law check: the gravitational force on each star is the same magnitude $F = 2GM^2/d^2$; the accelerations differ ($a_1 = F/M$, $a_2 = F/2M$) because the masses differ."
+    },
+    {
+      q: "5. A satellite in a circular orbit at radius $r_1$ is given a brief speed boost to transfer to a higher circular orbit at $r_2 > r_1$ (Hohmann transfer). Derive the energy change required.",
+      s: "Total energy of circular orbit: $E = -\\dfrac{GM_E m}{2r}$.\n\nAt $r_1$: $E_1 = -\\dfrac{GM_E m}{2r_1}$\n\nAt $r_2$: $E_2 = -\\dfrac{GM_E m}{2r_2}$\n\nEnergy change (boost energy): $\\Delta E = E_2 - E_1 = -\\dfrac{GM_E m}{2r_2} + \\dfrac{GM_E m}{2r_1} = \\dfrac{GM_E m}{2}\\left(\\dfrac{1}{r_1} - \\dfrac{1}{r_2}\\right)$\n\nSince $r_2 > r_1$, $\\Delta E > 0$ — energy must be added (speed increases, orbit expands).\n\nNote: higher orbit has less kinetic energy but more total energy (less negative)."
+    },
+    {
+      q: "6. Near the L1 Lagrange point between Earth and Sun, a small object can orbit the Sun with the same period as Earth. Show this is possible by writing the net radial force equation for an object at distance $(d - x)$ from the Sun, where $d$ is the Earth–Sun distance and $x \\ll d$ is the offset toward Earth.",
+      s: "Let the object be at $r_1 = d - x$ from the Sun, and $x$ from Earth.\n\nNet radial force toward Sun:\n$F_{\\text{net}} = \\dfrac{GM_S m}{(d-x)^2} - \\dfrac{GM_E m}{x^2}$\n\nFor orbit with Earth's angular velocity $\\omega = \\sqrt{GM_S/d^3}$, centripetal requirement:\n$m\\omega^2(d - x) = F_{\\text{net}}$\n\nExpanding to first order in $x/d$:\n$\\dfrac{GM_S}{(d-x)^2} \\approx \\dfrac{GM_S}{d^2}\\left(1 + \\dfrac{2x}{d}\\right)$\n\nSubstituting and simplifying gives an equation for $x$:\n$\\dfrac{GM_E}{x^2} \\approx \\dfrac{3GM_S x}{d^3}$ → $x \\approx d\\left(\\dfrac{M_E}{3M_S}\\right)^{1/3}$\n\nFor Earth–Sun: $x \\approx 1.49\\times10^9\\,\\text{m}$ — this is where the James Webb Space Telescope orbits."
+    },
+    {
+      q: "7. A rocket of initial mass $M_0$ (including fuel) fires its engine. By Newton's Third Law (momentum conservation), derive the rocket equation: $\\Delta v = v_{\\text{ex}}\\ln\\!\\left(\\dfrac{M_0}{M_f}\\right)$.",
+      s: "Consider a rocket of mass $m$ moving at velocity $v$. In time $dt$ it ejects mass $dm_e = -dm$ (so $dm < 0$) at exhaust speed $v_{\\text{ex}}$ relative to the rocket.\n\nNewton's 3rd Law / momentum conservation (no external forces):\n$mv = (m + dm)(v + dv) + (-dm)(v - v_{\\text{ex}})$\n\nExpanding and dropping second-order term $dm\\,dv$:\n$mv = mv + m\\,dv + v\\,dm - v\\,dm + v_{\\text{ex}}dm$\n\n$0 = m\\,dv + v_{\\text{ex}}dm$\n\n$dv = -v_{\\text{ex}}\\dfrac{dm}{m}$\n\nIntegrate from $M_0$ (full) to $M_f$ (empty):\n$\\Delta v = \\int_{M_0}^{M_f} -v_{\\text{ex}}\\dfrac{dm}{m} = v_{\\text{ex}}\\ln\\dfrac{M_0}{M_f}$ ✓\n\nThe interaction pair at each instant: rocket pushes exhaust backward; exhaust pushes rocket forward."
+    },
+    {
+      q: "8. An artificial satellite is in a circular orbit just above the surface of a uniform-density spherical asteroid of radius $R = 5000\\,\\text{m}$ and density $\\rho = 2500\\,\\text{kg/m}^3$. Find the orbital period and show it depends only on density.",
+      s: "Mass of asteroid: $M = \\dfrac{4}{3}\\pi R^3 \\rho$\n\nOrbital radius $r \\approx R$. For circular orbit:\n\n$\\dfrac{GM}{R^2} = \\dfrac{v^2}{R} = \\omega^2 R$\n\n$\\omega^2 = \\dfrac{GM}{R^3} = \\dfrac{G\\cdot\\frac{4}{3}\\pi R^3 \\rho}{R^3} = \\dfrac{4\\pi G\\rho}{3}$\n\n$T = \\dfrac{2\\pi}{\\omega} = 2\\pi\\sqrt{\\dfrac{3}{4\\pi G\\rho}} = \\sqrt{\\dfrac{3\\pi}{G\\rho}}$\n\nFor $\\rho = 2500\\,\\text{kg/m}^3$:\n$T = \\sqrt{\\dfrac{3\\pi}{6.674\\times10^{-11}\\times2500}} = \\sqrt{\\dfrac{9.425}{1.669\\times10^{-7}}} = \\sqrt{5.647\\times10^7} \\approx 7515\\,\\text{s} \\approx 2.1\\,\\text{h}$\n\nT is independent of R — it depends only on $\\rho$. Same density → same orbital period, regardless of body size."
+    },
+    {
+      q: "9. Tidal forces: The Moon exerts a gravitational force on the near side and far side of Earth differently. Estimate the tidal acceleration $\\Delta g$ across Earth's diameter ($2R_E$). Express your answer as a fraction of $g$.",
+      s: "Gravitational acceleration due to Moon at distance $r$: $g_M(r) = \\dfrac{GM_M}{r^2}$\n\nDifference across Earth's diameter $2R_E$ (with $R_E \\ll r_{EM}$):\n\n$\\Delta g = g_M(r_{EM} - R_E) - g_M(r_{EM} + R_E)$\n\nUsing $\\dfrac{d}{dr}\\left(\\dfrac{GM}{r^2}\\right) = -\\dfrac{2GM}{r^3}$ and $\\Delta r = 2R_E$:\n\n$\\Delta g \\approx \\dfrac{2GM_M}{r_{EM}^3}\\times2R_E = \\dfrac{4GM_M R_E}{r_{EM}^3}$\n\n$= \\dfrac{4\\times6.674\\times10^{-11}\\times7.35\\times10^{22}\\times6.37\\times10^6}{(3.84\\times10^8)^3}$\n\n$= \\dfrac{1.247\\times10^{19}}{5.662\\times10^{25}} \\approx 2.2\\times10^{-7}\\,\\text{m/s}^2 \\approx 2.2\\times10^{-8}\\,g$\n\nSmall, but this differential is what drives ocean tides."
+    },
+    {
+      q: "10. A planet orbits a star in a circular orbit of radius $r$. Show that the ratio of gravitational potential energy to kinetic energy is always $-2$, and hence find the total mechanical energy in terms of KE.",
+      s: "Circular orbit condition: $\\dfrac{GMm}{r^2} = \\dfrac{mv^2}{r}$ → $\\dfrac{1}{2}mv^2 = \\dfrac{GMm}{2r}$\n\nKE $= \\dfrac{GMm}{2r}$\n\nGravitational PE $= -\\dfrac{GMm}{r}$\n\nRatio: $\\dfrac{U}{KE} = \\dfrac{-GMm/r}{GMm/2r} = -2$\n\nThis is the Virial Theorem for gravitational systems.\n\nTotal energy: $E = KE + U = KE - 2KE = -KE$\n\nAlternatively: $E = U/2 = -\\dfrac{GMm}{2r}$\n\nBound systems always have $E < 0$; as the orbit expands (more energy added), KE decreases while total E becomes less negative."
+    },
+    {
+      q: "11. A neutron star has mass $M_{NS} = 2M_\\odot = 3.98\\times10^{30}\\,\\text{kg}$ and radius $R_{NS} = 10\\,\\text{km}$. Compare its surface gravity to Earth's, and find the escape velocity from its surface.",
+      s: "Surface gravity:\n$g_{NS} = \\dfrac{GM_{NS}}{R_{NS}^2} = \\dfrac{6.674\\times10^{-11}\\times3.98\\times10^{30}}{(10^4)^2} = \\dfrac{2.656\\times10^{20}}{10^8} = 2.656\\times10^{12}\\,\\text{m/s}^2$\n\n$\\dfrac{g_{NS}}{g_E} \\approx \\dfrac{2.656\\times10^{12}}{9.8} \\approx 2.7\\times10^{11}$\n\nNearly 300 billion times Earth's surface gravity.\n\nEscape velocity:\n$v_{\\text{esc}} = \\sqrt{\\dfrac{2GM_{NS}}{R_{NS}}} = \\sqrt{\\dfrac{2\\times6.674\\times10^{-11}\\times3.98\\times10^{30}}{10^4}}$\n\n$= \\sqrt{\\dfrac{5.312\\times10^{20}}{10^4}} = \\sqrt{5.312\\times10^{16}} \\approx 2.30\\times10^8\\,\\text{m/s} \\approx 0.77c$\n\nNearly three quarters the speed of light — general relativistic corrections become significant."
+    },
+    {
+      q: "12. Three equal masses $m$ are placed at the vertices of an equilateral triangle with side $a$. Find the net gravitational force on one mass, and the orbital speed if they rotate about the centre of mass.",
+      s: "Force on mass 1 from mass 2: $F_{12} = \\dfrac{Gm^2}{a^2}$ along the line from 1 to 2.\nForce on mass 1 from mass 3: $F_{13} = \\dfrac{Gm^2}{a^2}$ along the line from 1 to 3.\n\nBy symmetry (angle between the two forces is $60°$), the net force:\n$F_{\\text{net}} = 2F_{12}\\cos30° = 2\\cdot\\dfrac{Gm^2}{a^2}\\cdot\\dfrac{\\sqrt{3}}{2} = \\dfrac{\\sqrt{3}Gm^2}{a^2}$\n\nDirection: toward the centroid.\n\nRadius from centroid to vertex: $r = a/\\sqrt{3}$.\n\nFor circular orbit: $F_{\\text{net}} = \\dfrac{mv^2}{r}$\n$\\dfrac{\\sqrt{3}Gm^2}{a^2} = \\dfrac{mv^2}{a/\\sqrt{3}} = \\dfrac{\\sqrt{3}mv^2}{a}$\n\n$v^2 = \\dfrac{Gm}{a}$ → $v = \\sqrt{\\dfrac{Gm}{a}}$\n\nAll three masses orbit at this speed. Newton's 3rd Law: each pair of masses pulls each other with equal and opposite forces."
+    },
+    {
+      q: "13. A satellite in a circular low-Earth orbit experiences a small drag force $f$ (backward). Explain qualitatively what happens to the satellite's speed, radius, and total energy, and why the satellite speeds up even though drag removes energy.",
+      s: "This is the orbital decay paradox.\n\nDrag removes energy: $\\Delta E < 0$ → $E = -\\dfrac{GM_E m}{2r}$ becomes more negative → $r$ decreases.\n\nAs $r$ decreases, orbital speed $v = \\sqrt{GM_E/r}$ increases.\n\nSo the satellite speeds up despite losing energy!\n\nResolution: the energy released by the drop in PE (proportional to $1/r$) exceeds the energy lost to drag. As PE decreases by $2\\,|\\Delta E|$, KE increases by $|\\Delta E|$ and the other $|\\Delta E|$ is lost to drag.\n\nNewton's Second Law: the net inward force (gravity minus centripetal requirement) causes inward acceleration — the satellite spirals inward, not outward. Eventually it re-enters the atmosphere."
+    },
+    {
+      q: "14. Show that for a uniform-density planet, the gravitational force inside the planet (at radius $r < R$) is $F = -\\dfrac{GMm}{R^3}r$, i.e. it acts like a spring.",
+      s: "By the shell theorem, only the mass within radius $r$ contributes:\n$M(r) = \\rho\\cdot\\dfrac{4}{3}\\pi r^3 = M\\dfrac{r^3}{R^3}$ (since $\\rho = \\dfrac{3M}{4\\pi R^3}$)\n\nGravitational force at radius $r$:\n$F = -\\dfrac{GM(r)m}{r^2} = -\\dfrac{G\\cdot M r^3/R^3\\cdot m}{r^2} = -\\dfrac{GMm}{R^3}r$\n\nThis is indeed Hooke's law: $F = -kr$ with $k = \\dfrac{GMm}{R^3}$.\n\nConsequence: a hypothetical tunnel through Earth oscillates with period:\n$T = 2\\pi\\sqrt{\\dfrac{m}{k}} = 2\\pi\\sqrt{\\dfrac{R^3}{GM}} = 2\\pi\\sqrt{\\dfrac{R_E}{g}} \\approx 84\\,\\text{min}$\n\nSame as a low-Earth orbital period — a beautiful coincidence."
+    },
+    {
+      q: "15. A $100\\,\\text{kg}$ astronaut stands on the equator of a spherical asteroid of radius $R = 2000\\,\\text{m}$, density $\\rho = 3000\\,\\text{kg/m}^3$. What is the minimum rotation period of the asteroid such that the astronaut does not fly off?",
+      s: "Surface gravity of asteroid:\n$g_{ast} = \\dfrac{GM_{ast}}{R^2} = \\dfrac{G\\cdot\\frac{4}{3}\\pi R^3\\rho}{R^2} = \\dfrac{4\\pi G\\rho R}{3}$\n\n$= \\dfrac{4\\pi\\times6.674\\times10^{-11}\\times3000\\times2000}{3} = \\dfrac{5.027\\times10^{-3}}{3}\\approx1.676\\times10^{-3}\\,\\text{m/s}^2$\n\nAstronaut flies off when centripetal acceleration equals surface gravity:\n$\\omega^2 R = g_{ast}$ → $\\omega = \\sqrt{\\dfrac{g_{ast}}{R}} = \\sqrt{\\dfrac{4\\pi G\\rho}{3}}$\n\n$T_{\\min} = \\dfrac{2\\pi}{\\omega} = \\sqrt{\\dfrac{3\\pi}{G\\rho}} = \\sqrt{\\dfrac{3\\pi}{6.674\\times10^{-11}\\times3000}}$\n\n$= \\sqrt{\\dfrac{9.425}{2.002\\times10^{-7}}} = \\sqrt{4.708\\times10^7} \\approx 6862\\,\\text{s} \\approx 1.9\\,\\text{h}$\n\nNotice again: $T_{\\min}$ depends only on density, not size."
+    },
+    {
+      q: "16. Two bodies of masses $m_1$ and $m_2$ are initially at rest and separated by distance $d$. They are released and fall toward each other under mutual gravity alone. Find their speeds just before they collide, assuming they are point masses.",
+      s: "Centre of mass stays fixed (no external forces): $x_{cm} = \\text{const}$.\n\nMomentum conservation: $m_1 v_1 = m_2 v_2$ (magnitudes, opposite directions) — Newton's 3rd law consequence.\n\nEnergy conservation: KE gained = PE lost:\n$\\dfrac{1}{2}m_1 v_1^2 + \\dfrac{1}{2}m_2 v_2^2 = \\dfrac{Gm_1 m_2}{d}$ (from $U_i = -Gm_1m_2/d$, $U_f \\to -\\infty$ for points; stop at $r=0$).\n\nFor point masses colliding: use $v_2 = m_1 v_1/m_2$:\n$\\dfrac{1}{2}m_1 v_1^2 + \\dfrac{1}{2}\\dfrac{m_1^2}{m_2}v_1^2 = \\dfrac{Gm_1 m_2}{d}$\n\n$v_1^2\\cdot\\dfrac{m_1(m_1+m_2)}{2m_2} = \\dfrac{Gm_1 m_2}{d}$\n\n$v_1 = m_2\\sqrt{\\dfrac{2G}{d(m_1+m_2)}}$,\\quad $v_2 = m_1\\sqrt{\\dfrac{2G}{d(m_1+m_2)}}$\n\nAlternately in terms of reduced mass $\\mu = m_1m_2/(m_1+m_2)$: relative speed $v_{rel} = v_1+v_2 = \\sqrt{\\dfrac{2G(m_1+m_2)}{d}}$."
+    },
+    {
+      q: "17. A satellite is in a circular orbit at radius $r_1 = 2R_E$. It fires its engine briefly, reducing its speed. Describe the resulting orbit qualitatively and determine whether the satellite can subsequently hit Earth's surface.",
+      s: "Reducing speed at a point in a circular orbit drops the total energy (it becomes more negative).\n\nThe satellite enters an elliptical orbit with the firing point as the apoapsis (farthest point). The new orbit has semi-major axis $a < r_1$.\n\nPeriapsis (closest point) of the new ellipse:\nUsing energy: $E_{\\text{new}} = \\dfrac{1}{2}m v_{\\text{new}}^2 - \\dfrac{GM_E m}{r_1}$\n\nFor an ellipse: $E = -\\dfrac{GM_E m}{2a}$ → $a = -\\dfrac{GM_E m}{2E_{\\text{new}}}$\n\nPeriapsis: $r_p = 2a - r_1$\n\nThe satellite hits Earth's surface when $r_p \\leq R_E$. With $r_1 = 2R_E$, this requires $2a - 2R_E \\leq R_E$ → $a \\leq 1.5R_E$.\n\nNewton's 3rd Law note: the exhaust gases fired forward (to slow the satellite) receive equal force backward — rocket slows, gases accelerate forward."
+    },
+    {
+      q: "18. At what point between Earth and the Moon does the gravitational field cancel to zero? (Earth–Moon distance $d = 3.84\\times10^8\\,\\text{m}$, $M_E/M_M = 81.3$)",
+      s: "Let the null point be at distance $x$ from Earth's centre (on the Earth–Moon line).\n\n$\\dfrac{GM_E}{x^2} = \\dfrac{GM_M}{(d-x)^2}$\n\n$\\dfrac{M_E}{M_M} = \\left(\\dfrac{x}{d-x}\\right)^2 = 81.3$\n\n$\\dfrac{x}{d-x} = \\sqrt{81.3} = 9.017$\n\n$x = 9.017(d - x) = 9.017d - 9.017x$\n\n$10.017x = 9.017d$\n\n$x = \\dfrac{9.017}{10.017}\\times3.84\\times10^8 \\approx 0.9003\\times3.84\\times10^8 \\approx 3.457\\times10^8\\,\\text{m}$\n\nThe null point is about $3.46\\times10^8\\,\\text{m}$ from Earth's centre, or about $90\\%$ of the Earth–Moon distance, much closer to the Moon than to Earth."
+    },
+    {
+      q: "19. A space station is modelled as a ring of radius $R = 200\\,\\text{m}$ rotating at angular velocity $\\omega$. What value of $\\omega$ gives the crew artificial gravity equal to $g = 9.8\\,\\text{m/s}^2$? Find the period and the apparent weight of a $70\\,\\text{kg}$ crew member.",
+      s: "Normal force provides centripetal acceleration, simulating gravity:\n\n$m\\omega^2 R = mg$ (the normal force $N = m\\omega^2 R$ is the perceived weight)\n\n$\\omega = \\sqrt{\\dfrac{g}{R}} = \\sqrt{\\dfrac{9.8}{200}} = \\sqrt{0.049} \\approx 0.2214\\,\\text{rad/s}$\n\nPeriod: $T = \\dfrac{2\\pi}{\\omega} = \\dfrac{2\\pi}{0.2214} \\approx 28.4\\,\\text{s}$ per revolution.\n\nApparent weight of crew member: $W = m\\omega^2 R = 70\\times9.8 = 686\\,\\text{N}$\n\nInteraction pair (Newton's 3rd Law): the ring floor pushes the crew member inward with $686\\,\\text{N}$; the crew member pushes the floor outward with $686\\,\\text{N}$."
+    },
+    {
+      q: "20. Derive the condition under which a planet can retain an atmosphere of gas with molar mass $M_m$ at surface temperature $T_{\\text{temp}}$. Use the criterion that the average thermal speed of gas molecules must be less than $v_{\\text{esc}}/6$.",
+      s: "RMS thermal speed of gas molecules (from kinetic theory):\n$v_{\\text{rms}} = \\sqrt{\\dfrac{3k_B T_{\\text{temp}}}{m_{\\text{mol}}}} = \\sqrt{\\dfrac{3RT_{\\text{temp}}}{M_m}}$\n\nwhere $R_g = 8.314\\,\\text{J/(mol·K)}$ is the gas constant and $M_m$ is molar mass.\n\nRetention condition: $v_{\\text{rms}} < \\dfrac{v_{\\text{esc}}}{6} = \\dfrac{1}{6}\\sqrt{\\dfrac{2GM_P}{R_P}}$\n\n$\\dfrac{3R_g T_{\\text{temp}}}{M_m} < \\dfrac{1}{36}\\cdot\\dfrac{2GM_P}{R_P}$\n\n$\\dfrac{T_{\\text{temp}}}{M_m} < \\dfrac{GM_P}{54\\,R_g\\,R_P}$\n\nInterpretation: heavy gases ($M_m$ large), cold temperatures, massive or compact planets → easier to retain.\n\nExample: Earth retains N₂ ($M_m = 0.028$ kg/mol) and O₂ but loses H₂ ($M_m = 0.002$ kg/mol) over geological time. The Moon ($GM/R$ much smaller) retains no atmosphere."
+    }
+  ]
+};
+
+/* ---------- TAB STYLE ---------- */
+const style = document.createElement("style");
+style.textContent = `
+  .tab-btn { flex: 1; padding: 0.5rem 1rem; border-radius: 0.625rem; font-weight: 600;
+             font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+             background: transparent; border: none; color: #475569; }
+  .tab-btn.active { background: white; color: #059669; box-shadow: 0 1px 4px rgba(0,0,0,.12); }
+`;
+document.head.appendChild(style);
+
+/* ---------- FORMULA TOGGLE ---------- */
+let formulasOpen = true;
+function toggleFormulas() {
+  formulasOpen = !formulasOpen;
+  document.getElementById("formulaBox").style.display = formulasOpen ? "" : "none";
+  document.getElementById("formulaArrow").textContent = formulasOpen ? "▲" : "▼";
+}
+
+/* ---------- FORMULA BOX ---------- */
+function buildFormulaBox() {
+  const box = document.getElementById("formulaBox");
+  formulas.forEach(f => {
+    const card = document.createElement("div");
+    card.className = "bg-white border border-emerald-100 rounded-xl p-3 shadow-sm";
+    const title = document.createElement("div");
+    title.className = "font-bold text-emerald-700 mb-1";
+    title.textContent = f.name;
+    const fml = document.createElement("div");
+    fml.className = "text-center my-1";
+    renderMath(fml, f.formula);
+    const when = document.createElement("div");
+    when.className = "text-xs text-slate-500 mt-1";
+    renderMath(when, "When: " + f.when);
+    const sym = document.createElement("div");
+    sym.className = "text-xs text-slate-400 mt-1";
+    renderMath(sym, "Symbols: " + f.symbols);
+    card.appendChild(title); card.appendChild(fml);
+    card.appendChild(when); card.appendChild(sym);
+    box.appendChild(card);
+  });
+}
+
+/* ---------- QUESTION LIST ---------- */
+let currentTab = "Easy";
+function setTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll(".tab-btn").forEach((b, i) => {
+    b.classList.toggle("active", ["Easy","Intermediate","Advanced"][i] === tab);
+  });
+  buildQuestions();
+}
+
+function buildQuestions() {
+  const list = document.getElementById("questionList");
+  list.innerHTML = "";
+  questions[currentTab].forEach((item, idx) => {
+    const card = document.createElement("div");
+    card.className = "bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden";
+
+    /* question row */
+    const qRow = document.createElement("div");
+    qRow.className = "p-4";
+    const qText = document.createElement("p");
+    qText.className = "text-slate-800 font-medium leading-relaxed";
+    renderMath(qText, item.q);
+    qRow.appendChild(qText);
+
+    /* toggle button */
+    const btn = document.createElement("button");
+    btn.className = "mt-3 text-sm font-semibold text-emerald-600 hover:text-emerald-800 flex items-center gap-1";
+    btn.innerHTML = `<span class="arrow-${idx}">▶</span> Show solution`;
+    let open = false;
+    btn.onclick = () => {
+      open = !open;
+      solBox.style.display = open ? "block" : "none";
+      solBox.className = open ? "px-4 pb-4 animate-slide" : "px-4 pb-4";
+      document.querySelector(`.arrow-${idx}`).textContent = open ? "▼" : "▶";
+      btn.innerHTML = `<span class="arrow-${idx}">${open ? "▼" : "▶"}</span> ${open ? "Hide" : "Show"} solution`;
+    };
+    qRow.appendChild(btn);
+
+    /* solution box */
+    const solBox = document.createElement("div");
+    solBox.style.display = "none";
+    solBox.className = "px-4 pb-4";
+    const solCard = document.createElement("div");
+    solCard.className = "bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-sm space-y-1";
+    item.s.split("\n").forEach(line => {
+      const p = document.createElement("p");
+      p.className = "text-slate-700 leading-relaxed";
+      renderMath(p, line);
+      solCard.appendChild(p);
+    });
+    solBox.appendChild(solCard);
+
+    card.appendChild(qRow);
+    card.appendChild(solBox);
+    list.appendChild(card);
+  });
+}
+
+/* ---------- FOOTER MATH ---------- */
+function renderFooter() {
+  const ft = document.getElementById("pageFooter");
+  const raw = ft.innerHTML;
+  ft.innerHTML = "";
+  const wrapper = document.createElement("span");
+  renderMath(wrapper, raw.replace(/<br>/g, "\n").replace(/<[^>]+>/g, ""));
+  ft.appendChild(wrapper);
+}
+
+/* ---------- INIT (after KaTeX loads) ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  function waitForKatex() {
+    if (typeof katex === "undefined") { setTimeout(waitForKatex, 50); return; }
+    buildFormulaBox();
+    buildQuestions();
+  }
+  waitForKatex();
+});
+</script>
+</body>
+</html>
