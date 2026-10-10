@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mathematics · Grade XI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css">
+  <script defer src="../assets/problems.js"></script>
+</head>
+<body data-page="grade" data-subject="math" data-grade="XI">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic powers     | IV | n-ური ხარისხის ფესვი. რაციონალურმაჩვენებლიანი ხარისხი | n-th roots. Rational exponents
+# topic logs       | V, VII–VIII | ლოგარითმი. მაჩვენებლიანი და ლოგარითმული განტოლებები და ფუნქციები | Logarithms. Exponential and logarithmic equations and functions
+# topic binary     | VI | ორობითი სისტემა | The binary system
+# topic finance    | IX | ფინანსური მათემატიკა | Financial mathematics
+# topic trig       | X–XIV | ტრიგონომეტრიული ფუნქციები და განტოლებები | Trigonometric functions and equations
+# topic sequences  | XV–XVI | პროგრესიები. ოპტიმიზაცია | Progressions. Optimisation
+# topic stereo     | XIX–XXII | წრფეები და სიბრტყეები სივრცეში | Lines and planes in space
+# topic polyhedra  | XXIII–XXIV, XXVI–XXVII | მრავალწახნაგები: პრიზმა, პირამიდა | Polyhedra: prisms and pyramids
+# topic revolution | XXV | ცილინდრი, კონუსი, სფერო | Cylinders, cones, spheres
+# topic space      | XXIX–XXXI | კოორდინატები და ვექტორები სივრცეში | Coordinates and vectors in space
+# topic stats      | XXXII–XXXIV | სტანდარტული გადახრა, ნორმალური განაწილება, კორელაცია | Standard deviation, normal distribution, correlation
+# note ამოხსნებში ჯერ მოცემულია ფორმულა ან წესი, შემდეგ — ნაბიჯ-ნაბიჯ გამოთვლა. $\lg$ — ათობითი ლოგარითმი. | Each solution first states the formula or rule, then computes step by step. $\lg$ is the base-10 logarithm.
+
+// ===================================================================== EASY
+
+--- easy powers
+KA: გამოთვალეთ: $8^{\frac{2}{3}}$ და $16^{-\frac{1}{4}}$.
+EN: Calculate: $8^{\frac{2}{3}}$ and $16^{-\frac{1}{4}}$.
+HKA: $a^{\frac{m}{n}} = \sqrt[n]{a^m} = \left(\sqrt[n]{a}\right)^m$.
+HEN: $a^{\frac{m}{n}} = \sqrt[n]{a^m} = \left(\sqrt[n]{a}\right)^m$.
+SKA: $8^{\frac{2}{3}} = \left(\sqrt[3]{8}\right)^2 = 2^2 = 4$
+$16^{-\frac{1}{4}} = \dfrac{1}{\sqrt[4]{16}} = \dfrac{1}{2}$
+SEN: $8^{\frac{2}{3}} = \left(\sqrt[3]{8}\right)^2 = 2^2 = 4$
+$16^{-\frac{1}{4}} = \dfrac{1}{\sqrt[4]{16}} = \dfrac{1}{2}$
+AKA: $4$; $\dfrac{1}{2}$
+AEN: $4$; $\dfrac{1}{2}$
+
+--- easy powers
+KA: გამოთვალეთ: $\sqrt[4]{81} + \sqrt[3]{-8}$.
+EN: Calculate: $\sqrt[4]{81} + \sqrt[3]{-8}$.
+HKA: კენტი ხარისხის ფესვი უარყოფითი რიცხვიდანაც არსებობს.
+HEN: Odd roots of negative numbers exist.
+SKA: $\sqrt[4]{81} = 3$ ($3^4 = 81$), $\ \sqrt[3]{-8} = -2$ ($(-2)^3 = -8$)
+$3 + (-2) = 1$
+SEN: $\sqrt[4]{81} = 3$ ($3^4 = 81$), $\ \sqrt[3]{-8} = -2$ ($(-2)^3 = -8$)
+$3 + (-2) = 1$
+AKA: $1$
+AEN: $1$
+
+--- easy logs
+KA: გამოთვალეთ: $\log_2 32$, $\ \log_3 \dfrac{1}{9}$, $\ \lg 1000$.
+EN: Calculate: $\log_2 32$, $\ \log_3 \dfrac{1}{9}$, $\ \lg 1000$.
+HKA: $\log_a b = c \iff a^c = b$.
+HEN: $\log_a b = c \iff a^c = b$.
+SKA: $2^5 = 32 \Rightarrow \log_2 32 = 5$
+$3^{-2} = \dfrac{1}{9} \Rightarrow \log_3 \dfrac{1}{9} = -2$
+$10^3 = 1000 \Rightarrow \lg 1000 = 3$
+SEN: $2^5 = 32 \Rightarrow \log_2 32 = 5$
+$3^{-2} = \dfrac{1}{9} \Rightarrow \log_3 \dfrac{1}{9} = -2$
+$10^3 = 1000 \Rightarrow \lg 1000 = 3$
+AKA: $5$; $-2$; $3$
+AEN: $5$; $-2$; $3$
+
+--- easy logs
+KA: გამოთვალეთ: $\log_6 4 + \log_6 9$.
+EN: Calculate: $\log_6 4 + \log_6 9$.
+HKA: $\log_a x + \log_a y = \log_a (xy)$.
+HEN: $\log_a x + \log_a y = \log_a (xy)$.
+SKA: $\log_6 4 + \log_6 9 = \log_6 36 = 2$
+SEN: $\log_6 4 + \log_6 9 = \log_6 36 = 2$
+AKA: $2$
+AEN: $2$
+
+--- easy logs
+KA: ამოხსენით განტოლებები: ა) $2^{x + 1} = 16$; ბ) $\log_3 (x - 1) = 2$.
+EN: Solve: a) $2^{x + 1} = 16$; b) $\log_3 (x - 1) = 2$.
+HKA: ა) ორივე მხარე ჩაწერეთ $2$-ის ხარისხად. ბ) გადადით ხარისხზე და არ დაგავიწყდეთ $x - 1 > 0$.
+HEN: a) Write both sides as powers of $2$. b) Convert to a power and remember $x - 1 > 0$.
+SKA: ა) $2^{x + 1} = 2^4 \Rightarrow x + 1 = 4 \Rightarrow x = 3$
+ბ) $x - 1 = 3^2 = 9 \Rightarrow x = 10$ ($10 - 1 > 0$ ✓)
+SEN: a) $2^{x + 1} = 2^4 \Rightarrow x + 1 = 4 \Rightarrow x = 3$
+b) $x - 1 = 3^2 = 9 \Rightarrow x = 10$ ($10 - 1 > 0$ ✓)
+AKA: ა) $3$; ბ) $10$
+AEN: a) $3$; b) $10$
+
+--- easy binary
+KA: გადაიყვანეთ $101101_2$ ათობით სისტემაში, ხოლო $19$ — ორობითში.
+EN: Convert $101101_2$ to decimal and $19$ to binary.
+HKA: ორობითი თანრიგები: $32, 16, 8, 4, 2, 1$. ათობითიდან ორობითში — თანმიმდევრული გაყოფა $2$-ზე, ნაშთები ქვემოდან ზემოთ.
+HEN: Binary place values: $32, 16, 8, 4, 2, 1$. Decimal to binary — divide by $2$ repeatedly, read remainders bottom-up.
+SKA: $101101_2 = 32 + 8 + 4 + 1 = 45$
+$19 = 16 + 2 + 1 = 10011_2$
+SEN: $101101_2 = 32 + 8 + 4 + 1 = 45$
+$19 = 16 + 2 + 1 = 10011_2$
+AKA: $45$; $10011_2$
+AEN: $45$; $10011_2$
+
+--- easy finance
+KA: $2000$ ლარი შეიტანეს ანაბარზე წლიური $5\%$-ით (რთული პროცენტი). რამდენი იქნება ანაბარზე $2$ წლის შემდეგ?
+EN: $2000$ lari is deposited at $5\%$ per year compound interest. How much is there after $2$ years?
+HKA: $S = S_0 (1 + r)^n$.
+HEN: $S = S_0 (1 + r)^n$.
+SKA: $S = 2000 \cdot 1{,}05^2 = 2000 \cdot 1{,}1025 = 2205\ ₾$
+SEN: $S = 2000 \cdot 1.05^2 = 2000 \cdot 1.1025 = 2205\ ₾$
+AKA: $2205\ ₾$
+AEN: $2205\ ₾$
+
+--- easy trig
+KA: გადაიყვანეთ $150^\circ$ რადიანებში, ხოლო $\dfrac{\pi}{12}$ — გრადუსებში.
+EN: Convert $150^\circ$ to radians and $\dfrac{\pi}{12}$ to degrees.
+HKA: $180^\circ = \pi$ რადიანი.
+HEN: $180^\circ = \pi$ radians.
+SKA: $150^\circ = 150 \cdot \dfrac{\pi}{180} = \dfrac{5\pi}{6}$
+$\dfrac{\pi}{12} = \dfrac{180^\circ}{12} = 15^\circ$
+SEN: $150^\circ = 150 \cdot \dfrac{\pi}{180} = \dfrac{5\pi}{6}$
+$\dfrac{\pi}{12} = \dfrac{180^\circ}{12} = 15^\circ$
+AKA: $\dfrac{5\pi}{6}$; $15^\circ$
+AEN: $\dfrac{5\pi}{6}$; $15^\circ$
+
+--- easy trig
+KA: $\sin\alpha = \dfrac{3}{5}$, $\alpha$ — II მეოთხედის კუთხეა. იპოვეთ $\cos\alpha$ და $\tan\alpha$.
+EN: $\sin\alpha = \dfrac{3}{5}$ and $\alpha$ is in quadrant II. Find $\cos\alpha$ and $\tan\alpha$.
+HKA: $\sin^2\alpha + \cos^2\alpha = 1$; II მეოთხედში $\cos\alpha < 0$.
+HEN: $\sin^2\alpha + \cos^2\alpha = 1$; in quadrant II $\cos\alpha < 0$.
+SKA: $\cos\alpha = -\sqrt{1 - \dfrac{9}{25}} = -\dfrac{4}{5}$
+$\tan\alpha = \dfrac{\sin\alpha}{\cos\alpha} = \dfrac{3/5}{-4/5} = -\dfrac{3}{4}$
+SEN: $\cos\alpha = -\sqrt{1 - \dfrac{9}{25}} = -\dfrac{4}{5}$
+$\tan\alpha = \dfrac{\sin\alpha}{\cos\alpha} = \dfrac{3/5}{-4/5} = -\dfrac{3}{4}$
+AKA: $-\dfrac{4}{5}$; $-\dfrac{3}{4}$
+AEN: $-\dfrac{4}{5}$; $-\dfrac{3}{4}$
+
+--- easy trig
+KA: გამოთვალეთ: $\sin\dfrac{\pi}{6} + \cos\dfrac{\pi}{3} + \tan\dfrac{\pi}{4}$.
+EN: Calculate: $\sin\dfrac{\pi}{6} + \cos\dfrac{\pi}{3} + \tan\dfrac{\pi}{4}$.
+HKA: $\dfrac{\pi}{6} = 30^\circ$, $\dfrac{\pi}{3} = 60^\circ$, $\dfrac{\pi}{4} = 45^\circ$.
+HEN: $\dfrac{\pi}{6} = 30^\circ$, $\dfrac{\pi}{3} = 60^\circ$, $\dfrac{\pi}{4} = 45^\circ$.
+SKA: $\dfrac{1}{2} + \dfrac{1}{2} + 1 = 2$
+SEN: $\dfrac{1}{2} + \dfrac{1}{2} + 1 = 2$
+AKA: $2$
+AEN: $2$
+
+--- easy trig
+KA: იპოვეთ ფუნქციების პერიოდი და ამპლიტუდა: $y = \sin 3x$; $\ y = 2\cos\dfrac{x}{2}$.
+EN: Find the period and amplitude of: $y = \sin 3x$; $\ y = 2\cos\dfrac{x}{2}$.
+HKA: $y = A\sin(kx)$-ის პერიოდია $T = \dfrac{2\pi}{|k|}$, ამპლიტუდა $|A|$.
+HEN: For $y = A\sin(kx)$ the period is $T = \dfrac{2\pi}{|k|}$ and the amplitude is $|A|$.
+SKA: $y = \sin 3x$: $T = \dfrac{2\pi}{3}$, ამპლიტუდა $1$.
+$y = 2\cos\dfrac{x}{2}$: $T = \dfrac{2\pi}{1/2} = 4\pi$, ამპლიტუდა $2$.
+SEN: $y = \sin 3x$: $T = \dfrac{2\pi}{3}$, amplitude $1$.
+$y = 2\cos\dfrac{x}{2}$: $T = \dfrac{2\pi}{1/2} = 4\pi$, amplitude $2$.
+AKA: $\dfrac{2\pi}{3}$, $1$; $4\pi$, $2$
+AEN: $\dfrac{2\pi}{3}$, $1$; $4\pi$, $2$
+
+--- easy trig
+KA: ამოხსენით განტოლება $\sin x = \dfrac{1}{2}$ შუალედზე $[0;\ 2\pi]$.
+EN: Solve $\sin x = \dfrac{1}{2}$ on $[0,\ 2\pi]$.
+HKA: ერთეულოვან წრეზე $y = \dfrac{1}{2}$ ორ წერტილს კვეთს: I და II მეოთხედებში.
+HEN: On the unit circle $y = \dfrac{1}{2}$ meets two points: in quadrants I and II.
+SKA: $x_1 = \dfrac{\pi}{6}$, $\ x_2 = \pi - \dfrac{\pi}{6} = \dfrac{5\pi}{6}$
+SEN: $x_1 = \dfrac{\pi}{6}$, $\ x_2 = \pi - \dfrac{\pi}{6} = \dfrac{5\pi}{6}$
+AKA: $\dfrac{\pi}{6}$; $\dfrac{5\pi}{6}$
+AEN: $\dfrac{\pi}{6}$; $\dfrac{5\pi}{6}$
+
+--- easy sequences
+KA: იპოვეთ არითმეტიკული პროგრესიის $5, 9, 13, \dots$ პირველი $20$ წევრის ჯამი.
+EN: Find the sum of the first $20$ terms of the arithmetic progression $5, 9, 13, \dots$
+HKA: $S_n = \dfrac{2a_1 + (n - 1)d}{2} \cdot n$.
+HEN: $S_n = \dfrac{2a_1 + (n - 1)d}{2} \cdot n$.
+SKA: $a_1 = 5$, $d = 4$
+$S_{20} = \dfrac{2 \cdot 5 + 19 \cdot 4}{2} \cdot 20 = 86 \cdot 10 = 860$
+SEN: $a_1 = 5$, $d = 4$
+$S_{20} = \dfrac{2 \cdot 5 + 19 \cdot 4}{2} \cdot 20 = 86 \cdot 10 = 860$
+AKA: $860$
+AEN: $860$
+
+--- easy stereo
+KA: სიბრტყის გარეთ მდებარე წერტილიდან სიბრტყისადმი გავლებულია $10$ სიგრძის დახრილი, რომლის გეგმილია $6$. რას უდრის მანძილი წერტილიდან სიბრტყემდე?
+EN: From a point outside a plane, an oblique segment of length $10$ is drawn to the plane; its projection is $6$. How far is the point from the plane?
+HKA: მართობი, დახრილი და გეგმილი მართკუთხა სამკუთხედს ქმნის; დახრილი — ჰიპოტენუზაა.
+HEN: The perpendicular, the oblique and its projection form a right triangle; the oblique is the hypotenuse.
+SKA: $d = \sqrt{10^2 - 6^2} = \sqrt{64} = 8$
+SEN: $d = \sqrt{10^2 - 6^2} = \sqrt{64} = 8$
+AKA: $8$
+AEN: $8$
+
+--- easy polyhedra
+KA: კუბის წიბოა $3$. იპოვეთ მისი დიაგონალი, სრული ზედაპირის ფართობი და მოცულობა.
+EN: A cube has edge $3$. Find its space diagonal, total surface area and volume.
+HKA: $d = a\sqrt{3}$, $\ S = 6a^2$, $\ V = a^3$.
+HEN: $d = a\sqrt{3}$, $\ S = 6a^2$, $\ V = a^3$.
+SKA: $d = 3\sqrt{3} \approx 5{,}2$, $\ S = 6 \cdot 9 = 54$, $\ V = 27$
+SEN: $d = 3\sqrt{3} \approx 5.2$, $\ S = 6 \cdot 9 = 54$, $\ V = 27$
+AKA: $3\sqrt{3}$; $54$; $27$
+AEN: $3\sqrt{3}$; $54$; $27$
+
+--- easy polyhedra
+KA: წესიერი ოთხკუთხა პირამიდის ფუძის გვერდია $6$, სიმაღლე — $4$. იპოვეთ აპოთემა, გვერდითი ზედაპირის ფართობი და მოცულობა.
+EN: A regular square pyramid has base side $6$ and height $4$. Find the apothem (slant height), lateral surface area and volume.
+HKA: აპოთემა — ჰიპოტენუზა სამკუთხედში, რომლის კათეტებია სიმაღლე და ფუძის გვერდის ნახევარი. $V = \dfrac{1}{3} S_{\text{ფ}} h$.
+HEN: The apothem is the hypotenuse of a triangle with legs the height and half the base side. $V = \dfrac{1}{3} S_{\text{base}} h$.
+SKA: აპოთემა: $\sqrt{4^2 + 3^2} = 5$
+$S_{\text{გვ}} = 4 \cdot \dfrac{6 \cdot 5}{2} = 60$
+$V = \dfrac{1}{3} \cdot 36 \cdot 4 = 48$
+SEN: Apothem: $\sqrt{4^2 + 3^2} = 5$
+$S_{\text{lat}} = 4 \cdot \dfrac{6 \cdot 5}{2} = 60$
+$V = \dfrac{1}{3} \cdot 36 \cdot 4 = 48$
+AKA: $5$; $60$; $48$
+AEN: $5$; $60$; $48$
+
+--- easy revolution
+KA: იპოვეთ $3$ რადიუსიანი ბირთვის მოცულობა და სფეროს ზედაპირის ფართობი.
+EN: Find the volume of a ball and the surface area of a sphere of radius $3$.
+HKA: $V = \dfrac{4}{3}\pi R^3$, $\ S = 4\pi R^2$.
+HEN: $V = \dfrac{4}{3}\pi R^3$, $\ S = 4\pi R^2$.
+SKA: $V = \dfrac{4}{3}\pi \cdot 27 = 36\pi \approx 113$
+$S = 4\pi \cdot 9 = 36\pi \approx 113$
+SEN: $V = \dfrac{4}{3}\pi \cdot 27 = 36\pi \approx 113$
+$S = 4\pi \cdot 9 = 36\pi \approx 113$
+AKA: $36\pi$; $36\pi$
+AEN: $36\pi$; $36\pi$
+
+--- easy space
+KA: იპოვეთ მანძილი $A(1;\ 2;\ 3)$ და $B(4;\ 6;\ 3)$ წერტილებს შორის.
+EN: Find the distance between $A(1,\ 2,\ 3)$ and $B(4,\ 6,\ 3)$.
+HKA: $AB = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}$.
+HEN: $AB = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}$.
+SKA: $AB = \sqrt{3^2 + 4^2 + 0^2} = 5$
+SEN: $AB = \sqrt{3^2 + 4^2 + 0^2} = 5$
+AKA: $5$
+AEN: $5$
+
+--- easy space
+KA: მოცემულია $\vec{a}(1;\ 2;\ -2)$ და $\vec{b}(0;\ 1;\ 4)$. იპოვეთ $|\vec{a}|$ და $2\vec{a} + \vec{b}$.
+EN: Given $\vec{a}(1,\ 2,\ -2)$ and $\vec{b}(0,\ 1,\ 4)$, find $|\vec{a}|$ and $2\vec{a} + \vec{b}$.
+HKA: $|\vec{a}| = \sqrt{x^2 + y^2 + z^2}$; მოქმედებები — კოორდინატების მიხედვით.
+HEN: $|\vec{a}| = \sqrt{x^2 + y^2 + z^2}$; operations go coordinate by coordinate.
+SKA: $|\vec{a}| = \sqrt{1 + 4 + 4} = 3$
+$2\vec{a} + \vec{b} = (2;\ 4;\ -4) + (0;\ 1;\ 4) = (2;\ 5;\ 0)$
+SEN: $|\vec{a}| = \sqrt{1 + 4 + 4} = 3$
+$2\vec{a} + \vec{b} = (2,\ 4,\ -4) + (0,\ 1,\ 4) = (2,\ 5,\ 0)$
+AKA: $3$; $(2;\ 5;\ 0)$
+AEN: $3$; $(2,\ 5,\ 0)$
+
+--- easy stats
+KA: იპოვეთ მონაცემების $2, 4, 4, 4, 5, 5, 7, 9$ საშუალო და სტანდარტული გადახრა.
+EN: Find the mean and standard deviation of $2, 4, 4, 4, 5, 5, 7, 9$.
+HKA: $\sigma = \sqrt{\dfrac{\sum (x_i - \bar{x})^2}{n}}$.
+HEN: $\sigma = \sqrt{\dfrac{\sum (x_i - \bar{x})^2}{n}}$.
+SKA: $\bar{x} = \dfrac{40}{8} = 5$
+გადახრების კვადრატები: $9, 1, 1, 1, 0, 0, 4, 16$ — ჯამი $32$
+$\sigma = \sqrt{\dfrac{32}{8}} = \sqrt{4} = 2$
+SEN: $\bar{x} = \dfrac{40}{8} = 5$
+Squared deviations: $9, 1, 1, 1, 0, 0, 4, 16$ — sum $32$
+$\sigma = \sqrt{\dfrac{32}{8}} = \sqrt{4} = 2$
+AKA: $5$; $2$
+AEN: $5$; $2$
+
+--- easy stats
+KA: როგორი კორელაციაა (დადებითი, უარყოფითი თუ არ არის) ა) ადამიანის სიმაღლესა და ფეხსაცმლის ზომას შორის; ბ) მანქანის ასაკსა და მის ფასს შორის; გ) თვალის ფერსა და მათემატიკის ქულას შორის?
+EN: What kind of correlation (positive, negative or none) is there between: a) a person's height and shoe size; b) a car's age and its price; c) eye colour and maths score?
+HKA: დადებითი — ერთის ზრდისას მეორეც იზრდება; უარყოფითი — მეორე მცირდება.
+HEN: Positive — as one grows, so does the other; negative — the other falls.
+SKA: ა) მაღალ ადამიანებს, როგორც წესი, დიდი ფეხი აქვთ — **დადებითი**.
+ბ) ძველი მანქანა იაფია — **უარყოფითი**.
+გ) კავშირი არ არის — **კორელაცია არ არის**.
+კორელაცია მიზეზ-შედეგობრივ კავშირს არ ნიშნავს!
+SEN: a) Taller people usually have bigger feet — **positive**.
+b) Older cars are cheaper — **negative**.
+c) No connection — **no correlation**.
+Correlation does not mean causation!
+AKA: ა) დადებითი; ბ) უარყოფითი; გ) არ არის
+AEN: a) positive; b) negative; c) none
+
+// ===================================================================== MEDIUM
+
+--- medium powers
+KA: გაამარტივეთ: $\left(a^{\frac{1}{2}} \cdot a^{\frac{1}{3}}\right)^6$ ($a > 0$).
+EN: Simplify: $\left(a^{\frac{1}{2}} \cdot a^{\frac{1}{3}}\right)^6$ ($a > 0$).
+HKA: რაციონალური მაჩვენებლებისთვისაც მოქმედებს ხარისხის ყველა თვისება.
+HEN: All the power rules hold for rational exponents too.
+SKA: $a^{\frac{1}{2}} \cdot a^{\frac{1}{3}} = a^{\frac{1}{2} + \frac{1}{3}} = a^{\frac{5}{6}}$
+$\left(a^{\frac{5}{6}}\right)^6 = a^5$
+SEN: $a^{\frac{1}{2}} \cdot a^{\frac{1}{3}} = a^{\frac{1}{2} + \frac{1}{3}} = a^{\frac{5}{6}}$
+$\left(a^{\frac{5}{6}}\right)^6 = a^5$
+AKA: $a^5$
+AEN: $a^5$
+
+--- medium logs
+KA: გამოთვალეთ: $\log_2 3 \cdot \log_3 8$ და $2^{\log_2 7 + 1}$.
+EN: Calculate: $\log_2 3 \cdot \log_3 8$ and $2^{\log_2 7 + 1}$.
+HKA: ფუძის შეცვლა: $\log_a b \cdot \log_b c = \log_a c$; ძირითადი იგივეობა: $a^{\log_a b} = b$.
+HEN: Change of base: $\log_a b \cdot \log_b c = \log_a c$; basic identity: $a^{\log_a b} = b$.
+SKA: $\log_2 3 \cdot \log_3 8 = \log_2 8 = 3$
+$2^{\log_2 7 + 1} = 2^{\log_2 7} \cdot 2 = 7 \cdot 2 = 14$
+SEN: $\log_2 3 \cdot \log_3 8 = \log_2 8 = 3$
+$2^{\log_2 7 + 1} = 2^{\log_2 7} \cdot 2 = 7 \cdot 2 = 14$
+AKA: $3$; $14$
+AEN: $3$; $14$
+
+--- medium logs
+KA: ამოხსენით განტოლება: $4^x - 3 \cdot 2^x - 4 = 0$.
+EN: Solve: $4^x - 3 \cdot 2^x - 4 = 0$.
+HKA: $4^x = (2^x)^2$; შემოიღეთ $t = 2^x > 0$.
+HEN: $4^x = (2^x)^2$; let $t = 2^x > 0$.
+SKA: $t^2 - 3t - 4 = 0 \Rightarrow t = 4$ ან $t = -1$
+$t = -1$ არ გამოდგება ($2^x > 0$); $\ 2^x = 4 \Rightarrow x = 2$
+SEN: $t^2 - 3t - 4 = 0 \Rightarrow t = 4$ or $t = -1$
+$t = -1$ is rejected ($2^x > 0$); $\ 2^x = 4 \Rightarrow x = 2$
+AKA: $x = 2$
+AEN: $x = 2$
+
+--- medium logs
+KA: ამოხსენით განტოლება: $\log_2 x + \log_2 (x - 2) = 3$.
+EN: Solve: $\log_2 x + \log_2 (x - 2) = 3$.
+HKA: განსაზღვრის არე: $x > 2$. გააერთიანეთ ლოგარითმები.
+HEN: Domain: $x > 2$. Combine the logarithms.
+SKA: $\log_2 \big(x(x - 2)\big) = 3 \Rightarrow x^2 - 2x = 8 \Rightarrow x^2 - 2x - 8 = 0$
+$x = 4$ ან $x = -2$; $x > 2$ პირობით $x = 4$.
+SEN: $\log_2 \big(x(x - 2)\big) = 3 \Rightarrow x^2 - 2x = 8 \Rightarrow x^2 - 2x - 8 = 0$
+$x = 4$ or $x = -2$; with $x > 2$, $x = 4$.
+AKA: $x = 4$
+AEN: $x = 4$
+
+--- medium logs
+KA: შეადარეთ $\log_{0{,}5} 3$ და $\log_{0{,}5} 5$. შეადარეთ $2^{\sqrt{3}}$ და $2^{1{,}7}$. ახსენით ფუნქციის მონოტონურობით.
+EN: Compare $\log_{0.5} 3$ and $\log_{0.5} 5$. Compare $2^{\sqrt{3}}$ and $2^{1.7}$. Explain using monotonicity.
+HKA: $a > 1$-ისთვის $a^x$ და $\log_a x$ ზრდადია, $0 < a < 1$-ისთვის — კლებადი.
+HEN: For $a > 1$, $a^x$ and $\log_a x$ increase; for $0 < a < 1$ they decrease.
+SKA: $\log_{0{,}5} x$ კლებადია ($0{,}5 < 1$) და $3 < 5 \Rightarrow \log_{0{,}5} 3 > \log_{0{,}5} 5$.
+$2^x$ ზრდადია და $\sqrt{3} \approx 1{,}732 > 1{,}7 \Rightarrow 2^{\sqrt{3}} > 2^{1{,}7}$.
+SEN: $\log_{0.5} x$ is decreasing ($0.5 < 1$) and $3 < 5 \Rightarrow \log_{0.5} 3 > \log_{0.5} 5$.
+$2^x$ is increasing and $\sqrt{3} \approx 1.732 > 1.7 \Rightarrow 2^{\sqrt{3}} > 2^{1.7}$.
+AKA: $\log_{0{,}5} 3 > \log_{0{,}5} 5$; $2^{\sqrt{3}} > 2^{1{,}7}$
+AEN: $\log_{0.5} 3 > \log_{0.5} 5$; $2^{\sqrt{3}} > 2^{1.7}$
+
+--- medium finance
+KA: წლიური $8\%$-ით (რთული პროცენტი) რამდენი სრული წლის შემდეგ გაორმაგდება ანაბარი? შეადარეთ „$72$-ის წესს“ ($72 : 8$).
+EN: At $8\%$ compound interest per year, after how many whole years does a deposit double? Compare with the "rule of $72$" ($72 \div 8$).
+HKA: $1{,}08^n \ge 2 \iff n \ge \dfrac{\lg 2}{\lg 1{,}08}$.
+HEN: $1.08^n \ge 2 \iff n \ge \dfrac{\lg 2}{\lg 1.08}$.
+SKA: $n \ge \dfrac{\lg 2}{\lg 1{,}08} \approx \dfrac{0{,}3010}{0{,}0334} \approx 9{,}01$
+$1{,}08^9 \approx 1{,}999 < 2$, $\ 1{,}08^{10} \approx 2{,}159 > 2$ — საჭიროა $10$ სრული წელი.
+„$72$-ის წესი“: $72 : 8 = 9$ — კარგი მიახლოება.
+SEN: $n \ge \dfrac{\lg 2}{\lg 1.08} \approx \dfrac{0.3010}{0.0334} \approx 9.01$
+$1.08^9 \approx 1.999 < 2$, $\ 1.08^{10} \approx 2.159 > 2$ — $10$ whole years are needed.
+Rule of $72$: $72 \div 8 = 9$ — a good approximation.
+AKA: $10$ წელი
+AEN: $10$ years
+
+--- medium binary
+KA: შეკრიბეთ ორობით სისტემაში $1011_2 + 110_2$ და შეამოწმეთ ათობითში.
+EN: Add $1011_2 + 110_2$ in binary and check in decimal.
+HKA: ორობითში $1 + 1 = 10_2$ — ვწერთ $0$-ს და $1$ გადაგვაქვს.
+HEN: In binary $1 + 1 = 10_2$ — write $0$, carry $1$.
+SKA: $\ \ 1011$
+$+\ \ 110$
+$= 10001_2$
+შემოწმება: $1011_2 = 11$, $110_2 = 6$, $11 + 6 = 17 = 16 + 1 = 10001_2$ ✓
+SEN: $\ \ 1011$
+$+\ \ 110$
+$= 10001_2$
+Check: $1011_2 = 11$, $110_2 = 6$, $11 + 6 = 17 = 16 + 1 = 10001_2$ ✓
+AKA: $10001_2$
+AEN: $10001_2$
+
+--- medium trig
+KA: გაამარტივეთ: $(\sin\alpha + \cos\alpha)^2 - 2\sin\alpha\cos\alpha$.
+EN: Simplify: $(\sin\alpha + \cos\alpha)^2 - 2\sin\alpha\cos\alpha$.
+HKA: გახსენით კვადრატი და გამოიყენეთ $\sin^2\alpha + \cos^2\alpha = 1$.
+HEN: Expand the square and use $\sin^2\alpha + \cos^2\alpha = 1$.
+SKA: $\sin^2\alpha + 2\sin\alpha\cos\alpha + \cos^2\alpha - 2\sin\alpha\cos\alpha = \sin^2\alpha + \cos^2\alpha = 1$
+SEN: $\sin^2\alpha + 2\sin\alpha\cos\alpha + \cos^2\alpha - 2\sin\alpha\cos\alpha = \sin^2\alpha + \cos^2\alpha = 1$
+AKA: $1$
+AEN: $1$
+
+--- medium trig
+KA: $\cos\alpha = -0{,}6$, $\alpha$ — III მეოთხედის კუთხეა. იპოვეთ $\sin\alpha$ და $\tan\alpha$.
+EN: $\cos\alpha = -0.6$ and $\alpha$ is in quadrant III. Find $\sin\alpha$ and $\tan\alpha$.
+HKA: III მეოთხედში სინუსიც და კოსინუსიც უარყოფითია, ტანგენსი — დადებითი.
+HEN: In quadrant III both sine and cosine are negative, tangent positive.
+SKA: $\sin\alpha = -\sqrt{1 - 0{,}36} = -0{,}8$
+$\tan\alpha = \dfrac{-0{,}8}{-0{,}6} = \dfrac{4}{3}$
+SEN: $\sin\alpha = -\sqrt{1 - 0.36} = -0.8$
+$\tan\alpha = \dfrac{-0.8}{-0.6} = \dfrac{4}{3}$
+AKA: $-0{,}8$; $\dfrac{4}{3}$
+AEN: $-0.8$; $\dfrac{4}{3}$
+
+--- medium trig
+KA: $y = 3\sin\left(2x - \dfrac{\pi}{3}\right)$. იპოვეთ ამპლიტუდა, პერიოდი და ფაზური წანაცვლება. აღწერეთ, როგორ მიიღება მისი გრაფიკი $y = \sin x$-დან.
+EN: $y = 3\sin\left(2x - \dfrac{\pi}{3}\right)$. Find the amplitude, period and phase shift. Describe how its graph is obtained from $y = \sin x$.
+HKA: ჩაწერეთ $y = A\sin\big(k(x - c)\big)$ სახით.
+HEN: Write it as $y = A\sin\big(k(x - c)\big)$.
+SKA: $y = 3\sin\left(2\left(x - \dfrac{\pi}{6}\right)\right)$
+ამპლიტუდა $3$; პერიოდი $\dfrac{2\pi}{2} = \pi$; წანაცვლება $\dfrac{\pi}{6}$-ით მარჯვნივ.
+$\sin x$: $Ox$-ის გასწვრივ $2$-ჯერ შეკუმშვა, $\dfrac{\pi}{6}$-ით მარჯვნივ გადატანა, $Oy$-ის გასწვრივ $3$-ჯერ გაჭიმვა.
+SEN: $y = 3\sin\left(2\left(x - \dfrac{\pi}{6}\right)\right)$
+Amplitude $3$; period $\dfrac{2\pi}{2} = \pi$; shift $\dfrac{\pi}{6}$ to the right.
+From $\sin x$: compress horizontally by $2$, shift $\dfrac{\pi}{6}$ right, stretch vertically by $3$.
+AKA: $3$; $\pi$; $\dfrac{\pi}{6}$ მარჯვნივ
+AEN: $3$; $\pi$; $\dfrac{\pi}{6}$ to the right
+
+--- medium trig
+KA: ამოხსენით განტოლება $2\cos x - \sqrt{3} = 0$ შუალედზე $[0;\ 2\pi]$.
+EN: Solve $2\cos x - \sqrt{3} = 0$ on $[0,\ 2\pi]$.
+HKA: $\cos x = \dfrac{\sqrt{3}}{2}$ — I და IV მეოთხედები.
+HEN: $\cos x = \dfrac{\sqrt{3}}{2}$ — quadrants I and IV.
+SKA: $\cos x = \dfrac{\sqrt{3}}{2}$
+$x_1 = \dfrac{\pi}{6}$, $\ x_2 = 2\pi - \dfrac{\pi}{6} = \dfrac{11\pi}{6}$
+SEN: $\cos x = \dfrac{\sqrt{3}}{2}$
+$x_1 = \dfrac{\pi}{6}$, $\ x_2 = 2\pi - \dfrac{\pi}{6} = \dfrac{11\pi}{6}$
+AKA: $\dfrac{\pi}{6}$; $\dfrac{11\pi}{6}$
+AEN: $\dfrac{\pi}{6}$; $\dfrac{11\pi}{6}$
+
+--- medium trig
+KA: წრის რადიუსია $10$, ცენტრალური კუთხე — $1{,}2$ რადიანი. იპოვეთ რკალის სიგრძე და სექტორის ფართობი.
+EN: A circle has radius $10$ and a central angle of $1.2$ radians. Find the arc length and the sector area.
+HKA: რადიანებში: $l = R\alpha$, $\ S = \dfrac{1}{2}R^2\alpha$.
+HEN: In radians: $l = R\alpha$, $\ S = \dfrac{1}{2}R^2\alpha$.
+SKA: $l = 10 \cdot 1{,}2 = 12$
+$S = \dfrac{1}{2} \cdot 100 \cdot 1{,}2 = 60$
+SEN: $l = 10 \cdot 1.2 = 12$
+$S = \dfrac{1}{2} \cdot 100 \cdot 1.2 = 60$
+AKA: $12$; $60$
+AEN: $12$; $60$
+
+--- medium sequences
+KA: იპოვეთ უსასრულოდ კლებადი გეომეტრიული პროგრესიის ჯამი: $8 + 4 + 2 + 1 + \dots$
+EN: Find the sum of the infinite decreasing geometric progression $8 + 4 + 2 + 1 + \dots$
+HKA: $|q| < 1$-ისთვის $S = \dfrac{b_1}{1 - q}$.
+HEN: For $|q| < 1$, $S = \dfrac{b_1}{1 - q}$.
+SKA: $b_1 = 8$, $q = \dfrac{1}{2}$
+$S = \dfrac{8}{1 - \frac{1}{2}} = 16$
+SEN: $b_1 = 8$, $q = \dfrac{1}{2}$
+$S = \dfrac{8}{1 - \frac{1}{2}} = 16$
+AKA: $16$
+AEN: $16$
+
+--- medium sequences
+KA: (ოპტიმიზაცია) საქონელზე მოთხოვნა ფასზე ასეა დამოკიდებული: $q = 200 - 4p$ (ცალი), სადაც $p$ — ფასია ლარებში. რა ფასისას იქნება შემოსავალი მაქსიმალური და რას უდრის ის?
+EN: (Optimisation) Demand for a product depends on price as $q = 200 - 4p$ (items), where $p$ is the price in lari. At what price is revenue largest, and what is it?
+HKA: შემოსავალი $R = p \cdot q$ — $p$-ს კვადრატული ფუნქციაა.
+HEN: Revenue $R = p \cdot q$ is a quadratic function of $p$.
+SKA: $R(p) = p(200 - 4p) = -4p^2 + 200p$
+მაქსიმუმი წვეროში: $p_0 = -\dfrac{200}{2 \cdot (-4)} = 25\ ₾$
+$R_{\max} = 25 \cdot (200 - 100) = 2500\ ₾$
+SEN: $R(p) = p(200 - 4p) = -4p^2 + 200p$
+Maximum at the vertex: $p_0 = -\dfrac{200}{2 \cdot (-4)} = 25\ ₾$
+$R_{\max} = 25 \cdot (200 - 100) = 2500\ ₾$
+AKA: $25\ ₾$; $2500\ ₾$
+AEN: $25\ ₾$; $2500\ ₾$
+
+--- medium stereo
+KA: $A$ წერტილიდან სიბრტყისადმი გავლებულია მართობი $AB = 6$ და დახრილი $AC = 10$. იპოვეთ დახრილის გეგმილი და კუთხე დახრილსა და სიბრტყეს შორის.
+EN: From point $A$ a perpendicular $AB = 6$ and an oblique $AC = 10$ are drawn to a plane. Find the projection of the oblique and the angle between the oblique and the plane.
+HKA: კუთხე დახრილსა და სიბრტყეს შორის — კუთხე დახრილსა და მის გეგმილს შორის.
+HEN: The angle between an oblique and a plane is the angle between the oblique and its projection.
+SKA: გეგმილი: $BC = \sqrt{10^2 - 6^2} = 8$
+$\sin\varphi = \dfrac{AB}{AC} = \dfrac{6}{10} = 0{,}6 \Rightarrow \varphi \approx 36{,}9^\circ$
+SEN: Projection: $BC = \sqrt{10^2 - 6^2} = 8$
+$\sin\varphi = \dfrac{AB}{AC} = \dfrac{6}{10} = 0.6 \Rightarrow \varphi \approx 36.9^\circ$
+AKA: $8$; $\approx 36{,}9^\circ$
+AEN: $8$; $\approx 36.9^\circ$
+
+--- medium stereo
+KA: $ABCD$ კვადრატის გვერდია $4$. $A$ წვეროდან კვადრატის სიბრტყის მართობულად გავლებულია $SA = 4$. იპოვეთ ორწახნაგა კუთხე $SBC$ და $ABC$ სიბრტყეებს შორის.
+EN: Square $ABCD$ has side $4$. A segment $SA = 4$ is drawn from $A$ perpendicular to the square's plane. Find the dihedral angle between planes $SBC$ and $ABC$.
+HKA: სამი მართობის თეორემა: $AB \perp BC$, ამიტომ $SB \perp BC$-ც. ორწახნაგა კუთხის წრფივი კუთხეა $\angle SBA$.
+HEN: Three perpendiculars theorem: $AB \perp BC$, so $SB \perp BC$ too. The linear angle of the dihedral angle is $\angle SBA$.
+SKA: $AB \perp BC$ (კვადრატი), $AB$ — $SB$-ს გეგმილია $\Rightarrow SB \perp BC$ (სამი მართობის თეორემა).
+ორწახნაგა კუთხე $= \angle SBA$; $\ \tan\angle SBA = \dfrac{SA}{AB} = \dfrac{4}{4} = 1 \Rightarrow 45^\circ$
+SEN: $AB \perp BC$ (square), and $AB$ is the projection of $SB$ $\Rightarrow SB \perp BC$ (three perpendiculars theorem).
+Dihedral angle $= \angle SBA$; $\ \tan\angle SBA = \dfrac{SA}{AB} = \dfrac{4}{4} = 1 \Rightarrow 45^\circ$
+AKA: $45^\circ$
+AEN: $45^\circ$
+
+--- medium polyhedra
+KA: მართი პრიზმის ფუძე მართკუთხა სამკუთხედია, კათეტებით $3$ და $4$; პრიზმის სიმაღლეა $10$. იპოვეთ მოცულობა და სრული ზედაპირის ფართობი.
+EN: A right prism has a right-triangle base with legs $3$ and $4$ and height $10$. Find its volume and total surface area.
+HKA: $V = S_{\text{ფ}} h$; გვერდითი ზედაპირი $= P_{\text{ფ}} \cdot h$.
+HEN: $V = S_{\text{base}} h$; lateral area $= P_{\text{base}} \cdot h$.
+SKA: $S_{\text{ფ}} = \dfrac{3 \cdot 4}{2} = 6$, ჰიპოტენუზა $5$, $P_{\text{ფ}} = 12$
+$V = 6 \cdot 10 = 60$
+$S = 2 \cdot 6 + 12 \cdot 10 = 132$
+SEN: $S_{\text{base}} = \dfrac{3 \cdot 4}{2} = 6$, hypotenuse $5$, $P_{\text{base}} = 12$
+$V = 6 \cdot 10 = 60$
+$S = 2 \cdot 6 + 12 \cdot 10 = 132$
+AKA: $60$; $132$
+AEN: $60$; $132$
+
+--- medium revolution
+KA: მართკუთხა სამკუთხედი, რომლის კათეტებია $6$ და $8$, $6$ სიგრძის კათეტის გარშემო ბრუნავს. იპოვეთ მიღებული კონუსის მოცულობა და სრული ზედაპირის ფართობი.
+EN: A right triangle with legs $6$ and $8$ is rotated about the leg of length $6$. Find the volume and total surface area of the resulting cone.
+HKA: ბრუნვის ღერძი — კონუსის სიმაღლეა, მეორე კათეტი — რადიუსი, ჰიპოტენუზა — მსახველი.
+HEN: The axis is the cone's height, the other leg is the radius, the hypotenuse is the slant height.
+SKA: $h = 6$, $r = 8$, $l = 10$
+$V = \dfrac{1}{3}\pi \cdot 64 \cdot 6 = 128\pi$
+$S = \pi r l + \pi r^2 = 80\pi + 64\pi = 144\pi$
+SEN: $h = 6$, $r = 8$, $l = 10$
+$V = \dfrac{1}{3}\pi \cdot 64 \cdot 6 = 128\pi$
+$S = \pi r l + \pi r^2 = 80\pi + 64\pi = 144\pi$
+AKA: $128\pi$; $144\pi$
+AEN: $128\pi$; $144\pi$
+
+--- medium revolution
+KA: $10$ რადიუსიანი ბირთვი გადაკვეთეს სიბრტყით, რომელიც ცენტრიდან $6$-ითაა დაშორებული. იპოვეთ კვეთის ფართობი.
+EN: A ball of radius $10$ is cut by a plane $6$ units from its centre. Find the area of the cross-section.
+HKA: კვეთა წრეა; მისი რადიუსი, მანძილი ცენტრამდე და ბირთვის რადიუსი მართკუთხა სამკუთხედს ქმნის.
+HEN: The section is a circle; its radius, the distance to the centre and the ball's radius form a right triangle.
+SKA: $r = \sqrt{10^2 - 6^2} = 8$
+$S = \pi r^2 = 64\pi \approx 201$
+SEN: $r = \sqrt{10^2 - 6^2} = 8$
+$S = \pi r^2 = 64\pi \approx 201$
+AKA: $64\pi$
+AEN: $64\pi$
+
+--- medium space
+KA: $A(2;\ -1;\ 4)$ და $B(0;\ 3;\ -2)$. იპოვეთ $AB$ მონაკვეთის შუაწერტილი, $\overrightarrow{AB}$ ვექტორი და მისი სიგრძე.
+EN: $A(2,\ -1,\ 4)$ and $B(0,\ 3,\ -2)$. Find the midpoint of $AB$, the vector $\overrightarrow{AB}$ and its length.
+HKA: შუაწერტილი — კოორდინატების საშუალოები; $\overrightarrow{AB} = B - A$.
+HEN: The midpoint is the average of the coordinates; $\overrightarrow{AB} = B - A$.
+SKA: $M = \left(\dfrac{2 + 0}{2};\ \dfrac{-1 + 3}{2};\ \dfrac{4 - 2}{2}\right) = (1;\ 1;\ 1)$
+$\overrightarrow{AB} = (-2;\ 4;\ -6)$, $\ |\overrightarrow{AB}| = \sqrt{4 + 16 + 36} = \sqrt{56} = 2\sqrt{14}$
+SEN: $M = \left(\dfrac{2 + 0}{2},\ \dfrac{-1 + 3}{2},\ \dfrac{4 - 2}{2}\right) = (1,\ 1,\ 1)$
+$\overrightarrow{AB} = (-2,\ 4,\ -6)$, $\ |\overrightarrow{AB}| = \sqrt{4 + 16 + 36} = \sqrt{56} = 2\sqrt{14}$
+AKA: $(1;\ 1;\ 1)$; $(-2;\ 4;\ -6)$; $2\sqrt{14}$
+AEN: $(1,\ 1,\ 1)$; $(-2,\ 4,\ -6)$; $2\sqrt{14}$
+
+--- medium space
+KA: იპოვეთ $P(2;\ -3;\ 5)$ წერტილის სიმეტრიული წერტილი: ა) $Oxy$ სიბრტყის; ბ) სათავის; გ) $Oz$ ღერძის მიმართ.
+EN: Find the point symmetric to $P(2,\ -3,\ 5)$ with respect to: a) the $Oxy$ plane; b) the origin; c) the $Oz$ axis.
+HKA: $Oxy$-ის მიმართ იცვლება მხოლოდ $z$-ის ნიშანი; $Oz$-ის მიმართ — $x$-ისა და $y$-ის ნიშნები.
+HEN: In the $Oxy$ plane only $z$ changes sign; about the $Oz$ axis $x$ and $y$ change sign.
+SKA: ა) $(2;\ -3;\ -5)$
+ბ) $(-2;\ 3;\ -5)$
+გ) $(-2;\ 3;\ 5)$
+SEN: a) $(2,\ -3,\ -5)$
+b) $(-2,\ 3,\ -5)$
+c) $(-2,\ 3,\ 5)$
+AKA: $(2;\ -3;\ -5)$; $(-2;\ 3;\ -5)$; $(-2;\ 3;\ 5)$
+AEN: $(2,\ -3,\ -5)$; $(-2,\ 3,\ -5)$; $(-2,\ 3,\ 5)$
+
+--- medium stats
+KA: მონაცემების საშუალოა $10$, სტანდარტული გადახრა — $2$. თითოეული მონაცემი გარდაქმნეს ფორმულით $y = 3x + 1$. იპოვეთ ახალი საშუალო და სტანდარტული გადახრა.
+EN: A data set has mean $10$ and standard deviation $2$. Each value is transformed by $y = 3x + 1$. Find the new mean and standard deviation.
+HKA: მუდმივის დამატება საშუალოს ცვლის, მაგრამ გაფანტულობას — არა; გამრავლება ორივეს ამრავლებს.
+HEN: Adding a constant shifts the mean but not the spread; multiplying scales both.
+SKA: $\bar{y} = 3 \cdot 10 + 1 = 31$
+$\sigma_y = |3| \cdot 2 = 6$
+SEN: $\bar{y} = 3 \cdot 10 + 1 = 31$
+$\sigma_y = |3| \cdot 2 = 6$
+AKA: $31$; $6$
+AEN: $31$; $6$
+
+--- medium stats
+KA: მოსწავლეების სიმაღლე ნორმალურად არის განაწილებული საშუალოთი $170\ \text{სმ}$ და სტანდარტული გადახრით $6\ \text{სმ}$. მოსწავლეთა დაახლოებით რა ნაწილს აქვს სიმაღლე $164$-სა და $176\ \text{სმ}$-ს შორის? $182\ \text{სმ}$-ზე მეტი?
+EN: Students' heights are normally distributed with mean $170\ \text{cm}$ and standard deviation $6\ \text{cm}$. Roughly what fraction are between $164$ and $176\ \text{cm}$? Taller than $182\ \text{cm}$?
+HKA: „$68$–$95$–$99{,}7$“ წესი: $\bar{x} \pm \sigma$-ში $\approx 68\%$, $\bar{x} \pm 2\sigma$-ში $\approx 95\%$.
+HEN: The "$68$–$95$–$99.7$" rule: within $\bar{x} \pm \sigma$ about $68\%$, within $\bar{x} \pm 2\sigma$ about $95\%$.
+SKA: $164$–$176 = 170 \pm 6 = \bar{x} \pm \sigma \Rightarrow \approx 68\%$
+$182 = 170 + 2 \cdot 6 = \bar{x} + 2\sigma$; $\ \bar{x} \pm 2\sigma$-ს გარეთ $\approx 5\%$, სიმეტრიის გამო ზემოთ — $\approx 2{,}5\%$.
+SEN: $164$–$176 = 170 \pm 6 = \bar{x} \pm \sigma \Rightarrow \approx 68\%$
+$182 = 170 + 2 \cdot 6 = \bar{x} + 2\sigma$; outside $\bar{x} \pm 2\sigma$ is $\approx 5\%$, by symmetry $\approx 2.5\%$ above.
+AKA: $\approx 68\%$; $\approx 2{,}5\%$
+AEN: $\approx 68\%$; $\approx 2.5\%$
+
+// ===================================================================== HARD
+
+--- hard logs
+KA: ამოხსენით განტოლება: $3^{2x} - 10 \cdot 3^x + 9 = 0$.
+EN: Solve: $3^{2x} - 10 \cdot 3^x + 9 = 0$.
+HKA: $t = 3^x > 0$.
+HEN: $t = 3^x > 0$.
+SKA: $t^2 - 10t + 9 = 0 \Rightarrow t = 1$ ან $t = 9$
+$3^x = 1 \Rightarrow x = 0$; $\ 3^x = 9 \Rightarrow x = 2$
+SEN: $t^2 - 10t + 9 = 0 \Rightarrow t = 1$ or $t = 9$
+$3^x = 1 \Rightarrow x = 0$; $\ 3^x = 9 \Rightarrow x = 2$
+AKA: $0$; $2$
+AEN: $0$; $2$
+
+--- hard logs
+KA: ამოხსენით განტოლება: $\lg(x + 1) + \lg(x - 1) = \lg 3$.
+EN: Solve: $\lg(x + 1) + \lg(x - 1) = \lg 3$.
+HKA: განსაზღვრის არე: $x > 1$. ფესვების შემოწმება აუცილებელია!
+HEN: Domain: $x > 1$. Checking the roots is essential!
+SKA: $\lg\big((x + 1)(x - 1)\big) = \lg 3 \Rightarrow x^2 - 1 = 3 \Rightarrow x = \pm 2$
+$x = -2$ განსაზღვრის არეში არ შედის ($\lg(-1)$ არ არსებობს) $\Rightarrow x = 2$
+SEN: $\lg\big((x + 1)(x - 1)\big) = \lg 3 \Rightarrow x^2 - 1 = 3 \Rightarrow x = \pm 2$
+$x = -2$ is outside the domain ($\lg(-1)$ doesn't exist) $\Rightarrow x = 2$
+AKA: $x = 2$
+AEN: $x = 2$
+
+--- hard logs
+KA: ამოხსენით უტოლობა: $\log_2 (x - 3) < 2$.
+EN: Solve: $\log_2 (x - 3) < 2$.
+HKA: ფუძე $2 > 1$ — ფუნქცია ზრდადია, ნიშანი არ იცვლება. არ დაგავიწყდეთ $x - 3 > 0$.
+HEN: Base $2 > 1$ — the function is increasing, so the sign is kept. Remember $x - 3 > 0$.
+SKA: $\begin{cases} x - 3 > 0 \\ x - 3 < 2^2 = 4 \end{cases} \Rightarrow 3 < x < 7$
+SEN: $\begin{cases} x - 3 > 0 \\ x - 3 < 2^2 = 4 \end{cases} \Rightarrow 3 < x < 7$
+AKA: $(3;\ 7)$
+AEN: $(3,\ 7)$
+
+--- hard logs
+KA: ბაქტერიების რაოდენობა ყოველ $3$ საათში ორმაგდება; თავიდან $500$ ბაქტერიაა. რამდენი იქნება ისინი $1$ დღე-ღამის შემდეგ? როდის მიაღწევს მათი რიცხვი $10^6$-ს?
+EN: A bacteria population doubles every $3$ hours, starting from $500$. How many are there after $1$ day? When does it reach $10^6$?
+HKA: $N(t) = N_0 \cdot 2^{t/3}$; დროის საპოვნელად გამოიყენეთ ლოგარითმი.
+HEN: $N(t) = N_0 \cdot 2^{t/3}$; use a logarithm to find the time.
+SKA: $N(24) = 500 \cdot 2^{8} = 128\,000$
+$500 \cdot 2^{t/3} = 10^6 \Rightarrow 2^{t/3} = 2000 \Rightarrow t = 3\log_2 2000 = 3 \cdot \dfrac{\lg 2000}{\lg 2} \approx 3 \cdot 10{,}97 \approx 32{,}9\ \text{სთ}$
+SEN: $N(24) = 500 \cdot 2^{8} = 128\,000$
+$500 \cdot 2^{t/3} = 10^6 \Rightarrow 2^{t/3} = 2000 \Rightarrow t = 3\log_2 2000 = 3 \cdot \dfrac{\lg 2000}{\lg 2} \approx 3 \cdot 10.97 \approx 32.9\ \text{h}$
+AKA: $128\,000$; $\approx 33\ \text{სთ}$
+AEN: $128\,000$; $\approx 33\ \text{h}$
+
+--- hard finance
+KA: $10\,000$ ლარის სესხი აიღეს $12$ თვით, თვიური $1\%$-ით (რთული პროცენტი), ტოლი ყოველთვიური გადასახადებით (ანუიტეტი). იპოვეთ თვიური გადასახადი. ($1{,}01^{12} \approx 1{,}1268$)
+EN: A loan of $10\,000$ lari is taken for $12$ months at $1\%$ per month (compound), repaid in equal monthly instalments (an annuity). Find the monthly payment. ($1.01^{12} \approx 1.1268$)
+HKA: ანუიტეტის ფორმულა: $P = \dfrac{S \cdot r}{1 - (1 + r)^{-n}}$.
+HEN: Annuity formula: $P = \dfrac{S \cdot r}{1 - (1 + r)^{-n}}$.
+SKA: **ფორმულა:** $P = \dfrac{S r}{1 - (1 + r)^{-n}}$ (გეომეტრიული პროგრესიის ჯამიდან)
+$(1{,}01)^{-12} \approx \dfrac{1}{1{,}1268} \approx 0{,}8874$
+$P = \dfrac{10\,000 \cdot 0{,}01}{1 - 0{,}8874} = \dfrac{100}{0{,}1126} \approx 888{,}5\ ₾$
+სულ გადახდილი: $12 \cdot 888{,}5 \approx 10\,662\ ₾$
+SEN: **Formula:** $P = \dfrac{S r}{1 - (1 + r)^{-n}}$ (from the sum of a geometric progression)
+$(1.01)^{-12} \approx \dfrac{1}{1.1268} \approx 0.8874$
+$P = \dfrac{10\,000 \cdot 0.01}{1 - 0.8874} = \dfrac{100}{0.1126} \approx 888.5\ ₾$
+Total paid: $12 \cdot 888.5 \approx 10\,662\ ₾$
+AKA: $\approx 888{,}5\ ₾$
+AEN: $\approx 888.5\ ₾$
+
+--- hard trig
+KA: ამოხსენით განტოლება: $\sin^2 x - \sin x = 0$.
+EN: Solve: $\sin^2 x - \sin x = 0$.
+HKA: გამოიტანეთ $\sin x$ ფრჩხილებს გარეთ.
+HEN: Factor out $\sin x$.
+SKA: $\sin x (\sin x - 1) = 0$
+$\sin x = 0 \Rightarrow x = \pi k$
+$\sin x = 1 \Rightarrow x = \dfrac{\pi}{2} + 2\pi k$, $\ k \in \mathbb{Z}$
+SEN: $\sin x (\sin x - 1) = 0$
+$\sin x = 0 \Rightarrow x = \pi k$
+$\sin x = 1 \Rightarrow x = \dfrac{\pi}{2} + 2\pi k$, $\ k \in \mathbb{Z}$
+AKA: $x = \pi k$; $x = \dfrac{\pi}{2} + 2\pi k$
+AEN: $x = \pi k$; $x = \dfrac{\pi}{2} + 2\pi k$
+
+--- hard trig
+KA: $\tan\alpha = \dfrac{1}{2}$, $\tan\beta = \dfrac{1}{3}$ ($\alpha, \beta$ — მახვილი კუთხეები). იპოვეთ $\alpha + \beta$.
+EN: $\tan\alpha = \dfrac{1}{2}$ and $\tan\beta = \dfrac{1}{3}$ ($\alpha, \beta$ acute). Find $\alpha + \beta$.
+HKA: $\tan(\alpha + \beta) = \dfrac{\tan\alpha + \tan\beta}{1 - \tan\alpha\tan\beta}$.
+HEN: $\tan(\alpha + \beta) = \dfrac{\tan\alpha + \tan\beta}{1 - \tan\alpha\tan\beta}$.
+SKA: $\tan(\alpha + \beta) = \dfrac{\frac{1}{2} + \frac{1}{3}}{1 - \frac{1}{6}} = \dfrac{5/6}{5/6} = 1$
+$0 < \alpha + \beta < \pi$ და ტანგენსი $1 \Rightarrow \alpha + \beta = \dfrac{\pi}{4}$
+SEN: $\tan(\alpha + \beta) = \dfrac{\frac{1}{2} + \frac{1}{3}}{1 - \frac{1}{6}} = \dfrac{5/6}{5/6} = 1$
+$0 < \alpha + \beta < \pi$ with tangent $1 \Rightarrow \alpha + \beta = \dfrac{\pi}{4}$
+AKA: $\dfrac{\pi}{4} = 45^\circ$
+AEN: $\dfrac{\pi}{4} = 45^\circ$
+
+--- hard trig
+KA: (ჰარმონიული რხევის მოდელი) ნავსადგურში წყლის დონე (მეტრებში) აღიწერება ფორმულით $h(t) = 2\sin\dfrac{\pi t}{6} + 5$, სადაც $t$ — საათებია. იპოვეთ მაქსიმალური და მინიმალური დონე, პერიოდი და პირველ პერიოდში რამდენი საათი აღემატება დონე $6\ \text{მ}$-ს.
+EN: (Harmonic model) The water level in a harbour (metres) is $h(t) = 2\sin\dfrac{\pi t}{6} + 5$, with $t$ in hours. Find the highest and lowest levels, the period, and how many hours in the first period the level is above $6\ \text{m}$.
+HKA: $h > 6 \iff \sin\dfrac{\pi t}{6} > \dfrac{1}{2}$.
+HEN: $h > 6 \iff \sin\dfrac{\pi t}{6} > \dfrac{1}{2}$.
+SKA: $h_{\max} = 2 + 5 = 7\ \text{მ}$, $\ h_{\min} = -2 + 5 = 3\ \text{მ}$, $\ T = \dfrac{2\pi}{\pi/6} = 12\ \text{სთ}$
+$\sin\dfrac{\pi t}{6} > \dfrac{1}{2} \Rightarrow \dfrac{\pi}{6} < \dfrac{\pi t}{6} < \dfrac{5\pi}{6} \Rightarrow 1 < t < 5$
+$6\ \text{მ}$-ზე მაღლა: $4$ საათი.
+SEN: $h_{\max} = 2 + 5 = 7\ \text{m}$, $\ h_{\min} = -2 + 5 = 3\ \text{m}$, $\ T = \dfrac{2\pi}{\pi/6} = 12\ \text{h}$
+$\sin\dfrac{\pi t}{6} > \dfrac{1}{2} \Rightarrow \dfrac{\pi}{6} < \dfrac{\pi t}{6} < \dfrac{5\pi}{6} \Rightarrow 1 < t < 5$
+Above $6\ \text{m}$: $4$ hours.
+AKA: $7\ \text{მ}$; $3\ \text{მ}$; $12\ \text{სთ}$; $4$ სთ
+AEN: $7\ \text{m}$; $3\ \text{m}$; $12\ \text{h}$; $4$ h
+
+--- hard sequences
+KA: სამი რიცხვი ქმნის გეომეტრიულ პროგრესიას; მათი ჯამია $21$, ნამრავლი — $216$. იპოვეთ ეს რიცხვები.
+EN: Three numbers form a geometric progression; their sum is $21$ and their product is $216$. Find them.
+HKA: აღნიშნეთ რიცხვები $\dfrac{b}{q}, b, bq$ — მაშინ ნამრავლი $b^3$-ია.
+HEN: Write the numbers as $\dfrac{b}{q}, b, bq$ — then the product is $b^3$.
+SKA: $b^3 = 216 \Rightarrow b = 6$
+$\dfrac{6}{q} + 6 + 6q = 21 \Rightarrow 6q^2 - 15q + 6 = 0 \Rightarrow 2q^2 - 5q + 2 = 0 \Rightarrow q = 2$ ან $\dfrac{1}{2}$
+რიცხვები: $3, 6, 12$ (ან $12, 6, 3$)
+SEN: $b^3 = 216 \Rightarrow b = 6$
+$\dfrac{6}{q} + 6 + 6q = 21 \Rightarrow 6q^2 - 15q + 6 = 0 \Rightarrow 2q^2 - 5q + 2 = 0 \Rightarrow q = 2$ or $\dfrac{1}{2}$
+Numbers: $3, 6, 12$ (or $12, 6, 3$)
+AKA: $3,\ 6,\ 12$
+AEN: $3,\ 6,\ 12$
+
+--- hard sequences
+KA: (ოპტიმიზაცია) ორი დადებითი რიცხვის ჯამია $10$. როდის არის მათი კვადრატების ჯამი უმცირესი? რას უდრის ის? და როდის არის მათი ნამრავლი უდიდესი?
+EN: (Optimisation) Two positive numbers add up to $10$. When is the sum of their squares smallest, and what is it? When is their product largest?
+HKA: $y = 10 - x$; ორივე გამოსახულება $x$-ის კვადრატული ფუნქციაა.
+HEN: $y = 10 - x$; both expressions are quadratic in $x$.
+SKA: $x^2 + (10 - x)^2 = 2x^2 - 20x + 100 = 2(x - 5)^2 + 50 \ge 50$ — მინიმუმი $50$, როცა $x = y = 5$.
+$x(10 - x) = 25 - (x - 5)^2 \le 25$ — მაქსიმუმი $25$, ისევ $x = y = 5$-ზე.
+SEN: $x^2 + (10 - x)^2 = 2x^2 - 20x + 100 = 2(x - 5)^2 + 50 \ge 50$ — minimum $50$ when $x = y = 5$.
+$x(10 - x) = 25 - (x - 5)^2 \le 25$ — maximum $25$, again at $x = y = 5$.
+AKA: $5$ და $5$: მინიმუმი $50$, მაქსიმუმი $25$
+AEN: $5$ and $5$: minimum $50$, maximum $25$
+
+--- hard stereo
+KA: კუბის წიბოა $6$. იპოვეთ მანძილი $A$ წვეროდან სიბრტყემდე, რომელიც გადის $A$-ს მეზობელ სამ წვეროზე.
+EN: A cube has edge $6$. Find the distance from vertex $A$ to the plane through the three vertices adjacent to $A$.
+HKA: განიხილეთ სამკუთხა პირამიდა: ფუძე — ეს სამკუთხედი, წვერო — $A$. მისი მოცულობა ორი გზით გამოთვალეთ.
+HEN: Consider the triangular pyramid with this triangle as base and apex $A$. Compute its volume in two ways.
+SKA: პირამიდის მოცულობა (ფუძე — მართკუთხა ტოლფერდა სამკუთხედი კათეტებით $a$): $V = \dfrac{1}{3} \cdot \dfrac{a^2}{2} \cdot a = \dfrac{a^3}{6}$
+მეორე ფუძე — ტოლგვერდა სამკუთხედი გვერდით $a\sqrt{2}$: $S = \dfrac{(a\sqrt{2})^2\sqrt{3}}{4} = \dfrac{a^2\sqrt{3}}{2}$
+$d = \dfrac{3V}{S} = \dfrac{a^3/2}{a^2\sqrt{3}/2} = \dfrac{a}{\sqrt{3}}$
+**რიცხვები:** $d = \dfrac{6}{\sqrt{3}} = 2\sqrt{3} \approx 3{,}46$
+SEN: Pyramid volume (base an isosceles right triangle with legs $a$): $V = \dfrac{1}{3} \cdot \dfrac{a^2}{2} \cdot a = \dfrac{a^3}{6}$
+The other base is an equilateral triangle with side $a\sqrt{2}$: $S = \dfrac{(a\sqrt{2})^2\sqrt{3}}{4} = \dfrac{a^2\sqrt{3}}{2}$
+$d = \dfrac{3V}{S} = \dfrac{a^3/2}{a^2\sqrt{3}/2} = \dfrac{a}{\sqrt{3}}$
+**Numbers:** $d = \dfrac{6}{\sqrt{3}} = 2\sqrt{3} \approx 3.46$
+AKA: $2\sqrt{3}$
+AEN: $2\sqrt{3}$
+
+--- hard polyhedra
+KA: წესიერი ტეტრაედრის წიბოა $6$. იპოვეთ მისი სიმაღლე და მოცულობა.
+EN: A regular tetrahedron has edge $6$. Find its height and volume.
+HKA: სიმაღლის ფუძე ფუძის ცენტრია; ცენტრიდან წვერომდე მანძილი $R = \dfrac{a}{\sqrt{3}}$.
+HEN: The foot of the height is the centre of the base; the distance from the centre to a vertex is $R = \dfrac{a}{\sqrt{3}}$.
+SKA: $R = \dfrac{6}{\sqrt{3}} = 2\sqrt{3}$
+$h = \sqrt{a^2 - R^2} = \sqrt{36 - 12} = \sqrt{24} = 2\sqrt{6} \approx 4{,}9$
+$S_{\text{ფ}} = \dfrac{36\sqrt{3}}{4} = 9\sqrt{3}$, $\ V = \dfrac{1}{3} \cdot 9\sqrt{3} \cdot 2\sqrt{6} = 6\sqrt{18} = 18\sqrt{2} \approx 25{,}5$
+SEN: $R = \dfrac{6}{\sqrt{3}} = 2\sqrt{3}$
+$h = \sqrt{a^2 - R^2} = \sqrt{36 - 12} = \sqrt{24} = 2\sqrt{6} \approx 4.9$
+$S_{\text{base}} = \dfrac{36\sqrt{3}}{4} = 9\sqrt{3}$, $\ V = \dfrac{1}{3} \cdot 9\sqrt{3} \cdot 2\sqrt{6} = 6\sqrt{18} = 18\sqrt{2} \approx 25.5$
+AKA: $2\sqrt{6}$; $18\sqrt{2}$
+AEN: $2\sqrt{6}$; $18\sqrt{2}$
+
+--- hard revolution
+KA: წვეროთი ქვემოთ დადგმულ კონუსურ ჭიქაში წყალი ჭიქის სიმაღლის ნახევრამდე ასხია. ჭიქის მოცულობის რა ნაწილს შეადგენს წყალი?
+EN: A conical glass stands point-down and is filled with water to half its height. What fraction of the glass's volume is water?
+HKA: წყალი პატარა კონუსია, რომელიც დიდის მსგავსია კოეფიციენტით $\dfrac{1}{2}$. მოცულობები შეეფარდება როგორც $k^3$.
+HEN: The water is a small cone similar to the whole with factor $\dfrac{1}{2}$. Volumes scale as $k^3$.
+SKA: $k = \dfrac{1}{2} \Rightarrow \dfrac{V_{\text{წყ}}}{V} = k^3 = \dfrac{1}{8}$
+მხოლოდ $12{,}5\%$ — ჭიქა „ნახევრად სავსე“ მხოლოდ ეჩვენება!
+SEN: $k = \dfrac{1}{2} \Rightarrow \dfrac{V_{\text{water}}}{V} = k^3 = \dfrac{1}{8}$
+Only $12.5\%$ — the glass only looks "half full"!
+AKA: $\dfrac{1}{8}$
+AEN: $\dfrac{1}{8}$
+
+--- hard space
+KA: დაამტკიცეთ, რომ $A(1;\ 2;\ 3)$, $B(3;\ 6;\ 7)$ და $C(4;\ 8;\ 9)$ წერტილები ერთ წრფეზე მდებარეობს. რომელი წერტილია დანარჩენ ორს შორის?
+EN: Prove that $A(1,\ 2,\ 3)$, $B(3,\ 6,\ 7)$ and $C(4,\ 8,\ 9)$ lie on one line. Which point is between the other two?
+HKA: წერტილები კოლინეარულია, თუ $\overrightarrow{AC} = k\,\overrightarrow{AB}$.
+HEN: The points are collinear if $\overrightarrow{AC} = k\,\overrightarrow{AB}$.
+SKA: $\overrightarrow{AB} = (2;\ 4;\ 4)$, $\ \overrightarrow{AC} = (3;\ 6;\ 6) = 1{,}5\,\overrightarrow{AB}$ — ვექტორები კოლინეარულია, საერთო წერტილი $A$ $\Rightarrow$ ერთ წრფეზეა ∎
+$k = 1{,}5 > 1 \Rightarrow C$ არის $B$-ს გაგრძელებაზე; შუაში მდებარეობს $B$.
+SEN: $\overrightarrow{AB} = (2,\ 4,\ 4)$, $\ \overrightarrow{AC} = (3,\ 6,\ 6) = 1.5\,\overrightarrow{AB}$ — the vectors are collinear with common point $A$ $\Rightarrow$ one line ∎
+$k = 1.5 > 1 \Rightarrow C$ lies beyond $B$; $B$ is in the middle.
+AKA: ერთ წრფეზეა; შუაში $B$
+AEN: collinear; $B$ is in the middle
+
+--- hard stats
+KA: იპოვეთ მონაცემების $6, 8, 10, 12, 14$ დისპერსია და სტანდარტული გადახრა. როგორ შეიცვლება სტანდარტული გადახრა, თუ ყველა მონაცემს $5$-ს დავუმატებთ?
+EN: Find the variance and standard deviation of $6, 8, 10, 12, 14$. How does the standard deviation change if $5$ is added to every value?
+HKA: $D = \dfrac{\sum (x_i - \bar{x})^2}{n}$, $\ \sigma = \sqrt{D}$.
+HEN: $D = \dfrac{\sum (x_i - \bar{x})^2}{n}$, $\ \sigma = \sqrt{D}$.
+SKA: $\bar{x} = 10$; გადახრების კვადრატები: $16, 4, 0, 4, 16$
+$D = \dfrac{40}{5} = 8$, $\ \sigma = \sqrt{8} = 2\sqrt{2} \approx 2{,}83$
+$5$-ის დამატება ყველა მონაცემს ერთნაირად გადაწევს — $\sigma$ **არ შეიცვლება**.
+SEN: $\bar{x} = 10$; squared deviations: $16, 4, 0, 4, 16$
+$D = \dfrac{40}{5} = 8$, $\ \sigma = \sqrt{8} = 2\sqrt{2} \approx 2.83$
+Adding $5$ shifts every value equally — $\sigma$ **does not change**.
+AKA: $8$; $2\sqrt{2}$; არ შეიცვლება
+AEN: $8$; $2\sqrt{2}$; unchanged
+
+--- hard stats
+KA: ორ კლასში საკონტროლოს საშუალო ქულა $70$-ია, მაგრამ A კლასში $\sigma = 5$, B კლასში $\sigma = 15$. მოსწავლემ მიიღო $85$ ქულა. რომელ კლასში იქნებოდა ეს შედეგი უფრო გამორჩეული? (გამოიყენეთ $z$-ქულა $z = \dfrac{x - \bar{x}}{\sigma}$.)
+EN: Two classes both have a mean test score of $70$, but class A has $\sigma = 5$ and class B has $\sigma = 15$. A student scores $85$. In which class would this result stand out more? (Use the $z$-score $z = \dfrac{x - \bar{x}}{\sigma}$.)
+HKA: $z$ აჩვენებს, რამდენი სტანდარტული გადახრითაა შედეგი საშუალოზე მეტი.
+HEN: $z$ shows how many standard deviations the result is above the mean.
+SKA: A: $z = \dfrac{85 - 70}{5} = 3$ — უკიდურესად იშვიათი შედეგია (ნორმალური განაწილებისას $\approx 0{,}1\%$-ზე ნაკლები ჯობნის).
+B: $z = \dfrac{85 - 70}{15} = 1$ — კარგი, მაგრამ ჩვეულებრივი შედეგი ($\approx 16\%$ ჯობნის).
+A კლასში ეს შედეგი გაცილებით გამორჩეულია.
+SEN: A: $z = \dfrac{85 - 70}{5} = 3$ — extremely rare (with a normal distribution fewer than $\approx 0.1\%$ do better).
+B: $z = \dfrac{85 - 70}{15} = 1$ — good but ordinary ($\approx 16\%$ do better).
+The result stands out far more in class A.
+AKA: A კლასში ($z = 3$)
+AEN: class A ($z = 3$)
+
+--- hard logs olympiad
+KA: კალკულატორის გარეშე შეადარეთ $\log_2 3$ და $\log_3 5$.
+EN: Without a calculator, compare $\log_2 3$ and $\log_3 5$.
+HKA: შეადარეთ ორივე $\dfrac{3}{2}$-ს.
+HEN: Compare each with $\dfrac{3}{2}$.
+SKA: $\log_2 3 > \dfrac{3}{2} \iff 3 > 2^{3/2} \iff 3^2 > 2^3 \iff 9 > 8$ ✓
+$\log_3 5 < \dfrac{3}{2} \iff 5 < 3^{3/2} \iff 5^2 < 3^3 \iff 25 < 27$ ✓
+$\log_3 5 < \dfrac{3}{2} < \log_2 3 \Rightarrow \log_2 3 > \log_3 5$
+SEN: $\log_2 3 > \dfrac{3}{2} \iff 3 > 2^{3/2} \iff 3^2 > 2^3 \iff 9 > 8$ ✓
+$\log_3 5 < \dfrac{3}{2} \iff 5 < 3^{3/2} \iff 5^2 < 3^3 \iff 25 < 27$ ✓
+$\log_3 5 < \dfrac{3}{2} < \log_2 3 \Rightarrow \log_2 3 > \log_3 5$
+AKA: $\log_2 3 > \log_3 5$
+AEN: $\log_2 3 > \log_3 5$
+
+--- hard binary olympiad
+KA: გვაქვს საწონები $1, 2, 4, 8, \dots, 512$ გრამი (თითო ცალი). დაამტკიცეთ, რომ თეფშიან სასწორზე (საწონები მხოლოდ ერთ თეფშზე) შეიძლება აიწონოს ნებისმიერი მთელი მასა $1$-დან $1023$ გრამამდე. რომელი საწონებია საჭირო $700$ გრამისთვის?
+EN: We have weights of $1, 2, 4, 8, \dots, 512$ grams (one of each). Prove that on a balance (weights on one pan only) any whole mass from $1$ to $1023$ grams can be weighed. Which weights are needed for $700$ grams?
+HKA: ყოველ რიცხვს აქვს ერთადერთი ორობითი ჩანაწერი — „1“ ნიშნავს, რომ საწონი გამოიყენება.
+HEN: Every number has a unique binary representation — a "1" means that weight is used.
+SKA: $1 + 2 + \dots + 512 = 2^{10} - 1 = 1023$. ყოველი $n \le 1023$ იწერება მაქსიმუმ $10$ ორობითი ციფრით; ციფრი „1“ $2^k$ თანრიგში ნიშნავს $2^k$ გრამიან საწონს ∎
+$700 = 512 + 128 + 32 + 16 + 8 + 4 = 1010111100_2$
+საწონები: $512, 128, 32, 16, 8, 4$.
+SEN: $1 + 2 + \dots + 512 = 2^{10} - 1 = 1023$. Every $n \le 1023$ has at most $10$ binary digits; a "1" in place $2^k$ means using the $2^k$-gram weight ∎
+$700 = 512 + 128 + 32 + 16 + 8 + 4 = 1010111100_2$
+Weights: $512, 128, 32, 16, 8, 4$.
+AKA: $512, 128, 32, 16, 8, 4$
+AEN: $512, 128, 32, 16, 8, 4$
+
+--- hard trig olympiad
+KA: იპოვეთ $3\sin x + 4\cos x$ გამოსახულების უდიდესი და უმცირესი მნიშვნელობა.
+EN: Find the largest and smallest values of $3\sin x + 4\cos x$.
+HKA: ჩაწერეთ როგორც $5\left(\dfrac{3}{5}\sin x + \dfrac{4}{5}\cos x\right)$ და შეამჩნიეთ, რომ $\left(\dfrac{3}{5}\right)^2 + \left(\dfrac{4}{5}\right)^2 = 1$.
+HEN: Write it as $5\left(\dfrac{3}{5}\sin x + \dfrac{4}{5}\cos x\right)$ and note $\left(\dfrac{3}{5}\right)^2 + \left(\dfrac{4}{5}\right)^2 = 1$.
+SKA: არსებობს $\varphi$, რომ $\cos\varphi = \dfrac{3}{5}$, $\sin\varphi = \dfrac{4}{5}$.
+$3\sin x + 4\cos x = 5(\sin x\cos\varphi + \cos x\sin\varphi) = 5\sin(x + \varphi)$
+$-1 \le \sin(x + \varphi) \le 1 \Rightarrow$ მნიშვნელობები $[-5;\ 5]$-შია.
+SEN: There is a $\varphi$ with $\cos\varphi = \dfrac{3}{5}$, $\sin\varphi = \dfrac{4}{5}$.
+$3\sin x + 4\cos x = 5(\sin x\cos\varphi + \cos x\sin\varphi) = 5\sin(x + \varphi)$
+$-1 \le \sin(x + \varphi) \le 1 \Rightarrow$ the values fill $[-5,\ 5]$.
+AKA: $5$ და $-5$
+AEN: $5$ and $-5$
+
+--- hard sequences olympiad
+KA: გამოთვალეთ ჯამი $1 + 11 + 111 + \dots + \underbrace{11\ldots1}_{n}$ ზოგადად და შეამოწმეთ $n = 5$-ისთვის.
+EN: Find the sum $1 + 11 + 111 + \dots + \underbrace{11\ldots1}_{n}$ in general and check it for $n = 5$.
+HKA: $\underbrace{11\ldots1}_{k} = \dfrac{10^k - 1}{9}$. შემდეგ გამოიყენეთ გეომეტრიული პროგრესიის ჯამი.
+HEN: $\underbrace{11\ldots1}_{k} = \dfrac{10^k - 1}{9}$. Then use the sum of a geometric progression.
+SKA: $S = \sum_{k=1}^{n} \dfrac{10^k - 1}{9} = \dfrac{1}{9}\left(\dfrac{10(10^n - 1)}{9} - n\right) = \dfrac{10^{n+1} - 10 - 9n}{81}$
+$n = 5$: $\dfrac{10^6 - 10 - 45}{81} = \dfrac{999\,945}{81} = 12\,345$
+შემოწმება: $1 + 11 + 111 + 1111 + 11\,111 = 12\,345$ ✓
+SEN: $S = \sum_{k=1}^{n} \dfrac{10^k - 1}{9} = \dfrac{1}{9}\left(\dfrac{10(10^n - 1)}{9} - n\right) = \dfrac{10^{n+1} - 10 - 9n}{81}$
+$n = 5$: $\dfrac{10^6 - 10 - 45}{81} = \dfrac{999\,945}{81} = 12\,345$
+Check: $1 + 11 + 111 + 1111 + 11\,111 = 12\,345$ ✓
+AKA: $\dfrac{10^{n+1} - 10 - 9n}{81}$; $12\,345$
+AEN: $\dfrac{10^{n+1} - 10 - 9n}{81}$; $12\,345$
+
+--- hard polyhedra olympiad
+KA: $2$ წიბოიანი კუბი გადაკვეთეს სიბრტყით, რომელიც გადის ექვსი წიბოს შუაწერტილზე (კუბის ცენტრზე, მის დიაგონალის მართობულად). დაამტკიცეთ, რომ კვეთა წესიერი ექვსკუთხედია და იპოვეთ მისი ფართობი.
+EN: A cube with edge $2$ is cut by a plane through the midpoints of six edges (through the centre, perpendicular to a space diagonal). Prove that the section is a regular hexagon and find its area.
+HKA: მეზობელი შუაწერტილები ერთ წახნაგზეა; მათ შორის მანძილი — მართკუთხა სამკუთხედის ჰიპოტენუზა, კათეტებით $1$ და $1$.
+HEN: Neighbouring midpoints lie on one face; their distance is the hypotenuse of a right triangle with legs $1$ and $1$.
+SKA: ყოველი ორი მეზობელი შუაწერტილი ერთ წახნაგზეა და ქმნის კათეტებით $1$, $1$ მართკუთხა სამკუთხედის ჰიპოტენუზას: გვერდი $\sqrt{2}$ — ექვსივე გვერდი ტოლია.
+ყოველი შუაწერტილი კუბის ცენტრიდან ერთნაირად, $\sqrt{0^2 + 1^2 + 1^2} = \sqrt{2}$ მანძილითაა დაშორებული — ექვსკუთხედი წრეწირშია ჩახაზული. ტოლგვერდა ჩახაზული მრავალკუთხედი წესიერია ∎
+$S = \dfrac{3\sqrt{3}}{2} a^2 = \dfrac{3\sqrt{3}}{2} \cdot 2 = 3\sqrt{3} \approx 5{,}2$
+SEN: Each pair of neighbouring midpoints lies on one face and forms the hypotenuse of a right triangle with legs $1$ and $1$: side $\sqrt{2}$ — all six sides are equal.
+Every midpoint is the same distance from the cube's centre, $\sqrt{0^2 + 1^2 + 1^2} = \sqrt{2}$ — the hexagon is inscribed in a circle. An equilateral polygon inscribed in a circle is regular ∎
+$S = \dfrac{3\sqrt{3}}{2} a^2 = \dfrac{3\sqrt{3}}{2} \cdot 2 = 3\sqrt{3} \approx 5.2$
+AKA: $3\sqrt{3}$
+AEN: $3\sqrt{3}$
+</script>
+</body>
+</html>

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mathematics · Grade VIII</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css">
+  <script defer src="../assets/problems.js"></script>
+</head>
+<body data-page="grade" data-subject="math" data-grade="VIII">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic powers     | I–III | ხარისხი და მისი თვისებები | Powers and their properties
+# topic roots      | IV–VI | ნამდვილი რიცხვები. კვადრატული და კუბური ფესვი | Real numbers. Square and cube roots
+# topic remainders | VII | ნაშთები და ნაშთთა არითმეტიკა | Remainders and modular arithmetic
+# topic consumer   | VIII–IX | ზომის ერთეულები. სამომხმარებლო არითმეტიკა | Units. Consumer arithmetic
+# topic formulas   | X–XII | შემოკლებული გამრავლების ფორმულები. მამრავლებად დაშლა | Special products. Factorising
+# topic fractions  | XIII | ალგებრული წილადები | Algebraic fractions
+# topic absolute   | XIV | მოდულის შემცველი განტოლებები | Equations with absolute value
+# topic inequalities | XV–XVI | წრფივი უტოლობა. მოდელირება | Linear inequalities. Modelling
+# topic pythagoras | XIX–XX | პითაგორას თეორემა | Pythagoras' theorem
+# topic quadrilaterals | XXI–XXIII | პარალელოგრამი, მართკუთხედი, რომბი, ტრაპეცია | Parallelograms, rectangles, rhombi, trapezia
+# topic areas      | XXIV–XXVI | ფართობები. სივრცული სხეულები | Areas. Solids
+# topic functions  | XXVII, XXIX–XXXI | კოორდინატები. ფუნქცია. წრფივი ფუნქცია | Coordinates. Functions. Linear functions
+# topic data       | XXXII–XXXIII | მონაცემები. სიხშირე და ფარდობითი სიხშირე | Data. Frequency and relative frequency
+# topic probability | XXXIV | ხდომილობები და ალბათობა | Events and probability
+# note ამოხსნებში ჯერ მოცემულია ფორმულა ან წესი, შემდეგ — ნაბიჯ-ნაბიჯ გამოთვლა. | Each solution first states the formula or rule, then computes step by step.
+
+// ===================================================================== EASY
+
+--- easy powers
+KA: გამოთვალეთ: $\dfrac{2^3 \cdot 2^5}{2^6}$.
+EN: Calculate: $\dfrac{2^3 \cdot 2^5}{2^6}$.
+HKA: $a^m \cdot a^n = a^{m+n}$, $\ a^m : a^n = a^{m-n}$.
+HEN: $a^m \cdot a^n = a^{m+n}$, $\ a^m : a^n = a^{m-n}$.
+SKA: $2^3 \cdot 2^5 = 2^{3+5} = 2^8$
+$\dfrac{2^8}{2^6} = 2^{8-6} = 2^2 = 4$
+SEN: $2^3 \cdot 2^5 = 2^{3+5} = 2^8$
+$\dfrac{2^8}{2^6} = 2^{8-6} = 2^2 = 4$
+AKA: $4$
+AEN: $4$
+
+--- easy powers
+KA: გამოთვალეთ: $3^{-2} \cdot 27$ და $5^0 + 2^{-1}$.
+EN: Calculate: $3^{-2} \cdot 27$ and $5^0 + 2^{-1}$.
+HKA: $a^{-n} = \dfrac{1}{a^n}$, $\ a^0 = 1$ ($a \ne 0$).
+HEN: $a^{-n} = \dfrac{1}{a^n}$, $\ a^0 = 1$ ($a \ne 0$).
+SKA: $3^{-2} \cdot 27 = \dfrac{1}{9} \cdot 27 = 3$ (ან $3^{-2} \cdot 3^3 = 3^1$)
+$5^0 + 2^{-1} = 1 + \dfrac{1}{2} = 1{,}5$
+SEN: $3^{-2} \cdot 27 = \dfrac{1}{9} \cdot 27 = 3$ (or $3^{-2} \cdot 3^3 = 3^1$)
+$5^0 + 2^{-1} = 1 + \dfrac{1}{2} = 1.5$
+AKA: $3$; $1{,}5$
+AEN: $3$; $1.5$
+
+--- easy powers
+KA: ჩაწერეთ რიცხვები სტანდარტული სახით: $0{,}00045$ და $32\,000\,000$.
+EN: Write in standard form: $0.00045$ and $32\,000\,000$.
+HKA: სტანდარტული სახე: $a \cdot 10^n$, სადაც $1 \le a < 10$.
+HEN: Standard form: $a \times 10^n$ with $1 \le a < 10$.
+SKA: $0{,}00045 = 4{,}5 \cdot 10^{-4}$ (მძიმე $4$ თანრიგით მარჯვნივ)
+$32\,000\,000 = 3{,}2 \cdot 10^7$ (მძიმე $7$ თანრიგით მარცხნივ)
+SEN: $0.00045 = 4.5 \times 10^{-4}$ (decimal point moved $4$ places right)
+$32\,000\,000 = 3.2 \times 10^7$ (moved $7$ places left)
+AKA: $4{,}5 \cdot 10^{-4}$; $3{,}2 \cdot 10^7$
+AEN: $4.5 \times 10^{-4}$; $3.2 \times 10^7$
+
+--- easy roots
+KA: გამოთვალეთ: $\sqrt{0{,}49} + \sqrt{144} - \sqrt[3]{27}$.
+EN: Calculate: $\sqrt{0.49} + \sqrt{144} - \sqrt[3]{27}$.
+HKA: $\sqrt{a} = b$, თუ $b \ge 0$ და $b^2 = a$; $\ \sqrt[3]{a} = b$, თუ $b^3 = a$.
+HEN: $\sqrt{a} = b$ if $b \ge 0$ and $b^2 = a$; $\ \sqrt[3]{a} = b$ if $b^3 = a$.
+SKA: $\sqrt{0{,}49} = 0{,}7$, $\ \sqrt{144} = 12$, $\ \sqrt[3]{27} = 3$
+$0{,}7 + 12 - 3 = 9{,}7$
+SEN: $\sqrt{0.49} = 0.7$, $\ \sqrt{144} = 12$, $\ \sqrt[3]{27} = 3$
+$0.7 + 12 - 3 = 9.7$
+AKA: $9{,}7$
+AEN: $9.7$
+
+--- easy roots
+KA: რომელია ირაციონალური რიცხვი: $\sqrt{16}$, $\sqrt{7}$, $0{,}(3)$, $\pi$, $\dfrac{22}{7}$?
+EN: Which of these are irrational: $\sqrt{16}$, $\sqrt{7}$, $0.(3)$, $\pi$, $\dfrac{22}{7}$?
+HKA: ირაციონალური რიცხვი ვერ ჩაიწერება წილადად $\dfrac{m}{n}$ — მისი ათწილადი უსასრულო და არაპერიოდულია.
+HEN: An irrational number cannot be written as a fraction $\dfrac{m}{n}$ — its decimal is infinite and non-repeating.
+SKA: $\sqrt{16} = 4$ — რაციონალური.
+$0{,}(3) = \dfrac{1}{3}$ და $\dfrac{22}{7}$ — რაციონალური (პერიოდული ათწილადები).
+$\sqrt{7}$ ($7$ არ არის სრული კვადრატი) და $\pi$ — ირაციონალური.
+SEN: $\sqrt{16} = 4$ — rational.
+$0.(3) = \dfrac{1}{3}$ and $\dfrac{22}{7}$ — rational (repeating decimals).
+$\sqrt{7}$ ($7$ is not a perfect square) and $\pi$ — irrational.
+AKA: $\sqrt{7}$ და $\pi$
+AEN: $\sqrt{7}$ and $\pi$
+
+--- easy remainders
+KA: რა ნაშთს იძლევა $2026$ $7$-ზე გაყოფისას?
+EN: What is the remainder when $2026$ is divided by $7$?
+HKA: $a = b q + r$, $0 \le r < b$.
+HEN: $a = b q + r$, $0 \le r < b$.
+SKA: $7 \cdot 289 = 2023$
+$2026 = 7 \cdot 289 + 3$ — ნაშთი $3$.
+SEN: $7 \cdot 289 = 2023$
+$2026 = 7 \cdot 289 + 3$ — remainder $3$.
+AKA: $3$
+AEN: $3$
+
+--- easy consumer
+KA: გადაიყვანეთ $54\ \text{კმ/სთ}$ $\text{მ/წმ}$-ში.
+EN: Convert $54\ \text{km/h}$ to $\text{m/s}$.
+HKA: $1\ \text{კმ/სთ} = \dfrac{1000}{3600}\ \text{მ/წმ} = \dfrac{1}{3{,}6}\ \text{მ/წმ}$.
+HEN: $1\ \text{km/h} = \dfrac{1000}{3600}\ \text{m/s} = \dfrac{1}{3.6}\ \text{m/s}$.
+SKA: $54\ \text{კმ/სთ} = \dfrac{54 \cdot 1000}{3600}\ \text{მ/წმ} = \dfrac{54}{3{,}6} = 15\ \text{მ/წმ}$
+SEN: $54\ \text{km/h} = \dfrac{54 \cdot 1000}{3600}\ \text{m/s} = \dfrac{54}{3.6} = 15\ \text{m/s}$
+AKA: $15\ \text{მ/წმ}$
+AEN: $15\ \text{m/s}$
+
+--- easy consumer
+KA: ბანკში $2000$ ლარი შეიტანეს წლიური $6\%$-ით (მარტივი პროცენტი). რამდენ სარგებელს მიიღებენ $3$ წელიწადში?
+EN: $2000$ lari is deposited at $6\%$ simple interest per year. How much interest is earned in $3$ years?
+HKA: მარტივი პროცენტი ყოველ წელს საწყის თანხაზე ითვლება: $I = S_0 \cdot \dfrac{p}{100} \cdot n$.
+HEN: Simple interest is always calculated on the original amount: $I = S_0 \cdot \dfrac{p}{100} \cdot n$.
+SKA: **ფორმულა:** $I = S_0 \cdot \dfrac{p}{100} \cdot n$
+$I = 2000 \cdot 0{,}06 \cdot 3 = 360\ ₾$ (ანაბარზე იქნება $2360\ ₾$)
+SEN: **Formula:** $I = S_0 \cdot \dfrac{p}{100} \cdot n$
+$I = 2000 \cdot 0.06 \cdot 3 = 360\ ₾$ (the account will hold $2360\ ₾$)
+AKA: $360\ ₾$
+AEN: $360\ ₾$
+
+--- easy consumer
+KA: ფირმამ $2400$ ლარად იყიდა კომპიუტერი, რომლის მომსახურების ვადა $4$ წელია. წრფივი ცვეთით (ყოველ წელს ერთი და იგივე თანხით) რას უდრის წლიური ცვეთა და კომპიუტერის ღირებულება $3$ წლის შემდეგ?
+EN: A company buys a computer for $2400$ lari with a useful life of $4$ years. With straight-line depreciation (the same amount each year), what is the yearly depreciation and the computer's value after $3$ years?
+HKA: წლიური ცვეთა = ღირებულება : მომსახურების ვადაზე.
+HEN: Yearly depreciation = cost ÷ useful life.
+SKA: წლიური ცვეთა: $\dfrac{2400}{4} = 600\ ₾$
+$3$ წლის შემდეგ: $2400 - 3 \cdot 600 = 600\ ₾$
+SEN: Yearly depreciation: $\dfrac{2400}{4} = 600\ ₾$
+After $3$ years: $2400 - 3 \cdot 600 = 600\ ₾$
+AKA: $600\ ₾$ წელიწადში; $600\ ₾$
+AEN: $600\ ₾$ per year; $600\ ₾$
+
+--- easy formulas
+KA: გახსენით ფრჩხილები: $(a + 3)^2$ და $(2x - 5)^2$.
+EN: Expand: $(a + 3)^2$ and $(2x - 5)^2$.
+HKA: $(a \pm b)^2 = a^2 \pm 2ab + b^2$.
+HEN: $(a \pm b)^2 = a^2 \pm 2ab + b^2$.
+SKA: $(a + 3)^2 = a^2 + 2 \cdot a \cdot 3 + 9 = a^2 + 6a + 9$
+$(2x - 5)^2 = 4x^2 - 2 \cdot 2x \cdot 5 + 25 = 4x^2 - 20x + 25$
+SEN: $(a + 3)^2 = a^2 + 2 \cdot a \cdot 3 + 9 = a^2 + 6a + 9$
+$(2x - 5)^2 = 4x^2 - 2 \cdot 2x \cdot 5 + 25 = 4x^2 - 20x + 25$
+AKA: $a^2 + 6a + 9$; $4x^2 - 20x + 25$
+AEN: $a^2 + 6a + 9$; $4x^2 - 20x + 25$
+
+--- easy formulas
+KA: ზეპირად გამოთვალეთ $51 \cdot 49$ კვადრატების სხვაობის ფორმულით.
+EN: Work out $51 \cdot 49$ mentally using the difference of squares.
+HKA: $(a + b)(a - b) = a^2 - b^2$; $51 = 50 + 1$, $49 = 50 - 1$.
+HEN: $(a + b)(a - b) = a^2 - b^2$; $51 = 50 + 1$, $49 = 50 - 1$.
+SKA: $51 \cdot 49 = (50 + 1)(50 - 1) = 50^2 - 1^2 = 2500 - 1 = 2499$
+SEN: $51 \cdot 49 = (50 + 1)(50 - 1) = 50^2 - 1^2 = 2500 - 1 = 2499$
+AKA: $2499$
+AEN: $2499$
+
+--- easy formulas
+KA: გამოიტანეთ საერთო მამრავლი ფრჩხილებს გარეთ: $6x^2 - 9x$.
+EN: Factor out the common factor: $6x^2 - 9x$.
+HKA: იპოვეთ კოეფიციენტების უდიდესი საერთო გამყოფი და ცვლადის უმცირესი ხარისხი.
+HEN: Find the greatest common divisor of the coefficients and the lowest power of the variable.
+SKA: უსგ$(6, 9) = 3$; საერთოა $x$.
+$6x^2 - 9x = 3x(2x - 3)$
+SEN: GCD$(6, 9) = 3$; $x$ is common.
+$6x^2 - 9x = 3x(2x - 3)$
+AKA: $3x(2x - 3)$
+AEN: $3x(2x - 3)$
+
+--- easy fractions
+KA: შეკვეცეთ წილადი: $\dfrac{a^2 - ab}{a^2 - b^2}$.
+EN: Simplify: $\dfrac{a^2 - ab}{a^2 - b^2}$.
+HKA: დაშალეთ მრიცხველი და მნიშვნელი მამრავლებად.
+HEN: Factorise the numerator and the denominator.
+SKA: $\dfrac{a^2 - ab}{a^2 - b^2} = \dfrac{a(a - b)}{(a - b)(a + b)} = \dfrac{a}{a + b}$ ($a \ne \pm b$)
+SEN: $\dfrac{a^2 - ab}{a^2 - b^2} = \dfrac{a(a - b)}{(a - b)(a + b)} = \dfrac{a}{a + b}$ ($a \ne \pm b$)
+AKA: $\dfrac{a}{a + b}$
+AEN: $\dfrac{a}{a + b}$
+
+--- easy absolute
+KA: ამოხსენით განტოლება: $|x - 3| = 4$.
+EN: Solve: $|x - 3| = 4$.
+HKA: $|A| = b$ ($b > 0$) $\iff A = b$ ან $A = -b$.
+HEN: $|A| = b$ ($b > 0$) $\iff A = b$ or $A = -b$.
+SKA: $x - 3 = 4 \Rightarrow x = 7$
+$x - 3 = -4 \Rightarrow x = -1$
+SEN: $x - 3 = 4 \Rightarrow x = 7$
+$x - 3 = -4 \Rightarrow x = -1$
+AKA: $x = 7$ ან $x = -1$
+AEN: $x = 7$ or $x = -1$
+
+--- easy inequalities
+KA: ამოხსენით უტოლობა: $2(x - 1) \ge x + 3$.
+EN: Solve: $2(x - 1) \ge x + 3$.
+HKA: გახსენით ფრჩხილები და უცნობიანი წევრები ერთ მხარეს გადაიტანეთ.
+HEN: Expand the brackets and collect the $x$ terms on one side.
+SKA: $2x - 2 \ge x + 3$
+$x \ge 5$, ანუ $x \in [5;\ +\infty)$
+SEN: $2x - 2 \ge x + 3$
+$x \ge 5$, i.e. $x \in [5,\ +\infty)$
+AKA: $x \ge 5$
+AEN: $x \ge 5$
+
+--- easy pythagoras
+KA: მართკუთხა სამკუთხედის ჰიპოტენუზაა $13$, ერთი კათეტი — $5$. იპოვეთ მეორე კათეტი.
+EN: A right triangle has hypotenuse $13$ and one leg $5$. Find the other leg.
+HKA: $a^2 + b^2 = c^2$.
+HEN: $a^2 + b^2 = c^2$.
+SKA: $b = \sqrt{c^2 - a^2} = \sqrt{169 - 25} = \sqrt{144} = 12$
+SEN: $b = \sqrt{c^2 - a^2} = \sqrt{169 - 25} = \sqrt{144} = 12$
+AKA: $12$
+AEN: $12$
+
+--- easy pythagoras
+KA: იპოვეთ $6$ გვერდიანი კვადრატის დიაგონალი.
+EN: Find the diagonal of a square with side $6$.
+HKA: დიაგონალი კვადრატს ორ ტოლფერდა მართკუთხა სამკუთხედად ყოფს.
+HEN: The diagonal cuts the square into two isosceles right triangles.
+SKA: $d = \sqrt{6^2 + 6^2} = \sqrt{72} = 6\sqrt{2} \approx 8{,}49$
+საერთოდ: $d = a\sqrt{2}$.
+SEN: $d = \sqrt{6^2 + 6^2} = \sqrt{72} = 6\sqrt{2} \approx 8.49$
+In general: $d = a\sqrt{2}$.
+AKA: $6\sqrt{2}$
+AEN: $6\sqrt{2}$
+
+--- easy quadrilaterals
+KA: პარალელოგრამის ერთი კუთხე $70^\circ$-ია. იპოვეთ დანარჩენი კუთხეები.
+EN: One angle of a parallelogram is $70^\circ$. Find the other angles.
+HKA: პარალელოგრამის მოპირდაპირე კუთხეები ტოლია, ერთი გვერდის მიმდებარე კუთხეების ჯამი $180^\circ$-ია.
+HEN: Opposite angles of a parallelogram are equal; neighbouring angles add up to $180^\circ$.
+SKA: მოპირდაპირე: $70^\circ$; მიმდებარე: $180^\circ - 70^\circ = 110^\circ$.
+კუთხეები: $70^\circ, 110^\circ, 70^\circ, 110^\circ$.
+SEN: Opposite: $70^\circ$; neighbouring: $180^\circ - 70^\circ = 110^\circ$.
+Angles: $70^\circ, 110^\circ, 70^\circ, 110^\circ$.
+AKA: $70^\circ, 110^\circ, 70^\circ, 110^\circ$
+AEN: $70^\circ, 110^\circ, 70^\circ, 110^\circ$
+
+--- easy areas
+KA: ტრაპეციის ფუძეებია $6$ და $10$, სიმაღლე — $4$. იპოვეთ ფართობი.
+EN: A trapezium has bases $6$ and $10$ and height $4$. Find its area.
+HKA: $S = \dfrac{a + b}{2} \cdot h$.
+HEN: $S = \dfrac{a + b}{2} \cdot h$.
+SKA: $S = \dfrac{6 + 10}{2} \cdot 4 = 8 \cdot 4 = 32$
+SEN: $S = \dfrac{6 + 10}{2} \cdot 4 = 8 \cdot 4 = 32$
+AKA: $32$
+AEN: $32$
+
+--- easy functions
+KA: $f(x) = 3x - 2$. იპოვეთ $f(4)$, $f(-1)$ და ფუნქციის ნული.
+EN: $f(x) = 3x - 2$. Find $f(4)$, $f(-1)$ and the zero of the function.
+HKA: ნული — $x$-ის ის მნიშვნელობა, რომლისთვისაც $f(x) = 0$.
+HEN: The zero is the value of $x$ where $f(x) = 0$.
+SKA: $f(4) = 12 - 2 = 10$, $\ f(-1) = -3 - 2 = -5$
+$3x - 2 = 0 \Rightarrow x = \dfrac{2}{3}$
+SEN: $f(4) = 12 - 2 = 10$, $\ f(-1) = -3 - 2 = -5$
+$3x - 2 = 0 \Rightarrow x = \dfrac{2}{3}$
+AKA: $10$; $-5$; $x = \dfrac{2}{3}$
+AEN: $10$; $-5$; $x = \dfrac{2}{3}$
+
+--- easy data
+KA: კლასში $30$ მოსწავლეა, მათგან $12$-მა საკონტროლოში მიიღო $9$ ქულა. რას უდრის ამ შეფასების ფარდობითი სიხშირე?
+EN: There are $30$ students in a class; $12$ of them scored $9$ on a test. What is the relative frequency of this score?
+HKA: ფარდობითი სიხშირე = სიხშირე : მონაცემების საერთო რაოდენობაზე.
+HEN: Relative frequency = frequency ÷ total number of data values.
+SKA: $\dfrac{12}{30} = 0{,}4 = 40\%$
+SEN: $\dfrac{12}{30} = 0.4 = 40\%$
+AKA: $0{,}4$ ($40\%$)
+AEN: $0.4$ ($40\%$)
+
+--- easy probability
+KA: მონეტას ორჯერ აგდებენ. ჩამოწერეთ ელემენტარულ ხდომილობათა სივრცე. რას უდრის ორივეჯერ „გერბის“ მოსვლის ალბათობა?
+EN: A coin is tossed twice. List the sample space. What is the probability of getting heads both times?
+HKA: თითოეულ აგდებას $2$ შედეგი აქვს — სულ $2 \cdot 2 = 4$.
+HEN: Each toss has $2$ outcomes — $2 \cdot 2 = 4$ in total.
+SKA: სივრცე: {გგ, გს, სგ, სს} — სადაც „გ“ გერბია, „ს“ — საფასური; $4$ თანაბრად შესაძლო შედეგი.
+ხელშემწყობი: მხოლოდ „გგ“ — $P = \dfrac{1}{4}$
+SEN: Sample space: $\{HH,\ HT,\ TH,\ TT\}$ — $4$ equally likely outcomes.
+Favourable: only $HH$ — $P = \dfrac{1}{4}$
+AKA: $\dfrac{1}{4}$
+AEN: $\dfrac{1}{4}$
+
+// ===================================================================== MEDIUM
+
+--- medium powers
+KA: გაამარტივეთ: $(2a^3 b^{-2})^2 \cdot (a^{-1} b)^3$.
+EN: Simplify: $(2a^3 b^{-2})^2 \cdot (a^{-1} b)^3$.
+HKA: $(ab)^n = a^n b^n$, $\ (a^m)^n = a^{mn}$.
+HEN: $(ab)^n = a^n b^n$, $\ (a^m)^n = a^{mn}$.
+SKA: $(2a^3 b^{-2})^2 = 4a^6 b^{-4}$, $\ (a^{-1} b)^3 = a^{-3} b^3$
+$4a^6 b^{-4} \cdot a^{-3} b^3 = 4a^{3} b^{-1} = \dfrac{4a^3}{b}$
+SEN: $(2a^3 b^{-2})^2 = 4a^6 b^{-4}$, $\ (a^{-1} b)^3 = a^{-3} b^3$
+$4a^6 b^{-4} \cdot a^{-3} b^3 = 4a^{3} b^{-1} = \dfrac{4a^3}{b}$
+AKA: $\dfrac{4a^3}{b}$
+AEN: $\dfrac{4a^3}{b}$
+
+--- medium powers
+KA: გამოთვალეთ: $(0{,}5)^{-3} + \left(\dfrac{2}{3}\right)^{-2}$.
+EN: Calculate: $(0.5)^{-3} + \left(\dfrac{2}{3}\right)^{-2}$.
+HKA: $\left(\dfrac{a}{b}\right)^{-n} = \left(\dfrac{b}{a}\right)^n$.
+HEN: $\left(\dfrac{a}{b}\right)^{-n} = \left(\dfrac{b}{a}\right)^n$.
+SKA: $(0{,}5)^{-3} = 2^3 = 8$
+$\left(\dfrac{2}{3}\right)^{-2} = \left(\dfrac{3}{2}\right)^2 = \dfrac{9}{4} = 2{,}25$
+$8 + 2{,}25 = 10{,}25$
+SEN: $(0.5)^{-3} = 2^3 = 8$
+$\left(\dfrac{2}{3}\right)^{-2} = \left(\dfrac{3}{2}\right)^2 = \dfrac{9}{4} = 2.25$
+$8 + 2.25 = 10.25$
+AKA: $10{,}25$
+AEN: $10.25$
+
+--- medium roots
+KA: გაამარტივეთ: $\sqrt{12} + \sqrt{27} - \sqrt{48}$.
+EN: Simplify: $\sqrt{12} + \sqrt{27} - \sqrt{48}$.
+HKA: ყოველ რიცხვში გამოყავით სრული კვადრატი, რომელიც $3$-ზე მრავლდება.
+HEN: In each number find a perfect square times $3$.
+SKA: $\sqrt{12} = 2\sqrt{3}$, $\ \sqrt{27} = 3\sqrt{3}$, $\ \sqrt{48} = 4\sqrt{3}$
+$2\sqrt{3} + 3\sqrt{3} - 4\sqrt{3} = \sqrt{3}$
+SEN: $\sqrt{12} = 2\sqrt{3}$, $\ \sqrt{27} = 3\sqrt{3}$, $\ \sqrt{48} = 4\sqrt{3}$
+$2\sqrt{3} + 3\sqrt{3} - 4\sqrt{3} = \sqrt{3}$
+AKA: $\sqrt{3}$
+AEN: $\sqrt{3}$
+
+--- medium roots
+KA: გაათავისუფლეთ მნიშვნელი ირაციონალობისგან: $\dfrac{10}{\sqrt{5}}$ და $\dfrac{1}{\sqrt{3} - 1}$.
+EN: Rationalise the denominators: $\dfrac{10}{\sqrt{5}}$ and $\dfrac{1}{\sqrt{3} - 1}$.
+HKA: პირველში გაამრავლეთ $\sqrt{5}$-ზე, მეორეში — შეუღლებულ გამოსახულებაზე $\sqrt{3} + 1$.
+HEN: Multiply the first by $\sqrt{5}$, the second by the conjugate $\sqrt{3} + 1$.
+SKA: $\dfrac{10}{\sqrt{5}} = \dfrac{10\sqrt{5}}{5} = 2\sqrt{5}$
+$\dfrac{1}{\sqrt{3} - 1} = \dfrac{\sqrt{3} + 1}{(\sqrt{3} - 1)(\sqrt{3} + 1)} = \dfrac{\sqrt{3} + 1}{3 - 1} = \dfrac{\sqrt{3} + 1}{2}$
+SEN: $\dfrac{10}{\sqrt{5}} = \dfrac{10\sqrt{5}}{5} = 2\sqrt{5}$
+$\dfrac{1}{\sqrt{3} - 1} = \dfrac{\sqrt{3} + 1}{(\sqrt{3} - 1)(\sqrt{3} + 1)} = \dfrac{\sqrt{3} + 1}{3 - 1} = \dfrac{\sqrt{3} + 1}{2}$
+AKA: $2\sqrt{5}$; $\dfrac{\sqrt{3} + 1}{2}$
+AEN: $2\sqrt{5}$; $\dfrac{\sqrt{3} + 1}{2}$
+
+--- medium roots
+KA: შეადარეთ $\sqrt{50}$ და $7$. რომელ ორ მომდევნო მთელ რიცხვს შორის მდებარეობს $\sqrt{90}$?
+EN: Compare $\sqrt{50}$ and $7$. Between which two consecutive integers does $\sqrt{90}$ lie?
+HKA: დადებითი რიცხვების შედარებისას შეგიძლიათ მათი კვადრატები შეადაროთ.
+HEN: To compare positive numbers you can compare their squares.
+SKA: $7 = \sqrt{49}$ და $50 > 49 \Rightarrow \sqrt{50} > 7$.
+$81 < 90 < 100 \Rightarrow 9 < \sqrt{90} < 10$
+SEN: $7 = \sqrt{49}$ and $50 > 49 \Rightarrow \sqrt{50} > 7$.
+$81 < 90 < 100 \Rightarrow 9 < \sqrt{90} < 10$
+AKA: $\sqrt{50} > 7$; $9$ და $10$ შორის
+AEN: $\sqrt{50} > 7$; between $9$ and $10$
+
+--- medium remainders
+KA: რა ნაშთს იძლევა $2^{100}$ $3$-ზე გაყოფისას?
+EN: What is the remainder when $2^{100}$ is divided by $3$?
+HKA: $2 \equiv -1 \pmod 3$, ე.ი. $2$-ის ხარისხების ნაშთები მონაცვლეობს: $2, 1, 2, 1, \dots$
+HEN: $2 \equiv -1 \pmod 3$, so the remainders of powers of $2$ alternate: $2, 1, 2, 1, \dots$
+SKA: $2^1 \to 2$, $2^2 = 4 \to 1$, $2^3 = 8 \to 2$, $2^4 = 16 \to 1$, …
+ლუწი ხარისხი ნაშთს $1$-ს იძლევა: $2^{100} = (2^2)^{50} = 4^{50}$, $4 \equiv 1 \Rightarrow 4^{50} \equiv 1$.
+SEN: $2^1 \to 2$, $2^2 = 4 \to 1$, $2^3 = 8 \to 2$, $2^4 = 16 \to 1$, …
+Even powers leave remainder $1$: $2^{100} = (2^2)^{50} = 4^{50}$, $4 \equiv 1 \Rightarrow 4^{50} \equiv 1$.
+AKA: $1$
+AEN: $1$
+
+--- medium remainders
+KA: დღეს ორშაბათია. კვირის რომელი დღე იქნება $100$ დღის შემდეგ?
+EN: Today is Monday. What day of the week will it be in $100$ days?
+HKA: კვირის დღეები ყოველ $7$ დღეში მეორდება — საჭიროა $100$-ის $7$-ზე გაყოფის ნაშთი.
+HEN: Days of the week repeat every $7$ days — find $100$ mod $7$.
+SKA: $100 = 7 \cdot 14 + 2$ — ნაშთი $2$.
+ორშაბათიდან $2$ დღე: **ოთხშაბათი**.
+SEN: $100 = 7 \cdot 14 + 2$ — remainder $2$.
+Two days after Monday: **Wednesday**.
+AKA: ოთხშაბათი
+AEN: Wednesday
+
+--- medium consumer
+KA: მაღაზიამ საქონელი $80$ ლარად იყიდა და $35\%$-იანი ფასნამატით გაყიდვაში გაიტანა. შემდეგ ფასდაკლების დროს ფასი $20\%$-ით შეამცირა. რა ფასად გაიყიდა საქონელი და რამდენი პროცენტია მოგება?
+EN: A shop buys an item for $80$ lari and puts it on sale with a $35\%$ mark-up. Later it reduces the price by $20\%$ in a sale. What is the sale price and what is the profit percentage?
+HKA: ფასნამატი და ფასდაკლება — თანმიმდევრული გამრავლებებია.
+HEN: Mark-up and discount are successive multiplications.
+SKA: ფასნამატით: $80 \cdot 1{,}35 = 108\ ₾$
+ფასდაკლებით: $108 \cdot 0{,}8 = 86{,}4\ ₾$
+მოგება: $86{,}4 - 80 = 6{,}4\ ₾$, $\ \dfrac{6{,}4}{80} = 8\%$
+SEN: With mark-up: $80 \cdot 1.35 = 108\ ₾$
+After the discount: $108 \cdot 0.8 = 86.4\ ₾$
+Profit: $86.4 - 80 = 6.4\ ₾$, $\ \dfrac{6.4}{80} = 8\%$
+AKA: $86{,}4\ ₾$; $8\%$
+AEN: $86.4\ ₾$; $8\%$
+
+--- medium formulas
+KA: გაამარტივეთ: $(2x - 3)(2x + 3) - (2x - 1)^2$.
+EN: Simplify: $(2x - 3)(2x + 3) - (2x - 1)^2$.
+HKA: გამოიყენეთ კვადრატების სხვაობა და სხვაობის კვადრატი; მინუსი ფრჩხილის წინ ყველა ნიშანს ცვლის.
+HEN: Use the difference of squares and the square of a difference; the minus in front changes every sign.
+SKA: $(2x - 3)(2x + 3) = 4x^2 - 9$
+$(2x - 1)^2 = 4x^2 - 4x + 1$
+$4x^2 - 9 - 4x^2 + 4x - 1 = 4x - 10$
+SEN: $(2x - 3)(2x + 3) = 4x^2 - 9$
+$(2x - 1)^2 = 4x^2 - 4x + 1$
+$4x^2 - 9 - 4x^2 + 4x - 1 = 4x - 10$
+AKA: $4x - 10$
+AEN: $4x - 10$
+
+--- medium formulas
+KA: დაშალეთ მამრავლებად: $x^3 - 4x$ და $ax + ay + 3x + 3y$.
+EN: Factorise: $x^3 - 4x$ and $ax + ay + 3x + 3y$.
+HKA: პირველში ჯერ $x$ გამოიტანეთ; მეორეში დააჯგუფეთ წყვილებად.
+HEN: In the first, take out $x$ first; in the second, group in pairs.
+SKA: $x^3 - 4x = x(x^2 - 4) = x(x - 2)(x + 2)$
+$ax + ay + 3x + 3y = a(x + y) + 3(x + y) = (a + 3)(x + y)$
+SEN: $x^3 - 4x = x(x^2 - 4) = x(x - 2)(x + 2)$
+$ax + ay + 3x + 3y = a(x + y) + 3(x + y) = (a + 3)(x + y)$
+AKA: $x(x - 2)(x + 2)$; $(a + 3)(x + y)$
+AEN: $x(x - 2)(x + 2)$; $(a + 3)(x + y)$
+
+--- medium formulas
+KA: გამოყავით სრული კვადრატი: $x^2 + 6x + 13$. იპოვეთ გამოსახულების უმცირესი მნიშვნელობა.
+EN: Complete the square: $x^2 + 6x + 13$. Find the smallest value of the expression.
+HKA: $x^2 + 6x = (x + 3)^2 - 9$.
+HEN: $x^2 + 6x = (x + 3)^2 - 9$.
+SKA: $x^2 + 6x + 13 = (x + 3)^2 - 9 + 13 = (x + 3)^2 + 4$
+$(x + 3)^2 \ge 0 \Rightarrow$ გამოსახულება $\ge 4$; უმცირესი მნიშვნელობა $4$, როცა $x = -3$.
+SEN: $x^2 + 6x + 13 = (x + 3)^2 - 9 + 13 = (x + 3)^2 + 4$
+$(x + 3)^2 \ge 0 \Rightarrow$ the expression is $\ge 4$; the minimum is $4$ at $x = -3$.
+AKA: $(x + 3)^2 + 4$; მინიმუმი $4$
+AEN: $(x + 3)^2 + 4$; minimum $4$
+
+--- medium fractions
+KA: გამოთვალეთ: $\dfrac{1}{x - 1} - \dfrac{1}{x + 1}$.
+EN: Simplify: $\dfrac{1}{x - 1} - \dfrac{1}{x + 1}$.
+HKA: საერთო მნიშვნელია $(x - 1)(x + 1) = x^2 - 1$.
+HEN: The common denominator is $(x - 1)(x + 1) = x^2 - 1$.
+SKA: $\dfrac{(x + 1) - (x - 1)}{(x - 1)(x + 1)} = \dfrac{2}{x^2 - 1}$ ($x \ne \pm 1$)
+SEN: $\dfrac{(x + 1) - (x - 1)}{(x - 1)(x + 1)} = \dfrac{2}{x^2 - 1}$ ($x \ne \pm 1$)
+AKA: $\dfrac{2}{x^2 - 1}$
+AEN: $\dfrac{2}{x^2 - 1}$
+
+--- medium fractions
+KA: გაამარტივეთ: $\dfrac{x^2 - 4}{x + 3} \cdot \dfrac{x^2 + 3x}{x - 2}$.
+EN: Simplify: $\dfrac{x^2 - 4}{x + 3} \cdot \dfrac{x^2 + 3x}{x - 2}$.
+HKA: ჯერ დაშალეთ, შემდეგ შეკვეცეთ.
+HEN: Factorise first, then cancel.
+SKA: $\dfrac{(x - 2)(x + 2)}{x + 3} \cdot \dfrac{x(x + 3)}{x - 2} = x(x + 2)$ ($x \ne -3;\ 2$)
+SEN: $\dfrac{(x - 2)(x + 2)}{x + 3} \cdot \dfrac{x(x + 3)}{x - 2} = x(x + 2)$ ($x \ne -3,\ 2$)
+AKA: $x(x + 2)$
+AEN: $x(x + 2)$
+
+--- medium absolute
+KA: ამოხსენით განტოლება: $|2x + 1| = |x - 4|$.
+EN: Solve: $|2x + 1| = |x - 4|$.
+HKA: $|A| = |B| \iff A = B$ ან $A = -B$.
+HEN: $|A| = |B| \iff A = B$ or $A = -B$.
+SKA: $2x + 1 = x - 4 \Rightarrow x = -5$
+$2x + 1 = -(x - 4) \Rightarrow 3x = 3 \Rightarrow x = 1$
+შემოწმება: $x = -5$: $9 = 9$ ✓; $x = 1$: $3 = 3$ ✓
+SEN: $2x + 1 = x - 4 \Rightarrow x = -5$
+$2x + 1 = -(x - 4) \Rightarrow 3x = 3 \Rightarrow x = 1$
+Check: $x = -5$: $9 = 9$ ✓; $x = 1$: $3 = 3$ ✓
+AKA: $-5$; $1$
+AEN: $-5$; $1$
+
+--- medium inequalities
+KA: ტაქსის ღირებულება: $3$ ლარი ჩაჯდომისთვის + $0{,}8$ ლარი ყოველ კილომეტრზე. მგზავრს აქვს $15$ ლარი. მაქსიმუმ რამდენი კილომეტრის გავლა შეუძლია?
+EN: A taxi costs $3$ lari to get in plus $0.8$ lari per kilometre. A passenger has $15$ lari. What is the maximum distance they can travel?
+HKA: შეადგინეთ უტოლობა: ღირებულება $\le 15$.
+HEN: Write the inequality: cost $\le 15$.
+SKA: $3 + 0{,}8x \le 15$
+$0{,}8x \le 12 \Rightarrow x \le 15$
+მაქსიმუმ $15\ \text{კმ}$.
+SEN: $3 + 0.8x \le 15$
+$0.8x \le 12 \Rightarrow x \le 15$
+At most $15\ \text{km}$.
+AKA: $15\ \text{კმ}$
+AEN: $15\ \text{km}$
+
+--- medium pythagoras
+KA: მართკუთხა სამკუთხედის ერთი მახვილი კუთხე $30^\circ$-ია, ჰიპოტენუზა — $10$. იპოვეთ კათეტები.
+EN: A right triangle has an acute angle of $30^\circ$ and hypotenuse $10$. Find the legs.
+HKA: $30^\circ$-იანი კუთხის მოპირდაპირე კათეტი ჰიპოტენუზის ნახევარია.
+HEN: The leg opposite the $30^\circ$ angle is half the hypotenuse.
+SKA: $a = \dfrac{10}{2} = 5$
+$b = \sqrt{10^2 - 5^2} = \sqrt{75} = 5\sqrt{3} \approx 8{,}66$
+SEN: $a = \dfrac{10}{2} = 5$
+$b = \sqrt{10^2 - 5^2} = \sqrt{75} = 5\sqrt{3} \approx 8.66$
+AKA: $5$ და $5\sqrt{3}$
+AEN: $5$ and $5\sqrt{3}$
+
+--- medium pythagoras
+KA: $13\ \text{მ}$ სიგრძის კიბე კედელზეა მიყუდებული, მისი ქვედა ბოლო კედლიდან $5\ \text{მ}$-ითაა დაშორებული. რა სიმაღლეზე ეხება კიბე კედელს?
+EN: A $13\ \text{m}$ ladder leans against a wall with its foot $5\ \text{m}$ from the wall. How high up the wall does it reach?
+HKA: კიბე, კედელი და მიწა მართკუთხა სამკუთხედს ქმნის; კიბე ჰიპოტენუზაა.
+HEN: The ladder, wall and ground make a right triangle; the ladder is the hypotenuse.
+SKA: $h = \sqrt{13^2 - 5^2} = \sqrt{169 - 25} = 12\ \text{მ}$
+SEN: $h = \sqrt{13^2 - 5^2} = \sqrt{169 - 25} = 12\ \text{m}$
+AKA: $12\ \text{მ}$
+AEN: $12\ \text{m}$
+
+--- medium quadrilaterals
+KA: რომბის დიაგონალებია $6$ და $8$. იპოვეთ მისი გვერდი და ფართობი.
+EN: The diagonals of a rhombus are $6$ and $8$. Find its side and area.
+HKA: რომბის დიაგონალები ურთიერთმართობულია და გადაკვეთის წერტილით შუაზე იყოფა.
+HEN: The diagonals of a rhombus are perpendicular and bisect each other.
+SKA: ნახევარდიაგონალები: $3$ და $4$; გვერდი $a = \sqrt{3^2 + 4^2} = 5$
+$S = \dfrac{d_1 d_2}{2} = \dfrac{6 \cdot 8}{2} = 24$
+SEN: Half-diagonals: $3$ and $4$; side $a = \sqrt{3^2 + 4^2} = 5$
+$S = \dfrac{d_1 d_2}{2} = \dfrac{6 \cdot 8}{2} = 24$
+AKA: $5$; $24$
+AEN: $5$; $24$
+
+--- medium quadrilaterals
+KA: ტრაპეციის ფუძეებია $7$ და $13$. იპოვეთ მისი შუახაზი. რა თვისებები აქვს შუახაზს?
+EN: A trapezium has bases $7$ and $13$. Find its midline. What properties does the midline have?
+HKA: შუახაზი ფერდების შუაწერტილებს აერთებს.
+HEN: The midline joins the midpoints of the legs.
+SKA: შუახაზი ფუძეების პარალელურია და მათი ჯამის ნახევრის ტოლი: $m = \dfrac{a + b}{2}$.
+$m = \dfrac{7 + 13}{2} = 10$
+SEN: The midline is parallel to the bases and equal to half their sum: $m = \dfrac{a + b}{2}$.
+$m = \dfrac{7 + 13}{2} = 10$
+AKA: $10$
+AEN: $10$
+
+--- medium areas
+KA: იპოვეთ ორ კონცენტრულ წრეწირს შორის მოთავსებული რგოლის ფართობი, თუ რადიუსებია $3$ და $5$.
+EN: Find the area of the ring (annulus) between two concentric circles of radii $3$ and $5$.
+HKA: რგოლის ფართობი = დიდი წრის ფართობი − პატარა წრის ფართობი.
+HEN: Ring area = big circle area − small circle area.
+SKA: $S = \pi R^2 - \pi r^2 = \pi(25 - 9) = 16\pi \approx 50{,}3$
+SEN: $S = \pi R^2 - \pi r^2 = \pi(25 - 9) = 16\pi \approx 50.3$
+AKA: $16\pi$
+AEN: $16\pi$
+
+--- medium functions
+KA: წრფივი ფუნქციის გრაფიკი $Oy$ ღერძს $(0;\ 4)$ წერტილში კვეთს, კუთხური კოეფიციენტი $-2$-ია. ჩაწერეთ ფუნქცია, იპოვეთ მისი ნული და მიუთითეთ, ზრდადია თუ კლებადი.
+EN: A linear function's graph crosses the $y$-axis at $(0,\ 4)$ and has slope $-2$. Write the function, find its zero and say whether it increases or decreases.
+HKA: $y = kx + b$: $k$ — კუთხური კოეფიციენტი, $b$ — გადაკვეთა $Oy$-თან.
+HEN: $y = kx + b$: $k$ is the slope, $b$ the $y$-intercept.
+SKA: $y = -2x + 4$
+ნული: $-2x + 4 = 0 \Rightarrow x = 2$
+$k = -2 < 0$ — ფუნქცია კლებადია.
+SEN: $y = -2x + 4$
+Zero: $-2x + 4 = 0 \Rightarrow x = 2$
+$k = -2 < 0$ — the function is decreasing.
+AKA: $y = -2x + 4$; $x = 2$; კლებადი
+AEN: $y = -2x + 4$; $x = 2$; decreasing
+
+--- medium data
+KA: $20$ მოსწავლის შეფასებები ცხრილშია: ქულა $6$ — $3$ მოსწავლე, $7$ — $5$, $8$ — $8$, $9$ — $4$. იპოვეთ საშუალო ქულა, მოდა და ქულა $8$-ის ფარდობითი სიხშირე.
+EN: The grades of $20$ students: grade $6$ — $3$ students, $7$ — $5$, $8$ — $8$, $9$ — $4$. Find the mean grade, the mode and the relative frequency of grade $8$.
+HKA: საშუალო = $\dfrac{\sum (\text{ქულა} \cdot \text{სიხშირე})}{\text{სულ}}$.
+HEN: Mean = $\dfrac{\sum (\text{grade} \times \text{frequency})}{\text{total}}$.
+SKA: $\bar{x} = \dfrac{6 \cdot 3 + 7 \cdot 5 + 8 \cdot 8 + 9 \cdot 4}{20} = \dfrac{18 + 35 + 64 + 36}{20} = \dfrac{153}{20} = 7{,}65$
+მოდა: $8$ (ყველაზე ხშირი)
+ფარდობითი სიხშირე: $\dfrac{8}{20} = 0{,}4$
+SEN: $\bar{x} = \dfrac{6 \cdot 3 + 7 \cdot 5 + 8 \cdot 8 + 9 \cdot 4}{20} = \dfrac{18 + 35 + 64 + 36}{20} = \dfrac{153}{20} = 7.65$
+Mode: $8$ (most frequent)
+Relative frequency: $\dfrac{8}{20} = 0.4$
+AKA: $7{,}65$; $8$; $0{,}4$
+AEN: $7.65$; $8$; $0.4$
+
+--- medium probability
+KA: აგდებენ კამათელს. რომელია აუცილებელი, შეუძლებელი და შემთხვევითი ხდომილობა: ა) მოვა $6$-ზე მეტი არაუმეტესი რიცხვი; ბ) მოვა $7$; გ) მოვა მარტივი რიცხვი? იპოვეთ გ)-ს ალბათობა.
+EN: A die is rolled. Which events are certain, impossible or random: a) a number not greater than $6$; b) a $7$; c) a prime number? Find the probability of c).
+HKA: აუცილებელი ხდომილობის ალბათობაა $1$, შეუძლებლისა — $0$.
+HEN: A certain event has probability $1$, an impossible one $0$.
+SKA: ა) ყველა შედეგი $\le 6$ — **აუცილებელი**, $P = 1$.
+ბ) $7$ ვერ მოვა — **შეუძლებელი**, $P = 0$.
+გ) მარტივები: $2, 3, 5$ — **შემთხვევითი**, $P = \dfrac{3}{6} = \dfrac{1}{2}$.
+SEN: a) every outcome is $\le 6$ — **certain**, $P = 1$.
+b) $7$ cannot come up — **impossible**, $P = 0$.
+c) primes: $2, 3, 5$ — **random**, $P = \dfrac{3}{6} = \dfrac{1}{2}$.
+AKA: ა) აუცილებელი; ბ) შეუძლებელი; გ) $\dfrac{1}{2}$
+AEN: a) certain; b) impossible; c) $\dfrac{1}{2}$
+
+// ===================================================================== HARD
+
+--- hard powers
+KA: რომელია მეტი: $2^{300}$ თუ $3^{200}$?
+EN: Which is larger: $2^{300}$ or $3^{200}$?
+HKA: ორივე ჩაწერეთ ერთი და იმავე მაჩვენებლით.
+HEN: Write both with the same exponent.
+SKA: $2^{300} = (2^3)^{100} = 8^{100}$
+$3^{200} = (3^2)^{100} = 9^{100}$
+$8 < 9 \Rightarrow 8^{100} < 9^{100}$, ე.ი. $3^{200}$ მეტია.
+SEN: $2^{300} = (2^3)^{100} = 8^{100}$
+$3^{200} = (3^2)^{100} = 9^{100}$
+$8 < 9 \Rightarrow 8^{100} < 9^{100}$, so $3^{200}$ is larger.
+AKA: $3^{200}$
+AEN: $3^{200}$
+
+--- hard roots
+KA: გამოთვალეთ: $\sqrt{(\sqrt{5} - 3)^2} + \sqrt{5}$.
+EN: Calculate: $\sqrt{(\sqrt{5} - 3)^2} + \sqrt{5}$.
+HKA: $\sqrt{a^2} = |a|$ — და არა უბრალოდ $a$!
+HEN: $\sqrt{a^2} = |a|$ — not just $a$!
+SKA: $\sqrt{5} \approx 2{,}24 < 3$, ამიტომ $\sqrt{5} - 3 < 0$.
+$\sqrt{(\sqrt{5} - 3)^2} = |\sqrt{5} - 3| = 3 - \sqrt{5}$
+$3 - \sqrt{5} + \sqrt{5} = 3$
+SEN: $\sqrt{5} \approx 2.24 < 3$, so $\sqrt{5} - 3 < 0$.
+$\sqrt{(\sqrt{5} - 3)^2} = |\sqrt{5} - 3| = 3 - \sqrt{5}$
+$3 - \sqrt{5} + \sqrt{5} = 3$
+AKA: $3$
+AEN: $3$
+
+--- hard roots
+KA: გამოთვალეთ: $(\sqrt{7} + \sqrt{3})(\sqrt{7} - \sqrt{3})$ და $(\sqrt{5} + \sqrt{2})^2$.
+EN: Calculate: $(\sqrt{7} + \sqrt{3})(\sqrt{7} - \sqrt{3})$ and $(\sqrt{5} + \sqrt{2})^2$.
+HKA: შემოკლებული გამრავლების ფორმულები ფესვებზეც მუშაობს.
+HEN: The special-product formulas work with roots too.
+SKA: $(\sqrt{7} + \sqrt{3})(\sqrt{7} - \sqrt{3}) = 7 - 3 = 4$
+$(\sqrt{5} + \sqrt{2})^2 = 5 + 2\sqrt{10} + 2 = 7 + 2\sqrt{10}$
+SEN: $(\sqrt{7} + \sqrt{3})(\sqrt{7} - \sqrt{3}) = 7 - 3 = 4$
+$(\sqrt{5} + \sqrt{2})^2 = 5 + 2\sqrt{10} + 2 = 7 + 2\sqrt{10}$
+AKA: $4$; $7 + 2\sqrt{10}$
+AEN: $4$; $7 + 2\sqrt{10}$
+
+--- hard remainders
+KA: დაამტკიცეთ, რომ ნებისმიერი მთელი $n$-ისთვის $n^3 - n$ იყოფა $6$-ზე.
+EN: Prove that $n^3 - n$ is divisible by $6$ for every integer $n$.
+HKA: დაშალეთ მამრავლებად — მიიღებთ სამი მომდევნო მთელი რიცხვის ნამრავლს.
+HEN: Factorise — you get the product of three consecutive integers.
+SKA: $n^3 - n = n(n^2 - 1) = (n - 1)\,n\,(n + 1)$ — სამი მომდევნო მთელი რიცხვის ნამრავლი.
+ორ მომდევნო რიცხვს შორის ერთი ლუწია $\Rightarrow$ ნამრავლი იყოფა $2$-ზე.
+სამ მომდევნო რიცხვს შორის ერთი $3$-ის ჯერადია $\Rightarrow$ ნამრავლი იყოფა $3$-ზე.
+$2$ და $3$ ურთიერთმარტივია $\Rightarrow$ იყოფა $6$-ზე ∎
+SEN: $n^3 - n = n(n^2 - 1) = (n - 1)\,n\,(n + 1)$ — a product of three consecutive integers.
+Of two consecutive numbers one is even $\Rightarrow$ the product is divisible by $2$.
+Of three consecutive numbers one is a multiple of $3$ $\Rightarrow$ divisible by $3$.
+$2$ and $3$ are coprime $\Rightarrow$ divisible by $6$ ∎
+AKA: დამტკიცებულია
+AEN: proved
+
+--- hard consumer
+KA: გამყიდველის თვიური ხელფასია $500$ ლარი პლუს გაყიდვების $5\%$. რა მოცულობის გაყიდვები უნდა შეასრულოს, რომ თვეში $1200$ ლარი მიიღოს? როგორ შეიცვლება პასუხი, თუ ხელფასიდან $20\%$ საშემოსავლო გადასახადი იქვითება და $1200$ ლარი ხელზე უნდა მიიღოს?
+EN: A salesperson earns $500$ lari a month plus $5\%$ of sales. What sales are needed to earn $1200$ lari a month? How does the answer change if $20\%$ income tax is deducted and $1200$ lari must be the take-home pay?
+HKA: მეორე შემთხვევაში ჯერ იპოვეთ დარიცხული ხელფასი: $\dfrac{1200}{0{,}8}$.
+HEN: In the second case first find the gross pay: $\dfrac{1200}{0.8}$.
+SKA: $500 + 0{,}05x = 1200 \Rightarrow 0{,}05x = 700 \Rightarrow x = 14\,000\ ₾$
+გადასახადით: დარიცხული $= \dfrac{1200}{0{,}8} = 1500\ ₾$; $\ 500 + 0{,}05x = 1500 \Rightarrow x = 20\,000\ ₾$
+SEN: $500 + 0.05x = 1200 \Rightarrow 0.05x = 700 \Rightarrow x = 14\,000\ ₾$
+With tax: gross $= \dfrac{1200}{0.8} = 1500\ ₾$; $\ 500 + 0.05x = 1500 \Rightarrow x = 20\,000\ ₾$
+AKA: $14\,000\ ₾$; $20\,000\ ₾$
+AEN: $14\,000\ ₾$; $20\,000\ ₾$
+
+--- hard formulas
+KA: ცნობილია, რომ $a + b = 5$ და $ab = 3$. $a$-სა და $b$-ს პოვნის გარეშე გამოთვალეთ $a^2 + b^2$ და $a^3 + b^3$.
+EN: Given $a + b = 5$ and $ab = 3$, without finding $a$ and $b$ compute $a^2 + b^2$ and $a^3 + b^3$.
+HKA: $a^2 + b^2 = (a + b)^2 - 2ab$, $\ a^3 + b^3 = (a + b)^3 - 3ab(a + b)$.
+HEN: $a^2 + b^2 = (a + b)^2 - 2ab$, $\ a^3 + b^3 = (a + b)^3 - 3ab(a + b)$.
+SKA: $a^2 + b^2 = 25 - 6 = 19$
+$a^3 + b^3 = 125 - 3 \cdot 3 \cdot 5 = 125 - 45 = 80$
+SEN: $a^2 + b^2 = 25 - 6 = 19$
+$a^3 + b^3 = 125 - 3 \cdot 3 \cdot 5 = 125 - 45 = 80$
+AKA: $19$; $80$
+AEN: $19$; $80$
+
+--- hard formulas
+KA: დაამტკიცეთ, რომ $x^2 + y^2 + 2x - 4y + 5 \ge 0$ ნებისმიერი $x$ და $y$-ისთვის. როდის არის ტოლობა?
+EN: Prove that $x^2 + y^2 + 2x - 4y + 5 \ge 0$ for all $x$ and $y$. When does equality hold?
+HKA: ცალ-ცალკე გამოყავით სრული კვადრატები $x$-ითა და $y$-ით. $5 = 1 + 4$.
+HEN: Complete the square separately in $x$ and $y$. $5 = 1 + 4$.
+SKA: $x^2 + 2x + 1 + y^2 - 4y + 4 = (x + 1)^2 + (y - 2)^2$
+კვადრატები არაუარყოფითია $\Rightarrow$ ჯამი $\ge 0$ ∎
+ტოლობა: $x + 1 = 0$ და $y - 2 = 0$, ე.ი. $x = -1$, $y = 2$.
+SEN: $x^2 + 2x + 1 + y^2 - 4y + 4 = (x + 1)^2 + (y - 2)^2$
+Squares are non-negative $\Rightarrow$ the sum is $\ge 0$ ∎
+Equality: $x + 1 = 0$ and $y - 2 = 0$, i.e. $x = -1$, $y = 2$.
+AKA: $(x + 1)^2 + (y - 2)^2 \ge 0$; ტოლობა $x = -1$, $y = 2$
+AEN: $(x + 1)^2 + (y - 2)^2 \ge 0$; equality at $x = -1$, $y = 2$
+
+--- hard fractions
+KA: გაამარტივეთ: $\left(\dfrac{a}{b} - \dfrac{b}{a}\right) : \left(\dfrac{1}{b} - \dfrac{1}{a}\right)$.
+EN: Simplify: $\left(\dfrac{a}{b} - \dfrac{b}{a}\right) : \left(\dfrac{1}{b} - \dfrac{1}{a}\right)$.
+HKA: ორივე ფრჩხილში საერთო მნიშვნელია $ab$.
+HEN: Both brackets have the common denominator $ab$.
+SKA: $\dfrac{a}{b} - \dfrac{b}{a} = \dfrac{a^2 - b^2}{ab}$, $\ \dfrac{1}{b} - \dfrac{1}{a} = \dfrac{a - b}{ab}$
+$\dfrac{a^2 - b^2}{ab} \cdot \dfrac{ab}{a - b} = \dfrac{(a - b)(a + b)}{a - b} = a + b$ ($a \ne b$, $a, b \ne 0$)
+SEN: $\dfrac{a}{b} - \dfrac{b}{a} = \dfrac{a^2 - b^2}{ab}$, $\ \dfrac{1}{b} - \dfrac{1}{a} = \dfrac{a - b}{ab}$
+$\dfrac{a^2 - b^2}{ab} \cdot \dfrac{ab}{a - b} = \dfrac{(a - b)(a + b)}{a - b} = a + b$ ($a \ne b$, $a, b \ne 0$)
+AKA: $a + b$
+AEN: $a + b$
+
+--- hard absolute
+KA: ამოხსენით განტოლება: $|x - 1| + |x + 2| = 5$.
+EN: Solve: $|x - 1| + |x + 2| = 5$.
+HKA: მოდულის ნიშნები იცვლება $x = 1$ და $x = -2$ წერტილებში — განიხილეთ სამი შუალედი.
+HEN: The signs inside change at $x = 1$ and $x = -2$ — consider three intervals.
+SKA: $x \ge 1$: $(x - 1) + (x + 2) = 5 \Rightarrow 2x + 1 = 5 \Rightarrow x = 2$ ✓
+$-2 \le x < 1$: $(1 - x) + (x + 2) = 3 \ne 5$ — ამონახსნი არ არის.
+$x < -2$: $(1 - x) - (x + 2) = 5 \Rightarrow -2x - 1 = 5 \Rightarrow x = -3$ ✓
+(გეომეტრიულად: მანძილების ჯამი $1$-მდე და $-2$-მდე უდრის $5$-ს.)
+SEN: $x \ge 1$: $(x - 1) + (x + 2) = 5 \Rightarrow 2x + 1 = 5 \Rightarrow x = 2$ ✓
+$-2 \le x < 1$: $(1 - x) + (x + 2) = 3 \ne 5$ — no solution.
+$x < -2$: $(1 - x) - (x + 2) = 5 \Rightarrow -2x - 1 = 5 \Rightarrow x = -3$ ✓
+(Geometrically: the sum of distances to $1$ and to $-2$ is $5$.)
+AKA: $-3$; $2$
+AEN: $-3$; $2$
+
+--- hard inequalities
+KA: ამოხსენით უტოლობა $|x - 2| < 3$ და აჩვენეთ ამონახსნი რიცხვით ღერძზე. რამდენი მთელი ამონახსნი აქვს?
+EN: Solve $|x - 2| < 3$ and show it on the number line. How many integer solutions are there?
+HKA: $|x - a| < r$ ნიშნავს: $x$ დაშორებულია $a$-დან $r$-ზე ნაკლებით.
+HEN: $|x - a| < r$ means $x$ is less than $r$ away from $a$.
+SKA: $-3 < x - 2 < 3 \Rightarrow -1 < x < 5$
+მთელი ამონახსნები: $0, 1, 2, 3, 4$ — სულ $5$.
+SEN: $-3 < x - 2 < 3 \Rightarrow -1 < x < 5$
+Integer solutions: $0, 1, 2, 3, 4$ — $5$ in total.
+AKA: $(-1;\ 5)$; $5$ მთელი
+AEN: $(-1,\ 5)$; $5$ integers
+
+--- hard pythagoras
+KA: იპოვეთ $8$ გვერდიანი ტოლგვერდა სამკუთხედის სიმაღლე და ფართობი.
+EN: Find the height and area of an equilateral triangle with side $8$.
+HKA: სიმაღლე ფუძეს შუაზე ყოფს — მიიღება $30^\circ$–$60^\circ$–$90^\circ$ სამკუთხედი.
+HEN: The height bisects the base — giving a $30^\circ$–$60^\circ$–$90^\circ$ triangle.
+SKA: $h = \sqrt{8^2 - 4^2} = \sqrt{48} = 4\sqrt{3}$ (საერთოდ $h = \dfrac{a\sqrt{3}}{2}$)
+$S = \dfrac{8 \cdot 4\sqrt{3}}{2} = 16\sqrt{3} \approx 27{,}7$ (საერთოდ $S = \dfrac{a^2\sqrt{3}}{4}$)
+SEN: $h = \sqrt{8^2 - 4^2} = \sqrt{48} = 4\sqrt{3}$ (in general $h = \dfrac{a\sqrt{3}}{2}$)
+$S = \dfrac{8 \cdot 4\sqrt{3}}{2} = 16\sqrt{3} \approx 27.7$ (in general $S = \dfrac{a^2\sqrt{3}}{4}$)
+AKA: $4\sqrt{3}$; $16\sqrt{3}$
+AEN: $4\sqrt{3}$; $16\sqrt{3}$
+
+--- hard pythagoras
+KA: მართკუთხა პარალელეპიპედის ზომებია $3 \times 4 \times 12$. იპოვეთ მისი დიაგონალი.
+EN: A cuboid measures $3 \times 4 \times 12$. Find its space diagonal.
+HKA: ჯერ ფუძის დიაგონალი, შემდეგ კიდევ ერთხელ პითაგორა სიმაღლესთან ერთად.
+HEN: First the base diagonal, then Pythagoras again with the height.
+SKA: ფუძის დიაგონალი: $\sqrt{3^2 + 4^2} = 5$
+სივრცული დიაგონალი: $\sqrt{5^2 + 12^2} = 13$ (ანუ $d = \sqrt{a^2 + b^2 + c^2}$)
+SEN: Base diagonal: $\sqrt{3^2 + 4^2} = 5$
+Space diagonal: $\sqrt{5^2 + 12^2} = 13$ (i.e. $d = \sqrt{a^2 + b^2 + c^2}$)
+AKA: $13$
+AEN: $13$
+
+--- hard quadrilaterals
+KA: ტოლფერდა ტრაპეციის ფუძეებია $10$ და $4$, ფერდი — $5$. იპოვეთ სიმაღლე და ფართობი.
+EN: An isosceles trapezium has bases $10$ and $4$ and legs $5$. Find its height and area.
+HKA: მცირე ფუძის ბოლოებიდან დაშვებული სიმაღლეები დიდ ფუძეზე ორ ტოლ მონაკვეთს ჩამოაჭრის: $\dfrac{10 - 4}{2} = 3$.
+HEN: Heights dropped from the ends of the short base cut off two equal pieces of the long base: $\dfrac{10 - 4}{2} = 3$.
+SKA: $h = \sqrt{5^2 - 3^2} = 4$
+$S = \dfrac{10 + 4}{2} \cdot 4 = 28$
+SEN: $h = \sqrt{5^2 - 3^2} = 4$
+$S = \dfrac{10 + 4}{2} \cdot 4 = 28$
+AKA: $4$; $28$
+AEN: $4$; $28$
+
+--- hard areas
+KA: რომბის პერიმეტრია $40$, ერთ-ერთი დიაგონალი — $12$. იპოვეთ მეორე დიაგონალი და ფართობი.
+EN: A rhombus has perimeter $40$ and one diagonal $12$. Find the other diagonal and the area.
+HKA: გვერდი $= 40 : 4$. ნახევარდიაგონალები და გვერდი მართკუთხა სამკუთხედს ქმნის.
+HEN: Side $= 40 \div 4$. The half-diagonals and a side form a right triangle.
+SKA: $a = 10$, ნახევარდიაგონალი $6$; მეორე ნახევარდიაგონალი $\sqrt{10^2 - 6^2} = 8$ $\Rightarrow d_2 = 16$
+$S = \dfrac{12 \cdot 16}{2} = 96$
+SEN: $a = 10$, half-diagonal $6$; the other half-diagonal $\sqrt{10^2 - 6^2} = 8$ $\Rightarrow d_2 = 16$
+$S = \dfrac{12 \cdot 16}{2} = 96$
+AKA: $16$; $96$
+AEN: $16$; $96$
+
+--- hard functions
+KA: იპოვეთ $y = 2x - 1$ და $y = -x + 5$ წრფეების გადაკვეთის წერტილი და იმ სამკუთხედის ფართობი, რომელსაც ეს წრფეები $Oy$ ღერძთან ერთად ქმნის.
+EN: Find the intersection of the lines $y = 2x - 1$ and $y = -x + 5$, and the area of the triangle they form with the $y$-axis.
+HKA: სამკუთხედის ფუძე $Oy$ ღერძზეა (წრფეების გადაკვეთები $Oy$-თან), სიმაღლე — გადაკვეთის წერტილის აბსცისა.
+HEN: The base lies on the $y$-axis (where the lines meet it); the height is the $x$-coordinate of the intersection.
+SKA: $2x - 1 = -x + 5 \Rightarrow x = 2$, $y = 3$ — წერტილი $(2;\ 3)$.
+$Oy$-თან: $(0;\ -1)$ და $(0;\ 5)$ — ფუძე $6$; სიმაღლე $2$.
+$S = \dfrac{6 \cdot 2}{2} = 6$
+SEN: $2x - 1 = -x + 5 \Rightarrow x = 2$, $y = 3$ — point $(2,\ 3)$.
+On the $y$-axis: $(0,\ -1)$ and $(0,\ 5)$ — base $6$; height $2$.
+$S = \dfrac{6 \cdot 2}{2} = 6$
+AKA: $(2;\ 3)$; $6$
+AEN: $(2,\ 3)$; $6$
+
+--- hard probability
+KA: ორ კამათელს აგდებენ. რას უდრის ალბათობა, რომ მოსულ რიცხვთა ნამრავლი ლუწი იქნება?
+EN: Two dice are rolled. What is the probability that the product of the numbers is even?
+HKA: უფრო მარტივია საწინააღმდეგო ხდომილობა: ნამრავლი კენტია მხოლოდ მაშინ, როცა ორივე რიცხვი კენტია.
+HEN: The complement is easier: the product is odd only when both numbers are odd.
+SKA: $P(\text{ორივე კენტი}) = \dfrac{3}{6} \cdot \dfrac{3}{6} = \dfrac{9}{36} = \dfrac{1}{4}$
+$P(\text{ნამრავლი ლუწი}) = 1 - \dfrac{1}{4} = \dfrac{3}{4}$
+SEN: $P(\text{both odd}) = \dfrac{3}{6} \cdot \dfrac{3}{6} = \dfrac{9}{36} = \dfrac{1}{4}$
+$P(\text{product even}) = 1 - \dfrac{1}{4} = \dfrac{3}{4}$
+AKA: $\dfrac{3}{4}$
+AEN: $\dfrac{3}{4}$
+
+--- hard remainders olympiad
+KA: რა ორი ციფრით ბოლოვდება $7^{2026}$?
+EN: What are the last two digits of $7^{2026}$?
+HKA: გამოთვალეთ $7^4$ — ის $01$-ით ბოლოვდება!
+HEN: Compute $7^4$ — it ends in $01$!
+SKA: $7^2 = 49$, $\ 7^4 = 2401 \equiv 1 \pmod{100}$
+$2026 = 4 \cdot 506 + 2 \Rightarrow 7^{2026} = (7^4)^{506} \cdot 7^2 \equiv 1 \cdot 49 \pmod{100}$
+ბოლო ორი ციფრი: $49$.
+SEN: $7^2 = 49$, $\ 7^4 = 2401 \equiv 1 \pmod{100}$
+$2026 = 4 \cdot 506 + 2 \Rightarrow 7^{2026} = (7^4)^{506} \cdot 7^2 \equiv 1 \cdot 49 \pmod{100}$
+Last two digits: $49$.
+AKA: $49$
+AEN: $49$
+
+--- hard roots olympiad
+KA: გამოთვალეთ: $\sqrt{6 + 2\sqrt{5}} - \sqrt{6 - 2\sqrt{5}}$.
+EN: Calculate: $\sqrt{6 + 2\sqrt{5}} - \sqrt{6 - 2\sqrt{5}}$.
+HKA: შეეცადეთ $6 + 2\sqrt{5}$ ჩაწეროთ როგორც $(a + b)^2 = a^2 + 2ab + b^2$.
+HEN: Try to write $6 + 2\sqrt{5}$ as $(a + b)^2 = a^2 + 2ab + b^2$.
+SKA: $6 + 2\sqrt{5} = 5 + 2\sqrt{5} + 1 = (\sqrt{5} + 1)^2$
+$6 - 2\sqrt{5} = (\sqrt{5} - 1)^2$
+$\sqrt{6 + 2\sqrt{5}} - \sqrt{6 - 2\sqrt{5}} = (\sqrt{5} + 1) - (\sqrt{5} - 1) = 2$ (ორივე ფრჩხილი დადებითია)
+SEN: $6 + 2\sqrt{5} = 5 + 2\sqrt{5} + 1 = (\sqrt{5} + 1)^2$
+$6 - 2\sqrt{5} = (\sqrt{5} - 1)^2$
+$\sqrt{6 + 2\sqrt{5}} - \sqrt{6 - 2\sqrt{5}} = (\sqrt{5} + 1) - (\sqrt{5} - 1) = 2$ (both brackets are positive)
+AKA: $2$
+AEN: $2$
+
+--- hard fractions olympiad
+KA: იპოვეთ ყველა მთელი $n$, რომლისთვისაც $\dfrac{n + 5}{n + 1}$ მთელი რიცხვია.
+EN: Find all integers $n$ for which $\dfrac{n + 5}{n + 1}$ is an integer.
+HKA: გამოყავით მთელი ნაწილი: $\dfrac{n + 5}{n + 1} = 1 + \dfrac{4}{n + 1}$.
+HEN: Split off the whole part: $\dfrac{n + 5}{n + 1} = 1 + \dfrac{4}{n + 1}$.
+SKA: $\dfrac{n + 5}{n + 1} = \dfrac{(n + 1) + 4}{n + 1} = 1 + \dfrac{4}{n + 1}$
+მთელია $\iff n + 1$ არის $4$-ის გამყოფი: $n + 1 \in \{\pm 1, \pm 2, \pm 4\}$.
+$n \in \{0,\ -2,\ 1,\ -3,\ 3,\ -5\}$
+SEN: $\dfrac{n + 5}{n + 1} = \dfrac{(n + 1) + 4}{n + 1} = 1 + \dfrac{4}{n + 1}$
+It is an integer $\iff n + 1$ divides $4$: $n + 1 \in \{\pm 1, \pm 2, \pm 4\}$.
+$n \in \{0,\ -2,\ 1,\ -3,\ 3,\ -5\}$
+AKA: $n \in \{-5, -3, -2, 0, 1, 3\}$
+AEN: $n \in \{-5, -3, -2, 0, 1, 3\}$
+
+--- hard quadrilaterals olympiad
+KA: დაამტკიცეთ, რომ ნებისმიერი ოთხკუთხედის გვერდების შუაწერტილები პარალელოგრამის წვეროებია (ვარინიონის თეორემა). რას უდრის ამ პარალელოგრამის პერიმეტრი, თუ ოთხკუთხედის დიაგონალებია $10$ და $14$?
+EN: Prove that the midpoints of the sides of any quadrilateral are the vertices of a parallelogram (Varignon's theorem). What is the perimeter of this parallelogram if the quadrilateral's diagonals are $10$ and $14$?
+HKA: გაავლეთ დიაგონალი და გამოიყენეთ სამკუთხედის შუახაზის თვისება.
+HEN: Draw a diagonal and use the triangle midline property.
+SKA: ვთქვათ $ABCD$ ოთხკუთხედში $K, L, M, N$ — $AB, BC, CD, DA$-ს შუაწერტილებია.
+$\triangle ABC$-ში $KL$ შუახაზია: $KL \parallel AC$, $KL = \dfrac{AC}{2}$. $\triangle ACD$-ში $NM \parallel AC$, $NM = \dfrac{AC}{2}$.
+$KL \parallel NM$ და $KL = NM$ $\Rightarrow KLMN$ პარალელოგრამია ∎
+მისი გვერდებია დიაგონალების ნახევრები: $P = 2\left(\dfrac{10}{2} + \dfrac{14}{2}\right) = 10 + 14 = 24$
+SEN: Let $K, L, M, N$ be the midpoints of $AB, BC, CD, DA$ in quadrilateral $ABCD$.
+In $\triangle ABC$, $KL$ is a midline: $KL \parallel AC$, $KL = \dfrac{AC}{2}$. In $\triangle ACD$, $NM \parallel AC$, $NM = \dfrac{AC}{2}$.
+$KL \parallel NM$ and $KL = NM$ $\Rightarrow KLMN$ is a parallelogram ∎
+Its sides are halves of the diagonals: $P = 2\left(\dfrac{10}{2} + \dfrac{14}{2}\right) = 10 + 14 = 24$
+AKA: დამტკიცებულია; $24$ (დიაგონალების ჯამი)
+AEN: proved; $24$ (the sum of the diagonals)
+
+--- hard pythagoras olympiad
+KA: ობობა $1$ წიბოიანი კუბის ერთ წვეროზე ზის და მოპირდაპირე (დიამეტრალურ) წვეროსკენ უნდა მივიდეს კუბის ზედაპირზე. იპოვეთ უმოკლესი გზის სიგრძე.
+EN: A spider sits at one corner of a cube with edge $1$ and must crawl over the surface to the opposite corner. Find the length of the shortest path.
+HKA: „გაშალეთ“ კუბის ორი მეზობელი წახნაგი სიბრტყეზე — უმოკლესი გზა მონაკვეთი გახდება.
+HEN: "Unfold" two neighbouring faces into a plane — the shortest path becomes a straight segment.
+SKA: ორი მეზობელი წახნაგის შლილი — $1 \times 2$ ზომის მართკუთხედია; წვეროები მისი მოპირდაპირე კუთხეებია.
+$l = \sqrt{1^2 + 2^2} = \sqrt{5} \approx 2{,}24$
+შედარებისთვის: წიბოებით $3$, კუბის შიგნით (დიაგონალით) $\sqrt{3} \approx 1{,}73$ — მაგრამ ობობას შიგნით გავლა არ შეუძლია.
+SEN: The net of two neighbouring faces is a $1 \times 2$ rectangle; the corners are opposite corners of it.
+$l = \sqrt{1^2 + 2^2} = \sqrt{5} \approx 2.24$
+For comparison: along the edges $3$, through the cube (space diagonal) $\sqrt{3} \approx 1.73$ — but the spider can't go through.
+AKA: $\sqrt{5} \approx 2{,}24$
+AEN: $\sqrt{5} \approx 2.24$
+</script>
+</body>
+</html>

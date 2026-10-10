@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Physics · Grade XI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css">
+  <script defer src="../assets/problems.js"></script>
+</head>
+<body data-page="grade" data-subject="physics" data-grade="XI">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic magfield | I–III | მაგნიტური ველი | Magnetic field
+# topic ampere   | IV–V | ამპერის ძალა | Ampère force
+# topic lorentz  | VI–VIII | ლორენცის ძალა. ნაწილაკის მოძრაობა მაგნიტურ ველში | Lorentz force. Charged particles in a magnetic field
+# topic induction | X–XI, XIV–XV | ელექტრომაგნიტური ინდუქცია. გენერატორი | Electromagnetic induction. Generators
+# topic selfind  | XII–XIII | თვითინდუქცია. მაგნიტური ველის ენერგია | Self-induction. Magnetic field energy
+# topic oscill   | XIX–XXI, XXIV | მექანიკური რხევები | Mechanical oscillations
+# topic waves    | XXII–XXIII | მექანიკური ტალღები. ბგერა | Mechanical waves. Sound
+# topic lcac     | XXV–XXVII | რხევითი კონტური. ცვლადი დენი. ტრანსფორმატორი | LC circuits. Alternating current. Transformers
+# topic emwaves  | XXVIII | ელექტრომაგნიტური ტალღები | Electromagnetic waves
+# topic optics   | XXX–XXXI | სინათლის არეკვლა და გარდატეხა | Reflection and refraction of light
+# topic lenses   | XXXII–XXXIV | ლინზები და ოპტიკური ხელსაწყოები | Lenses and optical instruments
+# topic light    | XXXV | სინათლის სიჩქარე და ბუნება | Speed and nature of light
+# note მუდმივები: $e = 1{,}6 \cdot 10^{-19}\ \text{კ}$, $m_e = 9{,}1 \cdot 10^{-31}\ \text{კგ}$, $m_p = 1{,}67 \cdot 10^{-27}\ \text{კგ}$, $c = 3 \cdot 10^8\ \text{მ/წმ}$, $\mu_0 = 4\pi \cdot 10^{-7}\ \text{ჰნ/მ}$, $g = 10\ \text{მ/წმ}^2$. | Constants: $e = 1.6 \times 10^{-19}\ \text{C}$, $m_e = 9.1 \times 10^{-31}\ \text{kg}$, $m_p = 1.67 \times 10^{-27}\ \text{kg}$, $c = 3 \times 10^8\ \text{m/s}$, $\mu_0 = 4\pi \times 10^{-7}\ \text{H/m}$, $g = 10\ \text{m/s}^2$.
+
+// ===================================================================== EASY
+
+--- easy magfield
+KA: დენიან გამტართან მოთავსებული კომპასის ისარი გადაიხარა. რას ამტკიცებს ეს ცდა (ერსტედის ცდა)? რით განსხვავდება მაგნიტური ველის ხაზები ელექტრული ველის ხაზებისგან?
+EN: A compass needle near a current-carrying wire turns. What does this (Ørsted's) experiment show? How do magnetic field lines differ from electric field lines?
+HKA: მაგნიტური ველის წყაროა მოძრავი მუხტები. მაგნიტური „მუხტი“ (ცალკე პოლუსი) არ არსებობს.
+HEN: Magnetic fields are created by moving charges. There is no magnetic "charge" (isolated pole).
+SKA: ისრის გადახრა აჩვენებს, რომ ელექტრული დენი თავის გარშემო **მაგნიტურ ველს** ქმნის.
+სწორი გამტარის ველის ხაზები გამტარის გარშემო კონცენტრული წრეწირებია (მიმართულება — ბურღის წესით).
+ელექტრული ველის ხაზები მუხტებზე იწყება და მთავრდება, მაგნიტურისა კი **ყოველთვის შეკრულია** — მაგნიტური მუხტები არ არსებობს.
+SEN: The needle's deflection shows that an electric current creates a **magnetic field** around it.
+The field lines of a straight wire are concentric circles around it (direction by the right-hand grip rule).
+Electric field lines start and end on charges, but magnetic field lines are **always closed** — there are no magnetic charges.
+AKA: დენი ქმნის მაგნიტურ ველს; მაგნიტური ხაზები შეკრულია
+AEN: current creates a magnetic field; magnetic field lines are closed
+
+--- easy ampere
+KA: $0{,}2\ \text{მ}$ სიგრძის გამტარში $4\ \text{ა}$ დენი გადის. გამტარი $0{,}5\ \text{ტლ}$ ინდუქციის ერთგვაროვან ველში ინდუქციის ხაზების მართობულად მდებარეობს. იპოვეთ ამპერის ძალა.
+EN: A $0.2\ \text{m}$ wire carries $4\ \text{A}$ and lies perpendicular to a uniform field of $0.5\ \text{T}$. Find the Ampère force.
+HKA: $F = B I l \sin\alpha$, აქ $\alpha = 90^\circ$.
+HEN: $F = B I l \sin\alpha$, here $\alpha = 90^\circ$.
+SKA: **ფორმულა:** $F_A = B I l \sin\alpha$
+**რიცხვები:** $F_A = 0{,}5 \cdot 4 \cdot 0{,}2 \cdot 1 = 0{,}4\ \text{ნ}$
+SEN: **Formula:** $F_A = B I l \sin\alpha$
+**Numbers:** $F_A = 0.5 \cdot 4 \cdot 0.2 \cdot 1 = 0.4\ \text{N}$
+AKA: $0{,}4\ \text{ნ}$
+AEN: $0.4\ \text{N}$
+
+--- easy ampere
+KA: წინა ამოცანის გამტარი ინდუქციის ხაზებთან $30^\circ$ კუთხით მოაბრუნეს. რას უდრის ახლა ამპერის ძალა? როდის არის ძალა ნულის ტოლი?
+EN: The wire from the previous problem is turned to $30^\circ$ to the field lines. What is the Ampère force now? When is it zero?
+HKA: $\sin 30^\circ = 0{,}5$.
+HEN: $\sin 30^\circ = 0.5$.
+SKA: **ფორმულა:** $F_A = B I l \sin\alpha$
+**რიცხვები:** $F_A = 0{,}5 \cdot 4 \cdot 0{,}2 \cdot 0{,}5 = 0{,}2\ \text{ნ}$
+ძალა ნულია, როცა გამტარი ინდუქციის ხაზების პარალელურია ($\alpha = 0^\circ$).
+SEN: **Formula:** $F_A = B I l \sin\alpha$
+**Numbers:** $F_A = 0.5 \cdot 4 \cdot 0.2 \cdot 0.5 = 0.2\ \text{N}$
+The force is zero when the wire is parallel to the field lines ($\alpha = 0^\circ$).
+AKA: $0{,}2\ \text{ნ}$; ხაზების პარალელურად
+AEN: $0.2\ \text{N}$; when parallel to the lines
+
+--- easy lorentz
+KA: ელექტრონი $10^6\ \text{მ/წმ}$ სიჩქარით მოძრაობს $0{,}01\ \text{ტლ}$ ინდუქციის ველში, ინდუქციის მართობულად. იპოვეთ ლორენცის ძალა.
+EN: An electron moves at $10^6\ \text{m/s}$ perpendicular to a $0.01\ \text{T}$ field. Find the Lorentz force.
+HKA: $F = q v B \sin\alpha$.
+HEN: $F = q v B \sin\alpha$.
+SKA: **ფორმულა:** $F_L = |q|\, v B \sin\alpha$
+**რიცხვები:** $F_L = 1{,}6 \cdot 10^{-19} \cdot 10^6 \cdot 0{,}01 = 1{,}6 \cdot 10^{-15}\ \text{ნ}$
+SEN: **Formula:** $F_L = |q|\, v B \sin\alpha$
+**Numbers:** $F_L = 1.6 \times 10^{-19} \cdot 10^6 \cdot 0.01 = 1.6 \times 10^{-15}\ \text{N}$
+AKA: $1{,}6 \cdot 10^{-15}\ \text{ნ}$
+AEN: $1.6 \times 10^{-15}\ \text{N}$
+
+--- easy lorentz
+KA: პროტონი $10^6\ \text{მ/წმ}$ სიჩქარით შეფრინდა $0{,}1\ \text{ტლ}$ ერთგვაროვან მაგნიტურ ველში, ხაზების მართობულად. იპოვეთ მისი წრიული ტრაექტორიის რადიუსი.
+EN: A proton flies at $10^6\ \text{m/s}$ into a uniform $0.1\ \text{T}$ field, perpendicular to the lines. Find the radius of its circular path.
+HKA: ლორენცის ძალა ცენტრისკენული ძალაა: $q v B = \dfrac{m v^2}{r}$.
+HEN: The Lorentz force is the centripetal force: $q v B = \dfrac{m v^2}{r}$.
+SKA: **ფორმულა:** $q v B = \dfrac{m v^2}{r} \Rightarrow r = \dfrac{m v}{q B}$
+**რიცხვები:** $r = \dfrac{1{,}67 \cdot 10^{-27} \cdot 10^6}{1{,}6 \cdot 10^{-19} \cdot 0{,}1} \approx 0{,}104\ \text{მ} \approx 10\ \text{სმ}$
+SEN: **Formula:** $q v B = \dfrac{m v^2}{r} \Rightarrow r = \dfrac{m v}{q B}$
+**Numbers:** $r = \dfrac{1.67 \times 10^{-27} \cdot 10^6}{1.6 \times 10^{-19} \cdot 0.1} \approx 0.104\ \text{m} \approx 10\ \text{cm}$
+AKA: $\approx 10\ \text{სმ}$
+AEN: $\approx 10\ \text{cm}$
+
+--- easy induction
+KA: $50\ \text{სმ}^2$ ფართობის კონტური $0{,}2\ \text{ტლ}$ ერთგვაროვან ველშია, ინდუქციის ხაზები კონტურის სიბრტყის მართობულია. იპოვეთ მაგნიტური ნაკადი.
+EN: A loop of area $50\ \text{cm}^2$ is in a uniform $0.2\ \text{T}$ field with the field lines perpendicular to its plane. Find the magnetic flux.
+HKA: $\Phi = B S \cos\alpha$, სადაც $\alpha$ — კუთხე ინდუქციასა და სიბრტყის ნორმალს შორის.
+HEN: $\Phi = B S \cos\alpha$, where $\alpha$ is the angle between $B$ and the normal to the plane.
+SKA: **ფორმულა:** $\Phi = B S \cos\alpha$
+**რიცხვები:** $S = 50 \cdot 10^{-4} = 5 \cdot 10^{-3}\ \text{მ}^2$, $\ \Phi = 0{,}2 \cdot 5 \cdot 10^{-3} \cdot 1 = 10^{-3}\ \text{ვბ}$
+SEN: **Formula:** $\Phi = B S \cos\alpha$
+**Numbers:** $S = 50 \times 10^{-4} = 5 \times 10^{-3}\ \text{m}^2$, $\ \Phi = 0.2 \cdot 5 \times 10^{-3} \cdot 1 = 10^{-3}\ \text{Wb}$
+AKA: $10^{-3}\ \text{ვბ}$
+AEN: $10^{-3}\ \text{Wb}$
+
+--- easy induction
+KA: $100$ ხვიისგან შემდგარ კოჭაში მაგნიტური ნაკადი $0{,}02\ \text{წმ}$-ში თანაბრად $0{,}006\ \text{ვბ}$-ით შეიცვალა. იპოვეთ ინდუქციის ემძალა.
+EN: The magnetic flux through a $100$-turn coil changes uniformly by $0.006\ \text{Wb}$ in $0.02\ \text{s}$. Find the induced EMF.
+HKA: ფარადეის კანონი: $\mathcal{E} = N\dfrac{\Delta \Phi}{\Delta t}$.
+HEN: Faraday's law: $\mathcal{E} = N\dfrac{\Delta \Phi}{\Delta t}$.
+SKA: **ფორმულა:** $|\mathcal{E}| = N\dfrac{\Delta \Phi}{\Delta t}$
+**რიცხვები:** $\mathcal{E} = 100 \cdot \dfrac{0{,}006}{0{,}02} = 30\ \text{ვ}$
+SEN: **Formula:** $|\mathcal{E}| = N\dfrac{\Delta \Phi}{\Delta t}$
+**Numbers:** $\mathcal{E} = 100 \cdot \dfrac{0.006}{0.02} = 30\ \text{V}$
+AKA: $30\ \text{ვ}$
+AEN: $30\ \text{V}$
+
+--- easy induction
+KA: $0{,}5\ \text{მ}$ სიგრძის ღერო $4\ \text{მ/წმ}$ სიჩქარით მოძრაობს $0{,}3\ \text{ტლ}$ ველში (ღერო, სიჩქარე და ინდუქცია ურთიერთმართობულია). იპოვეთ ღეროს ბოლოებზე ინდუქციის ემძალა.
+EN: A $0.5\ \text{m}$ rod moves at $4\ \text{m/s}$ in a $0.3\ \text{T}$ field (rod, velocity and field mutually perpendicular). Find the EMF induced between its ends.
+HKA: მოძრავ გამტარში $\mathcal{E} = B l v$.
+HEN: For a moving conductor $\mathcal{E} = B l v$.
+SKA: **ფორმულა:** $\mathcal{E} = B l v$
+**რიცხვები:** $\mathcal{E} = 0{,}3 \cdot 0{,}5 \cdot 4 = 0{,}6\ \text{ვ}$
+SEN: **Formula:** $\mathcal{E} = B l v$
+**Numbers:** $\mathcal{E} = 0.3 \cdot 0.5 \cdot 4 = 0.6\ \text{V}$
+AKA: $0{,}6\ \text{ვ}$
+AEN: $0.6\ \text{V}$
+
+--- easy selfind
+KA: $0{,}2\ \text{ჰნ}$ ინდუქციურობის კოჭაში $3\ \text{ა}$ დენი გადის. იპოვეთ კოჭის მაგნიტური ველის ენერგია.
+EN: A $0.2\ \text{H}$ coil carries $3\ \text{A}$. Find the energy of its magnetic field.
+HKA: $W = \dfrac{L I^2}{2}$.
+HEN: $W = \dfrac{L I^2}{2}$.
+SKA: **ფორმულა:** $W = \dfrac{L I^2}{2}$
+**რიცხვები:** $W = \dfrac{0{,}2 \cdot 3^2}{2} = 0{,}9\ \text{ჯ}$
+SEN: **Formula:** $W = \dfrac{L I^2}{2}$
+**Numbers:** $W = \dfrac{0.2 \cdot 3^2}{2} = 0.9\ \text{J}$
+AKA: $0{,}9\ \text{ჯ}$
+AEN: $0.9\ \text{J}$
+
+--- easy selfind
+KA: $0{,}4\ \text{ჰნ}$ ინდუქციურობის კოჭაში დენი $0{,}1\ \text{წმ}$-ში თანაბრად $5\ \text{ა}$-ით შეიცვალა. იპოვეთ თვითინდუქციის ემძალა.
+EN: The current in a $0.4\ \text{H}$ coil changes uniformly by $5\ \text{A}$ in $0.1\ \text{s}$. Find the self-induced EMF.
+HKA: $\mathcal{E}_{\text{თ}} = L\dfrac{\Delta I}{\Delta t}$.
+HEN: $\mathcal{E}_{\text{s}} = L\dfrac{\Delta I}{\Delta t}$.
+SKA: **ფორმულა:** $|\mathcal{E}_{\text{თ}}| = L\dfrac{\Delta I}{\Delta t}$
+**რიცხვები:** $\mathcal{E} = 0{,}4 \cdot \dfrac{5}{0{,}1} = 20\ \text{ვ}$
+SEN: **Formula:** $|\mathcal{E}_{\text{s}}| = L\dfrac{\Delta I}{\Delta t}$
+**Numbers:** $\mathcal{E} = 0.4 \cdot \dfrac{5}{0.1} = 20\ \text{V}$
+AKA: $20\ \text{ვ}$
+AEN: $20\ \text{V}$
+
+--- easy oscill
+KA: $0{,}4\ \text{კგ}$ ტვირთი ჩამოკიდებულია $40\ \text{ნ/მ}$ სიხისტის ზამბარაზე. იპოვეთ რხევის პერიოდი და სიხშირე.
+EN: A $0.4\ \text{kg}$ mass hangs on a spring of stiffness $40\ \text{N/m}$. Find the period and frequency of oscillation.
+HKA: ზამბარიანი ქანქარა: $T = 2\pi\sqrt{\dfrac{m}{k}}$.
+HEN: Spring pendulum: $T = 2\pi\sqrt{\dfrac{m}{k}}$.
+SKA: **ფორმულა:** $T = 2\pi\sqrt{\dfrac{m}{k}}$, $\ \nu = \dfrac{1}{T}$
+**რიცხვები:** $T = 2 \cdot 3{,}14 \cdot \sqrt{\dfrac{0{,}4}{40}} = 6{,}28 \cdot 0{,}1 \approx 0{,}63\ \text{წმ}$, $\ \nu \approx 1{,}6\ \text{ჰც}$
+SEN: **Formula:** $T = 2\pi\sqrt{\dfrac{m}{k}}$, $\ \nu = \dfrac{1}{T}$
+**Numbers:** $T = 2 \cdot 3.14 \cdot \sqrt{\dfrac{0.4}{40}} = 6.28 \cdot 0.1 \approx 0.63\ \text{s}$, $\ \nu \approx 1.6\ \text{Hz}$
+AKA: $\approx 0{,}63\ \text{წმ}$; $\approx 1{,}6\ \text{ჰც}$
+AEN: $\approx 0.63\ \text{s}$; $\approx 1.6\ \text{Hz}$
+
+--- easy oscill
+KA: იპოვეთ $2{,}5\ \text{მ}$ სიგრძის მათემატიკური ქანქარის რხევის პერიოდი.
+EN: Find the period of a simple pendulum $2.5\ \text{m}$ long.
+HKA: $T = 2\pi\sqrt{\dfrac{l}{g}}$ — მასაზე არ არის დამოკიდებული.
+HEN: $T = 2\pi\sqrt{\dfrac{l}{g}}$ — independent of the mass.
+SKA: **ფორმულა:** $T = 2\pi\sqrt{\dfrac{l}{g}}$
+**რიცხვები:** $T = 2 \cdot 3{,}14 \cdot \sqrt{\dfrac{2{,}5}{10}} = 6{,}28 \cdot 0{,}5 \approx 3{,}14\ \text{წმ}$
+SEN: **Formula:** $T = 2\pi\sqrt{\dfrac{l}{g}}$
+**Numbers:** $T = 2 \cdot 3.14 \cdot \sqrt{\dfrac{2.5}{10}} = 6.28 \cdot 0.5 \approx 3.14\ \text{s}$
+AKA: $\approx 3{,}14\ \text{წმ}$
+AEN: $\approx 3.14\ \text{s}$
+
+--- easy waves
+KA: ბგერის სიჩქარე ჰაერში $340\ \text{მ/წმ}$-ია. იპოვეთ $680\ \text{ჰც}$ სიხშირის ბგერის ტალღის სიგრძე.
+EN: The speed of sound in air is $340\ \text{m/s}$. Find the wavelength of a $680\ \text{Hz}$ sound.
+HKA: $v = \lambda \nu$.
+HEN: $v = \lambda \nu$.
+SKA: **ფორმულა:** $v = \lambda \nu \Rightarrow \lambda = \dfrac{v}{\nu}$
+**რიცხვები:** $\lambda = \dfrac{340}{680} = 0{,}5\ \text{მ}$
+SEN: **Formula:** $v = \lambda \nu \Rightarrow \lambda = \dfrac{v}{\nu}$
+**Numbers:** $\lambda = \dfrac{340}{680} = 0.5\ \text{m}$
+AKA: $0{,}5\ \text{მ}$
+AEN: $0.5\ \text{m}$
+
+--- easy waves
+KA: ტურისტმა იყვირა და ექო $4\ \text{წმ}$-ის შემდეგ გაიგონა. რა მანძილზეა კლდე? ($v = 340\ \text{მ/წმ}$)
+EN: A hiker shouts and hears the echo $4\ \text{s}$ later. How far away is the cliff? ($v = 340\ \text{m/s}$)
+HKA: ბგერა კლდემდე და უკან ბრუნდება — ორმაგ მანძილს გადის.
+HEN: The sound goes to the cliff and back — twice the distance.
+SKA: **ფორმულა:** $2L = v t \Rightarrow L = \dfrac{v t}{2}$
+**რიცხვები:** $L = \dfrac{340 \cdot 4}{2} = 680\ \text{მ}$
+SEN: **Formula:** $2L = v t \Rightarrow L = \dfrac{v t}{2}$
+**Numbers:** $L = \dfrac{340 \cdot 4}{2} = 680\ \text{m}$
+AKA: $680\ \text{მ}$
+AEN: $680\ \text{m}$
+
+--- easy lcac
+KA: რხევით კონტურში $L = 1\ \text{მჰნ}$ და $C = 10\ \text{მკფ}$. იპოვეთ ელექტრომაგნიტური რხევების პერიოდი და სიხშირე.
+EN: An LC circuit has $L = 1\ \text{mH}$ and $C = 10\ \mu\text{F}$. Find the period and frequency of its oscillations.
+HKA: ტომსონის ფორმულა: $T = 2\pi\sqrt{LC}$.
+HEN: Thomson's formula: $T = 2\pi\sqrt{LC}$.
+SKA: **ფორმულა:** $T = 2\pi\sqrt{LC}$, $\ \nu = \dfrac{1}{T}$
+**რიცხვები:** $LC = 10^{-3} \cdot 10^{-5} = 10^{-8}$, $\ T = 6{,}28 \cdot 10^{-4}\ \text{წმ}$
+$\nu = \dfrac{1}{6{,}28 \cdot 10^{-4}} \approx 1600\ \text{ჰც}$
+SEN: **Formula:** $T = 2\pi\sqrt{LC}$, $\ \nu = \dfrac{1}{T}$
+**Numbers:** $LC = 10^{-3} \cdot 10^{-5} = 10^{-8}$, $\ T = 6.28 \times 10^{-4}\ \text{s}$
+$\nu = \dfrac{1}{6.28 \times 10^{-4}} \approx 1600\ \text{Hz}$
+AKA: $\approx 6{,}3 \cdot 10^{-4}\ \text{წმ}$; $\approx 1{,}6\ \text{კჰც}$
+AEN: $\approx 6.3 \times 10^{-4}\ \text{s}$; $\approx 1.6\ \text{kHz}$
+
+--- easy lcac
+KA: ქსელის ცვლადი ძაბვის ამპლიტუდური მნიშვნელობაა $311\ \text{ვ}$. რას უდრის მისი ეფექტური (მოქმედი) მნიშვნელობა?
+EN: The peak value of the mains AC voltage is $311\ \text{V}$. What is its effective (RMS) value?
+HKA: სინუსოიდური დენისთვის $U_{\text{ეფ}} = \dfrac{U_{\max}}{\sqrt{2}}$.
+HEN: For a sinusoidal current $U_{\text{rms}} = \dfrac{U_{\max}}{\sqrt{2}}$.
+SKA: **ფორმულა:** $U_{\text{ეფ}} = \dfrac{U_{\max}}{\sqrt{2}}$
+**რიცხვები:** $U_{\text{ეფ}} = \dfrac{311}{1{,}414} \approx 220\ \text{ვ}$
+SEN: **Formula:** $U_{\text{rms}} = \dfrac{U_{\max}}{\sqrt{2}}$
+**Numbers:** $U_{\text{rms}} = \dfrac{311}{1.414} \approx 220\ \text{V}$
+AKA: $220\ \text{ვ}$
+AEN: $220\ \text{V}$
+
+--- easy lcac
+KA: ტრანსფორმატორის პირველად გრაგნილში $1000$ ხვიაა, მეორეულში — $50$. პირველადზე $220\ \text{ვ}$-ია. იპოვეთ მეორეული ძაბვა. ეს დამადაბლებელი ტრანსფორმატორია თუ ამამაღლებელი?
+EN: A transformer has $1000$ turns on the primary and $50$ on the secondary. The primary voltage is $220\ \text{V}$. Find the secondary voltage. Is it step-down or step-up?
+HKA: $\dfrac{U_1}{U_2} = \dfrac{N_1}{N_2}$.
+HEN: $\dfrac{U_1}{U_2} = \dfrac{N_1}{N_2}$.
+SKA: **ფორმულა:** $\dfrac{U_1}{U_2} = \dfrac{N_1}{N_2} \Rightarrow U_2 = U_1 \dfrac{N_2}{N_1}$
+**რიცხვები:** $U_2 = 220 \cdot \dfrac{50}{1000} = 11\ \text{ვ}$ — დამადაბლებელი ($k = 20$).
+SEN: **Formula:** $\dfrac{U_1}{U_2} = \dfrac{N_1}{N_2} \Rightarrow U_2 = U_1 \dfrac{N_2}{N_1}$
+**Numbers:** $U_2 = 220 \cdot \dfrac{50}{1000} = 11\ \text{V}$ — step-down ($k = 20$).
+AKA: $11\ \text{ვ}$; დამადაბლებელი
+AEN: $11\ \text{V}$; step-down
+
+--- easy emwaves
+KA: FM რადიოსადგური $100\ \text{მჰც}$ სიხშირეზე მაუწყებლობს. იპოვეთ ტალღის სიგრძე.
+EN: An FM radio station broadcasts at $100\ \text{MHz}$. Find the wavelength.
+HKA: ელექტრომაგნიტური ტალღები სინათლის სიჩქარით ვრცელდება: $c = \lambda \nu$.
+HEN: Electromagnetic waves travel at the speed of light: $c = \lambda \nu$.
+SKA: **ფორმულა:** $\lambda = \dfrac{c}{\nu}$
+**რიცხვები:** $\lambda = \dfrac{3 \cdot 10^8}{10^8} = 3\ \text{მ}$
+SEN: **Formula:** $\lambda = \dfrac{c}{\nu}$
+**Numbers:** $\lambda = \dfrac{3 \times 10^8}{10^8} = 3\ \text{m}$
+AKA: $3\ \text{მ}$
+AEN: $3\ \text{m}$
+
+--- easy optics
+KA: სხივი ბრტყელ სარკეს $35^\circ$-იანი დაცემის კუთხით ეცემა. რას უდრის კუთხე დაცემულ და არეკლილ სხივებს შორის?
+EN: A ray hits a plane mirror with an angle of incidence of $35^\circ$. What is the angle between the incident and reflected rays?
+HKA: არეკვლის კანონი: არეკვლის კუთხე დაცემის კუთხის ტოლია (ორივე ნორმალიდან იზომება).
+HEN: Law of reflection: angle of reflection = angle of incidence (both measured from the normal).
+SKA: **ფორმულა:** $\beta = \alpha$, $\ \varphi = \alpha + \beta = 2\alpha$
+**რიცხვები:** $\varphi = 2 \cdot 35^\circ = 70^\circ$
+SEN: **Formula:** $\beta = \alpha$, $\ \varphi = \alpha + \beta = 2\alpha$
+**Numbers:** $\varphi = 2 \cdot 35^\circ = 70^\circ$
+AKA: $70^\circ$
+AEN: $70^\circ$
+
+--- easy optics
+KA: შუშის გარდატეხის მაჩვენებელია $1{,}5$. რას უდრის სინათლის სიჩქარე შუშაში?
+EN: Glass has a refractive index of $1.5$. What is the speed of light in glass?
+HKA: $n = \dfrac{c}{v}$.
+HEN: $n = \dfrac{c}{v}$.
+SKA: **ფორმულა:** $n = \dfrac{c}{v} \Rightarrow v = \dfrac{c}{n}$
+**რიცხვები:** $v = \dfrac{3 \cdot 10^8}{1{,}5} = 2 \cdot 10^8\ \text{მ/წმ}$
+SEN: **Formula:** $n = \dfrac{c}{v} \Rightarrow v = \dfrac{c}{n}$
+**Numbers:** $v = \dfrac{3 \times 10^8}{1.5} = 2 \times 10^8\ \text{m/s}$
+AKA: $2 \cdot 10^8\ \text{მ/წმ}$
+AEN: $2 \times 10^8\ \text{m/s}$
+
+--- easy lenses
+KA: შემკრები ლინზის ფოკუსური მანძილია $20\ \text{სმ}$. საგანი ლინზიდან $30\ \text{სმ}$-ზეა. იპოვეთ გამოსახულების მანძილი და გადიდება. როგორია გამოსახულება?
+EN: A converging lens has focal length $20\ \text{cm}$. An object is $30\ \text{cm}$ from it. Find the image distance and magnification. What kind of image is it?
+HKA: ლინზის ფორმულა: $\dfrac{1}{F} = \dfrac{1}{d} + \dfrac{1}{f}$; გადიდება $\Gamma = \dfrac{f}{d}$.
+HEN: Lens formula: $\dfrac{1}{F} = \dfrac{1}{d} + \dfrac{1}{f}$; magnification $\Gamma = \dfrac{f}{d}$.
+SKA: **ფორმულა:** $\dfrac{1}{f} = \dfrac{1}{F} - \dfrac{1}{d} \Rightarrow f = \dfrac{F d}{d - F}$, $\ \Gamma = \dfrac{f}{d}$
+**რიცხვები:** $f = \dfrac{20 \cdot 30}{30 - 20} = 60\ \text{სმ}$, $\ \Gamma = \dfrac{60}{30} = 2$
+გამოსახულება ნამდვილია, შებრუნებული, $2$-ჯერ გადიდებული.
+SEN: **Formula:** $\dfrac{1}{f} = \dfrac{1}{F} - \dfrac{1}{d} \Rightarrow f = \dfrac{F d}{d - F}$, $\ \Gamma = \dfrac{f}{d}$
+**Numbers:** $f = \dfrac{20 \cdot 30}{30 - 20} = 60\ \text{cm}$, $\ \Gamma = \dfrac{60}{30} = 2$
+The image is real, inverted and magnified $2$ times.
+AKA: $60\ \text{სმ}$; $2$; ნამდვილი, შებრუნებული
+AEN: $60\ \text{cm}$; $2$; real, inverted
+
+--- easy lenses
+KA: რას უდრის $25\ \text{სმ}$ ფოკუსური მანძილის შემკრები ლინზის ოპტიკური ძალა?
+EN: What is the optical power of a converging lens with focal length $25\ \text{cm}$?
+HKA: $D = \dfrac{1}{F}$, $F$ — მეტრებში; ერთეული — დიოპტრია.
+HEN: $D = \dfrac{1}{F}$ with $F$ in metres; unit — dioptre.
+SKA: **ფორმულა:** $D = \dfrac{1}{F}$
+**რიცხვები:** $D = \dfrac{1}{0{,}25} = 4\ \text{დპტრ}$
+SEN: **Formula:** $D = \dfrac{1}{F}$
+**Numbers:** $D = \dfrac{1}{0.25} = 4\ \text{D}$
+AKA: $4\ \text{დპტრ}$
+AEN: $4$ dioptres
+
+--- easy light
+KA: მზიდან დედამიწამდე მანძილი $1{,}5 \cdot 10^{11}\ \text{მ}$-ია. რა დროში აღწევს მზის სინათლე დედამიწას?
+EN: The Sun is $1.5 \times 10^{11}\ \text{m}$ from Earth. How long does sunlight take to reach us?
+HKA: $t = \dfrac{L}{c}$.
+HEN: $t = \dfrac{L}{c}$.
+SKA: **ფორმულა:** $t = \dfrac{L}{c}$
+**რიცხვები:** $t = \dfrac{1{,}5 \cdot 10^{11}}{3 \cdot 10^8} = 500\ \text{წმ} \approx 8{,}3\ \text{წთ}$
+SEN: **Formula:** $t = \dfrac{L}{c}$
+**Numbers:** $t = \dfrac{1.5 \times 10^{11}}{3 \times 10^8} = 500\ \text{s} \approx 8.3\ \text{min}$
+AKA: $\approx 8{,}3\ \text{წთ}$
+AEN: $\approx 8.3\ \text{min}$
+
+// ===================================================================== MEDIUM
+
+--- medium magfield
+KA: რატომ ძლიერდება ელექტრომაგნიტის ველი რკინის გულარის ჩადებისას? რით განსხვავდება ფერომაგნეტიკი, პარამაგნეტიკი და დიამაგნეტიკი? რომელ მიმართულებას აჩვენებს კომპასის ჩრდილოეთ პოლუსი და რატომ?
+EN: Why does an electromagnet get stronger when an iron core is inserted? How do ferromagnets, paramagnets and diamagnets differ? Which way does a compass's north pole point, and why?
+HKA: ფერომაგნეტიკში „დომენები“ გარე ველის გასწვრივ ლაგდება.
+HEN: In a ferromagnet the "domains" line up with the external field.
+SKA: რკინა ფერომაგნეტიკია: მასში არის დამაგნიტებული უბნები (დომენები), რომლებიც გარე ველში ერთ მიმართულებით ლაგდება და ველს ასობით-ათასობითჯერ აძლიერებს ($\mu \gg 1$).
+პარამაგნეტიკი ($\mu$ ოდნავ $> 1$) ველს სუსტად აძლიერებს და მაგნიტისკენ იზიდება; დიამაგნეტიკი ($\mu$ ოდნავ $< 1$) ველს სუსტად ასუსტებს და მაგნიტისგან იზიდება.
+დედამიწა დიდი მაგნიტია, რომლის **სამხრეთი** მაგნიტური პოლუსი გეოგრაფიულ ჩრდილოეთთან ახლოსაა — ამიტომ კომპასის ჩრდილოეთი პოლუსი ჩრდილოეთისკენ მიუთითებს.
+SEN: Iron is a ferromagnet: it contains magnetised regions (domains) that line up in an external field and strengthen it hundreds or thousands of times ($\mu \gg 1$).
+A paramagnet ($\mu$ slightly $> 1$) strengthens the field weakly and is pulled towards a magnet; a diamagnet ($\mu$ slightly $< 1$) weakens it slightly and is pushed away.
+Earth is a big magnet whose magnetic **south** pole is near the geographic North Pole — so a compass's north pole points north.
+AKA: დომენები ლაგდება; ფერო ძლიერად, პარა სუსტად აძლიერებს, დია ასუსტებს
+AEN: domains line up; ferro strongly, para weakly strengthen, dia weakens
+
+--- medium ampere
+KA: $20\ \text{გ}$ მასისა და $0{,}2\ \text{მ}$ სიგრძის ჰორიზონტალური ღერო ჩამოკიდებულია მსუბუქ სადენებზე $0{,}5\ \text{ტლ}$ ჰორიზონტალურ ველში (ველი ღეროს მართობულია). რა დენი უნდა გავატაროთ ღეროში, რომ სადენები არ იყოს დაჭიმული?
+EN: A horizontal rod of mass $20\ \text{g}$ and length $0.2\ \text{m}$ hangs on light leads in a horizontal $0.5\ \text{T}$ field (perpendicular to the rod). What current must flow so that the leads go slack?
+HKA: ამპერის ძალა ზემოთ უნდა იყოს მიმართული და სიმძიმის ძალას აწონასწორებდეს.
+HEN: The Ampère force must point up and balance gravity.
+SKA: **ფორმულა:** $B I l = m g \Rightarrow I = \dfrac{m g}{B l}$
+**რიცხვები:** $I = \dfrac{0{,}02 \cdot 10}{0{,}5 \cdot 0{,}2} = 2\ \text{ა}$
+SEN: **Formula:** $B I l = m g \Rightarrow I = \dfrac{m g}{B l}$
+**Numbers:** $I = \dfrac{0.02 \cdot 10}{0.5 \cdot 0.2} = 2\ \text{A}$
+AKA: $2\ \text{ა}$
+AEN: $2\ \text{A}$
+
+--- medium ampere
+KA: გამტარში დენი მიედინება მარჯვნივ, მაგნიტური ინდუქცია მიმართულია ფურცლის სიბრტყიდან ჩვენგან (ფურცელში). საით არის მიმართული ამპერის ძალა?
+EN: Current in a wire flows to the right and the magnetic field points into the page. Which way does the Ampère force point?
+HKA: მარცხენა ხელის წესი: ინდუქციის ხაზები შედის ხელისგულში, ოთხი თითი — დენის მიმართულებით, გაშლილი ცერა თითი აჩვენებს ძალას.
+HEN: Left-hand rule: field lines go into the palm, four fingers along the current, the outstretched thumb shows the force.
+SKA: მარცხენა ხელის წესით: ხელისგული ჩვენკენ (ხაზები ფურცელში შედის), თითები მარჯვნივ — ცერა თითი **ზემოთ** მიუთითებს.
+შემოწმება ვექტორული ნამრავლით: $\vec{F} = I\,\vec{l} \times \vec{B}$, $\ \hat{x} \times (-\hat{z}) = \hat{y}$ — ზემოთ.
+SEN: By the left-hand rule: palm facing us (lines go into the page), fingers to the right — the thumb points **up**.
+Check with the cross product: $\vec{F} = I\,\vec{l} \times \vec{B}$, $\ \hat{x} \times (-\hat{z}) = \hat{y}$ — up.
+AKA: ზემოთ (ფურცლის სიბრტყეში)
+AEN: up (in the plane of the page)
+
+--- medium lorentz
+KA: პროტონი უძრავი მდგომარეობიდან $1\ \text{კვ}$ ძაბვით აჩქარდა და შემდეგ შეფრინდა $0{,}1\ \text{ტლ}$ ველში, ხაზების მართობულად. იპოვეთ მისი სიჩქარე და ტრაექტორიის რადიუსი.
+EN: A proton is accelerated from rest through $1\ \text{kV}$ and then enters a $0.1\ \text{T}$ field perpendicular to the lines. Find its speed and the radius of its path.
+HKA: ჯერ $e U = \dfrac{m v^2}{2}$, შემდეგ $r = \dfrac{m v}{e B}$.
+HEN: First $e U = \dfrac{m v^2}{2}$, then $r = \dfrac{m v}{e B}$.
+SKA: **ფორმულა:** $v = \sqrt{\dfrac{2 e U}{m}}$, $\ r = \dfrac{m v}{e B}$
+**რიცხვები:** $v = \sqrt{\dfrac{2 \cdot 1{,}6 \cdot 10^{-19} \cdot 1000}{1{,}67 \cdot 10^{-27}}} \approx 4{,}4 \cdot 10^5\ \text{მ/წმ}$
+$r = \dfrac{1{,}67 \cdot 10^{-27} \cdot 4{,}4 \cdot 10^5}{1{,}6 \cdot 10^{-19} \cdot 0{,}1} \approx 0{,}046\ \text{მ} = 4{,}6\ \text{სმ}$
+SEN: **Formula:** $v = \sqrt{\dfrac{2 e U}{m}}$, $\ r = \dfrac{m v}{e B}$
+**Numbers:** $v = \sqrt{\dfrac{2 \cdot 1.6 \times 10^{-19} \cdot 1000}{1.67 \times 10^{-27}}} \approx 4.4 \times 10^5\ \text{m/s}$
+$r = \dfrac{1.67 \times 10^{-27} \cdot 4.4 \times 10^5}{1.6 \times 10^{-19} \cdot 0.1} \approx 0.046\ \text{m} = 4.6\ \text{cm}$
+AKA: $\approx 4{,}4 \cdot 10^5\ \text{მ/წმ}$; $\approx 4{,}6\ \text{სმ}$
+AEN: $\approx 4.4 \times 10^5\ \text{m/s}$; $\approx 4.6\ \text{cm}$
+
+--- medium lorentz
+KA: დაამტკიცეთ, რომ მაგნიტურ ველში დამუხტული ნაწილაკის ბრუნვის პერიოდი არ არის დამოკიდებული მის სიჩქარეზე. იპოვეთ ელექტრონის ბრუნვის პერიოდი $10^{-3}\ \text{ტლ}$ ველში.
+EN: Prove that the period of a charged particle circling in a magnetic field does not depend on its speed. Find the period of an electron in a $10^{-3}\ \text{T}$ field.
+HKA: $T = \dfrac{2\pi r}{v}$, ხოლო $r = \dfrac{m v}{q B}$.
+HEN: $T = \dfrac{2\pi r}{v}$ and $r = \dfrac{m v}{q B}$.
+SKA: **ფორმულა:** $T = \dfrac{2\pi r}{v} = \dfrac{2\pi}{v} \cdot \dfrac{m v}{q B} = \dfrac{2\pi m}{q B}$ — $v$ შეიკვეცა ∎ (ამაზეა დაფუძნებული ციკლოტრონი)
+**რიცხვები:** $T = \dfrac{2 \cdot 3{,}14 \cdot 9{,}1 \cdot 10^{-31}}{1{,}6 \cdot 10^{-19} \cdot 10^{-3}} \approx 3{,}6 \cdot 10^{-8}\ \text{წმ}$
+SEN: **Formula:** $T = \dfrac{2\pi r}{v} = \dfrac{2\pi}{v} \cdot \dfrac{m v}{q B} = \dfrac{2\pi m}{q B}$ — $v$ cancels ∎ (the cyclotron is based on this)
+**Numbers:** $T = \dfrac{2 \cdot 3.14 \cdot 9.1 \times 10^{-31}}{1.6 \times 10^{-19} \cdot 10^{-3}} \approx 3.6 \times 10^{-8}\ \text{s}$
+AKA: $T = \dfrac{2\pi m}{qB} \approx 3{,}6 \cdot 10^{-8}\ \text{წმ}$
+AEN: $T = \dfrac{2\pi m}{qB} \approx 3.6 \times 10^{-8}\ \text{s}$
+
+--- medium lorentz
+KA: ურთიერთმართობულ ელექტრულ ($E = 2 \cdot 10^4\ \text{ვ/მ}$) და მაგნიტურ ($B = 0{,}1\ \text{ტლ}$) ველებში ნაწილაკები სწორხაზოვნად მოძრაობს (სიჩქარის სელექტორი). რა სიჩქარე აქვს მათ? დამოკიდებულია თუ არა ეს მუხტზე და მასაზე?
+EN: Particles move in a straight line through crossed electric ($E = 2 \times 10^4\ \text{V/m}$) and magnetic ($B = 0.1\ \text{T}$) fields (a velocity selector). What is their speed? Does it depend on charge or mass?
+HKA: სწორხაზოვანი მოძრაობისას ელექტრული და ლორენცის ძალები აწონასწორებს ერთმანეთს.
+HEN: For straight-line motion the electric and magnetic forces balance.
+SKA: **ფორმულა:** $q E = q v B \Rightarrow v = \dfrac{E}{B}$ — მუხტი შეიკვეცა, მასა არ მონაწილეობს.
+**რიცხვები:** $v = \dfrac{2 \cdot 10^4}{0{,}1} = 2 \cdot 10^5\ \text{მ/წმ}$
+SEN: **Formula:** $q E = q v B \Rightarrow v = \dfrac{E}{B}$ — the charge cancels, the mass plays no part.
+**Numbers:** $v = \dfrac{2 \times 10^4}{0.1} = 2 \times 10^5\ \text{m/s}$
+AKA: $2 \cdot 10^5\ \text{მ/წმ}$; არ არის დამოკიდებული
+AEN: $2 \times 10^5\ \text{m/s}$; no
+
+--- medium induction
+KA: სპილენძის რგოლს მაგნიტის ჩრდილოეთ პოლუსს უახლოებენ. საით იქნება მიმართული რგოლში ინდუქციური დენი და როგორ იმოქმედებს რგოლი მაგნიტზე?
+EN: The north pole of a magnet is brought towards a copper ring. Which way does the induced current flow, and how does the ring act on the magnet?
+HKA: ლენცის წესი: ინდუქციური დენი ეწინააღმდეგება მისი გამომწვევი ნაკადის ცვლილებას.
+HEN: Lenz's rule: the induced current opposes the change in flux that causes it.
+SKA: მაგნიტის მიახლოებისას რგოლში ნაკადი იზრდება.
+ლენცის წესით, ინდუქციური დენი ისეთ ველს ქმნის, რომელიც ამ ზრდას ეწინააღმდეგება — რგოლის მაგნიტის მხარეს **ჩრდილოეთი** პოლუსი ჩნდება.
+მაგნიტიდან ყურებისას დენი საათის ისრის **საწინააღმდეგოდ** მიედინება; რგოლი მაგნიტს **განიზიდავს** (ენერგიის შენახვა: მუშაობა უნდა შევასრულოთ).
+SEN: As the magnet approaches, the flux through the ring increases.
+By Lenz's rule the induced current makes a field opposing this increase — a **north** pole appears on the ring's side facing the magnet.
+Seen from the magnet, the current flows **anticlockwise**; the ring **repels** the magnet (energy conservation: we must do work).
+AKA: საათის ისრის საწინააღმდეგოდ (მაგნიტიდან); განიზიდავს
+AEN: anticlockwise (seen from the magnet); it repels
+
+--- medium induction
+KA: $200$ ხვიის მქონე კოჭის ფართობია $20\ \text{სმ}^2$, მისი წინაღობა — $4\ \text{ომი}$. კოჭის ღერძის გასწვრივ ინდუქცია $0{,}1\ \text{წმ}$-ში თანაბრად იზრდება $0$-დან $0{,}5\ \text{ტლ}$-მდე. იპოვეთ ინდუქციის ემძალა და დენი.
+EN: A $200$-turn coil of area $20\ \text{cm}^2$ has resistance $4\ \Omega$. The field along its axis rises uniformly from $0$ to $0.5\ \text{T}$ in $0.1\ \text{s}$. Find the induced EMF and current.
+HKA: $\Delta \Phi = \Delta B \cdot S$.
+HEN: $\Delta \Phi = \Delta B \cdot S$.
+SKA: **ფორმულა:** $\mathcal{E} = N\dfrac{\Delta B\, S}{\Delta t}$, $\ I = \dfrac{\mathcal{E}}{R}$
+**რიცხვები:** $\mathcal{E} = 200 \cdot \dfrac{0{,}5 \cdot 2 \cdot 10^{-3}}{0{,}1} = 2\ \text{ვ}$, $\ I = \dfrac{2}{4} = 0{,}5\ \text{ა}$
+SEN: **Formula:** $\mathcal{E} = N\dfrac{\Delta B\, S}{\Delta t}$, $\ I = \dfrac{\mathcal{E}}{R}$
+**Numbers:** $\mathcal{E} = 200 \cdot \dfrac{0.5 \cdot 2 \times 10^{-3}}{0.1} = 2\ \text{V}$, $\ I = \dfrac{2}{4} = 0.5\ \text{A}$
+AKA: $2\ \text{ვ}$; $0{,}5\ \text{ა}$
+AEN: $2\ \text{V}$; $0.5\ \text{A}$
+
+--- medium induction
+KA: ჰორიზონტალურ რელსებზე, რომლებიც $0{,}2\ \text{ომ}$ რეზისტორით არის შეერთებული, $0{,}4\ \text{მ}$ სიგრძის ღერო $5\ \text{მ/წმ}$ სიჩქარით მოძრაობს. ვერტიკალური ველია $0{,}5\ \text{ტლ}$. იპოვეთ ემძალა, დენი და ძალა, რომელიც ღეროს თანაბრად მოძრაობისთვის სჭირდება (ხახუნი არ არის).
+EN: A $0.4\ \text{m}$ rod slides at $5\ \text{m/s}$ on horizontal rails joined by a $0.2\ \Omega$ resistor, in a vertical $0.5\ \text{T}$ field. Find the EMF, the current and the force needed to keep the rod moving uniformly (no friction).
+HKA: დენიან ღეროზე მოქმედი ამპერის ძალა მოძრაობას ამუხრუჭებს — ის გარე ძალამ უნდა დააბალანსოს.
+HEN: The Ampère force on the current-carrying rod brakes it — the applied force must balance it.
+SKA: **ფორმულა:** $\mathcal{E} = B l v$, $\ I = \dfrac{\mathcal{E}}{R}$, $\ F = B I l$
+**რიცხვები:** $\mathcal{E} = 0{,}5 \cdot 0{,}4 \cdot 5 = 1\ \text{ვ}$, $\ I = \dfrac{1}{0{,}2} = 5\ \text{ა}$
+$F = 0{,}5 \cdot 5 \cdot 0{,}4 = 1\ \text{ნ}$ (შემოწმება: $F v = 5\ \text{ვტ} = I^2 R$ ✓)
+SEN: **Formula:** $\mathcal{E} = B l v$, $\ I = \dfrac{\mathcal{E}}{R}$, $\ F = B I l$
+**Numbers:** $\mathcal{E} = 0.5 \cdot 0.4 \cdot 5 = 1\ \text{V}$, $\ I = \dfrac{1}{0.2} = 5\ \text{A}$
+$F = 0.5 \cdot 5 \cdot 0.4 = 1\ \text{N}$ (check: $F v = 5\ \text{W} = I^2 R$ ✓)
+AKA: $1\ \text{ვ}$; $5\ \text{ა}$; $1\ \text{ნ}$
+AEN: $1\ \text{V}$; $5\ \text{A}$; $1\ \text{N}$
+
+--- medium induction
+KA: გენერატორის ჩარჩოს აქვს $100$ ხვია, თითოეულის ფართობია $0{,}01\ \text{მ}^2$. ის ბრუნავს $0{,}2\ \text{ტლ}$ ველში $50$ ბრ/წმ სიხშირით ($\omega = 100\pi\ \text{რად/წმ}$). იპოვეთ ემძალის მაქსიმალური მნიშვნელობა.
+EN: A generator coil has $100$ turns of area $0.01\ \text{m}^2$ each and rotates in a $0.2\ \text{T}$ field at $50$ rev/s ($\omega = 100\pi\ \text{rad/s}$). Find the peak EMF.
+HKA: $\Phi = B S \cos\omega t$, $\ \mathcal{E} = N B S \omega \sin\omega t$.
+HEN: $\Phi = B S \cos\omega t$, $\ \mathcal{E} = N B S \omega \sin\omega t$.
+SKA: **ფორმულა:** $\mathcal{E}_{\max} = N B S \omega$
+**რიცხვები:** $\mathcal{E}_{\max} = 100 \cdot 0{,}2 \cdot 0{,}01 \cdot 314 \approx 63\ \text{ვ}$
+SEN: **Formula:** $\mathcal{E}_{\max} = N B S \omega$
+**Numbers:** $\mathcal{E}_{\max} = 100 \cdot 0.2 \cdot 0.01 \cdot 314 \approx 63\ \text{V}$
+AKA: $\approx 63\ \text{ვ}$
+AEN: $\approx 63\ \text{V}$
+
+--- medium selfind
+KA: $500$ ხვიის მქონე კოჭაში $2\ \text{ა}$ დენი ყოველ ხვიაში $0{,}01\ \text{ვბ}$ ნაკადს ქმნის. იპოვეთ კოჭის ინდუქციურობა და ველის ენერგია.
+EN: In a $500$-turn coil a current of $2\ \text{A}$ produces a flux of $0.01\ \text{Wb}$ through each turn. Find the coil's inductance and field energy.
+HKA: სრული ნაკადი (ნაკადშეჭიდულობა) $N\Phi = L I$.
+HEN: Total flux linkage $N\Phi = L I$.
+SKA: **ფორმულა:** $L = \dfrac{N \Phi}{I}$, $\ W = \dfrac{L I^2}{2}$
+**რიცხვები:** $L = \dfrac{500 \cdot 0{,}01}{2} = 2{,}5\ \text{ჰნ}$, $\ W = \dfrac{2{,}5 \cdot 4}{2} = 5\ \text{ჯ}$
+SEN: **Formula:** $L = \dfrac{N \Phi}{I}$, $\ W = \dfrac{L I^2}{2}$
+**Numbers:** $L = \dfrac{500 \cdot 0.01}{2} = 2.5\ \text{H}$, $\ W = \dfrac{2.5 \cdot 4}{2} = 5\ \text{J}$
+AKA: $2{,}5\ \text{ჰნ}$; $5\ \text{ჯ}$
+AEN: $2.5\ \text{H}$; $5\ \text{J}$
+
+--- medium oscill
+KA: სხეულის კოორდინატი იცვლება კანონით $x = 0{,}05\cos(4\pi t)$ (ერთეულები SI-ში). იპოვეთ ამპლიტუდა, პერიოდი, სიხშირე და მაქსიმალური სიჩქარე.
+EN: A body's position varies as $x = 0.05\cos(4\pi t)$ (SI units). Find the amplitude, period, frequency and maximum speed.
+HKA: $x = A\cos\omega t$, $\ T = \dfrac{2\pi}{\omega}$, $\ v_{\max} = A\omega$.
+HEN: $x = A\cos\omega t$, $\ T = \dfrac{2\pi}{\omega}$, $\ v_{\max} = A\omega$.
+SKA: **ფორმულა:** $T = \dfrac{2\pi}{\omega}$, $\ \nu = \dfrac{1}{T}$, $\ v_{\max} = A\omega$
+**რიცხვები:** $A = 0{,}05\ \text{მ} = 5\ \text{სმ}$, $\ \omega = 4\pi$, $\ T = \dfrac{2\pi}{4\pi} = 0{,}5\ \text{წმ}$, $\ \nu = 2\ \text{ჰც}$
+$v_{\max} = 0{,}05 \cdot 4 \cdot 3{,}14 \approx 0{,}63\ \text{მ/წმ}$
+SEN: **Formula:** $T = \dfrac{2\pi}{\omega}$, $\ \nu = \dfrac{1}{T}$, $\ v_{\max} = A\omega$
+**Numbers:** $A = 0.05\ \text{m} = 5\ \text{cm}$, $\ \omega = 4\pi$, $\ T = \dfrac{2\pi}{4\pi} = 0.5\ \text{s}$, $\ \nu = 2\ \text{Hz}$
+$v_{\max} = 0.05 \cdot 4 \cdot 3.14 \approx 0.63\ \text{m/s}$
+AKA: $5\ \text{სმ}$; $0{,}5\ \text{წმ}$; $2\ \text{ჰც}$; $\approx 0{,}63\ \text{მ/წმ}$
+AEN: $5\ \text{cm}$; $0.5\ \text{s}$; $2\ \text{Hz}$; $\approx 0.63\ \text{m/s}$
+
+--- medium oscill
+KA: $1\ \text{კგ}$ ტვირთი $100\ \text{ნ/მ}$ ზამბარაზე $0{,}1\ \text{მ}$ ამპლიტუდით ირხევა. იპოვეთ რხევის სრული ენერგია და მაქსიმალური სიჩქარე.
+EN: A $1\ \text{kg}$ mass on a $100\ \text{N/m}$ spring oscillates with amplitude $0.1\ \text{m}$. Find the total energy and the maximum speed.
+HKA: უკიდურეს წერტილში მთელი ენერგია ზამბარაშია, წონასწორობის წერტილში — კინეტიკურია.
+HEN: At the extremes all the energy is in the spring; at equilibrium it is all kinetic.
+SKA: **ფორმულა:** $E = \dfrac{k A^2}{2} = \dfrac{m v_{\max}^2}{2} \Rightarrow v_{\max} = A\sqrt{\dfrac{k}{m}}$
+**რიცხვები:** $E = \dfrac{100 \cdot 0{,}01}{2} = 0{,}5\ \text{ჯ}$, $\ v_{\max} = 0{,}1 \cdot \sqrt{100} = 1\ \text{მ/წმ}$
+SEN: **Formula:** $E = \dfrac{k A^2}{2} = \dfrac{m v_{\max}^2}{2} \Rightarrow v_{\max} = A\sqrt{\dfrac{k}{m}}$
+**Numbers:** $E = \dfrac{100 \cdot 0.01}{2} = 0.5\ \text{J}$, $\ v_{\max} = 0.1 \cdot \sqrt{100} = 1\ \text{m/s}$
+AKA: $0{,}5\ \text{ჯ}$; $1\ \text{მ/წმ}$
+AEN: $0.5\ \text{J}$; $1\ \text{m/s}$
+
+--- medium oscill
+KA: ქანქარიანი საათი დედამიწიდან მთვარეზე წაიღეს ($g_{\text{მთ}} = 1{,}6\ \text{მ/წმ}^2$). რამდენჯერ შეიცვლება ქანქარის პერიოდი? საათი წინ წავა თუ ჩამორჩება? ზამბარიანი ქანქარის პერიოდი შეიცვლება?
+EN: A pendulum clock is taken from Earth to the Moon ($g_{\text{Moon}} = 1.6\ \text{m/s}^2$). By what factor does the pendulum's period change? Will the clock run fast or slow? Would a spring pendulum's period change?
+HKA: $T \sim \dfrac{1}{\sqrt{g}}$; ზამბარიანი ქანქარის პერიოდში $g$ არ შედის.
+HEN: $T \propto \dfrac{1}{\sqrt{g}}$; the spring pendulum's period does not contain $g$.
+SKA: **ფორმულა:** $\dfrac{T_{\text{მ}}}{T_{\text{დ}}} = \sqrt{\dfrac{g_{\text{დ}}}{g_{\text{მ}}}}$
+**რიცხვები:** $\sqrt{\dfrac{10}{1{,}6}} = \sqrt{6{,}25} = 2{,}5$ — პერიოდი $2{,}5$-ჯერ გაიზრდება, საათი ჩამორჩება.
+ზამბარიანი ქანქარის პერიოდი $T = 2\pi\sqrt{m/k}$ არ შეიცვლება.
+SEN: **Formula:** $\dfrac{T_{\text{M}}}{T_{\text{E}}} = \sqrt{\dfrac{g_{\text{E}}}{g_{\text{M}}}}$
+**Numbers:** $\sqrt{\dfrac{10}{1.6}} = \sqrt{6.25} = 2.5$ — the period becomes $2.5$ times longer, the clock runs slow.
+A spring pendulum's period $T = 2\pi\sqrt{m/k}$ does not change.
+AKA: $2{,}5$-ჯერ გაიზრდება; ჩამორჩება; ზამბარიანისა არა
+AEN: $2.5$ times longer; slow; the spring one doesn't change
+
+--- medium waves
+KA: ნავი ტალღებზე წუთში $15$-ჯერ ადის და ეშვება. ტალღის მეზობელ ქიმებს შორის მანძილი $6\ \text{მ}$-ია. იპოვეთ ტალღის გავრცელების სიჩქარე.
+EN: A boat bobs up and down $15$ times a minute on waves whose crests are $6\ \text{m}$ apart. Find the wave speed.
+HKA: მეზობელ ქიმებს შორის მანძილი ტალღის სიგრძეა; სიხშირე — რხევები წამში.
+HEN: The distance between crests is the wavelength; the frequency is oscillations per second.
+SKA: **ფორმულა:** $v = \lambda \nu$, $\ \nu = \dfrac{N}{t}$
+**რიცხვები:** $\nu = \dfrac{15}{60} = 0{,}25\ \text{ჰც}$, $\ v = 6 \cdot 0{,}25 = 1{,}5\ \text{მ/წმ}$
+SEN: **Formula:** $v = \lambda \nu$, $\ \nu = \dfrac{N}{t}$
+**Numbers:** $\nu = \dfrac{15}{60} = 0.25\ \text{Hz}$, $\ v = 6 \cdot 0.25 = 1.5\ \text{m/s}$
+AKA: $1{,}5\ \text{მ/წმ}$
+AEN: $1.5\ \text{m/s}$
+
+--- medium waves
+KA: ფოლადის რელსის ერთ ბოლოზე ჩაქუჩი დაარტყეს. მეორე ბოლოსთან მდგომმა დამკვირვებელმა ორი ხმა გაიგონა: ერთი რელსიდან, მეორე — ჰაერიდან. რელსის სიგრძეა $1020\ \text{მ}$. რა დროის ინტერვალით გაისმა ხმები? ($v_{\text{ფოლ}} = 5000\ \text{მ/წმ}$, $v_{\text{ჰ}} = 340\ \text{მ/წმ}$)
+EN: A hammer strikes one end of a steel rail. An observer at the other end hears two sounds: one through the rail, one through the air. The rail is $1020\ \text{m}$ long. How far apart in time are the sounds? ($v_{\text{steel}} = 5000\ \text{m/s}$, $v_{\text{air}} = 340\ \text{m/s}$)
+HKA: ბგერა მყარ სხეულში გაცილებით სწრაფად ვრცელდება.
+HEN: Sound travels much faster in solids.
+SKA: **ფორმულა:** $\Delta t = \dfrac{L}{v_{\text{ჰ}}} - \dfrac{L}{v_{\text{ფ}}}$
+**რიცხვები:** $\Delta t = \dfrac{1020}{340} - \dfrac{1020}{5000} = 3 - 0{,}204 \approx 2{,}8\ \text{წმ}$
+SEN: **Formula:** $\Delta t = \dfrac{L}{v_{\text{air}}} - \dfrac{L}{v_{\text{steel}}}$
+**Numbers:** $\Delta t = \dfrac{1020}{340} - \dfrac{1020}{5000} = 3 - 0.204 \approx 2.8\ \text{s}$
+AKA: $\approx 2{,}8\ \text{წმ}$
+AEN: $\approx 2.8\ \text{s}$
+
+--- medium lcac
+KA: რადიომიმღების რხევითი კონტურის კოჭის ინდუქციურობაა $2\ \text{მკჰნ}$. რა ტევადობის კონდენსატორია საჭირო $100\ \text{მჰც}$ სიხშირეზე მოსარგებად?
+EN: The coil in a radio's tuning circuit has inductance $2\ \mu\text{H}$. What capacitance tunes it to $100\ \text{MHz}$?
+HKA: რეზონანსი: $\nu = \dfrac{1}{2\pi\sqrt{LC}}$.
+HEN: Resonance: $\nu = \dfrac{1}{2\pi\sqrt{LC}}$.
+SKA: **ფორმულა:** $\nu = \dfrac{1}{2\pi\sqrt{LC}} \Rightarrow C = \dfrac{1}{4\pi^2 \nu^2 L}$
+**რიცხვები:** $C = \dfrac{1}{39{,}5 \cdot 10^{16} \cdot 2 \cdot 10^{-6}} \approx 1{,}3 \cdot 10^{-12}\ \text{ფ} = 1{,}3\ \text{პფ}$
+SEN: **Formula:** $\nu = \dfrac{1}{2\pi\sqrt{LC}} \Rightarrow C = \dfrac{1}{4\pi^2 \nu^2 L}$
+**Numbers:** $C = \dfrac{1}{39.5 \cdot 10^{16} \cdot 2 \times 10^{-6}} \approx 1.3 \times 10^{-12}\ \text{F} = 1.3\ \text{pF}$
+AKA: $\approx 1{,}3\ \text{პფ}$
+AEN: $\approx 1.3\ \text{pF}$
+
+--- medium lcac
+KA: იდეალური ტრანსფორმატორის პირველადი ძაბვაა $220\ \text{ვ}$, მეორეული — $12\ \text{ვ}$, მეორეულ წრედში დენია $2\ \text{ა}$. იპოვეთ სიმძლავრე, ტრანსფორმაციის კოეფიციენტი და პირველადი დენი.
+EN: An ideal transformer has primary voltage $220\ \text{V}$, secondary voltage $12\ \text{V}$, and secondary current $2\ \text{A}$. Find the power, the turns ratio and the primary current.
+HKA: იდეალურ ტრანსფორმატორში სიმძლავრე არ იკარგება: $U_1 I_1 = U_2 I_2$.
+HEN: An ideal transformer loses no power: $U_1 I_1 = U_2 I_2$.
+SKA: **ფორმულა:** $P = U_2 I_2$, $\ k = \dfrac{U_1}{U_2}$, $\ I_1 = \dfrac{P}{U_1}$
+**რიცხვები:** $P = 12 \cdot 2 = 24\ \text{ვტ}$, $\ k = \dfrac{220}{12} \approx 18{,}3$, $\ I_1 = \dfrac{24}{220} \approx 0{,}11\ \text{ა}$
+SEN: **Formula:** $P = U_2 I_2$, $\ k = \dfrac{U_1}{U_2}$, $\ I_1 = \dfrac{P}{U_1}$
+**Numbers:** $P = 12 \cdot 2 = 24\ \text{W}$, $\ k = \dfrac{220}{12} \approx 18.3$, $\ I_1 = \dfrac{24}{220} \approx 0.11\ \text{A}$
+AKA: $24\ \text{ვტ}$; $\approx 18{,}3$; $\approx 0{,}11\ \text{ა}$
+AEN: $24\ \text{W}$; $\approx 18.3$; $\approx 0.11\ \text{A}$
+
+--- medium emwaves
+KA: რადიოლოკატორის იმპულსი ობიექტიდან არეკვლის შემდეგ $2 \cdot 10^{-4}\ \text{წმ}$-ში დაბრუნდა. რა მანძილზეა ობიექტი?
+EN: A radar pulse returns $2 \times 10^{-4}\ \text{s}$ after reflecting off an object. How far away is the object?
+HKA: სიგნალი ორმაგ მანძილს გადის სინათლის სიჩქარით.
+HEN: The signal covers twice the distance at the speed of light.
+SKA: **ფორმულა:** $L = \dfrac{c t}{2}$
+**რიცხვები:** $L = \dfrac{3 \cdot 10^8 \cdot 2 \cdot 10^{-4}}{2} = 3 \cdot 10^4\ \text{მ} = 30\ \text{კმ}$
+SEN: **Formula:** $L = \dfrac{c t}{2}$
+**Numbers:** $L = \dfrac{3 \times 10^8 \cdot 2 \times 10^{-4}}{2} = 3 \times 10^4\ \text{m} = 30\ \text{km}$
+AKA: $30\ \text{კმ}$
+AEN: $30\ \text{km}$
+
+--- medium optics
+KA: სხივი ჰაერიდან შუშაში ($n = \sqrt{3}$) $60^\circ$-იანი დაცემის კუთხით გადადის. იპოვეთ გარდატეხის კუთხე.
+EN: A ray passes from air into glass ($n = \sqrt{3}$) at an angle of incidence of $60^\circ$. Find the angle of refraction.
+HKA: სნელის კანონი: $\sin\alpha = n \sin\gamma$.
+HEN: Snell's law: $\sin\alpha = n \sin\gamma$.
+SKA: **ფორმულა:** $\dfrac{\sin\alpha}{\sin\gamma} = n \Rightarrow \sin\gamma = \dfrac{\sin\alpha}{n}$
+**რიცხვები:** $\sin\gamma = \dfrac{\sqrt{3}/2}{\sqrt{3}} = 0{,}5 \Rightarrow \gamma = 30^\circ$
+SEN: **Formula:** $\dfrac{\sin\alpha}{\sin\gamma} = n \Rightarrow \sin\gamma = \dfrac{\sin\alpha}{n}$
+**Numbers:** $\sin\gamma = \dfrac{\sqrt{3}/2}{\sqrt{3}} = 0.5 \Rightarrow \gamma = 30^\circ$
+AKA: $30^\circ$
+AEN: $30^\circ$
+
+--- medium optics
+KA: იპოვეთ სრული შინაგანი არეკვლის ზღვრული კუთხე წყლისთვის ($n = 4/3$). რა ხდება, თუ სინათლე წყლიდან ჰაერზე ამ კუთხეზე მეტი კუთხით ეცემა?
+EN: Find the critical angle for total internal reflection in water ($n = 4/3$). What happens if light hits the water–air surface at a larger angle?
+HKA: ზღვრულ კუთხეზე გარდატეხის კუთხე $90^\circ$-ია: $\sin\alpha_0 = \dfrac{1}{n}$.
+HEN: At the critical angle the refraction angle is $90^\circ$: $\sin\alpha_0 = \dfrac{1}{n}$.
+SKA: **ფორმულა:** $n \sin\alpha_0 = \sin 90^\circ \Rightarrow \sin\alpha_0 = \dfrac{1}{n}$
+**რიცხვები:** $\sin\alpha_0 = \dfrac{3}{4} = 0{,}75 \Rightarrow \alpha_0 \approx 48{,}6^\circ$
+უფრო დიდი კუთხით დაცემისას სინათლე ჰაერში ვერ გადის და მთლიანად აირეკლება უკან წყალში.
+SEN: **Formula:** $n \sin\alpha_0 = \sin 90^\circ \Rightarrow \sin\alpha_0 = \dfrac{1}{n}$
+**Numbers:** $\sin\alpha_0 = \dfrac{3}{4} = 0.75 \Rightarrow \alpha_0 \approx 48.6^\circ$
+At larger angles the light cannot leave and is totally reflected back into the water.
+AKA: $\approx 48{,}6^\circ$; სრული არეკვლა
+AEN: $\approx 48.6^\circ$; total reflection
+
+--- medium optics
+KA: $1{,}8\ \text{მ}$ სიმაღლის ადამიანს სურს კედლის ბრტყელ სარკეში მთელი ტანით დაინახოს თავი. რა მინიმალური სიმაღლის უნდა იყოს სარკე? დამოკიდებულია თუ არა ეს სარკემდე მანძილზე?
+EN: A person $1.8\ \text{m}$ tall wants to see their whole body in a flat wall mirror. What is the minimum height of the mirror? Does it depend on the distance to the mirror?
+HKA: ბრტყელ სარკეში გამოსახულება სარკის უკან იმავე მანძილზეა. ააგეთ სხივები თვალიდან ფეხებისა და თავის გამოსახულებებამდე.
+HEN: The image is as far behind the mirror as the person is in front. Draw rays from the eye to the images of the feet and head.
+SKA: სხივი თვალიდან ფეხების გამოსახულებამდე სარკეს კვეთს თვალისა და ფეხების სიმაღლეების შუაში (მსგავსი სამკუთხედები, კოეფიციენტი $\dfrac{1}{2}$); ასევე თავისთვის.
+**ფორმულა:** $h_{\text{სარკ}} = \dfrac{H}{2}$
+**რიცხვები:** $h = \dfrac{1{,}8}{2} = 0{,}9\ \text{მ}$ — მანძილზე არ არის დამოკიდებული.
+SEN: The ray from the eye to the image of the feet crosses the mirror halfway between eye and feet (similar triangles, factor $\dfrac{1}{2}$); likewise for the head.
+**Formula:** $h_{\text{mirror}} = \dfrac{H}{2}$
+**Numbers:** $h = \dfrac{1.8}{2} = 0.9\ \text{m}$ — independent of the distance.
+AKA: $0{,}9\ \text{მ}$; არა
+AEN: $0.9\ \text{m}$; no
+
+--- medium lenses
+KA: გამბნევი ლინზის ფოკუსური მანძილია $20\ \text{სმ}$, საგანი მისგან $30\ \text{სმ}$-ზეა. იპოვეთ გამოსახულების მანძილი და გადიდება.
+EN: A diverging lens has focal length $20\ \text{cm}$; an object is $30\ \text{cm}$ from it. Find the image distance and magnification.
+HKA: გამბნევი ლინზისთვის $F < 0$; წარმოსახვითი გამოსახულებისთვის $f < 0$.
+HEN: For a diverging lens $F < 0$; for a virtual image $f < 0$.
+SKA: **ფორმულა:** $\dfrac{1}{f} = \dfrac{1}{F} - \dfrac{1}{d}$, $\ \Gamma = \dfrac{|f|}{d}$
+**რიცხვები:** $\dfrac{1}{f} = -\dfrac{1}{20} - \dfrac{1}{30} = -\dfrac{5}{60} \Rightarrow f = -12\ \text{სმ}$
+$\Gamma = \dfrac{12}{30} = 0{,}4$ — წარმოსახვითი, პირდაპირი, შემცირებული (ლინზის იმავე მხარეს).
+SEN: **Formula:** $\dfrac{1}{f} = \dfrac{1}{F} - \dfrac{1}{d}$, $\ \Gamma = \dfrac{|f|}{d}$
+**Numbers:** $\dfrac{1}{f} = -\dfrac{1}{20} - \dfrac{1}{30} = -\dfrac{5}{60} \Rightarrow f = -12\ \text{cm}$
+$\Gamma = \dfrac{12}{30} = 0.4$ — virtual, upright, diminished (on the same side as the object).
+AKA: $-12\ \text{სმ}$; $0{,}4$
+AEN: $-12\ \text{cm}$; $0.4$
+
+--- medium lenses
+KA: ახლომხედველი ადამიანი მკაფიოდ ხედავს მხოლოდ $50\ \text{სმ}$-მდე. როგორი სათვალე სჭირდება მას (ლინზის სახე და ოპტიკური ძალა), რომ შორს მყოფი საგნები მკაფიოდ დაინახოს?
+EN: A short-sighted person sees clearly only up to $50\ \text{cm}$. What glasses (lens type and optical power) do they need to see distant objects clearly?
+HKA: სათვალემ უსასრულოდ შორი საგნის წარმოსახვითი გამოსახულება $50\ \text{სმ}$-ზე უნდა შექმნას.
+HEN: The lens must form a virtual image of a very distant object at $50\ \text{cm}$.
+SKA: **ფორმულა:** $\dfrac{1}{F} = \dfrac{1}{d} + \dfrac{1}{f}$, $d \to \infty$, $f = -0{,}5\ \text{მ}$
+**რიცხვები:** $D = \dfrac{1}{F} = 0 + \dfrac{1}{-0{,}5} = -2\ \text{დპტრ}$ — გამბნევი ლინზა.
+SEN: **Formula:** $\dfrac{1}{F} = \dfrac{1}{d} + \dfrac{1}{f}$, $d \to \infty$, $f = -0.5\ \text{m}$
+**Numbers:** $D = \dfrac{1}{F} = 0 + \dfrac{1}{-0.5} = -2\ \text{D}$ — a diverging lens.
+AKA: გამბნევი, $-2\ \text{დპტრ}$
+AEN: diverging, $-2$ dioptres
+
+// ===================================================================== HARD
+
+--- hard ampere
+KA: ორი გრძელი პარალელური გამტარი ერთმანეთისგან $0{,}1\ \text{მ}$-ითაა დაშორებული, თითოეულში $10\ \text{ა}$ დენი ერთი მიმართულებით გადის. რა ძალა მოქმედებს გამტარის ყოველ მეტრზე? მიიზიდავენ თუ განიზიდავენ? (გამტარის ველი $B = \dfrac{\mu_0 I}{2\pi r}$)
+EN: Two long parallel wires $0.1\ \text{m}$ apart each carry $10\ \text{A}$ in the same direction. What force acts on each metre of wire? Do they attract or repel? (Field of a wire: $B = \dfrac{\mu_0 I}{2\pi r}$)
+HKA: ერთი გამტარი ქმნის ველს, მეორეზე ამ ველში ამპერის ძალა მოქმედებს.
+HEN: One wire makes the field; the other feels the Ampère force in it.
+SKA: **ფორმულა:** $B_1 = \dfrac{\mu_0 I_1}{2\pi d}$, $\ \dfrac{F}{l} = B_1 I_2 = \dfrac{\mu_0 I_1 I_2}{2\pi d}$
+**რიცხვები:** $\dfrac{F}{l} = \dfrac{4\pi \cdot 10^{-7} \cdot 10 \cdot 10}{2\pi \cdot 0{,}1} = 2 \cdot 10^{-4}\ \text{ნ/მ}$
+ერთი მიმართულების დენები **მიიზიდება** (ასე იყო განმარტებული ამპერი).
+SEN: **Formula:** $B_1 = \dfrac{\mu_0 I_1}{2\pi d}$, $\ \dfrac{F}{l} = B_1 I_2 = \dfrac{\mu_0 I_1 I_2}{2\pi d}$
+**Numbers:** $\dfrac{F}{l} = \dfrac{4\pi \times 10^{-7} \cdot 10 \cdot 10}{2\pi \cdot 0.1} = 2 \times 10^{-4}\ \text{N/m}$
+Currents in the same direction **attract** (this is how the ampere was once defined).
+AKA: $2 \cdot 10^{-4}\ \text{ნ/მ}$; მიიზიდება
+AEN: $2 \times 10^{-4}\ \text{N/m}$; attract
+
+--- hard lorentz
+KA: (მას-სპექტრომეტრი) ნეონის $^{20}\text{Ne}^+$ და $^{22}\text{Ne}^+$ იონები $1\ \text{კვ}$ ძაბვით აჩქარდა და შევიდა $0{,}2\ \text{ტლ}$ ველში. ნახევარწრეწირის შემოვლის შემდეგ რა მანძილით დაშორდებიან ისინი ერთმანეთს ფირფიტაზე? (ატომური მასის ერთეული $1{,}66 \cdot 10^{-27}\ \text{კგ}$)
+EN: (Mass spectrometer) $^{20}\text{Ne}^+$ and $^{22}\text{Ne}^+$ ions are accelerated through $1\ \text{kV}$ and enter a $0.2\ \text{T}$ field. After a half-circle, how far apart do they land on the plate? (Atomic mass unit $1.66 \times 10^{-27}\ \text{kg}$)
+HKA: $r = \dfrac{m v}{q B}$, $\ v = \sqrt{\dfrac{2 q U}{m}} \Rightarrow r = \dfrac{1}{B}\sqrt{\dfrac{2 m U}{q}}$. დაშორება = დიამეტრების სხვაობა.
+HEN: $r = \dfrac{m v}{q B}$, $\ v = \sqrt{\dfrac{2 q U}{m}} \Rightarrow r = \dfrac{1}{B}\sqrt{\dfrac{2 m U}{q}}$. The gap = difference of diameters.
+SKA: **ფორმულა:** $r = \dfrac{1}{B}\sqrt{\dfrac{2 m U}{q}}$, $\ \Delta x = 2(r_2 - r_1)$
+**რიცხვები:** $r_{20} = \dfrac{1}{0{,}2}\sqrt{\dfrac{2 \cdot 3{,}32 \cdot 10^{-26} \cdot 1000}{1{,}6 \cdot 10^{-19}}} \approx \dfrac{0{,}0204}{0{,}2} \approx 0{,}102\ \text{მ}$
+$r_{22} = r_{20}\sqrt{1{,}1} \approx 0{,}107\ \text{მ}$, $\ \Delta x = 2 \cdot 0{,}0049 \approx 0{,}98\ \text{სმ}$
+SEN: **Formula:** $r = \dfrac{1}{B}\sqrt{\dfrac{2 m U}{q}}$, $\ \Delta x = 2(r_2 - r_1)$
+**Numbers:** $r_{20} = \dfrac{1}{0.2}\sqrt{\dfrac{2 \cdot 3.32 \times 10^{-26} \cdot 1000}{1.6 \times 10^{-19}}} \approx \dfrac{0.0204}{0.2} \approx 0.102\ \text{m}$
+$r_{22} = r_{20}\sqrt{1.1} \approx 0.107\ \text{m}$, $\ \Delta x = 2 \cdot 0.0049 \approx 0.98\ \text{cm}$
+AKA: $\approx 1\ \text{სმ}$
+AEN: $\approx 1\ \text{cm}$
+
+--- hard lorentz
+KA: ელექტრონი $10^7\ \text{მ/წმ}$ სიჩქარით შეფრინდა $0{,}01\ \text{ტლ}$ ველში ინდუქციის ხაზებთან $30^\circ$ კუთხით. აღწერეთ მისი ტრაექტორია და იპოვეთ სპირალის რადიუსი და ბიჯი.
+EN: An electron enters a $0.01\ \text{T}$ field at $10^7\ \text{m/s}$, at $30^\circ$ to the field lines. Describe its path and find the radius and pitch of the helix.
+HKA: დაშალეთ სიჩქარე: ველის მართობული შემდგენი იძლევა წრეს, პარალელური — თანაბარ მოძრაობას ველის გასწვრივ.
+HEN: Split the velocity: the perpendicular part gives a circle, the parallel part uniform motion along the field.
+SKA: **ფორმულა:** $v_\perp = v\sin\alpha$, $\ v_\parallel = v\cos\alpha$, $\ r = \dfrac{m v_\perp}{e B}$, $\ T = \dfrac{2\pi m}{e B}$, $\ h = v_\parallel T$
+**რიცხვები:** $v_\perp = 5 \cdot 10^6$, $\ v_\parallel \approx 8{,}66 \cdot 10^6\ \text{მ/წმ}$
+$r = \dfrac{9{,}1 \cdot 10^{-31} \cdot 5 \cdot 10^6}{1{,}6 \cdot 10^{-19} \cdot 0{,}01} \approx 2{,}8\ \text{მმ}$, $\ T \approx 3{,}57 \cdot 10^{-9}\ \text{წმ}$
+$h = 8{,}66 \cdot 10^6 \cdot 3{,}57 \cdot 10^{-9} \approx 3{,}1\ \text{სმ}$ — ტრაექტორია სპირალია (ხრახნული ხაზი).
+SEN: **Formula:** $v_\perp = v\sin\alpha$, $\ v_\parallel = v\cos\alpha$, $\ r = \dfrac{m v_\perp}{e B}$, $\ T = \dfrac{2\pi m}{e B}$, $\ h = v_\parallel T$
+**Numbers:** $v_\perp = 5 \times 10^6$, $\ v_\parallel \approx 8.66 \times 10^6\ \text{m/s}$
+$r = \dfrac{9.1 \times 10^{-31} \cdot 5 \times 10^6}{1.6 \times 10^{-19} \cdot 0.01} \approx 2.8\ \text{mm}$, $\ T \approx 3.57 \times 10^{-9}\ \text{s}$
+$h = 8.66 \times 10^6 \cdot 3.57 \times 10^{-9} \approx 3.1\ \text{cm}$ — the path is a helix.
+AKA: სპირალი; $r \approx 2{,}8\ \text{მმ}$; ბიჯი $\approx 3{,}1\ \text{სმ}$
+AEN: a helix; $r \approx 2.8\ \text{mm}$; pitch $\approx 3.1\ \text{cm}$
+
+--- hard induction
+KA: ვერტიკალურ რელსებზე, რომლებიც ზემოდან $0{,}5\ \text{ომ}$ რეზისტორით არის შეერთებული, ხახუნის გარეშე ვარდება $10\ \text{გ}$ მასისა და $0{,}2\ \text{მ}$ სიგრძის ღერო. ჰორიზონტალური ველი ($0{,}5\ \text{ტლ}$) რელსების სიბრტყის მართობულია. იპოვეთ ღეროს დამყარებული (მაქსიმალური) სიჩქარე.
+EN: A rod of mass $10\ \text{g}$ and length $0.2\ \text{m}$ falls without friction down vertical rails joined at the top by a $0.5\ \Omega$ resistor. A horizontal $0.5\ \text{T}$ field is perpendicular to the plane of the rails. Find the rod's terminal speed.
+HKA: დამყარებულ მოძრაობაში ამპერის ძალა სიმძიმის ძალას აწონასწორებს: $B I l = m g$, $I = \dfrac{B l v}{R}$.
+HEN: At terminal speed the Ampère force balances gravity: $B I l = m g$, $I = \dfrac{B l v}{R}$.
+SKA: **ფორმულა:** $\dfrac{B^2 l^2 v}{R} = m g \Rightarrow v = \dfrac{m g R}{B^2 l^2}$
+**რიცხვები:** $v = \dfrac{0{,}01 \cdot 10 \cdot 0{,}5}{0{,}25 \cdot 0{,}04} = \dfrac{0{,}05}{0{,}01} = 5\ \text{მ/წმ}$
+SEN: **Formula:** $\dfrac{B^2 l^2 v}{R} = m g \Rightarrow v = \dfrac{m g R}{B^2 l^2}$
+**Numbers:** $v = \dfrac{0.01 \cdot 10 \cdot 0.5}{0.25 \cdot 0.04} = \dfrac{0.05}{0.01} = 5\ \text{m/s}$
+AKA: $5\ \text{მ/წმ}$
+AEN: $5\ \text{m/s}$
+
+--- hard induction
+KA: $100\ \text{სმ}^2$ ფართობის და $0{,}02\ \text{ომ}$ წინაღობის მავთულის რგოლი $0{,}4\ \text{ტლ}$ ველშია (ველი რგოლის სიბრტყის მართობულია). ველის მიმართულება შეაბრუნეს. რა მუხტი გაივლის რგოლში? დამოკიდებულია თუ არა პასუხი იმაზე, რამდენად სწრაფად შეიცვალა ველი?
+EN: A wire ring of area $100\ \text{cm}^2$ and resistance $0.02\ \Omega$ is in a $0.4\ \text{T}$ field perpendicular to its plane. The field direction is reversed. How much charge flows around the ring? Does the answer depend on how fast the field changed?
+HKA: $q = I \Delta t = \dfrac{\mathcal{E}}{R}\Delta t = \dfrac{\Delta \Phi}{R}$.
+HEN: $q = I \Delta t = \dfrac{\mathcal{E}}{R}\Delta t = \dfrac{\Delta \Phi}{R}$.
+SKA: **ფორმულა:** $q = \dfrac{\Delta \Phi}{R}$, შებრუნებისას $\Delta \Phi = 2 B S$ — $\Delta t$ შეიკვეცა, ამიტომ სიჩქარეზე არ არის დამოკიდებული.
+**რიცხვები:** $\Delta \Phi = 2 \cdot 0{,}4 \cdot 0{,}01 = 8 \cdot 10^{-3}\ \text{ვბ}$, $\ q = \dfrac{8 \cdot 10^{-3}}{0{,}02} = 0{,}4\ \text{კ}$
+SEN: **Formula:** $q = \dfrac{\Delta \Phi}{R}$; on reversal $\Delta \Phi = 2 B S$ — $\Delta t$ cancels, so the speed doesn't matter.
+**Numbers:** $\Delta \Phi = 2 \cdot 0.4 \cdot 0.01 = 8 \times 10^{-3}\ \text{Wb}$, $\ q = \dfrac{8 \times 10^{-3}}{0.02} = 0.4\ \text{C}$
+AKA: $0{,}4\ \text{კ}$; არა
+AEN: $0.4\ \text{C}$; no
+
+--- hard selfind
+KA: $0{,}5\ \text{ჰნ}$ ინდუქციურობის კოჭაში $4\ \text{ა}$ დენი გადის. წრედი უცებ გაწყვიტეს და ამომრთველში ნაპერწკალი გაჩნდა. რამდენი ენერგია გამოიყო? რატომ ჩნდება ნაპერწკალი? რა ემძალა ინდუცირდება, თუ დენი $10^{-3}\ \text{წმ}$-ში ქრება?
+EN: A $0.5\ \text{H}$ coil carries $4\ \text{A}$. The circuit is suddenly broken and a spark jumps at the switch. How much energy is released? Why does a spark appear? What EMF is induced if the current vanishes in $10^{-3}\ \text{s}$?
+HKA: მაგნიტური ველის ენერგია სადღაც უნდა წავიდეს; დენის სწრაფი ცვლილება დიდ ემძალას იძლევა.
+HEN: The magnetic field energy has to go somewhere; a fast current change gives a large EMF.
+SKA: **ფორმულა:** $W = \dfrac{L I^2}{2}$, $\ \mathcal{E} = L\dfrac{\Delta I}{\Delta t}$
+**რიცხვები:** $W = \dfrac{0{,}5 \cdot 16}{2} = 4\ \text{ჯ}$, $\ \mathcal{E} = 0{,}5 \cdot \dfrac{4}{10^{-3}} = 2000\ \text{ვ}$
+ასეთი ძაბვა ჰაერს კონტაქტებს შორის „არღვევს“ — ჩნდება ნაპერწკალი, რომელშიც ველის ენერგია გამოიყოფა.
+SEN: **Formula:** $W = \dfrac{L I^2}{2}$, $\ \mathcal{E} = L\dfrac{\Delta I}{\Delta t}$
+**Numbers:** $W = \dfrac{0.5 \cdot 16}{2} = 4\ \text{J}$, $\ \mathcal{E} = 0.5 \cdot \dfrac{4}{10^{-3}} = 2000\ \text{V}$
+Such a voltage breaks down the air between the contacts — a spark appears, releasing the field's energy.
+AKA: $4\ \text{ჯ}$; $\approx 2\ \text{კვ}$
+AEN: $4\ \text{J}$; $\approx 2\ \text{kV}$
+
+--- hard oscill
+KA: $0{,}5\ \text{კგ}$ ტვირთი $50\ \text{ნ/მ}$ ზამბარაზე ირხევა. რა სიგრძის მათემატიკურ ქანქარას ექნება იგივე პერიოდი? დაამტკიცეთ, რომ ეს სიგრძე ზამბარის სტატიკური წაგრძელების ტოლია.
+EN: A $0.5\ \text{kg}$ mass oscillates on a $50\ \text{N/m}$ spring. What length of simple pendulum has the same period? Prove that this length equals the spring's static extension.
+HKA: გაუტოლეთ $2\pi\sqrt{m/k}$ და $2\pi\sqrt{l/g}$.
+HEN: Set $2\pi\sqrt{m/k}$ equal to $2\pi\sqrt{l/g}$.
+SKA: **ფორმულა:** $\sqrt{\dfrac{m}{k}} = \sqrt{\dfrac{l}{g}} \Rightarrow l = \dfrac{m g}{k}$
+სტატიკური წაგრძელება: $k\,\Delta l = m g \Rightarrow \Delta l = \dfrac{m g}{k} = l$ ∎
+**რიცხვები:** $l = \dfrac{0{,}5 \cdot 10}{50} = 0{,}1\ \text{მ}$, $\ T = 2\pi\sqrt{0{,}01} \approx 0{,}63\ \text{წმ}$
+SEN: **Formula:** $\sqrt{\dfrac{m}{k}} = \sqrt{\dfrac{l}{g}} \Rightarrow l = \dfrac{m g}{k}$
+Static extension: $k\,\Delta l = m g \Rightarrow \Delta l = \dfrac{m g}{k} = l$ ∎
+**Numbers:** $l = \dfrac{0.5 \cdot 10}{50} = 0.1\ \text{m}$, $\ T = 2\pi\sqrt{0.01} \approx 0.63\ \text{s}$
+AKA: $0{,}1\ \text{მ}$
+AEN: $0.1\ \text{m}$
+
+--- hard oscill
+KA: ქანქარიანი საათის ქანქარის სიგრძე ზაფხულის სიცხეში $0{,}1\%$-ით გაიზარდა. რამდენი წამით ჩამორჩება საათი დღე-ღამეში?
+EN: In summer heat a pendulum clock's pendulum gets $0.1\%$ longer. How many seconds does the clock lose per day?
+HKA: $T \sim \sqrt{l}$; მცირე ცვლილებისას $\dfrac{\Delta T}{T} \approx \dfrac{1}{2}\dfrac{\Delta l}{l}$.
+HEN: $T \propto \sqrt{l}$; for small changes $\dfrac{\Delta T}{T} \approx \dfrac{1}{2}\dfrac{\Delta l}{l}$.
+SKA: **ფორმულა:** $\dfrac{\Delta T}{T} \approx \dfrac{1}{2}\dfrac{\Delta l}{l}$, $\ \Delta t = t_{\text{დღ}} \cdot \dfrac{\Delta T}{T}$
+**რიცხვები:** $\dfrac{\Delta T}{T} = 0{,}05\% = 5 \cdot 10^{-4}$
+$\Delta t = 86\,400 \cdot 5 \cdot 10^{-4} \approx 43\ \text{წმ}$
+SEN: **Formula:** $\dfrac{\Delta T}{T} \approx \dfrac{1}{2}\dfrac{\Delta l}{l}$, $\ \Delta t = t_{\text{day}} \cdot \dfrac{\Delta T}{T}$
+**Numbers:** $\dfrac{\Delta T}{T} = 0.05\% = 5 \times 10^{-4}$
+$\Delta t = 86\,400 \cdot 5 \times 10^{-4} \approx 43\ \text{s}$
+AKA: $\approx 43\ \text{წმ}$
+AEN: $\approx 43\ \text{s}$
+
+--- hard waves
+KA: გემის ექოლოტმა ($50\ \text{კჰც}$) ზღვის ფსკერიდან არეკლილი სიგნალი $0{,}8\ \text{წმ}$-ის შემდეგ მიიღო. ბგერის სიჩქარე წყალში $1500\ \text{მ/წმ}$-ია. იპოვეთ სიღრმე და ულტრაბგერის ტალღის სიგრძე წყალში.
+EN: A ship's echo sounder ($50\ \text{kHz}$) receives the echo from the seabed after $0.8\ \text{s}$. The speed of sound in water is $1500\ \text{m/s}$. Find the depth and the ultrasound wavelength in water.
+HKA: სიგნალი ორმაგ მანძილს გადის; $\lambda = v/\nu$.
+HEN: The signal travels twice the depth; $\lambda = v/\nu$.
+SKA: **ფორმულა:** $h = \dfrac{v t}{2}$, $\ \lambda = \dfrac{v}{\nu}$
+**რიცხვები:** $h = \dfrac{1500 \cdot 0{,}8}{2} = 600\ \text{მ}$, $\ \lambda = \dfrac{1500}{5 \cdot 10^4} = 0{,}03\ \text{მ} = 3\ \text{სმ}$
+SEN: **Formula:** $h = \dfrac{v t}{2}$, $\ \lambda = \dfrac{v}{\nu}$
+**Numbers:** $h = \dfrac{1500 \cdot 0.8}{2} = 600\ \text{m}$, $\ \lambda = \dfrac{1500}{5 \times 10^4} = 0.03\ \text{m} = 3\ \text{cm}$
+AKA: $600\ \text{მ}$; $3\ \text{სმ}$
+AEN: $600\ \text{m}$; $3\ \text{cm}$
+
+--- hard lcac
+KA: $1\ \text{მკფ}$ კონდენსატორი $100\ \text{ვ}$-მდე დამუხტეს და მიუერთეს $0{,}1\ \text{ჰნ}$ კოჭას. იპოვეთ რხევების პერიოდი და კოჭაში დენის მაქსიმალური მნიშვნელობა.
+EN: A $1\ \mu\text{F}$ capacitor charged to $100\ \text{V}$ is connected to a $0.1\ \text{H}$ coil. Find the period of oscillation and the maximum current in the coil.
+HKA: ენერგიის შენახვა: $\dfrac{C U_{\max}^2}{2} = \dfrac{L I_{\max}^2}{2}$.
+HEN: Energy conservation: $\dfrac{C U_{\max}^2}{2} = \dfrac{L I_{\max}^2}{2}$.
+SKA: **ფორმულა:** $T = 2\pi\sqrt{LC}$, $\ I_{\max} = U_{\max}\sqrt{\dfrac{C}{L}}$
+**რიცხვები:** $T = 6{,}28\sqrt{10^{-7}} \approx 2{,}0 \cdot 10^{-3}\ \text{წმ}$
+$I_{\max} = 100\sqrt{\dfrac{10^{-6}}{0{,}1}} = 100 \cdot 3{,}16 \cdot 10^{-3} \approx 0{,}32\ \text{ა}$
+SEN: **Formula:** $T = 2\pi\sqrt{LC}$, $\ I_{\max} = U_{\max}\sqrt{\dfrac{C}{L}}$
+**Numbers:** $T = 6.28\sqrt{10^{-7}} \approx 2.0 \times 10^{-3}\ \text{s}$
+$I_{\max} = 100\sqrt{\dfrac{10^{-6}}{0.1}} = 100 \cdot 3.16 \times 10^{-3} \approx 0.32\ \text{A}$
+AKA: $\approx 2\ \text{მწმ}$; $\approx 0{,}32\ \text{ა}$
+AEN: $\approx 2\ \text{ms}$; $\approx 0.32\ \text{A}$
+
+--- hard lcac
+KA: ელექტროსადგური $1\ \text{მვტ}$ სიმძლავრეს გადასცემს $10\ \text{ომ}$ წინაღობის ხაზით. იპოვეთ დანაკარგები, თუ ძაბვაა: ა) $10\ \text{კვ}$; ბ) ტრანსფორმატორით გაზრდილი $100\ \text{კვ}$.
+EN: A power station sends $1\ \text{MW}$ through a line of resistance $10\ \Omega$. Find the losses if the voltage is: a) $10\ \text{kV}$; b) stepped up by a transformer to $100\ \text{kV}$.
+HKA: $I = P/U$, $P_{\text{დან}} = I^2 R$.
+HEN: $I = P/U$, $P_{\text{loss}} = I^2 R$.
+SKA: **ფორმულა:** $P_{\text{დან}} = \left(\dfrac{P}{U}\right)^2 R$
+**რიცხვები:** ა) $I = 100\ \text{ა}$, $\ P_{\text{დან}} = 10^4 \cdot 10 = 100\ \text{კვტ}$ ($10\%$)
+ბ) $I = 10\ \text{ა}$, $\ P_{\text{დან}} = 100 \cdot 10 = 1\ \text{კვტ}$ ($0{,}1\%$)
+SEN: **Formula:** $P_{\text{loss}} = \left(\dfrac{P}{U}\right)^2 R$
+**Numbers:** a) $I = 100\ \text{A}$, $\ P_{\text{loss}} = 10^4 \cdot 10 = 100\ \text{kW}$ ($10\%$)
+b) $I = 10\ \text{A}$, $\ P_{\text{loss}} = 100 \cdot 10 = 1\ \text{kW}$ ($0.1\%$)
+AKA: ა) $100\ \text{კვტ}$; ბ) $1\ \text{კვტ}$
+AEN: a) $100\ \text{kW}$; b) $1\ \text{kW}$
+
+--- hard lcac
+KA: ტრანსფორმატორი პირველადი წრედიდან $1\ \text{კვტ}$ სიმძლავრეს იღებს, მისი სმკ $95\%$-ია. მეორეული ძაბვაა $50\ \text{ვ}$. იპოვეთ მეორეული დენი. სად იკარგება $5\%$?
+EN: A transformer draws $1\ \text{kW}$ from the primary circuit and is $95\%$ efficient. The secondary voltage is $50\ \text{V}$. Find the secondary current. Where is the $5\%$ lost?
+HKA: $P_2 = \eta P_1 = U_2 I_2$.
+HEN: $P_2 = \eta P_1 = U_2 I_2$.
+SKA: **ფორმულა:** $I_2 = \dfrac{\eta P_1}{U_2}$
+**რიცხვები:** $I_2 = \dfrac{0{,}95 \cdot 1000}{50} = 19\ \text{ა}$
+დანაკარგები: გრაგნილების გათბობა (ჯოულ-ლენცი) და გულარის გადამაგნიტება და გრიგალური დენები (ამიტომ გულარს თხელი ფირფიტებისგან აკეთებენ).
+SEN: **Formula:** $I_2 = \dfrac{\eta P_1}{U_2}$
+**Numbers:** $I_2 = \dfrac{0.95 \cdot 1000}{50} = 19\ \text{A}$
+Losses: heating of the windings (Joule heating), plus re-magnetisation of the core and eddy currents (that's why the core is made of thin laminations).
+AKA: $19\ \text{ა}$
+AEN: $19\ \text{A}$
+
+--- hard optics
+KA: აუზის ნამდვილი სიღრმე $2\ \text{მ}$-ია. რა სიღრმის ეჩვენება ის ზემოდან (ვერტიკალურად) მაყურებელს? ($n = 4/3$; მცირე კუთხეებისთვის $\tan\alpha \approx \sin\alpha$.)
+EN: A pool is really $2\ \text{m}$ deep. How deep does it look to someone looking straight down? ($n = 4/3$; for small angles $\tan\alpha \approx \sin\alpha$.)
+HKA: ფსკერიდან წამოსული სხივები ზედაპირზე გარდატყდება; მოჩვენებითი სიღრმე $h' = \dfrac{h}{n}$.
+HEN: Rays from the bottom bend at the surface; the apparent depth is $h' = \dfrac{h}{n}$.
+SKA: **ფორმულა:** $x = h\tan\gamma = h'\tan\alpha$, მცირე კუთხეებისთვის $\dfrac{h'}{h} = \dfrac{\tan\gamma}{\tan\alpha} \approx \dfrac{\sin\gamma}{\sin\alpha} = \dfrac{1}{n}$
+**რიცხვები:** $h' = \dfrac{2}{4/3} = 1{,}5\ \text{მ}$ — აუზი უფრო ღრმაა, ვიდრე ჩანს!
+SEN: **Formula:** $x = h\tan\gamma = h'\tan\alpha$; for small angles $\dfrac{h'}{h} = \dfrac{\tan\gamma}{\tan\alpha} \approx \dfrac{\sin\gamma}{\sin\alpha} = \dfrac{1}{n}$
+**Numbers:** $h' = \dfrac{2}{4/3} = 1.5\ \text{m}$ — the pool is deeper than it looks!
+AKA: $1{,}5\ \text{მ}$
+AEN: $1.5\ \text{m}$
+
+--- hard optics
+KA: ოპტიკური ბოჭკოს გულის გარდატეხის მაჩვენებელია $1{,}5$, ის ჰაერშია. რა მინიმალური კუთხით (ნორმალთან) უნდა დაეცეს სინათლე გულის კედელს, რომ ბოჭკოში სრული შინაგანი არეკვლით გავრცელდეს?
+EN: The core of an optical fibre has refractive index $1.5$ and is surrounded by air. What is the minimum angle (to the normal) at which light must hit the core wall to travel along the fibre by total internal reflection?
+HKA: $\sin\alpha_0 = \dfrac{1}{n}$.
+HEN: $\sin\alpha_0 = \dfrac{1}{n}$.
+SKA: **ფორმულა:** $\sin\alpha_0 = \dfrac{n_2}{n_1}$
+**რიცხვები:** $\sin\alpha_0 = \dfrac{1}{1{,}5} \approx 0{,}667 \Rightarrow \alpha_0 \approx 41{,}8^\circ$
+ამ კუთხეზე მეტი კუთხით დაცემული სხივები ბოჭკოს ვერ ტოვებს — ასე გადაიცემა ინტერნეტ-სიგნალი ათასობით კილომეტრზე.
+SEN: **Formula:** $\sin\alpha_0 = \dfrac{n_2}{n_1}$
+**Numbers:** $\sin\alpha_0 = \dfrac{1}{1.5} \approx 0.667 \Rightarrow \alpha_0 \approx 41.8^\circ$
+Rays hitting the wall at larger angles cannot leave the fibre — that's how internet signals travel thousands of kilometres.
+AKA: $\approx 41{,}8^\circ$
+AEN: $\approx 41.8^\circ$
+
+--- hard lenses
+KA: შემკრები ლინზა ეკრანზე საგნის $3$-ჯერ გადიდებულ გამოსახულებას იძლევა. საგნიდან ეკრანამდე მანძილი $80\ \text{სმ}$-ია. იპოვეთ ლინზის ფოკუსური მანძილი.
+EN: A converging lens forms an image on a screen magnified $3$ times. The object-to-screen distance is $80\ \text{cm}$. Find the focal length.
+HKA: $d + f = 80$, $\ f = 3d$.
+HEN: $d + f = 80$, $\ f = 3d$.
+SKA: **ფორმულა:** $d + f = L$, $\ \dfrac{f}{d} = \Gamma$, $\ F = \dfrac{d f}{d + f}$
+**რიცხვები:** $4d = 80 \Rightarrow d = 20\ \text{სმ}$, $\ f = 60\ \text{სმ}$
+$F = \dfrac{20 \cdot 60}{80} = 15\ \text{სმ}$
+SEN: **Formula:** $d + f = L$, $\ \dfrac{f}{d} = \Gamma$, $\ F = \dfrac{d f}{d + f}$
+**Numbers:** $4d = 80 \Rightarrow d = 20\ \text{cm}$, $\ f = 60\ \text{cm}$
+$F = \dfrac{20 \cdot 60}{80} = 15\ \text{cm}$
+AKA: $15\ \text{სმ}$
+AEN: $15\ \text{cm}$
+
+--- hard light
+KA: (რიომერის მეთოდი) იუპიტერის თანამგზავრ იოს დაბნელებები დაახლოებით $1000\ \text{წმ}$-ით გვიანდება, როცა დედამიწა იუპიტერიდან ყველაზე შორს არის, ვიდრე ყველაზე ახლოს ყოფნისას. ეს განსხვავება დედამიწის ორბიტის დიამეტრს შეესაბამება ($3 \cdot 10^{11}\ \text{მ}$). შეაფასეთ სინათლის სიჩქარე.
+EN: (Rømer's method) The eclipses of Jupiter's moon Io are about $1000\ \text{s}$ later when Earth is farthest from Jupiter than when it is closest. The difference corresponds to the diameter of Earth's orbit ($3 \times 10^{11}\ \text{m}$). Estimate the speed of light.
+HKA: დაგვიანება არის დრო, რაც სინათლეს დამატებითი მანძილის გასავლელად სჭირდება.
+HEN: The delay is the time light needs to cover the extra distance.
+SKA: **ფორმულა:** $c = \dfrac{D}{\Delta t}$
+**რიცხვები:** $c = \dfrac{3 \cdot 10^{11}}{1000} = 3 \cdot 10^8\ \text{მ/წმ}$
+SEN: **Formula:** $c = \dfrac{D}{\Delta t}$
+**Numbers:** $c = \dfrac{3 \times 10^{11}}{1000} = 3 \times 10^8\ \text{m/s}$
+AKA: $3 \cdot 10^8\ \text{მ/წმ}$
+AEN: $3 \times 10^8\ \text{m/s}$
+
+--- hard lorentz olympiad
+KA: ციკლოტრონის მაგნიტური ველია $1\ \text{ტლ}$, დუანტების რადიუსი — $0{,}5\ \text{მ}$. რა მაქსიმალურ კინეტიკურ ენერგიამდე (მევ-ებში) აჩქარდება პროტონი? რა სიხშირის ძაბვაა საჭირო დუანტებს შორის? ($1\ \text{მევ} = 1{,}6 \cdot 10^{-13}\ \text{ჯ}$)
+EN: A cyclotron has a $1\ \text{T}$ field and dees of radius $0.5\ \text{m}$. To what maximum kinetic energy (in MeV) are protons accelerated? What frequency of voltage is needed across the gap? ($1\ \text{MeV} = 1.6 \times 10^{-13}\ \text{J}$)
+HKA: მაქსიმალური სიჩქარე — როცა ორბიტის რადიუსი დუანტის რადიუსს უტოლდება. ძაბვის სიხშირე ბრუნვის სიხშირეს უნდა ემთხვეოდეს.
+HEN: The maximum speed is when the orbit radius reaches the dee radius. The voltage frequency must match the orbital frequency.
+SKA: **ფორმულა:** $v = \dfrac{e B R}{m}$, $\ E_k = \dfrac{(e B R)^2}{2m}$, $\ \nu = \dfrac{e B}{2\pi m}$
+**რიცხვები:** $v = \dfrac{1{,}6 \cdot 10^{-19} \cdot 1 \cdot 0{,}5}{1{,}67 \cdot 10^{-27}} \approx 4{,}8 \cdot 10^7\ \text{მ/წმ}$
+$E_k = \dfrac{1{,}67 \cdot 10^{-27} \cdot (4{,}8 \cdot 10^7)^2}{2} \approx 1{,}9 \cdot 10^{-12}\ \text{ჯ} \approx 12\ \text{მევ}$
+$\nu = \dfrac{1{,}6 \cdot 10^{-19}}{2\pi \cdot 1{,}67 \cdot 10^{-27}} \approx 1{,}5 \cdot 10^7\ \text{ჰც} = 15\ \text{მჰც}$
+SEN: **Formula:** $v = \dfrac{e B R}{m}$, $\ E_k = \dfrac{(e B R)^2}{2m}$, $\ \nu = \dfrac{e B}{2\pi m}$
+**Numbers:** $v = \dfrac{1.6 \times 10^{-19} \cdot 1 \cdot 0.5}{1.67 \times 10^{-27}} \approx 4.8 \times 10^7\ \text{m/s}$
+$E_k = \dfrac{1.67 \times 10^{-27} \cdot (4.8 \times 10^7)^2}{2} \approx 1.9 \times 10^{-12}\ \text{J} \approx 12\ \text{MeV}$
+$\nu = \dfrac{1.6 \times 10^{-19}}{2\pi \cdot 1.67 \times 10^{-27}} \approx 1.5 \times 10^7\ \text{Hz} = 15\ \text{MHz}$
+AKA: $\approx 12\ \text{მევ}$; $\approx 15\ \text{მჰც}$
+AEN: $\approx 12\ \text{MeV}$; $\approx 15\ \text{MHz}$
+
+--- hard induction olympiad
+KA: $1\ \text{მ}$ სიგრძის ლითონის ღერო ბრუნავს ერთ ბოლოზე გამავალი ღერძის გარშემო $20\ \text{რად/წმ}$ კუთხური სიჩქარით, ღერძის პარალელურ $0{,}5\ \text{ტლ}$ ველში. იპოვეთ ემძალა ღეროს ბოლოებს შორის.
+EN: A $1\ \text{m}$ metal rod rotates at $20\ \text{rad/s}$ about an axis through one end, in a $0.5\ \text{T}$ field parallel to the axis. Find the EMF between the ends of the rod.
+HKA: ღეროს წერტილების სიჩქარე ღერძიდან მანძილის პროპორციულია: $v = \omega r$. გამოიყენეთ საშუალო სიჩქარე ან $\mathcal{E} = B\dfrac{\Delta S}{\Delta t}$.
+HEN: The speed of points on the rod grows with distance: $v = \omega r$. Use the average speed or $\mathcal{E} = B\dfrac{\Delta S}{\Delta t}$.
+SKA: ღერო ერთ ბრუნში „ჭრის“ $\pi l^2$ ფართობს, $T = \dfrac{2\pi}{\omega}$ დროში.
+**ფორმულა:** $\mathcal{E} = B\dfrac{\Delta S}{\Delta t} = B\dfrac{\pi l^2}{2\pi/\omega} = \dfrac{B \omega l^2}{2}$ (ან: $\mathcal{E} = B l v_{\text{საშ}}$, $v_{\text{საშ}} = \dfrac{\omega l}{2}$)
+**რიცხვები:** $\mathcal{E} = \dfrac{0{,}5 \cdot 20 \cdot 1^2}{2} = 5\ \text{ვ}$
+SEN: In one turn the rod sweeps the area $\pi l^2$ in time $T = \dfrac{2\pi}{\omega}$.
+**Formula:** $\mathcal{E} = B\dfrac{\Delta S}{\Delta t} = B\dfrac{\pi l^2}{2\pi/\omega} = \dfrac{B \omega l^2}{2}$ (or: $\mathcal{E} = B l v_{\text{avg}}$, $v_{\text{avg}} = \dfrac{\omega l}{2}$)
+**Numbers:** $\mathcal{E} = \dfrac{0.5 \cdot 20 \cdot 1^2}{2} = 5\ \text{V}$
+AKA: $5\ \text{ვ}$
+AEN: $5\ \text{V}$
+
+--- hard oscill olympiad
+KA: მათემატიკური ქანქარა დაკიდებულია ლიფტში. როგორ შეიცვლება მისი პერიოდი, როცა ლიფტი: ა) $2{,}5\ \text{მ/წმ}^2$ აჩქარებით ზემოთ აჩქარდება; ბ) თავისუფლად ვარდება?
+EN: A simple pendulum hangs in a lift. How does its period change when the lift: a) accelerates upward at $2.5\ \text{m/s}^2$; b) falls freely?
+HKA: აჩქარებულ სისტემაში $g$-ს ნაცვლად „ეფექტური“ $g' = g + a$ (ზემოთ აჩქარებისას) მოქმედებს.
+HEN: In an accelerating frame an "effective" $g' = g + a$ (for upward acceleration) replaces $g$.
+SKA: **ფორმულა:** $T' = 2\pi\sqrt{\dfrac{l}{g + a}} \Rightarrow \dfrac{T'}{T} = \sqrt{\dfrac{g}{g + a}}$
+**რიცხვები:** ა) $\dfrac{T'}{T} = \sqrt{\dfrac{10}{12{,}5}} \approx 0{,}89$ — პერიოდი $\approx 11\%$-ით შემცირდება.
+ბ) $a = -g$: $g' = 0$, $T' \to \infty$ — უწონადობაში ქანქარა საერთოდ არ ირხევა.
+SEN: **Formula:** $T' = 2\pi\sqrt{\dfrac{l}{g + a}} \Rightarrow \dfrac{T'}{T} = \sqrt{\dfrac{g}{g + a}}$
+**Numbers:** a) $\dfrac{T'}{T} = \sqrt{\dfrac{10}{12.5}} \approx 0.89$ — the period is $\approx 11\%$ shorter.
+b) $a = -g$: $g' = 0$, $T' \to \infty$ — in weightlessness the pendulum doesn't swing at all.
+AKA: ა) $\approx 0{,}89\,T$; ბ) არ ირხევა
+AEN: a) $\approx 0.89\,T$; b) it doesn't swing
+
+--- hard optics olympiad
+KA: ბრტყელი სარკე $5^\circ$-ით მოაბრუნეს. რა კუთხით მობრუნდება არეკლილი სხივი? სარკიდან $3\ \text{მ}$-ით დაშორებულ კედელზე (სხივი თავიდან კედლის მართობულად ეცემოდა) რამდენით გადაინაცვლებს სინათლის ლაქა?
+EN: A plane mirror is turned by $5^\circ$. Through what angle does the reflected ray turn? On a wall $3\ \text{m}$ from the mirror (the ray first hit the wall at right angles), how far does the light spot move?
+HKA: სარკის მობრუნებისას დაცემის კუთხე $\alpha$-თი იცვლება — არეკვლის კუთხეც $\alpha$-თი.
+HEN: Turning the mirror changes the angle of incidence by $\alpha$ — and the angle of reflection by $\alpha$ too.
+SKA: **ფორმულა:** სხივის მობრუნება $2\alpha$; $\ x = L\tan 2\alpha$
+**რიცხვები:** $2\alpha = 10^\circ$, $\ x = 3 \cdot \tan 10^\circ \approx 3 \cdot 0{,}176 \approx 0{,}53\ \text{მ}$
+(ამ ეფექტს იყენებენ სარკისებრ გალვანომეტრებში მცირე მობრუნებების გასაზომად.)
+SEN: **Formula:** the ray turns by $2\alpha$; $\ x = L\tan 2\alpha$
+**Numbers:** $2\alpha = 10^\circ$, $\ x = 3 \cdot \tan 10^\circ \approx 3 \cdot 0.176 \approx 0.53\ \text{m}$
+(Mirror galvanometers use this effect to measure tiny rotations.)
+AKA: $10^\circ$; $\approx 53\ \text{სმ}$
+AEN: $10^\circ$; $\approx 53\ \text{cm}$
+
+--- hard lenses olympiad
+KA: (ბესელის მეთოდი) საგნიდან ეკრანამდე მანძილია $L = 1\ \text{მ}$. შემკრები ლინზის ორ მდებარეობაში ეკრანზე მკვეთრი გამოსახულება მიიღება; ამ მდებარეობებს შორის მანძილია $l = 0{,}6\ \text{მ}$. იპოვეთ ლინზის ფოკუსური მანძილი.
+EN: (Bessel's method) An object and a screen are $L = 1\ \text{m}$ apart. A converging lens gives a sharp image in two positions, which are $l = 0.6\ \text{m}$ apart. Find the focal length.
+HKA: ლინზის ფორმულა $d$-სა და $f$-ის მიმართ სიმეტრიულია: ორ მდებარეობაში $d$ და $f$ ადგილებს ცვლიან. მაშასადამე $d + f = L$, $f - d = l$.
+HEN: The lens formula is symmetric in $d$ and $f$: in the two positions they swap. So $d + f = L$, $f - d = l$.
+SKA: **ფორმულა:** $d = \dfrac{L - l}{2}$, $\ f = \dfrac{L + l}{2}$, $\ F = \dfrac{d f}{d + f} = \dfrac{L^2 - l^2}{4L}$
+**რიცხვები:** $F = \dfrac{1^2 - 0{,}6^2}{4 \cdot 1} = \dfrac{0{,}64}{4} = 0{,}16\ \text{მ} = 16\ \text{სმ}$
+(შემოწმება: $d = 0{,}2$, $f = 0{,}8$: $\dfrac{1}{0{,}2} + \dfrac{1}{0{,}8} = 6{,}25 = \dfrac{1}{0{,}16}$ ✓)
+SEN: **Formula:** $d = \dfrac{L - l}{2}$, $\ f = \dfrac{L + l}{2}$, $\ F = \dfrac{d f}{d + f} = \dfrac{L^2 - l^2}{4L}$
+**Numbers:** $F = \dfrac{1^2 - 0.6^2}{4 \cdot 1} = \dfrac{0.64}{4} = 0.16\ \text{m} = 16\ \text{cm}$
+(Check: $d = 0.2$, $f = 0.8$: $\dfrac{1}{0.2} + \dfrac{1}{0.8} = 6.25 = \dfrac{1}{0.16}$ ✓)
+AKA: $16\ \text{სმ}$
+AEN: $16\ \text{cm}$
+</script>
+</body>
+</html>

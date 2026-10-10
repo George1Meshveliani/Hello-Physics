@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Physics · Grade VIII</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css">
+  <script defer src="../assets/problems.js"></script>
+</head>
+<body data-page="grade" data-subject="physics" data-grade="VIII">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic work      | I–III | მუშაობა და სიმძლავრე | Work and power
+# topic energy    | IV–IX | კინეტიკური და პოტენციური ენერგია. ენერგიის შენახვა | Kinetic and potential energy. Conservation of energy
+# topic machines  | XI–XVII | მარტივი მექანიზმები. სმკ | Simple machines. Efficiency
+# topic heat      | XIX–XXI | შინაგანი ენერგია. სითბოგადაცემის სახეები | Internal energy. Heat transfer
+# topic heatcap   | XXII–XXIV | სითბოს რაოდენობა. ხვედრითი სითბოტევადობა | Quantity of heat. Specific heat capacity
+# topic melting   | XXV–XXVII | დნობა და გამყარება | Melting and solidification
+# topic vapor     | XXVIII–XXX | აორთქლება, კონდენსაცია, დუღილი | Evaporation, condensation, boiling
+# topic fuel      | XXXI | საწვავის წვის ხვედრითი სითბო | Specific heat of combustion
+# topic expansion | XXXII–XXXIII | თბური გაფართოება | Thermal expansion
+# topic engines   | XXXIV–XXXV | თბოძრავები | Heat engines
+# note თუ სხვა რამ არ არის მითითებული: $g = 10\ \text{ნ/კგ}$; წყალი: $c = 4200\ \text{ჯ/(კგ}\cdot\text{°C)}$, $L = 2{,}3 \cdot 10^6\ \text{ჯ/კგ}$; ყინული: $c = 2100\ \text{ჯ/(კგ}\cdot\text{°C)}$, $\lambda = 3{,}4 \cdot 10^5\ \text{ჯ/კგ}$. | Unless stated otherwise: $g = 10\ \text{N/kg}$; water: $c = 4200\ \text{J/(kg}\cdot\text{°C)}$, $L = 2.3 \times 10^6\ \text{J/kg}$; ice: $c = 2100\ \text{J/(kg}\cdot\text{°C)}$, $\lambda = 3.4 \times 10^5\ \text{J/kg}$.
+
+// ===================================================================== EASY
+
+--- easy work
+KA: ყუთს $50\ \text{ნ}$ ჰორიზონტალური ძალით $4\ \text{მ}$-ზე გადააადგილეს ძალის მიმართულებით. რა მუშაობა შესრულდა?
+EN: A box is moved $4\ \text{m}$ by a horizontal force of $50\ \text{N}$ in the direction of the force. How much work is done?
+HKA: მექანიკური მუშაობა $A = F s$, თუ ძალა და გადაადგილება ერთი მიმართულებისაა.
+HEN: Mechanical work is $A = F s$ when force and displacement point the same way.
+SKA: **ფორმულა:** $A = F\,s$
+**რიცხვები:** $A = 50\ \text{ნ} \cdot 4\ \text{მ} = 200\ \text{ჯ}$
+SEN: **Formula:** $A = F\,s$
+**Numbers:** $A = 50\ \text{N} \cdot 4\ \text{m} = 200\ \text{J}$
+AKA: $200\ \text{ჯ}$
+AEN: $200\ \text{J}$
+
+--- easy work
+KA: რა მუშაობას ასრულებს ადამიანი, როცა $20\ \text{კგ}$ ტვირთს თანაბრად $3\ \text{მ}$ სიმაღლეზე სწევს?
+EN: How much work does a person do lifting a $20\ \text{kg}$ load uniformly to a height of $3\ \text{m}$?
+HKA: თანაბრად აწევისას საჭირო ძალა სიმძიმის ძალის ტოლია.
+HEN: Lifting at constant speed needs a force equal to the weight.
+SKA: **ფორმულა:** $A = F h = m g h$
+**რიცხვები:** $A = 20 \cdot 10 \cdot 3 = 600\ \text{ჯ}$
+SEN: **Formula:** $A = F h = m g h$
+**Numbers:** $A = 20 \cdot 10 \cdot 3 = 600\ \text{J}$
+AKA: $600\ \text{ჯ}$
+AEN: $600\ \text{J}$
+
+--- easy work
+KA: ამწემ $30\ \text{წმ}$-ში $60\ \text{კჯ}$ მუშაობა შეასრულა. რას უდრის ამწის სიმძლავრე?
+EN: A crane does $60\ \text{kJ}$ of work in $30\ \text{s}$. What is its power?
+HKA: სიმძლავრე — დროის ერთეულში შესრულებული მუშაობა.
+HEN: Power is work done per unit time.
+SKA: **ფორმულა:** $N = \dfrac{A}{t}$
+**რიცხვები:** $N = \dfrac{60\,000\ \text{ჯ}}{30\ \text{წმ}} = 2000\ \text{ვტ} = 2\ \text{კვტ}$
+SEN: **Formula:** $N = \dfrac{A}{t}$
+**Numbers:** $N = \dfrac{60\,000\ \text{J}}{30\ \text{s}} = 2000\ \text{W} = 2\ \text{kW}$
+AKA: $2\ \text{კვტ}$
+AEN: $2\ \text{kW}$
+
+--- easy work
+KA: $1{,}5\ \text{კვტ}$ სიმძლავრის ძრავა $2\ \text{წთ}$ მუშაობდა. რა მუშაობა შეასრულა მან?
+EN: A $1.5\ \text{kW}$ motor runs for $2\ \text{min}$. How much work does it do?
+HKA: $A = N t$; დრო წამებში გადაიყვანეთ.
+HEN: $A = N t$; convert the time to seconds.
+SKA: **ფორმულა:** $N = \dfrac{A}{t} \Rightarrow A = N t$
+**რიცხვები:** $t = 120\ \text{წმ}$, $\ A = 1500 \cdot 120 = 180\,000\ \text{ჯ} = 180\ \text{კჯ}$
+SEN: **Formula:** $N = \dfrac{A}{t} \Rightarrow A = N t$
+**Numbers:** $t = 120\ \text{s}$, $\ A = 1500 \cdot 120 = 180\,000\ \text{J} = 180\ \text{kJ}$
+AKA: $180\ \text{კჯ}$
+AEN: $180\ \text{kJ}$
+
+--- easy energy
+KA: რას უდრის $0{,}2\ \text{კგ}$ მასის ბურთის კინეტიკური ენერგია, თუ ის $15\ \text{მ/წმ}$ სიჩქარით მოძრაობს?
+EN: What is the kinetic energy of a $0.2\ \text{kg}$ ball moving at $15\ \text{m/s}$?
+HKA: $E_k = \dfrac{m v^2}{2}$.
+HEN: $E_k = \dfrac{m v^2}{2}$.
+SKA: **ფორმულა:** $E_k = \dfrac{m v^2}{2}$
+**რიცხვები:** $E_k = \dfrac{0{,}2 \cdot 15^2}{2} = \dfrac{0{,}2 \cdot 225}{2} = 22{,}5\ \text{ჯ}$
+SEN: **Formula:** $E_k = \dfrac{m v^2}{2}$
+**Numbers:** $E_k = \dfrac{0.2 \cdot 15^2}{2} = \dfrac{0.2 \cdot 225}{2} = 22.5\ \text{J}$
+AKA: $22{,}5\ \text{ჯ}$
+AEN: $22.5\ \text{J}$
+
+--- easy energy
+KA: ზამბარა, რომლის სიხისტეა $400\ \text{ნ/მ}$, $5\ \text{სმ}$-ით შეკუმშეს. რას უდრის მისი პოტენციური ენერგია?
+EN: A spring of stiffness $400\ \text{N/m}$ is compressed by $5\ \text{cm}$. What is its potential energy?
+HKA: დეფორმირებული ზამბარის ენერგია: $E_p = \dfrac{k x^2}{2}$.
+HEN: Energy of a deformed spring: $E_p = \dfrac{k x^2}{2}$.
+SKA: **ფორმულა:** $E_p = \dfrac{k x^2}{2}$
+**რიცხვები:** $x = 0{,}05\ \text{მ}$, $\ E_p = \dfrac{400 \cdot 0{,}05^2}{2} = \dfrac{400 \cdot 0{,}0025}{2} = 0{,}5\ \text{ჯ}$
+SEN: **Formula:** $E_p = \dfrac{k x^2}{2}$
+**Numbers:** $x = 0.05\ \text{m}$, $\ E_p = \dfrac{400 \cdot 0.05^2}{2} = \dfrac{400 \cdot 0.0025}{2} = 0.5\ \text{J}$
+AKA: $0{,}5\ \text{ჯ}$
+AEN: $0.5\ \text{J}$
+
+--- easy energy
+KA: ქვა $20\ \text{მ}$ სიმაღლიდან უსაწყისო სიჩქარით ვარდება. ენერგიის შენახვის კანონით იპოვეთ მისი სიჩქარე მიწასთან (ჰაერის წინააღმდეგობა უგულებელყავით).
+EN: A stone falls from rest from a height of $20\ \text{m}$. Use conservation of energy to find its speed at the ground (ignore air resistance).
+HKA: პოტენციური ენერგია მთლიანად კინეტიკურში გადადის.
+HEN: All the potential energy turns into kinetic energy.
+SKA: **ფორმულა:** $m g h = \dfrac{m v^2}{2} \Rightarrow v = \sqrt{2 g h}$
+**რიცხვები:** $v = \sqrt{2 \cdot 10 \cdot 20} = \sqrt{400} = 20\ \text{მ/წმ}$
+SEN: **Formula:** $m g h = \dfrac{m v^2}{2} \Rightarrow v = \sqrt{2 g h}$
+**Numbers:** $v = \sqrt{2 \cdot 10 \cdot 20} = \sqrt{400} = 20\ \text{m/s}$
+AKA: $20\ \text{მ/წმ}$
+AEN: $20\ \text{m/s}$
+
+--- easy energy
+KA: $1000\ \text{კგ}$ მასის ავტომობილის სიჩქარე $10\ \text{მ/წმ}$-დან $20\ \text{მ/წმ}$-მდე გაიზარდა. როგორ შეიცვალა მისი კინეტიკური ენერგია?
+EN: A $1000\ \text{kg}$ car speeds up from $10\ \text{m/s}$ to $20\ \text{m/s}$. How does its kinetic energy change?
+HKA: კინეტიკური ენერგია სიჩქარის კვადრატის პროპორციულია.
+HEN: Kinetic energy is proportional to the square of the speed.
+SKA: **ფორმულა:** $E_k = \dfrac{m v^2}{2}$
+**რიცხვები:** $E_1 = \dfrac{1000 \cdot 10^2}{2} = 50\ \text{კჯ}$, $\ E_2 = \dfrac{1000 \cdot 20^2}{2} = 200\ \text{კჯ}$
+სიჩქარე გაორმაგდა — ენერგია $4$-ჯერ გაიზარდა ($150\ \text{კჯ}$-ით).
+SEN: **Formula:** $E_k = \dfrac{m v^2}{2}$
+**Numbers:** $E_1 = \dfrac{1000 \cdot 10^2}{2} = 50\ \text{kJ}$, $\ E_2 = \dfrac{1000 \cdot 20^2}{2} = 200\ \text{kJ}$
+The speed doubled — the energy grew $4$ times (by $150\ \text{kJ}$).
+AKA: $50\ \text{კჯ} \to 200\ \text{კჯ}$ ($4$-ჯერ)
+AEN: $50\ \text{kJ} \to 200\ \text{kJ}$ ($4$ times)
+
+--- easy machines
+KA: ბერკეტის მხრებია $0{,}3\ \text{მ}$ და $1{,}2\ \text{მ}$. მოკლე მხარზე $600\ \text{ნ}$ ტვირთია. რა ძალა უნდა მოედოს გრძელ მხარს წონასწორობისთვის?
+EN: The arms of a lever are $0.3\ \text{m}$ and $1.2\ \text{m}$. A $600\ \text{N}$ load is on the short arm. What force on the long arm balances it?
+HKA: $F_1 l_1 = F_2 l_2$.
+HEN: $F_1 l_1 = F_2 l_2$.
+SKA: **ფორმულა:** $F_1 l_1 = F_2 l_2 \Rightarrow F_2 = \dfrac{F_1 l_1}{l_2}$
+**რიცხვები:** $F_2 = \dfrac{600 \cdot 0{,}3}{1{,}2} = 150\ \text{ნ}$
+SEN: **Formula:** $F_1 l_1 = F_2 l_2 \Rightarrow F_2 = \dfrac{F_1 l_1}{l_2}$
+**Numbers:** $F_2 = \dfrac{600 \cdot 0.3}{1.2} = 150\ \text{N}$
+AKA: $150\ \text{ნ}$
+AEN: $150\ \text{N}$
+
+--- easy machines
+KA: $50\ \text{კგ}$ ტვირთს სწევენ: ა) უძრავი ჭოჭონაქით; ბ) მოძრავი ჭოჭონაქით. რა ძალაა საჭირო თითოეულ შემთხვევაში (ხახუნი და ჭოჭონაქის მასა უგულებელყავით)?
+EN: A $50\ \text{kg}$ load is lifted: a) with a fixed pulley; b) with a movable pulley. What force is needed in each case (ignore friction and the pulley's mass)?
+HKA: უძრავი ჭოჭონაქი მხოლოდ ძალის მიმართულებას ცვლის; მოძრავი ძალაში $2$-ჯერ იგებს.
+HEN: A fixed pulley only changes the direction of the force; a movable one halves the force.
+SKA: **ფორმულა:** ა) $F = m g$; ბ) $F = \dfrac{m g}{2}$
+**რიცხვები:** ა) $F = 50 \cdot 10 = 500\ \text{ნ}$; ბ) $F = \dfrac{500}{2} = 250\ \text{ნ}$
+SEN: **Formula:** a) $F = m g$; b) $F = \dfrac{m g}{2}$
+**Numbers:** a) $F = 50 \cdot 10 = 500\ \text{N}$; b) $F = \dfrac{500}{2} = 250\ \text{N}$
+AKA: ა) $500\ \text{ნ}$; ბ) $250\ \text{ნ}$
+AEN: a) $500\ \text{N}$; b) $250\ \text{N}$
+
+--- easy machines
+KA: მექანიზმით შესრულებული სასარგებლო მუშაობაა $400\ \text{ჯ}$, სრული (დახარჯული) მუშაობა — $500\ \text{ჯ}$. იპოვეთ მექანიზმის სმკ.
+EN: A machine does $400\ \text{J}$ of useful work while $500\ \text{J}$ of work is put in. Find its efficiency.
+HKA: სმკ = სასარგებლო მუშაობა : სრულ მუშაობაზე.
+HEN: Efficiency = useful work ÷ total work.
+SKA: **ფორმულა:** $\eta = \dfrac{A_{\text{სას}}}{A_{\text{სრ}}} \cdot 100\%$
+**რიცხვები:** $\eta = \dfrac{400}{500} \cdot 100\% = 80\%$
+SEN: **Formula:** $\eta = \dfrac{A_{\text{useful}}}{A_{\text{total}}} \cdot 100\%$
+**Numbers:** $\eta = \dfrac{400}{500} \cdot 100\% = 80\%$
+AKA: $80\%$
+AEN: $80\%$
+
+--- easy heat
+KA: ოთახში მდებარე ლითონის კოვზი და ხის კოვზი ერთნაირი ტემპერატურისაა. რატომ გვეჩვენება ლითონის კოვზი უფრო ცივი?
+EN: A metal spoon and a wooden spoon in a room have the same temperature. Why does the metal spoon feel colder?
+HKA: იფიქრეთ, რომელი ნივთიერება ატარებს სითბოს უკეთ.
+HEN: Think about which material conducts heat better.
+SKA: ჩვენი ხელი ოთახზე თბილია, ამიტომ შეხებისას ხელიდან სითბო კოვზისკენ გადადის (თბოგამტარებლობით).
+ლითონი კარგი თბოგამტარია — სწრაფად წაიღებს სითბოს ხელიდან, ამიტომ კანი სწრაფად ცივდება.
+ხე ცუდი თბოგამტარია — სითბოს ნელა ატარებს, ამიტომ თბილი გვეჩვენება.
+SEN: Our hand is warmer than the room, so on contact heat flows from the hand into the spoon (by conduction).
+Metal is a good conductor — it carries heat away from the hand quickly, so the skin cools fast.
+Wood is a poor conductor — it carries heat slowly, so it feels warmer.
+AKA: ლითონი უკეთესი თბოგამტარია — ხელიდან სითბოს სწრაფად წაიღებს.
+AEN: metal conducts heat better — it draws heat from the hand faster.
+
+--- easy heat
+KA: სითბოგადაცემის რომელი სახით ხდება: ა) მზის სითბოს მიღწევა დედამიწამდე; ბ) ოთახის გათბობა რადიატორით; გ) კოვზის ტარის გათბობა ცხელ ჩაიში?
+EN: Which kind of heat transfer is involved: a) the Sun's heat reaching Earth; b) a radiator warming a room; c) a spoon handle heating up in hot tea?
+HKA: გამოსხივებას ნივთიერება არ სჭირდება; კონვექცია — სითხის ან აირის ნაკადებით; თბოგამტარებლობა — ნივთიერებაში ნაწილაკიდან ნაწილაკზე.
+HEN: Radiation needs no matter; convection uses flows of liquid or gas; conduction passes from particle to particle in a material.
+SKA: ა) მზესა და დედამიწას შორის თითქმის ვაკუუმია — **გამოსხივება**.
+ბ) რადიატორთან გამთბარი ჰაერი მსუბუქდება და ადის, ცივი ეშვება — **კონვექცია**.
+გ) სითბო ლითონში ნაწილაკიდან ნაწილაკზე გადადის — **თბოგამტარებლობა**.
+SEN: a) Between the Sun and Earth there is almost a vacuum — **radiation**.
+b) Air warmed at the radiator becomes lighter and rises, cold air sinks — **convection**.
+c) Heat passes through the metal from particle to particle — **conduction**.
+AKA: ა) გამოსხივება; ბ) კონვექცია; გ) თბოგამტარებლობა
+AEN: a) radiation; b) convection; c) conduction
+
+--- easy heatcap
+KA: რა რაოდენობის სითბოა საჭირო $2\ \text{კგ}$ წყლის $20\ \text{°C}$-დან $70\ \text{°C}$-მდე გასათბობად?
+EN: How much heat is needed to warm $2\ \text{kg}$ of water from $20\ \text{°C}$ to $70\ \text{°C}$?
+HKA: $Q = c m \Delta t$.
+HEN: $Q = c m \Delta t$.
+SKA: **ფორმულა:** $Q = c\,m\,(t_2 - t_1)$
+**რიცხვები:** $Q = 4200 \cdot 2 \cdot (70 - 20) = 420\,000\ \text{ჯ} = 420\ \text{კჯ}$
+SEN: **Formula:** $Q = c\,m\,(t_2 - t_1)$
+**Numbers:** $Q = 4200 \cdot 2 \cdot (70 - 20) = 420\,000\ \text{J} = 420\ \text{kJ}$
+AKA: $420\ \text{კჯ}$
+AEN: $420\ \text{kJ}$
+
+--- easy heatcap
+KA: $500\ \text{გ}$ ალუმინის ნაჭერი $100\ \text{°C}$-დან $20\ \text{°C}$-მდე გაცივდა. რამდენი სითბო გასცა მან? ($c_{\text{ალ}} = 920\ \text{ჯ/(კგ}\cdot\text{°C)}$)
+EN: A $500\ \text{g}$ piece of aluminium cools from $100\ \text{°C}$ to $20\ \text{°C}$. How much heat does it give off? ($c_{\text{Al}} = 920\ \text{J/(kg}\cdot\text{°C)}$)
+HKA: გაცივებისას გაცემული სითბოც $Q = c m \Delta t$ ფორმულით ითვლება.
+HEN: Heat given off on cooling is also $Q = c m \Delta t$.
+SKA: **ფორმულა:** $Q = c\,m\,(t_1 - t_2)$
+**რიცხვები:** $Q = 920 \cdot 0{,}5 \cdot (100 - 20) = 36\,800\ \text{ჯ} \approx 36{,}8\ \text{კჯ}$
+SEN: **Formula:** $Q = c\,m\,(t_1 - t_2)$
+**Numbers:** $Q = 920 \cdot 0.5 \cdot (100 - 20) = 36\,800\ \text{J} \approx 36.8\ \text{kJ}$
+AKA: $36{,}8\ \text{კჯ}$
+AEN: $36.8\ \text{kJ}$
+
+--- easy melting
+KA: რამდენი სითბოა საჭირო $0\ \text{°C}$ ტემპერატურის $2\ \text{კგ}$ ყინულის გასალღობად?
+EN: How much heat is needed to melt $2\ \text{kg}$ of ice at $0\ \text{°C}$?
+HKA: დნობის ტემპერატურაზე: $Q = \lambda m$.
+HEN: At the melting point: $Q = \lambda m$.
+SKA: **ფორმულა:** $Q = \lambda\,m$
+**რიცხვები:** $Q = 3{,}4 \cdot 10^5 \cdot 2 = 6{,}8 \cdot 10^5\ \text{ჯ} = 680\ \text{კჯ}$
+SEN: **Formula:** $Q = \lambda\,m$
+**Numbers:** $Q = 3.4 \times 10^5 \cdot 2 = 6.8 \times 10^5\ \text{J} = 680\ \text{kJ}$
+AKA: $680\ \text{კჯ}$
+AEN: $680\ \text{kJ}$
+
+--- easy vapor
+KA: რამდენი სითბოა საჭირო $100\ \text{°C}$ ტემპერატურის $0{,}5\ \text{კგ}$ წყლის მთლიანად ორთქლად გადასაქცევად?
+EN: How much heat is needed to turn $0.5\ \text{kg}$ of water at $100\ \text{°C}$ completely into steam?
+HKA: დუღილის ტემპერატურაზე: $Q = L m$.
+HEN: At the boiling point: $Q = L m$.
+SKA: **ფორმულა:** $Q = L\,m$
+**რიცხვები:** $Q = 2{,}3 \cdot 10^6 \cdot 0{,}5 = 1{,}15 \cdot 10^6\ \text{ჯ} = 1{,}15\ \text{მჯ}$
+SEN: **Formula:** $Q = L\,m$
+**Numbers:** $Q = 2.3 \times 10^6 \cdot 0.5 = 1.15 \times 10^6\ \text{J} = 1.15\ \text{MJ}$
+AKA: $1{,}15\ \text{მჯ}$
+AEN: $1.15\ \text{MJ}$
+
+--- easy vapor
+KA: რატომ გვაგრილებს ოფლი? რატომ გვცივა წყლიდან ამოსვლისას, განსაკუთრებით ქარში?
+EN: Why does sweating cool us down? Why do we feel cold when we get out of the water, especially in the wind?
+HKA: აორთქლებისთვის სითბოა საჭირო. ქარი ორთქლს წაიღებს.
+HEN: Evaporation needs heat. Wind carries the vapour away.
+SKA: აორთქლებისას სითხიდან ყველაზე სწრაფი მოლეკულები გამოდიან, ამიტომ დარჩენილი სითხე ცივდება.
+აორთქლებისთვის საჭირო სითბო ($Q = L m$) კანიდან მიიღება — კანი გრილდება.
+ქარი ზედაპირიდან ორთქლს წაიღებს, ამიტომ აორთქლება ჩქარდება და გაგრილება ძლიერდება.
+SEN: During evaporation the fastest molecules leave the liquid, so the remaining liquid cools.
+The heat needed for evaporation ($Q = L m$) is taken from the skin — the skin cools.
+Wind carries the vapour away from the surface, so evaporation speeds up and the cooling gets stronger.
+AKA: აორთქლება სითბოს კანიდან იღებს; ქარი აორთქლებას აჩქარებს.
+AEN: evaporation takes heat from the skin; wind speeds up evaporation.
+
+--- easy fuel
+KA: რამდენი სითბო გამოიყოფა $2\ \text{კგ}$ შეშის სრული წვისას? ($q = 1{,}0 \cdot 10^7\ \text{ჯ/კგ}$)
+EN: How much heat is released when $2\ \text{kg}$ of firewood burns completely? ($q = 1.0 \times 10^7\ \text{J/kg}$)
+HKA: $Q = q m$.
+HEN: $Q = q m$.
+SKA: **ფორმულა:** $Q = q\,m$
+**რიცხვები:** $Q = 1{,}0 \cdot 10^7 \cdot 2 = 2 \cdot 10^7\ \text{ჯ} = 20\ \text{მჯ}$
+SEN: **Formula:** $Q = q\,m$
+**Numbers:** $Q = 1.0 \times 10^7 \cdot 2 = 2 \times 10^7\ \text{J} = 20\ \text{MJ}$
+AKA: $20\ \text{მჯ}$
+AEN: $20\ \text{MJ}$
+
+--- easy expansion
+KA: $10\ \text{მ}$ სიგრძის ფოლადის რელსი $40\ \text{°C}$-ით გათბა. რამდენით დაგრძელდა ის? ($\alpha = 1{,}2 \cdot 10^{-5}\ \text{1/°C}$)
+EN: A $10\ \text{m}$ steel rail warms up by $40\ \text{°C}$. By how much does it get longer? ($\alpha = 1.2 \times 10^{-5}\ \text{1/°C}$)
+HKA: წრფივი გაფართოება: $\Delta l = \alpha\, l_0\, \Delta t$.
+HEN: Linear expansion: $\Delta l = \alpha\, l_0\, \Delta t$.
+SKA: **ფორმულა:** $\Delta l = \alpha\, l_0\, \Delta t$
+**რიცხვები:** $\Delta l = 1{,}2 \cdot 10^{-5} \cdot 10 \cdot 40 = 4{,}8 \cdot 10^{-3}\ \text{მ} = 4{,}8\ \text{მმ}$
+SEN: **Formula:** $\Delta l = \alpha\, l_0\, \Delta t$
+**Numbers:** $\Delta l = 1.2 \times 10^{-5} \cdot 10 \cdot 40 = 4.8 \times 10^{-3}\ \text{m} = 4.8\ \text{mm}$
+AKA: $4{,}8\ \text{მმ}$
+AEN: $4.8\ \text{mm}$
+
+--- easy engines
+KA: თბოძრავმა გამათბობლისგან მიიღო $1000\ \text{ჯ}$ სითბო და შეასრულა $300\ \text{ჯ}$ მუშაობა. იპოვეთ მისი სმკ და მაცივრისთვის გადაცემული სითბო.
+EN: A heat engine takes $1000\ \text{J}$ of heat from the hot source and does $300\ \text{J}$ of work. Find its efficiency and the heat given to the cold sink.
+HKA: $\eta = \dfrac{A}{Q_1}$; ენერგიის შენახვით $Q_1 = A + Q_2$.
+HEN: $\eta = \dfrac{A}{Q_1}$; by energy conservation $Q_1 = A + Q_2$.
+SKA: **ფორმულა:** $\eta = \dfrac{A}{Q_1}$, $\ Q_2 = Q_1 - A$
+**რიცხვები:** $\eta = \dfrac{300}{1000} = 0{,}3 = 30\%$, $\ Q_2 = 1000 - 300 = 700\ \text{ჯ}$
+SEN: **Formula:** $\eta = \dfrac{A}{Q_1}$, $\ Q_2 = Q_1 - A$
+**Numbers:** $\eta = \dfrac{300}{1000} = 0.3 = 30\%$, $\ Q_2 = 1000 - 300 = 700\ \text{J}$
+AKA: $30\%$; $700\ \text{ჯ}$
+AEN: $30\%$; $700\ \text{J}$
+
+// ===================================================================== MEDIUM
+
+--- medium work
+KA: $40\ \text{კგ}$ მასის ყუთს ჰორიზონტალურ იატაკზე თანაბრად $20\ \text{მ}$-ზე მიათრევენ. ხახუნის კოეფიციენტია $0{,}25$. რა მუშაობა შესრულდა?
+EN: A $40\ \text{kg}$ box is dragged uniformly $20\ \text{m}$ across a horizontal floor. The coefficient of friction is $0.25$. How much work is done?
+HKA: თანაბარი მოძრაობისას წევის ძალა ხახუნის ძალის ტოლია: $F = \mu m g$.
+HEN: In uniform motion the pulling force equals friction: $F = \mu m g$.
+SKA: **ფორმულა:** $F = \mu m g$, $\ A = F s = \mu m g s$
+**რიცხვები:** $F = 0{,}25 \cdot 40 \cdot 10 = 100\ \text{ნ}$
+$A = 100 \cdot 20 = 2000\ \text{ჯ} = 2\ \text{კჯ}$
+SEN: **Formula:** $F = \mu m g$, $\ A = F s = \mu m g s$
+**Numbers:** $F = 0.25 \cdot 40 \cdot 10 = 100\ \text{N}$
+$A = 100 \cdot 20 = 2000\ \text{J} = 2\ \text{kJ}$
+AKA: $2\ \text{კჯ}$
+AEN: $2\ \text{kJ}$
+
+--- medium work
+KA: ავტომობილი $72\ \text{კმ/სთ}$ მუდმივი სიჩქარით მოძრაობს, ძრავის წევის ძალაა $2\ \text{კნ}$. იპოვეთ ძრავის სასარგებლო სიმძლავრე.
+EN: A car moves at a constant $72\ \text{km/h}$ with a driving force of $2\ \text{kN}$. Find the engine's useful power.
+HKA: $N = \dfrac{A}{t} = \dfrac{F s}{t} = F v$.
+HEN: $N = \dfrac{A}{t} = \dfrac{F s}{t} = F v$.
+SKA: **ფორმულა:** $N = \dfrac{F s}{t} = F\,v$
+**რიცხვები:** $v = \dfrac{72}{3{,}6} = 20\ \text{მ/წმ}$
+$N = 2000 \cdot 20 = 40\,000\ \text{ვტ} = 40\ \text{კვტ}$
+SEN: **Formula:** $N = \dfrac{F s}{t} = F\,v$
+**Numbers:** $v = \dfrac{72}{3.6} = 20\ \text{m/s}$
+$N = 2000 \cdot 20 = 40\,000\ \text{W} = 40\ \text{kW}$
+AKA: $40\ \text{კვტ}$
+AEN: $40\ \text{kW}$
+
+--- medium work
+KA: ტუმბო $5\ \text{წთ}$-ში $3\ \text{მ}^3$ წყალს $10\ \text{მ}$ სიმაღლეზე აწვდის. იპოვეთ ტუმბოს სასარგებლო სიმძლავრე.
+EN: A pump raises $3\ \text{m}^3$ of water to a height of $10\ \text{m}$ in $5\ \text{min}$. Find its useful power.
+HKA: ჯერ იპოვეთ წყლის მასა: $m = \rho V$.
+HEN: First find the mass of water: $m = \rho V$.
+SKA: **ფორმულა:** $A = m g h = \rho V g h$, $\ N = \dfrac{A}{t}$
+**რიცხვები:** $m = 1000 \cdot 3 = 3000\ \text{კგ}$, $\ A = 3000 \cdot 10 \cdot 10 = 3 \cdot 10^5\ \text{ჯ}$
+$N = \dfrac{3 \cdot 10^5}{300} = 1000\ \text{ვტ} = 1\ \text{კვტ}$
+SEN: **Formula:** $A = m g h = \rho V g h$, $\ N = \dfrac{A}{t}$
+**Numbers:** $m = 1000 \cdot 3 = 3000\ \text{kg}$, $\ A = 3000 \cdot 10 \cdot 10 = 3 \times 10^5\ \text{J}$
+$N = \dfrac{3 \times 10^5}{300} = 1000\ \text{W} = 1\ \text{kW}$
+AKA: $1\ \text{კვტ}$
+AEN: $1\ \text{kW}$
+
+--- medium energy
+KA: ბურთი მიწიდან ვერტიკალურად ზემოთ $10\ \text{მ/წმ}$ სიჩქარით აისროლეს. ენერგიის შენახვის კანონით იპოვეთ აწევის მაქსიმალური სიმაღლე.
+EN: A ball is thrown straight up from the ground at $10\ \text{m/s}$. Use conservation of energy to find the maximum height.
+HKA: ყველაზე მაღალ წერტილში სიჩქარე ნულია — მთელი კინეტიკური ენერგია პოტენციურში გადავიდა.
+HEN: At the top the speed is zero — all the kinetic energy has become potential energy.
+SKA: **ფორმულა:** $\dfrac{m v^2}{2} = m g h \Rightarrow h = \dfrac{v^2}{2 g}$
+**რიცხვები:** $h = \dfrac{10^2}{2 \cdot 10} = 5\ \text{მ}$
+SEN: **Formula:** $\dfrac{m v^2}{2} = m g h \Rightarrow h = \dfrac{v^2}{2 g}$
+**Numbers:** $h = \dfrac{10^2}{2 \cdot 10} = 5\ \text{m}$
+AKA: $5\ \text{მ}$
+AEN: $5\ \text{m}$
+
+--- medium energy
+KA: $2\ \text{კგ}$ მასის სხეული $10\ \text{მ}$ სიმაღლიდან ვარდება. იპოვეთ მისი პოტენციური და კინეტიკური ენერგია და სიჩქარე $4\ \text{მ}$ სიმაღლეზე.
+EN: A $2\ \text{kg}$ body falls from a height of $10\ \text{m}$. Find its potential and kinetic energy and its speed at a height of $4\ \text{m}$.
+HKA: სრული მექანიკური ენერგია $E = m g H$ ვარდნისას უცვლელია.
+HEN: The total mechanical energy $E = m g H$ stays the same during the fall.
+SKA: **ფორმულა:** $m g H = m g h + E_k \Rightarrow E_k = m g (H - h)$, $\ v = \sqrt{\dfrac{2 E_k}{m}}$
+**რიცხვები:** $E = 2 \cdot 10 \cdot 10 = 200\ \text{ჯ}$, $\ E_p = 2 \cdot 10 \cdot 4 = 80\ \text{ჯ}$
+$E_k = 200 - 80 = 120\ \text{ჯ}$, $\ v = \sqrt{\dfrac{2 \cdot 120}{2}} = \sqrt{120} \approx 11\ \text{მ/წმ}$
+SEN: **Formula:** $m g H = m g h + E_k \Rightarrow E_k = m g (H - h)$, $\ v = \sqrt{\dfrac{2 E_k}{m}}$
+**Numbers:** $E = 2 \cdot 10 \cdot 10 = 200\ \text{J}$, $\ E_p = 2 \cdot 10 \cdot 4 = 80\ \text{J}$
+$E_k = 200 - 80 = 120\ \text{J}$, $\ v = \sqrt{\dfrac{2 \cdot 120}{2}} = \sqrt{120} \approx 11\ \text{m/s}$
+AKA: $80\ \text{ჯ}$; $120\ \text{ჯ}$; $\approx 11\ \text{მ/წმ}$
+AEN: $80\ \text{J}$; $120\ \text{J}$; $\approx 11\ \text{m/s}$
+
+--- medium energy
+KA: სათამაშო ზამბარიანი თოფის ზამბარა ($k = 800\ \text{ნ/მ}$) $5\ \text{სმ}$-ით შეკუმშეს და $10\ \text{გ}$ ბურთულა ვერტიკალურად ზემოთ ისროლეს. რა სიმაღლეზე ავა ბურთულა?
+EN: The spring ($k = 800\ \text{N/m}$) of a toy gun is compressed by $5\ \text{cm}$ and shoots a $10\ \text{g}$ ball straight up. How high does the ball rise?
+HKA: ზამბარის ენერგია მთლიანად ბურთულას პოტენციურ ენერგიად იქცევა.
+HEN: The spring's energy all turns into the ball's potential energy.
+SKA: **ფორმულა:** $\dfrac{k x^2}{2} = m g h \Rightarrow h = \dfrac{k x^2}{2 m g}$
+**რიცხვები:** $\dfrac{k x^2}{2} = \dfrac{800 \cdot 0{,}05^2}{2} = 1\ \text{ჯ}$
+$h = \dfrac{1}{0{,}01 \cdot 10} = 10\ \text{მ}$
+SEN: **Formula:** $\dfrac{k x^2}{2} = m g h \Rightarrow h = \dfrac{k x^2}{2 m g}$
+**Numbers:** $\dfrac{k x^2}{2} = \dfrac{800 \cdot 0.05^2}{2} = 1\ \text{J}$
+$h = \dfrac{1}{0.01 \cdot 10} = 10\ \text{m}$
+AKA: $10\ \text{მ}$
+AEN: $10\ \text{m}$
+
+--- medium energy
+KA: ქანქარის ბურთულა გადახარეს და გაუშვეს ისე, რომ ის ყველაზე დაბალ წერტილზე $45\ \text{სმ}$-ით მაღლა იყო. რა სიჩქარით გაივლის ის ყველაზე დაბალ წერტილს?
+EN: A pendulum bob is pulled aside and released from $45\ \text{cm}$ above its lowest point. How fast does it pass the lowest point?
+HKA: რხევისას პოტენციური ენერგია კინეტიკურში გადადის და პირიქით.
+HEN: During the swing potential energy turns into kinetic and back.
+SKA: **ფორმულა:** $m g h = \dfrac{m v^2}{2} \Rightarrow v = \sqrt{2 g h}$
+**რიცხვები:** $v = \sqrt{2 \cdot 10 \cdot 0{,}45} = \sqrt{9} = 3\ \text{მ/წმ}$
+SEN: **Formula:** $m g h = \dfrac{m v^2}{2} \Rightarrow v = \sqrt{2 g h}$
+**Numbers:** $v = \sqrt{2 \cdot 10 \cdot 0.45} = \sqrt{9} = 3\ \text{m/s}$
+AKA: $3\ \text{მ/წმ}$
+AEN: $3\ \text{m/s}$
+
+--- medium energy
+KA: ზამბარის სიხისტეა $200\ \text{ნ/მ}$. რა მუშაობაა საჭირო მის გასაჭიმად $0$-დან $10\ \text{სმ}$-მდე? $10\ \text{სმ}$-დან $20\ \text{სმ}$-მდე? რატომ განსხვავდება?
+EN: A spring has stiffness $200\ \text{N/m}$. How much work is needed to stretch it from $0$ to $10\ \text{cm}$? From $10\ \text{cm}$ to $20\ \text{cm}$? Why are they different?
+HKA: მუშაობა = ზამბარის პოტენციური ენერგიის ცვლილება.
+HEN: Work = change in the spring's potential energy.
+SKA: **ფორმულა:** $A = \dfrac{k x_2^2}{2} - \dfrac{k x_1^2}{2}$
+**რიცხვები:** $A_1 = \dfrac{200 \cdot 0{,}1^2}{2} - 0 = 1\ \text{ჯ}$
+$A_2 = \dfrac{200 \cdot 0{,}2^2}{2} - 1 = 4 - 1 = 3\ \text{ჯ}$
+მეორე შემთხვევაში დრეკადობის ძალა უკვე დიდია (იზრდება წაგრძელებასთან ერთად), ამიტომ მეტი მუშაობაა საჭირო.
+SEN: **Formula:** $A = \dfrac{k x_2^2}{2} - \dfrac{k x_1^2}{2}$
+**Numbers:** $A_1 = \dfrac{200 \cdot 0.1^2}{2} - 0 = 1\ \text{J}$
+$A_2 = \dfrac{200 \cdot 0.2^2}{2} - 1 = 4 - 1 = 3\ \text{J}$
+In the second case the spring force is already large (it grows with the extension), so more work is needed.
+AKA: $1\ \text{ჯ}$; $3\ \text{ჯ}$
+AEN: $1\ \text{J}$; $3\ \text{J}$
+
+--- medium machines
+KA: ერთთვლიანი ურიკის (ბერკეტის II კლასი) ღერძიდან $0{,}4\ \text{მ}$-ზე $600\ \text{ნ}$ ტვირთია, სახელურები კი ღერძიდან $1{,}2\ \text{მ}$-ზეა. რა ძალით უნდა აწიოს მუშამ სახელურები?
+EN: A wheelbarrow (a second-class lever) carries a $600\ \text{N}$ load $0.4\ \text{m}$ from the wheel axle; the handles are $1.2\ \text{m}$ from the axle. What force must the worker apply to lift the handles?
+HKA: საყრდენი ბორბლის ღერძია; ორივე ძალა მის ერთ მხარესაა.
+HEN: The pivot is the wheel axle; both forces are on the same side of it.
+SKA: **ფორმულა:** $F \cdot l_F = P \cdot l_P \Rightarrow F = \dfrac{P\,l_P}{l_F}$
+**რიცხვები:** $F = \dfrac{600 \cdot 0{,}4}{1{,}2} = 200\ \text{ნ}$
+SEN: **Formula:** $F \cdot l_F = P \cdot l_P \Rightarrow F = \dfrac{P\,l_P}{l_F}$
+**Numbers:** $F = \dfrac{600 \cdot 0.4}{1.2} = 200\ \text{N}$
+AKA: $200\ \text{ნ}$
+AEN: $200\ \text{N}$
+
+--- medium machines
+KA: $100\ \text{კგ}$ ტვირთი $1{,}5\ \text{მ}$ სიმაღლეზე $5\ \text{მ}$ სიგრძის ფიცრით აიტანეს, ფიცრის გასწვრივ $400\ \text{ნ}$ ძალით. იპოვეთ დახრილი სიბრტყის სმკ.
+EN: A $100\ \text{kg}$ load is pushed up a $5\ \text{m}$ plank to a height of $1.5\ \text{m}$ with a force of $400\ \text{N}$ along the plank. Find the efficiency of the inclined plane.
+HKA: სასარგებლო მუშაობა — ტვირთის აწევა $m g h$; სრული — $F l$.
+HEN: Useful work is lifting the load, $m g h$; total work is $F l$.
+SKA: **ფორმულა:** $\eta = \dfrac{m g h}{F l} \cdot 100\%$
+**რიცხვები:** $A_{\text{სას}} = 100 \cdot 10 \cdot 1{,}5 = 1500\ \text{ჯ}$, $\ A_{\text{სრ}} = 400 \cdot 5 = 2000\ \text{ჯ}$
+$\eta = \dfrac{1500}{2000} \cdot 100\% = 75\%$
+SEN: **Formula:** $\eta = \dfrac{m g h}{F l} \cdot 100\%$
+**Numbers:** $A_{\text{useful}} = 100 \cdot 10 \cdot 1.5 = 1500\ \text{J}$, $\ A_{\text{total}} = 400 \cdot 5 = 2000\ \text{J}$
+$\eta = \dfrac{1500}{2000} \cdot 100\% = 75\%$
+AKA: $75\%$
+AEN: $75\%$
+
+--- medium machines
+KA: მოძრავი ჭოჭონაქით $380\ \text{ნ}$ ტვირთს სწევენ. ჭოჭონაქის წონაა $20\ \text{ნ}$ (ხახუნი უგულებელყავით). რა ძალაა საჭირო და რას უდრის სმკ?
+EN: A $380\ \text{N}$ load is lifted with a movable pulley that weighs $20\ \text{N}$ (ignore friction). What force is needed and what is the efficiency?
+HKA: ჭოჭონაქიც ტვირთთან ერთად ადის — თოკის ორი ნაწილი ორივეს წონას იჭერს.
+HEN: The pulley rises with the load — the two rope segments carry both weights.
+SKA: **ფორმულა:** $2F = P + P_{\text{ჭ}} \Rightarrow F = \dfrac{P + P_{\text{ჭ}}}{2}$; $\ \eta = \dfrac{P h}{F \cdot 2h} = \dfrac{P}{P + P_{\text{ჭ}}}$
+**რიცხვები:** $F = \dfrac{380 + 20}{2} = 200\ \text{ნ}$
+$\eta = \dfrac{380}{400} \cdot 100\% = 95\%$
+SEN: **Formula:** $2F = P + P_{\text{p}} \Rightarrow F = \dfrac{P + P_{\text{p}}}{2}$; $\ \eta = \dfrac{P h}{F \cdot 2h} = \dfrac{P}{P + P_{\text{p}}}$
+**Numbers:** $F = \dfrac{380 + 20}{2} = 200\ \text{N}$
+$\eta = \dfrac{380}{400} \cdot 100\% = 95\%$
+AKA: $200\ \text{ნ}$; $95\%$
+AEN: $200\ \text{N}$; $95\%$
+
+--- medium heat
+KA: თერმოსის აგებულებაში ორმაგი შუშის კედლებია, მათ შორის ჰაერი ამოტუმბულია, ხოლო შიგა ზედაპირი მოვერცხლილია (სარკისებრია). რომელ სახის სითბოგადაცემას ებრძვის თითოეული დეტალი?
+EN: A thermos flask has double glass walls with the air pumped out between them, and the inner surfaces are silvered (mirror-like). Which kind of heat transfer does each feature fight?
+HKA: ვაკუუმში არც თბოგამტარებლობაა, არც კონვექცია; სარკე გამოსხივებას აირეკლავს.
+HEN: In a vacuum there is neither conduction nor convection; a mirror reflects radiation.
+SKA: ვაკუუმი კედლებს შორის — ნივთიერება არ არის, ამიტომ არ ხდება **თბოგამტარებლობა** და **კონვექცია**.
+მოვერცხლილი ზედაპირი აირეკლავს თბურ **გამოსხივებას** უკან (ცხელ სითხეს უბრუნებს ან გარე სითბოს არ უშვებს).
+საცობი ზემოდან ხელს უშლის კონვექციას და აორთქლებას.
+SEN: The vacuum between the walls — there is no matter, so there is no **conduction** and no **convection**.
+The silvered surfaces reflect thermal **radiation** back (keeping it in the hot drink or keeping outside heat out).
+The stopper on top stops convection and evaporation.
+AKA: ვაკუუმი — თბოგამტარებლობა და კონვექცია; სარკე — გამოსხივება
+AEN: vacuum — conduction and convection; mirror — radiation
+
+--- medium heatcap
+KA: $80\ \text{°C}$ ტემპერატურის $2\ \text{კგ}$ წყალი შეურიეს $20\ \text{°C}$ ტემპერატურის $3\ \text{კგ}$ წყალს. იპოვეთ ნარევის ტემპერატურა (სითბური დანაკარგები უგულებელყავით).
+EN: $2\ \text{kg}$ of water at $80\ \text{°C}$ is mixed with $3\ \text{kg}$ of water at $20\ \text{°C}$. Find the final temperature (ignore heat losses).
+HKA: სითბური ბალანსი: ცხელი წყლის გაცემული სითბო = ცივის მიღებულ სითბოს.
+HEN: Heat balance: heat lost by the hot water = heat gained by the cold water.
+SKA: **ფორმულა:** $c m_1 (t_1 - t) = c m_2 (t - t_2) \Rightarrow t = \dfrac{m_1 t_1 + m_2 t_2}{m_1 + m_2}$
+**რიცხვები:** $t = \dfrac{2 \cdot 80 + 3 \cdot 20}{2 + 3} = \dfrac{220}{5} = 44\ \text{°C}$
+SEN: **Formula:** $c m_1 (t_1 - t) = c m_2 (t - t_2) \Rightarrow t = \dfrac{m_1 t_1 + m_2 t_2}{m_1 + m_2}$
+**Numbers:** $t = \dfrac{2 \cdot 80 + 3 \cdot 20}{2 + 3} = \dfrac{220}{5} = 44\ \text{°C}$
+AKA: $44\ \text{°C}$
+AEN: $44\ \text{°C}$
+
+--- medium heatcap
+KA: $100\ \text{°C}$-მდე გახურებული $200\ \text{გ}$ ლითონის ნაჭერი ჩადეს $20\ \text{°C}$ ტემპერატურის $400\ \text{გ}$ წყალში. დამყარდა $25\ \text{°C}$. იპოვეთ ლითონის ხვედრითი სითბოტევადობა.
+EN: A $200\ \text{g}$ piece of metal heated to $100\ \text{°C}$ is dropped into $400\ \text{g}$ of water at $20\ \text{°C}$. The final temperature is $25\ \text{°C}$. Find the metal's specific heat capacity.
+HKA: დაწერეთ სითბური ბალანსის განტოლება და გამოსახეთ $c_{\text{ლ}}$.
+HEN: Write the heat balance and solve for $c_{\text{m}}$.
+SKA: **ფორმულა:** $c_{\text{ლ}} m_{\text{ლ}} (t_{\text{ლ}} - t) = c_{\text{წ}} m_{\text{წ}} (t - t_{\text{წ}}) \Rightarrow c_{\text{ლ}} = \dfrac{c_{\text{წ}} m_{\text{წ}} (t - t_{\text{წ}})}{m_{\text{ლ}} (t_{\text{ლ}} - t)}$
+**რიცხვები:** $c_{\text{ლ}} = \dfrac{4200 \cdot 0{,}4 \cdot 5}{0{,}2 \cdot 75} = \dfrac{8400}{15} = 560\ \text{ჯ/(კგ}\cdot\text{°C)}$
+SEN: **Formula:** $c_{\text{m}} m_{\text{m}} (t_{\text{m}} - t) = c_{\text{w}} m_{\text{w}} (t - t_{\text{w}}) \Rightarrow c_{\text{m}} = \dfrac{c_{\text{w}} m_{\text{w}} (t - t_{\text{w}})}{m_{\text{m}} (t_{\text{m}} - t)}$
+**Numbers:** $c_{\text{m}} = \dfrac{4200 \cdot 0.4 \cdot 5}{0.2 \cdot 75} = \dfrac{8400}{15} = 560\ \text{J/(kg}\cdot\text{°C)}$
+AKA: $560\ \text{ჯ/(კგ}\cdot\text{°C)}$
+AEN: $560\ \text{J/(kg}\cdot\text{°C)}$
+
+--- medium heatcap
+KA: $2\ \text{კვტ}$ სიმძლავრის ელექტროჩაიდანი $1{,}5\ \text{კგ}$ წყალს $20\ \text{°C}$-დან ადუღებს. რა დრო დასჭირდება, თუ დანაკარგები არ არის?
+EN: A $2\ \text{kW}$ electric kettle heats $1.5\ \text{kg}$ of water from $20\ \text{°C}$ to boiling. How long does it take with no losses?
+HKA: ჩაიდნის მუშაობა $N t$ წყლის მიღებული სითბოს ტოლია.
+HEN: The kettle's work $N t$ equals the heat absorbed by the water.
+SKA: **ფორმულა:** $N t = c m (t_2 - t_1) \Rightarrow t = \dfrac{c m (t_2 - t_1)}{N}$
+**რიცხვები:** $Q = 4200 \cdot 1{,}5 \cdot 80 = 504\,000\ \text{ჯ}$
+$t = \dfrac{504\,000}{2000} = 252\ \text{წმ} = 4{,}2\ \text{წთ}$
+SEN: **Formula:** $N t = c m (t_2 - t_1) \Rightarrow t = \dfrac{c m (t_2 - t_1)}{N}$
+**Numbers:** $Q = 4200 \cdot 1.5 \cdot 80 = 504\,000\ \text{J}$
+$t = \dfrac{504\,000}{2000} = 252\ \text{s} = 4.2\ \text{min}$
+AKA: $252\ \text{წმ}$
+AEN: $252\ \text{s}$
+
+--- medium melting
+KA: რამდენი სითბოა საჭირო $-10\ \text{°C}$ ტემპერატურის $1\ \text{კგ}$ ყინულის $0\ \text{°C}$ ტემპერატურის წყლად გადასაქცევად?
+EN: How much heat is needed to turn $1\ \text{kg}$ of ice at $-10\ \text{°C}$ into water at $0\ \text{°C}$?
+HKA: ორი ეტაპი: ყინულის გათბობა $0\ \text{°C}$-მდე, შემდეგ დნობა.
+HEN: Two stages: warm the ice to $0\ \text{°C}$, then melt it.
+SKA: **ფორმულა:** $Q = c_{\text{ყ}} m (0 - t_1) + \lambda m$
+**რიცხვები:** $Q_1 = 2100 \cdot 1 \cdot 10 = 21\,000\ \text{ჯ}$, $\ Q_2 = 3{,}4 \cdot 10^5 \cdot 1 = 340\,000\ \text{ჯ}$
+$Q = 361\,000\ \text{ჯ} = 361\ \text{კჯ}$
+SEN: **Formula:** $Q = c_{\text{ice}} m (0 - t_1) + \lambda m$
+**Numbers:** $Q_1 = 2100 \cdot 1 \cdot 10 = 21\,000\ \text{J}$, $\ Q_2 = 3.4 \times 10^5 \cdot 1 = 340\,000\ \text{J}$
+$Q = 361\,000\ \text{J} = 361\ \text{kJ}$
+AKA: $361\ \text{კჯ}$
+AEN: $361\ \text{kJ}$
+
+--- medium melting
+KA: რამდენი სითბოა საჭირო $27\ \text{°C}$ ტემპერატურის $2\ \text{კგ}$ ტყვიის გასალღობად? (ტყვია: $c = 130\ \text{ჯ/(კგ}\cdot\text{°C)}$, $t_{\text{დნ}} = 327\ \text{°C}$, $\lambda = 2{,}5 \cdot 10^4\ \text{ჯ/კგ}$)
+EN: How much heat is needed to melt $2\ \text{kg}$ of lead at $27\ \text{°C}$? (Lead: $c = 130\ \text{J/(kg}\cdot\text{°C)}$, $t_{\text{melt}} = 327\ \text{°C}$, $\lambda = 2.5 \times 10^4\ \text{J/kg}$)
+HKA: ჯერ ტყვია დნობის ტემპერატურამდე უნდა გათბეს.
+HEN: First the lead must be heated to its melting point.
+SKA: **ფორმულა:** $Q = c m (t_{\text{დნ}} - t_1) + \lambda m$
+**რიცხვები:** $Q_1 = 130 \cdot 2 \cdot 300 = 78\,000\ \text{ჯ}$, $\ Q_2 = 2{,}5 \cdot 10^4 \cdot 2 = 50\,000\ \text{ჯ}$
+$Q = 128\,000\ \text{ჯ} = 128\ \text{კჯ}$
+SEN: **Formula:** $Q = c m (t_{\text{melt}} - t_1) + \lambda m$
+**Numbers:** $Q_1 = 130 \cdot 2 \cdot 300 = 78\,000\ \text{J}$, $\ Q_2 = 2.5 \times 10^4 \cdot 2 = 50\,000\ \text{J}$
+$Q = 128\,000\ \text{J} = 128\ \text{kJ}$
+AKA: $128\ \text{კჯ}$
+AEN: $128\ \text{kJ}$
+
+--- medium vapor
+KA: რამდენი სითბოა საჭირო $20\ \text{°C}$ ტემპერატურის $1\ \text{კგ}$ წყლის ადუღებისა და მთლიანად ორთქლად გადაქცევისთვის? რომელ ეტაპზე იხარჯება მეტი?
+EN: How much heat is needed to bring $1\ \text{kg}$ of water at $20\ \text{°C}$ to the boil and turn it all into steam? Which stage takes more?
+HKA: გათბობა $100\ \text{°C}$-მდე + აორთქლება.
+HEN: Heating to $100\ \text{°C}$ + vaporisation.
+SKA: **ფორმულა:** $Q = c m (100 - t_1) + L m$
+**რიცხვები:** $Q_1 = 4200 \cdot 1 \cdot 80 = 336\,000\ \text{ჯ}$, $\ Q_2 = 2{,}3 \cdot 10^6\ \text{ჯ}$
+$Q \approx 2{,}64 \cdot 10^6\ \text{ჯ}$ — აორთქლებაზე თითქმის $7$-ჯერ მეტი იხარჯება.
+SEN: **Formula:** $Q = c m (100 - t_1) + L m$
+**Numbers:** $Q_1 = 4200 \cdot 1 \cdot 80 = 336\,000\ \text{J}$, $\ Q_2 = 2.3 \times 10^6\ \text{J}$
+$Q \approx 2.64 \times 10^6\ \text{J}$ — vaporisation takes almost $7$ times more.
+AKA: $\approx 2{,}64\ \text{მჯ}$; აორთქლებაზე
+AEN: $\approx 2.64\ \text{MJ}$; vaporisation
+
+--- medium vapor
+KA: რატომ ხარშვას მეტი დრო სჭირდება მაღალ მთაში? როგორ მუშაობს სწრაფსახარში ქვაბი (სკოროვარკა)?
+EN: Why does cooking take longer high in the mountains? How does a pressure cooker work?
+HKA: დუღილის ტემპერატურა გარე წნევაზეა დამოკიდებული.
+HEN: The boiling point depends on the outside pressure.
+SKA: სითხე დუღს, როცა მის ბუშტულებში ორთქლის წნევა გარე წნევას გაუტოლდება.
+მთაში ატმოსფერული წნევა ნაკლებია, ამიტომ წყალი $100\ \text{°C}$-ზე დაბალ ტემპერატურაზე დუღს (მაგ., $\sim 90\ \text{°C}$-ზე) — საკვები ნელა იხარშება.
+სწრაფსახარში ქვაბი ჰერმეტულია: ორთქლი წნევას ზრდის, დუღილის ტემპერატურა $\sim 120\ \text{°C}$-მდე იწევს და საკვები სწრაფად მზადდება.
+SEN: A liquid boils when the vapour pressure in its bubbles equals the outside pressure.
+In the mountains the air pressure is lower, so water boils below $100\ \text{°C}$ (e.g. at $\sim 90\ \text{°C}$) — food cooks slowly.
+A pressure cooker is sealed: the steam raises the pressure, the boiling point rises to $\sim 120\ \text{°C}$ and food cooks fast.
+AKA: დაბალი წნევა → დაბალი დუღილის ტემპერატურა; ქვაბში წნევა და ტემპერატურა იზრდება.
+AEN: lower pressure → lower boiling point; the cooker raises pressure and temperature.
+
+--- medium fuel
+KA: რამდენი ბუნებრივი აირი ($q = 4{,}4 \cdot 10^7\ \text{ჯ/კგ}$) უნდა დაიწვას $3\ \text{კგ}$ წყლის $20\ \text{°C}$-დან $100\ \text{°C}$-მდე გასათბობად, თუ ქურის სმკ $50\%$-ია?
+EN: How much natural gas ($q = 4.4 \times 10^7\ \text{J/kg}$) must be burned to heat $3\ \text{kg}$ of water from $20\ \text{°C}$ to $100\ \text{°C}$ if the stove is $50\%$ efficient?
+HKA: წყალს წვის სითბოს მხოლოდ ნახევარი ხვდება: $\eta q m_{\text{ა}} = c m (t_2 - t_1)$.
+HEN: Only half of the combustion heat reaches the water: $\eta q m_{\text{g}} = c m (t_2 - t_1)$.
+SKA: **ფორმულა:** $\eta\, q\, m_{\text{ა}} = c\, m\, (t_2 - t_1) \Rightarrow m_{\text{ა}} = \dfrac{c m (t_2 - t_1)}{\eta q}$
+**რიცხვები:** $c m \Delta t = 4200 \cdot 3 \cdot 80 = 1{,}008 \cdot 10^6\ \text{ჯ}$
+$m_{\text{ა}} = \dfrac{1{,}008 \cdot 10^6}{0{,}5 \cdot 4{,}4 \cdot 10^7} \approx 0{,}046\ \text{კგ} = 46\ \text{გ}$
+SEN: **Formula:** $\eta\, q\, m_{\text{g}} = c\, m\, (t_2 - t_1) \Rightarrow m_{\text{g}} = \dfrac{c m (t_2 - t_1)}{\eta q}$
+**Numbers:** $c m \Delta t = 4200 \cdot 3 \cdot 80 = 1.008 \times 10^6\ \text{J}$
+$m_{\text{g}} = \dfrac{1.008 \times 10^6}{0.5 \cdot 4.4 \times 10^7} \approx 0.046\ \text{kg} = 46\ \text{g}$
+AKA: $\approx 46\ \text{გ}$
+AEN: $\approx 46\ \text{g}$
+
+--- medium expansion
+KA: $200\ \text{მ}$ სიგრძის ფოლადის ხიდის ტემპერატურა წლის განმავლობაში $-20\ \text{°C}$-დან $+40\ \text{°C}$-მდე იცვლება. რამდენით იცვლება ხიდის სიგრძე? რატომ უტოვებენ ხიდებს „ტემპერატურულ ნაკერებს“? ($\alpha = 1{,}2 \cdot 10^{-5}\ \text{1/°C}$)
+EN: The temperature of a $200\ \text{m}$ steel bridge varies from $-20\ \text{°C}$ to $+40\ \text{°C}$ over a year. By how much does its length change? Why do bridges have expansion joints? ($\alpha = 1.2 \times 10^{-5}\ \text{1/°C}$)
+HKA: $\Delta t = 60\ \text{°C}$.
+HEN: $\Delta t = 60\ \text{°C}$.
+SKA: **ფორმულა:** $\Delta l = \alpha\, l_0\, \Delta t$
+**რიცხვები:** $\Delta l = 1{,}2 \cdot 10^{-5} \cdot 200 \cdot 60 = 0{,}144\ \text{მ} \approx 14\ \text{სმ}$
+ნაკერი ხიდს თავისუფლად გაფართოების საშუალებას აძლევს; მის გარეშე უზარმაზარი ძალები წარმოიქმნებოდა და კონსტრუქცია დაზიანდებოდა.
+SEN: **Formula:** $\Delta l = \alpha\, l_0\, \Delta t$
+**Numbers:** $\Delta l = 1.2 \times 10^{-5} \cdot 200 \cdot 60 = 0.144\ \text{m} \approx 14\ \text{cm}$
+The joints let the bridge expand freely; without them huge forces would build up and damage the structure.
+AKA: $\approx 14\ \text{სმ}$
+AEN: $\approx 14\ \text{cm}$
+
+--- medium engines
+KA: ავტომობილის ძრავის სასარგებლო სიმძლავრე $50\ \text{კვტ}$-ია, სმკ — $25\%$. რამდენ ბენზინს ($q = 4{,}6 \cdot 10^7\ \text{ჯ/კგ}$) წვავს ძრავა $1$ საათში?
+EN: A car engine has a useful power of $50\ \text{kW}$ and an efficiency of $25\%$. How much petrol ($q = 4.6 \times 10^7\ \text{J/kg}$) does it burn in $1$ hour?
+HKA: სასარგებლო მუშაობა $A = N t$; საწვავის სითბო $Q = A/\eta$.
+HEN: Useful work $A = N t$; fuel heat $Q = A/\eta$.
+SKA: **ფორმულა:** $\eta = \dfrac{N t}{q m} \Rightarrow m = \dfrac{N t}{\eta q}$
+**რიცხვები:** $N t = 50\,000 \cdot 3600 = 1{,}8 \cdot 10^8\ \text{ჯ}$
+$m = \dfrac{1{,}8 \cdot 10^8}{0{,}25 \cdot 4{,}6 \cdot 10^7} \approx 15{,}7\ \text{კგ}$
+SEN: **Formula:** $\eta = \dfrac{N t}{q m} \Rightarrow m = \dfrac{N t}{\eta q}$
+**Numbers:** $N t = 50\,000 \cdot 3600 = 1.8 \times 10^8\ \text{J}$
+$m = \dfrac{1.8 \times 10^8}{0.25 \cdot 4.6 \times 10^7} \approx 15.7\ \text{kg}$
+AKA: $\approx 15{,}7\ \text{კგ}$
+AEN: $\approx 15.7\ \text{kg}$
+
+// ===================================================================== HARD
+
+--- hard work
+KA: $1000\ \text{კგ}$ მასის ლიფტი თანაბრად $30\ \text{მ}$ სიმაღლეზე $20\ \text{წმ}$-ში ადის. ძრავის სმკ $75\%$-ია. იპოვეთ ძრავის მიერ მოხმარებული სიმძლავრე.
+EN: A $1000\ \text{kg}$ lift rises uniformly $30\ \text{m}$ in $20\ \text{s}$. The motor's efficiency is $75\%$. Find the power the motor consumes.
+HKA: ჯერ სასარგებლო სიმძლავრე $\dfrac{m g h}{t}$, შემდეგ გაყავით $\eta$-ზე.
+HEN: First the useful power $\dfrac{m g h}{t}$, then divide by $\eta$.
+SKA: **ფორმულა:** $N_{\text{სას}} = \dfrac{m g h}{t}$, $\ N_{\text{მოხ}} = \dfrac{N_{\text{სას}}}{\eta}$
+**რიცხვები:** $N_{\text{სას}} = \dfrac{1000 \cdot 10 \cdot 30}{20} = 15\,000\ \text{ვტ}$
+$N_{\text{მოხ}} = \dfrac{15\,000}{0{,}75} = 20\,000\ \text{ვტ} = 20\ \text{კვტ}$
+SEN: **Formula:** $N_{\text{useful}} = \dfrac{m g h}{t}$, $\ N_{\text{in}} = \dfrac{N_{\text{useful}}}{\eta}$
+**Numbers:** $N_{\text{useful}} = \dfrac{1000 \cdot 10 \cdot 30}{20} = 15\,000\ \text{W}$
+$N_{\text{in}} = \dfrac{15\,000}{0.75} = 20\,000\ \text{W} = 20\ \text{kW}$
+AKA: $20\ \text{კვტ}$
+AEN: $20\ \text{kW}$
+
+--- hard energy
+KA: $5\ \text{კგ}$ მასის მარხილი $5\ \text{მ}$ სიმაღლის ბორცვიდან უსაწყისო სიჩქარით ჩამოსრიალდა და ძირში $8\ \text{მ/წმ}$ სიჩქარე ჰქონდა, შემდეგ ჰორიზონტალურ ზედაპირზე გააგრძელა სრიალი (ხახუნის კოეფიციენტი $0{,}2$). იპოვეთ ბორცვზე ხახუნის მუშაობა და მანძილი, რომელსაც მარხილი ჰორიზონტალურად გაივლის გაჩერებამდე.
+EN: A $5\ \text{kg}$ sled slides from rest down a $5\ \text{m}$ hill and reaches the bottom at $8\ \text{m/s}$, then slides on level ground (coefficient of friction $0.2$). Find the work of friction on the hill and the distance travelled on the level before stopping.
+HKA: ბორცვზე: დანაკარგი = $m g h - \dfrac{m v^2}{2}$. ჰორიზონტალურად კინეტიკური ენერგია მთლიანად ხახუნზე იხარჯება: $\dfrac{m v^2}{2} = \mu m g s$.
+HEN: On the hill: loss = $m g h - \dfrac{m v^2}{2}$. On the level all the kinetic energy goes to friction: $\dfrac{m v^2}{2} = \mu m g s$.
+SKA: **ფორმულა:** $A_{\text{ხ}} = m g h - \dfrac{m v^2}{2}$; $\ s = \dfrac{v^2}{2 \mu g}$
+**რიცხვები:** $A_{\text{ხ}} = 5 \cdot 10 \cdot 5 - \dfrac{5 \cdot 64}{2} = 250 - 160 = 90\ \text{ჯ}$
+$s = \dfrac{64}{2 \cdot 0{,}2 \cdot 10} = 16\ \text{მ}$
+SEN: **Formula:** $A_{\text{fr}} = m g h - \dfrac{m v^2}{2}$; $\ s = \dfrac{v^2}{2 \mu g}$
+**Numbers:** $A_{\text{fr}} = 5 \cdot 10 \cdot 5 - \dfrac{5 \cdot 64}{2} = 250 - 160 = 90\ \text{J}$
+$s = \dfrac{64}{2 \cdot 0.2 \cdot 10} = 16\ \text{m}$
+AKA: $90\ \text{ჯ}$; $16\ \text{მ}$
+AEN: $90\ \text{J}$; $16\ \text{m}$
+
+--- hard energy
+KA: ბურთი $2\ \text{მ}$ სიმაღლიდან ვარდება და ყოველი დარტყმისას ენერგიის $20\%$-ს კარგავს. რა სიმაღლეზე ავა ის მესამე დარტყმის შემდეგ?
+EN: A ball is dropped from $2\ \text{m}$ and loses $20\%$ of its energy at each bounce. How high does it rise after the third bounce?
+HKA: აწევის სიმაღლე ენერგიის პროპორციულია; ყოველი დარტყმის შემდეგ ენერგია $0{,}8$-ზე მრავლდება.
+HEN: The rebound height is proportional to the energy; after each bounce the energy is multiplied by $0.8$.
+SKA: **ფორმულა:** $m g h_n = 0{,}8^n\, m g h_0 \Rightarrow h_n = 0{,}8^n h_0$
+**რიცხვები:** $h_3 = 0{,}8^3 \cdot 2 = 0{,}512 \cdot 2 \approx 1{,}02\ \text{მ}$
+SEN: **Formula:** $m g h_n = 0.8^n\, m g h_0 \Rightarrow h_n = 0.8^n h_0$
+**Numbers:** $h_3 = 0.8^3 \cdot 2 = 0.512 \cdot 2 \approx 1.02\ \text{m}$
+AKA: $\approx 1{,}02\ \text{მ}$
+AEN: $\approx 1.02\ \text{m}$
+
+--- hard energy
+KA: $0{,}5\ \text{კგ}$ მასის ძელაკი $0{,}4\ \text{მ}$ სიმაღლიდან ეცემა ვერტიკალურ ზამბარაზე ($k = 1000\ \text{ნ/მ}$). იპოვეთ ზამბარის მაქსიმალური შეკუმშვა.
+EN: A $0.5\ \text{kg}$ block falls from $0.4\ \text{m}$ onto a vertical spring ($k = 1000\ \text{N/m}$). Find the maximum compression of the spring.
+HKA: ძელაკი ჩადის $h + x$ მანძილზე; ქვედა წერტილში სიჩქარე ნულია.
+HEN: The block drops $h + x$ in total; at the lowest point its speed is zero.
+SKA: **ფორმულა:** $m g (h + x) = \dfrac{k x^2}{2} \Rightarrow \dfrac{k}{2} x^2 - m g x - m g h = 0$
+**რიცხვები:** $500 x^2 - 5x - 2 = 0$
+$x = \dfrac{5 + \sqrt{25 + 4000}}{1000} = \dfrac{5 + 63{,}4}{1000} \approx 0{,}068\ \text{მ} \approx 6{,}8\ \text{სმ}$
+SEN: **Formula:** $m g (h + x) = \dfrac{k x^2}{2} \Rightarrow \dfrac{k}{2} x^2 - m g x - m g h = 0$
+**Numbers:** $500 x^2 - 5x - 2 = 0$
+$x = \dfrac{5 + \sqrt{25 + 4000}}{1000} = \dfrac{5 + 63.4}{1000} \approx 0.068\ \text{m} \approx 6.8\ \text{cm}$
+AKA: $\approx 6{,}8\ \text{სმ}$
+AEN: $\approx 6.8\ \text{cm}$
+
+--- hard machines
+KA: $1{,}5\ \text{მ}$ სიგრძისა და $3\ \text{კგ}$ მასის ერთგვაროვანი ძალაყინი ბოლოდან $0{,}3\ \text{მ}$-ზე ეყრდნობა საყრდენს. მოკლე ბოლოთი ქვას სწევენ, გრძელ ბოლოს კი $100\ \text{ნ}$ ძალით აწვებიან. რა წონის ქვის აწევა შეიძლება?
+EN: A uniform crowbar $1.5\ \text{m}$ long with mass $3\ \text{kg}$ rests on a pivot $0.3\ \text{m}$ from one end. The short end lifts a stone and the long end is pushed down with $100\ \text{N}$. What weight of stone can be lifted?
+HKA: ძალაყინის წონაც ქმნის მომენტს — ის მოდებულია შუაში, საყრდენიდან $0{,}45\ \text{მ}$-ზე გრძელი მხარის მხარეს.
+HEN: The crowbar's own weight also has a moment — it acts at the middle, $0.45\ \text{m}$ from the pivot on the long side.
+SKA: **ფორმულა:** $P \cdot l_1 = F \cdot l_2 + M g \cdot d \Rightarrow P = \dfrac{F l_2 + M g d}{l_1}$
+**რიცხვები:** $l_1 = 0{,}3\ \text{მ}$, $l_2 = 1{,}2\ \text{მ}$, $d = 0{,}75 - 0{,}3 = 0{,}45\ \text{მ}$
+$P = \dfrac{100 \cdot 1{,}2 + 30 \cdot 0{,}45}{0{,}3} = \dfrac{120 + 13{,}5}{0{,}3} = 445\ \text{ნ}$
+SEN: **Formula:** $P \cdot l_1 = F \cdot l_2 + M g \cdot d \Rightarrow P = \dfrac{F l_2 + M g d}{l_1}$
+**Numbers:** $l_1 = 0.3\ \text{m}$, $l_2 = 1.2\ \text{m}$, $d = 0.75 - 0.3 = 0.45\ \text{m}$
+$P = \dfrac{100 \cdot 1.2 + 30 \cdot 0.45}{0.3} = \dfrac{120 + 13.5}{0.3} = 445\ \text{N}$
+AKA: $445\ \text{ნ}$
+AEN: $445\ \text{N}$
+
+--- hard machines
+KA: ტვირთი სამი მოძრავი ჭოჭონაქის სისტემით ($3$ მოძრავი ჭოჭონაქი მიმდევრობით, თითოეული ძალას ანახევრებს) ადის. რა ძალით უნდა მოქაჩონ თოკი $800\ \text{ნ}$ ტვირთის ასაწევად და რამდენი თოკი უნდა გამოქაჩონ, რომ ტვირთი $1\ \text{მ}$-ით ავიდეს?
+EN: A load is lifted by a system of three movable pulleys in series (each halves the force). What force lifts an $800\ \text{N}$ load, and how much rope must be pulled to raise it by $1\ \text{m}$?
+HKA: ძალაში მოგება $2^3 = 8$-ჯერ; ოქროს წესით მანძილში იმდენჯერვე ვაგებთ.
+HEN: Force gain $2^3 = 8$ times; by the golden rule you lose the same factor in distance.
+SKA: **ფორმულა:** $F = \dfrac{P}{2^n}$, $\ s = 2^n h$
+**რიცხვები:** $F = \dfrac{800}{8} = 100\ \text{ნ}$, $\ s = 8 \cdot 1 = 8\ \text{მ}$
+შემოწმება: $F s = 800\ \text{ჯ} = P h$ ✓
+SEN: **Formula:** $F = \dfrac{P}{2^n}$, $\ s = 2^n h$
+**Numbers:** $F = \dfrac{800}{8} = 100\ \text{N}$, $\ s = 8 \cdot 1 = 8\ \text{m}$
+Check: $F s = 800\ \text{J} = P h$ ✓
+AKA: $100\ \text{ნ}$; $8\ \text{მ}$
+AEN: $100\ \text{N}$; $8\ \text{m}$
+
+--- hard machines
+KA: $50\ \text{კგ}$ ყუთს თანაბრად ექაჩებიან ზემოთ $5\ \text{მ}$ სიგრძისა და $3\ \text{მ}$ სიმაღლის დახრილ სიბრტყეზე (ფუძე $4\ \text{მ}$). ხახუნის კოეფიციენტია $0{,}2$. იპოვეთ საჭირო ძალა და სმკ. (მითითება: სიბრტყეზე დაწოლის ძალა $N = m g \cdot \dfrac{4}{5}$, სიმძიმის ძალის სიბრტყის გასწვრივ შემდგენი $m g \cdot \dfrac{3}{5}$.)
+EN: A $50\ \text{kg}$ box is pulled uniformly up an incline $5\ \text{m}$ long and $3\ \text{m}$ high (base $4\ \text{m}$). The coefficient of friction is $0.2$. Find the force needed and the efficiency. (Hint: the normal force is $N = m g \cdot \dfrac{4}{5}$ and the component of gravity along the slope is $m g \cdot \dfrac{3}{5}$.)
+HKA: თანაბრად აწევისას $F = m g \dfrac{h}{l} + \mu N$.
+HEN: For uniform motion $F = m g \dfrac{h}{l} + \mu N$.
+SKA: **ფორმულა:** $F = m g \dfrac{h}{l} + \mu m g \dfrac{a}{l}$, $\ \eta = \dfrac{m g h}{F l}$
+**რიცხვები:** $m g \dfrac{h}{l} = 500 \cdot 0{,}6 = 300\ \text{ნ}$, $\ \mu N = 0{,}2 \cdot 500 \cdot 0{,}8 = 80\ \text{ნ}$
+$F = 380\ \text{ნ}$, $\ \eta = \dfrac{500 \cdot 3}{380 \cdot 5} = \dfrac{1500}{1900} \approx 79\%$
+SEN: **Formula:** $F = m g \dfrac{h}{l} + \mu m g \dfrac{a}{l}$, $\ \eta = \dfrac{m g h}{F l}$
+**Numbers:** $m g \dfrac{h}{l} = 500 \cdot 0.6 = 300\ \text{N}$, $\ \mu N = 0.2 \cdot 500 \cdot 0.8 = 80\ \text{N}$
+$F = 380\ \text{N}$, $\ \eta = \dfrac{500 \cdot 3}{380 \cdot 5} = \dfrac{1500}{1900} \approx 79\%$
+AKA: $380\ \text{ნ}$; $\approx 79\%$
+AEN: $380\ \text{N}$; $\approx 79\%$
+
+--- hard heatcap
+KA: $400\ \text{°C}$-მდე გავარვარებული $0{,}5\ \text{კგ}$ რკინის დეტალი (წრთობისთვის) ჩაუშვეს $20\ \text{°C}$ ტემპერატურის $2\ \text{კგ}$ წყალში. იპოვეთ დამყარებული ტემპერატურა. ($c_{\text{რკ}} = 460\ \text{ჯ/(კგ}\cdot\text{°C)}$; აორთქლება უგულებელყავით.)
+EN: A $0.5\ \text{kg}$ iron part heated to $400\ \text{°C}$ is quenched in $2\ \text{kg}$ of water at $20\ \text{°C}$. Find the final temperature. ($c_{\text{Fe}} = 460\ \text{J/(kg}\cdot\text{°C)}$; ignore evaporation.)
+HKA: სითბური ბალანსი: $c_1 m_1 (t_1 - t) = c_2 m_2 (t - t_2)$.
+HEN: Heat balance: $c_1 m_1 (t_1 - t) = c_2 m_2 (t - t_2)$.
+SKA: **ფორმულა:** $t = \dfrac{c_1 m_1 t_1 + c_2 m_2 t_2}{c_1 m_1 + c_2 m_2}$
+**რიცხვები:** $c_1 m_1 = 230\ \text{ჯ/°C}$, $\ c_2 m_2 = 8400\ \text{ჯ/°C}$
+$t = \dfrac{230 \cdot 400 + 8400 \cdot 20}{230 + 8400} = \dfrac{92\,000 + 168\,000}{8630} \approx 30\ \text{°C}$
+SEN: **Formula:** $t = \dfrac{c_1 m_1 t_1 + c_2 m_2 t_2}{c_1 m_1 + c_2 m_2}$
+**Numbers:** $c_1 m_1 = 230\ \text{J/°C}$, $\ c_2 m_2 = 8400\ \text{J/°C}$
+$t = \dfrac{230 \cdot 400 + 8400 \cdot 20}{230 + 8400} = \dfrac{92\,000 + 168\,000}{8630} \approx 30\ \text{°C}$
+AKA: $\approx 30\ \text{°C}$
+AEN: $\approx 30\ \text{°C}$
+
+--- hard heatcap
+KA: $0{,}1\ \text{კგ}$ ალუმინის კალორიმეტრში ($c = 920\ \text{ჯ/(კგ}\cdot\text{°C)}$) $20\ \text{°C}$ ტემპერატურის $0{,}3\ \text{კგ}$ წყალია. მასში $80\ \text{°C}$ ტემპერატურის $0{,}2\ \text{კგ}$ წყალი ჩაასხეს. იპოვეთ საბოლოო ტემპერატურა (კალორიმეტრის გათბობის გათვალისწინებით).
+EN: An aluminium calorimeter ($0.1\ \text{kg}$, $c = 920\ \text{J/(kg}\cdot\text{°C)}$) holds $0.3\ \text{kg}$ of water at $20\ \text{°C}$. $0.2\ \text{kg}$ of water at $80\ \text{°C}$ is poured in. Find the final temperature (taking the calorimeter's heating into account).
+HKA: სითბოს იღებს როგორც ცივი წყალი, ისე კალორიმეტრი.
+HEN: Both the cold water and the calorimeter absorb heat.
+SKA: **ფორმულა:** $(c_{\text{ა}} m_{\text{ა}} + c m_1)(t - t_1) = c m_2 (t_2 - t)$
+**რიცხვები:** $c_{\text{ა}} m_{\text{ა}} + c m_1 = 92 + 1260 = 1352\ \text{ჯ/°C}$, $\ c m_2 = 840\ \text{ჯ/°C}$
+$1352 (t - 20) = 840 (80 - t) \Rightarrow 2192\, t = 27\,040 + 67\,200 \Rightarrow t \approx 43\ \text{°C}$
+SEN: **Formula:** $(c_{\text{Al}} m_{\text{Al}} + c m_1)(t - t_1) = c m_2 (t_2 - t)$
+**Numbers:** $c_{\text{Al}} m_{\text{Al}} + c m_1 = 92 + 1260 = 1352\ \text{J/°C}$, $\ c m_2 = 840\ \text{J/°C}$
+$1352 (t - 20) = 840 (80 - t) \Rightarrow 2192\, t = 27\,040 + 67\,200 \Rightarrow t \approx 43\ \text{°C}$
+AKA: $\approx 43\ \text{°C}$
+AEN: $\approx 43\ \text{°C}$
+
+--- hard melting
+KA: $30\ \text{°C}$ ტემპერატურის $400\ \text{გ}$ წყალში ჩააგდეს $0\ \text{°C}$ ტემპერატურის $100\ \text{გ}$ ყინული. გადნება თუ არა მთლიანად ყინული? იპოვეთ საბოლოო ტემპერატურა.
+EN: $100\ \text{g}$ of ice at $0\ \text{°C}$ is dropped into $400\ \text{g}$ of water at $30\ \text{°C}$. Does all the ice melt? Find the final temperature.
+HKA: ჯერ შეადარეთ: რამდენი სითბოს გაცემა შეუძლია წყალს $0\ \text{°C}$-მდე გაცივებისას და რამდენი სჭირდება ყინულის გალღობას.
+HEN: First compare how much heat the water can give while cooling to $0\ \text{°C}$ with how much the ice needs to melt.
+SKA: წყალს შეუძლია გასცეს: $4200 \cdot 0{,}4 \cdot 30 = 50\,400\ \text{ჯ}$; ყინულის დნობას სჭირდება: $3{,}4 \cdot 10^5 \cdot 0{,}1 = 34\,000\ \text{ჯ}$ — ყინული მთლიანად დნება.
+**ფორმულა:** $c m_{\text{წ}} (t_1 - t) = \lambda m_{\text{ყ}} + c m_{\text{ყ}} (t - 0)$
+**რიცხვები:** $1680 (30 - t) = 34\,000 + 420\, t \Rightarrow 50\,400 - 34\,000 = 2100\, t \Rightarrow t \approx 7{,}8\ \text{°C}$
+SEN: The water can give: $4200 \cdot 0.4 \cdot 30 = 50\,400\ \text{J}$; melting the ice needs: $3.4 \times 10^5 \cdot 0.1 = 34\,000\ \text{J}$ — all the ice melts.
+**Formula:** $c m_{\text{w}} (t_1 - t) = \lambda m_{\text{ice}} + c m_{\text{ice}} (t - 0)$
+**Numbers:** $1680 (30 - t) = 34\,000 + 420\, t \Rightarrow 50\,400 - 34\,000 = 2100\, t \Rightarrow t \approx 7.8\ \text{°C}$
+AKA: დიახ; $\approx 7{,}8\ \text{°C}$
+AEN: yes; $\approx 7.8\ \text{°C}$
+
+--- hard melting
+KA: $0\ \text{°C}$ ტემპერატურის $1\ \text{კგ}$ ყინულს დაასხეს $50\ \text{°C}$ ტემპერატურის $1\ \text{კგ}$ წყალი. რა დამყარდება ჭურჭელში?
+EN: $1\ \text{kg}$ of water at $50\ \text{°C}$ is poured onto $1\ \text{kg}$ of ice at $0\ \text{°C}$. What is the final state?
+HKA: შეამოწმეთ, ეყოფა თუ არა წყლის სითბო მთელი ყინულის გალღობას.
+HEN: Check whether the water's heat is enough to melt all the ice.
+SKA: წყლის მიერ $0\ \text{°C}$-მდე გაცივებისას გაცემული სითბო: $Q = 4200 \cdot 1 \cdot 50 = 210\,000\ \text{ჯ}$.
+მთელი ყინულის დნობას სჭირდება $340\,000\ \text{ჯ}$ — არ ეყოფა. ამიტომ ტემპერატურა $0\ \text{°C}$ დარჩება.
+**ფორმულა:** $\lambda m_x = c m (t - 0) \Rightarrow m_x = \dfrac{c m t}{\lambda}$
+**რიცხვები:** $m_x = \dfrac{210\,000}{3{,}4 \cdot 10^5} \approx 0{,}62\ \text{კგ}$ ყინული დნება.
+საბოლოოდ: $0\ \text{°C}$, $\approx 1{,}62\ \text{კგ}$ წყალი და $\approx 0{,}38\ \text{კგ}$ ყინული.
+SEN: Heat given by the water cooling to $0\ \text{°C}$: $Q = 4200 \cdot 1 \cdot 50 = 210\,000\ \text{J}$.
+Melting all the ice needs $340\,000\ \text{J}$ — not enough. So the temperature stays at $0\ \text{°C}$.
+**Formula:** $\lambda m_x = c m (t - 0) \Rightarrow m_x = \dfrac{c m t}{\lambda}$
+**Numbers:** $m_x = \dfrac{210\,000}{3.4 \times 10^5} \approx 0.62\ \text{kg}$ of ice melts.
+Final state: $0\ \text{°C}$, $\approx 1.62\ \text{kg}$ of water and $\approx 0.38\ \text{kg}$ of ice.
+AKA: $0\ \text{°C}$; $\approx 0{,}38\ \text{კგ}$ ყინული რჩება
+AEN: $0\ \text{°C}$; $\approx 0.38\ \text{kg}$ of ice remains
+
+--- hard vapor
+KA: $20\ \text{°C}$ ტემპერატურის $2\ \text{კგ}$ წყალში $100\ \text{°C}$ ტემპერატურის $100\ \text{გ}$ ორთქლი გაატარეს, რომელიც მთლიანად კონდენსირდა. იპოვეთ საბოლოო ტემპერატურა.
+EN: $100\ \text{g}$ of steam at $100\ \text{°C}$ is passed into $2\ \text{kg}$ of water at $20\ \text{°C}$ and condenses completely. Find the final temperature.
+HKA: ორთქლი სითბოს ორჯერ გასცემს: კონდენსაციისას ($L m$) და მიღებული წყლის გაცივებისას.
+HEN: The steam gives heat twice: on condensing ($L m$) and as the condensed water cools.
+SKA: **ფორმულა:** $L m_{\text{ო}} + c m_{\text{ო}} (100 - t) = c m_{\text{წ}} (t - 20)$
+**რიცხვები:** $230\,000 + 420 (100 - t) = 8400 (t - 20)$
+$230\,000 + 42\,000 + 168\,000 = 8820\, t \Rightarrow t \approx 50\ \text{°C}$
+SEN: **Formula:** $L m_{\text{s}} + c m_{\text{s}} (100 - t) = c m_{\text{w}} (t - 20)$
+**Numbers:** $230\,000 + 420 (100 - t) = 8400 (t - 20)$
+$230\,000 + 42\,000 + 168\,000 = 8820\, t \Rightarrow t \approx 50\ \text{°C}$
+AKA: $\approx 50\ \text{°C}$
+AEN: $\approx 50\ \text{°C}$
+
+--- hard fuel
+KA: ავტომობილის ავზში $40\ \text{კგ}$ ბენზინია ($q = 4{,}6 \cdot 10^7\ \text{ჯ/კგ}$), ძრავის სმკ $30\%$-ია, მოძრაობის წინააღმდეგობის ძალა — $1000\ \text{ნ}$. რა მანძილის გავლა შეუძლია ავტომობილს თანაბარი მოძრაობით?
+EN: A car's tank holds $40\ \text{kg}$ of petrol ($q = 4.6 \times 10^7\ \text{J/kg}$), the engine is $30\%$ efficient and the resistance force is $1000\ \text{N}$. How far can the car travel at constant speed?
+HKA: სასარგებლო მუშაობა $\eta q m$ იხარჯება წინააღმდეგობის დაძლევაზე: $F s$.
+HEN: The useful work $\eta q m$ is spent overcoming resistance: $F s$.
+SKA: **ფორმულა:** $\eta\, q\, m = F s \Rightarrow s = \dfrac{\eta q m}{F}$
+**რიცხვები:** $s = \dfrac{0{,}3 \cdot 4{,}6 \cdot 10^7 \cdot 40}{1000} = 552\,000\ \text{მ} = 552\ \text{კმ}$
+SEN: **Formula:** $\eta\, q\, m = F s \Rightarrow s = \dfrac{\eta q m}{F}$
+**Numbers:** $s = \dfrac{0.3 \cdot 4.6 \times 10^7 \cdot 40}{1000} = 552\,000\ \text{m} = 552\ \text{km}$
+AKA: $552\ \text{კმ}$
+AEN: $552\ \text{km}$
+
+--- hard expansion
+KA: ფოლადის რგოლის შიგა დიამეტრია $9{,}99\ \text{სმ}$ ($20\ \text{°C}$-ზე). რამდენი გრადუსით უნდა გავაცხელოთ რგოლი, რომ ის $10{,}00\ \text{სმ}$ დიამეტრის ლილვზე ჩამოვაცვათ? ($\alpha = 1{,}2 \cdot 10^{-5}\ \text{1/°C}$; ხვრელი ფართოვდება ისე, როგორც ლითონი.)
+EN: A steel ring has an inner diameter of $9.99\ \text{cm}$ (at $20\ \text{°C}$). By how many degrees must it be heated to slip onto a shaft of diameter $10.00\ \text{cm}$? ($\alpha = 1.2 \times 10^{-5}\ \text{1/°C}$; the hole expands just like the metal.)
+HKA: დიამეტრიც სიგრძეა: $\Delta d = \alpha\, d_0\, \Delta t$.
+HEN: The diameter is a length too: $\Delta d = \alpha\, d_0\, \Delta t$.
+SKA: **ფორმულა:** $\Delta d = \alpha\, d_0\, \Delta t \Rightarrow \Delta t = \dfrac{\Delta d}{\alpha d_0}$
+**რიცხვები:** $\Delta t = \dfrac{0{,}01\ \text{სმ}}{1{,}2 \cdot 10^{-5} \cdot 9{,}99\ \text{სმ}} \approx 83\ \text{°C}$ (ე.ი. $\approx 103\ \text{°C}$-მდე)
+SEN: **Formula:** $\Delta d = \alpha\, d_0\, \Delta t \Rightarrow \Delta t = \dfrac{\Delta d}{\alpha d_0}$
+**Numbers:** $\Delta t = \dfrac{0.01\ \text{cm}}{1.2 \times 10^{-5} \cdot 9.99\ \text{cm}} \approx 83\ \text{°C}$ (i.e. to $\approx 103\ \text{°C}$)
+AKA: $\approx 83\ \text{°C}$-ით
+AEN: by $\approx 83\ \text{°C}$
+
+--- hard engines
+KA: $10\ \text{კვტ}$ სასარგებლო სიმძლავრის ძრავა საათში $3\ \text{კგ}$ საწვავს ($q = 4{,}6 \cdot 10^7\ \text{ჯ/კგ}$) წვავს. იპოვეთ ძრავის სმკ. სად მიდის დანარჩენი ენერგია?
+EN: An engine with $10\ \text{kW}$ of useful power burns $3\ \text{kg}$ of fuel ($q = 4.6 \times 10^7\ \text{J/kg}$) per hour. Find its efficiency. Where does the rest of the energy go?
+HKA: $\eta = \dfrac{N t}{q m}$.
+HEN: $\eta = \dfrac{N t}{q m}$.
+SKA: **ფორმულა:** $\eta = \dfrac{N t}{q m}$
+**რიცხვები:** $N t = 10\,000 \cdot 3600 = 3{,}6 \cdot 10^7\ \text{ჯ}$, $\ q m = 1{,}38 \cdot 10^8\ \text{ჯ}$
+$\eta = \dfrac{3{,}6 \cdot 10^7}{1{,}38 \cdot 10^8} \approx 0{,}26 = 26\%$
+დანარჩენი ენერგია გამონაბოლქვ აირებს, გაგრილების სისტემასა და ხახუნს მიაქვს — გარემოს ათბობს.
+SEN: **Formula:** $\eta = \dfrac{N t}{q m}$
+**Numbers:** $N t = 10\,000 \cdot 3600 = 3.6 \times 10^7\ \text{J}$, $\ q m = 1.38 \times 10^8\ \text{J}$
+$\eta = \dfrac{3.6 \times 10^7}{1.38 \times 10^8} \approx 0.26 = 26\%$
+The rest leaves with the exhaust gases, the cooling system and friction — it heats the surroundings.
+AKA: $\approx 26\%$
+AEN: $\approx 26\%$
+
+--- hard energy
+KA: ჰიდროელექტროსადგურის კაშხალზე წამში $100\ \text{მ}^3$ წყალი $20\ \text{მ}$ სიმაღლიდან ჩამოედინება. რას უდრის წყლის ნაკადის სიმძლავრე? რა ელექტრულ სიმძლავრეს იძლევა სადგური, თუ სმკ $80\%$-ია?
+EN: At a hydroelectric dam $100\ \text{m}^3$ of water falls $20\ \text{m}$ every second. What is the power of the water flow? What electrical power does the station give if it is $80\%$ efficient?
+HKA: წამში ჩამოვარდნილი წყლის პოტენციური ენერგია = ნაკადის სიმძლავრე.
+HEN: The potential energy of the water falling per second = the flow's power.
+SKA: **ფორმულა:** $N = \dfrac{m g h}{t} = \dfrac{\rho V g h}{t}$, $\ N_{\text{ელ}} = \eta N$
+**რიცხვები:** $N = \dfrac{1000 \cdot 100 \cdot 10 \cdot 20}{1} = 2 \cdot 10^7\ \text{ვტ} = 20\ \text{მვტ}$
+$N_{\text{ელ}} = 0{,}8 \cdot 20 = 16\ \text{მვტ}$
+SEN: **Formula:** $N = \dfrac{m g h}{t} = \dfrac{\rho V g h}{t}$, $\ N_{\text{el}} = \eta N$
+**Numbers:** $N = \dfrac{1000 \cdot 100 \cdot 10 \cdot 20}{1} = 2 \times 10^7\ \text{W} = 20\ \text{MW}$
+$N_{\text{el}} = 0.8 \cdot 20 = 16\ \text{MW}$
+AKA: $20\ \text{მვტ}$; $16\ \text{მვტ}$
+AEN: $20\ \text{MW}$; $16\ \text{MW}$
+
+--- hard energy olympiad
+KA: $60\ \text{კგ}$ მასის ბანჯი-მხტომელი ხიდიდან ხტება. რეზინის თოკის სიგრძე გაუჭიმავ მდგომარეობაში $20\ \text{მ}$-ია, სიხისტე — $300\ \text{ნ/მ}$. რა მაქსიმალურ სიღრმეზე (ხიდიდან) ჩავა მხტომელი? (ჰაერის წინააღმდეგობა უგულებელყავით.)
+EN: A $60\ \text{kg}$ bungee jumper jumps from a bridge. The unstretched cord is $20\ \text{m}$ long with stiffness $300\ \text{N/m}$. How far below the bridge does the jumper get at the lowest point? (Ignore air resistance.)
+HKA: ყველაზე დაბალ წერტილში სიჩქარე ნულია: სიმძიმის ძალის მუშაობა მთელ სიღრმეზე = თოკის დრეკადობის ენერგიას.
+HEN: At the lowest point the speed is zero: gravity's work over the whole drop = the cord's elastic energy.
+SKA: **ფორმულა:** $m g (L + x) = \dfrac{k x^2}{2}$, სადაც $x$ — თოკის წაგრძელებაა.
+**რიცხვები:** $600 (20 + x) = 150 x^2 \Rightarrow x^2 - 4x - 80 = 0$
+$x = \dfrac{4 + \sqrt{16 + 320}}{2} = \dfrac{4 + 18{,}3}{2} \approx 11{,}2\ \text{მ}$
+სიღრმე: $20 + 11{,}2 \approx 31{,}2\ \text{მ}$
+SEN: **Formula:** $m g (L + x) = \dfrac{k x^2}{2}$, where $x$ is the cord's stretch.
+**Numbers:** $600 (20 + x) = 150 x^2 \Rightarrow x^2 - 4x - 80 = 0$
+$x = \dfrac{4 + \sqrt{16 + 320}}{2} = \dfrac{4 + 18.3}{2} \approx 11.2\ \text{m}$
+Depth: $20 + 11.2 \approx 31.2\ \text{m}$
+AKA: $\approx 31\ \text{მ}$
+AEN: $\approx 31\ \text{m}$
+
+--- hard machines olympiad
+KA: $60\ \text{კგ}$ მასის მღებავი დგას $20\ \text{კგ}$ მასის პლატფორმაზე, რომელიც ჩამოკიდებულია უძრავ ჭოჭონაქზე გადადებულ თოკზე; თოკის მეორე ბოლოს მღებავი თვითონ ექაჩება. რა ძალით უნდა მოქაჩოს მან თოკი, რომ თავის თავთან ერთად პლატფორმა თანაბრად აწიოს? რა ძალით აწვება ის პლატფორმას?
+EN: A $60\ \text{kg}$ painter stands on a $20\ \text{kg}$ platform hanging from a rope over a fixed pulley; the painter pulls the other end of the rope. With what force must the painter pull to raise themselves and the platform uniformly? With what force do they press on the platform?
+HKA: განიხილეთ სისტემა „მღებავი + პლატფორმა“: მას ზემოთ თოკის ორი ნაწილი სწევს — თითოეულში დაჭიმულობა $T$.
+HEN: Consider the system "painter + platform": two rope segments pull it up, each with tension $T$.
+SKA: **ფორმულა:** სისტემა: $2T = (m + M) g \Rightarrow T = \dfrac{(m + M) g}{2}$
+მღებავისთვის: $N + T = m g \Rightarrow N = m g - T$
+**რიცხვები:** $T = \dfrac{80 \cdot 10}{2} = 400\ \text{ნ}$
+$N = 600 - 400 = 200\ \text{ნ}$
+SEN: **Formula:** system: $2T = (m + M) g \Rightarrow T = \dfrac{(m + M) g}{2}$
+For the painter: $N + T = m g \Rightarrow N = m g - T$
+**Numbers:** $T = \dfrac{80 \cdot 10}{2} = 400\ \text{N}$
+$N = 600 - 400 = 200\ \text{N}$
+AKA: $400\ \text{ნ}$; $200\ \text{ნ}$
+AEN: $400\ \text{N}$; $200\ \text{N}$
+
+--- hard melting olympiad
+KA: $-20\ \text{°C}$ ტემპერატურის $1\ \text{კგ}$ ყინული ჩადეს $10\ \text{°C}$ ტემპერატურის $1\ \text{კგ}$ წყალში. რა იქნება ჭურჭელში თბური წონასწორობის დამყარების შემდეგ?
+EN: $1\ \text{kg}$ of ice at $-20\ \text{°C}$ is placed in $1\ \text{kg}$ of water at $10\ \text{°C}$. What is in the vessel once thermal equilibrium is reached?
+HKA: გამოთვალეთ, რამდენი სითბო სჭირდება ყინულს $0\ \text{°C}$-მდე გასათბობად და რამდენს გასცემს წყალი $0\ \text{°C}$-მდე გაცივებისას. შემდეგ იფიქრეთ, დაიწყება თუ არა დნობა ან გაყინვა.
+HEN: Work out how much heat the ice needs to warm to $0\ \text{°C}$ and how much the water gives on cooling to $0\ \text{°C}$. Then think about whether melting or freezing starts.
+SKA: ყინულს $0\ \text{°C}$-მდე გასათბობად სჭირდება: $Q_1 = 2100 \cdot 1 \cdot 20 = 42\,000\ \text{ჯ}$.
+წყალი $0\ \text{°C}$-მდე გაცივებისას გასცემს: $Q_2 = 4200 \cdot 1 \cdot 10 = 42\,000\ \text{ჯ}$.
+$Q_1 = Q_2$ — ზუსტად საკმარისია: ყინული ხდება $0\ \text{°C}$, წყალი — $0\ \text{°C}$. დამატებითი სითბო აღარ რჩება, ამიტომ არც დნობა და არც გაყინვა არ ხდება.
+საბოლოოდ: $1\ \text{კგ}$ ყინული და $1\ \text{კგ}$ წყალი, ორივე $0\ \text{°C}$-ზე.
+SEN: Warming the ice to $0\ \text{°C}$ needs: $Q_1 = 2100 \cdot 1 \cdot 20 = 42\,000\ \text{J}$.
+Cooling the water to $0\ \text{°C}$ gives: $Q_2 = 4200 \cdot 1 \cdot 10 = 42\,000\ \text{J}$.
+$Q_1 = Q_2$ — exactly enough: the ice reaches $0\ \text{°C}$, and so does the water. No heat is left over, so nothing melts or freezes.
+Final state: $1\ \text{kg}$ of ice and $1\ \text{kg}$ of water, both at $0\ \text{°C}$.
+AKA: $1\ \text{კგ}$ ყინული + $1\ \text{კგ}$ წყალი, $0\ \text{°C}$
+AEN: $1\ \text{kg}$ of ice + $1\ \text{kg}$ of water at $0\ \text{°C}$
+
+--- hard vapor olympiad
+KA: დუღილის წერტილამდე მისული ელექტროჩაიდანი ($2\ \text{კვტ}$, სმკ $80\%$) დაავიწყდათ გამორთვა. რა დროში ამოორთქლდება მთლიანად $1\ \text{კგ}$ წყალი? შეადარეთ ეს დრო $1\ \text{კგ}$ წყლის $20\ \text{°C}$-დან ადუღების დროს.
+EN: A kettle ($2\ \text{kW}$, $80\%$ efficient) that has reached boiling is forgotten and left on. How long until $1\ \text{kg}$ of water boils away completely? Compare this with the time to bring $1\ \text{kg}$ of water from $20\ \text{°C}$ to the boil.
+HKA: წყალს წამში $\eta N$ ენერგია ხვდება.
+HEN: The water receives $\eta N$ joules per second.
+SKA: **ფორმულა:** $\eta N t = L m \Rightarrow t = \dfrac{L m}{\eta N}$
+**რიცხვები:** $t = \dfrac{2{,}3 \cdot 10^6}{0{,}8 \cdot 2000} \approx 1440\ \text{წმ} = 24\ \text{წთ}$
+ადუღება: $t' = \dfrac{4200 \cdot 1 \cdot 80}{1600} = 210\ \text{წმ} = 3{,}5\ \text{წთ}$ — აორთქლებას თითქმის $7$-ჯერ მეტი დრო სჭირდება.
+SEN: **Formula:** $\eta N t = L m \Rightarrow t = \dfrac{L m}{\eta N}$
+**Numbers:** $t = \dfrac{2.3 \times 10^6}{0.8 \cdot 2000} \approx 1440\ \text{s} = 24\ \text{min}$
+Bringing to the boil: $t' = \dfrac{4200 \cdot 1 \cdot 80}{1600} = 210\ \text{s} = 3.5\ \text{min}$ — boiling away takes almost $7$ times longer.
+AKA: $\approx 24\ \text{წთ}$ ($\approx 7$-ჯერ მეტი)
+AEN: $\approx 24\ \text{min}$ ($\approx 7$ times longer)
+
+--- hard engines olympiad
+KA: შეაფასეთ: რამდენჯერ უნდა ასწიოს ადამიანმა $10\ \text{კგ}$ ტვირთი $2\ \text{მ}$ სიმაღლეზე, რომ „დაწვას“ $100\ \text{გ}$ შოკოლადის ენერგია ($2{,}3\ \text{მჯ}$), თუ ადამიანის ორგანიზმის, როგორც „ძრავის“, სმკ $25\%$-ია?
+EN: Estimate: how many times must a person lift a $10\ \text{kg}$ load to a height of $2\ \text{m}$ to "burn off" a $100\ \text{g}$ chocolate bar ($2.3\ \text{MJ}$), if the human body works as an "engine" with $25\%$ efficiency?
+HKA: სასარგებლო მუშაობა = $\eta \cdot E$; ერთ აწევაზე იხარჯება $m g h$.
+HEN: Useful work = $\eta \cdot E$; each lift takes $m g h$.
+SKA: **ფორმულა:** $n \cdot m g h = \eta E \Rightarrow n = \dfrac{\eta E}{m g h}$
+**რიცხვები:** $\eta E = 0{,}25 \cdot 2{,}3 \cdot 10^6 = 575\,000\ \text{ჯ}$, $\ m g h = 10 \cdot 10 \cdot 2 = 200\ \text{ჯ}$
+$n = \dfrac{575\,000}{200} \approx 2900$ აწევა! (დანარჩენი $75\%$ სითბოდ გამოიყოფა — ამიტომ ვოფლიანდებით.)
+SEN: **Formula:** $n \cdot m g h = \eta E \Rightarrow n = \dfrac{\eta E}{m g h}$
+**Numbers:** $\eta E = 0.25 \cdot 2.3 \times 10^6 = 575\,000\ \text{J}$, $\ m g h = 10 \cdot 10 \cdot 2 = 200\ \text{J}$
+$n = \dfrac{575\,000}{200} \approx 2900$ lifts! (The other $75\%$ becomes heat — that's why we sweat.)
+AKA: $\approx 2900$-ჯერ
+AEN: $\approx 2900$ times
+</script>
+</body>
+</html>

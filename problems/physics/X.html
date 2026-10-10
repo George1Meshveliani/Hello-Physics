@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Physics · Grade X</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css">
+  <script defer src="../assets/problems.js"></script>
+</head>
+<body data-page="grade" data-subject="physics" data-grade="X">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic charge    | I–VI | ელექტრული მუხტი. მუხტის მუდმივობა | Electric charge. Conservation of charge
+# topic coulomb   | VII–IX | კულონის კანონი | Coulomb's law
+# topic field     | XI–XVI | ელექტრული ველი და მისი დაძაბულობა | Electric field and field strength
+# topic potential | XVII | პოტენციალი და ძაბვა | Potential and voltage
+# topic capacitor | XIX–XXIV | კონდენსატორები. ველის ენერგია | Capacitors. Field energy
+# topic current   | XXV–XXVII | ელექტრული დენი. დენის ძალა | Electric current
+# topic ohm       | XXVIII–XXX | ომის კანონი. წინაღობა | Ohm's law. Resistance
+# topic circuits  | XXXI–XXXII | გამტართა შეერთება | Series and parallel circuits
+# topic emf       | XXXIII | ემძალა. ომის კანონი სრული წრედისთვის | EMF. Ohm's law for a complete circuit
+# topic power     | XXXIV | დენის მუშაობა და სიმძლავრე. ჯოულ-ლენცის კანონი | Electrical work and power. Joule's law
+# topic media     | XXXV | დენი სხვადასხვა გარემოში | Current in different media
+# note მუდმივები: $k = 9 \cdot 10^9\ \text{ნ}\cdot\text{მ}^2\text{/კ}^2$, $e = 1{,}6 \cdot 10^{-19}\ \text{კ}$, $m_e = 9{,}1 \cdot 10^{-31}\ \text{კგ}$, $\varepsilon_0 = 8{,}85 \cdot 10^{-12}\ \text{ფ/მ}$, $g = 10\ \text{მ/წმ}^2$. | Constants: $k = 9 \times 10^9\ \text{N}\cdot\text{m}^2\text{/C}^2$, $e = 1.6 \times 10^{-19}\ \text{C}$, $m_e = 9.1 \times 10^{-31}\ \text{kg}$, $\varepsilon_0 = 8.85 \times 10^{-12}\ \text{F/m}$, $g = 10\ \text{m/s}^2$.
+
+// ===================================================================== EASY
+
+--- easy charge
+KA: სხეულის მუხტია $-3{,}2 \cdot 10^{-9}\ \text{კ}$. რამდენი ზედმეტი ელექტრონი აქვს მას?
+EN: A body has a charge of $-3.2 \times 10^{-9}\ \text{C}$. How many excess electrons does it have?
+HKA: ნებისმიერი მუხტი ელემენტარული მუხტის ჯერადია: $q = N e$.
+HEN: Every charge is a whole multiple of the elementary charge: $q = N e$.
+SKA: **ფორმულა:** $|q| = N e \Rightarrow N = \dfrac{|q|}{e}$
+**რიცხვები:** $N = \dfrac{3{,}2 \cdot 10^{-9}}{1{,}6 \cdot 10^{-19}} = 2 \cdot 10^{10}$
+SEN: **Formula:** $|q| = N e \Rightarrow N = \dfrac{|q|}{e}$
+**Numbers:** $N = \dfrac{3.2 \times 10^{-9}}{1.6 \times 10^{-19}} = 2 \times 10^{10}$
+AKA: $2 \cdot 10^{10}$
+AEN: $2 \times 10^{10}$
+
+--- easy charge
+KA: ორ ერთნაირ ლითონის ბურთულას აქვს $+6\ \text{ნკ}$ და $-2\ \text{ნკ}$ მუხტები. ისინი ერთმანეთს შეახეს და დააშორეს. რა მუხტი ექნება თითოეულს?
+EN: Two identical metal balls carry $+6\ \text{nC}$ and $-2\ \text{nC}$. They are touched together and separated. What is the charge on each?
+HKA: მუხტის მუდმივობის კანონი: ჯამური მუხტი არ იცვლება; ერთნაირ ბურთულებს შორის ის თანაბრად ნაწილდება.
+HEN: Conservation of charge: the total stays the same; identical balls share it equally.
+SKA: **ფორმულა:** $q_1' = q_2' = \dfrac{q_1 + q_2}{2}$
+**რიცხვები:** $q' = \dfrac{6 + (-2)}{2} = 2\ \text{ნკ}$
+SEN: **Formula:** $q_1' = q_2' = \dfrac{q_1 + q_2}{2}$
+**Numbers:** $q' = \dfrac{6 + (-2)}{2} = 2\ \text{nC}$
+AKA: თითოეულს $+2\ \text{ნკ}$
+AEN: $+2\ \text{nC}$ each
+
+--- easy charge
+KA: შუშის ჩხირი აბრეშუმზე გახეხეს. რა ნიშნის მუხტს მიიღებს ჩხირი და აბრეშუმი? რა გადადის ერთი სხეულიდან მეორეზე?
+EN: A glass rod is rubbed with silk. What signs of charge do the rod and the silk get? What moves from one body to the other?
+HKA: ხახუნით ელექტრიზაციისას გადაადგილდება ელექტრონები, არა პროტონები.
+HEN: In charging by friction electrons move, not protons.
+SKA: ხახუნისას ელექტრონების ნაწილი შუშიდან აბრეშუმზე გადადის.
+შუშას ელექტრონები აკლდება — ის **დადებითად** იმუხტება; აბრეშუმს ჭარბი ელექტრონები აქვს — **უარყოფითად**.
+მუხტის მუდმივობის კანონით მათი მუხტები მოდულით ტოლია: $q_{\text{შ}} = -q_{\text{ა}}$.
+SEN: During rubbing some electrons move from the glass to the silk.
+The glass lacks electrons — it becomes **positive**; the silk has extra electrons — **negative**.
+By conservation of charge their charges are equal in size: $q_{\text{glass}} = -q_{\text{silk}}$.
+AKA: შუშა $+$, აბრეშუმი $-$; გადადის ელექტრონები
+AEN: glass $+$, silk $-$; electrons move
+
+--- easy coulomb
+KA: ორი წერტილოვანი მუხტი, $2\ \text{მკკ}$ და $3\ \text{მკკ}$, ერთმანეთისგან $0{,}3\ \text{მ}$-ითაა დაშორებული. რა ძალით ურთიერთქმედებენ ისინი?
+EN: Two point charges, $2\ \mu\text{C}$ and $3\ \mu\text{C}$, are $0.3\ \text{m}$ apart. What force acts between them?
+HKA: კულონის კანონი: $F = k\dfrac{|q_1 q_2|}{r^2}$.
+HEN: Coulomb's law: $F = k\dfrac{|q_1 q_2|}{r^2}$.
+SKA: **ფორმულა:** $F = k\dfrac{|q_1 q_2|}{r^2}$
+**რიცხვები:** $F = 9 \cdot 10^9 \cdot \dfrac{2 \cdot 10^{-6} \cdot 3 \cdot 10^{-6}}{0{,}3^2} = 9 \cdot 10^9 \cdot \dfrac{6 \cdot 10^{-12}}{0{,}09} = 0{,}6\ \text{ნ}$ (განზიდვა)
+SEN: **Formula:** $F = k\dfrac{|q_1 q_2|}{r^2}$
+**Numbers:** $F = 9 \times 10^9 \cdot \dfrac{2 \times 10^{-6} \cdot 3 \times 10^{-6}}{0.3^2} = 9 \times 10^9 \cdot \dfrac{6 \times 10^{-12}}{0.09} = 0.6\ \text{N}$ (repulsion)
+AKA: $0{,}6\ \text{ნ}$
+AEN: $0.6\ \text{N}$
+
+--- easy coulomb
+KA: როგორ შეიცვლება ორი მუხტის ურთიერთქმედების ძალა, თუ მათ შორის მანძილს $3$-ჯერ გავზრდით? თუ თითოეულ მუხტს გავაორმაგებთ?
+EN: How does the force between two charges change if the distance is tripled? If each charge is doubled?
+HKA: $F \sim \dfrac{q_1 q_2}{r^2}$.
+HEN: $F \propto \dfrac{q_1 q_2}{r^2}$.
+SKA: **ფორმულა:** $F = k\dfrac{q_1 q_2}{r^2}$
+მანძილი $3$-ჯერ: $F' = \dfrac{F}{3^2} = \dfrac{F}{9}$ — $9$-ჯერ შემცირდება.
+ორივე მუხტი გაორმაგდა: $F' = 2 \cdot 2 \cdot F = 4F$ — $4$-ჯერ გაიზრდება.
+SEN: **Formula:** $F = k\dfrac{q_1 q_2}{r^2}$
+Distance $\times 3$: $F' = \dfrac{F}{3^2} = \dfrac{F}{9}$ — $9$ times smaller.
+Both charges doubled: $F' = 2 \cdot 2 \cdot F = 4F$ — $4$ times larger.
+AKA: $9$-ჯერ შემცირდება; $4$-ჯერ გაიზრდება
+AEN: $9$ times smaller; $4$ times larger
+
+--- easy field
+KA: იპოვეთ $4\ \text{ნკ}$ წერტილოვანი მუხტის ველის დაძაბულობა მისგან $0{,}2\ \text{მ}$ მანძილზე.
+EN: Find the field strength of a $4\ \text{nC}$ point charge at a distance of $0.2\ \text{m}$.
+HKA: წერტილოვანი მუხტის ველი: $E = k\dfrac{|q|}{r^2}$.
+HEN: Field of a point charge: $E = k\dfrac{|q|}{r^2}$.
+SKA: **ფორმულა:** $E = k\dfrac{|q|}{r^2}$
+**რიცხვები:** $E = 9 \cdot 10^9 \cdot \dfrac{4 \cdot 10^{-9}}{0{,}04} = 900\ \text{ნ/კ}$
+SEN: **Formula:** $E = k\dfrac{|q|}{r^2}$
+**Numbers:** $E = 9 \times 10^9 \cdot \dfrac{4 \times 10^{-9}}{0.04} = 900\ \text{N/C}$
+AKA: $900\ \text{ნ/კ}$
+AEN: $900\ \text{N/C}$
+
+--- easy field
+KA: რა ძალა მოქმედებს $5\ \text{მკკ}$ მუხტზე $2000\ \text{ნ/კ}$ დაძაბულობის ველში?
+EN: What force acts on a $5\ \mu\text{C}$ charge in a field of strength $2000\ \text{N/C}$?
+HKA: დაძაბულობის განმარტება: $E = \dfrac{F}{q}$.
+HEN: Definition of field strength: $E = \dfrac{F}{q}$.
+SKA: **ფორმულა:** $E = \dfrac{F}{q} \Rightarrow F = q E$
+**რიცხვები:** $F = 5 \cdot 10^{-6} \cdot 2000 = 0{,}01\ \text{ნ}$
+SEN: **Formula:** $E = \dfrac{F}{q} \Rightarrow F = q E$
+**Numbers:** $F = 5 \times 10^{-6} \cdot 2000 = 0.01\ \text{N}$
+AKA: $0{,}01\ \text{ნ}$
+AEN: $0.01\ \text{N}$
+
+--- easy potential
+KA: რა მუშაობას ასრულებს ველი $2\ \text{მკკ}$ მუხტის გადაადგილებისას წერტილებს შორის, რომელთა ძაბვაა $100\ \text{ვ}$?
+EN: How much work does the field do moving a $2\ \mu\text{C}$ charge between points with a voltage of $100\ \text{V}$?
+HKA: ძაბვა — მუშაობა ერთეულოვან მუხტზე: $U = \dfrac{A}{q}$.
+HEN: Voltage is work per unit charge: $U = \dfrac{A}{q}$.
+SKA: **ფორმულა:** $A = q U$
+**რიცხვები:** $A = 2 \cdot 10^{-6} \cdot 100 = 2 \cdot 10^{-4}\ \text{ჯ}$
+SEN: **Formula:** $A = q U$
+**Numbers:** $A = 2 \times 10^{-6} \cdot 100 = 2 \times 10^{-4}\ \text{J}$
+AKA: $2 \cdot 10^{-4}\ \text{ჯ}$
+AEN: $2 \times 10^{-4}\ \text{J}$
+
+--- easy potential
+KA: ერთგვაროვანი ველის დაძაბულობაა $500\ \text{ვ/მ}$. რას უდრის ძაბვა ველის ხაზის გასწვრივ $4\ \text{სმ}$-ით დაშორებულ წერტილებს შორის?
+EN: A uniform field has strength $500\ \text{V/m}$. What is the voltage between two points $4\ \text{cm}$ apart along a field line?
+HKA: ერთგვაროვან ველში $U = E d$.
+HEN: In a uniform field $U = E d$.
+SKA: **ფორმულა:** $U = E\,d$
+**რიცხვები:** $U = 500 \cdot 0{,}04 = 20\ \text{ვ}$
+SEN: **Formula:** $U = E\,d$
+**Numbers:** $U = 500 \cdot 0.04 = 20\ \text{V}$
+AKA: $20\ \text{ვ}$
+AEN: $20\ \text{V}$
+
+--- easy capacitor
+KA: $10\ \text{მკფ}$ ტევადობის კონდენსატორი $50\ \text{ვ}$ ძაბვამდე დამუხტეს. იპოვეთ მისი მუხტი და ენერგია.
+EN: A $10\ \mu\text{F}$ capacitor is charged to $50\ \text{V}$. Find its charge and energy.
+HKA: $q = C U$, $\ W = \dfrac{C U^2}{2}$.
+HEN: $q = C U$, $\ W = \dfrac{C U^2}{2}$.
+SKA: **ფორმულა:** $q = C U$, $\ W = \dfrac{C U^2}{2}$
+**რიცხვები:** $q = 10 \cdot 10^{-6} \cdot 50 = 5 \cdot 10^{-4}\ \text{კ}$
+$W = \dfrac{10^{-5} \cdot 50^2}{2} = 0{,}0125\ \text{ჯ}$
+SEN: **Formula:** $q = C U$, $\ W = \dfrac{C U^2}{2}$
+**Numbers:** $q = 10 \times 10^{-6} \cdot 50 = 5 \times 10^{-4}\ \text{C}$
+$W = \dfrac{10^{-5} \cdot 50^2}{2} = 0.0125\ \text{J}$
+AKA: $5 \cdot 10^{-4}\ \text{კ}$; $12{,}5\ \text{მჯ}$
+AEN: $5 \times 10^{-4}\ \text{C}$; $12.5\ \text{mJ}$
+
+--- easy capacitor
+KA: იპოვეთ $2\ \text{მკფ}$ და $3\ \text{მკფ}$ კონდენსატორების საერთო ტევადობა: ა) პარალელური; ბ) მიმდევრობითი შეერთებისას.
+EN: Find the total capacitance of $2\ \mu\text{F}$ and $3\ \mu\text{F}$ capacitors connected: a) in parallel; b) in series.
+HKA: პარალელურად ტევადობები იკრიბება; მიმდევრობით იკრიბება შებრუნებული სიდიდეები.
+HEN: In parallel capacitances add; in series their reciprocals add.
+SKA: **ფორმულა:** ა) $C = C_1 + C_2$; ბ) $C = \dfrac{C_1 C_2}{C_1 + C_2}$
+**რიცხვები:** ა) $C = 2 + 3 = 5\ \text{მკფ}$; ბ) $C = \dfrac{2 \cdot 3}{2 + 3} = 1{,}2\ \text{მკფ}$
+SEN: **Formula:** a) $C = C_1 + C_2$; b) $C = \dfrac{C_1 C_2}{C_1 + C_2}$
+**Numbers:** a) $C = 2 + 3 = 5\ \mu\text{F}$; b) $C = \dfrac{2 \cdot 3}{2 + 3} = 1.2\ \mu\text{F}$
+AKA: ა) $5\ \text{მკფ}$; ბ) $1{,}2\ \text{მკფ}$
+AEN: a) $5\ \mu\text{F}$; b) $1.2\ \mu\text{F}$
+
+--- easy current
+KA: გამტარის განივკვეთში $1$ წუთში $30\ \text{კ}$ მუხტი გავიდა. იპოვეთ დენის ძალა.
+EN: $30\ \text{C}$ of charge passes through a wire's cross-section in $1$ minute. Find the current.
+HKA: $I = \dfrac{q}{t}$.
+HEN: $I = \dfrac{q}{t}$.
+SKA: **ფორმულა:** $I = \dfrac{q}{t}$
+**რიცხვები:** $I = \dfrac{30}{60} = 0{,}5\ \text{ა}$
+SEN: **Formula:** $I = \dfrac{q}{t}$
+**Numbers:** $I = \dfrac{30}{60} = 0.5\ \text{A}$
+AKA: $0{,}5\ \text{ა}$
+AEN: $0.5\ \text{A}$
+
+--- easy current
+KA: რამდენი ელექტრონი გადის გამტარის განივკვეთში ყოველ წამში, თუ დენის ძალაა $1{,}6\ \text{ა}$?
+EN: How many electrons pass through a wire's cross-section each second if the current is $1.6\ \text{A}$?
+HKA: წამში გავლილი მუხტი $q = I t$, ელექტრონების რიცხვი $N = q/e$.
+HEN: Charge per second $q = I t$, number of electrons $N = q/e$.
+SKA: **ფორმულა:** $N = \dfrac{I t}{e}$
+**რიცხვები:** $N = \dfrac{1{,}6 \cdot 1}{1{,}6 \cdot 10^{-19}} = 10^{19}$
+SEN: **Formula:** $N = \dfrac{I t}{e}$
+**Numbers:** $N = \dfrac{1.6 \cdot 1}{1.6 \times 10^{-19}} = 10^{19}$
+AKA: $10^{19}$
+AEN: $10^{19}$
+
+--- easy ohm
+KA: $4\ \text{ომ}$ წინაღობის რეზისტორს $12\ \text{ვ}$ ძაბვა მოედო. იპოვეთ დენის ძალა.
+EN: A $4\ \Omega$ resistor has $12\ \text{V}$ across it. Find the current.
+HKA: ომის კანონი წრედის უბნისთვის: $I = \dfrac{U}{R}$.
+HEN: Ohm's law for a section of circuit: $I = \dfrac{U}{R}$.
+SKA: **ფორმულა:** $I = \dfrac{U}{R}$
+**რიცხვები:** $I = \dfrac{12}{4} = 3\ \text{ა}$
+SEN: **Formula:** $I = \dfrac{U}{R}$
+**Numbers:** $I = \dfrac{12}{4} = 3\ \text{A}$
+AKA: $3\ \text{ა}$
+AEN: $3\ \text{A}$
+
+--- easy ohm
+KA: იპოვეთ $100\ \text{მ}$ სიგრძისა და $1\ \text{მმ}^2$ განივკვეთის სპილენძის მავთულის წინაღობა. ($\rho = 1{,}7 \cdot 10^{-8}\ \text{ომ}\cdot\text{მ}$)
+EN: Find the resistance of a copper wire $100\ \text{m}$ long with cross-section $1\ \text{mm}^2$. ($\rho = 1.7 \times 10^{-8}\ \Omega\text{}\cdot\text{m}$)
+HKA: $R = \rho \dfrac{l}{S}$; $1\ \text{მმ}^2 = 10^{-6}\ \text{მ}^2$.
+HEN: $R = \rho \dfrac{l}{S}$; $1\ \text{mm}^2 = 10^{-6}\ \text{m}^2$.
+SKA: **ფორმულა:** $R = \rho \dfrac{l}{S}$
+**რიცხვები:** $R = 1{,}7 \cdot 10^{-8} \cdot \dfrac{100}{10^{-6}} = 1{,}7\ \text{ომი}$
+SEN: **Formula:** $R = \rho \dfrac{l}{S}$
+**Numbers:** $R = 1.7 \times 10^{-8} \cdot \dfrac{100}{10^{-6}} = 1.7\ \Omega$
+AKA: $1{,}7\ \text{ომი}$
+AEN: $1.7\ \Omega$
+
+--- easy circuits
+KA: $2$, $3$ და $5\ \text{ომ}$ წინაღობის რეზისტორები მიმდევრობით არის შეერთებული და მიერთებულია $20\ \text{ვ}$ ძაბვაზე. იპოვეთ საერთო წინაღობა და დენის ძალა.
+EN: Resistors of $2$, $3$ and $5\ \Omega$ are connected in series to $20\ \text{V}$. Find the total resistance and the current.
+HKA: მიმდევრობით შეერთებისას წინაღობები იკრიბება, დენი ყველგან ერთნაირია.
+HEN: In series the resistances add and the current is the same everywhere.
+SKA: **ფორმულა:** $R = R_1 + R_2 + R_3$, $\ I = \dfrac{U}{R}$
+**რიცხვები:** $R = 2 + 3 + 5 = 10\ \text{ომი}$, $\ I = \dfrac{20}{10} = 2\ \text{ა}$
+SEN: **Formula:** $R = R_1 + R_2 + R_3$, $\ I = \dfrac{U}{R}$
+**Numbers:** $R = 2 + 3 + 5 = 10\ \Omega$, $\ I = \dfrac{20}{10} = 2\ \text{A}$
+AKA: $10\ \text{ომი}$; $2\ \text{ა}$
+AEN: $10\ \Omega$; $2\ \text{A}$
+
+--- easy circuits
+KA: იპოვეთ $6\ \text{ომ}$ და $3\ \text{ომ}$ რეზისტორების საერთო წინაღობა პარალელური შეერთებისას.
+EN: Find the total resistance of $6\ \Omega$ and $3\ \Omega$ resistors in parallel.
+HKA: $\dfrac{1}{R} = \dfrac{1}{R_1} + \dfrac{1}{R_2}$, ორი რეზისტორისთვის $R = \dfrac{R_1 R_2}{R_1 + R_2}$.
+HEN: $\dfrac{1}{R} = \dfrac{1}{R_1} + \dfrac{1}{R_2}$; for two resistors $R = \dfrac{R_1 R_2}{R_1 + R_2}$.
+SKA: **ფორმულა:** $R = \dfrac{R_1 R_2}{R_1 + R_2}$
+**რიცხვები:** $R = \dfrac{6 \cdot 3}{6 + 3} = 2\ \text{ომი}$ (უმცირეს წინაღობაზე ნაკლებია)
+SEN: **Formula:** $R = \dfrac{R_1 R_2}{R_1 + R_2}$
+**Numbers:** $R = \dfrac{6 \cdot 3}{6 + 3} = 2\ \Omega$ (less than the smallest resistor)
+AKA: $2\ \text{ომი}$
+AEN: $2\ \Omega$
+
+--- easy emf
+KA: დენის წყაროს ემძალაა $12\ \text{ვ}$, შიგა წინაღობა — $1\ \text{ომი}$, გარე წინაღობა — $5\ \text{ომი}$. იპოვეთ დენის ძალა და ძაბვა გარე წრედზე.
+EN: A source has EMF $12\ \text{V}$ and internal resistance $1\ \Omega$; the external resistance is $5\ \Omega$. Find the current and the voltage across the external circuit.
+HKA: ომის კანონი სრული წრედისთვის: $I = \dfrac{\mathcal{E}}{R + r}$.
+HEN: Ohm's law for the complete circuit: $I = \dfrac{\mathcal{E}}{R + r}$.
+SKA: **ფორმულა:** $I = \dfrac{\mathcal{E}}{R + r}$, $\ U = I R$
+**რიცხვები:** $I = \dfrac{12}{5 + 1} = 2\ \text{ა}$, $\ U = 2 \cdot 5 = 10\ \text{ვ}$
+SEN: **Formula:** $I = \dfrac{\mathcal{E}}{R + r}$, $\ U = I R$
+**Numbers:** $I = \dfrac{12}{5 + 1} = 2\ \text{A}$, $\ U = 2 \cdot 5 = 10\ \text{V}$
+AKA: $2\ \text{ა}$; $10\ \text{ვ}$
+AEN: $2\ \text{A}$; $10\ \text{V}$
+
+--- easy power
+KA: ნათურაზე წერია „$220\ \text{ვ}$, $100\ \text{ვტ}$“. იპოვეთ დენის ძალა ნათურაში და მისი წინაღობა.
+EN: A lamp is labelled "$220\ \text{V}$, $100\ \text{W}$". Find the current through it and its resistance.
+HKA: $P = U I$, $\ R = \dfrac{U^2}{P}$.
+HEN: $P = U I$, $\ R = \dfrac{U^2}{P}$.
+SKA: **ფორმულა:** $I = \dfrac{P}{U}$, $\ R = \dfrac{U^2}{P}$
+**რიცხვები:** $I = \dfrac{100}{220} \approx 0{,}45\ \text{ა}$, $\ R = \dfrac{220^2}{100} = 484\ \text{ომი}$
+SEN: **Formula:** $I = \dfrac{P}{U}$, $\ R = \dfrac{U^2}{P}$
+**Numbers:** $I = \dfrac{100}{220} \approx 0.45\ \text{A}$, $\ R = \dfrac{220^2}{100} = 484\ \Omega$
+AKA: $\approx 0{,}45\ \text{ა}$; $484\ \text{ომი}$
+AEN: $\approx 0.45\ \text{A}$; $484\ \Omega$
+
+--- easy power
+KA: $2\ \text{კვტ}$ სიმძლავრის გამათბობელი $3$ საათი მუშაობდა. რამდენი ელექტროენერგია მოიხმარა მან და რა ღირს ის, თუ $1\ \text{კვტ}\cdot\text{სთ}$ $0{,}3$ ლარია?
+EN: A $2\ \text{kW}$ heater runs for $3$ hours. How much electrical energy does it use and what does it cost at $0.3$ lari per $\text{kWh}$?
+HKA: $W = P t$; კვტ·სთ-ში: კილოვატები × საათები.
+HEN: $W = P t$; in kWh: kilowatts × hours.
+SKA: **ფორმულა:** $W = P\,t$
+**რიცხვები:** $W = 2\ \text{კვტ} \cdot 3\ \text{სთ} = 6\ \text{კვტ}\cdot\text{სთ}$
+ღირებულება: $6 \cdot 0{,}3 = 1{,}8\ ₾$
+SEN: **Formula:** $W = P\,t$
+**Numbers:** $W = 2\ \text{kW} \cdot 3\ \text{h} = 6\ \text{kWh}$
+Cost: $6 \cdot 0.3 = 1.8\ ₾$
+AKA: $6\ \text{კვტ}\cdot\text{სთ}$; $1{,}8\ ₾$
+AEN: $6\ \text{kWh}$; $1.8\ ₾$
+
+--- easy media
+KA: სპილენძის სულფატის ხსნარში $2\ \text{ა}$ დენი $1$ საათის განმავლობაში გადიოდა. რამდენი სპილენძი გამოიყოფა კათოდზე? ($k = 3{,}3 \cdot 10^{-7}\ \text{კგ/კ}$)
+EN: A current of $2\ \text{A}$ passes through a copper sulphate solution for $1$ hour. How much copper is deposited on the cathode? ($k = 3.3 \times 10^{-7}\ \text{kg/C}$)
+HKA: ფარადეის კანონი: $m = k I t$.
+HEN: Faraday's law: $m = k I t$.
+SKA: **ფორმულა:** $m = k\,I\,t$
+**რიცხვები:** $m = 3{,}3 \cdot 10^{-7} \cdot 2 \cdot 3600 \approx 2{,}4 \cdot 10^{-3}\ \text{კგ} = 2{,}4\ \text{გ}$
+SEN: **Formula:** $m = k\,I\,t$
+**Numbers:** $m = 3.3 \times 10^{-7} \cdot 2 \cdot 3600 \approx 2.4 \times 10^{-3}\ \text{kg} = 2.4\ \text{g}$
+AKA: $\approx 2{,}4\ \text{გ}$
+AEN: $\approx 2.4\ \text{g}$
+
+// ===================================================================== MEDIUM
+
+--- medium charge
+KA: დამუხტული ჩხირი მიიზიდავს ქაღალდის ნეიტრალურ ნაკუწებს. რატომ, თუ ნაკუწებს მუხტი არ აქვთ? რით განსხვავდება ეს გამტარისა და დიელექტრიკის შემთხვევაში?
+EN: A charged rod attracts neutral scraps of paper. Why, if the scraps have no charge? How does this differ for a conductor and an insulator?
+HKA: ველში ნეიტრალური სხეულის მუხტები გადანაწილდება; ახლო მუხტი უფრო ძლიერად მიიზიდება.
+HEN: In a field the charges of a neutral body redistribute; the nearer charge is attracted more strongly.
+SKA: ჩხირის ველში ნეიტრალურ სხეულში მუხტები ირხევა: ჩხირთან უფრო ახლოს საწინააღმდეგო ნიშნის მუხტი აღმოჩნდება, შორს — იმავე ნიშნისა.
+კულონის ძალა მანძილთან ერთად მცირდება ($\sim 1/r^2$), ამიტომ მიზიდვა (ახლოს) განზიდვაზე (შორს) ძლიერია — ჯამში ნაკუწი მიიზიდება.
+გამტარში თავისუფალი ელექტრონები გადაადგილდება მთელ სხეულში (ელექტროსტატიკური ინდუქცია); დიელექტრიკში — მხოლოდ მოლეკულები პოლარიზდება.
+SEN: In the rod's field the charges in the neutral body shift: charge of opposite sign ends up nearer the rod, charge of the same sign further away.
+Coulomb's force falls with distance ($\propto 1/r^2$), so the attraction (near) beats the repulsion (far) — overall the scrap is attracted.
+In a conductor free electrons move through the whole body (electrostatic induction); in an insulator only the molecules polarise.
+AKA: მუხტების გადანაწილება — ახლო საწინააღმდეგო მუხტის მიზიდვა ჭარბობს.
+AEN: charge separation — attraction of the nearer opposite charge wins.
+
+--- medium coulomb
+KA: $+q$ და $+4q$ მუხტები ერთმანეთისგან $30\ \text{სმ}$-ითაა დაშორებული. სად უნდა მოვათავსოთ მესამე მუხტი, რომ ის წონასწორობაში იყოს?
+EN: Charges $+q$ and $+4q$ are $30\ \text{cm}$ apart. Where must a third charge be placed so that it is in equilibrium?
+HKA: წონასწორობა შესაძლებელია მხოლოდ მუხტებს შორის; ორივე ძალა მოდულით ტოლი უნდა იყოს.
+HEN: Equilibrium is possible only between the charges; the two forces must be equal in size.
+SKA: **ფორმულა:** $k\dfrac{q Q}{x^2} = k\dfrac{4q Q}{(d - x)^2} \Rightarrow (d - x)^2 = 4x^2 \Rightarrow d - x = 2x$
+$x = \dfrac{d}{3}$ (მესამე მუხტის სიდიდე და ნიშანი არ მოქმედებს)
+**რიცხვები:** $x = \dfrac{30}{3} = 10\ \text{სმ}$ $+q$-დან ($20\ \text{სმ}$ $+4q$-დან)
+SEN: **Formula:** $k\dfrac{q Q}{x^2} = k\dfrac{4q Q}{(d - x)^2} \Rightarrow (d - x)^2 = 4x^2 \Rightarrow d - x = 2x$
+$x = \dfrac{d}{3}$ (the size and sign of the third charge don't matter)
+**Numbers:** $x = \dfrac{30}{3} = 10\ \text{cm}$ from $+q$ ($20\ \text{cm}$ from $+4q$)
+AKA: $+q$-დან $10\ \text{სმ}$-ზე
+AEN: $10\ \text{cm}$ from $+q$
+
+--- medium coulomb
+KA: რამდენჯერ აღემატება ორ პროტონს შორის ელექტრული განზიდვის ძალა მათ გრავიტაციულ მიზიდულობას? ($m_p = 1{,}67 \cdot 10^{-27}\ \text{კგ}$, $G = 6{,}67 \cdot 10^{-11}\ \text{ნ}\cdot\text{მ}^2\text{/კგ}^2$)
+EN: How many times stronger is the electric repulsion between two protons than their gravitational attraction? ($m_p = 1.67 \times 10^{-27}\ \text{kg}$, $G = 6.67 \times 10^{-11}\ \text{N}\cdot\text{m}^2\text{/kg}^2$)
+HKA: ორივე ძალა $1/r^2$-ის პროპორციულია — მანძილი შეიკვეცება.
+HEN: Both forces go as $1/r^2$ — the distance cancels.
+SKA: **ფორმულა:** $\dfrac{F_e}{F_g} = \dfrac{k e^2 / r^2}{G m_p^2 / r^2} = \dfrac{k e^2}{G m_p^2}$
+**რიცხვები:** $\dfrac{9 \cdot 10^9 \cdot (1{,}6 \cdot 10^{-19})^2}{6{,}67 \cdot 10^{-11} \cdot (1{,}67 \cdot 10^{-27})^2} = \dfrac{2{,}3 \cdot 10^{-28}}{1{,}86 \cdot 10^{-64}} \approx 1{,}2 \cdot 10^{36}$
+SEN: **Formula:** $\dfrac{F_e}{F_g} = \dfrac{k e^2 / r^2}{G m_p^2 / r^2} = \dfrac{k e^2}{G m_p^2}$
+**Numbers:** $\dfrac{9 \times 10^9 \cdot (1.6 \times 10^{-19})^2}{6.67 \times 10^{-11} \cdot (1.67 \times 10^{-27})^2} = \dfrac{2.3 \times 10^{-28}}{1.86 \times 10^{-64}} \approx 1.2 \times 10^{36}$
+AKA: $\approx 10^{36}$-ჯერ
+AEN: $\approx 10^{36}$ times
+
+--- medium coulomb
+KA: ორ ერთნაირ ლითონის ბურთულას აქვს $4\ \text{ნკ}$ და $-8\ \text{ნკ}$ მუხტები. ისინი ერთმანეთს შეახეს და ისევ საწყის მანძილზე დააბრუნეს. როგორ შეიცვალა ურთიერთქმედების ძალა?
+EN: Two identical metal balls carry $4\ \text{nC}$ and $-8\ \text{nC}$. They are touched and returned to the same distance. How does the force between them change?
+HKA: შეხების შემდეგ თითოეულს ჯამის ნახევარი ექნება.
+HEN: After touching each has half the total.
+SKA: **ფორმულა:** $F = k\dfrac{|q_1 q_2|}{r^2}$; შეხების შემდეგ $q' = \dfrac{q_1 + q_2}{2}$
+**რიცხვები:** თავიდან: $|q_1 q_2| = 4 \cdot 8 = 32\ (\text{ნკ})^2$ — მიზიდვა.
+შეხების შემდეგ: $q' = \dfrac{4 - 8}{2} = -2\ \text{ნკ}$, $\ q'^2 = 4\ (\text{ნკ})^2$ — განზიდვა.
+$\dfrac{F_1}{F_2} = \dfrac{32}{4} = 8$ — ძალა $8$-ჯერ შემცირდა და მიზიდვა განზიდვით შეიცვალა.
+SEN: **Formula:** $F = k\dfrac{|q_1 q_2|}{r^2}$; after touching $q' = \dfrac{q_1 + q_2}{2}$
+**Numbers:** Before: $|q_1 q_2| = 4 \cdot 8 = 32\ (\text{nC})^2$ — attraction.
+After: $q' = \dfrac{4 - 8}{2} = -2\ \text{nC}$, $\ q'^2 = 4\ (\text{nC})^2$ — repulsion.
+$\dfrac{F_1}{F_2} = \dfrac{32}{4} = 8$ — the force is $8$ times smaller and attraction became repulsion.
+AKA: $8$-ჯერ შემცირდა; გახდა განზიდვა
+AEN: $8$ times smaller; now repulsive
+
+--- medium field
+KA: $+4\ \text{ნკ}$ და $-4\ \text{ნკ}$ მუხტები ერთმანეთისგან $20\ \text{სმ}$-ითაა დაშორებული. იპოვეთ ველის დაძაბულობა მათ შუაში.
+EN: Charges of $+4\ \text{nC}$ and $-4\ \text{nC}$ are $20\ \text{cm}$ apart. Find the field strength at the midpoint.
+HKA: სუპერპოზიცია: შუაში ორივე ველი ერთი მიმართულებისაა — დადებითიდან უარყოფითისკენ.
+HEN: Superposition: at the midpoint both fields point the same way — from positive to negative.
+SKA: **ფორმულა:** $E = E_1 + E_2 = 2k\dfrac{q}{(d/2)^2}$
+**რიცხვები:** $E_1 = 9 \cdot 10^9 \cdot \dfrac{4 \cdot 10^{-9}}{0{,}1^2} = 3600\ \text{ნ/კ}$
+$E = 2 \cdot 3600 = 7200\ \text{ნ/კ}$, მიმართულია უარყოფითი მუხტისკენ.
+SEN: **Formula:** $E = E_1 + E_2 = 2k\dfrac{q}{(d/2)^2}$
+**Numbers:** $E_1 = 9 \times 10^9 \cdot \dfrac{4 \times 10^{-9}}{0.1^2} = 3600\ \text{N/C}$
+$E = 2 \cdot 3600 = 7200\ \text{N/C}$, pointing towards the negative charge.
+AKA: $7200\ \text{ნ/კ}$
+AEN: $7200\ \text{N/C}$
+
+--- medium field
+KA: ელექტრონი $1000\ \text{ნ/კ}$ დაძაბულობის ერთგვაროვან ველშია. იპოვეთ მასზე მოქმედი ძალა და მისი აჩქარება. საით იქნება მიმართული აჩქარება?
+EN: An electron is in a uniform field of $1000\ \text{N/C}$. Find the force on it and its acceleration. Which way does it accelerate?
+HKA: $F = eE$, $a = F/m_e$. ელექტრონი უარყოფითია.
+HEN: $F = eE$, $a = F/m_e$. The electron is negative.
+SKA: **ფორმულა:** $F = e E$, $\ a = \dfrac{e E}{m_e}$
+**რიცხვები:** $F = 1{,}6 \cdot 10^{-19} \cdot 1000 = 1{,}6 \cdot 10^{-16}\ \text{ნ}$
+$a = \dfrac{1{,}6 \cdot 10^{-16}}{9{,}1 \cdot 10^{-31}} \approx 1{,}8 \cdot 10^{14}\ \text{მ/წმ}^2$, ველის საწინააღმდეგოდ.
+SEN: **Formula:** $F = e E$, $\ a = \dfrac{e E}{m_e}$
+**Numbers:** $F = 1.6 \times 10^{-19} \cdot 1000 = 1.6 \times 10^{-16}\ \text{N}$
+$a = \dfrac{1.6 \times 10^{-16}}{9.1 \times 10^{-31}} \approx 1.8 \times 10^{14}\ \text{m/s}^2$, opposite to the field.
+AKA: $1{,}6 \cdot 10^{-16}\ \text{ნ}$; $\approx 1{,}8 \cdot 10^{14}\ \text{მ/წმ}^2$, ველის საწინააღმდეგოდ
+AEN: $1.6 \times 10^{-16}\ \text{N}$; $\approx 1.8 \times 10^{14}\ \text{m/s}^2$, against the field
+
+--- medium potential
+KA: ელექტრონი უძრავი მდგომარეობიდან $100\ \text{ვ}$ პოტენციალთა სხვაობით აჩქარდა. იპოვეთ მისი კინეტიკური ენერგია და სიჩქარე.
+EN: An electron starting at rest is accelerated through a potential difference of $100\ \text{V}$. Find its kinetic energy and speed.
+HKA: ველის მუშაობა $eU$ კინეტიკურ ენერგიაში გადადის.
+HEN: The field's work $eU$ becomes kinetic energy.
+SKA: **ფორმულა:** $e U = \dfrac{m v^2}{2} \Rightarrow v = \sqrt{\dfrac{2 e U}{m}}$
+**რიცხვები:** $E_k = 1{,}6 \cdot 10^{-19} \cdot 100 = 1{,}6 \cdot 10^{-17}\ \text{ჯ}$
+$v = \sqrt{\dfrac{2 \cdot 1{,}6 \cdot 10^{-17}}{9{,}1 \cdot 10^{-31}}} \approx 5{,}9 \cdot 10^6\ \text{მ/წმ}$
+SEN: **Formula:** $e U = \dfrac{m v^2}{2} \Rightarrow v = \sqrt{\dfrac{2 e U}{m}}$
+**Numbers:** $E_k = 1.6 \times 10^{-19} \cdot 100 = 1.6 \times 10^{-17}\ \text{J}$
+$v = \sqrt{\dfrac{2 \cdot 1.6 \times 10^{-17}}{9.1 \times 10^{-31}}} \approx 5.9 \times 10^6\ \text{m/s}$
+AKA: $1{,}6 \cdot 10^{-17}\ \text{ჯ}$; $\approx 5{,}9 \cdot 10^6\ \text{მ/წმ}$
+AEN: $1.6 \times 10^{-17}\ \text{J}$; $\approx 5.9 \times 10^6\ \text{m/s}$
+
+--- medium potential
+KA: იპოვეთ $2\ \text{ნკ}$ წერტილოვანი მუხტის ველის პოტენციალი მისგან $0{,}3\ \text{მ}$ და $0{,}6\ \text{მ}$ მანძილზე და მუშაობა $1\ \text{ნკ}$ მუხტის პირველი წერტილიდან მეორეში გადატანისას.
+EN: Find the potential of a $2\ \text{nC}$ point charge at $0.3\ \text{m}$ and $0.6\ \text{m}$, and the work done moving a $1\ \text{nC}$ charge from the first point to the second.
+HKA: $\varphi = k\dfrac{q}{r}$, $\ A = q(\varphi_1 - \varphi_2)$.
+HEN: $\varphi = k\dfrac{q}{r}$, $\ A = q(\varphi_1 - \varphi_2)$.
+SKA: **ფორმულა:** $\varphi = k\dfrac{q}{r}$, $\ A = q_0 (\varphi_1 - \varphi_2)$
+**რიცხვები:** $\varphi_1 = \dfrac{9 \cdot 10^9 \cdot 2 \cdot 10^{-9}}{0{,}3} = 60\ \text{ვ}$, $\ \varphi_2 = 30\ \text{ვ}$
+$A = 10^{-9} \cdot (60 - 30) = 3 \cdot 10^{-8}\ \text{ჯ}$
+SEN: **Formula:** $\varphi = k\dfrac{q}{r}$, $\ A = q_0 (\varphi_1 - \varphi_2)$
+**Numbers:** $\varphi_1 = \dfrac{9 \times 10^9 \cdot 2 \times 10^{-9}}{0.3} = 60\ \text{V}$, $\ \varphi_2 = 30\ \text{V}$
+$A = 10^{-9} \cdot (60 - 30) = 3 \times 10^{-8}\ \text{J}$
+AKA: $60\ \text{ვ}$; $30\ \text{ვ}$; $3 \cdot 10^{-8}\ \text{ჯ}$
+AEN: $60\ \text{V}$; $30\ \text{V}$; $3 \times 10^{-8}\ \text{J}$
+
+--- medium capacitor
+KA: ბრტყელი ჰაეროვანი კონდენსატორის ფირფიტების ფართობია $100\ \text{სმ}^2$, მათ შორის მანძილი — $1\ \text{მმ}$. იპოვეთ ტევადობა. როგორ შეიცვლება ის, თუ ფირფიტებს შორის $\varepsilon = 6$ დიელექტრიკს მოვათავსებთ?
+EN: An air-filled parallel-plate capacitor has plate area $100\ \text{cm}^2$ and gap $1\ \text{mm}$. Find its capacitance. How does it change if a dielectric with $\varepsilon = 6$ fills the gap?
+HKA: $C = \dfrac{\varepsilon \varepsilon_0 S}{d}$.
+HEN: $C = \dfrac{\varepsilon \varepsilon_0 S}{d}$.
+SKA: **ფორმულა:** $C = \dfrac{\varepsilon\, \varepsilon_0\, S}{d}$
+**რიცხვები:** $C_0 = \dfrac{8{,}85 \cdot 10^{-12} \cdot 0{,}01}{0{,}001} = 8{,}85 \cdot 10^{-11}\ \text{ფ} \approx 89\ \text{პფ}$
+დიელექტრიკით: $C = 6 C_0 \approx 530\ \text{პფ}$
+SEN: **Formula:** $C = \dfrac{\varepsilon\, \varepsilon_0\, S}{d}$
+**Numbers:** $C_0 = \dfrac{8.85 \times 10^{-12} \cdot 0.01}{0.001} = 8.85 \times 10^{-11}\ \text{F} \approx 89\ \text{pF}$
+With the dielectric: $C = 6 C_0 \approx 530\ \text{pF}$
+AKA: $\approx 89\ \text{პფ}$; $\approx 530\ \text{პფ}$
+AEN: $\approx 89\ \text{pF}$; $\approx 530\ \text{pF}$
+
+--- medium capacitor
+KA: კონდენსატორი $100\ \text{ვ}$-მდე დამუხტეს და წყაროს მოსწყვიტეს. შემდეგ ფირფიტებს შორის მანძილი გააორმაგეს. როგორ შეიცვალა ტევადობა, მუხტი, ძაბვა და ენერგია?
+EN: A capacitor is charged to $100\ \text{V}$ and disconnected from the source. Then the plate separation is doubled. How do the capacitance, charge, voltage and energy change?
+HKA: წყაროს მოსწყვეტის შემდეგ მუხტი ვეღარ იცვლება.
+HEN: Once disconnected, the charge cannot change.
+SKA: **ფორმულა:** $C = \dfrac{\varepsilon_0 S}{d}$, $\ U = \dfrac{q}{C}$, $\ W = \dfrac{q^2}{2C}$
+$d \to 2d$: $C \to \dfrac{C}{2}$; $q$ — უცვლელი; $U \to 2U$; $W \to 2W$.
+**რიცხვები:** ძაბვა $100\ \text{ვ} \to 200\ \text{ვ}$; ენერგია გაორმაგდა (დამატებითი ენერგია ფირფიტების დაშორებაზე დახარჯულმა მუშაობამ მისცა).
+SEN: **Formula:** $C = \dfrac{\varepsilon_0 S}{d}$, $\ U = \dfrac{q}{C}$, $\ W = \dfrac{q^2}{2C}$
+$d \to 2d$: $C \to \dfrac{C}{2}$; $q$ unchanged; $U \to 2U$; $W \to 2W$.
+**Numbers:** the voltage goes $100\ \text{V} \to 200\ \text{V}$; the energy doubles (the extra energy comes from the work done pulling the plates apart).
+AKA: $C$ ნახევრდება, $q$ უცვლელია, $U = 200\ \text{ვ}$, $W$ ორმაგდება
+AEN: $C$ halves, $q$ unchanged, $U = 200\ \text{V}$, $W$ doubles
+
+--- medium capacitor
+KA: $2\ \text{მკფ}$ და $4\ \text{მკფ}$ კონდენსატორები მიმდევრობით არის შეერთებული, ეს წყვილი კი პარალელურად უერთდება $3\ \text{მკფ}$ კონდენსატორს. იპოვეთ საერთო ტევადობა.
+EN: Capacitors of $2\ \mu\text{F}$ and $4\ \mu\text{F}$ are in series, and this pair is in parallel with a $3\ \mu\text{F}$ capacitor. Find the total capacitance.
+HKA: ჯერ მიმდევრობითი წყვილი, შემდეგ დაუმატეთ პარალელური.
+HEN: First the series pair, then add the parallel one.
+SKA: **ფორმულა:** $C_{12} = \dfrac{C_1 C_2}{C_1 + C_2}$, $\ C = C_{12} + C_3$
+**რიცხვები:** $C_{12} = \dfrac{2 \cdot 4}{6} = \dfrac{4}{3}\ \text{მკფ}$, $\ C = \dfrac{4}{3} + 3 = \dfrac{13}{3} \approx 4{,}3\ \text{მკფ}$
+SEN: **Formula:** $C_{12} = \dfrac{C_1 C_2}{C_1 + C_2}$, $\ C = C_{12} + C_3$
+**Numbers:** $C_{12} = \dfrac{2 \cdot 4}{6} = \dfrac{4}{3}\ \mu\text{F}$, $\ C = \dfrac{4}{3} + 3 = \dfrac{13}{3} \approx 4.3\ \mu\text{F}$
+AKA: $\approx 4{,}3\ \text{მკფ}$
+AEN: $\approx 4.3\ \mu\text{F}$
+
+--- medium ohm
+KA: გამტარის ვოლტ-ამპერული მახასიათებელი წრფეა, რომელიც გადის $(0;\,0)$ და $(2\ \text{ვ};\ 0{,}5\ \text{ა})$ წერტილებზე. იპოვეთ წინაღობა და დენი $6\ \text{ვ}$ ძაბვისას.
+EN: The current–voltage graph of a conductor is a straight line through $(0,\,0)$ and $(2\ \text{V},\ 0.5\ \text{A})$. Find the resistance and the current at $6\ \text{V}$.
+HKA: წრფივი მახასიათებელი ნიშნავს, რომ $R$ მუდმივია.
+HEN: A straight-line graph means $R$ is constant.
+SKA: **ფორმულა:** $R = \dfrac{U}{I}$, $\ I_2 = \dfrac{U_2}{R}$
+**რიცხვები:** $R = \dfrac{2}{0{,}5} = 4\ \text{ომი}$, $\ I_2 = \dfrac{6}{4} = 1{,}5\ \text{ა}$
+SEN: **Formula:** $R = \dfrac{U}{I}$, $\ I_2 = \dfrac{U_2}{R}$
+**Numbers:** $R = \dfrac{2}{0.5} = 4\ \Omega$, $\ I_2 = \dfrac{6}{4} = 1.5\ \text{A}$
+AKA: $4\ \text{ომი}$; $1{,}5\ \text{ა}$
+AEN: $4\ \Omega$; $1.5\ \text{A}$
+
+--- medium ohm
+KA: მავთული ისე გაჭიმეს, რომ მისი სიგრძე გაორმაგდა (მოცულობა არ შეცვლილა). როგორ შეიცვალა მისი წინაღობა?
+EN: A wire is stretched so its length doubles (its volume stays the same). How does its resistance change?
+HKA: მუდმივი მოცულობისას $S l = \text{const}$ — სიგრძე თუ ორმაგდება, განივკვეთი ნახევრდება.
+HEN: At constant volume $S l = \text{const}$ — if the length doubles, the cross-section halves.
+SKA: **ფორმულა:** $R = \rho \dfrac{l}{S}$, $\ S l = V$
+$l' = 2l$, $\ S' = \dfrac{S}{2} \Rightarrow R' = \rho \dfrac{2l}{S/2} = 4\rho\dfrac{l}{S} = 4R$
+SEN: **Formula:** $R = \rho \dfrac{l}{S}$, $\ S l = V$
+$l' = 2l$, $\ S' = \dfrac{S}{2} \Rightarrow R' = \rho \dfrac{2l}{S/2} = 4\rho\dfrac{l}{S} = 4R$
+AKA: $4$-ჯერ გაიზარდა
+AEN: it becomes $4$ times larger
+
+--- medium circuits
+KA: $R_1 = 4\ \text{ომი}$ მიმდევრობით არის შეერთებული პარალელურ წყვილთან $R_2 = 6\ \text{ომი}$ და $R_3 = 12\ \text{ომი}$. წრედზე $24\ \text{ვ}$ ძაბვაა. იპოვეთ საერთო წინაღობა და დენი თითოეულ რეზისტორში.
+EN: $R_1 = 4\ \Omega$ is in series with a parallel pair $R_2 = 6\ \Omega$ and $R_3 = 12\ \Omega$. The circuit is connected to $24\ \text{V}$. Find the total resistance and the current in each resistor.
+HKA: ჯერ პარალელური წყვილის წინაღობა, შემდეგ საერთო დენი, ბოლოს ძაბვა პარალელურ უბანზე.
+HEN: First the parallel pair, then the total current, then the voltage across the parallel section.
+SKA: **ფორმულა:** $R_{23} = \dfrac{R_2 R_3}{R_2 + R_3}$, $\ R = R_1 + R_{23}$, $\ I = \dfrac{U}{R}$, $\ U_{23} = I R_{23}$
+**რიცხვები:** $R_{23} = \dfrac{6 \cdot 12}{18} = 4\ \text{ომი}$, $\ R = 8\ \text{ომი}$, $\ I_1 = \dfrac{24}{8} = 3\ \text{ა}$
+$U_{23} = 3 \cdot 4 = 12\ \text{ვ}$, $\ I_2 = \dfrac{12}{6} = 2\ \text{ა}$, $\ I_3 = \dfrac{12}{12} = 1\ \text{ა}$
+SEN: **Formula:** $R_{23} = \dfrac{R_2 R_3}{R_2 + R_3}$, $\ R = R_1 + R_{23}$, $\ I = \dfrac{U}{R}$, $\ U_{23} = I R_{23}$
+**Numbers:** $R_{23} = \dfrac{6 \cdot 12}{18} = 4\ \Omega$, $\ R = 8\ \Omega$, $\ I_1 = \dfrac{24}{8} = 3\ \text{A}$
+$U_{23} = 3 \cdot 4 = 12\ \text{V}$, $\ I_2 = \dfrac{12}{6} = 2\ \text{A}$, $\ I_3 = \dfrac{12}{12} = 1\ \text{A}$
+AKA: $8\ \text{ომი}$; $3\ \text{ა}$, $2\ \text{ა}$, $1\ \text{ა}$
+AEN: $8\ \Omega$; $3\ \text{A}$, $2\ \text{A}$, $1\ \text{A}$
+
+--- medium circuits
+KA: ნაძვის ხის გირლიანდა $20$ ერთნაირი ნათურისგან შედგება, რომლებიც მიმდევრობით არის შეერთებული და $220\ \text{ვ}$ ქსელშია ჩართული. თითოეული ნათურის წინაღობაა $5\ \text{ომი}$. იპოვეთ ძაბვა თითოეულ ნათურაზე და დენის ძალა. რა მოხდება, თუ ერთი ნათურა გადაიწვება?
+EN: A string of Christmas lights has $20$ identical bulbs in series connected to $220\ \text{V}$. Each bulb is $5\ \Omega$. Find the voltage across each bulb and the current. What happens if one bulb burns out?
+HKA: მიმდევრობით ძაბვა ერთნაირ ნათურებს შორის თანაბრად ნაწილდება.
+HEN: In series the voltage is shared equally among identical bulbs.
+SKA: **ფორმულა:** $U_1 = \dfrac{U}{n}$, $\ I = \dfrac{U}{n R_1}$
+**რიცხვები:** $U_1 = \dfrac{220}{20} = 11\ \text{ვ}$, $\ I = \dfrac{220}{20 \cdot 5} = 2{,}2\ \text{ა}$
+ერთის გადაწვისას წრედი წყდება და ყველა ნათურა ქრება.
+SEN: **Formula:** $U_1 = \dfrac{U}{n}$, $\ I = \dfrac{U}{n R_1}$
+**Numbers:** $U_1 = \dfrac{220}{20} = 11\ \text{V}$, $\ I = \dfrac{220}{20 \cdot 5} = 2.2\ \text{A}$
+If one burns out the circuit is broken and all the bulbs go out.
+AKA: $11\ \text{ვ}$; $2{,}2\ \text{ა}$; ყველა ჩაქრება
+AEN: $11\ \text{V}$; $2.2\ \text{A}$; they all go out
+
+--- medium emf
+KA: ბატარეის ემძალაა $4{,}5\ \text{ვ}$, შიგა წინაღობა — $0{,}5\ \text{ომი}$. იპოვეთ მოკლე ჩართვის დენი და დენი $4\ \text{ომ}$ გარე წინაღობისას.
+EN: A battery has EMF $4.5\ \text{V}$ and internal resistance $0.5\ \Omega$. Find the short-circuit current and the current with a $4\ \Omega$ external resistance.
+HKA: მოკლე ჩართვისას $R = 0$.
+HEN: In a short circuit $R = 0$.
+SKA: **ფორმულა:** $I = \dfrac{\mathcal{E}}{R + r}$; მოკლე ჩართვა: $I_{\text{მჩ}} = \dfrac{\mathcal{E}}{r}$
+**რიცხვები:** $I_{\text{მჩ}} = \dfrac{4{,}5}{0{,}5} = 9\ \text{ა}$, $\ I = \dfrac{4{,}5}{4 + 0{,}5} = 1\ \text{ა}$
+SEN: **Formula:** $I = \dfrac{\mathcal{E}}{R + r}$; short circuit: $I_{\text{sc}} = \dfrac{\mathcal{E}}{r}$
+**Numbers:** $I_{\text{sc}} = \dfrac{4.5}{0.5} = 9\ \text{A}$, $\ I = \dfrac{4.5}{4 + 0.5} = 1\ \text{A}$
+AKA: $9\ \text{ა}$; $1\ \text{ა}$
+AEN: $9\ \text{A}$; $1\ \text{A}$
+
+--- medium emf
+KA: $2\ \text{ომ}$ გარე წინაღობისას წრედში დენია $2\ \text{ა}$, $5\ \text{ომ}$-ისას — $1\ \text{ა}$. იპოვეთ წყაროს ემძალა და შიგა წინაღობა.
+EN: With an external resistance of $2\ \Omega$ the current is $2\ \text{A}$; with $5\ \Omega$ it is $1\ \text{A}$. Find the source's EMF and internal resistance.
+HKA: ორჯერ დაწერეთ $\mathcal{E} = I(R + r)$ და გაუტოლეთ.
+HEN: Write $\mathcal{E} = I(R + r)$ twice and set them equal.
+SKA: **ფორმულა:** $\mathcal{E} = I_1 (R_1 + r) = I_2 (R_2 + r) \Rightarrow r = \dfrac{I_2 R_2 - I_1 R_1}{I_1 - I_2}$
+**რიცხვები:** $r = \dfrac{1 \cdot 5 - 2 \cdot 2}{2 - 1} = 1\ \text{ომი}$, $\ \mathcal{E} = 2 \cdot (2 + 1) = 6\ \text{ვ}$
+SEN: **Formula:** $\mathcal{E} = I_1 (R_1 + r) = I_2 (R_2 + r) \Rightarrow r = \dfrac{I_2 R_2 - I_1 R_1}{I_1 - I_2}$
+**Numbers:** $r = \dfrac{1 \cdot 5 - 2 \cdot 2}{2 - 1} = 1\ \Omega$, $\ \mathcal{E} = 2 \cdot (2 + 1) = 6\ \text{V}$
+AKA: $6\ \text{ვ}$; $1\ \text{ომი}$
+AEN: $6\ \text{V}$; $1\ \Omega$
+
+--- medium power
+KA: ორი ნათურა „$220\ \text{ვ}$, $60\ \text{ვტ}$“ მიმდევრობით ჩართეს $220\ \text{ვ}$ ქსელში. რა საერთო სიმძლავრეს მოიხმარენ ისინი?
+EN: Two "$220\ \text{V}$, $60\ \text{W}$" lamps are connected in series to $220\ \text{V}$. What total power do they use?
+HKA: ჯერ იპოვეთ ერთი ნათურის წინაღობა (ის არ იცვლება).
+HEN: First find one lamp's resistance (assume it stays the same).
+SKA: **ფორმულა:** $R = \dfrac{U^2}{P}$, $\ P_{\text{სულ}} = \dfrac{U^2}{2R}$
+**რიცხვები:** $R = \dfrac{220^2}{60} \approx 807\ \text{ომი}$
+$P_{\text{სულ}} = \dfrac{220^2}{2 \cdot 807} = 30\ \text{ვტ}$ — თითოეული მხოლოდ $15\ \text{ვტ}$-ს (ბჟუტავს).
+SEN: **Formula:** $R = \dfrac{U^2}{P}$, $\ P_{\text{total}} = \dfrac{U^2}{2R}$
+**Numbers:** $R = \dfrac{220^2}{60} \approx 807\ \Omega$
+$P_{\text{total}} = \dfrac{220^2}{2 \cdot 807} = 30\ \text{W}$ — only $15\ \text{W}$ each (they glow dimly).
+AKA: $30\ \text{ვტ}$
+AEN: $30\ \text{W}$
+
+--- medium power
+KA: $50\ \text{ომ}$ წინაღობის ელექტროგამათბობელი $220\ \text{ვ}$ ქსელშია ჩართული და $2\ \text{კგ}$ წყალს $20\ \text{°C}$-დან $100\ \text{°C}$-მდე ათბობს. სმკ $80\%$-ია. რა დრო დასჭირდება?
+EN: A $50\ \Omega$ heater connected to $220\ \text{V}$ heats $2\ \text{kg}$ of water from $20\ \text{°C}$ to $100\ \text{°C}$. Its efficiency is $80\%$. How long does it take?
+HKA: ჯოულ-ლენცი: $P = \dfrac{U^2}{R}$; $\ \eta P t = c m \Delta t$.
+HEN: Joule's law: $P = \dfrac{U^2}{R}$; $\ \eta P t = c m \Delta t$.
+SKA: **ფორმულა:** $\eta \dfrac{U^2}{R} t = c m \Delta T \Rightarrow t = \dfrac{c m \Delta T\, R}{\eta U^2}$
+**რიცხვები:** $P = \dfrac{220^2}{50} = 968\ \text{ვტ}$, $\ Q = 4200 \cdot 2 \cdot 80 = 672\,000\ \text{ჯ}$
+$t = \dfrac{672\,000}{0{,}8 \cdot 968} \approx 868\ \text{წმ} \approx 14{,}5\ \text{წთ}$
+SEN: **Formula:** $\eta \dfrac{U^2}{R} t = c m \Delta T \Rightarrow t = \dfrac{c m \Delta T\, R}{\eta U^2}$
+**Numbers:** $P = \dfrac{220^2}{50} = 968\ \text{W}$, $\ Q = 4200 \cdot 2 \cdot 80 = 672\,000\ \text{J}$
+$t = \dfrac{672\,000}{0.8 \cdot 968} \approx 868\ \text{s} \approx 14.5\ \text{min}$
+AKA: $\approx 14{,}5\ \text{წთ}$
+AEN: $\approx 14.5\ \text{min}$
+
+--- medium power
+KA: $75\ \text{ვტ}$ ვარვარების ნათურა შეცვალეს $10\ \text{ვტ}$ LED ნათურით, რომელიც იმავე სინათლეს იძლევა. ნათურა დღეში $5$ საათი ანთია. რამდენ კვტ·სთ-ს დაზოგავენ $30$ დღეში?
+EN: A $75\ \text{W}$ incandescent bulb is replaced by a $10\ \text{W}$ LED bulb giving the same light. The bulb is on $5$ hours a day. How many kWh are saved in $30$ days?
+HKA: დაზოგილი სიმძლავრე × მთლიანი დრო.
+HEN: Saved power × total time.
+SKA: **ფორმულა:** $\Delta W = (P_1 - P_2)\, t$
+**რიცხვები:** $t = 5 \cdot 30 = 150\ \text{სთ}$
+$\Delta W = (75 - 10) \cdot 150 = 9750\ \text{ვტ}\cdot\text{სთ} = 9{,}75\ \text{კვტ}\cdot\text{სთ}$
+SEN: **Formula:** $\Delta W = (P_1 - P_2)\, t$
+**Numbers:** $t = 5 \cdot 30 = 150\ \text{h}$
+$\Delta W = (75 - 10) \cdot 150 = 9750\ \text{Wh} = 9.75\ \text{kWh}$
+AKA: $9{,}75\ \text{კვტ}\cdot\text{სთ}$
+AEN: $9.75\ \text{kWh}$
+
+--- medium media
+KA: რატომ ატარებს ნახევარგამტარული დიოდი დენს მხოლოდ ერთი მიმართულებით? როგორ იცვლება ნახევარგამტარის წინაღობა გათბობისას ლითონისგან განსხვავებით?
+EN: Why does a semiconductor diode conduct current in only one direction? How does a semiconductor's resistance change on heating, compared with a metal?
+HKA: p-n გადასასვლელი: p-მხარეს ძირითადი მუხტმტარები „ხვრელებია“, n-მხარეს — ელექტრონები.
+HEN: The p-n junction: in the p-region the main carriers are "holes", in the n-region electrons.
+SKA: p და n ნახევარგამტარების შეხების ადგილზე წარმოიქმნება მუხტმტარებისგან დაცლილი ჩამკეტი ფენა.
+პირდაპირი ჩართვისას (p — „+“-თან) გარე ველი ამ ფენას ავიწროებს და დენი გადის; შებრუნებულისას — ფენა ფართოვდება და დენი თითქმის არ გადის.
+ლითონის წინაღობა გათბობისას იზრდება (იონების რხევა ელექტრონებს უშლის), ნახევარგამტარისა კი მცირდება — ჩნდება მეტი თავისუფალი მუხტმტარი.
+SEN: Where p and n semiconductors meet, a depletion layer empty of carriers forms.
+In forward bias (p to "+") the external field narrows this layer and current flows; in reverse bias the layer widens and almost no current flows.
+A metal's resistance rises on heating (vibrating ions scatter the electrons), but a semiconductor's falls — more free carriers appear.
+AKA: p-n გადასასვლელი; ნახევარგამტარის წინაღობა გათბობისას მცირდება
+AEN: the p-n junction; a semiconductor's resistance falls when heated
+
+--- medium media
+KA: რა დროში გამოიყოფა $10\ \text{გ}$ ვერცხლი კათოდზე $5\ \text{ა}$ დენის დროს? ($k_{\text{Ag}} = 1{,}12 \cdot 10^{-6}\ \text{კგ/კ}$)
+EN: How long does it take to deposit $10\ \text{g}$ of silver on a cathode with a current of $5\ \text{A}$? ($k_{\text{Ag}} = 1.12 \times 10^{-6}\ \text{kg/C}$)
+HKA: $m = k I t \Rightarrow t = \dfrac{m}{k I}$.
+HEN: $m = k I t \Rightarrow t = \dfrac{m}{k I}$.
+SKA: **ფორმულა:** $t = \dfrac{m}{k I}$
+**რიცხვები:** $t = \dfrac{0{,}01}{1{,}12 \cdot 10^{-6} \cdot 5} \approx 1790\ \text{წმ} \approx 30\ \text{წთ}$
+SEN: **Formula:** $t = \dfrac{m}{k I}$
+**Numbers:** $t = \dfrac{0.01}{1.12 \times 10^{-6} \cdot 5} \approx 1790\ \text{s} \approx 30\ \text{min}$
+AKA: $\approx 30\ \text{წთ}$
+AEN: $\approx 30\ \text{min}$
+
+// ===================================================================== HARD
+
+--- hard coulomb
+KA: სამი ერთნაირი მუხტი, თითოეული $+1\ \text{მკკ}$, მოთავსებულია $0{,}1\ \text{მ}$ გვერდიანი ტოლგვერდა სამკუთხედის წვეროებში. რა ძალა მოქმედებს თითოეულ მუხტზე?
+EN: Three identical charges of $+1\ \mu\text{C}$ sit at the corners of an equilateral triangle with side $0.1\ \text{m}$. What force acts on each charge?
+HKA: თითოეულ მუხტზე ორი ტოლი ძალა მოქმედებს $60^\circ$ კუთხით; ტოლქმედი ბისექტრისის გასწვრივაა.
+HEN: Two equal forces at $60^\circ$ act on each charge; the resultant lies along the bisector.
+SKA: **ფორმულა:** $F_1 = k\dfrac{q^2}{a^2}$, $\ F = 2 F_1 \cos 30^\circ = \sqrt{3}\, F_1$
+**რიცხვები:** $F_1 = 9 \cdot 10^9 \cdot \dfrac{10^{-12}}{0{,}01} = 0{,}9\ \text{ნ}$
+$F = 1{,}73 \cdot 0{,}9 \approx 1{,}56\ \text{ნ}$, სამკუთხედის ცენტრიდან გარეთ.
+SEN: **Formula:** $F_1 = k\dfrac{q^2}{a^2}$, $\ F = 2 F_1 \cos 30^\circ = \sqrt{3}\, F_1$
+**Numbers:** $F_1 = 9 \times 10^9 \cdot \dfrac{10^{-12}}{0.01} = 0.9\ \text{N}$
+$F = 1.73 \cdot 0.9 \approx 1.56\ \text{N}$, pointing away from the centre.
+AKA: $\approx 1{,}56\ \text{ნ}$
+AEN: $\approx 1.56\ \text{N}$
+
+--- hard coulomb
+KA: ორი ერთნაირი $0{,}9\ \text{გ}$ მასის ბურთულა ერთი წერტილიდან ძაფებზეა ჩამოკიდებული. ერთნაირი მუხტებით დამუხტვის შემდეგ ისინი ისე განიზიდა, რომ თითოეული ძაფი ვერტიკალთან $45^\circ$-ს ადგენს, ბურთულებს შორის მანძილი კი $10\ \text{სმ}$-ია. იპოვეთ თითოეული ბურთულას მუხტი.
+EN: Two identical balls of mass $0.9\ \text{g}$ hang on threads from one point. After being given equal charges they push apart so each thread makes $45^\circ$ with the vertical and the balls are $10\ \text{cm}$ apart. Find the charge on each ball.
+HKA: ბურთულაზე მოქმედებს სიმძიმის ძალა, ძაფის დაჭიმულობა და კულონის ძალა: $\tan\alpha = \dfrac{F}{m g}$.
+HEN: Gravity, tension and the Coulomb force act on each ball: $\tan\alpha = \dfrac{F}{m g}$.
+SKA: **ფორმულა:** $F = m g \tan\alpha$, $\ k\dfrac{q^2}{r^2} = F \Rightarrow q = r\sqrt{\dfrac{F}{k}}$
+**რიცხვები:** $F = 0{,}9 \cdot 10^{-3} \cdot 10 \cdot 1 = 9 \cdot 10^{-3}\ \text{ნ}$
+$q = 0{,}1 \cdot \sqrt{\dfrac{9 \cdot 10^{-3}}{9 \cdot 10^9}} = 0{,}1 \cdot 10^{-6} = 10^{-7}\ \text{კ}$
+SEN: **Formula:** $F = m g \tan\alpha$, $\ k\dfrac{q^2}{r^2} = F \Rightarrow q = r\sqrt{\dfrac{F}{k}}$
+**Numbers:** $F = 0.9 \times 10^{-3} \cdot 10 \cdot 1 = 9 \times 10^{-3}\ \text{N}$
+$q = 0.1 \cdot \sqrt{\dfrac{9 \times 10^{-3}}{9 \times 10^9}} = 0.1 \cdot 10^{-6} = 10^{-7}\ \text{C}$
+AKA: $10^{-7}\ \text{კ} = 0{,}1\ \text{მკკ}$
+AEN: $10^{-7}\ \text{C} = 0.1\ \mu\text{C}$
+
+--- hard field
+KA: $+q$ და $-4q$ მუხტები ერთმანეთისგან $d = 0{,}3\ \text{მ}$-ითაა დაშორებული. რომელ წერტილში უდრის ნულს ველის დაძაბულობა?
+EN: Charges $+q$ and $-4q$ are $d = 0.3\ \text{m}$ apart. At which point is the field strength zero?
+HKA: მუხტებს შორის ველები ერთი მიმართულებისაა. ნულოვანი წერტილი გარეთაა, მცირე მუხტის მხარეს.
+HEN: Between the charges the fields point the same way. The zero is outside, on the side of the smaller charge.
+SKA: **ფორმულა:** $k\dfrac{q}{x^2} = k\dfrac{4q}{(x + d)^2} \Rightarrow x + d = 2x \Rightarrow x = d$
+**რიცხვები:** $x = 0{,}3\ \text{მ}$ — $+q$-დან $0{,}3\ \text{მ}$-ზე, $-4q$-ს საწინააღმდეგო მხარეს ($-4q$-დან $0{,}6\ \text{მ}$-ზე).
+SEN: **Formula:** $k\dfrac{q}{x^2} = k\dfrac{4q}{(x + d)^2} \Rightarrow x + d = 2x \Rightarrow x = d$
+**Numbers:** $x = 0.3\ \text{m}$ — $0.3\ \text{m}$ from $+q$ on the side away from $-4q$ ($0.6\ \text{m}$ from $-4q$).
+AKA: $+q$-დან $0{,}3\ \text{მ}$-ზე, გარე მხარეს
+AEN: $0.3\ \text{m}$ beyond $+q$
+
+--- hard field
+KA: (მილიკენის ცდა) ზეთის წვეთი, რომლის მასაა $3{,}2 \cdot 10^{-15}\ \text{კგ}$, ჰორიზონტალურ ფირფიტებს შორის „ჰაერში კიდია“. ფირფიტებს შორის მანძილია $1\ \text{სმ}$, ძაბვა — $500\ \text{ვ}$. იპოვეთ წვეთის მუხტი. რამდენი ელემენტარული მუხტია ეს?
+EN: (Millikan's experiment) An oil drop of mass $3.2 \times 10^{-15}\ \text{kg}$ hangs motionless between horizontal plates $1\ \text{cm}$ apart with $500\ \text{V}$ across them. Find the drop's charge. How many elementary charges is that?
+HKA: წონასწორობა: $q E = m g$, $E = \dfrac{U}{d}$.
+HEN: Balance: $q E = m g$, $E = \dfrac{U}{d}$.
+SKA: **ფორმულა:** $q\dfrac{U}{d} = m g \Rightarrow q = \dfrac{m g d}{U}$, $\ N = \dfrac{q}{e}$
+**რიცხვები:** $q = \dfrac{3{,}2 \cdot 10^{-15} \cdot 10 \cdot 0{,}01}{500} = 6{,}4 \cdot 10^{-19}\ \text{კ}$
+$N = \dfrac{6{,}4 \cdot 10^{-19}}{1{,}6 \cdot 10^{-19}} = 4$
+SEN: **Formula:** $q\dfrac{U}{d} = m g \Rightarrow q = \dfrac{m g d}{U}$, $\ N = \dfrac{q}{e}$
+**Numbers:** $q = \dfrac{3.2 \times 10^{-15} \cdot 10 \cdot 0.01}{500} = 6.4 \times 10^{-19}\ \text{C}$
+$N = \dfrac{6.4 \times 10^{-19}}{1.6 \times 10^{-19}} = 4$
+AKA: $6{,}4 \cdot 10^{-19}\ \text{კ} = 4e$
+AEN: $6.4 \times 10^{-19}\ \text{C} = 4e$
+
+--- hard potential
+KA: ელექტრონი $2 \cdot 10^7\ \text{მ/წმ}$ სიჩქარით შედის ბრტყელ კონდენსატორში ფირფიტების პარალელურად. ფირფიტების სიგრძეა $5\ \text{სმ}$, ველის დაძაბულობა — $10^4\ \text{ვ/მ}$. რამდენით გადაიხრება ელექტრონი კონდენსატორიდან გამოსვლისას?
+EN: An electron enters a parallel-plate capacitor at $2 \times 10^7\ \text{m/s}$ parallel to the plates. The plates are $5\ \text{cm}$ long and the field is $10^4\ \text{V/m}$. How far is the electron deflected when it leaves?
+HKA: მოძრაობა ჰორიზონტალურად ნასროლი სხეულის მსგავსია: გასწვრივ — თანაბარი, მართობულად — თანაბარაჩქარებული ($a = eE/m$).
+HEN: The motion is like a horizontal throw: uniform along the plates, uniformly accelerated across them ($a = eE/m$).
+SKA: **ფორმულა:** $t = \dfrac{l}{v_0}$, $\ a = \dfrac{e E}{m}$, $\ y = \dfrac{a t^2}{2} = \dfrac{e E l^2}{2 m v_0^2}$
+**რიცხვები:** $a = \dfrac{1{,}6 \cdot 10^{-19} \cdot 10^4}{9{,}1 \cdot 10^{-31}} \approx 1{,}76 \cdot 10^{15}\ \text{მ/წმ}^2$, $\ t = \dfrac{0{,}05}{2 \cdot 10^7} = 2{,}5 \cdot 10^{-9}\ \text{წმ}$
+$y = \dfrac{1{,}76 \cdot 10^{15} \cdot (2{,}5 \cdot 10^{-9})^2}{2} \approx 5{,}5 \cdot 10^{-3}\ \text{მ} = 5{,}5\ \text{მმ}$
+SEN: **Formula:** $t = \dfrac{l}{v_0}$, $\ a = \dfrac{e E}{m}$, $\ y = \dfrac{a t^2}{2} = \dfrac{e E l^2}{2 m v_0^2}$
+**Numbers:** $a = \dfrac{1.6 \times 10^{-19} \cdot 10^4}{9.1 \times 10^{-31}} \approx 1.76 \times 10^{15}\ \text{m/s}^2$, $\ t = \dfrac{0.05}{2 \times 10^7} = 2.5 \times 10^{-9}\ \text{s}$
+$y = \dfrac{1.76 \times 10^{15} \cdot (2.5 \times 10^{-9})^2}{2} \approx 5.5 \times 10^{-3}\ \text{m} = 5.5\ \text{mm}$
+AKA: $\approx 5{,}5\ \text{მმ}$
+AEN: $\approx 5.5\ \text{mm}$
+
+--- hard capacitor
+KA: $2\ \text{მკფ}$ კონდენსატორი $100\ \text{ვ}$-მდე დამუხტეს, მოსწყვიტეს წყაროს და პარალელურად მიუერთეს დაუმუხტავ $3\ \text{მკფ}$ კონდენსატორს. იპოვეთ საბოლოო ძაბვა და რამდენი ენერგია დაიკარგა.
+EN: A $2\ \mu\text{F}$ capacitor charged to $100\ \text{V}$ is disconnected and connected in parallel to an uncharged $3\ \mu\text{F}$ capacitor. Find the final voltage and how much energy is lost.
+HKA: მუხტი ინახება და ორ კონდენსატორს შორის ნაწილდება; ენერგია — არა.
+HEN: Charge is conserved and shared between the capacitors; energy is not.
+SKA: **ფორმულა:** $q = C_1 U_0$, $\ U = \dfrac{q}{C_1 + C_2}$, $\ \Delta W = \dfrac{C_1 U_0^2}{2} - \dfrac{(C_1 + C_2) U^2}{2}$
+**რიცხვები:** $q = 2 \cdot 10^{-6} \cdot 100 = 2 \cdot 10^{-4}\ \text{კ}$, $\ U = \dfrac{2 \cdot 10^{-4}}{5 \cdot 10^{-6}} = 40\ \text{ვ}$
+$W_0 = \dfrac{2 \cdot 10^{-6} \cdot 10^4}{2} = 10\ \text{მჯ}$, $\ W = \dfrac{5 \cdot 10^{-6} \cdot 1600}{2} = 4\ \text{მჯ}$, $\ \Delta W = 6\ \text{მჯ}$ (სითბოდ და გამოსხივებად)
+SEN: **Formula:** $q = C_1 U_0$, $\ U = \dfrac{q}{C_1 + C_2}$, $\ \Delta W = \dfrac{C_1 U_0^2}{2} - \dfrac{(C_1 + C_2) U^2}{2}$
+**Numbers:** $q = 2 \times 10^{-6} \cdot 100 = 2 \times 10^{-4}\ \text{C}$, $\ U = \dfrac{2 \times 10^{-4}}{5 \times 10^{-6}} = 40\ \text{V}$
+$W_0 = \dfrac{2 \times 10^{-6} \cdot 10^4}{2} = 10\ \text{mJ}$, $\ W = \dfrac{5 \times 10^{-6} \cdot 1600}{2} = 4\ \text{mJ}$, $\ \Delta W = 6\ \text{mJ}$ (as heat and radiation)
+AKA: $40\ \text{ვ}$; $6\ \text{მჯ}$
+AEN: $40\ \text{V}$; $6\ \text{mJ}$
+
+--- hard capacitor
+KA: ფოტოაპარატის ციმციმას $100\ \text{მკფ}$ კონდენსატორი $300\ \text{ვ}$-მდე იმუხტება და $1\ \text{მწმ}$-ში იცლება. იპოვეთ კონდენსატორის ენერგია და განმუხტვის საშუალო სიმძლავრე.
+EN: A camera flash's $100\ \mu\text{F}$ capacitor is charged to $300\ \text{V}$ and discharges in $1\ \text{ms}$. Find the stored energy and the average discharge power.
+HKA: $W = \dfrac{C U^2}{2}$, $\ P = \dfrac{W}{t}$.
+HEN: $W = \dfrac{C U^2}{2}$, $\ P = \dfrac{W}{t}$.
+SKA: **ფორმულა:** $W = \dfrac{C U^2}{2}$, $\ P = \dfrac{W}{t}$
+**რიცხვები:** $W = \dfrac{10^{-4} \cdot 300^2}{2} = 4{,}5\ \text{ჯ}$
+$P = \dfrac{4{,}5}{10^{-3}} = 4500\ \text{ვტ}$ — ბატარეა ასეთ სიმძლავრეს პირდაპირ ვერ მისცემდა.
+SEN: **Formula:** $W = \dfrac{C U^2}{2}$, $\ P = \dfrac{W}{t}$
+**Numbers:** $W = \dfrac{10^{-4} \cdot 300^2}{2} = 4.5\ \text{J}$
+$P = \dfrac{4.5}{10^{-3}} = 4500\ \text{W}$ — a battery could not deliver such power directly.
+AKA: $4{,}5\ \text{ჯ}$; $4{,}5\ \text{კვტ}$
+AEN: $4.5\ \text{J}$; $4.5\ \text{kW}$
+
+--- hard circuits
+KA: გალვანომეტრი გათვლილია მაქსიმუმ $10\ \text{მა}$ დენზე, მისი წინაღობაა $50\ \text{ომი}$. რა წინაღობის შუნტი უნდა მივუერთოთ პარალელურად, რომ მისით $1\ \text{ა}$-მდე დენი გავზომოთ?
+EN: A galvanometer reads up to $10\ \text{mA}$ and has resistance $50\ \Omega$. What shunt resistance must be connected in parallel so it can measure currents up to $1\ \text{A}$?
+HKA: გალვანომეტრსა და შუნტზე ძაბვა ერთნაირია; შუნტში გადის $I - I_g$.
+HEN: The galvanometer and shunt have the same voltage; the shunt carries $I - I_g$.
+SKA: **ფორმულა:** $I_g R_g = (I - I_g) R_{\text{შ}} \Rightarrow R_{\text{შ}} = \dfrac{I_g R_g}{I - I_g}$
+**რიცხვები:** $R_{\text{შ}} = \dfrac{0{,}01 \cdot 50}{1 - 0{,}01} \approx 0{,}505\ \text{ომი}$
+SEN: **Formula:** $I_g R_g = (I - I_g) R_{\text{sh}} \Rightarrow R_{\text{sh}} = \dfrac{I_g R_g}{I - I_g}$
+**Numbers:** $R_{\text{sh}} = \dfrac{0.01 \cdot 50}{1 - 0.01} \approx 0.505\ \Omega$
+AKA: $\approx 0{,}5\ \text{ომი}$
+AEN: $\approx 0.5\ \Omega$
+
+--- hard circuits
+KA: ვოლტმეტრი გათვლილია $10\ \text{ვ}$-ზე, მისი წინაღობაა $1\ \text{კომ}$. რა დამატებითი წინაღობა უნდა ჩავრთოთ მიმდევრობით, რომ მისით $100\ \text{ვ}$-მდე ძაბვა გავზომოთ?
+EN: A voltmeter reads up to $10\ \text{V}$ and has resistance $1\ \text{k}\Omega$. What extra resistance must be connected in series to measure up to $100\ \text{V}$?
+HKA: სრული სკალისას ვოლტმეტრში იგივე დენი გადის: $I = \dfrac{U_v}{R_v}$.
+HEN: At full scale the same current flows through the voltmeter: $I = \dfrac{U_v}{R_v}$.
+SKA: **ფორმულა:** $I = \dfrac{U_v}{R_v}$, $\ R_{\text{დ}} = \dfrac{U - U_v}{I} = R_v\left(\dfrac{U}{U_v} - 1\right)$
+**რიცხვები:** $R_{\text{დ}} = 1000 \cdot (10 - 1) = 9000\ \text{ომი} = 9\ \text{კომ}$
+SEN: **Formula:** $I = \dfrac{U_v}{R_v}$, $\ R_{\text{add}} = \dfrac{U - U_v}{I} = R_v\left(\dfrac{U}{U_v} - 1\right)$
+**Numbers:** $R_{\text{add}} = 1000 \cdot (10 - 1) = 9000\ \Omega = 9\ \text{k}\Omega$
+AKA: $9\ \text{კომ}$
+AEN: $9\ \text{k}\Omega$
+
+--- hard emf
+KA: წყაროს ემძალაა $12\ \text{ვ}$, შიგა წინაღობა — $2\ \text{ომი}$. რა გარე წინაღობისას იქნება გარე წრედში გამოყოფილი სიმძლავრე მაქსიმალური? რას უდრის ეს სიმძლავრე?
+EN: A source has EMF $12\ \text{V}$ and internal resistance $2\ \Omega$. For what external resistance is the power delivered to the external circuit maximum? What is that power?
+HKA: $P = I^2 R = \dfrac{\mathcal{E}^2 R}{(R + r)^2}$; შეამოწმეთ $R = 1, 2, 3\ \text{ომი}$ — ან დაამტკიცეთ, რომ მაქსიმუმია $R = r$.
+HEN: $P = I^2 R = \dfrac{\mathcal{E}^2 R}{(R + r)^2}$; try $R = 1, 2, 3\ \Omega$ — or prove the maximum is at $R = r$.
+SKA: **ფორმულა:** $P = \dfrac{\mathcal{E}^2 R}{(R + r)^2}$. რადგან $(R + r)^2 \ge 4Rr$ (ტოლობა, როცა $R = r$), $\ P \le \dfrac{\mathcal{E}^2}{4r}$.
+**რიცხვები:** $R = r = 2\ \text{ომი}$, $\ P_{\max} = \dfrac{12^2}{4 \cdot 2} = 18\ \text{ვტ}$
+(შემოწმება: $R = 1$: $16\ \text{ვტ}$; $R = 3$: $17{,}3\ \text{ვტ}$.)
+SEN: **Formula:** $P = \dfrac{\mathcal{E}^2 R}{(R + r)^2}$. Since $(R + r)^2 \ge 4Rr$ (equality when $R = r$), $\ P \le \dfrac{\mathcal{E}^2}{4r}$.
+**Numbers:** $R = r = 2\ \Omega$, $\ P_{\max} = \dfrac{12^2}{4 \cdot 2} = 18\ \text{W}$
+(Check: $R = 1$: $16\ \text{W}$; $R = 3$: $17.3\ \text{W}$.)
+AKA: $R = 2\ \text{ომი}$; $18\ \text{ვტ}$
+AEN: $R = 2\ \Omega$; $18\ \text{W}$
+
+--- hard emf
+KA: ოთხი ერთნაირი ელემენტი ($\mathcal{E} = 1{,}5\ \text{ვ}$, $r = 0{,}5\ \text{ომი}$) $4\ \text{ომ}$ რეზისტორზეა მიერთებული. იპოვეთ დენი, თუ ელემენტები შეერთებულია: ა) მიმდევრობით; ბ) პარალელურად.
+EN: Four identical cells ($\mathcal{E} = 1.5\ \text{V}$, $r = 0.5\ \Omega$) are connected to a $4\ \Omega$ resistor. Find the current if the cells are connected: a) in series; b) in parallel.
+HKA: მიმდევრობით: ემძალები და შიგა წინაღობები იკრიბება. პარალელურად: ემძალა იგივეა, შიგა წინაღობა $r/n$.
+HEN: In series: EMFs and internal resistances add. In parallel: the EMF stays the same, internal resistance $r/n$.
+SKA: **ფორმულა:** ა) $I = \dfrac{n\mathcal{E}}{R + n r}$; ბ) $I = \dfrac{\mathcal{E}}{R + r/n}$
+**რიცხვები:** ა) $I = \dfrac{6}{4 + 2} = 1\ \text{ა}$
+ბ) $I = \dfrac{1{,}5}{4 + 0{,}125} \approx 0{,}36\ \text{ა}$
+SEN: **Formula:** a) $I = \dfrac{n\mathcal{E}}{R + n r}$; b) $I = \dfrac{\mathcal{E}}{R + r/n}$
+**Numbers:** a) $I = \dfrac{6}{4 + 2} = 1\ \text{A}$
+b) $I = \dfrac{1.5}{4 + 0.125} \approx 0.36\ \text{A}$
+AKA: ა) $1\ \text{ა}$; ბ) $\approx 0{,}36\ \text{ა}$
+AEN: a) $1\ \text{A}$; b) $\approx 0.36\ \text{A}$
+
+--- hard power
+KA: ელექტროქვაბის ერთი სპირალით წყალი $10\ \text{წთ}$-ში დუღს, მეორით — $15\ \text{წთ}$-ში. რა დროში ადუღდება წყალი, თუ სპირალებს ჩავრთავთ: ა) მიმდევრობით; ბ) პარალელურად? (ძაბვა ერთი და იგივეა, დანაკარგები უგულებელყავით.)
+EN: With one heating coil a kettle boils water in $10\ \text{min}$, with the other in $15\ \text{min}$. How long does it take if the coils are connected: a) in series; b) in parallel? (Same voltage; ignore losses.)
+HKA: $Q = \dfrac{U^2}{R} t$ — მუდმივი $Q$-სა და $U$-სთვის დრო წინაღობის პროპორციულია.
+HEN: $Q = \dfrac{U^2}{R} t$ — for fixed $Q$ and $U$, the time is proportional to the resistance.
+SKA: **ფორმულა:** $t \sim R$: ა) $t = t_1 + t_2$; ბ) $t = \dfrac{t_1 t_2}{t_1 + t_2}$
+**რიცხვები:** ა) $t = 10 + 15 = 25\ \text{წთ}$
+ბ) $t = \dfrac{10 \cdot 15}{25} = 6\ \text{წთ}$
+SEN: **Formula:** $t \propto R$: a) $t = t_1 + t_2$; b) $t = \dfrac{t_1 t_2}{t_1 + t_2}$
+**Numbers:** a) $t = 10 + 15 = 25\ \text{min}$
+b) $t = \dfrac{10 \cdot 15}{25} = 6\ \text{min}$
+AKA: ა) $25\ \text{წთ}$; ბ) $6\ \text{წთ}$
+AEN: a) $25\ \text{min}$; b) $6\ \text{min}$
+
+--- hard power
+KA: $100\ \text{კვტ}$ სიმძლავრე გადაიცემა $5\ \text{ომ}$ წინაღობის ხაზით. იპოვეთ დანაკარგები ხაზში, თუ გადაცემა ხდება: ა) $1\ \text{კვ}$; ბ) $10\ \text{კვ}$ ძაბვით. რატომ გადასცემენ ელექტროენერგიას მაღალი ძაბვით?
+EN: $100\ \text{kW}$ is transmitted through a line of resistance $5\ \Omega$. Find the losses in the line if it is transmitted at: a) $1\ \text{kV}$; b) $10\ \text{kV}$. Why is electricity transmitted at high voltage?
+HKA: ხაზში დენი $I = P/U$, დანაკარგი $I^2 R$.
+HEN: Line current $I = P/U$, loss $I^2 R$.
+SKA: **ფორმულა:** $I = \dfrac{P}{U}$, $\ P_{\text{დან}} = I^2 R = \dfrac{P^2 R}{U^2}$
+**რიცხვები:** ა) $I = 100\ \text{ა}$, $\ P_{\text{დან}} = 100^2 \cdot 5 = 50\ \text{კვტ}$ — ნახევარი იკარგება!
+ბ) $I = 10\ \text{ა}$, $\ P_{\text{დან}} = 10^2 \cdot 5 = 500\ \text{ვტ}$ — მხოლოდ $0{,}5\%$.
+ძაბვის $10$-ჯერ გაზრდა დანაკარგებს $100$-ჯერ ამცირებს.
+SEN: **Formula:** $I = \dfrac{P}{U}$, $\ P_{\text{loss}} = I^2 R = \dfrac{P^2 R}{U^2}$
+**Numbers:** a) $I = 100\ \text{A}$, $\ P_{\text{loss}} = 100^2 \cdot 5 = 50\ \text{kW}$ — half is lost!
+b) $I = 10\ \text{A}$, $\ P_{\text{loss}} = 10^2 \cdot 5 = 500\ \text{W}$ — only $0.5\%$.
+Raising the voltage $10$ times cuts losses $100$ times.
+AKA: ა) $50\ \text{კვტ}$; ბ) $500\ \text{ვტ}$
+AEN: a) $50\ \text{kW}$; b) $500\ \text{W}$
+
+--- hard ohm
+KA: ვოლფრამის ძაფის წინაღობა $20\ \text{°C}$-ზე $40\ \text{ომია}$. იპოვეთ მისი წინაღობა $2500\ \text{°C}$-ზე. ($\alpha = 4{,}5 \cdot 10^{-3}\ \text{1/°C}$) რატომ იწვება ნათურები ყველაზე ხშირად ჩართვის მომენტში?
+EN: A tungsten filament has a resistance of $40\ \Omega$ at $20\ \text{°C}$. Find its resistance at $2500\ \text{°C}$. ($\alpha = 4.5 \times 10^{-3}\ \text{1/°C}$) Why do bulbs most often burn out at the moment they are switched on?
+HKA: $R = R_0 (1 + \alpha \Delta t)$.
+HEN: $R = R_0 (1 + \alpha \Delta t)$.
+SKA: **ფორმულა:** $R = R_0 (1 + \alpha\, \Delta t)$
+**რიცხვები:** $R = 40 \cdot (1 + 4{,}5 \cdot 10^{-3} \cdot 2480) = 40 \cdot 12{,}16 \approx 486\ \text{ომი}$
+ცივი ძაფის წინაღობა $\sim 12$-ჯერ ნაკლებია, ამიტომ ჩართვისას დენი თითქმის $12$-ჯერ მეტია — ძაფი იტვირთება და წყდება.
+SEN: **Formula:** $R = R_0 (1 + \alpha\, \Delta t)$
+**Numbers:** $R = 40 \cdot (1 + 4.5 \times 10^{-3} \cdot 2480) = 40 \cdot 12.16 \approx 486\ \Omega$
+The cold filament's resistance is $\sim 12$ times less, so at switch-on the current is almost $12$ times larger — the filament is overloaded and snaps.
+AKA: $\approx 486\ \text{ომი}$
+AEN: $\approx 486\ \Omega$
+
+--- hard media
+KA: ალუმინს ელექტროლიზით იღებენ $5\ \text{ვ}$ ძაბვაზე. რამდენი ელექტროენერგიაა საჭირო $1\ \text{კგ}$ ალუმინის მისაღებად? ($k = 9{,}3 \cdot 10^{-8}\ \text{კგ/კ}$)
+EN: Aluminium is produced by electrolysis at $5\ \text{V}$. How much electrical energy is needed to make $1\ \text{kg}$ of aluminium? ($k = 9.3 \times 10^{-8}\ \text{kg/C}$)
+HKA: ჯერ იპოვეთ გასატარებელი მუხტი $q = m/k$, შემდეგ $W = qU$.
+HEN: First find the charge needed $q = m/k$, then $W = qU$.
+SKA: **ფორმულა:** $m = k q \Rightarrow q = \dfrac{m}{k}$, $\ W = q U = \dfrac{m U}{k}$
+**რიცხვები:** $q = \dfrac{1}{9{,}3 \cdot 10^{-8}} \approx 1{,}08 \cdot 10^7\ \text{კ}$
+$W = 1{,}08 \cdot 10^7 \cdot 5 \approx 5{,}4 \cdot 10^7\ \text{ჯ} \approx 15\ \text{კვტ}\cdot\text{სთ}$ — ამიტომაა ალუმინის გადამუშავება ასე მომგებიანი.
+SEN: **Formula:** $m = k q \Rightarrow q = \dfrac{m}{k}$, $\ W = q U = \dfrac{m U}{k}$
+**Numbers:** $q = \dfrac{1}{9.3 \times 10^{-8}} \approx 1.08 \times 10^7\ \text{C}$
+$W = 1.08 \times 10^7 \cdot 5 \approx 5.4 \times 10^7\ \text{J} \approx 15\ \text{kWh}$ — that's why recycling aluminium pays off so well.
+AKA: $\approx 15\ \text{კვტ}\cdot\text{სთ}$
+AEN: $\approx 15\ \text{kWh}$
+
+--- hard circuits olympiad
+KA: იპოვეთ უსასრულო „კიბის“ წინაღობა: ყოველ საფეხურზე ერთი რეზისტორი $R$ მიმდევრობითაა, მეორე $R$ — პარალელურად (განივად). $R = 1\ \text{ომი}$.
+EN: Find the resistance of an infinite resistor "ladder": each rung has one resistor $R$ in series and another $R$ across (in parallel). $R = 1\ \Omega$.
+HKA: უსასრულო ჯაჭვს ერთი საფეხურის მოშორება არ ცვლის. თუ მთელი ჯაჭვის წინაღობაა $R_x$, მაშინ ერთი საფეხური + დანარჩენი ჯაჭვი ისევ $R_x$-ს იძლევა.
+HEN: Removing one rung doesn't change an infinite ladder. If the whole ladder is $R_x$, then one rung plus the rest of the ladder is still $R_x$.
+SKA: **ფორმულა:** $R_x = R + \dfrac{R \cdot R_x}{R + R_x}$
+$R_x (R + R_x) = R(R + R_x) + R R_x \Rightarrow R_x^2 - R R_x - R^2 = 0$
+$R_x = \dfrac{1 + \sqrt{5}}{2} R$ („ოქროს კვეთა“!)
+**რიცხვები:** $R_x = \dfrac{1 + 2{,}236}{2} \cdot 1 \approx 1{,}62\ \text{ომი}$
+SEN: **Formula:** $R_x = R + \dfrac{R \cdot R_x}{R + R_x}$
+$R_x (R + R_x) = R(R + R_x) + R R_x \Rightarrow R_x^2 - R R_x - R^2 = 0$
+$R_x = \dfrac{1 + \sqrt{5}}{2} R$ (the golden ratio!)
+**Numbers:** $R_x = \dfrac{1 + 2.236}{2} \cdot 1 \approx 1.62\ \Omega$
+AKA: $\dfrac{1 + \sqrt{5}}{2} \approx 1{,}62\ \text{ომი}$
+AEN: $\dfrac{1 + \sqrt{5}}{2} \approx 1.62\ \Omega$
+
+--- hard circuits olympiad
+KA: კუბის $12$ წიბოდან თითოეული $1\ \text{ომ}$ რეზისტორია. იპოვეთ წინაღობა კუბის ორ დიამეტრალურად მოპირდაპირე წვეროს შორის.
+EN: Each of the $12$ edges of a cube is a $1\ \Omega$ resistor. Find the resistance between two diagonally opposite corners.
+HKA: სიმეტრიის გამო ერთნაირი პოტენციალის წვეროები შეგიძლიათ „შეაერთოთ“. დენი $I$ შესვლის წვეროდან სამ წიბოზე თანაბრად იყოფა.
+HEN: By symmetry, corners at equal potential can be "joined". The current $I$ entering splits equally into three edges.
+SKA: დენი $I$ შესვლის წვეროდან $3$ წიბოში იყოფა: თითოეულში $\dfrac{I}{3}$.
+შუა „ფენაში“ $6$ წიბოა, თითოეულში $\dfrac{I}{6}$; გამოსვლის წვეროსთან ისევ $3$ წიბო, თითოეულში $\dfrac{I}{3}$.
+**ფორმულა:** $U = \dfrac{I}{3} R + \dfrac{I}{6} R + \dfrac{I}{3} R = \dfrac{5}{6} I R \Rightarrow R_{\text{სულ}} = \dfrac{5}{6} R$
+**რიცხვები:** $R_{\text{სულ}} = \dfrac{5}{6} \cdot 1 \approx 0{,}83\ \text{ომი}$
+SEN: The current $I$ splits into $3$ edges at the entry corner: $\dfrac{I}{3}$ each.
+The middle "layer" has $6$ edges with $\dfrac{I}{6}$ each; near the exit corner there are again $3$ edges with $\dfrac{I}{3}$ each.
+**Formula:** $U = \dfrac{I}{3} R + \dfrac{I}{6} R + \dfrac{I}{3} R = \dfrac{5}{6} I R \Rightarrow R_{\text{total}} = \dfrac{5}{6} R$
+**Numbers:** $R_{\text{total}} = \dfrac{5}{6} \cdot 1 \approx 0.83\ \Omega$
+AKA: $\dfrac{5}{6}\ \text{ომი}$
+AEN: $\dfrac{5}{6}\ \Omega$
+
+--- hard coulomb olympiad
+KA: $a$ გვერდიანი კვადრატის წვეროებში ოთხი ერთნაირი $+q$ მუხტია. რა მუხტი უნდა მოვათავსოთ კვადრატის ცენტრში, რომ ყველა მუხტი წონასწორობაში იყოს?
+EN: Four identical charges $+q$ sit at the corners of a square of side $a$. What charge must be placed at the centre so that all the charges are in equilibrium?
+HKA: განიხილეთ ერთი წვეროს მუხტი: ორი მეზობლის ძალები მართი კუთხითაა, მოპირდაპირისა — დიაგონალის გასწვრივ. ცენტრის მუხტი ამ ჯამს უნდა აწონასწორებდეს.
+HEN: Look at one corner charge: the forces from the two neighbours are at right angles, the opposite one acts along the diagonal. The centre charge must balance their sum.
+SKA: მეზობლების ძალების ჯამი დიაგონალის გასწვრივ: $\sqrt{2}\, k\dfrac{q^2}{a^2}$; მოპირდაპირის: $k\dfrac{q^2}{2a^2}$.
+ჯამი (გარეთ): $k\dfrac{q^2}{a^2}\left(\sqrt{2} + \dfrac{1}{2}\right)$.
+ცენტრის მუხტი $Q$ (მანძილი $\dfrac{a}{\sqrt{2}}$): $k\dfrac{q|Q|}{a^2/2} = 2k\dfrac{q|Q|}{a^2}$ (შიგნით, ე.ი. $Q < 0$).
+**ფორმულა:** $2|Q| = q\left(\sqrt{2} + \dfrac{1}{2}\right) \Rightarrow Q = -\dfrac{2\sqrt{2} + 1}{4} q$
+**რიცხვები:** $Q \approx -0{,}96\, q$ (ცენტრის მუხტზე ძალები თავისთავად აწონასწორებს ერთმანეთს)
+SEN: The neighbours' forces add along the diagonal: $\sqrt{2}\, k\dfrac{q^2}{a^2}$; the opposite charge: $k\dfrac{q^2}{2a^2}$.
+Sum (outwards): $k\dfrac{q^2}{a^2}\left(\sqrt{2} + \dfrac{1}{2}\right)$.
+Centre charge $Q$ (distance $\dfrac{a}{\sqrt{2}}$): $k\dfrac{q|Q|}{a^2/2} = 2k\dfrac{q|Q|}{a^2}$ (inwards, so $Q < 0$).
+**Formula:** $2|Q| = q\left(\sqrt{2} + \dfrac{1}{2}\right) \Rightarrow Q = -\dfrac{2\sqrt{2} + 1}{4} q$
+**Numbers:** $Q \approx -0.96\, q$ (the forces on the centre charge balance automatically)
+AKA: $Q = -\dfrac{2\sqrt{2} + 1}{4} q \approx -0{,}96 q$
+AEN: $Q = -\dfrac{2\sqrt{2} + 1}{4} q \approx -0.96 q$
+
+--- hard capacitor olympiad
+KA: ბრტყელი ჰაეროვანი კონდენსატორის ტევადობაა $C_0$. ფირფიტებს შორის, მათ პარალელურად, ჩადეს $\varepsilon = 3$ დიელექტრიკის ფილა, რომლის სისქე ფირფიტებს შორის მანძილის ნახევარია. იპოვეთ ახალი ტევადობა.
+EN: An air-filled parallel-plate capacitor has capacitance $C_0$. A slab of dielectric with $\varepsilon = 3$ and thickness equal to half the gap is inserted parallel to the plates. Find the new capacitance.
+HKA: ასეთი კონდენსატორი ორი მიმდევრობით შეერთებული კონდენსატორია: ერთი ჰაეროვანი ($d/2$), მეორე დიელექტრიკით ($d/2$).
+HEN: Such a capacitor is two capacitors in series: one with air ($d/2$), one with dielectric ($d/2$).
+SKA: **ფორმულა:** $C_1 = \dfrac{\varepsilon_0 S}{d/2} = 2C_0$, $\ C_2 = \dfrac{\varepsilon \varepsilon_0 S}{d/2} = 2\varepsilon C_0$
+$C = \dfrac{C_1 C_2}{C_1 + C_2} = \dfrac{2C_0 \cdot 2\varepsilon C_0}{2C_0 + 2\varepsilon C_0} = \dfrac{2\varepsilon}{1 + \varepsilon} C_0$
+**რიცხვები:** $C = \dfrac{2 \cdot 3}{1 + 3} C_0 = 1{,}5\, C_0$ (ფილის მდებარეობა ფირფიტებს შორის არ მოქმედებს!)
+SEN: **Formula:** $C_1 = \dfrac{\varepsilon_0 S}{d/2} = 2C_0$, $\ C_2 = \dfrac{\varepsilon \varepsilon_0 S}{d/2} = 2\varepsilon C_0$
+$C = \dfrac{C_1 C_2}{C_1 + C_2} = \dfrac{2C_0 \cdot 2\varepsilon C_0}{2C_0 + 2\varepsilon C_0} = \dfrac{2\varepsilon}{1 + \varepsilon} C_0$
+**Numbers:** $C = \dfrac{2 \cdot 3}{1 + 3} C_0 = 1.5\, C_0$ (the slab's position between the plates doesn't matter!)
+AKA: $1{,}5\,C_0$
+AEN: $1.5\,C_0$
+
+--- hard power olympiad
+KA: სამი ერთნაირი ნათურიდან ორი ერთმანეთთან პარალელურადაა შეერთებული, მესამე კი ამ წყვილთან მიმდევრობით; სისტემა ქსელშია ჩართული. რომელი ნათურა ანათებს ყველაზე კაშკაშა? იპოვეთ სიმძლავრეების შეფარდება. რა მოხდება, თუ პარალელური ნათურებიდან ერთი გადაიწვება?
+EN: Of three identical lamps, two are connected in parallel and the third is in series with this pair; the system is plugged into the mains. Which lamp is brightest? Find the ratio of their powers. What happens if one of the parallel lamps burns out?
+HKA: მიმდევრობით ჩართულ ნათურაში მთელი დენი $I$ გადის, პარალელურებში — $I/2$. $P = I^2 R$.
+HEN: The series lamp carries the whole current $I$, each parallel lamp carries $I/2$. $P = I^2 R$.
+SKA: **ფორმულა:** $P = I^2 R$: $\ P_3 = I^2 R$, $\ P_1 = P_2 = \left(\dfrac{I}{2}\right)^2 R = \dfrac{I^2 R}{4}$
+**რიცხვები:** $P_3 : P_1 : P_2 = 4 : 1 : 1$ — მესამე ყველაზე კაშკაშაა.
+ერთის გადაწვისას: დარჩენილი ორი მიმდევრობითაა, ძაბვა თანაბრად იყოფა. თავიდან $U_3 = \dfrac{2}{3}U$, $U_{1} = \dfrac{1}{3}U$; ახლა ორივეზე $\dfrac{U}{2}$ — მესამე ჩაბნელდება, დარჩენილი პარალელური კი გაკაშკაშდება.
+SEN: **Formula:** $P = I^2 R$: $\ P_3 = I^2 R$, $\ P_1 = P_2 = \left(\dfrac{I}{2}\right)^2 R = \dfrac{I^2 R}{4}$
+**Numbers:** $P_3 : P_1 : P_2 = 4 : 1 : 1$ — the third lamp is brightest.
+If one burns out: the remaining two are in series and share the voltage equally. Before, $U_3 = \dfrac{2}{3}U$, $U_{1} = \dfrac{1}{3}U$; now each gets $\dfrac{U}{2}$ — the third dims and the remaining parallel lamp brightens.
+AKA: $4 : 1 : 1$; მესამე ჩაბნელდება, მეორე გაკაშკაშდება
+AEN: $4 : 1 : 1$; the series lamp dims, the other brightens
+</script>
+</body>
+</html>
