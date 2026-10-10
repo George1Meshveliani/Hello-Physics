@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mathematics · Grade VII</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css">
+  <script defer src="../assets/problems.js"></script>
+</head>
+<body data-page="grade" data-subject="math" data-grade="VII">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic numbers    | I–III | რიცხვები და მოქმედებები. წილადები | Numbers and operations. Fractions
+# topic sets       | IV–V | რიცხვითი სიმრავლეები. რიცხვითი ღერძი. მოდული | Number sets. Number line. Absolute value
+# topic numeration | VI | პოზიციური სისტემა. რომაული და ძველი ქართული ნუმერაცია | Place value. Roman and old Georgian numerals
+# topic units      | VII | ზომის ერთეულები | Units of measurement
+# topic ratio      | VIII–IX | ფარდობა, პროპორცია, პროპორციული დამოკიდებულება | Ratio, proportion, proportional relationships
+# topic percent    | X | პროცენტი | Percentages
+# topic algebra    | XI–XII | ალგებრული გამოსახულება. ერთწევრი | Algebraic expressions. Monomials
+# topic equations  | XIII–XIV | წრფივი განტოლება. ტექსტური ამოცანები | Linear equations. Word problems
+# topic inequalities | XV | წრფივი უტოლობა | Linear inequalities
+# topic systems    | XVI–XVII | წრფივ განტოლებათა სისტემა | Systems of linear equations
+# topic geometry   | XIX–XXI | წრფე, კუთხე, პარალელური წრფეები. თალესის თეორემა | Lines, angles, parallel lines. Thales' theorem
+# topic triangles  | XXII–XXV | სამკუთხედი და მისი ელემენტები. ტოლობის ნიშნები | Triangles, their elements, congruence
+# topic polygons   | XXVI | მრავალკუთხედი, წრე და წრეწირი | Polygons, circles
+# topic graphs     | XXVIII–XXIX | დამოკიდებულება, გრაფიკი, საკოორდინატო სიბრტყე | Relationships, graphs, coordinate plane
+# topic sequences  | XXX–XXXI | რიცხვითი მიმდევრობა. კანონზომიერება | Number sequences. Patterns
+# topic statistics | XXXII–XXXIII | მონაცემები. საშუალო, მედიანა, მოდა | Data. Mean, median, mode
+# topic probability | XXXIV | შემთხვევითი ხდომილობის ალბათობა | Probability of random events
+# note ამოხსნებში ჯერ მოცემულია იდეა ან წესი, შემდეგ — ნაბიჯ-ნაბიჯ გამოთვლა. | Each solution first states the idea or rule, then computes step by step.
+
+// ===================================================================== EASY
+
+--- easy numbers
+KA: გამოთვალეთ: $-8 + 3 \cdot (-4) - (-15) : 3$.
+EN: Calculate: $-8 + 3 \cdot (-4) - (-15) : 3$.
+HKA: ჯერ გამრავლება და გაყოფა, შემდეგ შეკრება და გამოკლება. ორი უარყოფითი რიცხვის განაყოფი დადებითია.
+HEN: Multiplication and division first, then addition and subtraction. A negative divided by a negative is positive.
+SKA: $3 \cdot (-4) = -12$
+$(-15) : 3 = -5$
+$-8 + (-12) - (-5) = -8 - 12 + 5 = -15$
+SEN: $3 \cdot (-4) = -12$
+$(-15) : 3 = -5$
+$-8 + (-12) - (-5) = -8 - 12 + 5 = -15$
+AKA: $-15$
+AEN: $-15$
+
+--- easy numbers
+KA: გამოთვალეთ: $\dfrac{2}{3} + \dfrac{5}{6} - \dfrac{1}{4}$.
+EN: Calculate: $\dfrac{2}{3} + \dfrac{5}{6} - \dfrac{1}{4}$.
+HKA: მიიყვანეთ წილადები საერთო მნიშვნელამდე — $3$, $6$ და $4$-ის უმცირესი საერთო ჯერადი $12$-ია.
+HEN: Bring the fractions to a common denominator — the least common multiple of $3$, $6$ and $4$ is $12$.
+SKA: $\dfrac{2}{3} = \dfrac{8}{12}$, $\ \dfrac{5}{6} = \dfrac{10}{12}$, $\ \dfrac{1}{4} = \dfrac{3}{12}$
+$\dfrac{8 + 10 - 3}{12} = \dfrac{15}{12} = \dfrac{5}{4} = 1\dfrac{1}{4}$
+SEN: $\dfrac{2}{3} = \dfrac{8}{12}$, $\ \dfrac{5}{6} = \dfrac{10}{12}$, $\ \dfrac{1}{4} = \dfrac{3}{12}$
+$\dfrac{8 + 10 - 3}{12} = \dfrac{15}{12} = \dfrac{5}{4} = 1\dfrac{1}{4}$
+AKA: $1\dfrac{1}{4}$
+AEN: $1\dfrac{1}{4}$
+
+--- easy numbers
+KA: გამოთვალეთ: $0{,}25 \cdot 1{,}6 + 3{,}6 : 0{,}4$.
+EN: Calculate: $0.25 \cdot 1.6 + 3.6 : 0.4$.
+HKA: ათწილადზე გაყოფისას გადაიტანეთ მძიმე გამყოფსა და გასაყოფში ერთნაირი რაოდენობის თანრიგით მარჯვნივ.
+HEN: When dividing by a decimal, move the decimal point the same number of places right in both numbers.
+SKA: $0{,}25 \cdot 1{,}6 = 0{,}4$
+$3{,}6 : 0{,}4 = 36 : 4 = 9$
+$0{,}4 + 9 = 9{,}4$
+SEN: $0.25 \cdot 1.6 = 0.4$
+$3.6 : 0.4 = 36 : 4 = 9$
+$0.4 + 9 = 9.4$
+AKA: $9{,}4$
+AEN: $9.4$
+
+--- easy sets
+KA: მოცემულია რიცხვები: $-3;\ 0;\ 7;\ \dfrac{2}{5};\ -1{,}5;\ \dfrac{12}{4}$. რომელია მათგან ნატურალური, რომელი — მთელი და რომელი — რაციონალური?
+EN: Given the numbers $-3,\ 0,\ 7,\ \dfrac{2}{5},\ -1.5,\ \dfrac{12}{4}$. Which of them are natural, which are integers and which are rational?
+HKA: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}$. შეამოწმეთ, არ მარტივდება თუ არა რომელიმე წილადი მთელ რიცხვამდე.
+HEN: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}$. Check whether any fraction simplifies to a whole number.
+SKA: $\dfrac{12}{4} = 3$ — ეს ნატურალური რიცხვია.
+ნატურალური ($\mathbb{N}$): $7;\ \dfrac{12}{4}$.
+მთელი ($\mathbb{Z}$): $-3;\ 0;\ 7;\ \dfrac{12}{4}$.
+რაციონალური ($\mathbb{Q}$): ყველა — თითოეული ჩაიწერება $\dfrac{m}{n}$ სახით ($-1{,}5 = -\dfrac{3}{2}$).
+SEN: $\dfrac{12}{4} = 3$ — a natural number.
+Natural ($\mathbb{N}$): $7,\ \dfrac{12}{4}$.
+Integers ($\mathbb{Z}$): $-3,\ 0,\ 7,\ \dfrac{12}{4}$.
+Rational ($\mathbb{Q}$): all of them — each can be written as $\dfrac{m}{n}$ ($-1.5 = -\dfrac{3}{2}$).
+AKA: $\mathbb{N}$: $7;\ \frac{12}{4}$; $\ \mathbb{Z}$: $-3;\ 0;\ 7;\ \frac{12}{4}$; $\ \mathbb{Q}$: ყველა
+AEN: $\mathbb{N}$: $7,\ \frac{12}{4}$; $\ \mathbb{Z}$: $-3,\ 0,\ 7,\ \frac{12}{4}$; $\ \mathbb{Q}$: all
+
+--- easy sets
+KA: გამოთვალეთ $|-7| + |3| - |-2|$ და ამოხსენით განტოლება $|x| = 5$.
+EN: Calculate $|-7| + |3| - |-2|$ and solve the equation $|x| = 5$.
+HKA: რიცხვის მოდული — მანძილი რიცხვით ღერძზე ამ რიცხვიდან ნულამდე; ის არასოდეს არის უარყოფითი.
+HEN: The absolute value of a number is its distance from zero on the number line; it is never negative.
+SKA: $|-7| = 7$, $|3| = 3$, $|-2| = 2 \Rightarrow 7 + 3 - 2 = 8$
+$|x| = 5$ ნიშნავს, რომ $x$ ნულიდან $5$ ერთეულითაა დაშორებული: $x = 5$ ან $x = -5$.
+SEN: $|-7| = 7$, $|3| = 3$, $|-2| = 2 \Rightarrow 7 + 3 - 2 = 8$
+$|x| = 5$ means $x$ is $5$ units from zero: $x = 5$ or $x = -5$.
+AKA: $8$; $x = \pm 5$
+AEN: $8$; $x = \pm 5$
+
+--- easy numeration
+KA: ჩაწერეთ რიცხვი $1984$ რომაული ციფრებით. რომელი რიცხვია ჩაწერილი როგორც $\text{XLVII}$?
+EN: Write $1984$ in Roman numerals. Which number is written as $\text{XLVII}$?
+HKA: $\text{I} = 1$, $\text{V} = 5$, $\text{X} = 10$, $\text{L} = 50$, $\text{C} = 100$, $\text{D} = 500$, $\text{M} = 1000$. პატარა ციფრი დიდის წინ აკლდება ($\text{IV} = 4$, $\text{XC} = 90$).
+HEN: $\text{I} = 1$, $\text{V} = 5$, $\text{X} = 10$, $\text{L} = 50$, $\text{C} = 100$, $\text{D} = 500$, $\text{M} = 1000$. A smaller numeral before a larger one is subtracted ($\text{IV} = 4$, $\text{XC} = 90$).
+SKA: $1984 = 1000 + 900 + 80 + 4 = \text{M} + \text{CM} + \text{LXXX} + \text{IV} = \text{MCMLXXXIV}$
+$\text{XLVII} = \text{XL} + \text{V} + \text{II} = 40 + 5 + 2 = 47$
+SEN: $1984 = 1000 + 900 + 80 + 4 = \text{M} + \text{CM} + \text{LXXX} + \text{IV} = \text{MCMLXXXIV}$
+$\text{XLVII} = \text{XL} + \text{V} + \text{II} = 40 + 5 + 2 = 47$
+AKA: $\text{MCMLXXXIV}$; $47$
+AEN: $\text{MCMLXXXIV}$; $47$
+
+--- easy numeration
+KA: ორობით სისტემაში ჩაწერილია რიცხვი $1011_2$. ჩაწერეთ ის ათობით სისტემაში.
+EN: The number $1011_2$ is written in binary. Write it in the decimal system.
+HKA: ორობით სისტემაში თანრიგები მარჯვნიდან მარცხნივ არის $1, 2, 4, 8, \dots$ (ორის ხარისხები).
+HEN: In binary the place values from right to left are $1, 2, 4, 8, \dots$ (powers of two).
+SKA: $1011_2 = 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0$
+$= 8 + 0 + 2 + 1 = 11$
+SEN: $1011_2 = 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 1 \cdot 2^0$
+$= 8 + 0 + 2 + 1 = 11$
+AKA: $11$
+AEN: $11$
+
+--- easy units
+KA: გადაიყვანეთ: $3{,}5\ \text{სთ}$ — წუთებში; $2{,}4\ \text{ტ}$ — კილოგრამებში; $750\ \text{სმ}$ — მეტრებში.
+EN: Convert: $3.5\ \text{h}$ to minutes; $2.4\ \text{t}$ to kilograms; $750\ \text{cm}$ to metres.
+HKA: $1\ \text{სთ} = 60\ \text{წთ}$, $1\ \text{ტ} = 1000\ \text{კგ}$, $1\ \text{მ} = 100\ \text{სმ}$.
+HEN: $1\ \text{h} = 60\ \text{min}$, $1\ \text{t} = 1000\ \text{kg}$, $1\ \text{m} = 100\ \text{cm}$.
+SKA: $3{,}5\ \text{სთ} = 3{,}5 \cdot 60 = 210\ \text{წთ}$
+$2{,}4\ \text{ტ} = 2{,}4 \cdot 1000 = 2400\ \text{კგ}$
+$750\ \text{სმ} = 750 : 100 = 7{,}5\ \text{მ}$
+SEN: $3.5\ \text{h} = 3.5 \cdot 60 = 210\ \text{min}$
+$2.4\ \text{t} = 2.4 \cdot 1000 = 2400\ \text{kg}$
+$750\ \text{cm} = 750 : 100 = 7.5\ \text{m}$
+AKA: $210\ \text{წთ}$; $2400\ \text{კგ}$; $7{,}5\ \text{მ}$
+AEN: $210\ \text{min}$; $2400\ \text{kg}$; $7.5\ \text{m}$
+
+--- easy ratio
+KA: იპოვეთ $45\ \text{სმ}$-ისა და $1{,}5\ \text{მ}$-ის ფარდობა და გაამარტივეთ ის.
+EN: Find the ratio of $45\ \text{cm}$ to $1.5\ \text{m}$ and simplify it.
+HKA: ფარდობის შედგენამდე სიდიდეები ერთსა და იმავე ერთეულში გამოსახეთ.
+HEN: Express both quantities in the same unit before forming the ratio.
+SKA: $1{,}5\ \text{მ} = 150\ \text{სმ}$
+$45 : 150$ — გავყოთ ორივე $15$-ზე: $3 : 10$
+SEN: $1.5\ \text{m} = 150\ \text{cm}$
+$45 : 150$ — divide both by $15$: $3 : 10$
+AKA: $3 : 10$
+AEN: $3 : 10$
+
+--- easy ratio
+KA: იპოვეთ $x$ პროპორციიდან: $\dfrac{x}{12} = \dfrac{5}{4}$.
+EN: Find $x$ from the proportion $\dfrac{x}{12} = \dfrac{5}{4}$.
+HKA: პროპორციის ძირითადი თვისება: კიდური წევრების ნამრავლი საშუალო წევრების ნამრავლის ტოლია.
+HEN: The main property of a proportion: the product of the extremes equals the product of the means.
+SKA: $\dfrac{a}{b} = \dfrac{c}{d} \Rightarrow a \cdot d = b \cdot c$
+$4x = 12 \cdot 5 = 60 \Rightarrow x = 15$
+SEN: $\dfrac{a}{b} = \dfrac{c}{d} \Rightarrow a \cdot d = b \cdot c$
+$4x = 12 \cdot 5 = 60 \Rightarrow x = 15$
+AKA: $x = 15$
+AEN: $x = 15$
+
+--- easy percent
+KA: იპოვეთ $240$-ის $15\%$.
+EN: Find $15\%$ of $240$.
+HKA: $p\% = \dfrac{p}{100}$.
+HEN: $p\% = \dfrac{p}{100}$.
+SKA: $240 \cdot \dfrac{15}{100} = 240 \cdot 0{,}15 = 36$
+SEN: $240 \cdot \dfrac{15}{100} = 240 \cdot 0.15 = 36$
+AKA: $36$
+AEN: $36$
+
+--- easy algebra
+KA: იპოვეთ გამოსახულების $3a - 2b$ მნიშვნელობა, როცა $a = -2$, $b = 3$.
+EN: Find the value of $3a - 2b$ when $a = -2$, $b = 3$.
+HKA: ჩასვით მნიშვნელობები ფრჩხილებში, რომ ნიშნები არ აგერიოთ.
+HEN: Substitute the values in brackets so you don't mix up the signs.
+SKA: $3 \cdot (-2) - 2 \cdot 3 = -6 - 6 = -12$
+SEN: $3 \cdot (-2) - 2 \cdot 3 = -6 - 6 = -12$
+AKA: $-12$
+AEN: $-12$
+
+--- easy algebra
+KA: ჩაწერეთ ერთწევრი $3x \cdot (-2)xy^2 \cdot 0{,}5y$ სტანდარტული სახით. რას უდრის მისი კოეფიციენტი და ხარისხი?
+EN: Write the monomial $3x \cdot (-2)xy^2 \cdot 0.5y$ in standard form. What are its coefficient and degree?
+HKA: ცალ-ცალკე გადაამრავლეთ რიცხვები და ერთნაირი ასოები ($x \cdot x = x^2$). ხარისხი — ყველა ცვლადის მაჩვენებლების ჯამი.
+HEN: Multiply the numbers and the same letters separately ($x \cdot x = x^2$). The degree is the sum of all exponents.
+SKA: რიცხვები: $3 \cdot (-2) \cdot 0{,}5 = -3$
+ცვლადები: $x \cdot x = x^2$, $\ y^2 \cdot y = y^3$
+სტანდარტული სახე: $-3x^2y^3$; კოეფიციენტი $-3$, ხარისხი $2 + 3 = 5$.
+SEN: Numbers: $3 \cdot (-2) \cdot 0.5 = -3$
+Variables: $x \cdot x = x^2$, $\ y^2 \cdot y = y^3$
+Standard form: $-3x^2y^3$; coefficient $-3$, degree $2 + 3 = 5$.
+AKA: $-3x^2y^3$; კოეფიციენტი $-3$; ხარისხი $5$
+AEN: $-3x^2y^3$; coefficient $-3$; degree $5$
+
+--- easy equations
+KA: ამოხსენით განტოლება: $5x - 7 = 2x + 8$.
+EN: Solve the equation $5x - 7 = 2x + 8$.
+HKA: უცნობიანი წევრები გადაიტანეთ ერთ მხარეს, რიცხვები — მეორეზე (გადატანისას ნიშანი იცვლება).
+HEN: Move the terms with $x$ to one side and the numbers to the other (the sign changes when a term moves across).
+SKA: $5x - 2x = 8 + 7$
+$3x = 15 \Rightarrow x = 5$
+შემოწმება: $5 \cdot 5 - 7 = 18$, $\ 2 \cdot 5 + 8 = 18$ ✓
+SEN: $5x - 2x = 8 + 7$
+$3x = 15 \Rightarrow x = 5$
+Check: $5 \cdot 5 - 7 = 18$, $\ 2 \cdot 5 + 8 = 18$ ✓
+AKA: $x = 5$
+AEN: $x = 5$
+
+--- easy inequalities
+KA: ამოხსენით უტოლობა $3x - 4 < 11$ და გამოსახეთ ამონახსნთა სიმრავლე რიცხვით ღერძზე.
+EN: Solve the inequality $3x - 4 < 11$ and show the solution set on the number line.
+HKA: უტოლობა ამოიხსნება განტოლების მსგავსად; დადებით რიცხვზე გაყოფისას ნიშანი არ იცვლება.
+HEN: Solve it like an equation; dividing by a positive number keeps the inequality sign.
+SKA: $3x < 11 + 4$
+$3x < 15 \Rightarrow x < 5$
+რიცხვით ღერძზე: ღია (გამოტოვებული) წერტილი $5$-ზე და სხივი მარცხნივ; $x \in (-\infty;\ 5)$.
+SEN: $3x < 11 + 4$
+$3x < 15 \Rightarrow x < 5$
+On the number line: an open circle at $5$ and a ray to the left; $x \in (-\infty,\ 5)$.
+AKA: $x < 5$
+AEN: $x < 5$
+
+--- easy systems
+KA: ამოხსენით სისტემა: $\begin{cases} x + y = 10 \\ x - y = 4 \end{cases}$
+EN: Solve the system $\begin{cases} x + y = 10 \\ x - y = 4 \end{cases}$
+HKA: შეკრების ხერხი: შეკრიბეთ განტოლებები — $y$ გაქრება.
+HEN: Elimination: add the equations — $y$ disappears.
+SKA: შევკრიბოთ: $2x = 14 \Rightarrow x = 7$
+პირველიდან: $y = 10 - 7 = 3$
+შემოწმება: $7 - 3 = 4$ ✓
+SEN: Add them: $2x = 14 \Rightarrow x = 7$
+From the first: $y = 10 - 7 = 3$
+Check: $7 - 3 = 4$ ✓
+AKA: $x = 7,\ y = 3$
+AEN: $x = 7,\ y = 3$
+
+--- easy geometry
+KA: ორი მოსაზღვრე კუთხიდან ერთი $65^\circ$-ია. იპოვეთ მეორე კუთხე. რას უდრის $65^\circ$-იანი კუთხის ვერტიკალური კუთხე?
+EN: One of two adjacent (supplementary) angles is $65^\circ$. Find the other. What is the angle vertical to the $65^\circ$ angle?
+HKA: მოსაზღვრე კუთხეების ჯამი $180^\circ$-ია; ვერტიკალური კუთხეები ტოლია.
+HEN: Adjacent angles on a line add up to $180^\circ$; vertical angles are equal.
+SKA: მოსაზღვრე: $180^\circ - 65^\circ = 115^\circ$
+ვერტიკალური კუთხე $65^\circ$-ის ტოლია.
+SEN: Adjacent: $180^\circ - 65^\circ = 115^\circ$
+The vertical angle equals $65^\circ$.
+AKA: $115^\circ$; $65^\circ$
+AEN: $115^\circ$; $65^\circ$
+
+--- easy triangles
+KA: სამკუთხედის ორი კუთხეა $47^\circ$ და $68^\circ$. იპოვეთ მესამე კუთხე. როგორია ეს სამკუთხედი კუთხეების მიხედვით?
+EN: Two angles of a triangle are $47^\circ$ and $68^\circ$. Find the third angle. What type of triangle is it by its angles?
+HKA: სამკუთხედის კუთხეების ჯამი $180^\circ$-ია.
+HEN: The angles of a triangle add up to $180^\circ$.
+SKA: $180^\circ - 47^\circ - 68^\circ = 65^\circ$
+ყველა კუთხე მახვილია ($< 90^\circ$) — სამკუთხედი მახვილკუთხაა.
+SEN: $180^\circ - 47^\circ - 68^\circ = 65^\circ$
+All angles are acute ($< 90^\circ$) — the triangle is acute.
+AKA: $65^\circ$; მახვილკუთხა
+AEN: $65^\circ$; acute
+
+--- easy polygons
+KA: იპოვეთ ექვსკუთხედის შიგა კუთხეების ჯამი. რას უდრის წესიერი ექვსკუთხედის თითოეული კუთხე?
+EN: Find the sum of the interior angles of a hexagon. What is each angle of a regular hexagon?
+HKA: $n$-კუთხედის კუთხეების ჯამი: $180^\circ (n - 2)$ — მრავალკუთხედი ერთი წვეროდან $n - 2$ სამკუთხედად იყოფა.
+HEN: The angle sum of an $n$-gon is $180^\circ (n - 2)$ — diagonals from one vertex cut it into $n - 2$ triangles.
+SKA: $S = 180^\circ \cdot (6 - 2) = 720^\circ$
+წესიერ ექვსკუთხედში ყველა კუთხე ტოლია: $720^\circ : 6 = 120^\circ$
+SEN: $S = 180^\circ \cdot (6 - 2) = 720^\circ$
+In a regular hexagon all angles are equal: $720^\circ : 6 = 120^\circ$
+AKA: $720^\circ$; $120^\circ$
+AEN: $720^\circ$; $120^\circ$
+
+--- easy graphs
+KA: რომელ საკოორდინატო მეოთხედშია წერტილი $A(-3;\ 2)$? იპოვეთ $A$-ს სიმეტრიული წერტილის კოორდინატები აბსცისთა ღერძის ($Ox$) მიმართ.
+EN: In which quadrant is the point $A(-3,\ 2)$? Find the coordinates of the point symmetric to $A$ about the $x$-axis.
+HKA: $x < 0$, $y > 0$ — II მეოთხედი. $Ox$ ღერძის მიმართ სიმეტრიისას იცვლება მხოლოდ $y$-ის ნიშანი.
+HEN: $x < 0$, $y > 0$ — quadrant II. Reflecting in the $x$-axis changes only the sign of $y$.
+SKA: $x = -3 < 0$, $y = 2 > 0$ $\Rightarrow$ II მეოთხედი.
+$Ox$-ის მიმართ სიმეტრია: $(x;\ y) \to (x;\ -y)$, ე.ი. $A'(-3;\ -2)$.
+SEN: $x = -3 < 0$, $y = 2 > 0$ $\Rightarrow$ quadrant II.
+Reflection in the $x$-axis: $(x,\ y) \to (x,\ -y)$, so $A'(-3,\ -2)$.
+AKA: II მეოთხედი; $A'(-3;\ -2)$
+AEN: quadrant II; $A'(-3,\ -2)$
+
+--- easy sequences
+KA: იპოვეთ მიმდევრობის შემდეგი ორი წევრი: $3,\ 7,\ 11,\ 15,\ \dots$ ჩაწერეთ $n$-ური წევრის ფორმულა.
+EN: Find the next two terms of the sequence $3,\ 7,\ 11,\ 15,\ \dots$ Write a formula for the $n$-th term.
+HKA: რამდენით იზრდება ყოველი შემდეგი წევრი?
+HEN: By how much does each term increase?
+SKA: ყოველი წევრი წინაზე $4$-ით მეტია: $15 + 4 = 19$, $\ 19 + 4 = 23$.
+$a_n = 3 + 4(n - 1) = 4n - 1$. შემოწმება: $a_1 = 3$, $a_4 = 15$ ✓
+SEN: Each term is $4$ more than the previous one: $15 + 4 = 19$, $\ 19 + 4 = 23$.
+$a_n = 3 + 4(n - 1) = 4n - 1$. Check: $a_1 = 3$, $a_4 = 15$ ✓
+AKA: $19,\ 23$; $a_n = 4n - 1$
+AEN: $19,\ 23$; $a_n = 4n - 1$
+
+--- easy statistics
+KA: იპოვეთ მონაცემების $4,\ 7,\ 7,\ 9,\ 13$ საშუალო არითმეტიკული, მედიანა და მოდა.
+EN: Find the mean, median and mode of the data $4,\ 7,\ 7,\ 9,\ 13$.
+HKA: საშუალო = ჯამი : რაოდენობაზე; მედიანა — შუა მნიშვნელობა დალაგებულ მწკრივში; მოდა — ყველაზე ხშირად გამეორებული.
+HEN: Mean = sum ÷ count; median — the middle value of the ordered list; mode — the most frequent value.
+SKA: საშუალო: $\dfrac{4 + 7 + 7 + 9 + 13}{5} = \dfrac{40}{5} = 8$
+მედიანა (მესამე წევრი $5$-დან): $7$
+მოდა: $7$ (ორჯერ გვხვდება)
+SEN: Mean: $\dfrac{4 + 7 + 7 + 9 + 13}{5} = \dfrac{40}{5} = 8$
+Median (the 3rd of 5 values): $7$
+Mode: $7$ (appears twice)
+AKA: $8$; $7$; $7$
+AEN: $8$; $7$; $7$
+
+--- easy probability
+KA: აგდებენ სათამაშო კამათელს. რას უდრის ლუწი რიცხვის მოსვლის ალბათობა?
+EN: A fair die is rolled. What is the probability of getting an even number?
+HKA: ალბათობა = ხელშემწყობი შედეგების რაოდენობა : ყველა თანაბრად შესაძლო შედეგის რაოდენობაზე.
+HEN: Probability = number of favourable outcomes ÷ number of equally likely outcomes.
+SKA: ყველა შედეგი: $1, 2, 3, 4, 5, 6$ — სულ $6$.
+ხელშემწყობი: $2, 4, 6$ — $3$.
+$P = \dfrac{3}{6} = \dfrac{1}{2}$
+SEN: All outcomes: $1, 2, 3, 4, 5, 6$ — $6$ in total.
+Favourable: $2, 4, 6$ — $3$.
+$P = \dfrac{3}{6} = \dfrac{1}{2}$
+AKA: $\dfrac{1}{2}$
+AEN: $\dfrac{1}{2}$
+
+// ===================================================================== MEDIUM
+
+--- medium numbers
+KA: გამოთვალეთ: $(-2)^3 - 3^2 \cdot (-1)^5 + |-6| : (-2)$.
+EN: Calculate: $(-2)^3 - 3^2 \cdot (-1)^5 + |-6| : (-2)$.
+HKA: უარყოფითი რიცხვის კენტი ხარისხი უარყოფითია, ლუწი — დადებითი.
+HEN: An odd power of a negative number is negative, an even power is positive.
+SKA: $(-2)^3 = -8$, $\ 3^2 = 9$, $\ (-1)^5 = -1$, $\ |-6| = 6$
+$-8 - 9 \cdot (-1) + 6 : (-2) = -8 + 9 - 3 = -2$
+SEN: $(-2)^3 = -8$, $\ 3^2 = 9$, $\ (-1)^5 = -1$, $\ |-6| = 6$
+$-8 - 9 \cdot (-1) + 6 : (-2) = -8 + 9 - 3 = -2$
+AKA: $-2$
+AEN: $-2$
+
+--- medium sets
+KA: რამდენი მთელი რიცხვია $-3{,}7$-სა და $4{,}2$-ს შორის? იპოვეთ მათი ჯამი.
+EN: How many integers lie between $-3.7$ and $4.2$? Find their sum.
+HKA: დახაზეთ რიცხვითი ღერძი. შეეცადეთ, ჯამში ერთმანეთის საპირისპირო რიცხვები დააწყვილოთ.
+HEN: Draw a number line. Try pairing opposite numbers in the sum.
+SKA: მთელი რიცხვები: $-3, -2, -1, 0, 1, 2, 3, 4$ — სულ $8$.
+$(-3 + 3) + (-2 + 2) + (-1 + 1) + 0 + 4 = 4$
+SEN: The integers: $-3, -2, -1, 0, 1, 2, 3, 4$ — $8$ of them.
+$(-3 + 3) + (-2 + 2) + (-1 + 1) + 0 + 4 = 4$
+AKA: $8$ რიცხვი; ჯამი $4$
+AEN: $8$ integers; sum $4$
+
+--- medium sets
+KA: ამოხსენით განტოლება $|x - 2| = 5$. ახსენით პასუხი რიცხვით ღერძზე.
+EN: Solve $|x - 2| = 5$. Explain the answer on the number line.
+HKA: $|x - a|$ — მანძილი $x$ და $a$ წერტილებს შორის რიცხვით ღერძზე.
+HEN: $|x - a|$ is the distance between $x$ and $a$ on the number line.
+SKA: $x - 2 = 5$ ან $x - 2 = -5$
+$x = 7$ ან $x = -3$
+გეომეტრიულად: ეს ის წერტილებია, რომლებიც $2$-დან $5$ ერთეულით არის დაშორებული.
+SEN: $x - 2 = 5$ or $x - 2 = -5$
+$x = 7$ or $x = -3$
+Geometrically: these are the points $5$ units away from $2$.
+AKA: $x = 7$ ან $x = -3$
+AEN: $x = 7$ or $x = -3$
+
+--- medium numeration
+KA: ძველ ქართულ (ანბანურ) ნუმერაციაში ასოებს რიცხვითი მნიშვნელობა აქვს: ა$=1$, ბ$=2$, გ$=3$, დ$=4$, ე$=5$, …, ი$=10$, კ$=20$, …, რ$=100$, …, შ$=900$, ჩ$=1000$, ც$=2000$. რომელი წელია ჩაწერილი როგორც „ჩშკა“? ჩაწერეთ $2024$ წელი.
+EN: In old Georgian (alphabetic) numerals letters have number values: ა$=1$, ბ$=2$, გ$=3$, დ$=4$, ე$=5$, …, ი$=10$, კ$=20$, …, რ$=100$, …, შ$=900$, ჩ$=1000$, ც$=2000$. Which year is written as "ჩშკა"? Write the year $2024$.
+HKA: ეს არაპოზიციური სისტემაა: რიცხვი ასოების მნიშვნელობათა ჯამია. ათასეულები, ასეულები, ათეულები და ერთეულები თითო ასოთი ჩაიწერება.
+HEN: It is not a place-value system: the number is the sum of the letters' values. Thousands, hundreds, tens and units each take one letter.
+SKA: ჩშკა $= 1000 + 900 + 20 + 1 = 1921$
+$2024 = 2000 + 20 + 4 = $ ც $+$ კ $+$ დ $\Rightarrow$ „ცკდ“ (ასეულები არ არის — ასო არ იწერება)
+SEN: ჩშკა $= 1000 + 900 + 20 + 1 = 1921$
+$2024 = 2000 + 20 + 4 = $ ც $+$ კ $+$ დ $\Rightarrow$ "ცკდ" (there are no hundreds, so no letter is written for them)
+AKA: $1921$; ცკდ
+AEN: $1921$; ცკდ
+
+--- medium units
+KA: გადაიყვანეთ: $72\ \text{კმ/სთ}$ — $\text{მ/წმ}$-ში; $3\ \text{მ}^2$ — $\text{სმ}^2$-ში.
+EN: Convert $72\ \text{km/h}$ to $\text{m/s}$, and $3\ \text{m}^2$ to $\text{cm}^2$.
+HKA: $1\ \text{კმ} = 1000\ \text{მ}$, $1\ \text{სთ} = 3600\ \text{წმ}$. $1\ \text{მ}^2 = 100\ \text{სმ} \cdot 100\ \text{სმ}$.
+HEN: $1\ \text{km} = 1000\ \text{m}$, $1\ \text{h} = 3600\ \text{s}$. $1\ \text{m}^2 = 100\ \text{cm} \cdot 100\ \text{cm}$.
+SKA: $72\ \dfrac{\text{კმ}}{\text{სთ}} = \dfrac{72 \cdot 1000\ \text{მ}}{3600\ \text{წმ}} = 20\ \text{მ/წმ}$
+$1\ \text{მ}^2 = 10\,000\ \text{სმ}^2 \Rightarrow 3\ \text{მ}^2 = 30\,000\ \text{სმ}^2$
+SEN: $72\ \dfrac{\text{km}}{\text{h}} = \dfrac{72 \cdot 1000\ \text{m}}{3600\ \text{s}} = 20\ \text{m/s}$
+$1\ \text{m}^2 = 10\,000\ \text{cm}^2 \Rightarrow 3\ \text{m}^2 = 30\,000\ \text{cm}^2$
+AKA: $20\ \text{მ/წმ}$; $30\,000\ \text{სმ}^2$
+AEN: $20\ \text{m/s}$; $30\,000\ \text{cm}^2$
+
+--- medium ratio
+KA: $360$ ლარი სამ ძმას შორის $2 : 3 : 4$ შეფარდებით გაიყო. რამდენი ლარი ერგო თითოეულს?
+EN: $360$ lari is shared among three brothers in the ratio $2 : 3 : 4$. How much does each get?
+HKA: სულ $2 + 3 + 4 = 9$ ტოლი ნაწილია.
+HEN: There are $2 + 3 + 4 = 9$ equal parts in total.
+SKA: ერთი ნაწილი: $360 : 9 = 40\ ₾$
+$2 \cdot 40 = 80\ ₾$, $\ 3 \cdot 40 = 120\ ₾$, $\ 4 \cdot 40 = 160\ ₾$
+შემოწმება: $80 + 120 + 160 = 360$ ✓
+SEN: One part: $360 : 9 = 40\ ₾$
+$2 \cdot 40 = 80\ ₾$, $\ 3 \cdot 40 = 120\ ₾$, $\ 4 \cdot 40 = 160\ ₾$
+Check: $80 + 120 + 160 = 360$ ✓
+AKA: $80\ ₾$, $120\ ₾$, $160\ ₾$
+AEN: $80\ ₾$, $120\ ₾$, $160\ ₾$
+
+--- medium ratio
+KA: $6$ მუშა სამუშაოს $12$ დღეში ასრულებს. რამდენ დღეში შეასრულებს იმავე სამუშაოს $9$ მუშა (იმავე ტემპით)?
+EN: $6$ workers finish a job in $12$ days. How many days will $9$ workers need (working at the same rate)?
+HKA: რაც მეტი მუშაა, მით ნაკლები დღეა საჭირო — ეს უკუპროპორციული დამოკიდებულებაა: ნამრავლი მუდმივია.
+HEN: More workers need fewer days — inverse proportion: the product stays constant.
+SKA: უკუპროპორციულობა: $n_1 \cdot t_1 = n_2 \cdot t_2$
+$6 \cdot 12 = 9 \cdot t \Rightarrow t = \dfrac{72}{9} = 8$ დღე
+SEN: Inverse proportion: $n_1 \cdot t_1 = n_2 \cdot t_2$
+$6 \cdot 12 = 9 \cdot t \Rightarrow t = \dfrac{72}{9} = 8$ days
+AKA: $8$ დღეში
+AEN: $8$ days
+
+--- medium ratio
+KA: რუკის მასშტაბია $1 : 50\,000$. რას უდრის ნამდვილი მანძილი კილომეტრებში, თუ რუკაზე ის $7\ \text{სმ}$-ია?
+EN: A map has scale $1 : 50\,000$. What is the real distance in kilometres if it is $7\ \text{cm}$ on the map?
+HKA: რუკის $1\ \text{სმ}$ შეესაბამება ადგილზე $50\,000\ \text{სმ}$-ს.
+HEN: $1\ \text{cm}$ on the map is $50\,000\ \text{cm}$ in reality.
+SKA: $7 \cdot 50\,000 = 350\,000\ \text{სმ}$
+$350\,000\ \text{სმ} = 3500\ \text{მ} = 3{,}5\ \text{კმ}$
+SEN: $7 \cdot 50\,000 = 350\,000\ \text{cm}$
+$350\,000\ \text{cm} = 3500\ \text{m} = 3.5\ \text{km}$
+AKA: $3{,}5\ \text{კმ}$
+AEN: $3.5\ \text{km}$
+
+--- medium percent
+KA: ტელევიზორის ფასი $800$ ლარი იყო. ჯერ ფასი $15\%$-ით გაიზარდა, შემდეგ კი $15\%$-ით შემცირდა. რა ღირს ტელევიზორი ახლა? დაუბრუნდა თუ არა ფასი საწყისს?
+EN: A TV cost $800$ lari. Its price was first raised by $15\%$ and then reduced by $15\%$. What does it cost now? Is it back to the original price?
+HKA: $p\%$-ით გაზრდა = გამრავლება $\left(1 + \dfrac{p}{100}\right)$-ზე, შემცირება = გამრავლება $\left(1 - \dfrac{p}{100}\right)$-ზე. მეორე ცვლილება ახალ ფასზე ითვლება!
+HEN: Increasing by $p\%$ = multiplying by $\left(1 + \dfrac{p}{100}\right)$, decreasing = multiplying by $\left(1 - \dfrac{p}{100}\right)$. The second change is taken on the new price!
+SKA: გაზრდის შემდეგ: $800 \cdot 1{,}15 = 920\ ₾$
+შემცირების შემდეგ: $920 \cdot 0{,}85 = 782\ ₾$
+ფასი საწყისზე $18\ ₾$-ით ნაკლებია: $1{,}15 \cdot 0{,}85 = 0{,}9775$, ანუ $2{,}25\%$-ით ნაკლები.
+SEN: After the rise: $800 \cdot 1.15 = 920\ ₾$
+After the cut: $920 \cdot 0.85 = 782\ ₾$
+The price is $18\ ₾$ below the original: $1.15 \cdot 0.85 = 0.9775$, i.e. $2.25\%$ lower.
+AKA: $782\ ₾$ — საწყისზე ნაკლებია
+AEN: $782\ ₾$ — less than the original
+
+--- medium algebra
+KA: გაამარტივეთ გამოსახულება: $3(2x - 5) - 2(x - 4)$.
+EN: Simplify: $3(2x - 5) - 2(x - 4)$.
+HKA: გახსენით ფრჩხილები (ყურადღება მიაქციეთ მინუსს ფრჩხილების წინ!) და შეაჯგუფეთ მსგავსი წევრები.
+HEN: Expand the brackets (watch the minus in front of a bracket!) and collect like terms.
+SKA: $3(2x - 5) = 6x - 15$
+$-2(x - 4) = -2x + 8$
+$6x - 15 - 2x + 8 = 4x - 7$
+SEN: $3(2x - 5) = 6x - 15$
+$-2(x - 4) = -2x + 8$
+$6x - 15 - 2x + 8 = 4x - 7$
+AKA: $4x - 7$
+AEN: $4x - 7$
+
+--- medium equations
+KA: ამოხსენით განტოლება: $\dfrac{x - 3}{4} - \dfrac{x + 1}{6} = 1$.
+EN: Solve: $\dfrac{x - 3}{4} - \dfrac{x + 1}{6} = 1$.
+HKA: გაამრავლეთ ორივე მხარე მნიშვნელების უმცირეს საერთო ჯერადზე, $12$-ზე.
+HEN: Multiply both sides by the least common multiple of the denominators, $12$.
+SKA: $12 \cdot \dfrac{x - 3}{4} - 12 \cdot \dfrac{x + 1}{6} = 12$
+$3(x - 3) - 2(x + 1) = 12$
+$3x - 9 - 2x - 2 = 12 \Rightarrow x - 11 = 12 \Rightarrow x = 23$
+SEN: $12 \cdot \dfrac{x - 3}{4} - 12 \cdot \dfrac{x + 1}{6} = 12$
+$3(x - 3) - 2(x + 1) = 12$
+$3x - 9 - 2x - 2 = 12 \Rightarrow x - 11 = 12 \Rightarrow x = 23$
+AKA: $x = 23$
+AEN: $x = 23$
+
+--- medium equations
+KA: მამა შვილზე $3$-ჯერ უფროსია. $12$ წლის შემდეგ ის შვილზე $2$-ჯერ უფროსი იქნება. რამდენი წლისაა თითოეული ახლა?
+EN: A father is $3$ times as old as his son. In $12$ years he will be twice as old as his son. How old is each now?
+HKA: აღნიშნეთ შვილის ასაკი $x$-ით. $12$ წლის შემდეგ ორივე $12$-ით გაიზრდება.
+HEN: Let the son's age be $x$. In $12$ years both ages grow by $12$.
+SKA: შვილი $x$, მამა $3x$; $12$ წლის შემდეგ: $x + 12$ და $3x + 12$.
+$3x + 12 = 2(x + 12)$
+$3x + 12 = 2x + 24 \Rightarrow x = 12$
+შვილი $12$ წლისაა, მამა — $36$-ის. შემოწმება: $48 = 2 \cdot 24$ ✓
+SEN: Son $x$, father $3x$; in $12$ years: $x + 12$ and $3x + 12$.
+$3x + 12 = 2(x + 12)$
+$3x + 12 = 2x + 24 \Rightarrow x = 12$
+The son is $12$, the father $36$. Check: $48 = 2 \cdot 24$ ✓
+AKA: შვილი $12$, მამა $36$ წლის
+AEN: son $12$, father $36$
+
+--- medium inequalities
+KA: ამოხსენით ორმაგი უტოლობა $-3 \le 2x + 1 < 7$. ჩამოწერეთ მისი ყველა მთელი ამონახსნი.
+EN: Solve the double inequality $-3 \le 2x + 1 < 7$. List all its integer solutions.
+HKA: ერთი და იგივე მოქმედება შეასრულეთ სამივე ნაწილში.
+HEN: Apply the same operation to all three parts.
+SKA: გამოვაკლოთ $1$: $-4 \le 2x < 6$
+გავყოთ $2$-ზე: $-2 \le x < 3$
+მთელი ამონახსნები: $-2, -1, 0, 1, 2$ — სულ $5$.
+SEN: Subtract $1$: $-4 \le 2x < 6$
+Divide by $2$: $-2 \le x < 3$
+Integer solutions: $-2, -1, 0, 1, 2$ — $5$ of them.
+AKA: $-2 \le x < 3$; $-2, -1, 0, 1, 2$
+AEN: $-2 \le x < 3$; $-2, -1, 0, 1, 2$
+
+--- medium systems
+KA: ამოხსენით სისტემა ჩასმის ხერხით: $\begin{cases} 2x + 3y = 13 \\ 3x - y = 3 \end{cases}$
+EN: Solve by substitution: $\begin{cases} 2x + 3y = 13 \\ 3x - y = 3 \end{cases}$
+HKA: მეორე განტოლებიდან ადვილად გამოისახება $y$.
+HEN: $y$ is easy to express from the second equation.
+SKA: მეორიდან: $y = 3x - 3$
+ჩავსვათ პირველში: $2x + 3(3x - 3) = 13 \Rightarrow 11x - 9 = 13 \Rightarrow x = 2$
+$y = 3 \cdot 2 - 3 = 3$
+შემოწმება: $2 \cdot 2 + 3 \cdot 3 = 13$ ✓
+SEN: From the second: $y = 3x - 3$
+Substitute into the first: $2x + 3(3x - 3) = 13 \Rightarrow 11x - 9 = 13 \Rightarrow x = 2$
+$y = 3 \cdot 2 - 3 = 3$
+Check: $2 \cdot 2 + 3 \cdot 3 = 13$ ✓
+AKA: $x = 2,\ y = 3$
+AEN: $x = 2,\ y = 3$
+
+--- medium geometry
+KA: ორი პარალელური წრფე მესამე წრფით გადაიკვეთა. ერთი წყვილი შიგა ცალმხრივი კუთხეებიდან ერთი მეორეზე $3$-ჯერ მეტია. იპოვეთ ეს კუთხეები.
+EN: Two parallel lines are cut by a transversal. One of a pair of co-interior (same-side interior) angles is $3$ times the other. Find these angles.
+HKA: პარალელური წრფეების შემთხვევაში შიგა ცალმხრივი კუთხეების ჯამი $180^\circ$-ია.
+HEN: For parallel lines, co-interior angles add up to $180^\circ$.
+SKA: აღვნიშნოთ კუთხეები $x$ და $3x$.
+$x + 3x = 180^\circ \Rightarrow 4x = 180^\circ \Rightarrow x = 45^\circ$
+კუთხეები: $45^\circ$ და $135^\circ$.
+SEN: Call the angles $x$ and $3x$.
+$x + 3x = 180^\circ \Rightarrow 4x = 180^\circ \Rightarrow x = 45^\circ$
+The angles are $45^\circ$ and $135^\circ$.
+AKA: $45^\circ$ და $135^\circ$
+AEN: $45^\circ$ and $135^\circ$
+
+--- medium geometry
+KA: კუთხის ერთ გვერდზე, წვეროდან დაწყებული, გადაზომილია ტოლი მონაკვეთები $OA = AB = BC = 2\ \text{სმ}$. $A$, $B$, $C$ წერტილებზე გავლებულია პარალელური წრფეები, რომლებიც მეორე გვერდს $A_1$, $B_1$, $C_1$ წერტილებში კვეთს; $OA_1 = 3\ \text{სმ}$. იპოვეთ $OC_1$.
+EN: On one side of an angle, starting at the vertex $O$, equal segments $OA = AB = BC = 2\ \text{cm}$ are marked. Parallel lines through $A$, $B$, $C$ meet the other side at $A_1$, $B_1$, $C_1$; $OA_1 = 3\ \text{cm}$. Find $OC_1$.
+HKA: თალესის თეორემა: თუ პარალელური წრფეები კუთხის ერთ გვერდზე ტოლ მონაკვეთებს კვეთს, მეორე გვერდზეც ტოლ მონაკვეთებს კვეთს.
+HEN: Thales' theorem: if parallel lines cut equal segments on one side of an angle, they cut equal segments on the other side too.
+SKA: თალესის თეორემით $OA_1 = A_1B_1 = B_1C_1 = 3\ \text{სმ}$.
+$OC_1 = 3 \cdot 3 = 9\ \text{სმ}$
+SEN: By Thales' theorem $OA_1 = A_1B_1 = B_1C_1 = 3\ \text{cm}$.
+$OC_1 = 3 \cdot 3 = 9\ \text{cm}$
+AKA: $9\ \text{სმ}$
+AEN: $9\ \text{cm}$
+
+--- medium triangles
+KA: ტოლფერდა სამკუთხედის წვეროსთან მდებარე კუთხე $40^\circ$-ია. იპოვეთ ფუძესთან მდებარე კუთხეები და ფუძესთან მდებარე გარე კუთხე.
+EN: The apex angle of an isosceles triangle is $40^\circ$. Find the base angles and the exterior angle at the base.
+HKA: ტოლფერდა სამკუთხედში ფუძესთან მდებარე კუთხეები ტოლია. გარე კუთხე და მისი მოსაზღვრე შიგა კუთხე ჯამში $180^\circ$-ს იძლევა.
+HEN: In an isosceles triangle the base angles are equal. An exterior angle and its adjacent interior angle add up to $180^\circ$.
+SKA: ფუძესთან კუთხეები: $\dfrac{180^\circ - 40^\circ}{2} = 70^\circ$
+გარე კუთხე ფუძესთან: $180^\circ - 70^\circ = 110^\circ$ (ან: $40^\circ + 70^\circ = 110^\circ$ — არამოსაზღვრე შიგა კუთხეების ჯამი)
+SEN: Base angles: $\dfrac{180^\circ - 40^\circ}{2} = 70^\circ$
+Exterior angle at the base: $180^\circ - 70^\circ = 110^\circ$ (or: $40^\circ + 70^\circ = 110^\circ$ — the sum of the two non-adjacent interior angles)
+AKA: $70^\circ$, $70^\circ$; $110^\circ$
+AEN: $70^\circ$, $70^\circ$; $110^\circ$
+
+--- medium triangles
+KA: სამკუთხედის გვერდებია $8\ \text{სმ}$, $10\ \text{სმ}$ და $12\ \text{სმ}$. იპოვეთ სამკუთხედის პერიმეტრი, რომლის წვეროები მოცემული სამკუთხედის გვერდების შუაწერტილებია.
+EN: A triangle has sides $8\ \text{cm}$, $10\ \text{cm}$ and $12\ \text{cm}$. Find the perimeter of the triangle whose vertices are the midpoints of the sides.
+HKA: სამკუთხედის შუახაზი მესამე გვერდის პარალელურია და მისი ნახევრის ტოლია.
+HEN: A midline of a triangle is parallel to the third side and half as long.
+SKA: ახალი სამკუთხედის გვერდები შუახაზებია: $4$, $5$ და $6\ \text{სმ}$.
+$P = 4 + 5 + 6 = 15\ \text{სმ}$ — საწყისი პერიმეტრის ($30\ \text{სმ}$) ნახევარი.
+SEN: The new triangle's sides are midlines: $4$, $5$ and $6\ \text{cm}$.
+$P = 4 + 5 + 6 = 15\ \text{cm}$ — half of the original perimeter ($30\ \text{cm}$).
+AKA: $15\ \text{სმ}$
+AEN: $15\ \text{cm}$
+
+--- medium polygons
+KA: წესიერი მრავალკუთხედის შიგა კუთხე $140^\circ$-ია. რამდენი გვერდი აქვს მას?
+EN: Each interior angle of a regular polygon is $140^\circ$. How many sides does it have?
+HKA: უფრო მარტივია გარე კუთხეებით: ნებისმიერი ამოზნექილი მრავალკუთხედის გარე კუთხეების ჯამი $360^\circ$-ია.
+HEN: Exterior angles make it easier: the exterior angles of any convex polygon add up to $360^\circ$.
+SKA: გარე კუთხე: $180^\circ - 140^\circ = 40^\circ$
+$n = \dfrac{360^\circ}{40^\circ} = 9$
+შემოწმება: $\dfrac{180^\circ \cdot (9 - 2)}{9} = 140^\circ$ ✓
+SEN: Exterior angle: $180^\circ - 140^\circ = 40^\circ$
+$n = \dfrac{360^\circ}{40^\circ} = 9$
+Check: $\dfrac{180^\circ \cdot (9 - 2)}{9} = 140^\circ$ ✓
+AKA: $9$ გვერდი
+AEN: $9$ sides
+
+--- medium sequences
+KA: ასანთის ღერებით მწკრივში ააწყვეს კვადრატები: $1$ კვადრატისთვის საჭიროა $4$ ღერი, $2$-ისთვის — $7$, $3$-ისთვის — $10$. რამდენი ღერი დასჭირდება $20$ კვადრატს? რამდენი კვადრატის აწყობა შეიძლება $100$ ღერით?
+EN: Squares are made in a row from matchsticks: $1$ square needs $4$ sticks, $2$ squares need $7$, $3$ squares need $10$. How many sticks are needed for $20$ squares? How many squares can be made with $100$ sticks?
+HKA: ყოველი ახალი კვადრატი $3$ ღერს ამატებს (ერთი გვერდი წინა კვადრატთან საერთოა).
+HEN: Each new square adds $3$ sticks (one side is shared with the previous square).
+SKA: ფორმულა: $a_n = 4 + 3(n - 1) = 3n + 1$
+$a_{20} = 3 \cdot 20 + 1 = 61$ ღერი
+$3n + 1 \le 100 \Rightarrow n \le 33$ — $33$ კვადრატი ($100$ ღერი ზუსტად ჰყოფნის, $3 \cdot 33 + 1 = 100$).
+SEN: Formula: $a_n = 4 + 3(n - 1) = 3n + 1$
+$a_{20} = 3 \cdot 20 + 1 = 61$ sticks
+$3n + 1 \le 100 \Rightarrow n \le 33$ — $33$ squares ($100$ sticks are exactly enough, $3 \cdot 33 + 1 = 100$).
+AKA: $61$ ღერი; $33$ კვადრატი
+AEN: $61$ sticks; $33$ squares
+
+--- medium statistics
+KA: ხუთი რიცხვის საშუალო არითმეტიკული $12$-ია. მათგან ერთ-ერთი, $20$, ამოიღეს. რას უდრის დარჩენილი ოთხი რიცხვის საშუალო?
+EN: The mean of five numbers is $12$. One of them, $20$, is removed. What is the mean of the remaining four numbers?
+HKA: საშუალოდან იპოვეთ რიცხვების ჯამი: ჯამი = საშუალო × რაოდენობა.
+HEN: Get the sum from the mean: sum = mean × count.
+SKA: ხუთი რიცხვის ჯამი: $12 \cdot 5 = 60$
+დარჩენილი ოთხის ჯამი: $60 - 20 = 40$
+საშუალო: $40 : 4 = 10$
+SEN: Sum of the five numbers: $12 \cdot 5 = 60$
+Sum of the remaining four: $60 - 20 = 40$
+Mean: $40 : 4 = 10$
+AKA: $10$
+AEN: $10$
+
+--- medium probability
+KA: ყუთში $3$ წითელი, $5$ ლურჯი და $2$ მწვანე ბურთია. შემთხვევით იღებენ ერთ ბურთს. რას უდრის ალბათობა, რომ ის ლურჯი **არ** იქნება?
+EN: A box has $3$ red, $5$ blue and $2$ green balls. One ball is drawn at random. What is the probability that it is **not** blue?
+HKA: საწინააღმდეგო ხდომილობის ალბათობა: $P(\text{არა } A) = 1 - P(A)$.
+HEN: Probability of the complement: $P(\text{not } A) = 1 - P(A)$.
+SKA: სულ: $3 + 5 + 2 = 10$ ბურთი; $P(\text{ლურჯი}) = \dfrac{5}{10} = \dfrac{1}{2}$
+$P(\text{არა ლურჯი}) = 1 - \dfrac{1}{2} = \dfrac{1}{2}$ (ან პირდაპირ: $\dfrac{3 + 2}{10}$)
+SEN: In total: $3 + 5 + 2 = 10$ balls; $P(\text{blue}) = \dfrac{5}{10} = \dfrac{1}{2}$
+$P(\text{not blue}) = 1 - \dfrac{1}{2} = \dfrac{1}{2}$ (or directly: $\dfrac{3 + 2}{10}$)
+AKA: $\dfrac{1}{2}$
+AEN: $\dfrac{1}{2}$
+
+// ===================================================================== HARD
+
+--- hard numbers
+KA: გამოთვალეთ: $\left(\dfrac{2}{3} - 0{,}5\right) \cdot 1{,}2 + 3\dfrac{1}{3} : \left(-\dfrac{5}{6}\right)$.
+EN: Calculate: $\left(\dfrac{2}{3} - 0.5\right) \cdot 1.2 + 3\dfrac{1}{3} : \left(-\dfrac{5}{6}\right)$.
+HKA: ყველა რიცხვი ჩვეულებრივ წილადად აქციეთ: $0{,}5 = \dfrac{1}{2}$, $1{,}2 = \dfrac{6}{5}$, $3\dfrac{1}{3} = \dfrac{10}{3}$.
+HEN: Turn everything into common fractions: $0.5 = \dfrac{1}{2}$, $1.2 = \dfrac{6}{5}$, $3\dfrac{1}{3} = \dfrac{10}{3}$.
+SKA: $\dfrac{2}{3} - \dfrac{1}{2} = \dfrac{4 - 3}{6} = \dfrac{1}{6}$
+$\dfrac{1}{6} \cdot \dfrac{6}{5} = \dfrac{1}{5}$
+$\dfrac{10}{3} : \left(-\dfrac{5}{6}\right) = \dfrac{10}{3} \cdot \left(-\dfrac{6}{5}\right) = -4$
+$\dfrac{1}{5} + (-4) = -3\dfrac{4}{5} = -3{,}8$
+SEN: $\dfrac{2}{3} - \dfrac{1}{2} = \dfrac{4 - 3}{6} = \dfrac{1}{6}$
+$\dfrac{1}{6} \cdot \dfrac{6}{5} = \dfrac{1}{5}$
+$\dfrac{10}{3} : \left(-\dfrac{5}{6}\right) = \dfrac{10}{3} \cdot \left(-\dfrac{6}{5}\right) = -4$
+$\dfrac{1}{5} + (-4) = -3\dfrac{4}{5} = -3.8$
+AKA: $-3{,}8$
+AEN: $-3.8$
+
+--- hard numbers
+KA: იპოვეთ უმცირესი ნატურალური რიცხვი (ერთზე მეტი), რომელიც $2$-ზე, $3$-ზე, $4$-ზე, $5$-ზე და $6$-ზე გაყოფისას ნაშთში $1$-ს იძლევა.
+EN: Find the smallest natural number greater than $1$ that leaves remainder $1$ when divided by each of $2$, $3$, $4$, $5$ and $6$.
+HKA: თუ $n$ ყველა ამ რიცხვზე გაყოფისას ნაშთში $1$-ს იძლევა, მაშინ $n - 1$ ყველა მათგანზე იყოფა.
+HEN: If $n$ leaves remainder $1$ for each divisor, then $n - 1$ is divisible by all of them.
+SKA: $n - 1$ უნდა იყოს $2, 3, 4, 5, 6$-ის საერთო ჯერადი.
+უსჯ$(2, 3, 4, 5, 6)$: $4 = 2^2$, $6 = 2 \cdot 3$ $\Rightarrow 2^2 \cdot 3 \cdot 5 = 60$
+$n - 1 = 60 \Rightarrow n = 61$
+SEN: $n - 1$ must be a common multiple of $2, 3, 4, 5, 6$.
+LCM$(2, 3, 4, 5, 6)$: $4 = 2^2$, $6 = 2 \cdot 3$ $\Rightarrow 2^2 \cdot 3 \cdot 5 = 60$
+$n - 1 = 60 \Rightarrow n = 61$
+AKA: $61$
+AEN: $61$
+
+--- hard numeration
+KA: ჩაწერეთ $2024$ ორობით სისტემაში და რომაული ციფრებით.
+EN: Write $2024$ in binary and in Roman numerals.
+HKA: ორობითისთვის: გამოაკელით ორის უდიდესი ხარისხი, რომელიც რიცხვს არ აღემატება ($1024$), და ასე გააგრძელეთ.
+HEN: For binary: subtract the largest power of two that fits ($1024$), and keep going.
+SKA: $2024 = 1024 + 512 + 256 + 128 + 64 + 32 + 8$
+$= 2^{10} + 2^9 + 2^8 + 2^7 + 2^6 + 2^5 + 2^3 \Rightarrow 11111101000_2$
+თანრიგების მიხედვით, $2^{10}\dots2^0$: $1\,1\,1\,1\,1\,1\,0\,1\,0\,0\,0$ ✓
+რომაული: $2024 = 2000 + 20 + 4 = \text{MM} + \text{XX} + \text{IV} = \text{MMXXIV}$
+SEN: $2024 = 1024 + 512 + 256 + 128 + 64 + 32 + 8$
+$= 2^{10} + 2^9 + 2^8 + 2^7 + 2^6 + 2^5 + 2^3 \Rightarrow 11111101000_2$
+Place by place, $2^{10}\dots2^0$: $1\,1\,1\,1\,1\,1\,0\,1\,0\,0\,0$ ✓
+Roman: $2024 = 2000 + 20 + 4 = \text{MM} + \text{XX} + \text{IV} = \text{MMXXIV}$
+AKA: $11111101000_2$; $\text{MMXXIV}$
+AEN: $11111101000_2$; $\text{MMXXIV}$
+
+--- hard percent
+KA: რამდენი კილოგრამი წყალი უნდა დაემატოს $20\ \text{კგ}$ $30\%$-იან მარილხსნარს, რომ $12\%$-იანი ხსნარი მივიღოთ?
+EN: How many kilograms of water must be added to $20\ \text{kg}$ of a $30\%$ salt solution to get a $12\%$ solution?
+HKA: წყლის დამატებისას მარილის რაოდენობა არ იცვლება.
+HEN: Adding water does not change the amount of salt.
+SKA: მარილი: $20 \cdot 0{,}30 = 6\ \text{კგ}$
+$x$ კგ წყლის დამატების შემდეგ ხსნარის მასაა $20 + x$: $\dfrac{6}{20 + x} = 0{,}12$
+$20 + x = \dfrac{6}{0{,}12} = 50 \Rightarrow x = 30\ \text{კგ}$
+SEN: Salt: $20 \cdot 0.30 = 6\ \text{kg}$
+After adding $x$ kg of water the solution has mass $20 + x$: $\dfrac{6}{20 + x} = 0.12$
+$20 + x = \dfrac{6}{0.12} = 50 \Rightarrow x = 30\ \text{kg}$
+AKA: $30\ \text{კგ}$
+AEN: $30\ \text{kg}$
+
+--- hard percent
+KA: საქონლის ფასი $20\%$-ით გაიზარდა. რამდენი პროცენტით უნდა შემცირდეს ახალი ფასი, რომ საწყის ფასს დაუბრუნდეს?
+EN: The price of an item rose by $20\%$. By what percent must the new price be reduced to return to the original price?
+HKA: საწყისი ფასი აიღეთ $100$-ად. შემცირების პროცენტი ახალი ფასიდან ითვლება.
+HEN: Take the original price as $100$. The reduction percent is taken from the new price.
+SKA: საწყისი $100$, ახალი $120$.
+საჭირო შემცირება: $120 - 100 = 20$.
+$\dfrac{20}{120} \cdot 100\% = 16\dfrac{2}{3}\% \approx 16{,}7\%$ (და არა $20\%$!)
+SEN: Original $100$, new $120$.
+Needed reduction: $120 - 100 = 20$.
+$\dfrac{20}{120} \cdot 100\% = 16\dfrac{2}{3}\% \approx 16.7\%$ (not $20\%$!)
+AKA: $16\dfrac{2}{3}\%$
+AEN: $16\dfrac{2}{3}\%$
+
+--- hard ratio
+KA: აუზს პირველი მილი $6$ საათში ავსებს, მეორე — $3$ საათში. რა დროში აავსებს აუზს ორივე მილი ერთად?
+EN: The first pipe fills a pool in $6$ hours, the second in $3$ hours. How long do they take together?
+HKA: მთელი აუზი აიღეთ $1$-ად. პირველი მილი საათში აუზის $\dfrac{1}{6}$-ს ავსებს.
+HEN: Take the whole pool as $1$. The first pipe fills $\dfrac{1}{6}$ of the pool per hour.
+SKA: ერთ საათში ერთად: $\dfrac{1}{6} + \dfrac{1}{3} = \dfrac{1 + 2}{6} = \dfrac{1}{2}$ აუზი
+მთელი აუზი: $1 : \dfrac{1}{2} = 2$ საათი
+SEN: Together per hour: $\dfrac{1}{6} + \dfrac{1}{3} = \dfrac{1 + 2}{6} = \dfrac{1}{2}$ of the pool
+The whole pool: $1 : \dfrac{1}{2} = 2$ hours
+AKA: $2$ საათში
+AEN: $2$ hours
+
+--- hard equations
+KA: $a$-ს რა მნიშვნელობისთვის არ აქვს განტოლებას $ax + 3 = 2x - 1$ ამონახსნი? არის თუ არა ისეთი $a$, რომლისთვისაც მას უსასრულოდ ბევრი ამონახსნი აქვს?
+EN: For which value of $a$ does the equation $ax + 3 = 2x - 1$ have no solution? Is there an $a$ for which it has infinitely many solutions?
+HKA: მიიყვანეთ განტოლება სახეზე $kx = b$. თუ $k = 0$ და $b \ne 0$ — ამონახსნი არ არის; თუ $k = 0$ და $b = 0$ — უამრავია.
+HEN: Bring the equation to the form $kx = b$. If $k = 0$ and $b \ne 0$ — no solution; if $k = 0$ and $b = 0$ — infinitely many.
+SKA: $ax - 2x = -1 - 3 \Rightarrow (a - 2)x = -4$
+$a = 2$-ისთვის: $0 \cdot x = -4$ — ამონახსნი არ არის.
+$a \ne 2$-ისთვის: $x = \dfrac{-4}{a - 2}$ — ერთადერთი ამონახსნი.
+მარჯვენა მხარე $-4 \ne 0$, ამიტომ უსასრულოდ ბევრი ამონახსნი არასოდეს გვექნება.
+SEN: $ax - 2x = -1 - 3 \Rightarrow (a - 2)x = -4$
+For $a = 2$: $0 \cdot x = -4$ — no solution.
+For $a \ne 2$: $x = \dfrac{-4}{a - 2}$ — exactly one solution.
+The right-hand side is $-4 \ne 0$, so there are never infinitely many solutions.
+AKA: $a = 2$; არა
+AEN: $a = 2$; no
+
+--- hard equations
+KA: ავტომობილი $A$-დან $B$-ში $60\ \text{კმ/სთ}$ სიჩქარით წავიდა, უკან კი $40\ \text{კმ/სთ}$ სიჩქარით დაბრუნდა. მთელ გზას $5$ საათი მოანდომა. იპოვეთ მანძილი $A$-სა და $B$-ს შორის.
+EN: A car went from $A$ to $B$ at $60\ \text{km/h}$ and returned at $40\ \text{km/h}$. The whole trip took $5$ hours. Find the distance between $A$ and $B$.
+HKA: აღნიშნეთ მანძილი $d$-თი; დრო $= \dfrac{\text{მანძილი}}{\text{სიჩქარე}}$.
+HEN: Let the distance be $d$; time $= \dfrac{\text{distance}}{\text{speed}}$.
+SKA: $\dfrac{d}{60} + \dfrac{d}{40} = 5$
+გავამრავლოთ $120$-ზე: $2d + 3d = 600 \Rightarrow d = 120\ \text{კმ}$
+შემოწმება: $2\ \text{სთ} + 3\ \text{სთ} = 5\ \text{სთ}$ ✓
+SEN: $\dfrac{d}{60} + \dfrac{d}{40} = 5$
+Multiply by $120$: $2d + 3d = 600 \Rightarrow d = 120\ \text{km}$
+Check: $2\ \text{h} + 3\ \text{h} = 5\ \text{h}$ ✓
+AKA: $120\ \text{კმ}$
+AEN: $120\ \text{km}$
+
+--- hard inequalities
+KA: მობილური კავშირის ტარიფი A: თვეში $20$ ლარი + $0{,}10$ ლარი ყოველ წუთზე; ტარიფი B: მხოლოდ $0{,}25$ ლარი ყოველ წუთზე. თვეში მინიმუმ რამდენი წუთი უნდა ილაპარაკოს აბონენტმა, რომ ტარიფი A უფრო იაფი იყოს?
+EN: Phone plan A: $20$ lari per month + $0.10$ lari per minute; plan B: just $0.25$ lari per minute. What is the minimum number of whole minutes per month for plan A to be cheaper?
+HKA: შეადგინეთ უტოლობა: A-ს ღირებულება $<$ B-ს ღირებულება. პასუხი მთელ რიცხვამდე დაამრგვალეთ სწორი მიმართულებით.
+HEN: Write the inequality: cost of A $<$ cost of B. Round to a whole number in the right direction.
+SKA: $20 + 0{,}10x < 0{,}25x$
+$20 < 0{,}15x \Rightarrow x > \dfrac{20}{0{,}15} = 133\dfrac{1}{3}$
+უმცირესი მთელი: $x = 134$ წუთი. (შემოწმება: A $= 33{,}40\ ₾$, B $= 33{,}50\ ₾$ ✓)
+SEN: $20 + 0.10x < 0.25x$
+$20 < 0.15x \Rightarrow x > \dfrac{20}{0.15} = 133\dfrac{1}{3}$
+Smallest whole number: $x = 134$ minutes. (Check: A $= 33.40\ ₾$, B $= 33.50\ ₾$ ✓)
+AKA: $134$ წუთი
+AEN: $134$ minutes
+
+--- hard systems
+KA: თეატრში ზრდასრულის ბილეთი $5$ ლარი ღირს, ბავშვის — $2$ ლარი. გაიყიდა $40$ ბილეთი $125$ ლარად. რამდენი ზრდასრულის და რამდენი ბავშვის ბილეთი გაიყიდა?
+EN: At a theatre an adult ticket costs $5$ lari and a child ticket $2$ lari. $40$ tickets were sold for $125$ lari. How many adult and child tickets were sold?
+HKA: ორი უცნობი — ორი განტოლება: ბილეთების რაოდენობა და ჯამური ღირებულება.
+HEN: Two unknowns — two equations: the number of tickets and the total cost.
+SKA: $\begin{cases} x + y = 40 \\ 5x + 2y = 125 \end{cases}$
+პირველი გავამრავლოთ $2$-ზე და გამოვაკლოთ მეორეს: $3x = 125 - 80 = 45 \Rightarrow x = 15$
+$y = 40 - 15 = 25$
+შემოწმება: $5 \cdot 15 + 2 \cdot 25 = 75 + 50 = 125$ ✓
+SEN: $\begin{cases} x + y = 40 \\ 5x + 2y = 125 \end{cases}$
+Multiply the first by $2$ and subtract from the second: $3x = 125 - 80 = 45 \Rightarrow x = 15$
+$y = 40 - 15 = 25$
+Check: $5 \cdot 15 + 2 \cdot 25 = 75 + 50 = 125$ ✓
+AKA: $15$ ზრდასრულის, $25$ ბავშვის
+AEN: $15$ adult, $25$ child
+
+--- hard geometry
+KA: დაამტკიცეთ, რომ ორი მოსაზღვრე კუთხის ბისექტრისებს შორის კუთხე $90^\circ$-ია.
+EN: Prove that the angle between the bisectors of two adjacent (supplementary) angles is $90^\circ$.
+HKA: აღნიშნეთ მოსაზღვრე კუთხეები $\alpha$ და $\beta$; $\alpha + \beta = 180^\circ$. ბისექტრისებს შორის კუთხე თითოეული კუთხის ნახევრებისგან შედგება.
+HEN: Call the adjacent angles $\alpha$ and $\beta$; $\alpha + \beta = 180^\circ$. The angle between the bisectors is made of half of each.
+SKA: მოსაზღვრე კუთხეები: $\alpha + \beta = 180^\circ$.
+ბისექტრისა თითოეულ კუთხეს შუაზე ყოფს, ამიტომ ბისექტრისებს შორის კუთხე შედგება $\dfrac{\alpha}{2}$-ისა და $\dfrac{\beta}{2}$-ისგან:
+$\dfrac{\alpha}{2} + \dfrac{\beta}{2} = \dfrac{\alpha + \beta}{2} = \dfrac{180^\circ}{2} = 90^\circ$ ∎
+SEN: Adjacent angles: $\alpha + \beta = 180^\circ$.
+Each bisector halves its angle, so the angle between the bisectors consists of $\dfrac{\alpha}{2}$ and $\dfrac{\beta}{2}$:
+$\dfrac{\alpha}{2} + \dfrac{\beta}{2} = \dfrac{\alpha + \beta}{2} = \dfrac{180^\circ}{2} = 90^\circ$ ∎
+AKA: $90^\circ$ (დამტკიცებულია)
+AEN: $90^\circ$ (proved)
+
+--- hard triangles
+KA: $ABC$ სამკუთხედში $AB = BC$ და $\angle B = 36^\circ$. $AD$ არის $A$ კუთხის ბისექტრისა ($D \in BC$). იპოვეთ $ABD$ და $ADC$ სამკუთხედების კუთხეები და დაამტკიცეთ, რომ $AC = AD = BD$.
+EN: In triangle $ABC$, $AB = BC$ and $\angle B = 36^\circ$. $AD$ bisects angle $A$ ($D$ on $BC$). Find the angles of triangles $ABD$ and $ADC$ and prove that $AC = AD = BD$.
+HKA: ჯერ იპოვეთ $\angle A$ და $\angle C$. თუ სამკუთხედს ორი ტოლი კუთხე აქვს, ის ტოლფერდაა.
+HEN: First find $\angle A$ and $\angle C$. A triangle with two equal angles is isosceles.
+SKA: $\angle A = \angle C = \dfrac{180^\circ - 36^\circ}{2} = 72^\circ$; ბისექტრისა: $\angle BAD = \angle DAC = 36^\circ$.
+$\triangle ABD$: $\angle B = 36^\circ$, $\angle BAD = 36^\circ$, $\angle ADB = 108^\circ$. ორი კუთხე ტოლია $\Rightarrow AD = BD$.
+$\triangle ADC$: $\angle DAC = 36^\circ$, $\angle C = 72^\circ$, $\angle ADC = 180^\circ - 108^\circ = 72^\circ$. $\angle C = \angle ADC \Rightarrow AD = AC$.
+მაშასადამე $AC = AD = BD$ ∎
+SEN: $\angle A = \angle C = \dfrac{180^\circ - 36^\circ}{2} = 72^\circ$; the bisector gives $\angle BAD = \angle DAC = 36^\circ$.
+$\triangle ABD$: $\angle B = 36^\circ$, $\angle BAD = 36^\circ$, $\angle ADB = 108^\circ$. Two equal angles $\Rightarrow AD = BD$.
+$\triangle ADC$: $\angle DAC = 36^\circ$, $\angle C = 72^\circ$, $\angle ADC = 180^\circ - 108^\circ = 72^\circ$. $\angle C = \angle ADC \Rightarrow AD = AC$.
+Hence $AC = AD = BD$ ∎
+AKA: $ABD$: $36^\circ, 36^\circ, 108^\circ$; $ADC$: $36^\circ, 72^\circ, 72^\circ$
+AEN: $ABD$: $36^\circ, 36^\circ, 108^\circ$; $ADC$: $36^\circ, 72^\circ, 72^\circ$
+
+--- hard triangles
+KA: დაამტკიცეთ, რომ ტოლფერდა სამკუთხედში ფერდებზე გავლებული მედიანები ტოლია.
+EN: Prove that in an isosceles triangle the medians drawn to the two equal sides are equal.
+HKA: ტოლფერდა $ABC$-ში ($AB = BC$) განიხილეთ $AM$ და $CN$ მედიანები და სამკუთხედები $ANC$ და $CMA$. გამოიყენეთ ტოლობის პირველი ნიშანი (გვერდი–კუთხე–გვერდი).
+HEN: In isosceles $ABC$ ($AB = BC$) take medians $AM$ and $CN$ and triangles $ANC$ and $CMA$. Use the SAS congruence test.
+SKA: ვთქვათ $AB = BC$, $AM$ — მედიანა $BC$-ზე, $CN$ — მედიანა $AB$-ზე.
+$AN = \dfrac{AB}{2}$, $\ CM = \dfrac{BC}{2}$ $\Rightarrow AN = CM$.
+$\angle NAC = \angle MCA$ (ფუძესთან მდებარე კუთხეები), $AC$ — საერთო გვერდი.
+$\triangle ANC = \triangle CMA$ (გვერდი–კუთხე–გვერდი) $\Rightarrow CN = AM$ ∎
+SEN: Let $AB = BC$, $AM$ the median to $BC$, $CN$ the median to $AB$.
+$AN = \dfrac{AB}{2}$, $\ CM = \dfrac{BC}{2}$ $\Rightarrow AN = CM$.
+$\angle NAC = \angle MCA$ (base angles), and $AC$ is common.
+$\triangle ANC \cong \triangle CMA$ (SAS) $\Rightarrow CN = AM$ ∎
+AKA: დამტკიცებულია (გვერდი–კუთხე–გვერდი)
+AEN: proved (SAS)
+
+--- hard graphs
+KA: წრფე გადის $(1;\ 3)$ და $(3;\ 7)$ წერტილებზე. იპოვეთ მისი განტოლება $y = kx + b$ სახით და მისი გადაკვეთის წერტილები საკოორდინატო ღერძებთან.
+EN: A line passes through $(1,\ 3)$ and $(3,\ 7)$. Find its equation in the form $y = kx + b$ and where it crosses the coordinate axes.
+HKA: $k = \dfrac{\Delta y}{\Delta x}$. $Oy$ ღერძთან $x = 0$, $Ox$ ღერძთან $y = 0$.
+HEN: $k = \dfrac{\Delta y}{\Delta x}$. On the $y$-axis $x = 0$, on the $x$-axis $y = 0$.
+SKA: $k = \dfrac{7 - 3}{3 - 1} = 2$; $\ 3 = 2 \cdot 1 + b \Rightarrow b = 1$; $\ y = 2x + 1$
+$Oy$: $x = 0 \Rightarrow y = 1$, წერტილი $(0;\ 1)$
+$Ox$: $y = 0 \Rightarrow 2x + 1 = 0 \Rightarrow x = -0{,}5$, წერტილი $(-0{,}5;\ 0)$
+SEN: $k = \dfrac{7 - 3}{3 - 1} = 2$; $\ 3 = 2 \cdot 1 + b \Rightarrow b = 1$; $\ y = 2x + 1$
+$y$-axis: $x = 0 \Rightarrow y = 1$, point $(0,\ 1)$
+$x$-axis: $y = 0 \Rightarrow 2x + 1 = 0 \Rightarrow x = -0.5$, point $(-0.5,\ 0)$
+AKA: $y = 2x + 1$; $(0;\ 1)$ და $(-0{,}5;\ 0)$
+AEN: $y = 2x + 1$; $(0,\ 1)$ and $(-0.5,\ 0)$
+
+--- hard sequences
+KA: გამოთვალეთ ჯამი $1 + 3 + 5 + \dots + 99$ (ყველა კენტი რიცხვი $1$-დან $99$-მდე).
+EN: Calculate $1 + 3 + 5 + \dots + 99$ (all odd numbers from $1$ to $99$).
+HKA: შეკრიბეთ წყვილებად: პირველი და ბოლო, მეორე და ბოლოსწინა… ან შეამჩნიეთ კანონზომიერება: $1 = 1^2$, $1 + 3 = 2^2$, $1 + 3 + 5 = 3^2$.
+HEN: Pair them up: first with last, second with second-to-last… or spot the pattern: $1 = 1^2$, $1 + 3 = 2^2$, $1 + 3 + 5 = 3^2$.
+SKA: წევრების რაოდენობა: $\dfrac{99 + 1}{2} = 50$.
+წყვილები: $1 + 99 = 3 + 97 = \dots = 100$, წყვილი $25$-ია.
+$S = 25 \cdot 100 = 2500 = 50^2$ — პირველი $n$ კენტი რიცხვის ჯამი $n^2$-ია.
+SEN: Number of terms: $\dfrac{99 + 1}{2} = 50$.
+Pairs: $1 + 99 = 3 + 97 = \dots = 100$, there are $25$ pairs.
+$S = 25 \cdot 100 = 2500 = 50^2$ — the sum of the first $n$ odd numbers is $n^2$.
+AKA: $2500$
+AEN: $2500$
+
+--- hard probability
+KA: ერთდროულად აგდებენ ორ კამათელს. რას უდრის ალბათობა, რომ მოსულ ქულათა ჯამი $7$ იქნება? რომელი ჯამია ყველაზე მოსალოდნელი?
+EN: Two dice are rolled together. What is the probability that the total is $7$? Which total is the most likely?
+HKA: ორი კამათლის შედეგი — დალაგებული წყვილია $(a;\ b)$; სულ $6 \cdot 6 = 36$ თანაბრად შესაძლო შედეგია.
+HEN: An outcome is an ordered pair $(a,\ b)$; there are $6 \cdot 6 = 36$ equally likely outcomes.
+SKA: ჯამი $7$: $(1;6), (2;5), (3;4), (4;3), (5;2), (6;1)$ — $6$ შედეგი.
+$P = \dfrac{6}{36} = \dfrac{1}{6}$
+სხვა ჯამებს ნაკლები შედეგი აქვს (მაგ., $6$ და $8$ — თითო $5$, $2$ და $12$ — თითო $1$), ამიტომ $7$ ყველაზე მოსალოდნელია.
+SEN: Total $7$: $(1,6), (2,5), (3,4), (4,3), (5,2), (6,1)$ — $6$ outcomes.
+$P = \dfrac{6}{36} = \dfrac{1}{6}$
+Other totals have fewer outcomes (e.g. $6$ and $8$ have $5$ each, $2$ and $12$ have $1$ each), so $7$ is the most likely.
+AKA: $\dfrac{1}{6}$; $7$
+AEN: $\dfrac{1}{6}$; $7$
+
+--- hard numbers olympiad
+KA: რა ციფრით ბოლოვდება რიცხვი $3^{2024}$?
+EN: What is the last digit of $3^{2024}$?
+HKA: ჩაწერეთ $3$-ის რამდენიმე პირველი ხარისხის ბოლო ციფრი და იპოვეთ განმეორება.
+HEN: Write the last digits of the first few powers of $3$ and find the repeating pattern.
+SKA: ბოლო ციფრები: $3^1 \to 3$, $3^2 \to 9$, $3^3 \to 7$, $3^4 \to 1$, $3^5 \to 3$, … — პერიოდი $4$.
+ბოლო ციფრი დამოკიდებულია $2024$-ის $4$-ზე გაყოფის ნაშთზე: $2024 = 4 \cdot 506$, ნაშთი $0$.
+ნაშთი $0$ შეესაბამება $3^4$-ს (ბოლო ციფრი $1$), ამიტომ $3^{2024} = (3^4)^{506}$ ბოლოვდება $1$-ით.
+SEN: Last digits: $3^1 \to 3$, $3^2 \to 9$, $3^3 \to 7$, $3^4 \to 1$, $3^5 \to 3$, … — period $4$.
+The last digit depends on $2024$ mod $4$: $2024 = 4 \cdot 506$, remainder $0$.
+Remainder $0$ corresponds to $3^4$ (last digit $1$), so $3^{2024} = (3^4)^{506}$ ends in $1$.
+AKA: $1$
+AEN: $1$
+
+--- hard sequences olympiad
+KA: შეიძლება თუ არა, ხუთი ზედიზედ მდებარე ნატურალური რიცხვის ჯამი $2026$ იყოს? და — $2025$?
+EN: Can the sum of five consecutive natural numbers be $2026$? What about $2025$?
+HKA: აღნიშნეთ შუა რიცხვი $n$-ით: რიცხვებია $n - 2, n - 1, n, n + 1, n + 2$.
+HEN: Call the middle number $n$: the numbers are $n - 2, n - 1, n, n + 1, n + 2$.
+SKA: ჯამი: $(n - 2) + (n - 1) + n + (n + 1) + (n + 2) = 5n$ — ყოველთვის $5$-ის ჯერადია.
+$2026$ არ იყოფა $5$-ზე $\Rightarrow$ შეუძლებელია.
+$2025 = 5 \cdot 405$ $\Rightarrow$ შესაძლებელია: $403 + 404 + 405 + 406 + 407 = 2025$.
+SEN: Sum: $(n - 2) + (n - 1) + n + (n + 1) + (n + 2) = 5n$ — always a multiple of $5$.
+$2026$ is not divisible by $5$ $\Rightarrow$ impossible.
+$2025 = 5 \cdot 405$ $\Rightarrow$ possible: $403 + 404 + 405 + 406 + 407 = 2025$.
+AKA: $2026$ — არა; $2025$ — დიახ ($403 + \dots + 407$)
+AEN: $2026$ — no; $2025$ — yes ($403 + \dots + 407$)
+
+--- hard geometry olympiad
+KA: რა კუთხეს ადგენს საათის ისრები $3$ საათსა და $40$ წუთზე?
+EN: What angle do the hands of a clock make at $3{:}40$?
+HKA: წუთის ისარი წუთში $6^\circ$-ს გადის, საათის ისარი — წუთში $0{,}5^\circ$-ს (საათში $30^\circ$). ორივე ისრის პოზიცია „12“-დან ითვალეთ.
+HEN: The minute hand turns $6^\circ$ per minute, the hour hand $0.5^\circ$ per minute ($30^\circ$ per hour). Measure both positions from "12".
+SKA: წუთის ისარი: $40 \cdot 6^\circ = 240^\circ$
+საათის ისარი: $3 \cdot 30^\circ + 40 \cdot 0{,}5^\circ = 90^\circ + 20^\circ = 110^\circ$
+სხვაობა: $240^\circ - 110^\circ = 130^\circ$ ($< 180^\circ$, ესაა ისრებს შორის კუთხე)
+SEN: Minute hand: $40 \cdot 6^\circ = 240^\circ$
+Hour hand: $3 \cdot 30^\circ + 40 \cdot 0.5^\circ = 90^\circ + 20^\circ = 110^\circ$
+Difference: $240^\circ - 110^\circ = 130^\circ$ ($< 180^\circ$, so this is the angle between the hands)
+AKA: $130^\circ$
+AEN: $130^\circ$
+
+--- hard triangles olympiad
+KA: $ABC$ სამკუთხედის $A$ და $B$ კუთხეების ბისექტრისები $I$ წერტილში იკვეთება და $\angle AIB = 110^\circ$. იპოვეთ $\angle C$.
+EN: The bisectors of angles $A$ and $B$ of triangle $ABC$ meet at $I$, and $\angle AIB = 110^\circ$. Find $\angle C$.
+HKA: განიხილეთ $\triangle AIB$: მისი კუთხეებია $\dfrac{A}{2}$, $\dfrac{B}{2}$ და $\angle AIB$. გამოხატეთ $A + B$ კუთხე $C$-თი.
+HEN: Look at $\triangle AIB$: its angles are $\dfrac{A}{2}$, $\dfrac{B}{2}$ and $\angle AIB$. Express $A + B$ through $C$.
+SKA: $\triangle AIB$-ში: $\angle AIB = 180^\circ - \dfrac{\angle A + \angle B}{2}$.
+$\angle A + \angle B = 180^\circ - \angle C \Rightarrow \angle AIB = 180^\circ - \dfrac{180^\circ - \angle C}{2} = 90^\circ + \dfrac{\angle C}{2}$
+$90^\circ + \dfrac{\angle C}{2} = 110^\circ \Rightarrow \angle C = 40^\circ$
+SEN: In $\triangle AIB$: $\angle AIB = 180^\circ - \dfrac{\angle A + \angle B}{2}$.
+$\angle A + \angle B = 180^\circ - \angle C \Rightarrow \angle AIB = 180^\circ - \dfrac{180^\circ - \angle C}{2} = 90^\circ + \dfrac{\angle C}{2}$
+$90^\circ + \dfrac{\angle C}{2} = 110^\circ \Rightarrow \angle C = 40^\circ$
+AKA: $40^\circ$
+AEN: $40^\circ$
+
+--- hard probability olympiad
+KA: დაამტკიცეთ, რომ $13$ ადამიანიდან ორი მაინც ერთსა და იმავე თვეშია დაბადებული. მინიმუმ რამდენი ადამიანი უნდა იყოს, რომ გარანტირებულად სამი მაინც ერთ თვეში იყოს დაბადებული?
+EN: Prove that among $13$ people at least two were born in the same month. What is the smallest number of people that guarantees that at least three were born in the same month?
+HKA: დირიხლეს პრინციპი: თუ $n$ „ყუთში“ $n + 1$ „კურდღელს“ ჩავსვამთ, ერთ ყუთში ორი მაინც აღმოჩნდება. აქ ყუთები თვეებია.
+HEN: The pigeonhole principle: if $n + 1$ pigeons go into $n$ holes, some hole gets at least two. Here the holes are months.
+SKA: თვე $12$-ია. თუ ყველა $13$ ადამიანი სხვადასხვა თვეში იქნებოდა დაბადებული, $13$ განსხვავებული თვე დაგვჭირდებოდა — წინააღმდეგობა. ე.ი. ორი მაინც ერთ თვეშია ∎
+სამისთვის: $24$ ადამიანი შეიძლება ისე იყოს, რომ ყოველ თვეში ზუსტად $2$ იყოს — სამი ჯერ არ არის.
+$25 = 2 \cdot 12 + 1$ ადამიანის შემთხვევაში რომელიმე თვეში $3$ მაინც იქნება. პასუხი: $25$.
+SEN: There are $12$ months. If all $13$ people were born in different months, we would need $13$ different months — a contradiction. So at least two share a month ∎
+For three: $24$ people can be split with exactly $2$ in each month — no three yet.
+With $25 = 2 \cdot 12 + 1$ people some month must have at least $3$. Answer: $25$.
+AKA: დამტკიცებულია; $25$
+AEN: proved; $25$
+</script>
+</body>
+</html>

@@ -1,4 +1,16 @@
 Click the topic and Enjoy!
+### - School Problem Collections (ქართული / English) -
+
+#### [`Collection of Physics Problems`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/) — ფიზიკის ამოცანების კრებული
+Problems for grades VII–XII following the national curriculum: easy, medium and hard (last 5 olympiad-style), with hidden hints and step-by-step solutions.
+- [`Grade VII`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/VII) — measurement, motion, forces, density, pressure, Archimedes, simple machines
+- [`Grade IX`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/IX) — kinematics, Newton's laws, circular motion, momentum, energy, statics
+
+#### [`Collection of Mathematics Problems`](https://george1meshveliani.github.io/Hello-Physics/problems/math/) — მათემატიკის ამოცანების კრებული
+Problems for grades VII–XII following the national curriculum: easy, medium and hard (last 5 olympiad-style), with hidden hints and step-by-step solutions.
+- [`Grade VII`](https://george1meshveliani.github.io/Hello-Physics/problems/math/VII) — numbers, proportion, percent, linear equations and systems, triangles, statistics, probability
+- [`Grade IX`](https://george1meshveliani.github.io/Hello-Physics/problems/math/IX) — quadratics, parabolas, progressions, circles, similarity, trigonometry, solids, combinatorics
+
 ### - Beginner Level -
 
 #### Motion

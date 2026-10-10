@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Physics · Grade IX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css">
+  <script defer src="../assets/problems.js"></script>
+</head>
+<body data-page="grade" data-subject="physics" data-grade="IX">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic vectors   | I–III | სკალარული და ვექტორული სიდიდეები. გადაადგილება | Scalars and vectors. Displacement
+# topic accel     | IV–VI | თანაბარაჩქარებული მოძრაობა | Uniformly accelerated motion
+# topic freefall  | VII–X | თავისუფალი ვარდნა. ვერტიკალური და ჰორიზონტალური სროლა | Free fall. Vertical and horizontal throws
+# topic newton1   | XI–XIII | ნიუტონის I კანონი. ინერცია | Newton's first law. Inertia
+# topic newton2   | XIV–XVI | ნიუტონის II კანონი | Newton's second law
+# topic newton3   | XVII | ნიუტონის III კანონი | Newton's third law
+# topic weight    | XIX–XXII | წონა, უწონადობა, გადატვირთვა | Weight, weightlessness, overload
+# topic forces    | XXIII–XXIV | დრეკადობისა და ხახუნის ძალები ამოცანებში | Elastic and friction forces in problems
+# topic circular  | XXV–XXVII | წრეწირზე მოძრაობა. თანამგზავრები | Circular motion. Satellites
+# topic momentum  | XXVIII–XXX | იმპულსი და მისი მუდმივობის კანონი | Momentum and its conservation
+# topic energy    | XXXI–XXXIII | მექანიკური ენერგიის მუდმივობის კანონი | Conservation of mechanical energy
+# topic statics   | XXXIV–XXXV | წონასწორობის პირობები. სტატიკა | Equilibrium. Statics
+# note თუ სხვა რამ არ არის მითითებული: $g = 10\ \text{მ/წმ}^2$, დედამიწის რადიუსი $R = 6400\ \text{კმ}$, ჰაერის წინააღმდეგობა უგულებელყოფილია. | Unless stated otherwise: $g = 10\ \text{m/s}^2$, Earth's radius $R = 6400\ \text{km}$, air resistance is neglected.
+
+// ===================================================================== EASY
+
+--- easy vectors
+KA: დაყავით სიდიდეები სკალარულ და ვექტორულ სიდიდეებად: მასა, სიჩქარე, დრო, ძალა, გადაადგილება, ტემპერატურა, განვლილი გზა.
+EN: Sort these quantities into scalars and vectors: mass, velocity, time, force, displacement, temperature, distance travelled.
+HKA: ვექტორულ სიდიდეს აქვს არა მხოლოდ რიცხვითი მნიშვნელობა, არამედ მიმართულებაც.
+HEN: A vector has a direction as well as a size.
+SKA: სკალარული სიდიდე სრულად აღიწერება მხოლოდ რიცხვით (და ერთეულით); ვექტორულს მიმართულებაც სჭირდება.
+სკალარული: მასა, დრო, ტემპერატურა, განვლილი გზა.
+ვექტორული: სიჩქარე, ძალა, გადაადგილება.
+SEN: A scalar is fully described by a number (with a unit); a vector also needs a direction.
+Scalars: mass, time, temperature, distance travelled.
+Vectors: velocity, force, displacement.
+AKA: ვექტორული — სიჩქარე, ძალა, გადაადგილება; დანარჩენი სკალარულია.
+AEN: vectors — velocity, force, displacement; the rest are scalars.
+
+--- easy vectors
+KA: ტურისტმა $3\ \text{კმ}$ ჩრდილოეთით, შემდეგ კი $4\ \text{კმ}$ აღმოსავლეთით გაიარა. იპოვეთ განვლილი გზა და გადაადგილების მოდული.
+EN: A hiker walked $3\ \text{km}$ north and then $4\ \text{km}$ east. Find the distance travelled and the magnitude of the displacement.
+HKA: გზა — მონაკვეთების ჯამია. გადაადგილება — საწყისი წერტილიდან საბოლოოსკენ მიმართული ვექტორი; აქ ის მართკუთხა სამკუთხედის ჰიპოტენუზაა.
+HEN: Distance is the sum of the legs. Displacement is the arrow from start to finish — here the hypotenuse of a right triangle.
+SKA: **ფორმულა:** $l = s_1 + s_2$, $\ |\vec{s}| = \sqrt{s_1^2 + s_2^2}$
+**რიცხვები:** $l = 3 + 4 = 7\ \text{კმ}$
+$|\vec{s}| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5\ \text{კმ}$ (ჩრდილო-აღმოსავლეთით)
+SEN: **Formula:** $l = s_1 + s_2$, $\ |\vec{s}| = \sqrt{s_1^2 + s_2^2}$
+**Numbers:** $l = 3 + 4 = 7\ \text{km}$
+$|\vec{s}| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5\ \text{km}$ (towards the north-east)
+AKA: გზა $7\ \text{კმ}$, გადაადგილება $5\ \text{კმ}$
+AEN: distance $7\ \text{km}$, displacement $5\ \text{km}$
+
+--- easy vectors
+KA: ბურთი ვერტიკალურად ზემოთ აისროლეს $5\ \text{მ}$ სიმაღლეზე და იმავე წერტილში დაიჭირეს. რას უდრის ბურთის განვლილი გზა და გადაადგილება?
+EN: A ball is thrown straight up to a height of $5\ \text{m}$ and caught at the same point. What are the distance travelled and the displacement?
+HKA: გადაადგილება დამოკიდებულია მხოლოდ საწყის და საბოლოო მდებარეობაზე.
+HEN: Displacement depends only on the starting and finishing positions.
+SKA: **ფორმულა:** $l = h + h = 2h$, $\ \vec{s} = \vec{r}_{\text{ბოლ}} - \vec{r}_{\text{საწ}}$
+**რიცხვები:** $l = 2 \cdot 5 = 10\ \text{მ}$
+საწყისი და საბოლოო წერტილები ემთხვევა $\Rightarrow \vec{s} = 0$
+SEN: **Formula:** $l = h + h = 2h$, $\ \vec{s} = \vec{r}_{\text{end}} - \vec{r}_{\text{start}}$
+**Numbers:** $l = 2 \cdot 5 = 10\ \text{m}$
+Start and finish coincide $\Rightarrow \vec{s} = 0$
+AKA: გზა $10\ \text{მ}$, გადაადგილება $0$
+AEN: distance $10\ \text{m}$, displacement $0$
+
+--- easy accel
+KA: ავტომობილი მოსვენებიდან დაიძრა და $10\ \text{წმ}$-ში $20\ \text{მ/წმ}$ სიჩქარე განავითარა. იპოვეთ აჩქარება.
+EN: A car starts from rest and reaches $20\ \text{m/s}$ in $10\ \text{s}$. Find its acceleration.
+HKA: აჩქარება — სიჩქარის ცვლილება დროის ერთეულში.
+HEN: Acceleration is the change of velocity per unit time.
+SKA: **ფორმულა:** $a = \dfrac{v - v_0}{t}$
+**რიცხვები:** $a = \dfrac{20 - 0}{10}\ \text{მ/წმ}^2 = 2\ \text{მ/წმ}^2$
+SEN: **Formula:** $a = \dfrac{v - v_0}{t}$
+**Numbers:** $a = \dfrac{20 - 0}{10}\ \text{m/s}^2 = 2\ \text{m/s}^2$
+AKA: $2\ \text{მ/წმ}^2$
+AEN: $2\ \text{m/s}^2$
+
+--- easy accel
+KA: სხეულის საწყისი სიჩქარეა $5\ \text{მ/წმ}$, აჩქარება — $2\ \text{მ/წმ}^2$ (მოძრაობის მიმართულებით). რას უდრის მისი სიჩქარე $4\ \text{წმ}$-ის შემდეგ?
+EN: A body has initial velocity $5\ \text{m/s}$ and acceleration $2\ \text{m/s}^2$ (in the direction of motion). What is its velocity after $4\ \text{s}$?
+HKA: თანაბარაჩქარებული მოძრაობის სიჩქარე: $v = v_0 + a t$.
+HEN: Velocity in uniformly accelerated motion: $v = v_0 + a t$.
+SKA: **ფორმულა:** $v = v_0 + a t$
+**რიცხვები:** $v = 5 + 2 \cdot 4 = 13\ \text{მ/წმ}$
+SEN: **Formula:** $v = v_0 + a t$
+**Numbers:** $v = 5 + 2 \cdot 4 = 13\ \text{m/s}$
+AKA: $13\ \text{მ/წმ}$
+AEN: $13\ \text{m/s}$
+
+--- easy accel
+KA: $72\ \text{კმ/სთ}$ სიჩქარით მოძრავი ავტომობილი დამუხრუჭებისას $4\ \text{წმ}$-ში გაჩერდა. იპოვეთ აჩქარება.
+EN: A car moving at $72\ \text{km/h}$ brakes and stops in $4\ \text{s}$. Find its acceleration.
+HKA: ჯერ გადაიყვანეთ სიჩქარე $\text{მ/წმ}$-ში. დამუხრუჭებისას აჩქარება უარყოფითია.
+HEN: First convert the speed to $\text{m/s}$. When braking, the acceleration is negative.
+SKA: **ფორმულა:** $a = \dfrac{v - v_0}{t}$, $v = 0$
+**რიცხვები:** $v_0 = \dfrac{72}{3{,}6} = 20\ \text{მ/წმ}$
+$a = \dfrac{0 - 20}{4} = -5\ \text{მ/წმ}^2$ (აჩქარება სიჩქარის საწინააღმდეგოდაა მიმართული)
+SEN: **Formula:** $a = \dfrac{v - v_0}{t}$, $v = 0$
+**Numbers:** $v_0 = \dfrac{72}{3.6} = 20\ \text{m/s}$
+$a = \dfrac{0 - 20}{4} = -5\ \text{m/s}^2$ (the acceleration points against the velocity)
+AKA: $-5\ \text{მ/წმ}^2$
+AEN: $-5\ \text{m/s}^2$
+
+--- easy accel
+KA: სხეული მოსვენებიდან $3\ \text{მ/წმ}^2$ აჩქარებით იწყებს მოძრაობას. რა მანძილს გაივლის ის პირველ $4\ \text{წმ}$-ში?
+EN: A body starts from rest with acceleration $3\ \text{m/s}^2$. How far does it travel in the first $4\ \text{s}$?
+HKA: $s = v_0 t + \dfrac{a t^2}{2}$, სადაც $v_0 = 0$.
+HEN: $s = v_0 t + \dfrac{a t^2}{2}$ with $v_0 = 0$.
+SKA: **ფორმულა:** $s = v_0 t + \dfrac{a t^2}{2} = \dfrac{a t^2}{2}$ ($v_0 = 0$)
+**რიცხვები:** $s = \dfrac{3 \cdot 4^2}{2} = 24\ \text{მ}$
+SEN: **Formula:** $s = v_0 t + \dfrac{a t^2}{2} = \dfrac{a t^2}{2}$ ($v_0 = 0$)
+**Numbers:** $s = \dfrac{3 \cdot 4^2}{2} = 24\ \text{m}$
+AKA: $24\ \text{მ}$
+AEN: $24\ \text{m}$
+
+--- easy freefall
+KA: ქვა უსაწყისო სიჩქარით ვარდება $2\ \text{წმ}$-ის განმავლობაში. რას უდრის მისი სიჩქარე და განვლილი მანძილი?
+EN: A stone falls from rest for $2\ \text{s}$. What are its speed and the distance fallen?
+HKA: თავისუფალი ვარდნა თანაბარაჩქარებული მოძრაობაა $a = g$ აჩქარებით.
+HEN: Free fall is uniformly accelerated motion with $a = g$.
+SKA: **ფორმულა:** $v = g t$, $\ h = \dfrac{g t^2}{2}$
+**რიცხვები:** $v = 10 \cdot 2 = 20\ \text{მ/წმ}$
+$h = \dfrac{10 \cdot 2^2}{2} = 20\ \text{მ}$
+SEN: **Formula:** $v = g t$, $\ h = \dfrac{g t^2}{2}$
+**Numbers:** $v = 10 \cdot 2 = 20\ \text{m/s}$
+$h = \dfrac{10 \cdot 2^2}{2} = 20\ \text{m}$
+AKA: $20\ \text{მ/წმ}$; $20\ \text{მ}$
+AEN: $20\ \text{m/s}$; $20\ \text{m}$
+
+--- easy freefall
+KA: ბურთი ვერტიკალურად ზემოთ $20\ \text{მ/წმ}$ სიჩქარით აისროლეს. რა დროში მიაღწევს ის უმაღლეს წერტილს და რას უდრის აწევის მაქსიმალური სიმაღლე?
+EN: A ball is thrown straight up at $20\ \text{m/s}$. How long does it take to reach the top, and what is the maximum height?
+HKA: უმაღლეს წერტილში სიჩქარე ნულია.
+HEN: At the highest point the velocity is zero.
+SKA: **ფორმულა:** $0 = v_0 - g t_{\text{ა}} \Rightarrow t_{\text{ა}} = \dfrac{v_0}{g}$; $\ 0 = v_0^2 - 2 g H \Rightarrow H = \dfrac{v_0^2}{2g}$
+**რიცხვები:** $t_{\text{ა}} = \dfrac{20}{10} = 2\ \text{წმ}$
+$H = \dfrac{20^2}{2 \cdot 10} = 20\ \text{მ}$
+SEN: **Formula:** $0 = v_0 - g t_{\text{up}} \Rightarrow t_{\text{up}} = \dfrac{v_0}{g}$; $\ 0 = v_0^2 - 2 g H \Rightarrow H = \dfrac{v_0^2}{2g}$
+**Numbers:** $t_{\text{up}} = \dfrac{20}{10} = 2\ \text{s}$
+$H = \dfrac{20^2}{2 \cdot 10} = 20\ \text{m}$
+AKA: $2\ \text{წმ}$; $20\ \text{მ}$
+AEN: $2\ \text{s}$; $20\ \text{m}$
+
+--- easy newton1
+KA: რატომ იხრებიან მგზავრები წინ, როცა ავტობუსი მკვეთრად მუხრუჭებს? რატომ არის საჭირო უსაფრთხოების ღვედი?
+EN: Why do passengers lurch forward when a bus brakes sharply? Why are seat belts needed?
+HKA: ნიუტონის I კანონი: სხეული ინარჩუნებს სიჩქარეს, სანამ მასზე სხვა სხეულები არ იმოქმედებს.
+HEN: Newton's first law: a body keeps its velocity until other bodies act on it.
+SKA: ნიუტონის I კანონის თანახმად, ინერციის გამო მგზავრის სხეული ცდილობს შეინარჩუნოს ავტობუსის წინანდელი სიჩქარე.
+ავტობუსი (და იატაკზე მდგარი ფეხები) ნელდება, სხეულის ზედა ნაწილი კი წინ აგრძელებს მოძრაობას — მგზავრი წინ იხრება.
+ღვედი მგზავრზე მოქმედებს ძალით, რომელიც მას ავტობუსთან ერთად ანელებს და არ აძლევს წინ გადავარდნის საშუალებას.
+SEN: By Newton's first law, inertia makes the passenger's body try to keep the bus's previous velocity.
+The bus (and the feet on its floor) slows down, but the upper body keeps moving forward — the passenger lurches forward.
+A seat belt exerts a force on the passenger that slows them down together with the bus, so they are not thrown forward.
+AKA: ინერციის გამო; ღვედის ძალა მგზავრს ავტობუსთან ერთად ანელებს.
+AEN: because of inertia; the belt's force slows the passenger down together with the bus.
+
+--- easy newton2
+KA: $2\ \text{კგ}$ მასის სხეული $3\ \text{მ/წმ}^2$ აჩქარებით მოძრაობს. რას უდრის მასზე მოქმედი ძალების ტოლქმედი?
+EN: A body of mass $2\ \text{kg}$ moves with acceleration $3\ \text{m/s}^2$. What is the resultant force on it?
+HKA: ნიუტონის II კანონი: $\vec{F} = m\vec{a}$.
+HEN: Newton's second law: $\vec{F} = m\vec{a}$.
+SKA: **ფორმულა:** $F = m a$
+**რიცხვები:** $F = 2\ \text{კგ} \cdot 3\ \text{მ/წმ}^2 = 6\ \text{ნ}$
+SEN: **Formula:** $F = m a$
+**Numbers:** $F = 2\ \text{kg} \cdot 3\ \text{m/s}^2 = 6\ \text{N}$
+AKA: $6\ \text{ნ}$
+AEN: $6\ \text{N}$
+
+--- easy newton2
+KA: $1000\ \text{კგ}$ მასის ავტომობილზე $500\ \text{ნ}$ ტოლქმედი ძალა მოქმედებს. რა აჩქარებით მოძრაობს ავტომობილი? რა სიჩქარეს განავითარებს ის მოსვენებიდან $20\ \text{წმ}$-ში?
+EN: A resultant force of $500\ \text{N}$ acts on a $1000\ \text{kg}$ car. What is its acceleration? What speed does it reach from rest in $20\ \text{s}$?
+HKA: ჯერ $a = F/m$, შემდეგ $v = a t$.
+HEN: First $a = F/m$, then $v = a t$.
+SKA: **ფორმულა:** $a = \dfrac{F}{m}$, $\ v = a t = \dfrac{F t}{m}$
+**რიცხვები:** $a = \dfrac{500}{1000} = 0{,}5\ \text{მ/წმ}^2$
+$v = 0{,}5 \cdot 20 = 10\ \text{მ/წმ}$
+SEN: **Formula:** $a = \dfrac{F}{m}$, $\ v = a t = \dfrac{F t}{m}$
+**Numbers:** $a = \dfrac{500}{1000} = 0.5\ \text{m/s}^2$
+$v = 0.5 \cdot 20 = 10\ \text{m/s}$
+AKA: $0{,}5\ \text{მ/წმ}^2$; $10\ \text{მ/წმ}$
+AEN: $0.5\ \text{m/s}^2$; $10\ \text{m/s}$
+
+--- easy newton3
+KA: ყინულზე მდგარმა მამაკაცმა ($80\ \text{კგ}$) $50\ \text{კგ}$ მასის ბიჭს $120\ \text{ნ}$ ძალით უბიძგა. რა ძალით მოქმედებს ბიჭი მამაკაცზე? რა აჩქარებებს მიიღებენ ისინი (ხახუნი უგულებელყავით)?
+EN: A man ($80\ \text{kg}$) standing on ice pushes a $50\ \text{kg}$ boy with a force of $120\ \text{N}$. What force does the boy exert on the man? What accelerations do they get (ignore friction)?
+HKA: ნიუტონის III კანონი: ურთიერთქმედების ძალები ტოლია მოდულით და საწინააღმდეგოა მიმართულებით.
+HEN: Newton's third law: interaction forces are equal in size and opposite in direction.
+SKA: **ფორმულა:** $F_{12} = -F_{21}$, $\ a = \dfrac{F}{m}$
+**რიცხვები:** ბიჭი მამაკაცზე მოქმედებს $120\ \text{ნ}$ ძალით საწინააღმდეგო მიმართულებით.
+$a_{\text{ბ}} = \dfrac{120}{50} = 2{,}4\ \text{მ/წმ}^2$, $\ a_{\text{მ}} = \dfrac{120}{80} = 1{,}5\ \text{მ/წმ}^2$
+ძალები ტოლია, აჩქარებები — არა: მსუბუქი სხეული მეტ აჩქარებას იღებს.
+SEN: **Formula:** $F_{12} = -F_{21}$, $\ a = \dfrac{F}{m}$
+**Numbers:** the boy pushes the man with $120\ \text{N}$ in the opposite direction.
+$a_{\text{boy}} = \dfrac{120}{50} = 2.4\ \text{m/s}^2$, $\ a_{\text{man}} = \dfrac{120}{80} = 1.5\ \text{m/s}^2$
+The forces are equal, the accelerations are not: the lighter body accelerates more.
+AKA: $120\ \text{ნ}$; $2{,}4\ \text{მ/წმ}^2$ და $1{,}5\ \text{მ/წმ}^2$
+AEN: $120\ \text{N}$; $2.4\ \text{m/s}^2$ and $1.5\ \text{m/s}^2$
+
+--- easy weight
+KA: $60\ \text{კგ}$ მასის ადამიანი სასწორზე დგას. რას უდრის მისი წონა დედამიწაზე და მთვარეზე ($g_{\text{მთ}} = 1{,}6\ \text{მ/წმ}^2$)?
+EN: A $60\ \text{kg}$ person stands on scales. What is their weight on Earth and on the Moon ($g_{\text{Moon}} = 1.6\ \text{m/s}^2$)?
+HKA: უძრავი საყრდენის შემთხვევაში წონა სიმძიმის ძალის ტოლია: $P = mg$.
+HEN: On a support at rest, weight equals the force of gravity: $P = mg$.
+SKA: **ფორმულა:** $P = m g$
+**რიცხვები:** $P_{\text{დ}} = 60 \cdot 10 = 600\ \text{ნ}$
+$P_{\text{მთ}} = 60 \cdot 1{,}6 = 96\ \text{ნ}$ (მასა ორივეგან $60\ \text{კგ}$-ია)
+SEN: **Formula:** $P = m g$
+**Numbers:** $P_{\text{E}} = 60 \cdot 10 = 600\ \text{N}$
+$P_{\text{Moon}} = 60 \cdot 1.6 = 96\ \text{N}$ (the mass is $60\ \text{kg}$ in both places)
+AKA: $600\ \text{ნ}$; $96\ \text{ნ}$
+AEN: $600\ \text{N}$; $96\ \text{N}$
+
+--- easy weight
+KA: $50\ \text{კგ}$ მასის გოგონა ლიფტში დგას. რას უდრის მისი წონა, როცა ლიფტი: ა) თანაბრად ადის; ბ) თავისუფლად ვარდება (ბაგირი გაწყდა)?
+EN: A $50\ \text{kg}$ girl stands in a lift. What is her weight when the lift: a) moves up at constant speed; b) falls freely (the cable has snapped)?
+HKA: წონა — ძალა, რომლითაც სხეული საყრდენს აწვება: $P = m(g + a)$, სადაც $a$ ზემოთ მიმართულად დადებითია.
+HEN: Weight is the force with which a body presses on its support: $P = m(g + a)$, with $a$ positive upwards.
+SKA: **ფორმულა:** $N - m g = m a \Rightarrow P = N = m (g + a)$
+**რიცხვები:** ა) $a = 0$: $P = 50 \cdot 10 = 500\ \text{ნ}$
+ბ) $a = -g$: $P = 50 \cdot (10 - 10) = 0$ — უწონადობა.
+SEN: **Formula:** $N - m g = m a \Rightarrow P = N = m (g + a)$
+**Numbers:** a) $a = 0$: $P = 50 \cdot 10 = 500\ \text{N}$
+b) $a = -g$: $P = 50 \cdot (10 - 10) = 0$ — weightlessness.
+AKA: ა) $500\ \text{ნ}$; ბ) $0$
+AEN: a) $500\ \text{N}$; b) $0$
+
+--- easy forces
+KA: $10\ \text{კგ}$ მასის ყუთი ჰორიზონტალურ იატაკზე სრიალებს. ხახუნის კოეფიციენტია $0{,}3$. რას უდრის სრიალის ხახუნის ძალა?
+EN: A $10\ \text{kg}$ box slides on a horizontal floor. The coefficient of friction is $0.3$. What is the sliding friction force?
+HKA: $F_{\text{ხახ}} = \mu N$, ჰორიზონტალურ ზედაპირზე $N = m g$.
+HEN: $F_{\text{fr}} = \mu N$; on a horizontal surface $N = m g$.
+SKA: **ფორმულა:** $F_{\text{ხახ}} = \mu N = \mu m g$
+**რიცხვები:** $F_{\text{ხახ}} = 0{,}3 \cdot 10 \cdot 10 = 30\ \text{ნ}$
+SEN: **Formula:** $F_{\text{fr}} = \mu N = \mu m g$
+**Numbers:** $F_{\text{fr}} = 0.3 \cdot 10 \cdot 10 = 30\ \text{N}$
+AKA: $30\ \text{ნ}$
+AEN: $30\ \text{N}$
+
+--- easy circular
+KA: ავტომობილი $50\ \text{მ}$ რადიუსის წრიულ გზაზე მუდმივი $10\ \text{მ/წმ}$ სიჩქარით მოძრაობს. იპოვეთ მისი ცენტრისკენული აჩქარება.
+EN: A car drives around a circular road of radius $50\ \text{m}$ at a constant $10\ \text{m/s}$. Find its centripetal acceleration.
+HKA: $a_{\text{ც}} = \dfrac{v^2}{r}$, მიმართულია წრეწირის ცენტრისკენ.
+HEN: $a_{\text{c}} = \dfrac{v^2}{r}$, pointing towards the centre.
+SKA: **ფორმულა:** $a_{\text{ც}} = \dfrac{v^2}{r}$
+**რიცხვები:** $a_{\text{ც}} = \dfrac{10^2}{50} = 2\ \text{მ/წმ}^2$
+SEN: **Formula:** $a_{\text{c}} = \dfrac{v^2}{r}$
+**Numbers:** $a_{\text{c}} = \dfrac{10^2}{50} = 2\ \text{m/s}^2$
+AKA: $2\ \text{მ/წმ}^2$
+AEN: $2\ \text{m/s}^2$
+
+--- easy circular
+KA: ბორბალი წუთში $120$ ბრუნს აკეთებს. იპოვეთ ბრუნვის პერიოდი და სიხშირე, აგრეთვე ბორბლის თვლის წერტილის სიჩქარე, თუ რადიუსია $0{,}3\ \text{მ}$.
+EN: A wheel makes $120$ revolutions per minute. Find the period and frequency, and the speed of a point on the rim if the radius is $0.3\ \text{m}$.
+HKA: $T = t/N$, $\nu = 1/T$. ერთ პერიოდში წერტილი გადის წრეწირის სიგრძეს $2\pi r$.
+HEN: $T = t/N$, $\nu = 1/T$. In one period a rim point travels the circumference $2\pi r$.
+SKA: **ფორმულა:** $T = \dfrac{t}{N}$, $\ \nu = \dfrac{1}{T}$, $\ v = \dfrac{2\pi r}{T} = 2\pi r \nu$
+**რიცხვები:** $T = \dfrac{60\ \text{წმ}}{120} = 0{,}5\ \text{წმ}$, $\ \nu = 2\ \text{ჰც}$
+$v = 2 \cdot 3{,}14 \cdot 0{,}3 \cdot 2 \approx 3{,}8\ \text{მ/წმ}$
+SEN: **Formula:** $T = \dfrac{t}{N}$, $\ \nu = \dfrac{1}{T}$, $\ v = \dfrac{2\pi r}{T} = 2\pi r \nu$
+**Numbers:** $T = \dfrac{60\ \text{s}}{120} = 0.5\ \text{s}$, $\ \nu = 2\ \text{Hz}$
+$v = 2 \cdot 3.14 \cdot 0.3 \cdot 2 \approx 3.8\ \text{m/s}$
+AKA: $0{,}5\ \text{წმ}$; $2\ \text{ჰც}$; $\approx 3{,}8\ \text{მ/წმ}$
+AEN: $0.5\ \text{s}$; $2\ \text{Hz}$; $\approx 3.8\ \text{m/s}$
+
+--- easy momentum
+KA: $0{,}5\ \text{კგ}$ მასის ბურთი $10\ \text{მ/წმ}$ სიჩქარით მოძრაობს. რას უდრის მისი იმპულსი?
+EN: A $0.5\ \text{kg}$ ball moves at $10\ \text{m/s}$. What is its momentum?
+HKA: იმპულსი — მასისა და სიჩქარის ნამრავლი; ვექტორია, მიმართულია სიჩქარის გასწვრივ.
+HEN: Momentum is mass times velocity; it is a vector along the velocity.
+SKA: **ფორმულა:** $p = m v$
+**რიცხვები:** $p = 0{,}5\ \text{კგ} \cdot 10\ \text{მ/წმ} = 5\ \text{კგ}\cdot\text{მ/წმ}$
+SEN: **Formula:** $p = m v$
+**Numbers:** $p = 0.5\ \text{kg} \cdot 10\ \text{m/s} = 5\ \text{kg}\cdot\text{m/s}$
+AKA: $5\ \text{კგ}\cdot\text{მ/წმ}$
+AEN: $5\ \text{kg}\cdot\text{m/s}$
+
+--- easy energy
+KA: იპოვეთ: ა) $1000\ \text{კგ}$ მასის ავტომობილის კინეტიკური ენერგია $20\ \text{მ/წმ}$ სიჩქარისას; ბ) $2\ \text{კგ}$ მასის სხეულის პოტენციური ენერგია $5\ \text{მ}$ სიმაღლეზე.
+EN: Find: a) the kinetic energy of a $1000\ \text{kg}$ car moving at $20\ \text{m/s}$; b) the potential energy of a $2\ \text{kg}$ body at a height of $5\ \text{m}$.
+HKA: $E_k = \dfrac{m v^2}{2}$, $E_p = m g h$.
+HEN: $E_k = \dfrac{m v^2}{2}$, $E_p = m g h$.
+SKA: **ფორმულა:** $E_k = \dfrac{m v^2}{2}$, $\ E_p = m g h$
+**რიცხვები:** ა) $E_k = \dfrac{1000 \cdot 20^2}{2} = 200\,000\ \text{ჯ} = 200\ \text{კჯ}$
+ბ) $E_p = 2 \cdot 10 \cdot 5 = 100\ \text{ჯ}$
+SEN: **Formula:** $E_k = \dfrac{m v^2}{2}$, $\ E_p = m g h$
+**Numbers:** a) $E_k = \dfrac{1000 \cdot 20^2}{2} = 200\,000\ \text{J} = 200\ \text{kJ}$
+b) $E_p = 2 \cdot 10 \cdot 5 = 100\ \text{J}$
+AKA: ა) $200\ \text{კჯ}$; ბ) $100\ \text{ჯ}$
+AEN: a) $200\ \text{kJ}$; b) $100\ \text{J}$
+
+--- easy statics
+KA: საქანელაზე (ფიცარზე) $30\ \text{კგ}$ მასის ბავშვი საყრდენიდან $2\ \text{მ}$-ზე ზის. რა მანძილზე უნდა დაჯდეს მეორე მხარეს $40\ \text{კგ}$ მასის ბავშვი, რომ წონასწორობა იყოს?
+EN: On a seesaw, a $30\ \text{kg}$ child sits $2\ \text{m}$ from the pivot. Where on the other side must a $40\ \text{kg}$ child sit for balance?
+HKA: ბრუნვის მომენტების ტოლობა: $M_1 = M_2$, ანუ $F_1 d_1 = F_2 d_2$.
+HEN: Equal moments: $M_1 = M_2$, i.e. $F_1 d_1 = F_2 d_2$.
+SKA: **ფორმულა:** $m_1 g\, d_1 = m_2 g\, d_2 \Rightarrow d_2 = \dfrac{m_1 d_1}{m_2}$
+**რიცხვები:** $d_2 = \dfrac{30 \cdot 2}{40} = 1{,}5\ \text{მ}$
+SEN: **Formula:** $m_1 g\, d_1 = m_2 g\, d_2 \Rightarrow d_2 = \dfrac{m_1 d_1}{m_2}$
+**Numbers:** $d_2 = \dfrac{30 \cdot 2}{40} = 1.5\ \text{m}$
+AKA: $1{,}5\ \text{მ}$
+AEN: $1.5\ \text{m}$
+
+// ===================================================================== MEDIUM
+
+--- medium vectors
+KA: ნავი მდინარის ნაპირის მართობულად $4\ \text{მ/წმ}$ სიჩქარით მიცურავს (წყლის მიმართ), დინების სიჩქარე $3\ \text{მ/წმ}$-ია, მდინარის სიგანე — $80\ \text{მ}$. იპოვეთ ნავის სიჩქარე ნაპირის მიმართ, გადაცურვის დრო და რამდენით წაიღებს ნავს დინება.
+EN: A boat heads straight across a river at $4\ \text{m/s}$ relative to the water; the current is $3\ \text{m/s}$ and the river is $80\ \text{m}$ wide. Find the boat's speed relative to the bank, the crossing time and how far downstream it drifts.
+HKA: სიჩქარეები ვექტორულად იკრიბება. გადაცურვის დრო დამოკიდებულია მხოლოდ ნაპირის მართობულ შემდგენზე.
+HEN: Velocities add as vectors. The crossing time depends only on the component across the river.
+SKA: **ფორმულა:** $v = \sqrt{v_{\text{ნ}}^2 + u^2}$, $\ t = \dfrac{d}{v_{\text{ნ}}}$, $\ x = u\,t$
+**რიცხვები:** $v = \sqrt{4^2 + 3^2} = 5\ \text{მ/წმ}$
+$t = \dfrac{80}{4} = 20\ \text{წმ}$, $\ x = 3 \cdot 20 = 60\ \text{მ}$
+SEN: **Formula:** $v = \sqrt{v_{\text{b}}^2 + u^2}$, $\ t = \dfrac{d}{v_{\text{b}}}$, $\ x = u\,t$
+**Numbers:** $v = \sqrt{4^2 + 3^2} = 5\ \text{m/s}$
+$t = \dfrac{80}{4} = 20\ \text{s}$, $\ x = 3 \cdot 20 = 60\ \text{m}$
+AKA: $5\ \text{მ/წმ}$; $20\ \text{წმ}$; $60\ \text{მ}$
+AEN: $5\ \text{m/s}$; $20\ \text{s}$; $60\ \text{m}$
+
+--- medium accel
+KA: $20\ \text{მ/წმ}$ სიჩქარით მოძრავი ავტომობილი $4\ \text{მ/წმ}^2$ აჩქარებით მუხრუჭებს. იპოვეთ დამუხრუჭების მანძილი და დრო.
+EN: A car moving at $20\ \text{m/s}$ brakes with a deceleration of $4\ \text{m/s}^2$. Find the braking distance and time.
+HKA: დროის გარეშე ფორმულა: $v^2 - v_0^2 = 2 a s$.
+HEN: The time-free formula: $v^2 - v_0^2 = 2 a s$.
+SKA: **ფორმულა:** $0 - v_0^2 = -2 a s \Rightarrow s = \dfrac{v_0^2}{2a}$; $\ t = \dfrac{v_0}{a}$
+**რიცხვები:** $s = \dfrac{20^2}{2 \cdot 4} = 50\ \text{მ}$
+$t = \dfrac{20}{4} = 5\ \text{წმ}$
+SEN: **Formula:** $0 - v_0^2 = -2 a s \Rightarrow s = \dfrac{v_0^2}{2a}$; $\ t = \dfrac{v_0}{a}$
+**Numbers:** $s = \dfrac{20^2}{2 \cdot 4} = 50\ \text{m}$
+$t = \dfrac{20}{4} = 5\ \text{s}$
+AKA: $50\ \text{მ}$; $5\ \text{წმ}$
+AEN: $50\ \text{m}$; $5\ \text{s}$
+
+--- medium accel
+KA: სხეული მოსვენებიდან $2\ \text{მ/წმ}^2$ აჩქარებით იწყებს მოძრაობას. რა მანძილს გაივლის ის მეხუთე წამში (ანუ $4$-ე და $5$-ე წამებს შორის)?
+EN: A body starts from rest with acceleration $2\ \text{m/s}^2$. How far does it travel during the fifth second (between $t = 4\ \text{s}$ and $t = 5\ \text{s}$)?
+HKA: მეხუთე წამის გზა = $5$ წამში გავლილი გზა − $4$ წამში გავლილი გზა.
+HEN: Distance in the 5th second = distance in 5 s − distance in 4 s.
+SKA: **ფორმულა:** $s_n = \dfrac{a n^2}{2} - \dfrac{a (n-1)^2}{2} = \dfrac{a (2n - 1)}{2}$
+**რიცხვები:** $s_5 = \dfrac{2 \cdot (2 \cdot 5 - 1)}{2} = 9\ \text{მ}$ (შემოწმება: $25 - 16 = 9$)
+SEN: **Formula:** $s_n = \dfrac{a n^2}{2} - \dfrac{a (n-1)^2}{2} = \dfrac{a (2n - 1)}{2}$
+**Numbers:** $s_5 = \dfrac{2 \cdot (2 \cdot 5 - 1)}{2} = 9\ \text{m}$ (check: $25 - 16 = 9$)
+AKA: $9\ \text{მ}$
+AEN: $9\ \text{m}$
+
+--- medium accel
+KA: მატარებლის სიჩქარე $0$-დან $10\ \text{მ/წმ}$-მდე თანაბრად იზრდება $5\ \text{წმ}$-ში, შემდეგ $10\ \text{წმ}$ მუდმივია, ბოლოს $5\ \text{წმ}$-ში თანაბრად მცირდება ნულამდე. ააგეთ $v(t)$ გრაფიკი და იპოვეთ განვლილი გზა და საშუალო სიჩქარე.
+EN: A train's speed rises uniformly from $0$ to $10\ \text{m/s}$ in $5\ \text{s}$, stays constant for $10\ \text{s}$, then falls uniformly to zero in $5\ \text{s}$. Sketch $v(t)$ and find the distance and the average speed.
+HKA: განვლილი გზა $v(t)$ გრაფიკის ქვეშ მოთავსებული ფიგურის ფართობია (აქ — ტრაპეცია).
+HEN: Distance is the area under the $v(t)$ graph (here a trapezium).
+SKA: **ფორმულა:** $s = \dfrac{v t_1}{2} + v t_2 + \dfrac{v t_3}{2}$, $\ v_{\text{საშ}} = \dfrac{s}{t_1 + t_2 + t_3}$
+**რიცხვები:** $s = \dfrac{10 \cdot 5}{2} + 10 \cdot 10 + \dfrac{10 \cdot 5}{2} = 25 + 100 + 25 = 150\ \text{მ}$
+$v_{\text{საშ}} = \dfrac{150}{20} = 7{,}5\ \text{მ/წმ}$
+SEN: **Formula:** $s = \dfrac{v t_1}{2} + v t_2 + \dfrac{v t_3}{2}$, $\ v_{\text{avg}} = \dfrac{s}{t_1 + t_2 + t_3}$
+**Numbers:** $s = \dfrac{10 \cdot 5}{2} + 10 \cdot 10 + \dfrac{10 \cdot 5}{2} = 25 + 100 + 25 = 150\ \text{m}$
+$v_{\text{avg}} = \dfrac{150}{20} = 7.5\ \text{m/s}$
+AKA: $150\ \text{მ}$; $7{,}5\ \text{მ/წმ}$
+AEN: $150\ \text{m}$; $7.5\ \text{m/s}$
+
+--- medium accel
+KA: გაჩერებულ მოტოციკლს $15\ \text{მ/წმ}$ მუდმივი სიჩქარით ჩაუარა ავტომობილმა. ამ მომენტში მოტოციკლი $3\ \text{მ/წმ}^2$ აჩქარებით დაიძრა. როდის, საიდან რა მანძილზე დაეწევა ის ავტომობილს და რა სიჩქარე ექნება?
+EN: A car passes a standing motorbike at a constant $15\ \text{m/s}$. At that moment the motorbike starts with acceleration $3\ \text{m/s}^2$. When and how far from the start does it catch the car, and how fast is it going then?
+HKA: დაწევისას ორივეს ერთნაირი მანძილი აქვს გავლილი: $v t = \dfrac{a t^2}{2}$.
+HEN: At catch-up both have covered the same distance: $v t = \dfrac{a t^2}{2}$.
+SKA: **ფორმულა:** $v t = \dfrac{a t^2}{2} \Rightarrow t = \dfrac{2v}{a}$; $\ s = v t$; $\ v_{\text{მ}} = a t = 2v$
+**რიცხვები:** $t = \dfrac{2 \cdot 15}{3} = 10\ \text{წმ}$
+$s = 15 \cdot 10 = 150\ \text{მ}$, $\ v_{\text{მ}} = 3 \cdot 10 = 30\ \text{მ/წმ}$
+SEN: **Formula:** $v t = \dfrac{a t^2}{2} \Rightarrow t = \dfrac{2v}{a}$; $\ s = v t$; $\ v_{\text{m}} = a t = 2v$
+**Numbers:** $t = \dfrac{2 \cdot 15}{3} = 10\ \text{s}$
+$s = 15 \cdot 10 = 150\ \text{m}$, $\ v_{\text{m}} = 3 \cdot 10 = 30\ \text{m/s}$
+AKA: $10\ \text{წმ}$; $150\ \text{მ}$; $30\ \text{მ/წმ}$
+AEN: $10\ \text{s}$; $150\ \text{m}$; $30\ \text{m/s}$
+
+--- medium freefall
+KA: სხეული $45\ \text{მ}$ სიმაღლიდან უსაწყისო სიჩქარით ვარდება. რამდენ ხანს ვარდება ის, რა სიჩქარით ეცემა მიწას და რა მანძილს გადის ბოლო წამში?
+EN: A body falls from rest from a height of $45\ \text{m}$. How long does it fall, at what speed does it hit the ground and how far does it fall in the last second?
+HKA: ბოლო წამის გზა = მთელი სიმაღლე − ($t - 1$) წამში გავლილი გზა.
+HEN: Last-second distance = total height − distance fallen in ($t - 1$) seconds.
+SKA: **ფორმულა:** $h = \dfrac{g t^2}{2} \Rightarrow t = \sqrt{\dfrac{2h}{g}}$; $\ v = g t$; $\ \Delta h = h - \dfrac{g (t-1)^2}{2}$
+**რიცხვები:** $t = \sqrt{\dfrac{2 \cdot 45}{10}} = 3\ \text{წმ}$, $\ v = 10 \cdot 3 = 30\ \text{მ/წმ}$
+$\Delta h = 45 - \dfrac{10 \cdot 2^2}{2} = 45 - 20 = 25\ \text{მ}$
+SEN: **Formula:** $h = \dfrac{g t^2}{2} \Rightarrow t = \sqrt{\dfrac{2h}{g}}$; $\ v = g t$; $\ \Delta h = h - \dfrac{g (t-1)^2}{2}$
+**Numbers:** $t = \sqrt{\dfrac{2 \cdot 45}{10}} = 3\ \text{s}$, $\ v = 10 \cdot 3 = 30\ \text{m/s}$
+$\Delta h = 45 - \dfrac{10 \cdot 2^2}{2} = 45 - 20 = 25\ \text{m}$
+AKA: $3\ \text{წმ}$; $30\ \text{მ/წმ}$; $25\ \text{მ}$
+AEN: $3\ \text{s}$; $30\ \text{m/s}$; $25\ \text{m}$
+
+--- medium freefall
+KA: $20\ \text{მ}$ სიმაღლის აივნიდან ბურთი ვერტიკალურად ზემოთ $15\ \text{მ/წმ}$ სიჩქარით აისროლეს. რა დროის შემდეგ და რა სიჩქარით დაეცემა ის მიწაზე?
+EN: A ball is thrown straight up at $15\ \text{m/s}$ from a balcony $20\ \text{m}$ high. After what time and at what speed does it hit the ground?
+HKA: ათვლის სათავე აიღეთ აივანზე, ღერძი — ზემოთ. მიწაზე კოორდინატი $y = -20\ \text{მ}$-ია.
+HEN: Put the origin at the balcony with the axis upwards. The ground is at $y = -20\ \text{m}$.
+SKA: **ფორმულა:** $y = v_0 t - \dfrac{g t^2}{2}$, $\ v = v_0 - g t$
+$-h = v_0 t - \dfrac{g t^2}{2} \Rightarrow \dfrac{g}{2} t^2 - v_0 t - h = 0$
+**რიცხვები:** $5 t^2 - 15 t - 20 = 0 \Rightarrow t^2 - 3t - 4 = 0 \Rightarrow t = 4\ \text{წმ}$ (უარყოფითი ფესვი $-1$ არ გამოდგება)
+$v = 15 - 10 \cdot 4 = -25\ \text{მ/წმ}$, ანუ $25\ \text{მ/წმ}$ ქვემოთ.
+SEN: **Formula:** $y = v_0 t - \dfrac{g t^2}{2}$, $\ v = v_0 - g t$
+$-h = v_0 t - \dfrac{g t^2}{2} \Rightarrow \dfrac{g}{2} t^2 - v_0 t - h = 0$
+**Numbers:** $5 t^2 - 15 t - 20 = 0 \Rightarrow t^2 - 3t - 4 = 0 \Rightarrow t = 4\ \text{s}$ (the negative root $-1$ is rejected)
+$v = 15 - 10 \cdot 4 = -25\ \text{m/s}$, i.e. $25\ \text{m/s}$ downwards.
+AKA: $4\ \text{წმ}$; $25\ \text{მ/წმ}$
+AEN: $4\ \text{s}$; $25\ \text{m/s}$
+
+--- medium freefall
+KA: $20\ \text{მ}$ სიმაღლიდან ბურთი ჰორიზონტალურად $10\ \text{მ/წმ}$ სიჩქარით ისროლეს. რამდენ ხანს იფრენს ის, რა მანძილზე დაეცემა და რა სიჩქარით?
+EN: A ball is thrown horizontally at $10\ \text{m/s}$ from a height of $20\ \text{m}$. How long does it fly, how far away does it land and at what speed?
+HKA: ჰორიზონტალურად მოძრაობა თანაბარია, ვერტიკალურად — თავისუფალი ვარდნა. ეს ორი მოძრაობა ერთმანეთზე არ არის დამოკიდებული.
+HEN: Horizontally the motion is uniform, vertically it is free fall. The two motions are independent.
+SKA: **ფორმულა:** $h = \dfrac{g t^2}{2} \Rightarrow t = \sqrt{\dfrac{2h}{g}}$; $\ L = v_0 t$; $\ v = \sqrt{v_0^2 + (g t)^2}$
+**რიცხვები:** $t = \sqrt{\dfrac{2 \cdot 20}{10}} = 2\ \text{წმ}$, $\ L = 10 \cdot 2 = 20\ \text{მ}$
+$v = \sqrt{10^2 + 20^2} = \sqrt{500} \approx 22{,}4\ \text{მ/წმ}$
+SEN: **Formula:** $h = \dfrac{g t^2}{2} \Rightarrow t = \sqrt{\dfrac{2h}{g}}$; $\ L = v_0 t$; $\ v = \sqrt{v_0^2 + (g t)^2}$
+**Numbers:** $t = \sqrt{\dfrac{2 \cdot 20}{10}} = 2\ \text{s}$, $\ L = 10 \cdot 2 = 20\ \text{m}$
+$v = \sqrt{10^2 + 20^2} = \sqrt{500} \approx 22.4\ \text{m/s}$
+AKA: $2\ \text{წმ}$; $20\ \text{მ}$; $\approx 22{,}4\ \text{მ/წმ}$
+AEN: $2\ \text{s}$; $20\ \text{m}$; $\approx 22.4\ \text{m/s}$
+
+--- medium newton2
+KA: $1200\ \text{კგ}$ მასის ავტომობილი მოსვენებიდან $10\ \text{წმ}$-ში $20\ \text{მ/წმ}$ სიჩქარეს აღწევს. წინააღმდეგობის ძალა $600\ \text{ნ}$-ია. იპოვეთ ძრავის წევის ძალა.
+EN: A $1200\ \text{kg}$ car reaches $20\ \text{m/s}$ from rest in $10\ \text{s}$. The resistance force is $600\ \text{N}$. Find the engine's driving force.
+HKA: ტოლქმედი = წევის ძალა − წინააღმდეგობა $= m a$.
+HEN: Resultant = driving force − resistance $= m a$.
+SKA: **ფორმულა:** $F - F_{\text{წ}} = m a$, $a = \dfrac{v}{t} \Rightarrow F = m \dfrac{v}{t} + F_{\text{წ}}$
+**რიცხვები:** $a = \dfrac{20}{10} = 2\ \text{მ/წმ}^2$
+$F = 1200 \cdot 2 + 600 = 3000\ \text{ნ} = 3\ \text{კნ}$
+SEN: **Formula:** $F - F_{\text{r}} = m a$, $a = \dfrac{v}{t} \Rightarrow F = m \dfrac{v}{t} + F_{\text{r}}$
+**Numbers:** $a = \dfrac{20}{10} = 2\ \text{m/s}^2$
+$F = 1200 \cdot 2 + 600 = 3000\ \text{N} = 3\ \text{kN}$
+AKA: $3\ \text{კნ}$
+AEN: $3\ \text{kN}$
+
+--- medium newton2
+KA: გლუვ მაგიდაზე ძაფით შეერთებული $1\ \text{კგ}$ და $2\ \text{კგ}$ მასის ძელაკები დევს. $2\ \text{კგ}$-იან ძელაკს ჰორიზონტალურად $12\ \text{ნ}$ ძალით ექაჩებიან. იპოვეთ სისტემის აჩქარება და ძაფის დაჭიმულობა.
+EN: Two blocks of $1\ \text{kg}$ and $2\ \text{kg}$ lie on a smooth table, joined by a thread. The $2\ \text{kg}$ block is pulled horizontally with $12\ \text{N}$. Find the acceleration and the tension in the thread.
+HKA: ჯერ განიხილეთ მთელი სისტემა, შემდეგ — მხოლოდ $1\ \text{კგ}$-იანი ძელაკი (მას მხოლოდ ძაფი ექაჩება).
+HEN: First consider the whole system, then just the $1\ \text{kg}$ block (only the thread pulls it).
+SKA: **ფორმულა:** სისტემა: $F = (m_1 + m_2)\, a \Rightarrow a = \dfrac{F}{m_1 + m_2}$; პირველი ძელაკი: $T = m_1 a$
+**რიცხვები:** $a = \dfrac{12}{1 + 2} = 4\ \text{მ/წმ}^2$
+$T = 1 \cdot 4 = 4\ \text{ნ}$
+SEN: **Formula:** system: $F = (m_1 + m_2)\, a \Rightarrow a = \dfrac{F}{m_1 + m_2}$; first block: $T = m_1 a$
+**Numbers:** $a = \dfrac{12}{1 + 2} = 4\ \text{m/s}^2$
+$T = 1 \cdot 4 = 4\ \text{N}$
+AKA: $4\ \text{მ/წმ}^2$; $4\ \text{ნ}$
+AEN: $4\ \text{m/s}^2$; $4\ \text{N}$
+
+--- medium newton2
+KA: $20\ \text{კგ}$ მასის ყუთს ჰორიზონტალურ იატაკზე $100\ \text{ნ}$ ჰორიზონტალური ძალით ექაჩებიან. ხახუნის კოეფიციენტია $0{,}3$. იპოვეთ ყუთის აჩქარება.
+EN: A $20\ \text{kg}$ box is pulled across a horizontal floor by a horizontal force of $100\ \text{N}$. The coefficient of friction is $0.3$. Find the acceleration of the box.
+HKA: ხახუნის ძალა $\mu m g$ მოძრაობას ეწინააღმდეგება.
+HEN: The friction force $\mu m g$ opposes the motion.
+SKA: **ფორმულა:** $F - \mu m g = m a \Rightarrow a = \dfrac{F - \mu m g}{m}$
+**რიცხვები:** $\mu m g = 0{,}3 \cdot 20 \cdot 10 = 60\ \text{ნ}$
+$a = \dfrac{100 - 60}{20} = 2\ \text{მ/წმ}^2$
+SEN: **Formula:** $F - \mu m g = m a \Rightarrow a = \dfrac{F - \mu m g}{m}$
+**Numbers:** $\mu m g = 0.3 \cdot 20 \cdot 10 = 60\ \text{N}$
+$a = \dfrac{100 - 60}{20} = 2\ \text{m/s}^2$
+AKA: $2\ \text{მ/წმ}^2$
+AEN: $2\ \text{m/s}^2$
+
+--- medium weight
+KA: $60\ \text{კგ}$ მასის ადამიანი ლიფტში სასწორზე დგას. რას აჩვენებს სასწორი, როცა ლიფტი $2\ \text{მ/წმ}^2$ აჩქარებით: ა) ზემოთ იწყებს მოძრაობას; ბ) ქვემოთ იწყებს მოძრაობას?
+EN: A $60\ \text{kg}$ person stands on scales in a lift. What do the scales read when the lift accelerates at $2\ \text{m/s}^2$: a) upwards; b) downwards?
+HKA: დაწერეთ ნიუტონის II კანონი ადამიანისთვის: $N - mg = m a$.
+HEN: Write Newton's second law for the person: $N - mg = m a$.
+SKA: **ფორმულა:** $P = N = m (g + a)$ (აჩქარება ზემოთ დადებითია)
+**რიცხვები:** ა) $P = 60 \cdot (10 + 2) = 720\ \text{ნ}$ — გადატვირთვა
+ბ) $P = 60 \cdot (10 - 2) = 480\ \text{ნ}$ — წონა შემცირდა
+SEN: **Formula:** $P = N = m (g + a)$ (upward acceleration positive)
+**Numbers:** a) $P = 60 \cdot (10 + 2) = 720\ \text{N}$ — overload
+b) $P = 60 \cdot (10 - 2) = 480\ \text{N}$ — the weight is reduced
+AKA: ა) $720\ \text{ნ}$; ბ) $480\ \text{ნ}$
+AEN: a) $720\ \text{N}$; b) $480\ \text{N}$
+
+--- medium forces
+KA: $2\ \text{კგ}$ მასის ძელაკს მაგიდაზე თანაბრად ექაჩებიან ზამბარით, რომლის სიხისტეა $400\ \text{ნ/მ}$. ხახუნის კოეფიციენტია $0{,}2$. რამდენით არის წაგრძელებული ზამბარა?
+EN: A $2\ \text{kg}$ block is pulled uniformly across a table by a spring of stiffness $400\ \text{N/m}$. The coefficient of friction is $0.2$. By how much is the spring stretched?
+HKA: თანაბარი მოძრაობისას ზამბარის დრეკადობის ძალა ხახუნის ძალის ტოლია.
+HEN: In uniform motion the spring force equals the friction force.
+SKA: **ფორმულა:** $k\,\Delta l = \mu m g \Rightarrow \Delta l = \dfrac{\mu m g}{k}$
+**რიცხვები:** $\Delta l = \dfrac{0{,}2 \cdot 2 \cdot 10}{400} = 0{,}01\ \text{მ} = 1\ \text{სმ}$
+SEN: **Formula:** $k\,\Delta l = \mu m g \Rightarrow \Delta l = \dfrac{\mu m g}{k}$
+**Numbers:** $\Delta l = \dfrac{0.2 \cdot 2 \cdot 10}{400} = 0.01\ \text{m} = 1\ \text{cm}$
+AKA: $1\ \text{სმ}$
+AEN: $1\ \text{cm}$
+
+--- medium newton3
+KA: წიგნი მაგიდაზე დევს. ჩამოთვალეთ წიგნზე მოქმედი ძალები და თითოეულისთვის მიუთითეთ მისი „წყვილი“ ნიუტონის III კანონის მიხედვით. არის თუ არა სიმძიმის ძალა და საყრდენის რეაქციის ძალა III კანონის წყვილი?
+EN: A book lies on a table. List the forces acting on the book and, for each, name its Newton's third law "partner". Are gravity and the normal force a third-law pair?
+HKA: III კანონის წყვილი ძალები მოდებულია **სხვადასხვა** სხეულზე და ერთი ბუნებისაა.
+HEN: Third-law partners act on **different** bodies and are of the same nature.
+SKA: წიგნზე მოქმედებს: სიმძიმის ძალა $m\vec{g}$ (დედამიწა წიგნზე) და რეაქციის ძალა $\vec{N}$ (მაგიდა წიგნზე).
+$m\vec{g}$-ს წყვილი: წიგნი იზიდავს დედამიწას ტოლი ძალით ზემოთ (მოდებულია დედამიწაზე).
+$\vec{N}$-ის წყვილი: წიგნი აწვება მაგიდას ქვემოთ — ეს წიგნის წონაა $\vec{P}$ (მოდებულია მაგიდაზე).
+$m\vec{g}$ და $\vec{N}$ ტოლია ($N = mg$) II კანონის გამო (წიგნი უძრავია), მაგრამ ისინი **არ არის** III კანონის წყვილი: ორივე ერთ სხეულზეა მოდებული და სხვადასხვა ბუნებისაა.
+SEN: Acting on the book: gravity $m\vec{g}$ (Earth on book) and the normal force $\vec{N}$ (table on book).
+Partner of $m\vec{g}$: the book pulls the Earth upwards with an equal force (acting on the Earth).
+Partner of $\vec{N}$: the book pushes down on the table — this is the book's weight $\vec{P}$ (acting on the table).
+$m\vec{g}$ and $\vec{N}$ are equal ($N = mg$) because of the second law (the book is at rest), but they are **not** a third-law pair: both act on the same body and are of different nature.
+AKA: არა — ისინი ერთ სხეულზეა მოდებული.
+AEN: no — they act on the same body.
+
+--- medium circular
+KA: $1000\ \text{კგ}$ მასის ავტომობილი $40\ \text{მ}$ რადიუსის ამოზნექილ ხიდზე $10\ \text{მ/წმ}$ სიჩქარით მოძრაობს. რა ძალით აწვება ავტომობილი ხიდს მის უმაღლეს წერტილში?
+EN: A $1000\ \text{kg}$ car drives over a convex bridge of radius $40\ \text{m}$ at $10\ \text{m/s}$. With what force does it press on the bridge at the top?
+HKA: უმაღლეს წერტილში ცენტრისკენული აჩქარება ქვემოთაა მიმართული: $m g - N = \dfrac{m v^2}{r}$.
+HEN: At the top the centripetal acceleration points down: $m g - N = \dfrac{m v^2}{r}$.
+SKA: **ფორმულა:** $m g - N = \dfrac{m v^2}{r} \Rightarrow P = N = m\left(g - \dfrac{v^2}{r}\right)$
+**რიცხვები:** $\dfrac{v^2}{r} = \dfrac{100}{40} = 2{,}5\ \text{მ/წმ}^2$
+$P = 1000 \cdot (10 - 2{,}5) = 7500\ \text{ნ}$ — უძრავზე ($10\,000\ \text{ნ}$) ნაკლები.
+SEN: **Formula:** $m g - N = \dfrac{m v^2}{r} \Rightarrow P = N = m\left(g - \dfrac{v^2}{r}\right)$
+**Numbers:** $\dfrac{v^2}{r} = \dfrac{100}{40} = 2.5\ \text{m/s}^2$
+$P = 1000 \cdot (10 - 2.5) = 7500\ \text{N}$ — less than at rest ($10\,000\ \text{N}$).
+AKA: $7500\ \text{ნ}$
+AEN: $7500\ \text{N}$
+
+--- medium circular
+KA: $0{,}2\ \text{კგ}$ მასის ქვა $0{,}5\ \text{მ}$ სიგრძის ძაფით ჰორიზონტალურ წრეწირზე ბრუნავს, წამში $2$ ბრუნით (სიმძიმის ძალა უგულებელყავით). იპოვეთ ქვის სიჩქარე და ძაფის დაჭიმულობა.
+EN: A $0.2\ \text{kg}$ stone whirls in a horizontal circle on a $0.5\ \text{m}$ string, making $2$ revolutions per second (ignore gravity). Find the stone's speed and the tension in the string.
+HKA: ძაფის დაჭიმულობაა ცენტრისკენული ძალა: $T = \dfrac{m v^2}{r}$.
+HEN: The tension provides the centripetal force: $T = \dfrac{m v^2}{r}$.
+SKA: **ფორმულა:** $v = 2\pi r \nu$, $\ T = \dfrac{m v^2}{r} = 4\pi^2 m r \nu^2$
+**რიცხვები:** $v = 2 \cdot 3{,}14 \cdot 0{,}5 \cdot 2 \approx 6{,}28\ \text{მ/წმ}$
+$T = \dfrac{0{,}2 \cdot 6{,}28^2}{0{,}5} \approx 15{,}8\ \text{ნ}$
+SEN: **Formula:** $v = 2\pi r \nu$, $\ T = \dfrac{m v^2}{r} = 4\pi^2 m r \nu^2$
+**Numbers:** $v = 2 \cdot 3.14 \cdot 0.5 \cdot 2 \approx 6.28\ \text{m/s}$
+$T = \dfrac{0.2 \cdot 6.28^2}{0.5} \approx 15.8\ \text{N}$
+AKA: $\approx 6{,}3\ \text{მ/წმ}$; $\approx 15{,}8\ \text{ნ}$
+AEN: $\approx 6.3\ \text{m/s}$; $\approx 15.8\ \text{N}$
+
+--- medium circular
+KA: გამოთვალეთ პირველი კოსმოსური სიჩქარე — თანამგზავრის სიჩქარე დედამიწის ზედაპირთან ახლოს წრიულ ორბიტაზე.
+EN: Calculate the first cosmic velocity — the speed of a satellite in a circular orbit just above the Earth's surface.
+HKA: თანამგზავრისთვის ცენტრისკენულ ძალას სიმძიმის ძალა ქმნის: $m g = \dfrac{m v^2}{R}$.
+HEN: For the satellite, gravity provides the centripetal force: $m g = \dfrac{m v^2}{R}$.
+SKA: **ფორმულა:** $m g = \dfrac{m v^2}{R} \Rightarrow v_1 = \sqrt{g R}$
+**რიცხვები:** $v_1 = \sqrt{10 \cdot 6{,}4 \cdot 10^6} = \sqrt{6{,}4 \cdot 10^7} = 8000\ \text{მ/წმ} = 8\ \text{კმ/წმ}$
+SEN: **Formula:** $m g = \dfrac{m v^2}{R} \Rightarrow v_1 = \sqrt{g R}$
+**Numbers:** $v_1 = \sqrt{10 \cdot 6.4 \times 10^6} = \sqrt{6.4 \times 10^7} = 8000\ \text{m/s} = 8\ \text{km/s}$
+AKA: $8\ \text{კმ/წმ}$
+AEN: $8\ \text{km/s}$
+
+--- medium momentum
+KA: $2\ \text{კგ}$ მასის ურიკა $3\ \text{მ/წმ}$ სიჩქარით ეჯახება უძრავ $1\ \text{კგ}$ მასის ურიკას და მას გადაებმება. რა სიჩქარით იმოძრავებენ ურიკები ერთად?
+EN: A $2\ \text{kg}$ cart moving at $3\ \text{m/s}$ hits a stationary $1\ \text{kg}$ cart and couples to it. How fast do the carts move together?
+HKA: იმპულსის მუდმივობის კანონი: დაჯახებამდე ჯამური იმპულსი = დაჯახების შემდეგ ჯამურ იმპულსს.
+HEN: Conservation of momentum: total momentum before = total momentum after.
+SKA: **ფორმულა:** $m_1 v_1 + m_2 \cdot 0 = (m_1 + m_2)\, u \Rightarrow u = \dfrac{m_1 v_1}{m_1 + m_2}$
+**რიცხვები:** $u = \dfrac{2 \cdot 3}{2 + 1} = 2\ \text{მ/წმ}$
+SEN: **Formula:** $m_1 v_1 + m_2 \cdot 0 = (m_1 + m_2)\, u \Rightarrow u = \dfrac{m_1 v_1}{m_1 + m_2}$
+**Numbers:** $u = \dfrac{2 \cdot 3}{2 + 1} = 2\ \text{m/s}$
+AKA: $2\ \text{მ/წმ}$
+AEN: $2\ \text{m/s}$
+
+--- medium momentum
+KA: $4\ \text{კგ}$ მასის თოფიდან $10\ \text{გ}$ მასის ტყვია $600\ \text{მ/წმ}$ სიჩქარით გაფრინდა. რა სიჩქარით „უკუიცემა“ თოფი?
+EN: A $10\ \text{g}$ bullet leaves a $4\ \text{kg}$ rifle at $600\ \text{m/s}$. With what speed does the rifle recoil?
+HKA: გასროლამდე სისტემის იმპულსი ნულია — ასეთივე უნდა დარჩეს.
+HEN: Before the shot the total momentum is zero — and it must stay zero.
+SKA: **ფორმულა:** $0 = m v + M u \Rightarrow u = -\dfrac{m v}{M}$
+**რიცხვები:** $u = -\dfrac{0{,}01 \cdot 600}{4} = -1{,}5\ \text{მ/წმ}$ (ნიშანი — ტყვიის საწინააღმდეგოდ)
+SEN: **Formula:** $0 = m v + M u \Rightarrow u = -\dfrac{m v}{M}$
+**Numbers:** $u = -\dfrac{0.01 \cdot 600}{4} = -1.5\ \text{m/s}$ (minus sign — opposite to the bullet)
+AKA: $1{,}5\ \text{მ/წმ}$
+AEN: $1.5\ \text{m/s}$
+
+--- medium momentum
+KA: $0{,}4\ \text{კგ}$ მასის ბურთი კედელს $10\ \text{მ/წმ}$ სიჩქარით ეჯახება მართობულად და იმავე სიდიდის სიჩქარით უკან აირეკლება. დარტყმა $0{,}02\ \text{წმ}$ გრძელდება. იპოვეთ იმპულსის ცვლილება და კედლის მხრიდან მოქმედი საშუალო ძალა.
+EN: A $0.4\ \text{kg}$ ball hits a wall head-on at $10\ \text{m/s}$ and bounces straight back at the same speed. The impact lasts $0.02\ \text{s}$. Find the change in momentum and the average force from the wall.
+HKA: სიჩქარემ მიმართულება შეიცვალა: $\Delta v = v - (-v) = 2v$. ძალის იმპულსი: $F \Delta t = \Delta p$.
+HEN: The velocity reversed: $\Delta v = v - (-v) = 2v$. Impulse: $F \Delta t = \Delta p$.
+SKA: **ფორმულა:** $\Delta p = m v - (-m v) = 2 m v$, $\ F = \dfrac{\Delta p}{\Delta t}$
+**რიცხვები:** $\Delta p = 2 \cdot 0{,}4 \cdot 10 = 8\ \text{კგ}\cdot\text{მ/წმ}$
+$F = \dfrac{8}{0{,}02} = 400\ \text{ნ}$
+SEN: **Formula:** $\Delta p = m v - (-m v) = 2 m v$, $\ F = \dfrac{\Delta p}{\Delta t}$
+**Numbers:** $\Delta p = 2 \cdot 0.4 \cdot 10 = 8\ \text{kg}\cdot\text{m/s}$
+$F = \dfrac{8}{0.02} = 400\ \text{N}$
+AKA: $8\ \text{კგ}\cdot\text{მ/წმ}$; $400\ \text{ნ}$
+AEN: $8\ \text{kg}\cdot\text{m/s}$; $400\ \text{N}$
+
+--- medium energy
+KA: ბურთი $5\ \text{მ}$ სიმაღლიდან უსაწყისო სიჩქარით ვარდება. ენერგიის მუდმივობის კანონით იპოვეთ მისი სიჩქარე მიწასთან.
+EN: A ball falls from rest from a height of $5\ \text{m}$. Use conservation of energy to find its speed at the ground.
+HKA: პოტენციური ენერგია მთლიანად კინეტიკურში გადადის: $m g h = \dfrac{m v^2}{2}$.
+HEN: All the potential energy turns into kinetic: $m g h = \dfrac{m v^2}{2}$.
+SKA: **ფორმულა:** $m g h = \dfrac{m v^2}{2} \Rightarrow v = \sqrt{2 g h}$ (მასა შეიკვეცა)
+**რიცხვები:** $v = \sqrt{2 \cdot 10 \cdot 5} = 10\ \text{მ/წმ}$
+SEN: **Formula:** $m g h = \dfrac{m v^2}{2} \Rightarrow v = \sqrt{2 g h}$ (the mass cancels)
+**Numbers:** $v = \sqrt{2 \cdot 10 \cdot 5} = 10\ \text{m/s}$
+AKA: $10\ \text{მ/წმ}$
+AEN: $10\ \text{m/s}$
+
+--- medium energy
+KA: ქანქარის ბურთულა ყველაზე დაბალ წერტილს $2\ \text{მ/წმ}$ სიჩქარით გადის. რა მაქსიმალურ სიმაღლეზე ადის ბურთულა ყველაზე დაბალი წერტილიდან?
+EN: A pendulum bob passes its lowest point at $2\ \text{m/s}$. To what maximum height above the lowest point does it rise?
+HKA: უკიდურეს წერტილში ბურთულა წამიერად ჩერდება.
+HEN: At the extreme position the bob momentarily stops.
+SKA: **ფორმულა:** $\dfrac{m v^2}{2} = m g h \Rightarrow h = \dfrac{v^2}{2 g}$
+**რიცხვები:** $h = \dfrac{2^2}{2 \cdot 10} = 0{,}2\ \text{მ} = 20\ \text{სმ}$
+SEN: **Formula:** $\dfrac{m v^2}{2} = m g h \Rightarrow h = \dfrac{v^2}{2 g}$
+**Numbers:** $h = \dfrac{2^2}{2 \cdot 10} = 0.2\ \text{m} = 20\ \text{cm}$
+AKA: $20\ \text{სმ}$
+AEN: $20\ \text{cm}$
+
+--- medium statics
+KA: $4\ \text{მ}$ სიგრძისა და $20\ \text{კგ}$ მასის ერთგვაროვანი ძელი ბოლოებით ორ საყრდენზე დევს. ძელზე, მარცხენა ბოლოდან $1\ \text{მ}$-ზე, $60\ \text{კგ}$ მასის ადამიანი დგას. რა ძალით აწვება ძელი თითოეულ საყრდენს?
+EN: A uniform beam $4\ \text{m}$ long with mass $20\ \text{kg}$ rests on two supports at its ends. A $60\ \text{kg}$ person stands $1\ \text{m}$ from the left end. With what force does the beam press on each support?
+HKA: ორი პირობა: ძალთა ჯამი ნულია და მომენტების ჯამი ნულია. მომენტები აიღეთ მარცხენა საყრდენის მიმართ.
+HEN: Two conditions: the forces sum to zero and the moments sum to zero. Take moments about the left support.
+SKA: **ფორმულა:** $N_A + N_B = M g + m g$; მარცხენა საყრდენის მიმართ: $N_B L = M g \dfrac{L}{2} + m g\, d$
+**რიცხვები:** $N_B \cdot 4 = 200 \cdot 2 + 600 \cdot 1 = 1000 \Rightarrow N_B = 250\ \text{ნ}$
+$N_A = 800 - 250 = 550\ \text{ნ}$
+SEN: **Formula:** $N_A + N_B = M g + m g$; about the left support: $N_B L = M g \dfrac{L}{2} + m g\, d$
+**Numbers:** $N_B \cdot 4 = 200 \cdot 2 + 600 \cdot 1 = 1000 \Rightarrow N_B = 250\ \text{N}$
+$N_A = 800 - 250 = 550\ \text{N}$
+AKA: მარცხენა $550\ \text{ნ}$, მარჯვენა $250\ \text{ნ}$
+AEN: left $550\ \text{N}$, right $250\ \text{N}$
+
+// ===================================================================== HARD
+
+--- hard vectors
+KA: თვითმფრინავი უნდა გაფრინდეს ქალაქში, რომელიც $300\ \text{კმ}$-ით ჩრდილოეთითაა. ქარი უბერავს დასავლეთიდან აღმოსავლეთისკენ $60\ \text{კმ/სთ}$ სიჩქარით, თვითმფრინავის სიჩქარე ჰაერის მიმართ $100\ \text{კმ/სთ}$-ია. რა კურსით უნდა იფრინოს მან და რა დრო დასჭირდება?
+EN: A plane must fly to a city $300\ \text{km}$ due north. The wind blows from west to east at $60\ \text{km/h}$ and the plane's airspeed is $100\ \text{km/h}$. What heading must it take and how long will the flight take?
+HKA: სიჩქარე მიწის მიმართ (ჩრდილოეთით) = სიჩქარე ჰაერის მიმართ + ქარის სიჩქარე. ააგეთ მართკუთხა სამკუთხედი, რომლის ჰიპოტენუზაა $100$.
+HEN: Ground velocity (due north) = air velocity + wind velocity. Draw a right triangle with hypotenuse $100$.
+SKA: **ფორმულა:** $\vec{v}_{\text{მიწ}} = \vec{v}_{\text{ჰაერ}} + \vec{u}$; $\ \sin\alpha = \dfrac{u}{v_{\text{ჰ}}}$, $\ v_{\text{მიწ}} = \sqrt{v_{\text{ჰ}}^2 - u^2}$, $\ t = \dfrac{L}{v_{\text{მიწ}}}$
+**რიცხვები:** $\sin\alpha = \dfrac{60}{100} = 0{,}6 \Rightarrow \alpha \approx 37^\circ$ ჩრდილოეთიდან დასავლეთისკენ
+$v_{\text{მიწ}} = \sqrt{100^2 - 60^2} = 80\ \text{კმ/სთ}$
+$t = \dfrac{300}{80} = 3{,}75\ \text{სთ} = 3\ \text{სთ}\ 45\ \text{წთ}$
+SEN: **Formula:** $\vec{v}_{\text{ground}} = \vec{v}_{\text{air}} + \vec{u}$; $\ \sin\alpha = \dfrac{u}{v_{\text{air}}}$, $\ v_{\text{ground}} = \sqrt{v_{\text{air}}^2 - u^2}$, $\ t = \dfrac{L}{v_{\text{ground}}}$
+**Numbers:** $\sin\alpha = \dfrac{60}{100} = 0.6 \Rightarrow \alpha \approx 37^\circ$ west of north
+$v_{\text{ground}} = \sqrt{100^2 - 60^2} = 80\ \text{km/h}$
+$t = \dfrac{300}{80} = 3.75\ \text{h} = 3\ \text{h}\ 45\ \text{min}$
+AKA: $\approx 37^\circ$ ჩრდილოეთიდან დასავლეთისკენ; $3{,}75\ \text{სთ}$
+AEN: $\approx 37^\circ$ west of north; $3.75\ \text{h}$
+
+--- hard accel
+KA: თანაბარაჩქარებულად მოძრავმა სხეულმა პირველ $2\ \text{წმ}$-ში $10\ \text{მ}$, მომდევნო $2\ \text{წმ}$-ში კი $30\ \text{მ}$ გაიარა. იპოვეთ საწყისი სიჩქარე და აჩქარება.
+EN: A uniformly accelerating body covers $10\ \text{m}$ in the first $2\ \text{s}$ and $30\ \text{m}$ in the next $2\ \text{s}$. Find the initial velocity and the acceleration.
+HKA: ტოლი დროის შუალედებში ($T$) გავლილი მანძილების სხვაობა მუდმივია: $s_2 - s_1 = a T^2$.
+HEN: For equal time intervals $T$, successive distances differ by a constant: $s_2 - s_1 = a T^2$.
+SKA: **ფორმულა:** $s_1 = v_0 T + \dfrac{a T^2}{2}$, $\ s_1 + s_2 = 2 v_0 T + \dfrac{a (2T)^2}{2}$ $\Rightarrow$ $s_2 - s_1 = a T^2$
+$a = \dfrac{s_2 - s_1}{T^2}$, $\ v_0 = \dfrac{s_1}{T} - \dfrac{a T}{2}$
+**რიცხვები:** $a = \dfrac{30 - 10}{2^2} = 5\ \text{მ/წმ}^2$
+$v_0 = \dfrac{10}{2} - \dfrac{5 \cdot 2}{2} = 0$ — სხეული მოსვენებიდან დაიძრა.
+SEN: **Formula:** $s_1 = v_0 T + \dfrac{a T^2}{2}$, $\ s_1 + s_2 = 2 v_0 T + \dfrac{a (2T)^2}{2}$ $\Rightarrow$ $s_2 - s_1 = a T^2$
+$a = \dfrac{s_2 - s_1}{T^2}$, $\ v_0 = \dfrac{s_1}{T} - \dfrac{a T}{2}$
+**Numbers:** $a = \dfrac{30 - 10}{2^2} = 5\ \text{m/s}^2$
+$v_0 = \dfrac{10}{2} - \dfrac{5 \cdot 2}{2} = 0$ — the body started from rest.
+AKA: $v_0 = 0$, $a = 5\ \text{მ/წმ}^2$
+AEN: $v_0 = 0$, $a = 5\ \text{m/s}^2$
+
+--- hard freefall
+KA: $80\ \text{მ}$ სიმაღლიდან ქვა უსაწყისო სიჩქარით გააგდეს. $1\ \text{წმ}$-ის შემდეგ იმავე წერტილიდან მეორე ქვა ვერტიკალურად ქვემოთ ისროლეს. ორივე ქვა მიწას ერთდროულად დაეცა. რა საწყისი სიჩქარით ისროლეს მეორე ქვა?
+EN: A stone is dropped from a height of $80\ \text{m}$. One second later a second stone is thrown straight down from the same point. Both reach the ground at the same moment. With what initial speed was the second stone thrown?
+HKA: იპოვეთ პირველი ქვის ვარდნის დრო; მეორეს $1\ \text{წმ}$-ით ნაკლები აქვს.
+HEN: Find the fall time of the first stone; the second has $1\ \text{s}$ less.
+SKA: **ფორმულა:** $t_1 = \sqrt{\dfrac{2h}{g}}$, $\ t_2 = t_1 - \tau$; $\ h = v_0 t_2 + \dfrac{g t_2^2}{2} \Rightarrow v_0 = \dfrac{h}{t_2} - \dfrac{g t_2}{2}$
+**რიცხვები:** $t_1 = \sqrt{\dfrac{2 \cdot 80}{10}} = 4\ \text{წმ}$, $\ t_2 = 3\ \text{წმ}$
+$v_0 = \dfrac{80}{3} - \dfrac{10 \cdot 3}{2} = \dfrac{80 - 45}{3} = \dfrac{35}{3} \approx 11{,}7\ \text{მ/წმ}$
+SEN: **Formula:** $t_1 = \sqrt{\dfrac{2h}{g}}$, $\ t_2 = t_1 - \tau$; $\ h = v_0 t_2 + \dfrac{g t_2^2}{2} \Rightarrow v_0 = \dfrac{h}{t_2} - \dfrac{g t_2}{2}$
+**Numbers:** $t_1 = \sqrt{\dfrac{2 \cdot 80}{10}} = 4\ \text{s}$, $\ t_2 = 3\ \text{s}$
+$v_0 = \dfrac{80}{3} - \dfrac{10 \cdot 3}{2} = \dfrac{80 - 45}{3} = \dfrac{35}{3} \approx 11.7\ \text{m/s}$
+AKA: $\approx 11{,}7\ \text{მ/წმ}$
+AEN: $\approx 11.7\ \text{m/s}$
+
+--- hard freefall
+KA: $20\ \text{მ}$ სიმაღლის კოშკიდან ჰორიზონტალურად ნასროლი ქვა კოშკის ფუძიდან $20\ \text{მ}$-ზე დაეცა. იპოვეთ საწყისი სიჩქარე და კუთხე, რომლითაც ქვა მიწას ეცემა.
+EN: A stone thrown horizontally from a $20\ \text{m}$ tower lands $20\ \text{m}$ from its base. Find the initial speed and the angle at which the stone hits the ground.
+HKA: დაცემის კუთხე: $\tan\theta = \dfrac{v_y}{v_x}$.
+HEN: Landing angle: $\tan\theta = \dfrac{v_y}{v_x}$.
+SKA: **ფორმულა:** $t = \sqrt{\dfrac{2h}{g}}$, $\ v_0 = \dfrac{L}{t}$, $\ v_y = g t$, $\ \tan\theta = \dfrac{g t}{v_0}$
+**რიცხვები:** $t = \sqrt{\dfrac{2 \cdot 20}{10}} = 2\ \text{წმ}$, $\ v_0 = \dfrac{20}{2} = 10\ \text{მ/წმ}$
+$v_y = 20\ \text{მ/წმ}$, $\ \tan\theta = \dfrac{20}{10} = 2 \Rightarrow \theta \approx 63^\circ$ ჰორიზონტთან
+SEN: **Formula:** $t = \sqrt{\dfrac{2h}{g}}$, $\ v_0 = \dfrac{L}{t}$, $\ v_y = g t$, $\ \tan\theta = \dfrac{g t}{v_0}$
+**Numbers:** $t = \sqrt{\dfrac{2 \cdot 20}{10}} = 2\ \text{s}$, $\ v_0 = \dfrac{20}{2} = 10\ \text{m/s}$
+$v_y = 20\ \text{m/s}$, $\ \tan\theta = \dfrac{20}{10} = 2 \Rightarrow \theta \approx 63^\circ$ to the horizontal
+AKA: $10\ \text{მ/წმ}$; $\approx 63^\circ$
+AEN: $10\ \text{m/s}$; $\approx 63^\circ$
+
+--- hard newton2
+KA: ძელაკი სრიალებს $30^\circ$ დახრილობის დახრილ სიბრტყეზე. იპოვეთ აჩქარება: ა) ხახუნის გარეშე; ბ) როცა ხახუნის კოეფიციენტია $0{,}2$.
+EN: A block slides down a $30^\circ$ incline. Find its acceleration: a) without friction; b) with coefficient of friction $0.2$.
+HKA: სიმძიმის ძალა დაშალეთ სიბრტყის გასწვრივ ($mg\sin\alpha$) და მის მართობულად ($mg\cos\alpha$). $N = mg\cos\alpha$.
+HEN: Split gravity along the incline ($mg\sin\alpha$) and perpendicular to it ($mg\cos\alpha$). $N = mg\cos\alpha$.
+SKA: **ფორმულა:** $m a = m g \sin\alpha - \mu m g \cos\alpha \Rightarrow a = g(\sin\alpha - \mu\cos\alpha)$
+**რიცხვები:** ა) $\mu = 0$: $a = 10 \cdot 0{,}5 = 5\ \text{მ/წმ}^2$
+ბ) $a = 10 \cdot (0{,}5 - 0{,}2 \cdot 0{,}866) \approx 10 \cdot 0{,}327 \approx 3{,}3\ \text{მ/წმ}^2$
+SEN: **Formula:** $m a = m g \sin\alpha - \mu m g \cos\alpha \Rightarrow a = g(\sin\alpha - \mu\cos\alpha)$
+**Numbers:** a) $\mu = 0$: $a = 10 \cdot 0.5 = 5\ \text{m/s}^2$
+b) $a = 10 \cdot (0.5 - 0.2 \cdot 0.866) \approx 10 \cdot 0.327 \approx 3.3\ \text{m/s}^2$
+AKA: ა) $5\ \text{მ/წმ}^2$; ბ) $\approx 3{,}3\ \text{მ/წმ}^2$
+AEN: a) $5\ \text{m/s}^2$; b) $\approx 3.3\ \text{m/s}^2$
+
+--- hard newton2
+KA: უძრავ ჭოჭონაქზე გადადებულ უჭიმვად ძაფზე $3\ \text{კგ}$ და $2\ \text{კგ}$ მასის ტვირთებია ჩამოკიდებული (ატვუდის მანქანა). იპოვეთ ტვირთების აჩქარება და ძაფის დაჭიმულობა.
+EN: Loads of $3\ \text{kg}$ and $2\ \text{kg}$ hang from an inextensible string over a fixed pulley (Atwood machine). Find the acceleration and the tension.
+HKA: დაწერეთ II კანონი თითოეული ტვირთისთვის ცალ-ცალკე; ორივეს ერთნაირი აჩქარების მოდული აქვს.
+HEN: Write the second law for each load separately; both have the same magnitude of acceleration.
+SKA: **ფორმულა:** $m_1 g - T = m_1 a$, $\ T - m_2 g = m_2 a$
+შევკრიბოთ: $a = \dfrac{(m_1 - m_2)\, g}{m_1 + m_2}$, $\ T = m_2 (g + a) = \dfrac{2 m_1 m_2 g}{m_1 + m_2}$
+**რიცხვები:** $a = \dfrac{(3 - 2) \cdot 10}{5} = 2\ \text{მ/წმ}^2$
+$T = 2 \cdot (10 + 2) = 24\ \text{ნ}$
+SEN: **Formula:** $m_1 g - T = m_1 a$, $\ T - m_2 g = m_2 a$
+Add them: $a = \dfrac{(m_1 - m_2)\, g}{m_1 + m_2}$, $\ T = m_2 (g + a) = \dfrac{2 m_1 m_2 g}{m_1 + m_2}$
+**Numbers:** $a = \dfrac{(3 - 2) \cdot 10}{5} = 2\ \text{m/s}^2$
+$T = 2 \cdot (10 + 2) = 24\ \text{N}$
+AKA: $2\ \text{მ/წმ}^2$; $24\ \text{ნ}$
+AEN: $2\ \text{m/s}^2$; $24\ \text{N}$
+
+--- hard forces
+KA: მაგიდაზე $3\ \text{კგ}$ მასის ძელაკი დევს, რომელიც მაგიდის კიდეზე დამაგრებულ ჭოჭონაქზე გადადებული ძაფით დაკავშირებულია ჩამოკიდებულ $2\ \text{კგ}$ მასის ტვირთთან. ძელაკსა და მაგიდას შორის ხახუნის კოეფიციენტია $0{,}2$. იპოვეთ აჩქარება და ძაფის დაჭიმულობა.
+EN: A $3\ \text{kg}$ block on a table is connected by a string over a pulley at the table's edge to a hanging $2\ \text{kg}$ load. The coefficient of friction between block and table is $0.2$. Find the acceleration and the tension.
+HKA: ძელაკისთვის: $T - \mu m_1 g = m_1 a$; ჩამოკიდებული ტვირთისთვის: $m_2 g - T = m_2 a$.
+HEN: For the block: $T - \mu m_1 g = m_1 a$; for the hanging load: $m_2 g - T = m_2 a$.
+SKA: **ფორმულა:** შევკრიბოთ განტოლებები: $a = \dfrac{m_2 g - \mu m_1 g}{m_1 + m_2}$, $\ T = m_2 (g - a)$
+**რიცხვები:** $a = \dfrac{2 \cdot 10 - 0{,}2 \cdot 3 \cdot 10}{3 + 2} = \dfrac{20 - 6}{5} = 2{,}8\ \text{მ/წმ}^2$
+$T = 2 \cdot (10 - 2{,}8) = 14{,}4\ \text{ნ}$
+SEN: **Formula:** adding the equations: $a = \dfrac{m_2 g - \mu m_1 g}{m_1 + m_2}$, $\ T = m_2 (g - a)$
+**Numbers:** $a = \dfrac{2 \cdot 10 - 0.2 \cdot 3 \cdot 10}{3 + 2} = \dfrac{20 - 6}{5} = 2.8\ \text{m/s}^2$
+$T = 2 \cdot (10 - 2.8) = 14.4\ \text{N}$
+AKA: $2{,}8\ \text{მ/წმ}^2$; $14{,}4\ \text{ნ}$
+AEN: $2.8\ \text{m/s}^2$; $14.4\ \text{N}$
+
+--- hard weight
+KA: ლიფტში მდგარი $60\ \text{კგ}$ მასის მგზავრის ქვეშ სასწორი $700\ \text{ნ}$-ს აჩვენებს. იპოვეთ ლიფტის აჩქარების სიდიდე და მიმართულება. შეიძლება თუ არა ლიფტი ამ დროს ქვემოთ მოძრაობდეს?
+EN: Scales under a $60\ \text{kg}$ passenger in a lift read $700\ \text{N}$. Find the size and direction of the lift's acceleration. Could the lift be moving downwards at that moment?
+HKA: $P = m(g + a)$. აჩქარების მიმართულება და სიჩქარის მიმართულება სხვადასხვა რამეა.
+HEN: $P = m(g + a)$. The direction of acceleration and the direction of velocity are different things.
+SKA: **ფორმულა:** $P = m (g + a) \Rightarrow a = \dfrac{P}{m} - g$
+**რიცხვები:** $a = \dfrac{700}{60} - 10 \approx 11{,}67 - 10 = 1{,}67\ \text{მ/წმ}^2$, მიმართულია ზემოთ.
+დიახ, შეიძლება: ლიფტი ან ზემოთ აჩქარდება, ან **ქვემოთ მოძრაობს და ანელებს** (მაგ., სართულთან გაჩერებისას) — ორივე შემთხვევაში აჩქარება ზემოთაა მიმართული.
+SEN: **Formula:** $P = m (g + a) \Rightarrow a = \dfrac{P}{m} - g$
+**Numbers:** $a = \dfrac{700}{60} - 10 \approx 11.67 - 10 = 1.67\ \text{m/s}^2$, pointing upwards.
+Yes, it could: the lift is either speeding up while going up, or **moving down and slowing down** (e.g. stopping at a floor) — in both cases the acceleration points up.
+AKA: $\approx 1{,}7\ \text{მ/წმ}^2$ ზემოთ; შეიძლება (ქვემოთ მოძრაობს და ანელებს)
+AEN: $\approx 1.7\ \text{m/s}^2$ upwards; yes (moving down while slowing)
+
+--- hard weight
+KA: თვითმფრინავი ვერტიკალურ სიბრტყეში $500\ \text{მ}$ რადიუსის „მარყუჟს“ აკეთებს. ქვედა წერტილში მისი სიჩქარეა $100\ \text{მ/წმ}$. რა ძალით აწვება $70\ \text{კგ}$ მასის პილოტი სავარძელს ამ წერტილში? რამდენჯერ აღემატება ეს მის ჩვეულებრივ წონას (გადატვირთვა)?
+EN: A plane flies a vertical loop of radius $500\ \text{m}$. At the bottom its speed is $100\ \text{m/s}$. With what force does a $70\ \text{kg}$ pilot press on the seat there? How many times larger is this than their normal weight (the g-force)?
+HKA: ქვედა წერტილში ცენტრისკენული აჩქარება ზემოთაა მიმართული: $N - mg = \dfrac{m v^2}{R}$.
+HEN: At the bottom the centripetal acceleration points up: $N - mg = \dfrac{m v^2}{R}$.
+SKA: **ფორმულა:** $N - m g = \dfrac{m v^2}{R} \Rightarrow P = m\left(g + \dfrac{v^2}{R}\right)$, $\ n = \dfrac{P}{m g} = 1 + \dfrac{v^2}{g R}$
+**რიცხვები:** $\dfrac{v^2}{R} = \dfrac{100^2}{500} = 20\ \text{მ/წმ}^2$
+$P = 70 \cdot (10 + 20) = 2100\ \text{ნ}$, $\ n = \dfrac{2100}{700} = 3$
+SEN: **Formula:** $N - m g = \dfrac{m v^2}{R} \Rightarrow P = m\left(g + \dfrac{v^2}{R}\right)$, $\ n = \dfrac{P}{m g} = 1 + \dfrac{v^2}{g R}$
+**Numbers:** $\dfrac{v^2}{R} = \dfrac{100^2}{500} = 20\ \text{m/s}^2$
+$P = 70 \cdot (10 + 20) = 2100\ \text{N}$, $\ n = \dfrac{2100}{700} = 3$
+AKA: $2100\ \text{ნ}$; სამმაგი გადატვირთვა
+AEN: $2100\ \text{N}$; a g-force of 3
+
+--- hard circular
+KA: რა მაქსიმალური სიჩქარით შეუძლია ავტომობილს $50\ \text{მ}$ რადიუსის ჰორიზონტალური მოსახვევის გავლა, თუ საბურავებსა და გზას შორის ხახუნის კოეფიციენტია $0{,}5$?
+EN: What is the maximum speed at which a car can take a horizontal bend of radius $50\ \text{m}$ if the coefficient of friction between tyres and road is $0.5$?
+HKA: ცენტრისკენულ ძალას უძრაობის ხახუნის ძალა ქმნის, რომელიც არ აღემატება $\mu m g$-ს.
+HEN: Static friction provides the centripetal force, and it cannot exceed $\mu m g$.
+SKA: **ფორმულა:** $\dfrac{m v^2}{r} \le \mu m g \Rightarrow v_{\max} = \sqrt{\mu g r}$ (მასაზე არ არის დამოკიდებული)
+**რიცხვები:** $v_{\max} = \sqrt{0{,}5 \cdot 10 \cdot 50} = \sqrt{250} \approx 15{,}8\ \text{მ/წმ} \approx 57\ \text{კმ/სთ}$
+SEN: **Formula:** $\dfrac{m v^2}{r} \le \mu m g \Rightarrow v_{\max} = \sqrt{\mu g r}$ (independent of the mass)
+**Numbers:** $v_{\max} = \sqrt{0.5 \cdot 10 \cdot 50} = \sqrt{250} \approx 15.8\ \text{m/s} \approx 57\ \text{km/h}$
+AKA: $\approx 15{,}8\ \text{მ/წმ}$ ($\approx 57\ \text{კმ/სთ}$)
+AEN: $\approx 15.8\ \text{m/s}$ ($\approx 57\ \text{km/h}$)
+
+--- hard circular
+KA: თანამგზავრი დედამიწის რადიუსის ტოლ სიმაღლეზე ($h = R$) წრიულ ორბიტაზე მოძრაობს. იპოვეთ მისი სიჩქარე და ბრუნვის პერიოდი. (სიმძიმის აჩქარება მანძილის კვადრატის უკუპროპორციულია.)
+EN: A satellite orbits in a circle at a height equal to the Earth's radius ($h = R$). Find its speed and orbital period. (The gravitational acceleration is inversely proportional to the square of the distance.)
+HKA: ორბიტის რადიუსია $2R$, იქ $g' = g\left(\dfrac{R}{2R}\right)^2 = \dfrac{g}{4}$.
+HEN: The orbit radius is $2R$, where $g' = g\left(\dfrac{R}{2R}\right)^2 = \dfrac{g}{4}$.
+SKA: **ფორმულა:** $g' = g\dfrac{R^2}{r^2}$, $\ m g' = \dfrac{m v^2}{r} \Rightarrow v = \sqrt{g' r} = \sqrt{\dfrac{g R^2}{r}}$; $\ T = \dfrac{2\pi r}{v}$; $\ r = 2R$
+$v = \sqrt{\dfrac{g R}{2}} = \dfrac{v_1}{\sqrt{2}}$
+**რიცხვები:** $v = \sqrt{\dfrac{10 \cdot 6{,}4 \cdot 10^6}{2}} = \sqrt{3{,}2 \cdot 10^7} \approx 5660\ \text{მ/წმ}$
+$T = \dfrac{2 \cdot 3{,}14 \cdot 1{,}28 \cdot 10^7}{5660} \approx 1{,}42 \cdot 10^4\ \text{წმ} \approx 3{,}9\ \text{სთ}$
+SEN: **Formula:** $g' = g\dfrac{R^2}{r^2}$, $\ m g' = \dfrac{m v^2}{r} \Rightarrow v = \sqrt{g' r} = \sqrt{\dfrac{g R^2}{r}}$; $\ T = \dfrac{2\pi r}{v}$; $\ r = 2R$
+$v = \sqrt{\dfrac{g R}{2}} = \dfrac{v_1}{\sqrt{2}}$
+**Numbers:** $v = \sqrt{\dfrac{10 \cdot 6.4 \times 10^6}{2}} = \sqrt{3.2 \times 10^7} \approx 5660\ \text{m/s}$
+$T = \dfrac{2 \cdot 3.14 \cdot 1.28 \times 10^7}{5660} \approx 1.42 \times 10^4\ \text{s} \approx 3.9\ \text{h}$
+AKA: $\approx 5{,}7\ \text{კმ/წმ}$; $\approx 3{,}9\ \text{სთ}$
+AEN: $\approx 5.7\ \text{km/s}$; $\approx 3.9\ \text{h}$
+
+--- hard momentum
+KA: $120\ \text{კგ}$ მასის $3\ \text{მ}$ სიგრძის ნავი წყალზე უძრავად დგას. $60\ \text{კგ}$ მასის კაცი ნავის კიჩოდან ცხვირისკენ გადადის. რა მანძილით გადაადგილდება ნავი ნაპირის მიმართ? (წყლის წინააღმდეგობა უგულებელყავით.)
+EN: A $120\ \text{kg}$ boat $3\ \text{m}$ long floats at rest. A $60\ \text{kg}$ man walks from the stern to the bow. How far does the boat move relative to the shore? (Ignore water resistance.)
+HKA: სისტემის იმპულსი ნულია, ამიტომ სისტემის მასათა ცენტრი უძრავი რჩება: $m\,x_{\text{კ}} = M\,x_{\text{ნ}}$.
+HEN: The total momentum is zero, so the centre of mass stays put: $m\,x_{\text{man}} = M\,x_{\text{boat}}$.
+SKA: **ფორმულა:** ყოველ მომენტში $m v_{\text{კ}} = M v_{\text{ნ}} \Rightarrow m x_{\text{კ}} = M x_{\text{ნ}}$; ნაპირის მიმართ $x_{\text{კ}} + x_{\text{ნ}} = L$
+$x_{\text{ნ}} = \dfrac{m L}{m + M}$
+**რიცხვები:** $x_{\text{ნ}} = \dfrac{60 \cdot 3}{60 + 120} = 1\ \text{მ}$ (კაცი ნაპირის მიმართ $2\ \text{მ}$-ს გადის)
+SEN: **Formula:** at every instant $m v_{\text{man}} = M v_{\text{boat}} \Rightarrow m x_{\text{man}} = M x_{\text{boat}}$; relative to the shore $x_{\text{man}} + x_{\text{boat}} = L$
+$x_{\text{boat}} = \dfrac{m L}{m + M}$
+**Numbers:** $x_{\text{boat}} = \dfrac{60 \cdot 3}{60 + 120} = 1\ \text{m}$ (the man moves $2\ \text{m}$ relative to the shore)
+AKA: $1\ \text{მ}$
+AEN: $1\ \text{m}$
+
+--- hard momentum
+KA: ჭურვი ტრაექტორიის უმაღლეს წერტილში $100\ \text{მ/წმ}$ ჰორიზონტალური სიჩქარით მოძრაობდა და ორ ტოლ ნაწილად გასკდა. ერთმა ნაწილმა აფეთქებისთანავე სიჩქარე დაკარგა და ვერტიკალურად ჩამოვარდა. რა სიჩქარე მიიღო მეორე ნაწილმა?
+EN: At the top of its trajectory a shell moving horizontally at $100\ \text{m/s}$ bursts into two equal halves. One half loses all its speed immediately and falls straight down. What velocity does the other half get?
+HKA: აფეთქება შინაგანი პროცესია — ჰორიზონტალური იმპულსი ინახება.
+HEN: The explosion is internal — horizontal momentum is conserved.
+SKA: **ფორმულა:** $m v = \dfrac{m}{2} \cdot 0 + \dfrac{m}{2} u \Rightarrow u = 2 v$
+**რიცხვები:** $u = 2 \cdot 100 = 200\ \text{მ/წმ}$, იმავე მიმართულებით.
+SEN: **Formula:** $m v = \dfrac{m}{2} \cdot 0 + \dfrac{m}{2} u \Rightarrow u = 2 v$
+**Numbers:** $u = 2 \cdot 100 = 200\ \text{m/s}$, in the same direction.
+AKA: $200\ \text{მ/წმ}$
+AEN: $200\ \text{m/s}$
+
+--- hard energy
+KA: $10\ \text{გ}$ მასის ტყვია $400\ \text{მ/წმ}$ სიჩქარით ერჭობა ძაფზე ჩამოკიდებულ $2\ \text{კგ}$ მასის ქვიშის ტომარას და მასში რჩება (ბალისტიკური ქანქარა). რა სიმაღლეზე აიწევს ტომარა?
+EN: A $10\ \text{g}$ bullet travelling at $400\ \text{m/s}$ embeds itself in a $2\ \text{kg}$ sandbag hanging on a string (ballistic pendulum). How high does the bag swing up?
+HKA: ორი ეტაპი: დაჯახებისას ინახება იმპულსი (არა ენერგია!), შემდეგ ქანაობისას — მექანიკური ენერგია.
+HEN: Two stages: momentum (not energy!) is conserved in the impact, then mechanical energy is conserved in the swing.
+SKA: **ფორმულა:** $m v = (m + M)\, u \Rightarrow u = \dfrac{m v}{m + M}$; $\ \dfrac{(m + M) u^2}{2} = (m + M) g h \Rightarrow h = \dfrac{u^2}{2 g}$
+**რიცხვები:** $u = \dfrac{0{,}01 \cdot 400}{2{,}01} \approx 1{,}99\ \text{მ/წმ}$
+$h = \dfrac{1{,}99^2}{2 \cdot 10} \approx 0{,}20\ \text{მ} = 20\ \text{სმ}$
+SEN: **Formula:** $m v = (m + M)\, u \Rightarrow u = \dfrac{m v}{m + M}$; $\ \dfrac{(m + M) u^2}{2} = (m + M) g h \Rightarrow h = \dfrac{u^2}{2 g}$
+**Numbers:** $u = \dfrac{0.01 \cdot 400}{2.01} \approx 1.99\ \text{m/s}$
+$h = \dfrac{1.99^2}{2 \cdot 10} \approx 0.20\ \text{m} = 20\ \text{cm}$
+AKA: $\approx 20\ \text{სმ}$
+AEN: $\approx 20\ \text{cm}$
+
+--- hard energy
+KA: $40\ \text{კგ}$ მასის მარხილი (ბავშვთან ერთად) $5\ \text{მ}$ სიმაღლის ბორცვიდან უსაწყისო სიჩქარით ჩამოსრიალდა და ძირში $8\ \text{მ/წმ}$ სიჩქარე ჰქონდა. რამდენი ენერგია დაიხარჯა ხახუნზე?
+EN: A sled with a child ($40\ \text{kg}$ in total) slides from rest down a hill $5\ \text{m}$ high and reaches the bottom at $8\ \text{m/s}$. How much energy was lost to friction?
+HKA: ხახუნის არსებობისას მექანიკური ენერგია მცირდება; დანაკლისი = ხახუნის ძალის მუშაობა.
+HEN: With friction, mechanical energy decreases; the loss equals the work done by friction.
+SKA: **ფორმულა:** $Q = E_{p} - E_{k} = m g h - \dfrac{m v^2}{2}$
+**რიცხვები:** $m g h = 40 \cdot 10 \cdot 5 = 2000\ \text{ჯ}$, $\ \dfrac{m v^2}{2} = \dfrac{40 \cdot 64}{2} = 1280\ \text{ჯ}$
+$Q = 2000 - 1280 = 720\ \text{ჯ}$
+SEN: **Formula:** $Q = E_{p} - E_{k} = m g h - \dfrac{m v^2}{2}$
+**Numbers:** $m g h = 40 \cdot 10 \cdot 5 = 2000\ \text{J}$, $\ \dfrac{m v^2}{2} = \dfrac{40 \cdot 64}{2} = 1280\ \text{J}$
+$Q = 2000 - 1280 = 720\ \text{J}$
+AKA: $720\ \text{ჯ}$
+AEN: $720\ \text{J}$
+
+--- hard statics
+KA: $5\ \text{მ}$ სიგრძისა და $20\ \text{კგ}$ მასის ერთგვაროვანი კიბე მიყუდებულია გლუვ (ხახუნის გარეშე) კედელზე; კიბის ქვედა ბოლო კედლიდან $3\ \text{მ}$-ითაა დაშორებული. იპოვეთ კედლის რეაქციის ძალა, იატაკის ხახუნის ძალა და ხახუნის კოეფიციენტის მინიმალური მნიშვნელობა, რომლის დროსაც კიბე არ სრიალებს.
+EN: A uniform ladder $5\ \text{m}$ long with mass $20\ \text{kg}$ leans against a smooth (frictionless) wall; its foot is $3\ \text{m}$ from the wall. Find the wall's reaction force, the friction force from the floor and the minimum coefficient of friction for the ladder not to slip.
+HKA: კიბის ზედა ბოლო $4\ \text{მ}$ სიმაღლეზეა (პითაგორა). მომენტები აიღეთ ქვედა ბოლოს მიმართ — მაშინ იატაკის ძალები მომენტს არ ქმნის.
+HEN: The top of the ladder is $4\ \text{m}$ high (Pythagoras). Take moments about the foot — then the floor forces have no moment.
+SKA: **ფორმულა:** $N_{\text{კ}} \cdot H = m g \cdot \dfrac{a}{2}$; $\ F_{\text{ხახ}} = N_{\text{კ}}$; $\ N_{\text{ი}} = m g$; $\ \mu_{\min} = \dfrac{F_{\text{ხახ}}}{N_{\text{ი}}}$
+სადაც $H = \sqrt{L^2 - a^2}$, $a$ — ქვედა ბოლოს დაშორება კედლიდან.
+**რიცხვები:** $H = \sqrt{5^2 - 3^2} = 4\ \text{მ}$
+$N_{\text{კ}} = \dfrac{200 \cdot 1{,}5}{4} = 75\ \text{ნ}$, $\ F_{\text{ხახ}} = 75\ \text{ნ}$, $\ N_{\text{ი}} = 200\ \text{ნ}$
+$\mu_{\min} = \dfrac{75}{200} = 0{,}375$
+SEN: **Formula:** $N_{\text{w}} \cdot H = m g \cdot \dfrac{a}{2}$; $\ F_{\text{fr}} = N_{\text{w}}$; $\ N_{\text{f}} = m g$; $\ \mu_{\min} = \dfrac{F_{\text{fr}}}{N_{\text{f}}}$
+where $H = \sqrt{L^2 - a^2}$ and $a$ is the distance of the foot from the wall.
+**Numbers:** $H = \sqrt{5^2 - 3^2} = 4\ \text{m}$
+$N_{\text{w}} = \dfrac{200 \cdot 1.5}{4} = 75\ \text{N}$, $\ F_{\text{fr}} = 75\ \text{N}$, $\ N_{\text{f}} = 200\ \text{N}$
+$\mu_{\min} = \dfrac{75}{200} = 0.375$
+AKA: $75\ \text{ნ}$; $75\ \text{ნ}$; $\mu_{\min} = 0{,}375$
+AEN: $75\ \text{N}$; $75\ \text{N}$; $\mu_{\min} = 0.375$
+
+--- hard newton1
+KA: ინერციულ ათვლის სისტემაში მყოფი დამკვირვებლისთვის მატარებლის ვაგონში მაგიდიდან ბურთი უცებ წინ (მატარებლის მოძრაობის მიმართულებით) გაგორდა, თუმცა არავის შეხებია. რა ხდება მატარებელს? არის თუ არა ვაგონი ამ დროს ინერციული ათვლის სისტემა? ბურთი $0{,}5\ \text{წმ}$-ში ვაგონის მიმართ $0{,}5\ \text{მ}$ გაგორდა მოსვენებიდან — შეაფასეთ მატარებლის აჩქარება.
+EN: In a train carriage, a ball on a table suddenly rolls forward (in the direction of travel) although nobody touched it. What is the train doing? Is the carriage an inertial frame at that moment? The ball rolls $0.5\ \text{m}$ relative to the carriage in $0.5\ \text{s}$ starting from rest — estimate the train's acceleration.
+HKA: მიწის მიმართ ბურთი ინერციით ინარჩუნებს სიჩქარეს; ვაგონი კი მის ქვეშ ნელდება.
+HEN: Relative to the ground the ball keeps its velocity by inertia; the carriage slows down under it.
+SKA: მიწასთან დაკავშირებულ (ინერციულ) სისტემაში ბურთზე ჰორიზონტალური ძალა არ მოქმედებს (გორვის ხახუნს უგულებელვყოფთ), ამიტომ I კანონით მისი სიჩქარე უცვლელია.
+ბურთი ვაგონის მიმართ წინ მიდის — მაშასადამე ვაგონი **ანელებს** (მატარებელი მუხრუჭებს). ვაგონი აჩქარებით მოძრაობს, ე.ი. ის **არაინერციული** სისტემაა: მასში I კანონი არ სრულდება.
+**ფორმულა:** ვაგონის მიმართ ბურთი მოსვენებიდან მოძრაობს აჩქარებით $a$ (მატარებლის აჩქარების ტოლი და საწინააღმდეგო): $s = \dfrac{a t^2}{2} \Rightarrow a = \dfrac{2s}{t^2}$
+**რიცხვები:** $a = \dfrac{2 \cdot 0{,}5}{0{,}5^2} = 4\ \text{მ/წმ}^2$ — მატარებელი $4\ \text{მ/წმ}^2$ აჩქარებით მუხრუჭებს.
+SEN: In the ground (inertial) frame no horizontal force acts on the ball (ignoring rolling friction), so by the first law its velocity does not change.
+The ball moves forward relative to the carriage — so the carriage is **slowing down** (the train is braking). The carriage is accelerating, so it is a **non-inertial** frame: the first law does not hold in it.
+**Formula:** relative to the carriage the ball starts from rest with acceleration $a$ (equal and opposite to the train's): $s = \dfrac{a t^2}{2} \Rightarrow a = \dfrac{2s}{t^2}$
+**Numbers:** $a = \dfrac{2 \cdot 0.5}{0.5^2} = 4\ \text{m/s}^2$ — the train is braking at $4\ \text{m/s}^2$.
+AKA: მატარებელი მუხრუჭებს; ვაგონი არაინერციულია; $\approx 4\ \text{მ/წმ}^2$
+AEN: the train is braking; the carriage is non-inertial; $\approx 4\ \text{m/s}^2$
+
+--- hard freefall olympiad
+KA: ერთი და იმავე წერტილიდან ერთდროულად ისროლეს ორი ქვა: ერთი ვერტიკალურად ზემოთ, მეორე ვერტიკალურად ქვემოთ, ორივე $10\ \text{მ/წმ}$ სიჩქარით. როგორ იცვლება მათ შორის მანძილი დროთა განმავლობაში? რას უდრის ის $0{,}5\ \text{წმ}$-ის შემდეგ (სანამ რომელიმე მიწას დაეცემა)?
+EN: Two stones are thrown at the same moment from the same point: one straight up, the other straight down, both at $10\ \text{m/s}$. How does the distance between them change with time? What is it after $0.5\ \text{s}$ (before either hits the ground)?
+HKA: განიხილეთ მოძრაობა ერთ-ერთ ქვასთან დაკავშირებულ სისტემაში — ორივე ქვას ერთნაირი აჩქარება $g$ აქვს.
+HEN: Look at the motion from one stone's point of view — both stones have the same acceleration $g$.
+SKA: **ფორმულა:** $y_1 = v_0 t - \dfrac{g t^2}{2}$, $\ y_2 = -v_0 t - \dfrac{g t^2}{2}$
+$d = y_1 - y_2 = 2 v_0 t$ — $g$-ს შემცველი წევრები შეიკვეცა!
+ერთმანეთის მიმართ ქვები მოძრაობს **თანაბრად** $2 v_0$ სიჩქარით: მანძილი დროის პროპორციულად იზრდება.
+**რიცხვები:** $d = 2 \cdot 10 \cdot 0{,}5 = 10\ \text{მ}$
+SEN: **Formula:** $y_1 = v_0 t - \dfrac{g t^2}{2}$, $\ y_2 = -v_0 t - \dfrac{g t^2}{2}$
+$d = y_1 - y_2 = 2 v_0 t$ — the terms with $g$ cancel!
+Relative to each other the stones move **uniformly** at $2 v_0$: the distance grows in proportion to time.
+**Numbers:** $d = 2 \cdot 10 \cdot 0.5 = 10\ \text{m}$
+AKA: $d = 2v_0 t$ (წრფივად იზრდება); $10\ \text{მ}$
+AEN: $d = 2v_0 t$ (grows linearly); $10\ \text{m}$
+
+--- hard forces olympiad
+KA: გლუვ იატაკზე $4\ \text{კგ}$ მასის ფიცარი დევს, მასზე კი — $1\ \text{კგ}$ მასის ძელაკი. ძელაკსა და ფიცარს შორის ხახუნის კოეფიციენტია $0{,}3$. ფიცარს ჰორიზონტალურად ექაჩებიან $F$ ძალით. რა მაქსიმალური $F$-ის დროს არ გასრიალდება ძელაკი ფიცარზე? რა მოხდება $F = 25\ \text{ნ}$-ის დროს?
+EN: A $4\ \text{kg}$ board lies on a smooth floor with a $1\ \text{kg}$ block on top. The coefficient of friction between block and board is $0.3$. The board is pulled horizontally with force $F$. What is the largest $F$ for which the block does not slip? What happens when $F = 25\ \text{N}$?
+HKA: ძელაკს აჩქარებას მხოლოდ ხახუნის ძალა ანიჭებს, რომელიც არ აღემატება $\mu m g$-ს.
+HEN: Only friction accelerates the block, and it cannot exceed $\mu m g$.
+SKA: **ფორმულა:** ძელაკი: $m a \le \mu m g \Rightarrow a_{\max} = \mu g$; მთლიანი სისტემა: $F_{\max} = (m + M)\, a_{\max} = \mu g (m + M)$
+**რიცხვები:** $a_{\max} = 0{,}3 \cdot 10 = 3\ \text{მ/წმ}^2$, $\ F_{\max} = 3 \cdot (1 + 4) = 15\ \text{ნ}$
+$F = 25\ \text{ნ} > 15\ \text{ნ}$ — ძელაკი სრიალებს: $a_{\text{ძ}} = 3\ \text{მ/წმ}^2$, ფიცარი: $a_{\text{ფ}} = \dfrac{F - \mu m g}{M} = \dfrac{25 - 3}{4} = 5{,}5\ \text{მ/წმ}^2$.
+SEN: **Formula:** block: $m a \le \mu m g \Rightarrow a_{\max} = \mu g$; whole system: $F_{\max} = (m + M)\, a_{\max} = \mu g (m + M)$
+**Numbers:** $a_{\max} = 0.3 \cdot 10 = 3\ \text{m/s}^2$, $\ F_{\max} = 3 \cdot (1 + 4) = 15\ \text{N}$
+$F = 25\ \text{N} > 15\ \text{N}$ — the block slips: $a_{\text{block}} = 3\ \text{m/s}^2$, board: $a_{\text{board}} = \dfrac{F - \mu m g}{M} = \dfrac{25 - 3}{4} = 5.5\ \text{m/s}^2$.
+AKA: $F_{\max} = 15\ \text{ნ}$; $25\ \text{ნ}$-ზე ძელაკი სრიალებს ($3$ და $5{,}5\ \text{მ/წმ}^2$)
+AEN: $F_{\max} = 15\ \text{N}$; at $25\ \text{N}$ the block slips ($3$ and $5.5\ \text{m/s}^2$)
+
+--- hard circular olympiad
+KA: $0{,}5\ \text{კგ}$ მასის ბურთულა $1\ \text{მ}$ სიგრძის ძაფზე ჰორიზონტალურ წრეწირზე ბრუნავს ისე, რომ ძაფი ვერტიკალთან $60^\circ$ კუთხეს ადგენს (კონუსური ქანქარა). იპოვეთ ძაფის დაჭიმულობა, ბურთულას სიჩქარე და ბრუნვის პერიოდი.
+EN: A $0.5\ \text{kg}$ ball on a $1\ \text{m}$ string moves in a horizontal circle so that the string makes $60^\circ$ with the vertical (a conical pendulum). Find the tension, the ball's speed and the period.
+HKA: ვერტიკალურად აჩქარება არ არის: $T\cos\alpha = m g$. ჰორიზონტალურად $T\sin\alpha$ ცენტრისკენული ძალაა. წრეწირის რადიუსი $r = L\sin\alpha$.
+HEN: Vertically there is no acceleration: $T\cos\alpha = m g$. Horizontally $T\sin\alpha$ is the centripetal force. The circle's radius is $r = L\sin\alpha$.
+SKA: **ფორმულა:** $T\cos\alpha = m g$, $\ T\sin\alpha = \dfrac{m v^2}{r}$, $\ r = L\sin\alpha$
+$T = \dfrac{m g}{\cos\alpha}$; $\ \tan\alpha = \dfrac{v^2}{g r} \Rightarrow v = \sqrt{g L \sin\alpha \tan\alpha}$; $\ T_{\text{ბრ}} = \dfrac{2\pi r}{v} = 2\pi\sqrt{\dfrac{L\cos\alpha}{g}}$
+**რიცხვები:** $T = \dfrac{0{,}5 \cdot 10}{0{,}5} = 10\ \text{ნ}$
+$v = \sqrt{10 \cdot 1 \cdot 0{,}866 \cdot 1{,}732} = \sqrt{15} \approx 3{,}9\ \text{მ/წმ}$
+$T_{\text{ბრ}} = 2 \cdot 3{,}14 \sqrt{\dfrac{1 \cdot 0{,}5}{10}} \approx 1{,}4\ \text{წმ}$
+SEN: **Formula:** $T\cos\alpha = m g$, $\ T\sin\alpha = \dfrac{m v^2}{r}$, $\ r = L\sin\alpha$
+$T = \dfrac{m g}{\cos\alpha}$; $\ \tan\alpha = \dfrac{v^2}{g r} \Rightarrow v = \sqrt{g L \sin\alpha \tan\alpha}$; $\ T_{\text{period}} = \dfrac{2\pi r}{v} = 2\pi\sqrt{\dfrac{L\cos\alpha}{g}}$
+**Numbers:** $T = \dfrac{0.5 \cdot 10}{0.5} = 10\ \text{N}$
+$v = \sqrt{10 \cdot 1 \cdot 0.866 \cdot 1.732} = \sqrt{15} \approx 3.9\ \text{m/s}$
+$T_{\text{period}} = 2 \cdot 3.14 \sqrt{\dfrac{1 \cdot 0.5}{10}} \approx 1.4\ \text{s}$
+AKA: $10\ \text{ნ}$; $\approx 3{,}9\ \text{მ/წმ}$; $\approx 1{,}4\ \text{წმ}$
+AEN: $10\ \text{N}$; $\approx 3.9\ \text{m/s}$; $\approx 1.4\ \text{s}$
+
+--- hard momentum olympiad
+KA: $3\ \text{მ/წმ}$ სიჩქარით მოძრავი ბილიარდის ბურთი პირდაპირ (ცენტრალურად) ეჯახება ზუსტად ასეთივე უძრავ ბურთს. დაჯახება აბსოლუტურად დრეკადია (კინეტიკური ენერგია ინახება). დაამტკიცეთ, რომ ბურთები სიჩქარეებს „გაცვლიან“, და იპოვეთ მათი სიჩქარეები დაჯახების შემდეგ.
+EN: A billiard ball moving at $3\ \text{m/s}$ hits an identical ball at rest head-on. The collision is perfectly elastic (kinetic energy is conserved). Prove that the balls "swap" velocities, and find their velocities after the collision.
+HKA: დაწერეთ ორი განტოლება — იმპულსისა და ენერგიის მუდმივობა, $m$ შეკვეცეთ. გამოიყენეთ $a^2 - b^2 = (a - b)(a + b)$.
+HEN: Write two equations — conservation of momentum and of energy — and cancel $m$. Use $a^2 - b^2 = (a - b)(a + b)$.
+SKA: **ფორმულა:** $v = u_1 + u_2$ (იმპულსი), $\ v^2 = u_1^2 + u_2^2$ (ენერგია)
+პირველიდან $v - u_1 = u_2$; მეორიდან $v^2 - u_1^2 = u_2^2 \Rightarrow (v - u_1)(v + u_1) = u_2^2$
+ჩავსვათ: $u_2 (v + u_1) = u_2^2 \Rightarrow v + u_1 = u_2$ (თუ $u_2 \ne 0$)
+$v - u_1 = u_2$ და $v + u_1 = u_2$ $\Rightarrow u_1 = 0$, $u_2 = v$ — სიჩქარეების გაცვლა.
+**რიცხვები:** $u_1 = 0$, $\ u_2 = 3\ \text{მ/წმ}$ (ასე მუშაობს „ნიუტონის აკვანი“)
+SEN: **Formula:** $v = u_1 + u_2$ (momentum), $\ v^2 = u_1^2 + u_2^2$ (energy)
+From the first $v - u_1 = u_2$; from the second $v^2 - u_1^2 = u_2^2 \Rightarrow (v - u_1)(v + u_1) = u_2^2$
+Substitute: $u_2 (v + u_1) = u_2^2 \Rightarrow v + u_1 = u_2$ (if $u_2 \ne 0$)
+$v - u_1 = u_2$ and $v + u_1 = u_2$ $\Rightarrow u_1 = 0$, $u_2 = v$ — the velocities are swapped.
+**Numbers:** $u_1 = 0$, $\ u_2 = 3\ \text{m/s}$ (this is how "Newton's cradle" works)
+AKA: პირველი ჩერდება, მეორე $3\ \text{მ/წმ}$-ით მიდის
+AEN: the first stops, the second moves off at $3\ \text{m/s}$
+
+--- hard energy olympiad
+KA: პატარა ბურთულა ხახუნის გარეშე სრიალებს ღარში, რომელიც ქვემოთ $R = 0{,}4\ \text{მ}$ რადიუსის ვერტიკალურ „მარყუჟში“ გადადის. რა მინიმალური სიმაღლიდან უნდა გაუშვან ბურთულა უსაწყისო სიჩქარით, რომ მან მარყუჟი სრულად შემოიაროს და არ მოწყდეს?
+EN: A small ball slides without friction down a track that turns into a vertical loop of radius $R = 0.4\ \text{m}$. From what minimum height must the ball be released from rest to go all the way round the loop without falling off?
+HKA: მარყუჟის უმაღლეს წერტილში ბურთულა არ მოწყდება, თუ $\dfrac{m v^2}{R} \ge m g$. შემდეგ გამოიყენეთ ენერგიის მუდმივობა.
+HEN: At the top of the loop the ball stays on if $\dfrac{m v^2}{R} \ge m g$. Then use conservation of energy.
+SKA: **ფორმულა:** ზღვრული პირობა უმაღლეს წერტილში ($N = 0$): $m g = \dfrac{m v^2}{R} \Rightarrow v^2 = g R$
+ენერგია: $m g h = m g \cdot 2R + \dfrac{m v^2}{2} = 2 m g R + \dfrac{m g R}{2} \Rightarrow h_{\min} = \dfrac{5}{2} R$
+**რიცხვები:** $h_{\min} = 2{,}5 \cdot 0{,}4 = 1\ \text{მ}$
+SEN: **Formula:** limiting condition at the top ($N = 0$): $m g = \dfrac{m v^2}{R} \Rightarrow v^2 = g R$
+Energy: $m g h = m g \cdot 2R + \dfrac{m v^2}{2} = 2 m g R + \dfrac{m g R}{2} \Rightarrow h_{\min} = \dfrac{5}{2} R$
+**Numbers:** $h_{\min} = 2.5 \cdot 0.4 = 1\ \text{m}$
+AKA: $h_{\min} = 2{,}5R = 1\ \text{მ}$
+AEN: $h_{\min} = 2.5R = 1\ \text{m}$
+</script>
+</body>
+</html>

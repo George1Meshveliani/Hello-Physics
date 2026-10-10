@@ -1,0 +1,156 @@
+/* Shared styles for the "Collection of Problems" pages (physics & mathematics). */
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --soft: #f1f5f9;
+  --accent: #059669;
+  --accent-ink: #065f46;
+  --accent-soft: #ecfdf5;
+  --accent-line: #a7f3d0;
+  --easy: #16a34a;   --easy-soft: #dcfce7;
+  --medium: #d97706; --medium-soft: #fef3c7;
+  --hard: #e11d48;   --hard-soft: #ffe4e6;
+  --oly: #7c3aed;    --oly-soft: #ede9fe;
+  --hint: #b45309;   --hint-soft: #fffbeb; --hint-line: #fde68a;
+  --shadow: 0 1px 3px rgba(15, 23, 42, .06), 0 1px 2px rgba(15, 23, 42, .04);
+}
+body[data-subject="math"] {
+  --accent: #4f46e5;
+  --accent-ink: #3730a3;
+  --accent-soft: #eef2ff;
+  --accent-line: #c7d2fe;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1120; --card: #111827; --ink: #e5e7eb; --muted: #94a3b8;
+    --line: #1f2937; --soft: #1e293b;
+    --accent: #34d399; --accent-ink: #a7f3d0; --accent-soft: #052e22; --accent-line: #065f46;
+    --easy-soft: #052e16; --medium-soft: #3b2405; --hard-soft: #3f0a1a; --oly-soft: #2e1065;
+    --hint: #fbbf24; --hint-soft: #2a1d05; --hint-line: #78350f;
+    --shadow: none;
+  }
+  :root:not([data-theme="light"]) body[data-subject="math"] {
+    --accent: #a5b4fc; --accent-ink: #c7d2fe; --accent-soft: #1e1b4b; --accent-line: #3730a3;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Noto Sans Georgian", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+a { color: var(--accent); }
+.wrap { max-width: 920px; margin: 0 auto; padding: 16px; }
+
+/* top bar */
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.crumbs { font-size: .9rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--accent); text-decoration: underline; }
+.lang { display: inline-flex; background: var(--soft); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.lang button {
+  border: 0; background: transparent; color: var(--muted); font: inherit; font-weight: 600; font-size: .85rem;
+  padding: 4px 14px; border-radius: 999px; cursor: pointer;
+}
+.lang button.on { background: var(--card); color: var(--accent); box-shadow: var(--shadow); }
+
+/* hero */
+.hero { text-align: center; margin: 8px 0 24px; }
+.hero .icon {
+  width: 56px; height: 56px; margin: 0 auto 12px; border-radius: 16px; display: grid; place-items: center;
+  background: var(--accent); color: #fff; font-size: 1.7rem; box-shadow: var(--shadow);
+}
+.hero h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.25; margin: 0 0 8px; font-weight: 800; }
+.hero p { color: var(--muted); margin: 0 auto; max-width: 640px; }
+.stats { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; font-size: .85rem; color: var(--muted); }
+.stat b { color: var(--ink); }
+
+/* grade list (collection index) */
+.grades { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.grade {
+  display: block; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px;
+  text-decoration: none; color: inherit; box-shadow: var(--shadow); transition: border-color .15s, transform .15s;
+}
+a.grade:hover { border-color: var(--accent); transform: translateY(-2px); }
+.grade .num { font-size: 1.6rem; font-weight: 800; color: var(--accent); line-height: 1.1; }
+.grade .lbl { font-weight: 700; }
+.grade .desc { color: var(--muted); font-size: .9rem; margin-top: 6px; }
+.grade.off { opacity: .55; cursor: default; box-shadow: none; }
+.grade.off .num { color: var(--muted); }
+.pill { display: inline-block; font-size: .72rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--soft); color: var(--muted); margin-left: 6px; vertical-align: middle; }
+.other { text-align: center; margin-top: 28px; font-size: .95rem; }
+
+/* controls */
+.tabs { display: flex; background: var(--soft); border: 1px solid var(--line); border-radius: 14px; padding: 4px; gap: 4px; margin-bottom: 12px; }
+.tabs button {
+  flex: 1; border: 0; background: transparent; font: inherit; font-weight: 700; font-size: .92rem; color: var(--muted);
+  padding: 8px 6px; border-radius: 10px; cursor: pointer; min-width: 0;
+}
+.tabs button .cnt { font-weight: 600; opacity: .7; margin-left: 4px; }
+.tabs button.on { background: var(--card); box-shadow: var(--shadow); }
+.tabs button[data-d="easy"].on { color: var(--easy); }
+.tabs button[data-d="medium"].on { color: var(--medium); }
+.tabs button[data-d="hard"].on { color: var(--hard); }
+.filter { display: flex; gap: 8px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
+.filter label { color: var(--muted); font-size: .9rem; }
+.filter select {
+  flex: 1; min-width: 0; max-width: 100%; font: inherit; font-size: .92rem; color: var(--ink); background: var(--card);
+  border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px;
+}
+.section-note { font-size: .88rem; color: var(--muted); margin: -6px 0 14px; }
+
+/* problem cards */
+.list { display: flex; flex-direction: column; gap: 14px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+.card.oly { border-color: var(--oly); }
+.card .body { padding: 16px 18px; }
+.meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.no { font-weight: 800; color: var(--accent); }
+.chip { font-size: .75rem; font-weight: 600; padding: 1px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); }
+.badge-oly { font-size: .75rem; font-weight: 700; padding: 1px 9px; border-radius: 999px; background: var(--oly-soft); color: var(--oly); }
+.q { font-weight: 500; overflow-x: auto; }
+.actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.btn {
+  font: inherit; font-size: .88rem; font-weight: 700; border-radius: 10px; padding: 6px 14px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--soft); color: var(--ink);
+}
+.btn.hint { color: var(--hint); border-color: var(--hint-line); background: var(--hint-soft); }
+.btn.sol { color: var(--accent-ink); border-color: var(--accent-line); background: var(--accent-soft); }
+.btn[aria-expanded="true"] { filter: saturate(1.4); box-shadow: inset 0 0 0 1px currentColor; }
+.panel { margin-top: 12px; border-radius: 12px; padding: 12px 14px; font-size: .95rem; animation: slide .2s ease-out; overflow-x: auto; }
+.panel.hint { background: var(--hint-soft); border: 1px solid var(--hint-line); }
+.panel.sol { background: var(--accent-soft); border: 1px solid var(--accent-line); }
+.panel .ttl { font-weight: 800; font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+.panel.hint .ttl { color: var(--hint); }
+.panel.sol .ttl { color: var(--accent-ink); }
+.panel ol { margin: 0; padding-left: 1.4em; }
+.panel li { margin: 4px 0; }
+.answer { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--accent-line); font-weight: 700; }
+/* KaTeX fonts have no Georgian glyphs: let them fall back to the page's Georgian font. */
+.katex { font-family: KaTeX_Main, "Noto Sans Georgian", "Times New Roman", serif; }
+.math-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; text-align: center; }
+.empty { text-align: center; color: var(--muted); padding: 32px 8px; }
+.oly-divider {
+  display: flex; align-items: center; gap: 10px; color: var(--oly); font-weight: 800; font-size: .9rem; margin: 10px 0 0;
+}
+.oly-divider::before, .oly-divider::after { content: ""; flex: 1; height: 1px; background: var(--oly); opacity: .4; }
+footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; text-align: center; }
+@keyframes slide { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 520px) {
+  .tabs button { font-size: .82rem; padding: 8px 2px; }
+  .tabs button .cnt { display: block; margin: 0; }
+  .card .body { padding: 14px; }
+}
+@media print {
+  .topbar, .tabs, .filter, .actions { display: none !important; }
+  .card { break-inside: avoid; box-shadow: none; }
+}

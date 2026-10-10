@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mathematics · Grade IX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css">
+  <script defer src="../assets/problems.js"></script>
+</head>
+<body data-page="grade" data-subject="math" data-grade="IX">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic review      | I–III | გამეორება: ფესვები, ალგებრული წილადები, პითაგორას თეორემა | Review: roots, algebraic fractions, Pythagoras
+# topic finance     | IV–V | რთული პროცენტი, სესხი, ანაბარი, გადასახადები | Compound interest, loans, deposits, taxes
+# topic factor      | VI–VII | კვადრატული სამწევრის დაშლა მამრავლებად | Factorising quadratic trinomials
+# topic quadratic   | VIII–IX | კვადრატული განტოლება. ვიეტის თეორემა | Quadratic equations. Vieta's theorem
+# topic rational    | X–XI | რაციონალური განტოლებები და სისტემები | Rational equations and systems
+# topic quadineq    | XII | კვადრატული უტოლობა. ინტერვალთა მეთოდი | Quadratic inequalities. Interval method
+# topic wordquad    | XIII | ტექსტური ამოცანები კვადრატულ განტოლებებზე | Word problems with quadratic equations
+# topic parabola    | XV–XVI | კვადრატული ფუნქცია და პარაბოლა | Quadratic functions and parabolas
+# topic progressions | XVII, XIX | არითმეტიკული და გეომეტრიული პროგრესია | Arithmetic and geometric progressions
+# topic circle      | XX–XXII | წრეწირი: ქორდა, მხები, ჩახაზული კუთხე | Circles: chords, tangents, inscribed angles
+# topic similarity  | XXIII–XXIV | ფიგურათა მსგავსება | Similar figures
+# topic trig        | XXV–XXVI | მართკუთხა სამკუთხედის ტრიგონომეტრია | Right-triangle trigonometry
+# topic solids      | XXVII–XXVIII | სივრცული სხეულები: ფართობი და მოცულობა | Solids: surface area and volume
+# topic vectors     | XXIX–XXX | ვექტორები და გეომეტრიული გარდაქმნები | Vectors and transformations
+# topic combinatorics | XXXII–XXXIV | კომბინატორიკა, სტატისტიკა, ალბათობა | Combinatorics, statistics, probability
+# note ამოხსნებში ჯერ მოცემულია ფორმულა ან წესი, შემდეგ — ნაბიჯ-ნაბიჯ გამოთვლა. $\pi \approx 3{,}14$. | Each solution first states the formula or rule, then computes step by step. $\pi \approx 3.14$.
+
+// ===================================================================== EASY
+
+--- easy review
+KA: გაამარტივეთ: $\sqrt{50} - \sqrt{18} + \sqrt{8}$.
+EN: Simplify: $\sqrt{50} - \sqrt{18} + \sqrt{8}$.
+HKA: გამოიტანეთ მამრავლი ფესვის ნიშნიდან: $\sqrt{a^2 b} = a\sqrt{b}$.
+HEN: Take factors out of the root: $\sqrt{a^2 b} = a\sqrt{b}$.
+SKA: $\sqrt{50} = \sqrt{25 \cdot 2} = 5\sqrt{2}$, $\ \sqrt{18} = 3\sqrt{2}$, $\ \sqrt{8} = 2\sqrt{2}$
+$5\sqrt{2} - 3\sqrt{2} + 2\sqrt{2} = 4\sqrt{2}$
+SEN: $\sqrt{50} = \sqrt{25 \cdot 2} = 5\sqrt{2}$, $\ \sqrt{18} = 3\sqrt{2}$, $\ \sqrt{8} = 2\sqrt{2}$
+$5\sqrt{2} - 3\sqrt{2} + 2\sqrt{2} = 4\sqrt{2}$
+AKA: $4\sqrt{2}$
+AEN: $4\sqrt{2}$
+
+--- easy review
+KA: მართკუთხა სამკუთხედის კათეტებია $6$ და $8$. იპოვეთ ჰიპოტენუზა და ფართობი.
+EN: The legs of a right triangle are $6$ and $8$. Find the hypotenuse and the area.
+HKA: პითაგორას თეორემა: $c^2 = a^2 + b^2$; მართკუთხა სამკუთხედის ფართობი $\dfrac{ab}{2}$.
+HEN: Pythagoras: $c^2 = a^2 + b^2$; the area of a right triangle is $\dfrac{ab}{2}$.
+SKA: $c = \sqrt{6^2 + 8^2} = \sqrt{100} = 10$
+$S = \dfrac{6 \cdot 8}{2} = 24$
+SEN: $c = \sqrt{6^2 + 8^2} = \sqrt{100} = 10$
+$S = \dfrac{6 \cdot 8}{2} = 24$
+AKA: $10$; $24$
+AEN: $10$; $24$
+
+--- easy finance
+KA: ბანკში $1000$ ლარი შეიტანეს წლიური $10\%$-ით (რთული პროცენტი). რამდენი ლარი იქნება ანაბარზე $2$ წლის შემდეგ?
+EN: $1000$ lari is deposited at $10\%$ per year, compounded annually. How much is in the account after $2$ years?
+HKA: რთული პროცენტი: $S = S_0 \left(1 + \dfrac{p}{100}\right)^n$ — ყოველ წელს პროცენტი წინა წლის თანხაზე ერიცხება.
+HEN: Compound interest: $S = S_0 \left(1 + \dfrac{p}{100}\right)^n$ — each year's interest is added to the previous year's total.
+SKA: **ფორმულა:** $S = S_0 (1 + 0{,}1)^n$
+$S = 1000 \cdot 1{,}1^2 = 1000 \cdot 1{,}21 = 1210\ ₾$
+SEN: **Formula:** $S = S_0 (1 + 0.1)^n$
+$S = 1000 \cdot 1.1^2 = 1000 \cdot 1.21 = 1210\ ₾$
+AKA: $1210\ ₾$
+AEN: $1210\ ₾$
+
+--- easy finance
+KA: საქონლის ფასი დღგ-ს გარეშე $500$ ლარია; დღგ $18\%$-ია. რა ღირს საქონელი დღგ-ს ჩათვლით? თანამშრომლის ხელფასი (დარიცხული) $1500$ ლარია, საშემოსავლო გადასახადი — $20\%$. რამდენს მიიღებს ის ხელზე?
+EN: An item costs $500$ lari before VAT; VAT is $18\%$. What is the price including VAT? An employee's gross salary is $1500$ lari and income tax is $20\%$. What is the take-home pay?
+HKA: დღგ ფასს ემატება, საშემოსავლო გადასახადი ხელფასს აკლდება.
+HEN: VAT is added to the price; income tax is taken off the salary.
+SKA: დღგ-ს ჩათვლით: $500 \cdot 1{,}18 = 590\ ₾$
+ხელზე: $1500 \cdot (1 - 0{,}20) = 1500 \cdot 0{,}8 = 1200\ ₾$
+SEN: Including VAT: $500 \cdot 1.18 = 590\ ₾$
+Take-home: $1500 \cdot (1 - 0.20) = 1500 \cdot 0.8 = 1200\ ₾$
+AKA: $590\ ₾$; $1200\ ₾$
+AEN: $590\ ₾$; $1200\ ₾$
+
+--- easy factor
+KA: დაშალეთ მამრავლებად: $x^2 - 5x + 6$.
+EN: Factorise: $x^2 - 5x + 6$.
+HKA: მოძებნეთ ორი რიცხვი, რომელთა ნამრავლია $6$, ჯამი კი $-5$.
+HEN: Find two numbers whose product is $6$ and sum is $-5$.
+SKA: $x^2 + bx + c = (x - x_1)(x - x_2)$, სადაც $x_1 + x_2 = -b$, $x_1 x_2 = c$.
+$x_1 + x_2 = 5$, $x_1 x_2 = 6 \Rightarrow x_1 = 2$, $x_2 = 3$
+$x^2 - 5x + 6 = (x - 2)(x - 3)$
+SEN: $x^2 + bx + c = (x - x_1)(x - x_2)$, where $x_1 + x_2 = -b$, $x_1 x_2 = c$.
+$x_1 + x_2 = 5$, $x_1 x_2 = 6 \Rightarrow x_1 = 2$, $x_2 = 3$
+$x^2 - 5x + 6 = (x - 2)(x - 3)$
+AKA: $(x - 2)(x - 3)$
+AEN: $(x - 2)(x - 3)$
+
+--- easy quadratic
+KA: ამოხსენით განტოლება: $x^2 - 7x + 10 = 0$.
+EN: Solve: $x^2 - 7x + 10 = 0$.
+HKA: $D = b^2 - 4ac$, $x_{1,2} = \dfrac{-b \pm \sqrt{D}}{2a}$.
+HEN: $D = b^2 - 4ac$, $x_{1,2} = \dfrac{-b \pm \sqrt{D}}{2a}$.
+SKA: $D = (-7)^2 - 4 \cdot 1 \cdot 10 = 49 - 40 = 9$
+$x_{1,2} = \dfrac{7 \pm 3}{2} \Rightarrow x_1 = 5$, $x_2 = 2$
+SEN: $D = (-7)^2 - 4 \cdot 1 \cdot 10 = 49 - 40 = 9$
+$x_{1,2} = \dfrac{7 \pm 3}{2} \Rightarrow x_1 = 5$, $x_2 = 2$
+AKA: $2$; $5$
+AEN: $2$; $5$
+
+--- easy quadratic
+KA: რამდენი ფესვი აქვს განტოლებას $2x^2 + 3x + 5 = 0$?
+EN: How many roots does $2x^2 + 3x + 5 = 0$ have?
+HKA: ფესვების რაოდენობა დისკრიმინანტის ნიშანზეა დამოკიდებული.
+HEN: The number of roots depends on the sign of the discriminant.
+SKA: $D = b^2 - 4ac = 3^2 - 4 \cdot 2 \cdot 5 = 9 - 40 = -31$
+$D < 0 \Rightarrow$ ნამდვილი ფესვი არ აქვს.
+SEN: $D = b^2 - 4ac = 3^2 - 4 \cdot 2 \cdot 5 = 9 - 40 = -31$
+$D < 0 \Rightarrow$ no real roots.
+AKA: ფესვი არ აქვს
+AEN: no real roots
+
+--- easy quadratic
+KA: ვიეტის თეორემით იპოვეთ $x^2 + 4x - 21 = 0$ განტოლების ფესვთა ჯამი და ნამრავლი, შემდეგ — თავად ფესვები.
+EN: Use Vieta's theorem to find the sum and product of the roots of $x^2 + 4x - 21 = 0$, then the roots themselves.
+HKA: დაყვანილი განტოლებისთვის $x^2 + px + q = 0$: $x_1 + x_2 = -p$, $x_1 x_2 = q$.
+HEN: For $x^2 + px + q = 0$: $x_1 + x_2 = -p$, $x_1 x_2 = q$.
+SKA: $x_1 + x_2 = -4$, $\ x_1 x_2 = -21$
+შერჩევით: $3 \cdot (-7) = -21$, $3 + (-7) = -4$ $\Rightarrow x_1 = 3$, $x_2 = -7$
+SEN: $x_1 + x_2 = -4$, $\ x_1 x_2 = -21$
+By inspection: $3 \cdot (-7) = -21$, $3 + (-7) = -4$ $\Rightarrow x_1 = 3$, $x_2 = -7$
+AKA: ჯამი $-4$, ნამრავლი $-21$; ფესვები $3$ და $-7$
+AEN: sum $-4$, product $-21$; roots $3$ and $-7$
+
+--- easy rational
+KA: ამოხსენით განტოლება: $\dfrac{x + 2}{x - 1} = 2$.
+EN: Solve: $\dfrac{x + 2}{x - 1} = 2$.
+HKA: ჯერ ჩაწერეთ დასაშვები მნიშვნელობები ($x \ne 1$), შემდეგ გაამრავლეთ მნიშვნელზე.
+HEN: First note the allowed values ($x \ne 1$), then multiply by the denominator.
+SKA: დასაშვები მნიშვნელობები: $x \ne 1$.
+$x + 2 = 2(x - 1) \Rightarrow x + 2 = 2x - 2 \Rightarrow x = 4$
+$4 \ne 1$ — ფესვი გამოდგება.
+SEN: Allowed values: $x \ne 1$.
+$x + 2 = 2(x - 1) \Rightarrow x + 2 = 2x - 2 \Rightarrow x = 4$
+$4 \ne 1$ — the root is valid.
+AKA: $x = 4$
+AEN: $x = 4$
+
+--- easy quadineq
+KA: ამოხსენით უტოლობა: $x^2 - 9 < 0$.
+EN: Solve: $x^2 - 9 < 0$.
+HKA: დაშალეთ: $(x - 3)(x + 3) < 0$. პარაბოლა $y = x^2 - 9$ ღერძის ქვემოთ ფესვებს შორისაა.
+HEN: Factorise: $(x - 3)(x + 3) < 0$. The parabola $y = x^2 - 9$ is below the axis between its roots.
+SKA: $(x - 3)(x + 3) < 0$, ფესვები: $-3$ და $3$.
+შტოები ზემოთაა მიმართული ($a = 1 > 0$), ამიტომ უარყოფითია ფესვებს შორის.
+$-3 < x < 3$
+SEN: $(x - 3)(x + 3) < 0$, roots $-3$ and $3$.
+The branches point up ($a = 1 > 0$), so it is negative between the roots.
+$-3 < x < 3$
+AKA: $x \in (-3;\ 3)$
+AEN: $x \in (-3,\ 3)$
+
+--- easy parabola
+KA: იპოვეთ $y = x^2 - 4x + 3$ პარაბოლის წვეროს კოორდინატები და აბსცისთა ღერძთან გადაკვეთის წერტილები.
+EN: Find the vertex of the parabola $y = x^2 - 4x + 3$ and where it crosses the $x$-axis.
+HKA: წვეროს აბსცისა: $x_0 = -\dfrac{b}{2a}$. ღერძთან გადაკვეთა: $y = 0$.
+HEN: Vertex: $x_0 = -\dfrac{b}{2a}$. Crossing the $x$-axis: $y = 0$.
+SKA: $x_0 = -\dfrac{-4}{2 \cdot 1} = 2$, $\ y_0 = 4 - 8 + 3 = -1$ $\Rightarrow$ წვერო $(2;\ -1)$
+$x^2 - 4x + 3 = 0 \Rightarrow x = 1$ ან $x = 3$: წერტილები $(1;\ 0)$ და $(3;\ 0)$.
+SEN: $x_0 = -\dfrac{-4}{2 \cdot 1} = 2$, $\ y_0 = 4 - 8 + 3 = -1$ $\Rightarrow$ vertex $(2,\ -1)$
+$x^2 - 4x + 3 = 0 \Rightarrow x = 1$ or $x = 3$: points $(1,\ 0)$ and $(3,\ 0)$.
+AKA: წვერო $(2;\ -1)$; $(1;\ 0)$ და $(3;\ 0)$
+AEN: vertex $(2,\ -1)$; $(1,\ 0)$ and $(3,\ 0)$
+
+--- easy progressions
+KA: არითმეტიკულ პროგრესიაში $a_1 = 3$, $d = 4$. იპოვეთ $a_{10}$ და პირველი ათი წევრის ჯამი.
+EN: In an arithmetic progression $a_1 = 3$, $d = 4$. Find $a_{10}$ and the sum of the first ten terms.
+HKA: $a_n = a_1 + (n - 1)d$, $\ S_n = \dfrac{(a_1 + a_n)\,n}{2}$.
+HEN: $a_n = a_1 + (n - 1)d$, $\ S_n = \dfrac{(a_1 + a_n)\,n}{2}$.
+SKA: $a_{10} = 3 + 9 \cdot 4 = 39$
+$S_{10} = \dfrac{(3 + 39) \cdot 10}{2} = 210$
+SEN: $a_{10} = 3 + 9 \cdot 4 = 39$
+$S_{10} = \dfrac{(3 + 39) \cdot 10}{2} = 210$
+AKA: $a_{10} = 39$; $S_{10} = 210$
+AEN: $a_{10} = 39$; $S_{10} = 210$
+
+--- easy progressions
+KA: გეომეტრიულ პროგრესიაში $b_1 = 2$, $q = 3$. იპოვეთ $b_5$ და პირველი ხუთი წევრის ჯამი.
+EN: In a geometric progression $b_1 = 2$, $q = 3$. Find $b_5$ and the sum of the first five terms.
+HKA: $b_n = b_1 q^{n-1}$, $\ S_n = \dfrac{b_1 (q^n - 1)}{q - 1}$.
+HEN: $b_n = b_1 q^{n-1}$, $\ S_n = \dfrac{b_1 (q^n - 1)}{q - 1}$.
+SKA: $b_5 = 2 \cdot 3^4 = 162$
+$S_5 = \dfrac{2 (3^5 - 1)}{3 - 1} = 243 - 1 = 242$
+SEN: $b_5 = 2 \cdot 3^4 = 162$
+$S_5 = \dfrac{2 (3^5 - 1)}{3 - 1} = 243 - 1 = 242$
+AKA: $b_5 = 162$; $S_5 = 242$
+AEN: $b_5 = 162$; $S_5 = 242$
+
+--- easy circle
+KA: წრის რადიუსია $5\ \text{სმ}$. იპოვეთ წრეწირის სიგრძე და წრის ფართობი.
+EN: A circle has radius $5\ \text{cm}$. Find its circumference and area.
+HKA: $C = 2\pi r$, $S = \pi r^2$.
+HEN: $C = 2\pi r$, $S = \pi r^2$.
+SKA: $C = 2\pi \cdot 5 = 10\pi \approx 31{,}4\ \text{სმ}$
+$S = \pi \cdot 5^2 = 25\pi \approx 78{,}5\ \text{სმ}^2$
+SEN: $C = 2\pi \cdot 5 = 10\pi \approx 31.4\ \text{cm}$
+$S = \pi \cdot 5^2 = 25\pi \approx 78.5\ \text{cm}^2$
+AKA: $10\pi \approx 31{,}4\ \text{სმ}$; $25\pi \approx 78{,}5\ \text{სმ}^2$
+AEN: $10\pi \approx 31.4\ \text{cm}$; $25\pi \approx 78.5\ \text{cm}^2$
+
+--- easy circle
+KA: ჩახაზული კუთხე ეყრდნობა $80^\circ$-იან რკალს. იპოვეთ ეს კუთხე და იმავე რკალზე დაყრდნობილი ცენტრალური კუთხე.
+EN: An inscribed angle subtends an arc of $80^\circ$. Find the angle and the central angle on the same arc.
+HKA: ცენტრალური კუთხე რკალის ტოლია, ჩახაზული — მისი ნახევარი.
+HEN: The central angle equals the arc; the inscribed angle is half of it.
+SKA: ცენტრალური კუთხე: $80^\circ$
+ჩახაზული კუთხე: $\dfrac{80^\circ}{2} = 40^\circ$
+SEN: Central angle: $80^\circ$
+Inscribed angle: $\dfrac{80^\circ}{2} = 40^\circ$
+AKA: $40^\circ$; $80^\circ$
+AEN: $40^\circ$; $80^\circ$
+
+--- easy similarity
+KA: ორი სამკუთხედი მსგავსია, მსგავსების კოეფიციენტია $3$. პატარა სამკუთხედის პერიმეტრი $12\ \text{სმ}$-ია. იპოვეთ დიდის პერიმეტრი. რამდენჯერ აღემატება დიდის ფართობი პატარისას?
+EN: Two triangles are similar with scale factor $3$. The smaller one has perimeter $12\ \text{cm}$. Find the perimeter of the larger one. How many times larger is its area?
+HKA: პერიმეტრები შეეფარდება როგორც $k$, ფართობები — როგორც $k^2$.
+HEN: Perimeters are in ratio $k$, areas in ratio $k^2$.
+SKA: $P_2 = k P_1 = 3 \cdot 12 = 36\ \text{სმ}$
+$\dfrac{S_2}{S_1} = k^2 = 9$
+SEN: $P_2 = k P_1 = 3 \cdot 12 = 36\ \text{cm}$
+$\dfrac{S_2}{S_1} = k^2 = 9$
+AKA: $36\ \text{სმ}$; $9$-ჯერ
+AEN: $36\ \text{cm}$; $9$ times
+
+--- easy trig
+KA: მართკუთხა სამკუთხედის კათეტებია $3$ და $4$. იპოვეთ $3$-ის ტოლი კათეტის მოპირდაპირე $\alpha$ კუთხის სინუსი, კოსინუსი და ტანგენსი.
+EN: The legs of a right triangle are $3$ and $4$. Find the sine, cosine and tangent of the angle $\alpha$ opposite the leg of length $3$.
+HKA: $\sin\alpha = \dfrac{\text{მოპირდაპირე}}{\text{ჰიპოტენუზა}}$, $\cos\alpha = \dfrac{\text{მიმდებარე}}{\text{ჰიპოტენუზა}}$, $\tan\alpha = \dfrac{\text{მოპირდაპირე}}{\text{მიმდებარე}}$.
+HEN: $\sin\alpha = \dfrac{\text{opposite}}{\text{hypotenuse}}$, $\cos\alpha = \dfrac{\text{adjacent}}{\text{hypotenuse}}$, $\tan\alpha = \dfrac{\text{opposite}}{\text{adjacent}}$.
+SKA: ჰიპოტენუზა: $\sqrt{3^2 + 4^2} = 5$
+$\sin\alpha = \dfrac{3}{5} = 0{,}6$, $\ \cos\alpha = \dfrac{4}{5} = 0{,}8$, $\ \tan\alpha = \dfrac{3}{4} = 0{,}75$
+SEN: Hypotenuse: $\sqrt{3^2 + 4^2} = 5$
+$\sin\alpha = \dfrac{3}{5} = 0.6$, $\ \cos\alpha = \dfrac{4}{5} = 0.8$, $\ \tan\alpha = \dfrac{3}{4} = 0.75$
+AKA: $0{,}6$; $0{,}8$; $0{,}75$
+AEN: $0.6$; $0.8$; $0.75$
+
+--- easy solids
+KA: მართკუთხა პარალელეპიპედის ზომებია $3 \times 4 \times 5\ \text{სმ}$. იპოვეთ მისი მოცულობა და სრული ზედაპირის ფართობი.
+EN: A cuboid measures $3 \times 4 \times 5\ \text{cm}$. Find its volume and total surface area.
+HKA: $V = abc$, $\ S = 2(ab + bc + ac)$.
+HEN: $V = abc$, $\ S = 2(ab + bc + ac)$.
+SKA: $V = 3 \cdot 4 \cdot 5 = 60\ \text{სმ}^3$
+$S = 2(12 + 20 + 15) = 94\ \text{სმ}^2$
+SEN: $V = 3 \cdot 4 \cdot 5 = 60\ \text{cm}^3$
+$S = 2(12 + 20 + 15) = 94\ \text{cm}^2$
+AKA: $60\ \text{სმ}^3$; $94\ \text{სმ}^2$
+AEN: $60\ \text{cm}^3$; $94\ \text{cm}^2$
+
+--- easy solids
+KA: ცილინდრის ფუძის რადიუსია $3\ \text{სმ}$, სიმაღლე — $10\ \text{სმ}$. იპოვეთ მისი მოცულობა.
+EN: A cylinder has base radius $3\ \text{cm}$ and height $10\ \text{cm}$. Find its volume.
+HKA: $V = \pi r^2 h$ — ფუძის ფართობი გამრავლებული სიმაღლეზე.
+HEN: $V = \pi r^2 h$ — base area times height.
+SKA: $V = \pi \cdot 3^2 \cdot 10 = 90\pi \approx 282{,}6\ \text{სმ}^3$
+SEN: $V = \pi \cdot 3^2 \cdot 10 = 90\pi \approx 282.6\ \text{cm}^3$
+AKA: $90\pi \approx 282{,}6\ \text{სმ}^3$
+AEN: $90\pi \approx 282.6\ \text{cm}^3$
+
+--- easy vectors
+KA: მოცემულია ვექტორები $\vec{a}(2;\ -3)$ და $\vec{b}(-1;\ 4)$. იპოვეთ $\vec{a} + \vec{b}$, $\ 2\vec{a} - \vec{b}$ და $|\vec{a}|$.
+EN: Given $\vec{a}(2,\ -3)$ and $\vec{b}(-1,\ 4)$. Find $\vec{a} + \vec{b}$, $\ 2\vec{a} - \vec{b}$ and $|\vec{a}|$.
+HKA: მოქმედებები ვექტორებზე სრულდება კოორდინატების მიხედვით; $|\vec{a}| = \sqrt{x^2 + y^2}$.
+HEN: Operations on vectors are done coordinate by coordinate; $|\vec{a}| = \sqrt{x^2 + y^2}$.
+SKA: $\vec{a} + \vec{b} = (2 - 1;\ -3 + 4) = (1;\ 1)$
+$2\vec{a} - \vec{b} = (4 + 1;\ -6 - 4) = (5;\ -10)$
+$|\vec{a}| = \sqrt{2^2 + (-3)^2} = \sqrt{13}$
+SEN: $\vec{a} + \vec{b} = (2 - 1,\ -3 + 4) = (1,\ 1)$
+$2\vec{a} - \vec{b} = (4 + 1,\ -6 - 4) = (5,\ -10)$
+$|\vec{a}| = \sqrt{2^2 + (-3)^2} = \sqrt{13}$
+AKA: $(1;\ 1)$; $(5;\ -10)$; $\sqrt{13}$
+AEN: $(1,\ 1)$; $(5,\ -10)$; $\sqrt{13}$
+
+--- easy combinatorics
+KA: რამდენი გზით შეიძლება $4$ სხვადასხვა წიგნის თაროზე მწკრივად დალაგება?
+EN: In how many ways can $4$ different books be arranged in a row on a shelf?
+HKA: ეს გადანაცვლებებია: $P_n = n!$.
+HEN: These are permutations: $P_n = n!$.
+SKA: პირველ ადგილზე $4$ არჩევანია, მეორეზე — $3$, მესამეზე — $2$, მეოთხეზე — $1$.
+$P_4 = 4! = 4 \cdot 3 \cdot 2 \cdot 1 = 24$
+SEN: There are $4$ choices for the first place, $3$ for the second, $2$ for the third, $1$ for the last.
+$P_4 = 4! = 4 \cdot 3 \cdot 2 \cdot 1 = 24$
+AKA: $24$
+AEN: $24$
+
+--- easy combinatorics
+KA: $1$-დან $20$-მდე რიცხვებიდან შემთხვევით ირჩევენ ერთს. რას უდრის ალბათობა, რომ ის $3$-ზე გაიყოფა?
+EN: A number is chosen at random from $1$ to $20$. What is the probability that it is divisible by $3$?
+HKA: ჩამოწერეთ $3$-ის ჯერადები $20$-მდე.
+HEN: List the multiples of $3$ up to $20$.
+SKA: ხელშემწყობი: $3, 6, 9, 12, 15, 18$ — $6$ რიცხვი.
+$P = \dfrac{6}{20} = 0{,}3$
+SEN: Favourable: $3, 6, 9, 12, 15, 18$ — $6$ numbers.
+$P = \dfrac{6}{20} = 0.3$
+AKA: $0{,}3$
+AEN: $0.3$
+
+// ===================================================================== MEDIUM
+
+--- medium review
+KA: შეკვეცეთ წილადი $\dfrac{x^2 - 9}{x^2 + 3x}$ და მიუთითეთ დასაშვები მნიშვნელობები.
+EN: Simplify $\dfrac{x^2 - 9}{x^2 + 3x}$ and state the allowed values of $x$.
+HKA: მრიცხველი — კვადრატების სხვაობაა, მნიშვნელში $x$ გამოიტანეთ ფრჩხილებს გარეთ.
+HEN: The numerator is a difference of squares; factor $x$ out of the denominator.
+SKA: $\dfrac{x^2 - 9}{x^2 + 3x} = \dfrac{(x - 3)(x + 3)}{x(x + 3)}$
+დასაშვები: $x \ne 0$, $x \ne -3$.
+შეკვეცის შემდეგ: $\dfrac{x - 3}{x}$
+SEN: $\dfrac{x^2 - 9}{x^2 + 3x} = \dfrac{(x - 3)(x + 3)}{x(x + 3)}$
+Allowed: $x \ne 0$, $x \ne -3$.
+After cancelling: $\dfrac{x - 3}{x}$
+AKA: $\dfrac{x - 3}{x}$, $\ x \ne 0;\ -3$
+AEN: $\dfrac{x - 3}{x}$, $\ x \ne 0,\ -3$
+
+--- medium finance
+KA: ანაბარზე $5000$ ლარი შეიტანეს წლიური $8\%$-ით (რთული პროცენტი). რამდენი იქნება ანაბარზე $3$ წლის შემდეგ და რამდენია მიღებული სარგებელი?
+EN: $5000$ lari is deposited at $8\%$ per year, compounded annually. How much is there after $3$ years, and how much interest was earned?
+HKA: $S = S_0 \cdot 1{,}08^3$.
+HEN: $S = S_0 \cdot 1.08^3$.
+SKA: **ფორმულა:** $S = S_0 \left(1 + \dfrac{p}{100}\right)^n$
+$1{,}08^2 = 1{,}1664$, $\ 1{,}08^3 = 1{,}259712$
+$S = 5000 \cdot 1{,}259712 = 6298{,}56\ ₾$
+სარგებელი: $6298{,}56 - 5000 = 1298{,}56\ ₾$ (მარტივი პროცენტით მხოლოდ $1200\ ₾$ იქნებოდა)
+SEN: **Formula:** $S = S_0 \left(1 + \dfrac{p}{100}\right)^n$
+$1.08^2 = 1.1664$, $\ 1.08^3 = 1.259712$
+$S = 5000 \cdot 1.259712 = 6298.56\ ₾$
+Interest: $6298.56 - 5000 = 1298.56\ ₾$ (simple interest would give only $1200\ ₾$)
+AKA: $6298{,}56\ ₾$; $1298{,}56\ ₾$
+AEN: $6298.56\ ₾$; $1298.56\ ₾$
+
+--- medium factor
+KA: დაშალეთ მამრავლებად: $2x^2 + 5x - 3$.
+EN: Factorise: $2x^2 + 5x - 3$.
+HKA: $ax^2 + bx + c = a(x - x_1)(x - x_2)$, სადაც $x_1, x_2$ — ფესვებია.
+HEN: $ax^2 + bx + c = a(x - x_1)(x - x_2)$, where $x_1, x_2$ are the roots.
+SKA: $D = 25 + 24 = 49$, $\ x_{1,2} = \dfrac{-5 \pm 7}{4} \Rightarrow x_1 = \dfrac{1}{2}$, $x_2 = -3$
+$2x^2 + 5x - 3 = 2\left(x - \dfrac{1}{2}\right)(x + 3) = (2x - 1)(x + 3)$
+შემოწმება: $(2x - 1)(x + 3) = 2x^2 + 6x - x - 3$ ✓
+SEN: $D = 25 + 24 = 49$, $\ x_{1,2} = \dfrac{-5 \pm 7}{4} \Rightarrow x_1 = \dfrac{1}{2}$, $x_2 = -3$
+$2x^2 + 5x - 3 = 2\left(x - \dfrac{1}{2}\right)(x + 3) = (2x - 1)(x + 3)$
+Check: $(2x - 1)(x + 3) = 2x^2 + 6x - x - 3$ ✓
+AKA: $(2x - 1)(x + 3)$
+AEN: $(2x - 1)(x + 3)$
+
+--- medium quadratic
+KA: ამოხსენით განტოლება: $3x^2 - 5x - 2 = 0$.
+EN: Solve: $3x^2 - 5x - 2 = 0$.
+HKA: გამოიყენეთ დისკრიმინანტის ფორმულა.
+HEN: Use the discriminant formula.
+SKA: $D = (-5)^2 - 4 \cdot 3 \cdot (-2) = 25 + 24 = 49$
+$x_{1,2} = \dfrac{5 \pm 7}{6} \Rightarrow x_1 = 2$, $x_2 = -\dfrac{1}{3}$
+SEN: $D = (-5)^2 - 4 \cdot 3 \cdot (-2) = 25 + 24 = 49$
+$x_{1,2} = \dfrac{5 \pm 7}{6} \Rightarrow x_1 = 2$, $x_2 = -\dfrac{1}{3}$
+AKA: $2$; $-\dfrac{1}{3}$
+AEN: $2$; $-\dfrac{1}{3}$
+
+--- medium quadratic
+KA: $m$-ის რა მნიშვნელობისთვის აქვს განტოლებას $x^2 - 6x + m = 0$ ერთი (ორი ტოლი) ფესვი? იპოვეთ ეს ფესვი.
+EN: For which $m$ does $x^2 - 6x + m = 0$ have exactly one (a double) root? Find that root.
+HKA: ერთი ფესვი $\iff D = 0$.
+HEN: One root $\iff D = 0$.
+SKA: $D = 36 - 4m = 0 \Rightarrow m = 9$
+$x^2 - 6x + 9 = (x - 3)^2 = 0 \Rightarrow x = 3$
+SEN: $D = 36 - 4m = 0 \Rightarrow m = 9$
+$x^2 - 6x + 9 = (x - 3)^2 = 0 \Rightarrow x = 3$
+AKA: $m = 9$; $x = 3$
+AEN: $m = 9$; $x = 3$
+
+--- medium quadratic
+KA: $x_1$ და $x_2$ განტოლების $x^2 - 5x + 3 = 0$ ფესვებია. განტოლების ამოხსნის გარეშე იპოვეთ $x_1^2 + x_2^2$.
+EN: $x_1$ and $x_2$ are the roots of $x^2 - 5x + 3 = 0$. Without solving the equation, find $x_1^2 + x_2^2$.
+HKA: $x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2$.
+HEN: $x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2$.
+SKA: ვიეტი: $x_1 + x_2 = 5$, $x_1 x_2 = 3$
+$x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2 = 25 - 6 = 19$
+SEN: Vieta: $x_1 + x_2 = 5$, $x_1 x_2 = 3$
+$x_1^2 + x_2^2 = (x_1 + x_2)^2 - 2x_1 x_2 = 25 - 6 = 19$
+AKA: $19$
+AEN: $19$
+
+--- medium rational
+KA: ამოხსენით განტოლება: $\dfrac{1}{x - 2} + \dfrac{1}{x + 2} = \dfrac{4}{x^2 - 4}$.
+EN: Solve: $\dfrac{1}{x - 2} + \dfrac{1}{x + 2} = \dfrac{4}{x^2 - 4}$.
+HKA: საერთო მნიშვნელია $x^2 - 4 = (x - 2)(x + 2)$. არ დაგავიწყდეთ დასაშვები მნიშვნელობების შემოწმება!
+HEN: The common denominator is $x^2 - 4 = (x - 2)(x + 2)$. Don't forget to check the allowed values!
+SKA: დასაშვები: $x \ne 2$, $x \ne -2$.
+გავამრავლოთ $(x - 2)(x + 2)$-ზე: $(x + 2) + (x - 2) = 4 \Rightarrow 2x = 4 \Rightarrow x = 2$
+$x = 2$ დაუშვებელია (მნიშვნელი ნული ხდება) $\Rightarrow$ განტოლებას ამონახსნი არ აქვს.
+SEN: Allowed: $x \ne 2$, $x \ne -2$.
+Multiply by $(x - 2)(x + 2)$: $(x + 2) + (x - 2) = 4 \Rightarrow 2x = 4 \Rightarrow x = 2$
+$x = 2$ is not allowed (a denominator becomes zero) $\Rightarrow$ the equation has no solution.
+AKA: ამონახსნი არ აქვს
+AEN: no solution
+
+--- medium rational
+KA: ამოხსენით სისტემა: $\begin{cases} x + y = 7 \\ xy = 12 \end{cases}$
+EN: Solve the system $\begin{cases} x + y = 7 \\ xy = 12 \end{cases}$
+HKA: ვიეტის შებრუნებული თეორემით $x$ და $y$ არის განტოლების $t^2 - 7t + 12 = 0$ ფესვები.
+HEN: By the converse of Vieta's theorem, $x$ and $y$ are the roots of $t^2 - 7t + 12 = 0$.
+SKA: $t^2 - 7t + 12 = 0 \Rightarrow t = 3$ ან $t = 4$
+ამონახსნები: $(3;\ 4)$ და $(4;\ 3)$.
+SEN: $t^2 - 7t + 12 = 0 \Rightarrow t = 3$ or $t = 4$
+Solutions: $(3,\ 4)$ and $(4,\ 3)$.
+AKA: $(3;\ 4)$, $(4;\ 3)$
+AEN: $(3,\ 4)$, $(4,\ 3)$
+
+--- medium rational
+KA: ამოხსენით სისტემა: $\begin{cases} y = x + 1 \\ x^2 + y^2 = 25 \end{cases}$ ახსენით გეომეტრიულად.
+EN: Solve $\begin{cases} y = x + 1 \\ x^2 + y^2 = 25 \end{cases}$ and explain geometrically.
+HKA: ჩასვით $y$ მეორე განტოლებაში.
+HEN: Substitute $y$ into the second equation.
+SKA: $x^2 + (x + 1)^2 = 25 \Rightarrow 2x^2 + 2x - 24 = 0 \Rightarrow x^2 + x - 12 = 0$
+$x = 3$ ან $x = -4$; შესაბამისად $y = 4$ ან $y = -3$.
+ამონახსნები: $(3;\ 4)$ და $(-4;\ -3)$ — ეს წრფისა და $5$ რადიუსიანი წრეწირის გადაკვეთის წერტილებია.
+SEN: $x^2 + (x + 1)^2 = 25 \Rightarrow 2x^2 + 2x - 24 = 0 \Rightarrow x^2 + x - 12 = 0$
+$x = 3$ or $x = -4$; so $y = 4$ or $y = -3$.
+Solutions: $(3,\ 4)$ and $(-4,\ -3)$ — the points where the line meets the circle of radius $5$.
+AKA: $(3;\ 4)$, $(-4;\ -3)$
+AEN: $(3,\ 4)$, $(-4,\ -3)$
+
+--- medium quadineq
+KA: ამოხსენით უტოლობა: $x^2 - x - 6 \ge 0$.
+EN: Solve: $x^2 - x - 6 \ge 0$.
+HKA: იპოვეთ ფესვები და გამოიყენეთ ინტერვალთა მეთოდი.
+HEN: Find the roots and use the interval method.
+SKA: $x^2 - x - 6 = (x - 3)(x + 2)$, ფესვები $-2$ და $3$.
+ნიშნები: $(-\infty;\ -2)$: $+$; $\ (-2;\ 3)$: $-$; $\ (3;\ +\infty)$: $+$.
+$x \le -2$ ან $x \ge 3$ (ფესვები შედის, რადგან უტოლობა არამკაცრია)
+SEN: $x^2 - x - 6 = (x - 3)(x + 2)$, roots $-2$ and $3$.
+Signs: $(-\infty,\ -2)$: $+$; $\ (-2,\ 3)$: $-$; $\ (3,\ +\infty)$: $+$.
+$x \le -2$ or $x \ge 3$ (the roots are included because the inequality is non-strict)
+AKA: $x \in (-\infty;\ -2] \cup [3;\ +\infty)$
+AEN: $x \in (-\infty,\ -2] \cup [3,\ +\infty)$
+
+--- medium wordquad
+KA: მართკუთხედის ფართობია $60\ \text{სმ}^2$, პერიმეტრი — $32\ \text{სმ}$. იპოვეთ მისი გვერდები.
+EN: A rectangle has area $60\ \text{cm}^2$ and perimeter $32\ \text{cm}$. Find its sides.
+HKA: გვერდების ჯამი პერიმეტრის ნახევარია.
+HEN: The sum of the sides is half the perimeter.
+SKA: $a + b = 16$, $ab = 60$.
+$a(16 - a) = 60 \Rightarrow a^2 - 16a + 60 = 0$
+$D = 256 - 240 = 16 \Rightarrow a = \dfrac{16 \pm 4}{2} = 10$ ან $6$
+გვერდები: $6\ \text{სმ}$ და $10\ \text{სმ}$.
+SEN: $a + b = 16$, $ab = 60$.
+$a(16 - a) = 60 \Rightarrow a^2 - 16a + 60 = 0$
+$D = 256 - 240 = 16 \Rightarrow a = \dfrac{16 \pm 4}{2} = 10$ or $6$
+The sides are $6\ \text{cm}$ and $10\ \text{cm}$.
+AKA: $6\ \text{სმ}$ და $10\ \text{სმ}$
+AEN: $6\ \text{cm}$ and $10\ \text{cm}$
+
+--- medium parabola
+KA: $y = -x^2 + 6x - 5$ ფუნქციისთვის იპოვეთ: წვერო, უდიდესი მნიშვნელობა, ნულები და ზრდადობის შუალედი.
+EN: For $y = -x^2 + 6x - 5$ find the vertex, the maximum value, the zeros and the interval where it increases.
+HKA: $a < 0$ — შტოები ქვემოთაა მიმართული, ამიტომ წვეროში ფუნქცია უდიდეს მნიშვნელობას იღებს.
+HEN: $a < 0$ — the branches point down, so the function takes its maximum at the vertex.
+SKA: $x_0 = -\dfrac{6}{2 \cdot (-1)} = 3$, $\ y_0 = -9 + 18 - 5 = 4$ $\Rightarrow$ წვერო $(3;\ 4)$, $y_{\max} = 4$
+ნულები: $-x^2 + 6x - 5 = 0 \Rightarrow x^2 - 6x + 5 = 0 \Rightarrow x = 1;\ 5$
+ზრდადია $(-\infty;\ 3]$ შუალედში, კლებადია $[3;\ +\infty)$-ში.
+SEN: $x_0 = -\dfrac{6}{2 \cdot (-1)} = 3$, $\ y_0 = -9 + 18 - 5 = 4$ $\Rightarrow$ vertex $(3,\ 4)$, $y_{\max} = 4$
+Zeros: $-x^2 + 6x - 5 = 0 \Rightarrow x^2 - 6x + 5 = 0 \Rightarrow x = 1,\ 5$
+Increasing on $(-\infty,\ 3]$, decreasing on $[3,\ +\infty)$.
+AKA: $(3;\ 4)$; $4$; $1$ და $5$; $(-\infty;\ 3]$
+AEN: $(3,\ 4)$; $4$; $1$ and $5$; $(-\infty,\ 3]$
+
+--- medium parabola
+KA: ჩაწერეთ $y = 2x^2 - 8x + 5$ ფუნქცია სახით $y = a(x - m)^2 + n$ და დაასახელეთ პარაბოლის წვერო.
+EN: Write $y = 2x^2 - 8x + 5$ in the form $y = a(x - m)^2 + n$ and give the vertex.
+HKA: გამოიტანეთ $2$ და გამოყავით სრული კვადრატი: $x^2 - 4x = (x - 2)^2 - 4$.
+HEN: Factor out $2$ and complete the square: $x^2 - 4x = (x - 2)^2 - 4$.
+SKA: $2x^2 - 8x + 5 = 2(x^2 - 4x) + 5 = 2\big((x - 2)^2 - 4\big) + 5$
+$= 2(x - 2)^2 - 8 + 5 = 2(x - 2)^2 - 3$
+წვერო: $(2;\ -3)$
+SEN: $2x^2 - 8x + 5 = 2(x^2 - 4x) + 5 = 2\big((x - 2)^2 - 4\big) + 5$
+$= 2(x - 2)^2 - 8 + 5 = 2(x - 2)^2 - 3$
+Vertex: $(2,\ -3)$
+AKA: $y = 2(x - 2)^2 - 3$; $(2;\ -3)$
+AEN: $y = 2(x - 2)^2 - 3$; $(2,\ -3)$
+
+--- medium progressions
+KA: არითმეტიკულ პროგრესიაში $a_3 = 7$, $a_7 = 19$. იპოვეთ $a_1$, $d$ და პირველი $20$ წევრის ჯამი.
+EN: In an arithmetic progression $a_3 = 7$, $a_7 = 19$. Find $a_1$, $d$ and the sum of the first $20$ terms.
+HKA: $a_7 - a_3 = 4d$.
+HEN: $a_7 - a_3 = 4d$.
+SKA: $4d = 19 - 7 = 12 \Rightarrow d = 3$; $\ a_1 = a_3 - 2d = 7 - 6 = 1$
+$a_{20} = 1 + 19 \cdot 3 = 58$
+$S_{20} = \dfrac{(1 + 58) \cdot 20}{2} = 590$
+SEN: $4d = 19 - 7 = 12 \Rightarrow d = 3$; $\ a_1 = a_3 - 2d = 7 - 6 = 1$
+$a_{20} = 1 + 19 \cdot 3 = 58$
+$S_{20} = \dfrac{(1 + 58) \cdot 20}{2} = 590$
+AKA: $a_1 = 1$, $d = 3$, $S_{20} = 590$
+AEN: $a_1 = 1$, $d = 3$, $S_{20} = 590$
+
+--- medium progressions
+KA: გეომეტრიულ პროგრესიაში $b_2 = 6$, $b_5 = 48$. იპოვეთ $b_1$, $q$ და პირველი ექვსი წევრის ჯამი.
+EN: In a geometric progression $b_2 = 6$, $b_5 = 48$. Find $b_1$, $q$ and the sum of the first six terms.
+HKA: $\dfrac{b_5}{b_2} = q^3$.
+HEN: $\dfrac{b_5}{b_2} = q^3$.
+SKA: $q^3 = \dfrac{48}{6} = 8 \Rightarrow q = 2$; $\ b_1 = \dfrac{b_2}{q} = 3$
+$S_6 = \dfrac{3 (2^6 - 1)}{2 - 1} = 3 \cdot 63 = 189$
+SEN: $q^3 = \dfrac{48}{6} = 8 \Rightarrow q = 2$; $\ b_1 = \dfrac{b_2}{q} = 3$
+$S_6 = \dfrac{3 (2^6 - 1)}{2 - 1} = 3 \cdot 63 = 189$
+AKA: $b_1 = 3$, $q = 2$, $S_6 = 189$
+AEN: $b_1 = 3$, $q = 2$, $S_6 = 189$
+
+--- medium circle
+KA: წერტილი $5$ რადიუსიანი წრეწირის ცენტრიდან $13$-ითაა დაშორებული. იპოვეთ ამ წერტილიდან წრეწირისადმი გავლებული მხების მონაკვეთის სიგრძე.
+EN: A point is $13$ units from the centre of a circle of radius $5$. Find the length of the tangent segment from the point to the circle.
+HKA: მხები შეხების წერტილში რადიუსის მართობულია — მივიღეთ მართკუთხა სამკუთხედი.
+HEN: A tangent is perpendicular to the radius at the point of contact — this gives a right triangle.
+SKA: მართკუთხა სამკუთხედში ჰიპოტენუზაა $13$, კათეტი — რადიუსი $5$.
+$l = \sqrt{13^2 - 5^2} = \sqrt{144} = 12$
+SEN: In the right triangle the hypotenuse is $13$ and one leg is the radius $5$.
+$l = \sqrt{13^2 - 5^2} = \sqrt{144} = 12$
+AKA: $12$
+AEN: $12$
+
+--- medium circle
+KA: $10$ რადიუსიან წრეწირში გავლებულია $16$ სიგრძის ქორდა. რა მანძილითაა ქორდა დაშორებული ცენტრიდან?
+EN: A chord of length $16$ is drawn in a circle of radius $10$. How far is the chord from the centre?
+HKA: ცენტრიდან ქორდაზე დაშვებული მართობი ქორდას შუაზე ყოფს.
+HEN: The perpendicular from the centre to a chord bisects the chord.
+SKA: ქორდის ნახევარი: $8$.
+$d = \sqrt{10^2 - 8^2} = \sqrt{36} = 6$
+SEN: Half the chord: $8$.
+$d = \sqrt{10^2 - 8^2} = \sqrt{36} = 6$
+AKA: $6$
+AEN: $6$
+
+--- medium similarity
+KA: $1{,}8\ \text{მ}$ სიმაღლის ადამიანის ჩრდილი $1{,}2\ \text{მ}$-ია, იმავე დროს ხის ჩრდილი — $8\ \text{მ}$. იპოვეთ ხის სიმაღლე.
+EN: A person $1.8\ \text{m}$ tall casts a shadow $1.2\ \text{m}$ long; at the same time a tree's shadow is $8\ \text{m}$. Find the height of the tree.
+HKA: მზის სხივები პარალელურია — სამკუთხედები „ობიექტი–ჩრდილი“ მსგავსია.
+HEN: The sun's rays are parallel — the "object–shadow" triangles are similar.
+SKA: $\dfrac{H}{8} = \dfrac{1{,}8}{1{,}2} = 1{,}5$
+$H = 1{,}5 \cdot 8 = 12\ \text{მ}$
+SEN: $\dfrac{H}{8} = \dfrac{1.8}{1.2} = 1.5$
+$H = 1.5 \cdot 8 = 12\ \text{m}$
+AKA: $12\ \text{მ}$
+AEN: $12\ \text{m}$
+
+--- medium trig
+KA: $5\ \text{მ}$ სიგრძის კიბე კედელზეა მიყუდებული და იატაკთან $60^\circ$-იან კუთხეს ადგენს. რა სიმაღლეზე ეხება კიბე კედელს და რა მანძილითაა მისი ქვედა ბოლო კედლიდან დაშორებული?
+EN: A $5\ \text{m}$ ladder leans against a wall, making $60^\circ$ with the floor. How high up the wall does it reach, and how far is its foot from the wall?
+HKA: სიმაღლე — კუთხის მოპირდაპირე კათეტი ($\sin$), დაშორება — მიმდებარე ($\cos$).
+HEN: The height is the opposite side ($\sin$), the distance is the adjacent side ($\cos$).
+SKA: $h = 5 \sin 60^\circ = 5 \cdot \dfrac{\sqrt{3}}{2} \approx 4{,}33\ \text{მ}$
+$d = 5 \cos 60^\circ = 5 \cdot \dfrac{1}{2} = 2{,}5\ \text{მ}$
+SEN: $h = 5 \sin 60^\circ = 5 \cdot \dfrac{\sqrt{3}}{2} \approx 4.33\ \text{m}$
+$d = 5 \cos 60^\circ = 5 \cdot \dfrac{1}{2} = 2.5\ \text{m}$
+AKA: $\approx 4{,}33\ \text{მ}$; $2{,}5\ \text{მ}$
+AEN: $\approx 4.33\ \text{m}$; $2.5\ \text{m}$
+
+--- medium solids
+KA: კონუსის ფუძის რადიუსია $3$, სიმაღლე — $4$. იპოვეთ მსახველი, მოცულობა და გვერდითი ზედაპირის ფართობი.
+EN: A cone has base radius $3$ and height $4$. Find its slant height, volume and lateral surface area.
+HKA: $l = \sqrt{r^2 + h^2}$, $\ V = \dfrac{1}{3}\pi r^2 h$, $\ S_{\text{გვ}} = \pi r l$.
+HEN: $l = \sqrt{r^2 + h^2}$, $\ V = \dfrac{1}{3}\pi r^2 h$, $\ S_{\text{lat}} = \pi r l$.
+SKA: $l = \sqrt{3^2 + 4^2} = 5$
+$V = \dfrac{1}{3}\pi \cdot 9 \cdot 4 = 12\pi \approx 37{,}7$
+$S_{\text{გვ}} = \pi \cdot 3 \cdot 5 = 15\pi \approx 47{,}1$
+SEN: $l = \sqrt{3^2 + 4^2} = 5$
+$V = \dfrac{1}{3}\pi \cdot 9 \cdot 4 = 12\pi \approx 37.7$
+$S_{\text{lat}} = \pi \cdot 3 \cdot 5 = 15\pi \approx 47.1$
+AKA: $5$; $12\pi$; $15\pi$
+AEN: $5$; $12\pi$; $15\pi$
+
+--- medium vectors
+KA: მოცემულია წერტილი $A(2;\ 5)$. იპოვეთ მისი სახე: ა) სათავის მიმართ სიმეტრიისას; ბ) სათავის გარშემო $90^\circ$-ით საათის ისრის საწინააღმდეგოდ მობრუნებისას; გ) $\vec{v}(3;\ -1)$ ვექტორით პარალელური გადატანისას.
+EN: Given the point $A(2,\ 5)$. Find its image under: a) reflection in the origin; b) rotation by $90^\circ$ anticlockwise about the origin; c) translation by $\vec{v}(3,\ -1)$.
+HKA: სათავის მიმართ სიმეტრია: $(x;\ y) \to (-x;\ -y)$; $90^\circ$-ით მობრუნება: $(x;\ y) \to (-y;\ x)$; გადატანა: $(x;\ y) \to (x + a;\ y + b)$.
+HEN: Reflection in the origin: $(x,\ y) \to (-x,\ -y)$; rotation by $90^\circ$: $(x,\ y) \to (-y,\ x)$; translation: $(x,\ y) \to (x + a,\ y + b)$.
+SKA: ა) $(-2;\ -5)$
+ბ) $(-5;\ 2)$
+გ) $(2 + 3;\ 5 - 1) = (5;\ 4)$
+SEN: a) $(-2,\ -5)$
+b) $(-5,\ 2)$
+c) $(2 + 3,\ 5 - 1) = (5,\ 4)$
+AKA: $(-2;\ -5)$; $(-5;\ 2)$; $(5;\ 4)$
+AEN: $(-2,\ -5)$; $(-5,\ 2)$; $(5,\ 4)$
+
+--- medium combinatorics
+KA: $10$ მოსწავლიდან უნდა აირჩიონ: ა) $3$-კაციანი კომისია; ბ) თავმჯდომარე, მდივანი და ხაზინადარი. რამდენი გზით შეიძლება ამის გაკეთება?
+EN: From $10$ students choose: a) a committee of $3$; b) a president, a secretary and a treasurer. In how many ways can each be done?
+HKA: ა)-ში რიგს მნიშვნელობა არ აქვს (შეჯგუფება), ბ)-ში აქვს (წყობა).
+HEN: In a) order doesn't matter (combinations), in b) it does (arrangements).
+SKA: ბ) წყობა: $A_{10}^3 = 10 \cdot 9 \cdot 8 = 720$
+ა) შეჯგუფება: $C_{10}^3 = \dfrac{A_{10}^3}{3!} = \dfrac{720}{6} = 120$
+SEN: b) Arrangements: $A_{10}^3 = 10 \cdot 9 \cdot 8 = 720$
+a) Combinations: $C_{10}^3 = \dfrac{A_{10}^3}{3!} = \dfrac{720}{6} = 120$
+AKA: ა) $120$; ბ) $720$
+AEN: a) $120$; b) $720$
+
+// ===================================================================== HARD
+
+--- hard review
+KA: რომბის დიაგონალებია $10$ და $24$. იპოვეთ რომბის გვერდი, ფართობი და სიმაღლე.
+EN: The diagonals of a rhombus are $10$ and $24$. Find its side, area and height.
+HKA: რომბის დიაგონალები ურთიერთმართობულია და გადაკვეთის წერტილით შუაზე იყოფა. $S = \dfrac{d_1 d_2}{2} = a h$.
+HEN: The diagonals of a rhombus are perpendicular and bisect each other. $S = \dfrac{d_1 d_2}{2} = a h$.
+SKA: გვერდი: $a = \sqrt{5^2 + 12^2} = 13$
+ფართობი: $S = \dfrac{10 \cdot 24}{2} = 120$
+სიმაღლე: $h = \dfrac{S}{a} = \dfrac{120}{13} \approx 9{,}23$
+SEN: Side: $a = \sqrt{5^2 + 12^2} = 13$
+Area: $S = \dfrac{10 \cdot 24}{2} = 120$
+Height: $h = \dfrac{S}{a} = \dfrac{120}{13} \approx 9.23$
+AKA: $13$; $120$; $\dfrac{120}{13}$
+AEN: $13$; $120$; $\dfrac{120}{13}$
+
+--- hard finance
+KA: სესხი $10\,000$ ლარია წლიური $12\%$-ით (რთული პროცენტი, თანხა არ იფარება). მინიმუმ რამდენი სრული წლის შემდეგ გადააჭარბებს ვალი $15\,000$ ლარს?
+EN: A loan of $10\,000$ lari grows at $12\%$ per year compounded (nothing is repaid). After how many whole years will the debt first exceed $15\,000$ lari?
+HKA: საჭიროა $1{,}12^n > 1{,}5$. თანმიმდევრულად გამოთვალეთ ხარისხები.
+HEN: You need $1.12^n > 1.5$. Compute the powers one by one.
+SKA: **ფორმულა:** $10\,000 \cdot 1{,}12^n > 15\,000 \iff 1{,}12^n > 1{,}5$
+$1{,}12^2 = 1{,}2544$; $\ 1{,}12^3 \approx 1{,}4049$; $\ 1{,}12^4 \approx 1{,}5735$
+$n = 3$: $14\,049\ ₾ < 15\,000$; $\ n = 4$: $15\,735\ ₾ > 15\,000$.
+SEN: **Formula:** $10\,000 \cdot 1.12^n > 15\,000 \iff 1.12^n > 1.5$
+$1.12^2 = 1.2544$; $\ 1.12^3 \approx 1.4049$; $\ 1.12^4 \approx 1.5735$
+$n = 3$: $14\,049\ ₾ < 15\,000$; $\ n = 4$: $15\,735\ ₾ > 15\,000$.
+AKA: $4$ წლის შემდეგ
+AEN: after $4$ years
+
+--- hard quadratic
+KA: ამოხსენით ბიკვადრატული განტოლება: $x^4 - 13x^2 + 36 = 0$.
+EN: Solve the biquadratic equation $x^4 - 13x^2 + 36 = 0$.
+HKA: შემოიღეთ ახალი ცვლადი $t = x^2 \ge 0$.
+HEN: Substitute $t = x^2 \ge 0$.
+SKA: $t = x^2$: $\ t^2 - 13t + 36 = 0$
+$D = 169 - 144 = 25 \Rightarrow t = \dfrac{13 \pm 5}{2} = 9$ ან $4$ (ორივე დადებითია)
+$x^2 = 9 \Rightarrow x = \pm 3$; $\ x^2 = 4 \Rightarrow x = \pm 2$
+SEN: $t = x^2$: $\ t^2 - 13t + 36 = 0$
+$D = 169 - 144 = 25 \Rightarrow t = \dfrac{13 \pm 5}{2} = 9$ or $4$ (both positive)
+$x^2 = 9 \Rightarrow x = \pm 3$; $\ x^2 = 4 \Rightarrow x = \pm 2$
+AKA: $\pm 2;\ \pm 3$
+AEN: $\pm 2,\ \pm 3$
+
+--- hard quadratic
+KA: $k$-ს რა მნიშვნელობებისთვის აქვს განტოლებას $x^2 + kx + 16 = 0$ ორი განსხვავებული ფესვი? როდის არის ორივე ფესვი დადებითი?
+EN: For which $k$ does $x^2 + kx + 16 = 0$ have two distinct roots? When are both roots positive?
+HKA: ორი ფესვი: $D > 0$. ორივე დადებითია, თუ ჯამი და ნამრავლი დადებითია (ვიეტი).
+HEN: Two roots: $D > 0$. Both are positive if their sum and product are positive (Vieta).
+SKA: $D = k^2 - 64 > 0 \iff |k| > 8$, ე.ი. $k < -8$ ან $k > 8$.
+ვიეტი: $x_1 x_2 = 16 > 0$ (ერთნაირი ნიშნის), $x_1 + x_2 = -k > 0 \iff k < 0$.
+ორივე დადებითია: $k < -8$.
+SEN: $D = k^2 - 64 > 0 \iff |k| > 8$, i.e. $k < -8$ or $k > 8$.
+Vieta: $x_1 x_2 = 16 > 0$ (same sign), $x_1 + x_2 = -k > 0 \iff k < 0$.
+Both positive: $k < -8$.
+AKA: $|k| > 8$; $k < -8$
+AEN: $|k| > 8$; $k < -8$
+
+--- hard quadratic
+KA: შეადგინეთ მთელკოეფიციენტებიანი დაყვანილი კვადრატული განტოლება, რომლის ფესვებია $2 + \sqrt{3}$ და $2 - \sqrt{3}$.
+EN: Write a monic quadratic equation with integer coefficients whose roots are $2 + \sqrt{3}$ and $2 - \sqrt{3}$.
+HKA: ვიეტის შებრუნებული თეორემა: $x^2 - (x_1 + x_2)x + x_1 x_2 = 0$.
+HEN: Converse of Vieta: $x^2 - (x_1 + x_2)x + x_1 x_2 = 0$.
+SKA: $x_1 + x_2 = 4$
+$x_1 x_2 = (2 + \sqrt{3})(2 - \sqrt{3}) = 4 - 3 = 1$
+$x^2 - 4x + 1 = 0$
+SEN: $x_1 + x_2 = 4$
+$x_1 x_2 = (2 + \sqrt{3})(2 - \sqrt{3}) = 4 - 3 = 1$
+$x^2 - 4x + 1 = 0$
+AKA: $x^2 - 4x + 1 = 0$
+AEN: $x^2 - 4x + 1 = 0$
+
+--- hard rational
+KA: ამოხსენით განტოლება: $\dfrac{x}{x - 1} - \dfrac{3}{x + 1} = \dfrac{6}{x^2 - 1}$.
+EN: Solve: $\dfrac{x}{x - 1} - \dfrac{3}{x + 1} = \dfrac{6}{x^2 - 1}$.
+HKA: საერთო მნიშვნელი $x^2 - 1 = (x - 1)(x + 1)$; დასაშვები: $x \ne \pm 1$.
+HEN: Common denominator $x^2 - 1 = (x - 1)(x + 1)$; allowed: $x \ne \pm 1$.
+SKA: გავამრავლოთ $(x - 1)(x + 1)$-ზე: $x(x + 1) - 3(x - 1) = 6$
+$x^2 + x - 3x + 3 - 6 = 0 \Rightarrow x^2 - 2x - 3 = 0 \Rightarrow x = 3$ ან $x = -1$
+$x = -1$ დაუშვებელია $\Rightarrow x = 3$. შემოწმება: $\dfrac{3}{2} - \dfrac{3}{4} = \dfrac{3}{4} = \dfrac{6}{8}$ ✓
+SEN: Multiply by $(x - 1)(x + 1)$: $x(x + 1) - 3(x - 1) = 6$
+$x^2 + x - 3x + 3 - 6 = 0 \Rightarrow x^2 - 2x - 3 = 0 \Rightarrow x = 3$ or $x = -1$
+$x = -1$ is not allowed $\Rightarrow x = 3$. Check: $\dfrac{3}{2} - \dfrac{3}{4} = \dfrac{3}{4} = \dfrac{6}{8}$ ✓
+AKA: $x = 3$
+AEN: $x = 3$
+
+--- hard quadineq
+KA: ამოხსენით უტოლობა ინტერვალთა მეთოდით: $\dfrac{x^2 - 4}{x - 1} \le 0$.
+EN: Solve using the interval method: $\dfrac{x^2 - 4}{x - 1} \le 0$.
+HKA: მრიცხველის ნულები ($-2$, $2$) შედის პასუხში, მნიშვნელის ნული ($1$) — არასოდეს.
+HEN: The zeros of the numerator ($-2$, $2$) may be included; the zero of the denominator ($1$) never.
+SKA: $\dfrac{(x - 2)(x + 2)}{x - 1} \le 0$; კრიტიკული წერტილები: $-2,\ 1,\ 2$.
+ნიშნები: $(2;\ +\infty)$: $+$; $\ (1;\ 2)$: $-$; $\ (-2;\ 1)$: $+$; $\ (-\infty;\ -2)$: $-$.
+$x \le -2$ ან $1 < x \le 2$
+SEN: $\dfrac{(x - 2)(x + 2)}{x - 1} \le 0$; critical points: $-2,\ 1,\ 2$.
+Signs: $(2,\ +\infty)$: $+$; $\ (1,\ 2)$: $-$; $\ (-2,\ 1)$: $+$; $\ (-\infty,\ -2)$: $-$.
+$x \le -2$ or $1 < x \le 2$
+AKA: $x \in (-\infty;\ -2] \cup (1;\ 2]$
+AEN: $x \in (-\infty,\ -2] \cup (1,\ 2]$
+
+--- hard wordquad
+KA: ორი მილი ერთად ავზს $6$ საათში ავსებს. პირველი მილი ცალკე ავზს მეორეზე $5$ საათით ადრე ავსებს. რამდენ საათში აავსებს ავზს თითოეული მილი ცალკე?
+EN: Two pipes together fill a tank in $6$ hours. Alone, the first pipe fills it $5$ hours faster than the second. How long does each pipe take alone?
+HKA: პირველს $x$ სთ სჭირდება, მეორეს — $x + 5$. საათში ერთად ავსებენ $\dfrac{1}{x} + \dfrac{1}{x + 5}$ ნაწილს.
+HEN: The first takes $x$ h, the second $x + 5$. Together they fill $\dfrac{1}{x} + \dfrac{1}{x + 5}$ of the tank per hour.
+SKA: $\dfrac{1}{x} + \dfrac{1}{x + 5} = \dfrac{1}{6}$
+$6(x + 5) + 6x = x(x + 5) \Rightarrow x^2 - 7x - 30 = 0$
+$D = 49 + 120 = 169 \Rightarrow x = \dfrac{7 \pm 13}{2} = 10$ ($-3$ არ გამოდგება)
+პირველი — $10$ სთ, მეორე — $15$ სთ. შემოწმება: $\dfrac{1}{10} + \dfrac{1}{15} = \dfrac{1}{6}$ ✓
+SEN: $\dfrac{1}{x} + \dfrac{1}{x + 5} = \dfrac{1}{6}$
+$6(x + 5) + 6x = x(x + 5) \Rightarrow x^2 - 7x - 30 = 0$
+$D = 49 + 120 = 169 \Rightarrow x = \dfrac{7 \pm 13}{2} = 10$ ($-3$ is rejected)
+First — $10$ h, second — $15$ h. Check: $\dfrac{1}{10} + \dfrac{1}{15} = \dfrac{1}{6}$ ✓
+AKA: $10$ სთ და $15$ სთ
+AEN: $10$ h and $15$ h
+
+--- hard wordquad
+KA: ნავმა დინების მიმართულებით $30\ \text{კმ}$ გაიარა და უკან დაბრუნდა; მთელ გზას $8$ საათი მოანდომა. დინების სიჩქარე $2\ \text{კმ/სთ}$-ია. იპოვეთ ნავის სიჩქარე მდგარ წყალში.
+EN: A boat went $30\ \text{km}$ downstream and came back; the whole trip took $8$ hours. The current is $2\ \text{km/h}$. Find the boat's speed in still water.
+HKA: დინების მიმართულებით სიჩქარეა $v + 2$, საწინააღმდეგოდ — $v - 2$.
+HEN: Downstream speed $v + 2$, upstream $v - 2$.
+SKA: $\dfrac{30}{v + 2} + \dfrac{30}{v - 2} = 8$
+$30(v - 2) + 30(v + 2) = 8(v^2 - 4) \Rightarrow 60v = 8v^2 - 32 \Rightarrow 2v^2 - 15v - 8 = 0$
+$D = 225 + 64 = 289 \Rightarrow v = \dfrac{15 + 17}{4} = 8$ (მეორე ფესვი უარყოფითია)
+შემოწმება: $\dfrac{30}{10} + \dfrac{30}{6} = 3 + 5 = 8$ ✓
+SEN: $\dfrac{30}{v + 2} + \dfrac{30}{v - 2} = 8$
+$30(v - 2) + 30(v + 2) = 8(v^2 - 4) \Rightarrow 60v = 8v^2 - 32 \Rightarrow 2v^2 - 15v - 8 = 0$
+$D = 225 + 64 = 289 \Rightarrow v = \dfrac{15 + 17}{4} = 8$ (the other root is negative)
+Check: $\dfrac{30}{10} + \dfrac{30}{6} = 3 + 5 = 8$ ✓
+AKA: $8\ \text{კმ/სთ}$
+AEN: $8\ \text{km/h}$
+
+--- hard parabola
+KA: ფერმერს აქვს $40\ \text{მ}$ ღობე და უნდა შემოღობოს მართკუთხა ნაკვეთი კედელთან (კედლის მხარეს ღობე არ სჭირდება). რა ზომის უნდა იყოს ნაკვეთი, რომ მისი ფართობი მაქსიმალური იყოს?
+EN: A farmer has $40\ \text{m}$ of fencing to enclose a rectangular plot against a wall (no fence is needed along the wall). What dimensions give the largest area?
+HKA: კედლის მართობული გვერდი იყოს $x$, მაშინ კედლის პარალელური — $40 - 2x$. ფართობი $x$-ის კვადრატული ფუნქციაა.
+HEN: Let the sides perpendicular to the wall be $x$; then the side parallel to it is $40 - 2x$. The area is a quadratic function of $x$.
+SKA: $S(x) = x(40 - 2x) = -2x^2 + 40x$
+პარაბოლის შტოები ქვემოთაა, მაქსიმუმი წვეროშია: $x_0 = -\dfrac{40}{2 \cdot (-2)} = 10$
+ზომები: $10\ \text{მ} \times 20\ \text{მ}$, $\ S_{\max} = 200\ \text{მ}^2$
+SEN: $S(x) = x(40 - 2x) = -2x^2 + 40x$
+The parabola opens downward, the maximum is at the vertex: $x_0 = -\dfrac{40}{2 \cdot (-2)} = 10$
+Dimensions: $10\ \text{m} \times 20\ \text{m}$, $\ S_{\max} = 200\ \text{m}^2$
+AKA: $10\ \text{მ} \times 20\ \text{მ}$; $200\ \text{მ}^2$
+AEN: $10\ \text{m} \times 20\ \text{m}$; $200\ \text{m}^2$
+
+--- hard circle
+KA: მართკუთხა სამკუთხედის გვერდებია $6$, $8$ და $10$. იპოვეთ მასზე შემოხაზული და მასში ჩახაზული წრეწირების რადიუსები.
+EN: A right triangle has sides $6$, $8$ and $10$. Find the radii of its circumscribed and inscribed circles.
+HKA: მართკუთხა სამკუთხედზე შემოხაზული წრეწირის ცენტრი ჰიპოტენუზის შუაწერტილია. ჩახაზულისთვის: $r = \dfrac{S}{p}$, სადაც $p$ — ნახევარპერიმეტრია.
+HEN: The circumcentre of a right triangle is the midpoint of the hypotenuse. For the incircle: $r = \dfrac{S}{p}$, where $p$ is the semi-perimeter.
+SKA: $R = \dfrac{c}{2} = \dfrac{10}{2} = 5$
+$S = \dfrac{6 \cdot 8}{2} = 24$, $\ p = \dfrac{6 + 8 + 10}{2} = 12$
+$r = \dfrac{24}{12} = 2$ (ან $r = \dfrac{a + b - c}{2} = \dfrac{6 + 8 - 10}{2} = 2$)
+SEN: $R = \dfrac{c}{2} = \dfrac{10}{2} = 5$
+$S = \dfrac{6 \cdot 8}{2} = 24$, $\ p = \dfrac{6 + 8 + 10}{2} = 12$
+$r = \dfrac{24}{12} = 2$ (or $r = \dfrac{a + b - c}{2} = \dfrac{6 + 8 - 10}{2} = 2$)
+AKA: $R = 5$, $r = 2$
+AEN: $R = 5$, $r = 2$
+
+--- hard similarity
+KA: $ABC$ სამკუთხედში $AC$ ფუძის პარალელური წრფე $AB$ და $BC$ გვერდებს $D$ და $E$ წერტილებში კვეთს ისე, რომ $DBE$ სამკუთხედის ფართობი $ABC$ სამკუთხედის ფართობის ნახევარია. იპოვეთ $BD$, თუ $AB = 10$.
+EN: In triangle $ABC$ a line parallel to $AC$ meets $AB$ at $D$ and $BC$ at $E$ so that the area of triangle $DBE$ is half the area of $ABC$. Find $BD$ if $AB = 10$.
+HKA: $\triangle DBE \sim \triangle ABC$; ფართობების შეფარდება მსგავსების კოეფიციენტის კვადრატია.
+HEN: $\triangle DBE \sim \triangle ABC$; the ratio of areas is the square of the scale factor.
+SKA: $\dfrac{S_{DBE}}{S_{ABC}} = k^2 = \dfrac{1}{2} \Rightarrow k = \dfrac{1}{\sqrt{2}}$
+$BD = k \cdot AB = \dfrac{10}{\sqrt{2}} = 5\sqrt{2} \approx 7{,}07$
+SEN: $\dfrac{S_{DBE}}{S_{ABC}} = k^2 = \dfrac{1}{2} \Rightarrow k = \dfrac{1}{\sqrt{2}}$
+$BD = k \cdot AB = \dfrac{10}{\sqrt{2}} = 5\sqrt{2} \approx 7.07$
+AKA: $5\sqrt{2} \approx 7{,}07$
+AEN: $5\sqrt{2} \approx 7.07$
+
+--- hard trig
+KA: კოშკის წვერო $A$ წერტილიდან ჩანს $30^\circ$-იანი კუთხით (ჰორიზონტთან), ხოლო კოშკისკენ $20\ \text{მ}$-ით მიახლოებული $B$ წერტილიდან — $60^\circ$-იანი კუთხით. იპოვეთ კოშკის სიმაღლე.
+EN: The top of a tower is seen from point $A$ at an angle of elevation of $30^\circ$, and from point $B$, $20\ \text{m}$ closer to the tower, at $60^\circ$. Find the height of the tower.
+HKA: აღნიშნეთ $B$-დან კოშკამდე მანძილი $x$-ით და სიმაღლე ორნაირად გამოსახეთ ტანგენსით.
+HEN: Let the distance from $B$ to the tower be $x$ and express the height in two ways using tangent.
+SKA: $h = x \tan 60^\circ = x\sqrt{3}$; $\ h = (x + 20) \tan 30^\circ = \dfrac{x + 20}{\sqrt{3}}$
+$x\sqrt{3} = \dfrac{x + 20}{\sqrt{3}} \Rightarrow 3x = x + 20 \Rightarrow x = 10$
+$h = 10\sqrt{3} \approx 17{,}3\ \text{მ}$
+SEN: $h = x \tan 60^\circ = x\sqrt{3}$; $\ h = (x + 20) \tan 30^\circ = \dfrac{x + 20}{\sqrt{3}}$
+$x\sqrt{3} = \dfrac{x + 20}{\sqrt{3}} \Rightarrow 3x = x + 20 \Rightarrow x = 10$
+$h = 10\sqrt{3} \approx 17.3\ \text{m}$
+AKA: $10\sqrt{3} \approx 17{,}3\ \text{მ}$
+AEN: $10\sqrt{3} \approx 17.3\ \text{m}$
+
+--- hard solids
+KA: ბირთვი ჩახაზულია ცილინდრში (ეხება ორივე ფუძეს და გვერდით ზედაპირს). იპოვეთ ბირთვისა და ცილინდრის მოცულობების შეფარდება და სფეროსა და ცილინდრის სრული ზედაპირის ფართობების შეფარდება.
+EN: A sphere is inscribed in a cylinder (it touches both bases and the side). Find the ratio of the sphere's volume to the cylinder's volume, and of the sphere's surface area to the cylinder's total surface area.
+HKA: თუ ბირთვის რადიუსია $r$, ცილინდრის რადიუსიც $r$-ია, სიმაღლე კი — $2r$. $V_{\text{ბ}} = \dfrac{4}{3}\pi r^3$, $S_{\text{სფ}} = 4\pi r^2$.
+HEN: If the sphere has radius $r$, the cylinder has radius $r$ and height $2r$. $V_{\text{sph}} = \dfrac{4}{3}\pi r^3$, $S_{\text{sph}} = 4\pi r^2$.
+SKA: $V_{\text{ც}} = \pi r^2 \cdot 2r = 2\pi r^3$, $\ V_{\text{ბ}} = \dfrac{4}{3}\pi r^3$ $\Rightarrow \dfrac{V_{\text{ბ}}}{V_{\text{ც}}} = \dfrac{4/3}{2} = \dfrac{2}{3}$
+$S_{\text{ც}} = 2\pi r^2 + 2\pi r \cdot 2r = 6\pi r^2$, $\ S_{\text{სფ}} = 4\pi r^2$ $\Rightarrow \dfrac{S_{\text{სფ}}}{S_{\text{ც}}} = \dfrac{2}{3}$
+ორივე შეფარდება $2 : 3$-ია — არქიმედეს ეს აღმოჩენა მის საფლავის ქვაზეც იყო გამოსახული.
+SEN: $V_{\text{cyl}} = \pi r^2 \cdot 2r = 2\pi r^3$, $\ V_{\text{sph}} = \dfrac{4}{3}\pi r^3$ $\Rightarrow \dfrac{V_{\text{sph}}}{V_{\text{cyl}}} = \dfrac{4/3}{2} = \dfrac{2}{3}$
+$S_{\text{cyl}} = 2\pi r^2 + 2\pi r \cdot 2r = 6\pi r^2$, $\ S_{\text{sph}} = 4\pi r^2$ $\Rightarrow \dfrac{S_{\text{sph}}}{S_{\text{cyl}}} = \dfrac{2}{3}$
+Both ratios are $2 : 3$ — Archimedes was so proud of this that it was carved on his tombstone.
+AKA: $2 : 3$ და $2 : 3$
+AEN: $2 : 3$ and $2 : 3$
+
+--- hard combinatorics
+KA: რამდენი ოთხნიშნა რიცხვი არსებობს, რომლის ყველა ციფრი განსხვავებულია?
+EN: How many four-digit numbers have all different digits?
+HKA: პირველი ციფრი $0$ ვერ იქნება. შემდეგ ადგილებზე $0$ უკვე შეიძლება.
+HEN: The first digit cannot be $0$. On the other places $0$ is allowed.
+SKA: პირველი ციფრი: $9$ ვარიანტი ($1$–$9$).
+მეორე: $9$ ($0$ ჩათვლით, პირველის გარდა); მესამე: $8$; მეოთხე: $7$.
+$9 \cdot 9 \cdot 8 \cdot 7 = 4536$
+SEN: First digit: $9$ options ($1$–$9$).
+Second: $9$ (including $0$, excluding the first); third: $8$; fourth: $7$.
+$9 \cdot 9 \cdot 8 \cdot 7 = 4536$
+AKA: $4536$
+AEN: $4536$
+
+--- hard combinatorics
+KA: $10$ დეტალიდან $4$ წუნდებულია. შემთხვევით იღებენ $3$ დეტალს. რას უდრის ალბათობა, რომ მათ შორის ზუსტად ერთი წუნდებულია?
+EN: Of $10$ parts, $4$ are defective. $3$ parts are taken at random. What is the probability that exactly one of them is defective?
+HKA: ყველა შედეგი: $C_{10}^3$. ხელშემწყობი: ერთი წუნდებული $4$-დან და ორი ვარგისი $6$-დან.
+HEN: All outcomes: $C_{10}^3$. Favourable: one defective out of $4$ and two good out of $6$.
+SKA: $C_{10}^3 = \dfrac{10 \cdot 9 \cdot 8}{6} = 120$
+$C_4^1 \cdot C_6^2 = 4 \cdot 15 = 60$
+$P = \dfrac{60}{120} = \dfrac{1}{2}$
+SEN: $C_{10}^3 = \dfrac{10 \cdot 9 \cdot 8}{6} = 120$
+$C_4^1 \cdot C_6^2 = 4 \cdot 15 = 60$
+$P = \dfrac{60}{120} = \dfrac{1}{2}$
+AKA: $\dfrac{1}{2}$
+AEN: $\dfrac{1}{2}$
+
+--- hard factor olympiad
+KA: იპოვეთ განტოლების $x^2 - y^2 = 15$ ყველა მთელი ამონახსნი.
+EN: Find all integer solutions of $x^2 - y^2 = 15$.
+HKA: $x^2 - y^2 = (x - y)(x + y)$. ორი მთელი რიცხვის ნამრავლი $15$-ია — ჩამოთვალეთ ყველა შესაძლებლობა.
+HEN: $x^2 - y^2 = (x - y)(x + y)$. Two integers multiply to $15$ — list all possibilities.
+SKA: $(x - y)(x + y) = 15$. ვთქვათ $x - y = m$, $x + y = n$, $mn = 15$; მაშინ $x = \dfrac{m + n}{2}$, $y = \dfrac{n - m}{2}$.
+$(m;\ n) \in \{(1;15),\ (3;5),\ (5;3),\ (15;1)\}$ და იგივე უარყოფითი ნიშნით. ($m + n$ ყოველთვის ლუწია.)
+$(1;15) \to (8;\ 7)$; $(3;5) \to (4;\ 1)$; $(5;3) \to (4;\ -1)$; $(15;1) \to (8;\ -7)$; უარყოფითები იძლევა $(-8;\ -7)$, $(-4;\ -1)$, $(-4;\ 1)$, $(-8;\ 7)$.
+სულ $8$ ამონახსნი: $x = \pm 8,\ y = \pm 7$ და $x = \pm 4,\ y = \pm 1$.
+SEN: $(x - y)(x + y) = 15$. Let $x - y = m$, $x + y = n$, $mn = 15$; then $x = \dfrac{m + n}{2}$, $y = \dfrac{n - m}{2}$.
+$(m,\ n) \in \{(1,15),\ (3,5),\ (5,3),\ (15,1)\}$ and the same with negative signs. ($m + n$ is always even.)
+$(1,15) \to (8,\ 7)$; $(3,5) \to (4,\ 1)$; $(5,3) \to (4,\ -1)$; $(15,1) \to (8,\ -7)$; the negatives give $(-8,\ -7)$, $(-4,\ -1)$, $(-4,\ 1)$, $(-8,\ 7)$.
+$8$ solutions in total: $x = \pm 8,\ y = \pm 7$ and $x = \pm 4,\ y = \pm 1$.
+AKA: $(\pm 8;\ \pm 7)$, $(\pm 4;\ \pm 1)$ — $8$ წყვილი
+AEN: $(\pm 8,\ \pm 7)$, $(\pm 4,\ \pm 1)$ — $8$ pairs
+
+--- hard quadratic olympiad
+KA: $p$-ს რა მნიშვნელობებისთვის არის განტოლების $x^2 + px + 12 = 0$ ორივე ფესვი მთელი რიცხვი?
+EN: For which values of $p$ are both roots of $x^2 + px + 12 = 0$ integers?
+HKA: ვიეტი: $x_1 x_2 = 12$, $x_1 + x_2 = -p$. ჩამოთვალეთ $12$-ის ყველა დაშლა ორი მთელი მამრავლის ნამრავლად.
+HEN: Vieta: $x_1 x_2 = 12$, $x_1 + x_2 = -p$. List every way to write $12$ as a product of two integers.
+SKA: $x_1 x_2 = 12$: $(1;\ 12)$, $(2;\ 6)$, $(3;\ 4)$ და $(-1;\ -12)$, $(-2;\ -6)$, $(-3;\ -4)$.
+ჯამები: $13,\ 8,\ 7,\ -13,\ -8,\ -7$.
+$p = -(x_1 + x_2)$: $\ p \in \{-13,\ -8,\ -7,\ 7,\ 8,\ 13\}$.
+SEN: $x_1 x_2 = 12$: $(1,\ 12)$, $(2,\ 6)$, $(3,\ 4)$ and $(-1,\ -12)$, $(-2,\ -6)$, $(-3,\ -4)$.
+Sums: $13,\ 8,\ 7,\ -13,\ -8,\ -7$.
+$p = -(x_1 + x_2)$: $\ p \in \{-13,\ -8,\ -7,\ 7,\ 8,\ 13\}$.
+AKA: $p = \pm 7;\ \pm 8;\ \pm 13$
+AEN: $p = \pm 7,\ \pm 8,\ \pm 13$
+
+--- hard circle olympiad
+KA: წრეწირის $AB$ და $CD$ ქორდები $P$ წერტილში იკვეთება. $AP = 4$, $PB = 6$, $CP = 3$. იპოვეთ $PD$ და დაამტკიცეთ, რომ ყოველთვის $AP \cdot PB = CP \cdot PD$.
+EN: Chords $AB$ and $CD$ of a circle meet at $P$. $AP = 4$, $PB = 6$, $CP = 3$. Find $PD$ and prove that always $AP \cdot PB = CP \cdot PD$.
+HKA: შეაერთეთ $A$ და $C$, $B$ და $D$. იპოვეთ ტოლი ჩახაზული კუთხეები და მსგავსი სამკუთხედები.
+HEN: Join $A$ to $C$ and $B$ to $D$. Find equal inscribed angles and similar triangles.
+SKA: $\angle CAB = \angle CDB$ (ორივე ეყრდნობა $CB$ რკალს), $\angle APC = \angle DPB$ (ვერტიკალური).
+$\triangle APC \sim \triangle DPB$ (ორი კუთხით) $\Rightarrow \dfrac{AP}{DP} = \dfrac{CP}{BP} \Rightarrow AP \cdot PB = CP \cdot PD$ ∎
+$PD = \dfrac{AP \cdot PB}{CP} = \dfrac{4 \cdot 6}{3} = 8$
+SEN: $\angle CAB = \angle CDB$ (both stand on arc $CB$), $\angle APC = \angle DPB$ (vertical angles).
+$\triangle APC \sim \triangle DPB$ (two angles) $\Rightarrow \dfrac{AP}{DP} = \dfrac{CP}{BP} \Rightarrow AP \cdot PB = CP \cdot PD$ ∎
+$PD = \dfrac{AP \cdot PB}{CP} = \dfrac{4 \cdot 6}{3} = 8$
+AKA: $PD = 8$
+AEN: $PD = 8$
+
+--- hard progressions olympiad
+KA: გამოთვალეთ: $\dfrac{1}{1 \cdot 2} + \dfrac{1}{2 \cdot 3} + \dfrac{1}{3 \cdot 4} + \dots + \dfrac{1}{99 \cdot 100}$.
+EN: Calculate: $\dfrac{1}{1 \cdot 2} + \dfrac{1}{2 \cdot 3} + \dfrac{1}{3 \cdot 4} + \dots + \dfrac{1}{99 \cdot 100}$.
+HKA: შეამოწმეთ, რომ $\dfrac{1}{n(n + 1)} = \dfrac{1}{n} - \dfrac{1}{n + 1}$.
+HEN: Check that $\dfrac{1}{n(n + 1)} = \dfrac{1}{n} - \dfrac{1}{n + 1}$.
+SKA: $\dfrac{1}{n} - \dfrac{1}{n + 1} = \dfrac{(n + 1) - n}{n(n + 1)} = \dfrac{1}{n(n + 1)}$
+ჯამი: $\left(1 - \dfrac{1}{2}\right) + \left(\dfrac{1}{2} - \dfrac{1}{3}\right) + \dots + \left(\dfrac{1}{99} - \dfrac{1}{100}\right)$
+შუა წევრები ერთმანეთს აბათილებს („ტელესკოპური“ ჯამი): $1 - \dfrac{1}{100} = \dfrac{99}{100}$
+SEN: $\dfrac{1}{n} - \dfrac{1}{n + 1} = \dfrac{(n + 1) - n}{n(n + 1)} = \dfrac{1}{n(n + 1)}$
+Sum: $\left(1 - \dfrac{1}{2}\right) + \left(\dfrac{1}{2} - \dfrac{1}{3}\right) + \dots + \left(\dfrac{1}{99} - \dfrac{1}{100}\right)$
+The middle terms cancel (a "telescoping" sum): $1 - \dfrac{1}{100} = \dfrac{99}{100}$
+AKA: $\dfrac{99}{100}$
+AEN: $\dfrac{99}{100}$
+
+--- hard combinatorics olympiad
+KA: უჯრედებიან ქაღალდზე ჭიანჭველა $(0;\ 0)$ წერტილიდან $(4;\ 3)$ წერტილამდე მიდის, ყოველ ნაბიჯზე ერთი უჯრით მარჯვნივ ან ერთი უჯრით ზემოთ. რამდენი განსხვავებული გზა არსებობს?
+EN: On grid paper an ant walks from $(0,\ 0)$ to $(4,\ 3)$, each step going one square right or one square up. How many different paths are there?
+HKA: ნებისმიერი გზა შედგება $7$ ნაბიჯისგან: $4$ „მარჯვნივ“ და $3$ „ზემოთ“. გზა სრულად განისაზღვრება იმით, რომელ $3$ ნაბიჯზე მიდის ზემოთ.
+HEN: Every path has $7$ steps: $4$ "right" and $3$ "up". A path is fixed by choosing which $3$ of the $7$ steps go up.
+SKA: გზების რაოდენობა $= 7$ ნაბიჯიდან $3$ „ზემოთ“ ნაბიჯის არჩევის გზების რაოდენობა:
+$C_7^3 = \dfrac{7 \cdot 6 \cdot 5}{3 \cdot 2 \cdot 1} = 35$
+(შემოწმება სხვა ხერხით: თითოეულ კვანძში გზების რიცხვი = მარცხენა + ქვედა მეზობლის რიცხვების ჯამი — პასკალის სამკუთხედი.)
+SEN: Number of paths $=$ number of ways to choose $3$ "up" steps out of $7$:
+$C_7^3 = \dfrac{7 \cdot 6 \cdot 5}{3 \cdot 2 \cdot 1} = 35$
+(Check another way: the number of paths to each grid point = the sum for its left and lower neighbours — Pascal's triangle.)
+AKA: $35$
+AEN: $35$
+</script>
+</body>
+</html>

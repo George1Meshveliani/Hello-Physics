@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Physics · Grade VII</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css">
+  <script defer src="../assets/problems.js"></script>
+</head>
+<body data-page="grade" data-subject="physics" data-grade="VII">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic measure  | I–III | ფიზიკური სიდიდეები და გაზომვა | Physical quantities and measurement
+# topic motion   | IV–VI | მექანიკური მოძრაობა და მისი ფარდობითობა | Mechanical motion and relativity
+# topic speed    | VII–IX | სიჩქარე. თანაბარი და არათანაბარი მოძრაობა | Speed. Uniform and non-uniform motion
+# topic force    | XI–XIII | ძალა. სიმძიმის ძალა. ძალთა შედეგი | Force. Gravity. Resultant force
+# topic elastic  | XIV–XVI | დრეკადობის ძალა, ჰუკის კანონი, ხახუნი | Elastic force, Hooke's law, friction
+# topic density  | XIX–XXI, XXIV | მასა და სიმკვრივე | Mass and density
+# topic matter   | XXII–XXIII | აგრეგატული მდგომარეობები. დიფუზია | States of matter. Diffusion
+# topic pressure | XXV–XXVII | მყარი სხეულის წნევა | Pressure of solids
+# topic fluids   | XXVIII–XXX | სითხის და ატმოსფერული წნევა | Liquid and atmospheric pressure
+# topic archimedes | XXXI–XXXIII | არქიმედეს ძალა. ცურვის პირობა | Archimedes' force. Floating
+# topic machines | XXXIV–XXXV | მარტივი მექანიზმები | Simple machines
+# note თუ სხვა რამ არ არის მითითებული: $g = 10\ \text{ნ/კგ}$, $\rho_{\text{წყ}} = 1000\ \text{კგ/მ}^3$, $p_0 \approx 100\ \text{კპა}$. | Unless stated otherwise: $g = 10\ \text{N/kg}$, $\rho_{\text{water}} = 1000\ \text{kg/m}^3$, $p_0 \approx 100\ \text{kPa}$.
+
+// ===================================================================== EASY
+
+--- easy measure
+KA: გადაიყვანეთ სი-ერთეულებში: $2{,}5\ \text{კმ}$; $45\ \text{სმ}$; $3\ \text{წთ}$; $500\ \text{გ}$.
+EN: Convert to SI units: $2.5\ \text{km}$; $45\ \text{cm}$; $3\ \text{min}$; $500\ \text{g}$.
+HKA: $1\ \text{კმ} = 1000\ \text{მ}$, $1\ \text{სმ} = 0{,}01\ \text{მ}$, $1\ \text{წთ} = 60\ \text{წმ}$, $1\ \text{გ} = 0{,}001\ \text{კგ}$.
+HEN: $1\ \text{km} = 1000\ \text{m}$, $1\ \text{cm} = 0.01\ \text{m}$, $1\ \text{min} = 60\ \text{s}$, $1\ \text{g} = 0.001\ \text{kg}$.
+SKA: სი-ში სიგრძე იზომება მეტრებით, დრო — წამებით, მასა — კილოგრამებით.
+$2{,}5\ \text{კმ} = 2{,}5 \cdot 1000\ \text{მ} = 2500\ \text{მ}$
+$45\ \text{სმ} = 45 \cdot 0{,}01\ \text{მ} = 0{,}45\ \text{მ}$
+$3\ \text{წთ} = 3 \cdot 60\ \text{წმ} = 180\ \text{წმ}$
+$500\ \text{გ} = 500 \cdot 0{,}001\ \text{კგ} = 0{,}5\ \text{კგ}$
+SEN: In SI, length is measured in metres, time in seconds and mass in kilograms.
+$2.5\ \text{km} = 2.5 \cdot 1000\ \text{m} = 2500\ \text{m}$
+$45\ \text{cm} = 45 \cdot 0.01\ \text{m} = 0.45\ \text{m}$
+$3\ \text{min} = 3 \cdot 60\ \text{s} = 180\ \text{s}$
+$500\ \text{g} = 500 \cdot 0.001\ \text{kg} = 0.5\ \text{kg}$
+AKA: $2500\ \text{მ}$; $0{,}45\ \text{მ}$; $180\ \text{წმ}$; $0{,}5\ \text{კგ}$
+AEN: $2500\ \text{m}$; $0.45\ \text{m}$; $180\ \text{s}$; $0.5\ \text{kg}$
+
+--- easy measure
+KA: სახაზავზე $0$-სა და $1\ \text{სმ}$-ის ნიშნულებს შორის $10$ დანაყოფია. რას უდრის სახაზავის დანაყოფის ფასი? რას უდრის გაზომვის ცდომილება, თუ ის დანაყოფის ფასის ნახევარია?
+EN: On a ruler there are $10$ divisions between the $0$ and $1\ \text{cm}$ marks. What is the scale division value? What is the measurement error if it equals half of the division value?
+HKA: დანაყოფის ფასი = (ორ ნიშნულს შორის მნიშვნელობათა სხვაობა) : (დანაყოფების რაოდენობა).
+HEN: Division value = (difference between two labelled marks) ÷ (number of divisions between them).
+SKA: **ფორმულა:** $c = \dfrac{a_2 - a_1}{N}$, ცდომილება $\Delta = \dfrac{c}{2}$.
+**რიცხვები:** $c = \dfrac{1\ \text{სმ} - 0}{10} = 0{,}1\ \text{სმ} = 1\ \text{მმ}$
+$\Delta = \dfrac{1\ \text{მმ}}{2} = 0{,}5\ \text{მმ}$
+SEN: **Formula:** $c = \dfrac{a_2 - a_1}{N}$, error $\Delta = \dfrac{c}{2}$.
+**Numbers:** $c = \dfrac{1\ \text{cm} - 0}{10} = 0.1\ \text{cm} = 1\ \text{mm}$
+$\Delta = \dfrac{1\ \text{mm}}{2} = 0.5\ \text{mm}$
+AKA: დანაყოფის ფასი $1\ \text{მმ}$, ცდომილება $0{,}5\ \text{მმ}$
+AEN: division value $1\ \text{mm}$, error $0.5\ \text{mm}$
+
+--- easy measure
+KA: მენზურაში წყლის დონე $50\ \text{მლ}$-ის ნიშნულზე იყო. ქვის ჩაძირვის შემდეგ დონე $72\ \text{მლ}$-მდე ავიდა. რას უდრის ქვის მოცულობა $\text{სმ}^3$-ში?
+EN: The water level in a measuring cylinder was at $50\ \text{mL}$. After a stone was lowered in, the level rose to $72\ \text{mL}$. What is the volume of the stone in $\text{cm}^3$?
+HKA: ქვა წყალს იმდენ ადგილს „უკავებს“, რამდენიც თავად აქვს მოცულობა. $1\ \text{მლ} = 1\ \text{სმ}^3$.
+HEN: The stone pushes aside exactly its own volume of water. $1\ \text{mL} = 1\ \text{cm}^3$.
+SKA: **ფორმულა:** $V = V_2 - V_1$
+**რიცხვები:** $V = 72\ \text{მლ} - 50\ \text{მლ} = 22\ \text{მლ} = 22\ \text{სმ}^3$
+SEN: **Formula:** $V = V_2 - V_1$
+**Numbers:** $V = 72\ \text{mL} - 50\ \text{mL} = 22\ \text{mL} = 22\ \text{cm}^3$
+AKA: $22\ \text{სმ}^3$
+AEN: $22\ \text{cm}^3$
+
+--- easy motion
+KA: ბიჭი დარბის წრიულ სარბენ ბილიკზე, რომლის სიგრძეა $400\ \text{მ}$. რა ფორმისაა მისი ტრაექტორია და რა გზას გაივლის ის $2{,}5$ წრის შემოვლისას?
+EN: A boy runs on a circular track of length $400\ \text{m}$. What is the shape of his trajectory and what path does he cover in $2.5$ laps?
+HKA: გზა არის ტრაექტორიის სიგრძე — ყველა გავლილი მონაკვეთის ჯამი.
+HEN: Path is the length of the trajectory — the sum of all the pieces travelled.
+SKA: ტრაექტორია წრეწირია (მრუდწირული მოძრაობა).
+**ფორმულა:** $l = n \cdot L$, სადაც $n$ — წრეების რაოდენობა, $L$ — ერთი წრის სიგრძე.
+**რიცხვები:** $l = 2{,}5 \cdot 400\ \text{მ} = 1000\ \text{მ} = 1\ \text{კმ}$
+SEN: The trajectory is a circle (curvilinear motion).
+**Formula:** $l = n \cdot L$, where $n$ is the number of laps and $L$ the length of one lap.
+**Numbers:** $l = 2.5 \cdot 400\ \text{m} = 1000\ \text{m} = 1\ \text{km}$
+AKA: წრეწირი; $1000\ \text{მ}$
+AEN: a circle; $1000\ \text{m}$
+
+--- easy motion
+KA: მგზავრი ზის მოძრავ მატარებელში. რის მიმართ არის ის მოსვენებულ მდგომარეობაში და რის მიმართ მოძრაობს?
+EN: A passenger sits in a moving train. Relative to what is the passenger at rest, and relative to what are they moving?
+HKA: მოძრაობა ყოველთვის რაღაც სხეულის (ათვლის სხეულის) მიმართ განიხილება.
+HEN: Motion is always described relative to some body (the reference body).
+SKA: სხეული მოძრაობს, თუ დროთა განმავლობაში იცვლება მისი მდებარეობა ათვლის სხეულის მიმართ.
+ვაგონის, სავარძლისა და სხვა მგზავრების მიმართ მგზავრის მდებარეობა არ იცვლება — ის მოსვენებულია.
+დედამიწის, რელსების, სადგურისა და ხეების მიმართ მისი მდებარეობა იცვლება — ის მოძრაობს.
+დასკვნა: მოსვენება და მოძრაობა ფარდობითია.
+SEN: A body moves if its position relative to the reference body changes with time.
+Relative to the carriage, the seat and the other passengers, the passenger's position does not change — they are at rest.
+Relative to the ground, the rails, the station and the trees, the position changes — the passenger is moving.
+Conclusion: rest and motion are relative.
+AKA: ვაგონის მიმართ მოსვენებულია, დედამიწის მიმართ მოძრაობს.
+AEN: at rest relative to the carriage, moving relative to the ground.
+
+--- easy speed
+KA: ავტომობილმა $150\ \text{კმ}$ $2{,}5$ საათში გაიარა. იპოვეთ მისი საშუალო სიჩქარე $\text{კმ/სთ}$-ში და $\text{მ/წმ}$-ში.
+EN: A car covered $150\ \text{km}$ in $2.5$ hours. Find its average speed in $\text{km/h}$ and in $\text{m/s}$.
+HKA: $v = s/t$. $1\ \text{კმ/სთ} = \dfrac{1000\ \text{მ}}{3600\ \text{წმ}} = \dfrac{1}{3{,}6}\ \text{მ/წმ}$.
+HEN: $v = s/t$. $1\ \text{km/h} = \dfrac{1000\ \text{m}}{3600\ \text{s}} = \dfrac{1}{3.6}\ \text{m/s}$.
+SKA: **ფორმულა:** $v = \dfrac{s}{t}$
+**რიცხვები:** $v = \dfrac{150\ \text{კმ}}{2{,}5\ \text{სთ}} = 60\ \text{კმ/სთ}$
+$\text{მ/წმ}$-ში: $v = \dfrac{60}{3{,}6}\ \text{მ/წმ} \approx 16{,}7\ \text{მ/წმ}$
+SEN: **Formula:** $v = \dfrac{s}{t}$
+**Numbers:** $v = \dfrac{150\ \text{km}}{2.5\ \text{h}} = 60\ \text{km/h}$
+In $\text{m/s}$: $v = \dfrac{60}{3.6}\ \text{m/s} \approx 16.7\ \text{m/s}$
+AKA: $60\ \text{კმ/სთ} \approx 16{,}7\ \text{მ/წმ}$
+AEN: $60\ \text{km/h} \approx 16.7\ \text{m/s}$
+
+--- easy speed
+KA: ველოსიპედისტი თანაბრად მოძრაობს $5\ \text{მ/წმ}$ სიჩქარით. რა მანძილს გაივლის ის $10\ \text{წთ}$-ში?
+EN: A cyclist moves uniformly at $5\ \text{m/s}$. What distance does the cyclist cover in $10\ \text{min}$?
+HKA: ჯერ დრო წამებში გადაიყვანეთ.
+HEN: First convert the time to seconds.
+SKA: **ფორმულა:** $v = \dfrac{s}{t} \Rightarrow s = v\,t$
+**რიცხვები:** $t = 10\ \text{წთ} = 600\ \text{წმ}$
+$s = 5\ \text{მ/წმ} \cdot 600\ \text{წმ} = 3000\ \text{მ} = 3\ \text{კმ}$
+SEN: **Formula:** $v = \dfrac{s}{t} \Rightarrow s = v\,t$
+**Numbers:** $t = 10\ \text{min} = 600\ \text{s}$
+$s = 5\ \text{m/s} \cdot 600\ \text{s} = 3000\ \text{m} = 3\ \text{km}$
+AKA: $3\ \text{კმ}$
+AEN: $3\ \text{km}$
+
+--- easy speed
+KA: ელვის გაელვებიდან $3\ \text{წმ}$-ის შემდეგ ქუხილის ხმა გაისმა. რა მანძილზეა ელვა, თუ ბგერის სიჩქარე ჰაერში $340\ \text{მ/წმ}$-ია? (სინათლე თითქმის მყისიერად აღწევს.)
+EN: Thunder is heard $3\ \text{s}$ after a flash of lightning. How far away is the lightning if the speed of sound in air is $340\ \text{m/s}$? (Light arrives practically instantly.)
+HKA: $3\ \text{წმ}$ — ეს ის დროა, რაც ბგერას დასჭირდა.
+HEN: $3\ \text{s}$ is the time the sound needed.
+SKA: **ფორმულა:** $s = v_{\text{ბგ}}\, t$
+**რიცხვები:** $s = 340\ \text{მ/წმ} \cdot 3\ \text{წმ} = 1020\ \text{მ} \approx 1\ \text{კმ}$
+SEN: **Formula:** $s = v_{\text{sound}}\, t$
+**Numbers:** $s = 340\ \text{m/s} \cdot 3\ \text{s} = 1020\ \text{m} \approx 1\ \text{km}$
+AKA: $\approx 1020\ \text{მ}$
+AEN: $\approx 1020\ \text{m}$
+
+--- easy speed
+KA: ქვეითი $4\ \text{კმ/სთ}$ სიჩქარით მიდის. რა დრო დასჭირდება მას $6\ \text{კმ}$-ის გასავლელად?
+EN: A pedestrian walks at $4\ \text{km/h}$. How long does it take to walk $6\ \text{km}$?
+HKA: გამოსახეთ $t$ ფორმულიდან $v = s/t$.
+HEN: Express $t$ from $v = s/t$.
+SKA: **ფორმულა:** $v = \dfrac{s}{t} \Rightarrow t = \dfrac{s}{v}$
+**რიცხვები:** $t = \dfrac{6\ \text{კმ}}{4\ \text{კმ/სთ}} = 1{,}5\ \text{სთ} = 1\ \text{სთ}\ 30\ \text{წთ}$
+SEN: **Formula:** $v = \dfrac{s}{t} \Rightarrow t = \dfrac{s}{v}$
+**Numbers:** $t = \dfrac{6\ \text{km}}{4\ \text{km/h}} = 1.5\ \text{h} = 1\ \text{h}\ 30\ \text{min}$
+AKA: $1{,}5\ \text{სთ}$
+AEN: $1.5\ \text{h}$
+
+--- easy force
+KA: რას უდრის $5\ \text{კგ}$ მასის სხეულზე მოქმედი სიმძიმის ძალა?
+EN: What is the force of gravity acting on a body of mass $5\ \text{kg}$?
+HKA: სიმძიმის ძალა მასის პროპორციულია: $F = mg$.
+HEN: Gravity is proportional to mass: $F = mg$.
+SKA: **ფორმულა:** $F_{\text{სიმ}} = m\,g$
+**რიცხვები:** $F = 5\ \text{კგ} \cdot 10\ \text{ნ/კგ} = 50\ \text{ნ}$
+SEN: **Formula:** $F_{\text{g}} = m\,g$
+**Numbers:** $F = 5\ \text{kg} \cdot 10\ \text{N/kg} = 50\ \text{N}$
+AKA: $50\ \text{ნ}$
+AEN: $50\ \text{N}$
+
+--- easy force
+KA: სხეულზე ერთი წრფის გასწვრივ მოქმედებს $30\ \text{ნ}$ და $50\ \text{ნ}$ ძალები. იპოვეთ ძალთა ტოლქმედი, თუ ძალები მიმართულია: ა) ერთ მხარეს; ბ) საწინააღმდეგო მხარეს.
+EN: Two forces of $30\ \text{N}$ and $50\ \text{N}$ act on a body along one line. Find the resultant if the forces point: a) the same way; b) in opposite directions.
+HKA: ერთნაირად მიმართული ძალები იკრიბება, საწინააღმდეგოდ მიმართული — აკლდება ერთმანეთს.
+HEN: Forces in the same direction add; opposite forces subtract.
+SKA: **ფორმულა:** ა) $R = F_1 + F_2$; ბ) $R = F_2 - F_1$ (მიმართულია დიდი ძალის მხარეს).
+**რიცხვები:** ა) $R = 30 + 50 = 80\ \text{ნ}$
+ბ) $R = 50 - 30 = 20\ \text{ნ}$, $50\ \text{ნ}$-იანი ძალის მიმართულებით.
+SEN: **Formula:** a) $R = F_1 + F_2$; b) $R = F_2 - F_1$ (pointing along the larger force).
+**Numbers:** a) $R = 30 + 50 = 80\ \text{N}$
+b) $R = 50 - 30 = 20\ \text{N}$, in the direction of the $50\ \text{N}$ force.
+AKA: ა) $80\ \text{ნ}$; ბ) $20\ \text{ნ}$
+AEN: a) $80\ \text{N}$; b) $20\ \text{N}$
+
+--- easy elastic
+KA: ზამბარის სიხისტეა $200\ \text{ნ/მ}$. რა ძალით უნდა გავჭიმოთ ის, რომ $3\ \text{სმ}$-ით წაგრძელდეს?
+EN: A spring has stiffness $200\ \text{N/m}$. What force stretches it by $3\ \text{cm}$?
+HKA: ჰუკის კანონი: $F = k\,\Delta l$. წაგრძელება მეტრებში გადაიყვანეთ.
+HEN: Hooke's law: $F = k\,\Delta l$. Convert the extension to metres.
+SKA: **ფორმულა:** $F_{\text{დრ}} = k\,\Delta l$
+**რიცხვები:** $\Delta l = 3\ \text{სმ} = 0{,}03\ \text{მ}$
+$F = 200\ \text{ნ/მ} \cdot 0{,}03\ \text{მ} = 6\ \text{ნ}$
+SEN: **Formula:** $F_{\text{el}} = k\,\Delta l$
+**Numbers:** $\Delta l = 3\ \text{cm} = 0.03\ \text{m}$
+$F = 200\ \text{N/m} \cdot 0.03\ \text{m} = 6\ \text{N}$
+AKA: $6\ \text{ნ}$
+AEN: $6\ \text{N}$
+
+--- easy elastic
+KA: დინამომეტრზე ჩამოკიდებული ტვირთის დროს ხელსაწყო $4\ \text{ნ}$-ს აჩვენებს. რას უდრის ტვირთის მასა?
+EN: A dynamometer with a load hanging on it reads $4\ \text{N}$. What is the mass of the load?
+HKA: წონასწორობისას ზამბარის დრეკადობის ძალა სიმძიმის ძალის ტოლია.
+HEN: In equilibrium the spring's elastic force equals the force of gravity.
+SKA: **ფორმულა:** $F_{\text{დრ}} = m\,g \Rightarrow m = \dfrac{F}{g}$
+**რიცხვები:** $m = \dfrac{4\ \text{ნ}}{10\ \text{ნ/კგ}} = 0{,}4\ \text{კგ} = 400\ \text{გ}$
+SEN: **Formula:** $F_{\text{el}} = m\,g \Rightarrow m = \dfrac{F}{g}$
+**Numbers:** $m = \dfrac{4\ \text{N}}{10\ \text{N/kg}} = 0.4\ \text{kg} = 400\ \text{g}$
+AKA: $0{,}4\ \text{კგ}$
+AEN: $0.4\ \text{kg}$
+
+--- easy elastic
+KA: ყუთს ჰორიზონტალურ იატაკზე თანაბრად (მუდმივი სიჩქარით) მიათრევენ $25\ \text{ნ}$ ძალით. რას უდრის ხახუნის ძალა?
+EN: A box is dragged across a horizontal floor at constant speed with a force of $25\ \text{N}$. What is the friction force?
+HKA: თანაბარი მოძრაობისას სხეულზე მოქმედი ძალები ერთმანეთს აწონასწორებს.
+HEN: In uniform motion the forces on the body balance each other.
+SKA: **ფორმულა:** თანაბარი მოძრაობა $\Rightarrow$ ტოლქმედი $R = F - F_{\text{ხახ}} = 0$, ანუ $F_{\text{ხახ}} = F$.
+**რიცხვები:** $F_{\text{ხახ}} = 25\ \text{ნ}$, მიმართულია მოძრაობის საწინააღმდეგოდ.
+SEN: **Formula:** uniform motion $\Rightarrow$ resultant $R = F - F_{\text{fr}} = 0$, so $F_{\text{fr}} = F$.
+**Numbers:** $F_{\text{fr}} = 25\ \text{N}$, directed opposite to the motion.
+AKA: $25\ \text{ნ}$
+AEN: $25\ \text{N}$
+
+--- easy density
+KA: ლითონის ძელაკის მასაა $270\ \text{გ}$, მოცულობა — $100\ \text{სმ}^3$. იპოვეთ ლითონის სიმკვრივე. რა ლითონი შეიძლება იყოს?
+EN: A metal bar has mass $270\ \text{g}$ and volume $100\ \text{cm}^3$. Find the density of the metal. Which metal could it be?
+HKA: $\rho = m/V$. $1\ \text{გ/სმ}^3 = 1000\ \text{კგ/მ}^3$.
+HEN: $\rho = m/V$. $1\ \text{g/cm}^3 = 1000\ \text{kg/m}^3$.
+SKA: **ფორმულა:** $\rho = \dfrac{m}{V}$
+**რიცხვები:** $\rho = \dfrac{270\ \text{გ}}{100\ \text{სმ}^3} = 2{,}7\ \text{გ/სმ}^3 = 2700\ \text{კგ/მ}^3$
+ცხრილის მიხედვით ეს ალუმინის სიმკვრივეა.
+SEN: **Formula:** $\rho = \dfrac{m}{V}$
+**Numbers:** $\rho = \dfrac{270\ \text{g}}{100\ \text{cm}^3} = 2.7\ \text{g/cm}^3 = 2700\ \text{kg/m}^3$
+From the table, this is the density of aluminium.
+AKA: $2700\ \text{კგ/მ}^3$ (ალუმინი)
+AEN: $2700\ \text{kg/m}^3$ (aluminium)
+
+--- easy density
+KA: რას უდრის $2\ \text{ლ}$ წყლის მასა?
+EN: What is the mass of $2\ \text{L}$ of water?
+HKA: $1\ \text{ლ} = 1\ \text{დმ}^3 = 0{,}001\ \text{მ}^3$.
+HEN: $1\ \text{L} = 1\ \text{dm}^3 = 0.001\ \text{m}^3$.
+SKA: **ფორმულა:** $\rho = \dfrac{m}{V} \Rightarrow m = \rho\,V$
+**რიცხვები:** $V = 2\ \text{ლ} = 0{,}002\ \text{მ}^3$
+$m = 1000\ \text{კგ/მ}^3 \cdot 0{,}002\ \text{მ}^3 = 2\ \text{კგ}$
+SEN: **Formula:** $\rho = \dfrac{m}{V} \Rightarrow m = \rho\,V$
+**Numbers:** $V = 2\ \text{L} = 0.002\ \text{m}^3$
+$m = 1000\ \text{kg/m}^3 \cdot 0.002\ \text{m}^3 = 2\ \text{kg}$
+AKA: $2\ \text{კგ}$
+AEN: $2\ \text{kg}$
+
+--- easy matter
+KA: ჩაის ჭიქაში შაქარი ჩაყარეს. სად გაიხსნება და გავრცელდება შაქარი უფრო სწრაფად — ცხელ თუ ცივ ჩაიში? ახსენით მოლეკულური აგებულების თვალსაზრისით.
+EN: Sugar is put into a cup of tea. Where does it dissolve and spread faster — in hot or in cold tea? Explain using the molecular picture of matter.
+HKA: დიფუზიის სიჩქარე დამოკიდებულია მოლეკულების მოძრაობის სიჩქარეზე.
+HEN: The rate of diffusion depends on how fast the molecules move.
+SKA: ნივთიერება შედგება მოლეკულებისგან, რომლებიც განუწყვეტლივ და ქაოსურად მოძრაობს.
+დიფუზია — ერთი ნივთიერების მოლეკულების შეღწევა მეორის მოლეკულებს შორის, სწორედ ამ მოძრაობის გამო.
+რაც უფრო მაღალია ტემპერატურა, მით უფრო სწრაფად მოძრაობს მოლეკულები.
+ამიტომ ცხელ ჩაიში დიფუზია და გახსნა უფრო სწრაფად მიმდინარეობს.
+SEN: Matter consists of molecules that move constantly and randomly.
+Diffusion is the spreading of one substance's molecules among another's, caused by this motion.
+The higher the temperature, the faster the molecules move.
+Therefore diffusion and dissolving are faster in hot tea.
+AKA: ცხელ ჩაიში — მოლეკულები უფრო სწრაფად მოძრაობს.
+AEN: in hot tea — the molecules move faster.
+
+--- easy pressure
+KA: $600\ \text{ნ}$ წონის ყუთი იატაკს ეყრდნობა $0{,}2\ \text{მ}^2$ ფართობით. რა წნევას ახდენს ყუთი იატაკზე?
+EN: A box of weight $600\ \text{N}$ rests on the floor on an area of $0.2\ \text{m}^2$. What pressure does it exert on the floor?
+HKA: წნევა — ზედაპირის ერთეულ ფართობზე მართობულად მოქმედი ძალა.
+HEN: Pressure is the perpendicular force per unit area.
+SKA: **ფორმულა:** $p = \dfrac{F}{S}$
+**რიცხვები:** $p = \dfrac{600\ \text{ნ}}{0{,}2\ \text{მ}^2} = 3000\ \text{პა} = 3\ \text{კპა}$
+SEN: **Formula:** $p = \dfrac{F}{S}$
+**Numbers:** $p = \dfrac{600\ \text{N}}{0.2\ \text{m}^2} = 3000\ \text{Pa} = 3\ \text{kPa}$
+AKA: $3000\ \text{პა}$
+AEN: $3000\ \text{Pa}$
+
+--- easy fluids
+KA: რა წნევას ახდენს წყალი აუზში $5\ \text{მ}$ სიღრმეზე? (ატმოსფერული წნევა არ გაითვალისწინოთ.)
+EN: What pressure does water exert at a depth of $5\ \text{m}$ in a pool? (Ignore atmospheric pressure.)
+HKA: სითხის სვეტის წნევა: $p = \rho g h$.
+HEN: Pressure of a liquid column: $p = \rho g h$.
+SKA: **ფორმულა:** $p = \rho\,g\,h$
+**რიცხვები:** $p = 1000\ \text{კგ/მ}^3 \cdot 10\ \text{ნ/კგ} \cdot 5\ \text{მ} = 50\,000\ \text{პა} = 50\ \text{კპა}$
+SEN: **Formula:** $p = \rho\,g\,h$
+**Numbers:** $p = 1000\ \text{kg/m}^3 \cdot 10\ \text{N/kg} \cdot 5\ \text{m} = 50\,000\ \text{Pa} = 50\ \text{kPa}$
+AKA: $50\ \text{კპა}$
+AEN: $50\ \text{kPa}$
+
+--- easy archimedes
+KA: $0{,}002\ \text{მ}^3$ მოცულობის სხეული მთლიანად წყალშია ჩაძირული. რას უდრის მასზე მოქმედი არქიმედეს ძალა?
+EN: A body of volume $0.002\ \text{m}^3$ is fully submerged in water. What is the buoyant (Archimedes') force on it?
+HKA: არქიმედეს ძალა გამოდევნილი სითხის წონის ტოლია.
+HEN: The buoyant force equals the weight of the displaced liquid.
+SKA: **ფორმულა:** $F_A = \rho_{\text{სითხ}}\, g\, V_{\text{ჩაძ}}$
+**რიცხვები:** $F_A = 1000\ \text{კგ/მ}^3 \cdot 10\ \text{ნ/კგ} \cdot 0{,}002\ \text{მ}^3 = 20\ \text{ნ}$
+SEN: **Formula:** $F_A = \rho_{\text{liquid}}\, g\, V_{\text{sub}}$
+**Numbers:** $F_A = 1000\ \text{kg/m}^3 \cdot 10\ \text{N/kg} \cdot 0.002\ \text{m}^3 = 20\ \text{N}$
+AKA: $20\ \text{ნ}$
+AEN: $20\ \text{N}$
+
+--- easy machines
+KA: ბერკეტის მხრებია $0{,}2\ \text{მ}$ და $0{,}8\ \text{მ}$. მოკლე მხარზე $100\ \text{ნ}$ ძალა მოქმედებს. რა ძალა უნდა მოვდოთ გრძელ მხარს, რომ ბერკეტი წონასწორობაში იყოს?
+EN: The arms of a lever are $0.2\ \text{m}$ and $0.8\ \text{m}$. A force of $100\ \text{N}$ acts on the short arm. What force must be applied to the long arm to keep the lever in balance?
+HKA: ბერკეტის წონასწორობის პირობა: $F_1 l_1 = F_2 l_2$.
+HEN: Lever balance condition: $F_1 l_1 = F_2 l_2$.
+SKA: **ფორმულა:** $F_1 l_1 = F_2 l_2 \Rightarrow F_2 = \dfrac{F_1 l_1}{l_2}$
+**რიცხვები:** $F_2 = \dfrac{100\ \text{ნ} \cdot 0{,}2\ \text{მ}}{0{,}8\ \text{მ}} = 25\ \text{ნ}$
+მოგება ძალაში $4$-ჯერ — მხრების შეფარდების ტოლი.
+SEN: **Formula:** $F_1 l_1 = F_2 l_2 \Rightarrow F_2 = \dfrac{F_1 l_1}{l_2}$
+**Numbers:** $F_2 = \dfrac{100\ \text{N} \cdot 0.2\ \text{m}}{0.8\ \text{m}} = 25\ \text{N}$
+The force is reduced $4$ times — the ratio of the arms.
+AKA: $25\ \text{ნ}$
+AEN: $25\ \text{N}$
+
+// ===================================================================== MEDIUM
+
+--- medium measure
+KA: წიგნის $200$ გვერდი (ანუ $100$ ფურცელი) ყდის გარეშე $1{,}5\ \text{სმ}$ სისქისაა. რას უდრის ერთი ფურცლის სისქე მილიმეტრებში?
+EN: $200$ pages (that is, $100$ sheets) of a book are $1.5\ \text{cm}$ thick without the cover. What is the thickness of one sheet in millimetres?
+HKA: ეს „მწკრივების მეთოდია“: ზომავენ ბევრ ერთნაირ ობიექტს ერთად და ყოფენ რაოდენობაზე. ფრთხილად: ერთ ფურცელს ორი გვერდი აქვს.
+HEN: This is the "series method": measure many identical objects together and divide by their number. Careful: one sheet has two pages.
+SKA: **ფორმულა:** $d = \dfrac{D}{N}$, სადაც $N$ — ფურცლების (და არა გვერდების) რაოდენობა.
+**რიცხვები:** $D = 1{,}5\ \text{სმ} = 15\ \text{მმ}$, $N = 100$
+$d = \dfrac{15\ \text{მმ}}{100} = 0{,}15\ \text{მმ}$
+SEN: **Formula:** $d = \dfrac{D}{N}$, where $N$ is the number of sheets (not pages).
+**Numbers:** $D = 1.5\ \text{cm} = 15\ \text{mm}$, $N = 100$
+$d = \dfrac{15\ \text{mm}}{100} = 0.15\ \text{mm}$
+AKA: $0{,}15\ \text{მმ}$
+AEN: $0.15\ \text{mm}$
+
+--- medium motion
+KA: ორი ავტომობილი ერთ მიმართულებით მოძრაობს: პირველი $60\ \text{კმ/სთ}$, მეორე $80\ \text{კმ/სთ}$ სიჩქარით. რას უდრის მეორის სიჩქარე პირველის მიმართ? რას უდრის ის, თუ ავტომობილები ერთმანეთის შემხვედრად მოძრაობს?
+EN: Two cars move in the same direction: the first at $60\ \text{km/h}$, the second at $80\ \text{km/h}$. What is the speed of the second relative to the first? What is it if the cars move towards each other?
+HKA: ერთი მიმართულებით — სიჩქარეები აკლდება, შემხვედრად — იკრიბება.
+HEN: Same direction — subtract the speeds; towards each other — add them.
+SKA: **ფორმულა:** ერთი მიმართულებით $v_{\text{ფარდ}} = v_2 - v_1$; შემხვედრად $v_{\text{ფარდ}} = v_1 + v_2$.
+**რიცხვები:** $v_{\text{ფარდ}} = 80 - 60 = 20\ \text{კმ/სთ}$
+შემხვედრად: $v_{\text{ფარდ}} = 60 + 80 = 140\ \text{კმ/სთ}$
+SEN: **Formula:** same direction $v_{\text{rel}} = v_2 - v_1$; towards each other $v_{\text{rel}} = v_1 + v_2$.
+**Numbers:** $v_{\text{rel}} = 80 - 60 = 20\ \text{km/h}$
+Towards each other: $v_{\text{rel}} = 60 + 80 = 140\ \text{km/h}$
+AKA: $20\ \text{კმ/სთ}$; $140\ \text{კმ/სთ}$
+AEN: $20\ \text{km/h}$; $140\ \text{km/h}$
+
+--- medium speed
+KA: ავტობუსმა $120\ \text{კმ}$ $2\ \text{სთ}$-ში გაიარა, შემდეგ $0{,}5\ \text{სთ}$ გაჩერებაზე იდგა, ბოლოს კი $60\ \text{კმ}$ $1{,}5\ \text{სთ}$-ში გაიარა. იპოვეთ საშუალო სიჩქარე მთელ გზაზე.
+EN: A bus covered $120\ \text{km}$ in $2\ \text{h}$, then stood at a stop for $0.5\ \text{h}$, and finally covered $60\ \text{km}$ in $1.5\ \text{h}$. Find the average speed for the whole trip.
+HKA: საშუალო სიჩქარე = მთელი გზა : მთელ დროზე (გაჩერების დროის ჩათვლით!).
+HEN: Average speed = total path ÷ total time (including the stop!).
+SKA: **ფორმულა:** $v_{\text{საშ}} = \dfrac{s_1 + s_2}{t_1 + t_2 + t_3}$
+**რიცხვები:** $v_{\text{საშ}} = \dfrac{120 + 60}{2 + 0{,}5 + 1{,}5}\ \dfrac{\text{კმ}}{\text{სთ}} = \dfrac{180}{4} = 45\ \text{კმ/სთ}$
+SEN: **Formula:** $v_{\text{avg}} = \dfrac{s_1 + s_2}{t_1 + t_2 + t_3}$
+**Numbers:** $v_{\text{avg}} = \dfrac{120 + 60}{2 + 0.5 + 1.5}\ \dfrac{\text{km}}{\text{h}} = \dfrac{180}{4} = 45\ \text{km/h}$
+AKA: $45\ \text{კმ/სთ}$
+AEN: $45\ \text{km/h}$
+
+--- medium speed
+KA: ავტომობილმა გზის პირველი ნახევარი $40\ \text{კმ/სთ}$, მეორე ნახევარი კი $60\ \text{კმ/სთ}$ სიჩქარით გაიარა. იპოვეთ საშუალო სიჩქარე. რატომ არ არის ის $50\ \text{კმ/სთ}$?
+EN: A car covered the first half of the distance at $40\ \text{km/h}$ and the second half at $60\ \text{km/h}$. Find the average speed. Why is it not $50\ \text{km/h}$?
+HKA: აღნიშნეთ მთელი გზა $2s$-ით და გამოთვალეთ თითოეულ ნახევარზე დახარჯული დრო.
+HEN: Call the whole distance $2s$ and find the time spent on each half.
+SKA: **ფორმულა:** $v_{\text{საშ}} = \dfrac{2s}{t_1 + t_2}$, $t_1 = \dfrac{s}{v_1}$, $t_2 = \dfrac{s}{v_2}$
+$v_{\text{საშ}} = \dfrac{2s}{\frac{s}{v_1} + \frac{s}{v_2}} = \dfrac{2 v_1 v_2}{v_1 + v_2}$
+**რიცხვები:** $v_{\text{საშ}} = \dfrac{2 \cdot 40 \cdot 60}{40 + 60} = 48\ \text{კმ/სთ}$
+ნელი სიჩქარით მოძრაობას მეტი დრო მიაქვს, ამიტომ საშუალო $40$-ისკენ არის გადახრილი.
+SEN: **Formula:** $v_{\text{avg}} = \dfrac{2s}{t_1 + t_2}$, $t_1 = \dfrac{s}{v_1}$, $t_2 = \dfrac{s}{v_2}$
+$v_{\text{avg}} = \dfrac{2s}{\frac{s}{v_1} + \frac{s}{v_2}} = \dfrac{2 v_1 v_2}{v_1 + v_2}$
+**Numbers:** $v_{\text{avg}} = \dfrac{2 \cdot 40 \cdot 60}{40 + 60} = 48\ \text{km/h}$
+More time is spent at the lower speed, so the average leans towards $40$.
+AKA: $48\ \text{კმ/სთ}$
+AEN: $48\ \text{km/h}$
+
+--- medium speed
+KA: თანაბრად მოძრავი სხეულის გზის გრაფიკი $s(t)$ წრფეა, რომელიც გადის $(0;\,0)$ და $(4\ \text{წმ};\ 20\ \text{მ})$ წერტილებზე. იპოვეთ სიჩქარე და $10\ \text{წმ}$-ში გავლილი გზა. როგორი იქნება გრაფიკი $v(t)$?
+EN: The path graph $s(t)$ of a uniformly moving body is a straight line through $(0,\,0)$ and $(4\ \text{s},\ 20\ \text{m})$. Find the speed and the path covered in $10\ \text{s}$. What does the $v(t)$ graph look like?
+HKA: სიჩქარე $s(t)$ გრაფიკის დახრილობაა: $v = \Delta s / \Delta t$.
+HEN: Speed is the slope of the $s(t)$ graph: $v = \Delta s / \Delta t$.
+SKA: **ფორმულა:** $v = \dfrac{\Delta s}{\Delta t}$, $s = v\,t$
+**რიცხვები:** $v = \dfrac{20\ \text{მ} - 0}{4\ \text{წმ} - 0} = 5\ \text{მ/წმ}$
+$s(10\ \text{წმ}) = 5\ \text{მ/წმ} \cdot 10\ \text{წმ} = 50\ \text{მ}$
+$v(t)$ გრაფიკი დროის ღერძის პარალელური წრფეა $v = 5\ \text{მ/წმ}$ სიმაღლეზე.
+SEN: **Formula:** $v = \dfrac{\Delta s}{\Delta t}$, $s = v\,t$
+**Numbers:** $v = \dfrac{20\ \text{m} - 0}{4\ \text{s} - 0} = 5\ \text{m/s}$
+$s(10\ \text{s}) = 5\ \text{m/s} \cdot 10\ \text{s} = 50\ \text{m}$
+The $v(t)$ graph is a horizontal line at $v = 5\ \text{m/s}$.
+AKA: $5\ \text{მ/წმ}$; $50\ \text{მ}$
+AEN: $5\ \text{m/s}$; $50\ \text{m}$
+
+--- medium speed
+KA: ორი ქალაქიდან, რომელთა შორის მანძილი $30\ \text{კმ}$-ია, ერთდროულად ერთმანეთის შესახვედრად გამოვიდა ორი ველოსიპედისტი $12\ \text{კმ/სთ}$ და $18\ \text{კმ/სთ}$ სიჩქარეებით. როდის და პირველი ქალაქიდან რა მანძილზე შეხვდებიან ისინი?
+EN: Two cyclists set off at the same time towards each other from two towns $30\ \text{km}$ apart, at $12\ \text{km/h}$ and $18\ \text{km/h}$. When and how far from the first town do they meet?
+HKA: შეხვედრამდე ისინი ერთად გაივლიან მთელ $30\ \text{კმ}$-ს; დაახლოების სიჩქარეა $v_1 + v_2$.
+HEN: Together they cover the whole $30\ \text{km}$; their closing speed is $v_1 + v_2$.
+SKA: **ფორმულა:** $s_1 + s_2 = L \Rightarrow v_1 t + v_2 t = L \Rightarrow t = \dfrac{L}{v_1 + v_2}$, $s_1 = v_1 t$
+**რიცხვები:** $t = \dfrac{30\ \text{კმ}}{12 + 18\ \text{კმ/სთ}} = 1\ \text{სთ}$
+$s_1 = 12\ \text{კმ/სთ} \cdot 1\ \text{სთ} = 12\ \text{კმ}$
+SEN: **Formula:** $s_1 + s_2 = L \Rightarrow v_1 t + v_2 t = L \Rightarrow t = \dfrac{L}{v_1 + v_2}$, $s_1 = v_1 t$
+**Numbers:** $t = \dfrac{30\ \text{km}}{12 + 18\ \text{km/h}} = 1\ \text{h}$
+$s_1 = 12\ \text{km/h} \cdot 1\ \text{h} = 12\ \text{km}$
+AKA: $1\ \text{სთ}$-ში, პირველი ქალაქიდან $12\ \text{კმ}$-ზე
+AEN: after $1\ \text{h}$, $12\ \text{km}$ from the first town
+
+--- medium speed
+KA: $200\ \text{მ}$ სიგრძის მატარებელი $20\ \text{მ/წმ}$ სიჩქარით გადის $400\ \text{მ}$ სიგრძის ხიდზე. რა დრო დასჭირდება ხიდის მთლიანად გავლას (ლოკომოტივის ხიდზე შესვლიდან ბოლო ვაგონის ჩამოსვლამდე)?
+EN: A train $200\ \text{m}$ long crosses a bridge $400\ \text{m}$ long at $20\ \text{m/s}$. How long does it take to cross completely (from the locomotive entering until the last carriage leaves)?
+HKA: დააკვირდით მატარებლის ბოლო ვაგონს: რა მანძილი უნდა გაიაროს მან?
+HEN: Follow the last carriage: how far must it travel?
+SKA: ბოლო ვაგონმა უნდა გაიაროს ხიდის სიგრძეს პლუს მატარებლის სიგრძე.
+**ფორმულა:** $t = \dfrac{L_{\text{ხიდ}} + L_{\text{მატ}}}{v}$
+**რიცხვები:** $t = \dfrac{400\ \text{მ} + 200\ \text{მ}}{20\ \text{მ/წმ}} = 30\ \text{წმ}$
+SEN: The last carriage must travel the length of the bridge plus the length of the train.
+**Formula:** $t = \dfrac{L_{\text{bridge}} + L_{\text{train}}}{v}$
+**Numbers:** $t = \dfrac{400\ \text{m} + 200\ \text{m}}{20\ \text{m/s}} = 30\ \text{s}$
+AKA: $30\ \text{წმ}$
+AEN: $30\ \text{s}$
+
+--- medium force
+KA: ასტრონავტის მასა $80\ \text{კგ}$-ია. რას უდრის მასზე მოქმედი სიმძიმის ძალა დედამიწაზე და მთვარეზე ($g_{\text{მთ}} = 1{,}6\ \text{ნ/კგ}$)? შეიცვლება თუ არა მისი მასა?
+EN: An astronaut has a mass of $80\ \text{kg}$. What is the force of gravity on them on Earth and on the Moon ($g_{\text{Moon}} = 1.6\ \text{N/kg}$)? Does their mass change?
+HKA: მასა სხეულის თვისებაა და არ არის დამოკიდებული იმაზე, სად იმყოფება სხეული; $g$ კი ციური სხეულის მიხედვით იცვლება.
+HEN: Mass is a property of the body and does not depend on where it is; $g$ depends on the planet or moon.
+SKA: **ფორმულა:** $F = m\,g$
+**რიცხვები:** დედამიწაზე: $F_{\text{დ}} = 80\ \text{კგ} \cdot 10\ \text{ნ/კგ} = 800\ \text{ნ}$
+მთვარეზე: $F_{\text{მ}} = 80\ \text{კგ} \cdot 1{,}6\ \text{ნ/კგ} = 128\ \text{ნ}$
+მასა ორივეგან $80\ \text{კგ}$ რჩება.
+SEN: **Formula:** $F = m\,g$
+**Numbers:** on Earth: $F_{\text{E}} = 80\ \text{kg} \cdot 10\ \text{N/kg} = 800\ \text{N}$
+on the Moon: $F_{\text{M}} = 80\ \text{kg} \cdot 1.6\ \text{N/kg} = 128\ \text{N}$
+The mass stays $80\ \text{kg}$ in both places.
+AKA: $800\ \text{ნ}$ და $128\ \text{ნ}$; მასა არ იცვლება.
+AEN: $800\ \text{N}$ and $128\ \text{N}$; the mass does not change.
+
+--- medium force
+KA: ბიჭი $20\ \text{კგ}$ მასის ჩანთას ზემოთ $250\ \text{ნ}$ ძალით სწევს. რას უდრის ჩანთაზე მოქმედი ძალების ტოლქმედი და საით არის მიმართული?
+EN: A boy pulls a $20\ \text{kg}$ bag upwards with a force of $250\ \text{N}$. What is the resultant force on the bag and where does it point?
+HKA: ჩანთაზე ორი ძალა მოქმედებს: ბიჭის ძალა ზემოთ და სიმძიმის ძალა ქვემოთ.
+HEN: Two forces act on the bag: the boy's pull upwards and gravity downwards.
+SKA: **ფორმულა:** $R = F - m g$ (ზემოთ მიმართული ძალები დადებითად ავიღოთ).
+**რიცხვები:** $mg = 20 \cdot 10 = 200\ \text{ნ}$
+$R = 250\ \text{ნ} - 200\ \text{ნ} = 50\ \text{ნ}$, მიმართულია ზემოთ.
+SEN: **Formula:** $R = F - m g$ (taking upward forces as positive).
+**Numbers:** $mg = 20 \cdot 10 = 200\ \text{N}$
+$R = 250\ \text{N} - 200\ \text{N} = 50\ \text{N}$, pointing upwards.
+AKA: $50\ \text{ნ}$, ზემოთ
+AEN: $50\ \text{N}$, upwards
+
+--- medium elastic
+KA: ზამბარა $2\ \text{ნ}$ ძალით $4\ \text{სმ}$-ით წაგრძელდა. რა ძალაა საჭირო, რომ ის $10\ \text{სმ}$-ით წაგრძელდეს?
+EN: A spring stretches by $4\ \text{cm}$ under a force of $2\ \text{N}$. What force is needed to stretch it by $10\ \text{cm}$?
+HKA: ჯერ პირველი ცდიდან იპოვეთ სიხისტე $k$.
+HEN: First find the stiffness $k$ from the first measurement.
+SKA: **ფორმულა:** $F = k\,\Delta l \Rightarrow k = \dfrac{F_1}{\Delta l_1}$, $F_2 = k\,\Delta l_2 = F_1 \dfrac{\Delta l_2}{\Delta l_1}$
+**რიცხვები:** $k = \dfrac{2\ \text{ნ}}{0{,}04\ \text{მ}} = 50\ \text{ნ/მ}$
+$F_2 = 50\ \text{ნ/მ} \cdot 0{,}10\ \text{მ} = 5\ \text{ნ}$
+SEN: **Formula:** $F = k\,\Delta l \Rightarrow k = \dfrac{F_1}{\Delta l_1}$, $F_2 = k\,\Delta l_2 = F_1 \dfrac{\Delta l_2}{\Delta l_1}$
+**Numbers:** $k = \dfrac{2\ \text{N}}{0.04\ \text{m}} = 50\ \text{N/m}$
+$F_2 = 50\ \text{N/m} \cdot 0.10\ \text{m} = 5\ \text{N}$
+AKA: $5\ \text{ნ}$
+AEN: $5\ \text{N}$
+
+--- medium elastic
+KA: ზამბარის სიგრძე დაუტვირთავ მდგომარეობაში $12\ \text{სმ}$-ია. $300\ \text{გ}$ ტვირთის ჩამოკიდებისას მისი სიგრძე $15\ \text{სმ}$ გახდა. იპოვეთ ზამბარის სიხისტე და მისი სიგრძე $500\ \text{გ}$ ტვირთის ჩამოკიდებისას.
+EN: An unloaded spring is $12\ \text{cm}$ long. With a $300\ \text{g}$ load hanging on it, it is $15\ \text{cm}$ long. Find the stiffness and the spring's length with a $500\ \text{g}$ load.
+HKA: წაგრძელება = ახალი სიგრძე − საწყისი სიგრძე. წონასწორობისას $k\Delta l = mg$.
+HEN: Extension = new length − original length. In equilibrium $k\Delta l = mg$.
+SKA: **ფორმულა:** $k\,\Delta l = m g \Rightarrow k = \dfrac{m_1 g}{l_1 - l_0}$; $\ l_2 = l_0 + \dfrac{m_2 g}{k}$
+**რიცხვები:** $k = \dfrac{0{,}3 \cdot 10\ \text{ნ}}{0{,}15 - 0{,}12\ \text{მ}} = \dfrac{3}{0{,}03} = 100\ \text{ნ/მ}$
+$\Delta l_2 = \dfrac{0{,}5 \cdot 10}{100} = 0{,}05\ \text{მ} = 5\ \text{სმ}$
+$l_2 = 12 + 5 = 17\ \text{სმ}$
+SEN: **Formula:** $k\,\Delta l = m g \Rightarrow k = \dfrac{m_1 g}{l_1 - l_0}$; $\ l_2 = l_0 + \dfrac{m_2 g}{k}$
+**Numbers:** $k = \dfrac{0.3 \cdot 10\ \text{N}}{0.15 - 0.12\ \text{m}} = \dfrac{3}{0.03} = 100\ \text{N/m}$
+$\Delta l_2 = \dfrac{0.5 \cdot 10}{100} = 0.05\ \text{m} = 5\ \text{cm}$
+$l_2 = 12 + 5 = 17\ \text{cm}$
+AKA: $100\ \text{ნ/მ}$; $17\ \text{სმ}$
+AEN: $100\ \text{N/m}$; $17\ \text{cm}$
+
+--- medium elastic
+KA: ძელაკს მაგიდაზე დინამომეტრით თანაბრად ექაჩებიან, ხელსაწყო $2{,}4\ \text{ნ}$-ს აჩვენებს. ძელაკზე ზუსტად ასეთივე მეორე ძელაკი დადეს. რას აჩვენებს დინამომეტრი ახლა თანაბარი მოძრაობისას? რატომ?
+EN: A block is pulled uniformly across a table with a dynamometer, which reads $2.4\ \text{N}$. An identical block is placed on top. What does the dynamometer read now during uniform motion? Why?
+HKA: სრიალის ხახუნის ძალა ზედაპირზე სხეულის დაწოლის ძალის პროპორციულია.
+HEN: Sliding friction is proportional to the force pressing the body onto the surface.
+SKA: **ფორმულა:** $F_{\text{ხახ}} \sim N$ (დაწოლის ძალა), ხოლო თანაბარი მოძრაობისას $F_{\text{დინ}} = F_{\text{ხახ}}$.
+დაწოლის ძალა გაორმაგდა $\Rightarrow$ ხახუნის ძალაც გაორმაგდება: $F_2 = 2F_1$.
+**რიცხვები:** $F_2 = 2 \cdot 2{,}4\ \text{ნ} = 4{,}8\ \text{ნ}$
+SEN: **Formula:** $F_{\text{fr}} \propto N$ (the pressing force), and in uniform motion $F_{\text{dyn}} = F_{\text{fr}}$.
+The pressing force doubles $\Rightarrow$ friction doubles too: $F_2 = 2F_1$.
+**Numbers:** $F_2 = 2 \cdot 2.4\ \text{N} = 4.8\ \text{N}$
+AKA: $4{,}8\ \text{ნ}$
+AEN: $4.8\ \text{N}$
+
+--- medium density
+KA: სპილენძის ბურთულას მასა $890\ \text{გ}$-ია, მოცულობა — $120\ \text{სმ}^3$. მთლიანია ბურთულა თუ ღრუ? თუ ღრუა, რას უდრის სიღრუის მოცულობა? ($\rho_{\text{სპ}} = 8{,}9\ \text{გ/სმ}^3$)
+EN: A copper ball has mass $890\ \text{g}$ and volume $120\ \text{cm}^3$. Is the ball solid or hollow? If hollow, what is the volume of the cavity? ($\rho_{\text{Cu}} = 8.9\ \text{g/cm}^3$)
+HKA: გამოთვალეთ, რა მოცულობა ექნებოდა $890\ \text{გ}$ სპილენძს.
+HEN: Work out what volume $890\ \text{g}$ of copper would have.
+SKA: **ფორმულა:** $V_{\text{სპ}} = \dfrac{m}{\rho}$, $\ V_{\text{სიღ}} = V - V_{\text{სპ}}$
+**რიცხვები:** $V_{\text{სპ}} = \dfrac{890\ \text{გ}}{8{,}9\ \text{გ/სმ}^3} = 100\ \text{სმ}^3$
+$100 < 120$, ამიტომ ბურთულა ღრუა: $V_{\text{სიღ}} = 120 - 100 = 20\ \text{სმ}^3$
+SEN: **Formula:** $V_{\text{Cu}} = \dfrac{m}{\rho}$, $\ V_{\text{cav}} = V - V_{\text{Cu}}$
+**Numbers:** $V_{\text{Cu}} = \dfrac{890\ \text{g}}{8.9\ \text{g/cm}^3} = 100\ \text{cm}^3$
+$100 < 120$, so the ball is hollow: $V_{\text{cav}} = 120 - 100 = 20\ \text{cm}^3$
+AKA: ღრუა; $20\ \text{სმ}^3$
+AEN: hollow; $20\ \text{cm}^3$
+
+--- medium density
+KA: შეურიეს $200\ \text{სმ}^3$ წყალი და $300\ \text{სმ}^3$ სპირტი ($\rho_{\text{სპ}} = 0{,}8\ \text{გ/სმ}^3$). იპოვეთ ნარევის სიმკვრივე (ჩათვალეთ, რომ მოცულობები იკრიბება).
+EN: $200\ \text{cm}^3$ of water is mixed with $300\ \text{cm}^3$ of alcohol ($\rho_{\text{alc}} = 0.8\ \text{g/cm}^3$). Find the density of the mixture (assume the volumes add up).
+HKA: ნარევის სიმკვრივე = მთლიანი მასა : მთლიან მოცულობაზე. ეს არ არის სიმკვრივეების უბრალო საშუალო!
+HEN: Mixture density = total mass ÷ total volume. It is not just the average of the two densities!
+SKA: **ფორმულა:** $\rho = \dfrac{m_1 + m_2}{V_1 + V_2} = \dfrac{\rho_1 V_1 + \rho_2 V_2}{V_1 + V_2}$
+**რიცხვები:** $m_1 = 1 \cdot 200 = 200\ \text{გ}$, $m_2 = 0{,}8 \cdot 300 = 240\ \text{გ}$
+$\rho = \dfrac{200 + 240}{200 + 300} = \dfrac{440}{500} = 0{,}88\ \text{გ/სმ}^3 = 880\ \text{კგ/მ}^3$
+SEN: **Formula:** $\rho = \dfrac{m_1 + m_2}{V_1 + V_2} = \dfrac{\rho_1 V_1 + \rho_2 V_2}{V_1 + V_2}$
+**Numbers:** $m_1 = 1 \cdot 200 = 200\ \text{g}$, $m_2 = 0.8 \cdot 300 = 240\ \text{g}$
+$\rho = \dfrac{200 + 240}{200 + 300} = \dfrac{440}{500} = 0.88\ \text{g/cm}^3 = 880\ \text{kg/m}^3$
+AKA: $880\ \text{კგ/მ}^3$
+AEN: $880\ \text{kg/m}^3$
+
+--- medium density
+KA: სატვირთოს ტვირთამწეობა $5\ \text{ტ}$-ია. რამდენი რეისი დასჭირდება $20\ \text{მ}^3$ ქვიშის გადასაზიდად? ($\rho_{\text{ქვ}} = 1500\ \text{კგ/მ}^3$)
+EN: A truck can carry $5\ \text{t}$. How many trips are needed to transport $20\ \text{m}^3$ of sand? ($\rho_{\text{sand}} = 1500\ \text{kg/m}^3$)
+HKA: ჯერ იპოვეთ ქვიშის მასა.
+HEN: First find the mass of the sand.
+SKA: **ფორმულა:** $m = \rho V$, $\ n = \dfrac{m}{m_0}$ (დამრგვალება ზემოთ).
+**რიცხვები:** $m = 1500\ \text{კგ/მ}^3 \cdot 20\ \text{მ}^3 = 30\,000\ \text{კგ} = 30\ \text{ტ}$
+$n = \dfrac{30\ \text{ტ}}{5\ \text{ტ}} = 6$
+SEN: **Formula:** $m = \rho V$, $\ n = \dfrac{m}{m_0}$ (rounded up).
+**Numbers:** $m = 1500\ \text{kg/m}^3 \cdot 20\ \text{m}^3 = 30\,000\ \text{kg} = 30\ \text{t}$
+$n = \dfrac{30\ \text{t}}{5\ \text{t}} = 6$
+AKA: $6$ რეისი
+AEN: $6$ trips
+
+--- medium matter
+KA: $0{,}001\ \text{სმ}^3$ მოცულობის ზეთის წვეთი წყლის ზედაპირზე გაიშალა და $50\ \text{სმ}^2$ ფართობის ფენა წარმოქმნა. ფენა ერთი მოლეკულის სისქისაა. შეაფასეთ მოლეკულის ზომა.
+EN: An oil drop of volume $0.001\ \text{cm}^3$ spreads over water into a film of area $50\ \text{cm}^2$. The film is one molecule thick. Estimate the size of a molecule.
+HKA: ფენა „ბრტყელი ცილინდრია“: მოცულობა = ფართობი × სისქე.
+HEN: The film is a "flat cylinder": volume = area × thickness.
+SKA: **ფორმულა:** $V = S\,d \Rightarrow d = \dfrac{V}{S}$
+**რიცხვები:** $d = \dfrac{0{,}001\ \text{სმ}^3}{50\ \text{სმ}^2} = 2 \cdot 10^{-5}\ \text{სმ} = 2 \cdot 10^{-7}\ \text{მ}$
+მოლეკულები ძალიან პატარაა — მეტრის ათმილიონედების რიგის.
+SEN: **Formula:** $V = S\,d \Rightarrow d = \dfrac{V}{S}$
+**Numbers:** $d = \dfrac{0.001\ \text{cm}^3}{50\ \text{cm}^2} = 2 \times 10^{-5}\ \text{cm} = 2 \times 10^{-7}\ \text{m}$
+Molecules are tiny — of the order of ten-millionths of a metre.
+AKA: $\approx 2 \cdot 10^{-7}\ \text{მ}$
+AEN: $\approx 2 \times 10^{-7}\ \text{m}$
+
+--- medium pressure
+KA: $6\ \text{ტ}$ მასის მუხლუხა ტრაქტორის თითოეული მუხლუხას საყრდენი ზედაპირის ზომებია $2{,}5\ \text{მ} \times 0{,}3\ \text{მ}$. რა წნევას ახდენს ტრაქტორი ნიადაგზე?
+EN: A $6\ \text{t}$ crawler tractor has two tracks, each touching the ground over $2.5\ \text{m} \times 0.3\ \text{m}$. What pressure does the tractor exert on the ground?
+HKA: მუხლუხა ორია — საყრდენი ფართობი ორივე მუხლუხას ფართობის ჯამია.
+HEN: There are two tracks — the support area is the sum of both.
+SKA: **ფორმულა:** $p = \dfrac{F}{S} = \dfrac{m g}{2\,a\,b}$
+**რიცხვები:** $F = 6000 \cdot 10 = 60\,000\ \text{ნ}$, $S = 2 \cdot 2{,}5 \cdot 0{,}3 = 1{,}5\ \text{მ}^2$
+$p = \dfrac{60\,000\ \text{ნ}}{1{,}5\ \text{მ}^2} = 40\,000\ \text{პა} = 40\ \text{კპა}$
+SEN: **Formula:** $p = \dfrac{F}{S} = \dfrac{m g}{2\,a\,b}$
+**Numbers:** $F = 6000 \cdot 10 = 60\,000\ \text{N}$, $S = 2 \cdot 2.5 \cdot 0.3 = 1.5\ \text{m}^2$
+$p = \dfrac{60\,000\ \text{N}}{1.5\ \text{m}^2} = 40\,000\ \text{Pa} = 40\ \text{kPa}$
+AKA: $40\ \text{კპა}$
+AEN: $40\ \text{kPa}$
+
+--- medium pressure
+KA: $2\ \text{კგ}$ მასის აგური, რომლის ზომებია $20\ \text{სმ} \times 10\ \text{სმ} \times 5\ \text{სმ}$, მაგიდაზე დევს. რას უდრის მაქსიმალური და მინიმალური წნევა, რომელიც აგურს შეუძლია მოახდინოს?
+EN: A $2\ \text{kg}$ brick measuring $20\ \text{cm} \times 10\ \text{cm} \times 5\ \text{cm}$ lies on a table. What are the largest and smallest pressures the brick can exert?
+HKA: ძალა ყოველთვის ერთი და იგივეა ($mg$); წნევა მაქსიმალურია ყველაზე პატარა წახნაგზე.
+HEN: The force is always the same ($mg$); pressure is largest on the smallest face.
+SKA: **ფორმულა:** $p = \dfrac{m g}{S}$; $p_{\max}$ — უმცირეს $S$-ზე, $p_{\min}$ — უდიდესზე.
+**რიცხვები:** $F = 2 \cdot 10 = 20\ \text{ნ}$
+$S_{\min} = 10 \cdot 5 = 50\ \text{სმ}^2 = 0{,}005\ \text{მ}^2 \Rightarrow p_{\max} = \dfrac{20}{0{,}005} = 4000\ \text{პა}$
+$S_{\max} = 20 \cdot 10 = 200\ \text{სმ}^2 = 0{,}02\ \text{მ}^2 \Rightarrow p_{\min} = \dfrac{20}{0{,}02} = 1000\ \text{პა}$
+SEN: **Formula:** $p = \dfrac{m g}{S}$; $p_{\max}$ on the smallest $S$, $p_{\min}$ on the largest.
+**Numbers:** $F = 2 \cdot 10 = 20\ \text{N}$
+$S_{\min} = 10 \cdot 5 = 50\ \text{cm}^2 = 0.005\ \text{m}^2 \Rightarrow p_{\max} = \dfrac{20}{0.005} = 4000\ \text{Pa}$
+$S_{\max} = 20 \cdot 10 = 200\ \text{cm}^2 = 0.02\ \text{m}^2 \Rightarrow p_{\min} = \dfrac{20}{0.02} = 1000\ \text{Pa}$
+AKA: $4000\ \text{პა}$ და $1000\ \text{პა}$
+AEN: $4000\ \text{Pa}$ and $1000\ \text{Pa}$
+
+--- medium fluids
+KA: ჰიდრავლიკური წნეხის მცირე დგუშის ფართობია $4\ \text{სმ}^2$, დიდისა — $400\ \text{სმ}^2$. მცირე დგუშზე $200\ \text{ნ}$ ძალით აწვებიან. რა მასის ტვირთის აწევა შეუძლია დიდ დგუშს?
+EN: The small piston of a hydraulic press has area $4\ \text{cm}^2$, the large one $400\ \text{cm}^2$. The small piston is pushed with $200\ \text{N}$. What mass can the large piston lift?
+HKA: პასკალის კანონი: წნევა სითხეში ყველა მიმართულებით უცვლელად გადაეცემა, ე.ი. $p_1 = p_2$.
+HEN: Pascal's law: pressure is transmitted undiminished through the liquid, so $p_1 = p_2$.
+SKA: **ფორმულა:** $\dfrac{F_1}{S_1} = \dfrac{F_2}{S_2} \Rightarrow F_2 = F_1 \dfrac{S_2}{S_1}$, $\ m = \dfrac{F_2}{g}$
+**რიცხვები:** $F_2 = 200\ \text{ნ} \cdot \dfrac{400}{4} = 20\,000\ \text{ნ}$
+$m = \dfrac{20\,000}{10} = 2000\ \text{კგ} = 2\ \text{ტ}$
+SEN: **Formula:** $\dfrac{F_1}{S_1} = \dfrac{F_2}{S_2} \Rightarrow F_2 = F_1 \dfrac{S_2}{S_1}$, $\ m = \dfrac{F_2}{g}$
+**Numbers:** $F_2 = 200\ \text{N} \cdot \dfrac{400}{4} = 20\,000\ \text{N}$
+$m = \dfrac{20\,000}{10} = 2000\ \text{kg} = 2\ \text{t}$
+AKA: $2\ \text{ტ}$
+AEN: $2\ \text{t}$
+
+--- medium fluids
+KA: ტორიჩელიმ ცდაში ვერცხლისწყალი გამოიყენა. რა სიმაღლის იქნებოდა სვეტი, ვერცხლისწყლის ნაცვლად წყალი რომ გამოეყენებინა? ($p_0 = 101\,300\ \text{პა}$)
+EN: Torricelli used mercury in his experiment. How tall would the column be if he had used water instead? ($p_0 = 101\,300\ \text{Pa}$)
+HKA: სვეტის წნევა ატმოსფერულს აწონასწორებს: $\rho g h = p_0$.
+HEN: The column's pressure balances the atmosphere: $\rho g h = p_0$.
+SKA: **ფორმულა:** $\rho g h = p_0 \Rightarrow h = \dfrac{p_0}{\rho g}$
+**რიცხვები:** $h = \dfrac{101\,300\ \text{პა}}{1000\ \text{კგ/მ}^3 \cdot 10\ \text{ნ/კგ}} \approx 10{,}1\ \text{მ}$
+ამიტომაა წყლის ბარომეტრი მოუხერხებელი — სამსართულიანი სახლის სიმაღლე დაჭირდებოდა.
+SEN: **Formula:** $\rho g h = p_0 \Rightarrow h = \dfrac{p_0}{\rho g}$
+**Numbers:** $h = \dfrac{101\,300\ \text{Pa}}{1000\ \text{kg/m}^3 \cdot 10\ \text{N/kg}} \approx 10.1\ \text{m}$
+That is why a water barometer is impractical — it would be as tall as a three-storey house.
+AKA: $\approx 10\ \text{მ}$
+AEN: $\approx 10\ \text{m}$
+
+--- medium archimedes
+KA: სხეული ჰაერში $12\ \text{ნ}$-ს იწონის, წყალში — $8\ \text{ნ}$-ს. იპოვეთ არქიმედეს ძალა, სხეულის მოცულობა და სიმკვრივე.
+EN: A body weighs $12\ \text{N}$ in air and $8\ \text{N}$ in water. Find the buoyant force, the volume and the density of the body.
+HKA: წონის დანაკლისი = არქიმედეს ძალა. მოცულობა იპოვეთ $F_A = \rho_{\text{წყ}} g V$-დან.
+HEN: The loss of weight = the buoyant force. Get the volume from $F_A = \rho_{\text{w}} g V$.
+SKA: **ფორმულა:** $F_A = P - P_1$, $\ V = \dfrac{F_A}{\rho_{\text{წყ}} g}$, $\ \rho = \dfrac{m}{V} = \dfrac{P}{g V} = \rho_{\text{წყ}} \dfrac{P}{P - P_1}$
+**რიცხვები:** $F_A = 12 - 8 = 4\ \text{ნ}$
+$V = \dfrac{4}{1000 \cdot 10} = 4 \cdot 10^{-4}\ \text{მ}^3 = 400\ \text{სმ}^3$
+$\rho = 1000 \cdot \dfrac{12}{4} = 3000\ \text{კგ/მ}^3$
+SEN: **Formula:** $F_A = P - P_1$, $\ V = \dfrac{F_A}{\rho_{\text{w}} g}$, $\ \rho = \dfrac{m}{V} = \dfrac{P}{g V} = \rho_{\text{w}} \dfrac{P}{P - P_1}$
+**Numbers:** $F_A = 12 - 8 = 4\ \text{N}$
+$V = \dfrac{4}{1000 \cdot 10} = 4 \times 10^{-4}\ \text{m}^3 = 400\ \text{cm}^3$
+$\rho = 1000 \cdot \dfrac{12}{4} = 3000\ \text{kg/m}^3$
+AKA: $4\ \text{ნ}$; $400\ \text{სმ}^3$; $3000\ \text{კგ/მ}^3$
+AEN: $4\ \text{N}$; $400\ \text{cm}^3$; $3000\ \text{kg/m}^3$
+
+--- medium archimedes
+KA: $600\ \text{კგ/მ}^3$ სიმკვრივის ხის ძელი წყალში ცურავს. მისი მოცულობის რა ნაწილია ჩაძირული წყალში?
+EN: A wooden beam of density $600\ \text{kg/m}^3$ floats in water. What fraction of its volume is under water?
+HKA: ცურვის პირობა: არქიმედეს ძალა სიმძიმის ძალის ტოლია.
+HEN: Floating condition: the buoyant force equals the force of gravity.
+SKA: **ფორმულა:** $\rho_{\text{წყ}}\, g\, V_{\text{ჩაძ}} = \rho\, g\, V \Rightarrow \dfrac{V_{\text{ჩაძ}}}{V} = \dfrac{\rho}{\rho_{\text{წყ}}}$
+**რიცხვები:** $\dfrac{V_{\text{ჩაძ}}}{V} = \dfrac{600}{1000} = 0{,}6$
+SEN: **Formula:** $\rho_{\text{w}}\, g\, V_{\text{sub}} = \rho\, g\, V \Rightarrow \dfrac{V_{\text{sub}}}{V} = \dfrac{\rho}{\rho_{\text{w}}}$
+**Numbers:** $\dfrac{V_{\text{sub}}}{V} = \dfrac{600}{1000} = 0.6$
+AKA: $0{,}6$ (60%)
+AEN: $0.6$ (60%)
+
+--- medium machines
+KA: ბერკეტის საყრდენიდან $30\ \text{სმ}$-ზე ჩამოკიდებულია $2\ \text{კგ}$ ტვირთი. საყრდენის მეორე მხარეს რა მანძილზე უნდა ჩამოვკიდოთ $3\ \text{კგ}$ ტვირთი, რომ ბერკეტი წონასწორობაში იყოს?
+EN: A $2\ \text{kg}$ load hangs $30\ \text{cm}$ from the pivot of a lever. At what distance on the other side must a $3\ \text{kg}$ load hang for balance?
+HKA: მომენტების წესი: $m_1 g\, l_1 = m_2 g\, l_2$ — $g$ შეიკვეცება.
+HEN: Rule of moments: $m_1 g\, l_1 = m_2 g\, l_2$ — $g$ cancels.
+SKA: **ფორმულა:** $m_1 g\, l_1 = m_2 g\, l_2 \Rightarrow l_2 = \dfrac{m_1 l_1}{m_2}$
+**რიცხვები:** $l_2 = \dfrac{2\ \text{კგ} \cdot 30\ \text{სმ}}{3\ \text{კგ}} = 20\ \text{სმ}$
+SEN: **Formula:** $m_1 g\, l_1 = m_2 g\, l_2 \Rightarrow l_2 = \dfrac{m_1 l_1}{m_2}$
+**Numbers:** $l_2 = \dfrac{2\ \text{kg} \cdot 30\ \text{cm}}{3\ \text{kg}} = 20\ \text{cm}$
+AKA: $20\ \text{სმ}$
+AEN: $20\ \text{cm}$
+
+--- medium machines
+KA: $500\ \text{ნ}$ წონის ტვირთი $1\ \text{მ}$ სიმაღლეზე $5\ \text{მ}$ სიგრძის დახრილი სიბრტყით აქვთ ასატანი. რა ძალაა საჭირო, თუ ხახუნს უგულებელვყოფთ?
+EN: A load of weight $500\ \text{N}$ is to be raised $1\ \text{m}$ using an inclined plane $5\ \text{m}$ long. What force is needed if friction is neglected?
+HKA: მექანიკის „ოქროს წესი“: რამდენჯერაც ვიგებთ ძალაში, იმდენჯერვე ვაგებთ მანძილში: $F\,l = P\,h$.
+HEN: The "golden rule" of mechanics: whatever you gain in force you lose in distance: $F\,l = P\,h$.
+SKA: **ფორმულა:** $F\,l = P\,h \Rightarrow F = P\dfrac{h}{l}$
+**რიცხვები:** $F = 500\ \text{ნ} \cdot \dfrac{1\ \text{მ}}{5\ \text{მ}} = 100\ \text{ნ}$
+SEN: **Formula:** $F\,l = P\,h \Rightarrow F = P\dfrac{h}{l}$
+**Numbers:** $F = 500\ \text{N} \cdot \dfrac{1\ \text{m}}{5\ \text{m}} = 100\ \text{N}$
+AKA: $100\ \text{ნ}$
+AEN: $100\ \text{N}$
+
+// ===================================================================== HARD
+
+--- hard speed
+KA: ავტომობილმა გზის პირველი მესამედი $20\ \text{კმ/სთ}$, მეორე მესამედი $30\ \text{კმ/სთ}$, ბოლო მესამედი კი $60\ \text{კმ/სთ}$ სიჩქარით გაიარა. იპოვეთ საშუალო სიჩქარე მთელ გზაზე.
+EN: A car covered the first third of the distance at $20\ \text{km/h}$, the second third at $30\ \text{km/h}$ and the last third at $60\ \text{km/h}$. Find the average speed for the whole trip.
+HKA: აღნიშნეთ მთელი გზა $3s$-ით; თითოეულ მონაკვეთზე დრო $s/v_i$-ია.
+HEN: Call the whole path $3s$; the time on each part is $s/v_i$.
+SKA: **ფორმულა:** $v_{\text{საშ}} = \dfrac{3s}{\frac{s}{v_1} + \frac{s}{v_2} + \frac{s}{v_3}} = \dfrac{3}{\frac{1}{v_1} + \frac{1}{v_2} + \frac{1}{v_3}}$
+**რიცხვები:** $\dfrac{1}{20} + \dfrac{1}{30} + \dfrac{1}{60} = \dfrac{3 + 2 + 1}{60} = \dfrac{1}{10}$
+$v_{\text{საშ}} = \dfrac{3}{1/10} = 30\ \text{კმ/სთ}$
+SEN: **Formula:** $v_{\text{avg}} = \dfrac{3s}{\frac{s}{v_1} + \frac{s}{v_2} + \frac{s}{v_3}} = \dfrac{3}{\frac{1}{v_1} + \frac{1}{v_2} + \frac{1}{v_3}}$
+**Numbers:** $\dfrac{1}{20} + \dfrac{1}{30} + \dfrac{1}{60} = \dfrac{3 + 2 + 1}{60} = \dfrac{1}{10}$
+$v_{\text{avg}} = \dfrac{3}{1/10} = 30\ \text{km/h}$
+AKA: $30\ \text{კმ/სთ}$
+AEN: $30\ \text{km/h}$
+
+--- hard speed
+KA: მგზავრი უძრავ ესკალატორზე ფეხით $60\ \text{წმ}$-ში ადის, მოძრავ ესკალატორზე კი უძრავად მდგომი — $40\ \text{წმ}$-ში. რა დროში ავა ის, თუ მოძრავ ესკალატორზე ფეხით ივლის?
+EN: A passenger walks up a stationary escalator in $60\ \text{s}$, and standing still on the moving escalator rises in $40\ \text{s}$. How long does it take to walk up the moving escalator?
+HKA: აღნიშნეთ ესკალატორის სიგრძე $L$-ით. მიწის მიმართ სიჩქარეები იკრიბება.
+HEN: Let the escalator length be $L$. Relative to the ground the speeds add.
+SKA: **ფორმულა:** $v_{\text{მგ}} = \dfrac{L}{t_1}$, $v_{\text{ეს}} = \dfrac{L}{t_2}$, $t = \dfrac{L}{v_{\text{მგ}} + v_{\text{ეს}}} = \dfrac{L}{\frac{L}{t_1} + \frac{L}{t_2}} = \dfrac{t_1 t_2}{t_1 + t_2}$
+**რიცხვები:** $t = \dfrac{60 \cdot 40}{60 + 40}\ \text{წმ} = 24\ \text{წმ}$
+SEN: **Formula:** $v_{\text{walk}} = \dfrac{L}{t_1}$, $v_{\text{esc}} = \dfrac{L}{t_2}$, $t = \dfrac{L}{v_{\text{walk}} + v_{\text{esc}}} = \dfrac{L}{\frac{L}{t_1} + \frac{L}{t_2}} = \dfrac{t_1 t_2}{t_1 + t_2}$
+**Numbers:** $t = \dfrac{60 \cdot 40}{60 + 40}\ \text{s} = 24\ \text{s}$
+AKA: $24\ \text{წმ}$
+AEN: $24\ \text{s}$
+
+--- hard speed
+KA: ნავმა დინების მიმართულებით $36\ \text{კმ}$ $2\ \text{სთ}$-ში გაიარა, უკან დაბრუნებას კი $3\ \text{სთ}$ მოანდომა. იპოვეთ ნავის სიჩქარე მდგარ წყალში და მდინარის დინების სიჩქარე.
+EN: A boat travelled $36\ \text{km}$ downstream in $2\ \text{h}$ and took $3\ \text{h}$ to return. Find the boat's speed in still water and the speed of the current.
+HKA: დინების მიმართულებით სიჩქარეა $v + u$, დინების საწინააღმდეგოდ — $v - u$.
+HEN: Downstream the speed is $v + u$, upstream $v - u$.
+SKA: **ფორმულა:** $v + u = \dfrac{s}{t_1}$, $\ v - u = \dfrac{s}{t_2}$ $\Rightarrow$ $v = \dfrac{1}{2}\left(\dfrac{s}{t_1} + \dfrac{s}{t_2}\right)$, $u = \dfrac{1}{2}\left(\dfrac{s}{t_1} - \dfrac{s}{t_2}\right)$
+**რიცხვები:** $\dfrac{s}{t_1} = \dfrac{36}{2} = 18\ \text{კმ/სთ}$, $\dfrac{s}{t_2} = \dfrac{36}{3} = 12\ \text{კმ/სთ}$
+$v = \dfrac{18 + 12}{2} = 15\ \text{კმ/სთ}$, $\ u = \dfrac{18 - 12}{2} = 3\ \text{კმ/სთ}$
+SEN: **Formula:** $v + u = \dfrac{s}{t_1}$, $\ v - u = \dfrac{s}{t_2}$ $\Rightarrow$ $v = \dfrac{1}{2}\left(\dfrac{s}{t_1} + \dfrac{s}{t_2}\right)$, $u = \dfrac{1}{2}\left(\dfrac{s}{t_1} - \dfrac{s}{t_2}\right)$
+**Numbers:** $\dfrac{s}{t_1} = \dfrac{36}{2} = 18\ \text{km/h}$, $\dfrac{s}{t_2} = \dfrac{36}{3} = 12\ \text{km/h}$
+$v = \dfrac{18 + 12}{2} = 15\ \text{km/h}$, $\ u = \dfrac{18 - 12}{2} = 3\ \text{km/h}$
+AKA: ნავი $15\ \text{კმ/სთ}$, დინება $3\ \text{კმ/სთ}$
+AEN: boat $15\ \text{km/h}$, current $3\ \text{km/h}$
+
+--- hard speed
+KA: ორი სხეულის კოორდინატი დროზე ასე არის დამოკიდებული: $x_1 = 10 + 2t$ და $x_2 = 40 - 3t$ ($x$ — მეტრებში, $t$ — წამებში). აღწერეთ მოძრაობები. როდის და სად შეხვდებიან ისინი?
+EN: The coordinates of two bodies depend on time as $x_1 = 10 + 2t$ and $x_2 = 40 - 3t$ ($x$ in metres, $t$ in seconds). Describe the motions. When and where do they meet?
+HKA: $x = x_0 + v t$: $x_0$ — საწყისი კოორდინატი, $v$ — სიჩქარე (ნიშანი მიმართულებას აჩვენებს). შეხვედრისას $x_1 = x_2$.
+HEN: $x = x_0 + v t$: $x_0$ is the starting coordinate, $v$ the velocity (its sign gives the direction). At the meeting $x_1 = x_2$.
+SKA: პირველი სხეული იწყებს $10\ \text{მ}$-დან და მოძრაობს $2\ \text{მ/წმ}$ სიჩქარით ღერძის მიმართულებით; მეორე — $40\ \text{მ}$-დან, $3\ \text{მ/წმ}$ სიჩქარით საწინააღმდეგოდ.
+**ფორმულა:** $x_{01} + v_1 t = x_{02} - v_2 t \Rightarrow t = \dfrac{x_{02} - x_{01}}{v_1 + v_2}$
+**რიცხვები:** $t = \dfrac{40 - 10}{2 + 3} = 6\ \text{წმ}$
+$x = 10 + 2 \cdot 6 = 22\ \text{მ}$ (შემოწმება: $40 - 3 \cdot 6 = 22$ ✓)
+SEN: The first body starts at $10\ \text{m}$ and moves at $2\ \text{m/s}$ along the axis; the second starts at $40\ \text{m}$ and moves at $3\ \text{m/s}$ the opposite way.
+**Formula:** $x_{01} + v_1 t = x_{02} - v_2 t \Rightarrow t = \dfrac{x_{02} - x_{01}}{v_1 + v_2}$
+**Numbers:** $t = \dfrac{40 - 10}{2 + 3} = 6\ \text{s}$
+$x = 10 + 2 \cdot 6 = 22\ \text{m}$ (check: $40 - 3 \cdot 6 = 22$ ✓)
+AKA: $t = 6\ \text{წმ}$, $x = 22\ \text{მ}$
+AEN: $t = 6\ \text{s}$, $x = 22\ \text{m}$
+
+--- hard elastic
+KA: ორი ერთნაირი ზამბარა, თითოეულის სიხისტე $100\ \text{ნ/მ}$, მიმდევრობით (ერთი მეორის ქვეშ) შეაერთეს და $2\ \text{ნ}$ ტვირთი ჩამოკიდეს. რამდენით წაგრძელდება სისტემა? რას უდრის მთელი სისტემის სიხისტე?
+EN: Two identical springs, each of stiffness $100\ \text{N/m}$, are joined in series (one below the other) and a $2\ \text{N}$ load is hung from them. By how much does the system stretch? What is the stiffness of the whole system?
+HKA: მიმდევრობით შეერთებისას ორივე ზამბარაზე ერთი და იგივე ძალა მოქმედებს.
+HEN: In series, the same force acts on each spring.
+SKA: **ფორმულა:** თითოეულზე $F$: $\Delta l_1 = \Delta l_2 = \dfrac{F}{k}$; $\ \Delta l = \dfrac{2F}{k}$; $\ k_{\text{სის}} = \dfrac{F}{\Delta l} = \dfrac{k}{2}$
+**რიცხვები:** $\Delta l_1 = \dfrac{2}{100} = 0{,}02\ \text{მ} = 2\ \text{სმ}$
+$\Delta l = 2 \cdot 2 = 4\ \text{სმ}$, $\ k_{\text{სის}} = \dfrac{100}{2} = 50\ \text{ნ/მ}$
+SEN: **Formula:** each feels $F$: $\Delta l_1 = \Delta l_2 = \dfrac{F}{k}$; $\ \Delta l = \dfrac{2F}{k}$; $\ k_{\text{sys}} = \dfrac{F}{\Delta l} = \dfrac{k}{2}$
+**Numbers:** $\Delta l_1 = \dfrac{2}{100} = 0.02\ \text{m} = 2\ \text{cm}$
+$\Delta l = 2 \cdot 2 = 4\ \text{cm}$, $\ k_{\text{sys}} = \dfrac{100}{2} = 50\ \text{N/m}$
+AKA: $4\ \text{სმ}$; $50\ \text{ნ/მ}$
+AEN: $4\ \text{cm}$; $50\ \text{N/m}$
+
+--- hard elastic
+KA: ტვირთი $8\ \text{ნ}$ წონისაა და ჩამოკიდებულია ორ პარალელურად შეერთებულ ზამბარაზე, რომელთა სიხისტეებია $100\ \text{ნ/მ}$ და $300\ \text{ნ/მ}$ (ორივე ზამბარა ერთნაირად წაგრძელდა). იპოვეთ წაგრძელება და თითოეულ ზამბარაზე მოქმედი ძალა.
+EN: A load of weight $8\ \text{N}$ hangs on two springs connected in parallel, with stiffnesses $100\ \text{N/m}$ and $300\ \text{N/m}$ (both stretch by the same amount). Find the extension and the force in each spring.
+HKA: პარალელურად შეერთებისას წაგრძელებები ტოლია, ხოლო ძალები იკრიბება.
+HEN: In parallel the extensions are equal and the forces add up.
+SKA: **ფორმულა:** $k_1 x + k_2 x = P \Rightarrow x = \dfrac{P}{k_1 + k_2}$; $\ F_1 = k_1 x$, $F_2 = k_2 x$
+**რიცხვები:** $x = \dfrac{8}{100 + 300} = 0{,}02\ \text{მ} = 2\ \text{სმ}$
+$F_1 = 100 \cdot 0{,}02 = 2\ \text{ნ}$, $\ F_2 = 300 \cdot 0{,}02 = 6\ \text{ნ}$ (ჯამი $8\ \text{ნ}$ ✓)
+SEN: **Formula:** $k_1 x + k_2 x = P \Rightarrow x = \dfrac{P}{k_1 + k_2}$; $\ F_1 = k_1 x$, $F_2 = k_2 x$
+**Numbers:** $x = \dfrac{8}{100 + 300} = 0.02\ \text{m} = 2\ \text{cm}$
+$F_1 = 100 \cdot 0.02 = 2\ \text{N}$, $\ F_2 = 300 \cdot 0.02 = 6\ \text{N}$ (sum $8\ \text{N}$ ✓)
+AKA: $2\ \text{სმ}$; $2\ \text{ნ}$ და $6\ \text{ნ}$
+AEN: $2\ \text{cm}$; $2\ \text{N}$ and $6\ \text{N}$
+
+--- hard density
+KA: ოქროსა და ვერცხლის შენადნობის მასაა $298\ \text{გ}$, მოცულობა — $20\ \text{სმ}^3$. რამდენი გრამი ოქროა შენადნობში? ($\rho_{\text{ოქ}} = 19{,}3\ \text{გ/სმ}^3$, $\rho_{\text{ვ}} = 10{,}5\ \text{გ/სმ}^3$; შენადნობის მოცულობა შემადგენლების მოცულობათა ჯამია.)
+EN: An alloy of gold and silver has mass $298\ \text{g}$ and volume $20\ \text{cm}^3$. How many grams of gold does it contain? ($\rho_{\text{Au}} = 19.3\ \text{g/cm}^3$, $\rho_{\text{Ag}} = 10.5\ \text{g/cm}^3$; the alloy's volume is the sum of its parts' volumes.)
+HKA: ორი განტოლება: მასების ჯამი და მოცულობების ჯამი. უცნობად აიღეთ ოქროს მასა $m_1$.
+HEN: Two equations: sum of masses and sum of volumes. Let the gold mass $m_1$ be the unknown.
+SKA: **ფორმულა:** $m_1 + m_2 = m$, $\ \dfrac{m_1}{\rho_1} + \dfrac{m_2}{\rho_2} = V$
+ჩავსვათ $m_2 = m - m_1$: $\ m_1\left(\dfrac{1}{\rho_1} - \dfrac{1}{\rho_2}\right) = V - \dfrac{m}{\rho_2} \Rightarrow m_1 = \dfrac{\rho_1 (m - \rho_2 V)}{\rho_1 - \rho_2}$
+**რიცხვები:** $\rho_2 V = 10{,}5 \cdot 20 = 210\ \text{გ}$
+$m_1 = \dfrac{19{,}3 \cdot (298 - 210)}{19{,}3 - 10{,}5} = \dfrac{19{,}3 \cdot 88}{8{,}8} = 193\ \text{გ}$
+შემოწმება: ვერცხლი $105\ \text{გ}$; მოცულობები $10 + 10 = 20\ \text{სმ}^3$ ✓
+SEN: **Formula:** $m_1 + m_2 = m$, $\ \dfrac{m_1}{\rho_1} + \dfrac{m_2}{\rho_2} = V$
+Substitute $m_2 = m - m_1$: $\ m_1\left(\dfrac{1}{\rho_1} - \dfrac{1}{\rho_2}\right) = V - \dfrac{m}{\rho_2} \Rightarrow m_1 = \dfrac{\rho_1 (m - \rho_2 V)}{\rho_1 - \rho_2}$
+**Numbers:** $\rho_2 V = 10.5 \cdot 20 = 210\ \text{g}$
+$m_1 = \dfrac{19.3 \cdot (298 - 210)}{19.3 - 10.5} = \dfrac{19.3 \cdot 88}{8.8} = 193\ \text{g}$
+Check: silver $105\ \text{g}$; volumes $10 + 10 = 20\ \text{cm}^3$ ✓
+AKA: $193\ \text{გ}$ ოქრო
+AEN: $193\ \text{g}$ of gold
+
+--- hard density
+KA: ცარიელი ბოთლის მასაა $200\ \text{გ}$, წყლით სავსესი — $700\ \text{გ}$, უცნობი ზეთით სავსესი — $600\ \text{გ}$. იპოვეთ ზეთის სიმკვრივე.
+EN: An empty bottle has mass $200\ \text{g}$; filled with water it is $700\ \text{g}$, filled with an unknown oil it is $600\ \text{g}$. Find the density of the oil.
+HKA: ბოთლის მოცულობა ორივე შემთხვევაში ერთი და იგივეა — იპოვეთ ის წყლის მასიდან.
+HEN: The bottle's volume is the same both times — find it from the mass of the water.
+SKA: **ფორმულა:** $V = \dfrac{m_{\text{წყ}} - m_0}{\rho_{\text{წყ}}}$, $\ \rho_{\text{ზ}} = \dfrac{m_{\text{ზ}} - m_0}{V} = \rho_{\text{წყ}} \dfrac{m_{\text{ზ}} - m_0}{m_{\text{წყ}} - m_0}$
+**რიცხვები:** $\rho_{\text{ზ}} = 1\ \text{გ/სმ}^3 \cdot \dfrac{600 - 200}{700 - 200} = 0{,}8\ \text{გ/სმ}^3 = 800\ \text{კგ/მ}^3$
+SEN: **Formula:** $V = \dfrac{m_{\text{w}} - m_0}{\rho_{\text{w}}}$, $\ \rho_{\text{oil}} = \dfrac{m_{\text{oil}} - m_0}{V} = \rho_{\text{w}} \dfrac{m_{\text{oil}} - m_0}{m_{\text{w}} - m_0}$
+**Numbers:** $\rho_{\text{oil}} = 1\ \text{g/cm}^3 \cdot \dfrac{600 - 200}{700 - 200} = 0.8\ \text{g/cm}^3 = 800\ \text{kg/m}^3$
+AKA: $800\ \text{კგ/მ}^3$
+AEN: $800\ \text{kg/m}^3$
+
+--- hard matter
+KA: წყლის ერთი მოლეკულის მასა დაახლოებით $3 \cdot 10^{-26}\ \text{კგ}$-ია. რამდენი მოლეკულაა $0{,}05\ \text{გ}$ მასის წყლის წვეთში? რამდენ წელიწადში დაითვლიდით მათ, წამში ერთ მოლეკულას თუ დათვლიდით? (1 წელი $\approx 3{,}2 \cdot 10^{7}\ \text{წმ}$)
+EN: The mass of one water molecule is about $3 \times 10^{-26}\ \text{kg}$. How many molecules are in a water drop of mass $0.05\ \text{g}$? How many years would it take to count them at one molecule per second? (1 year $\approx 3.2 \times 10^{7}\ \text{s}$)
+HKA: მოლეკულების რაოდენობა = წვეთის მასა : ერთი მოლეკულის მასაზე. მასები ერთ ერთეულში გამოსახეთ.
+HEN: Number of molecules = drop mass ÷ mass of one molecule. Use the same units for both masses.
+SKA: **ფორმულა:** $N = \dfrac{m}{m_0}$, $\ t = \dfrac{N}{1\ \text{მოლ/წმ}}$
+**რიცხვები:** $m = 0{,}05\ \text{გ} = 5 \cdot 10^{-5}\ \text{კგ}$
+$N = \dfrac{5 \cdot 10^{-5}}{3 \cdot 10^{-26}} \approx 1{,}7 \cdot 10^{21}$
+$t \approx \dfrac{1{,}7 \cdot 10^{21}\ \text{წმ}}{3{,}2 \cdot 10^{7}\ \text{წმ/წელი}} \approx 5 \cdot 10^{13}$ წელი — სამყაროს ასაკზე ათასობითჯერ მეტი!
+SEN: **Formula:** $N = \dfrac{m}{m_0}$, $\ t = \dfrac{N}{1\ \text{molecule/s}}$
+**Numbers:** $m = 0.05\ \text{g} = 5 \times 10^{-5}\ \text{kg}$
+$N = \dfrac{5 \times 10^{-5}}{3 \times 10^{-26}} \approx 1.7 \times 10^{21}$
+$t \approx \dfrac{1.7 \times 10^{21}\ \text{s}}{3.2 \times 10^{7}\ \text{s/year}} \approx 5 \times 10^{13}$ years — thousands of times the age of the Universe!
+AKA: $\approx 1{,}7 \cdot 10^{21}$ მოლეკულა; $\approx 5 \cdot 10^{13}$ წელი
+AEN: $\approx 1.7 \times 10^{21}$ molecules; $\approx 5 \times 10^{13}$ years
+
+--- hard pressure
+KA: $60\ \text{კგ}$ მასის ადამიანის თითოეული ფეხსაცმლის ძირის ფართობია $150\ \text{სმ}^2$. რა წნევას ახდენს ის თოვლზე: ა) ორ ფეხზე დგომისას; ბ) სიარულისას (ერთ ფეხზე); გ) თხილამურებზე დგომისას (თითოეული $1{,}5\ \text{მ} \times 10\ \text{სმ}$)?
+EN: Each shoe sole of a $60\ \text{kg}$ person has area $150\ \text{cm}^2$. What pressure does the person exert on snow: a) standing on both feet; b) walking (on one foot); c) standing on skis (each $1.5\ \text{m} \times 10\ \text{cm}$)?
+HKA: ძალა სამივე შემთხვევაში $mg$-ია — იცვლება მხოლოდ საყრდენი ფართობი.
+HEN: The force is $mg$ every time — only the support area changes.
+SKA: **ფორმულა:** $p = \dfrac{m g}{S}$
+**რიცხვები:** $F = 60 \cdot 10 = 600\ \text{ნ}$
+ა) $S = 2 \cdot 0{,}015 = 0{,}03\ \text{მ}^2$, $\ p = \dfrac{600}{0{,}03} = 20\,000\ \text{პა} = 20\ \text{კპა}$
+ბ) $S = 0{,}015\ \text{მ}^2$, $\ p = \dfrac{600}{0{,}015} = 40\ \text{კპა}$
+გ) $S = 2 \cdot 1{,}5 \cdot 0{,}1 = 0{,}3\ \text{მ}^2$, $\ p = \dfrac{600}{0{,}3} = 2000\ \text{პა} = 2\ \text{კპა}$ — ამიტომ თხილამურები თოვლში არ ეფლობა.
+SEN: **Formula:** $p = \dfrac{m g}{S}$
+**Numbers:** $F = 60 \cdot 10 = 600\ \text{N}$
+a) $S = 2 \cdot 0.015 = 0.03\ \text{m}^2$, $\ p = \dfrac{600}{0.03} = 20\,000\ \text{Pa} = 20\ \text{kPa}$
+b) $S = 0.015\ \text{m}^2$, $\ p = \dfrac{600}{0.015} = 40\ \text{kPa}$
+c) $S = 2 \cdot 1.5 \cdot 0.1 = 0.3\ \text{m}^2$, $\ p = \dfrac{600}{0.3} = 2000\ \text{Pa} = 2\ \text{kPa}$ — that is why skis don't sink into snow.
+AKA: $20\ \text{კპა}$; $40\ \text{კპა}$; $2\ \text{კპა}$
+AEN: $20\ \text{kPa}$; $40\ \text{kPa}$; $2\ \text{kPa}$
+
+--- hard pressure
+KA: აგური უძლებს მაქსიმუმ $1{,}8\ \text{მპა}$ წნევას. რა მაქსიმალური სიმაღლის ვერტიკალური აგურის კედლის აშენებაა შესაძლებელი? ($\rho_{\text{აგ}} = 1800\ \text{კგ/მ}^3$) დამოკიდებულია თუ არა პასუხი კედლის სისქეზე?
+EN: Brick can withstand a pressure of at most $1.8\ \text{MPa}$. What is the maximum height of a vertical brick wall that can be built? ($\rho_{\text{brick}} = 1800\ \text{kg/m}^3$) Does the answer depend on the wall's thickness?
+HKA: ქვედა აგურებზე მოქმედებს მთელი კედლის წონა: $F = \rho g S h$.
+HEN: The bottom bricks carry the weight of the whole wall: $F = \rho g S h$.
+SKA: **ფორმულა:** $p = \dfrac{F}{S} = \dfrac{\rho\, S\, h\, g}{S} = \rho g h \Rightarrow h_{\max} = \dfrac{p_{\max}}{\rho g}$
+ფართობი $S$ შეიკვეცა — პასუხი სისქეზე არ არის დამოკიდებული.
+**რიცხვები:** $h_{\max} = \dfrac{1{,}8 \cdot 10^6\ \text{პა}}{1800\ \text{კგ/მ}^3 \cdot 10\ \text{ნ/კგ}} = 100\ \text{მ}$
+SEN: **Formula:** $p = \dfrac{F}{S} = \dfrac{\rho\, S\, h\, g}{S} = \rho g h \Rightarrow h_{\max} = \dfrac{p_{\max}}{\rho g}$
+The area $S$ cancels — the answer does not depend on the thickness.
+**Numbers:** $h_{\max} = \dfrac{1.8 \times 10^6\ \text{Pa}}{1800\ \text{kg/m}^3 \cdot 10\ \text{N/kg}} = 100\ \text{m}$
+AKA: $100\ \text{მ}$; არ არის დამოკიდებული
+AEN: $100\ \text{m}$; no
+
+--- hard fluids
+KA: U-ს მაგვარ მილში წყალია. ერთ მუხლში $10\ \text{სმ}$ სიმაღლის ზეთის სვეტი ჩაასხეს ($\rho_{\text{ზ}} = 800\ \text{კგ/მ}^3$). რამდენით იქნება ზეთის ზედა დონე წყლის დონეზე მაღლა მეორე მუხლში?
+EN: A U-tube contains water. A $10\ \text{cm}$ column of oil ($\rho_{\text{oil}} = 800\ \text{kg/m}^3$) is poured into one arm. How much higher is the top of the oil than the water level in the other arm?
+HKA: გამყოფი ზედაპირის (ზეთი–წყალი) დონეზე ორივე მუხლში წნევები ტოლია.
+HEN: At the level of the oil–water boundary the pressures in both arms are equal.
+SKA: **ფორმულა:** $\rho_{\text{ზ}}\, g\, h_{\text{ზ}} = \rho_{\text{წყ}}\, g\, h_{\text{წყ}} \Rightarrow h_{\text{წყ}} = h_{\text{ზ}} \dfrac{\rho_{\text{ზ}}}{\rho_{\text{წყ}}}$, $\ \Delta h = h_{\text{ზ}} - h_{\text{წყ}}$
+**რიცხვები:** $h_{\text{წყ}} = 10 \cdot \dfrac{800}{1000} = 8\ \text{სმ}$
+$\Delta h = 10 - 8 = 2\ \text{სმ}$
+SEN: **Formula:** $\rho_{\text{oil}}\, g\, h_{\text{oil}} = \rho_{\text{w}}\, g\, h_{\text{w}} \Rightarrow h_{\text{w}} = h_{\text{oil}} \dfrac{\rho_{\text{oil}}}{\rho_{\text{w}}}$, $\ \Delta h = h_{\text{oil}} - h_{\text{w}}$
+**Numbers:** $h_{\text{w}} = 10 \cdot \dfrac{800}{1000} = 8\ \text{cm}$
+$\Delta h = 10 - 8 = 2\ \text{cm}$
+AKA: $2\ \text{სმ}$-ით
+AEN: by $2\ \text{cm}$
+
+--- hard fluids
+KA: აკვარიუმის ფსკერის ზომებია $50\ \text{სმ} \times 30\ \text{სმ}$, წყლის სიღრმე — $40\ \text{სმ}$. იპოვეთ წყლის წნევა ფსკერზე და ფსკერზე დაწოლის ძალა. შეადარეთ ეს ძალა აკვარიუმში არსებული წყლის წონას.
+EN: An aquarium has a base of $50\ \text{cm} \times 30\ \text{cm}$ and water $40\ \text{cm}$ deep. Find the water pressure on the bottom and the force on the bottom. Compare this force with the weight of the water.
+HKA: $p = \rho g h$, $F = p S$. წყლის წონა $= \rho V g$.
+HEN: $p = \rho g h$, $F = p S$. Weight of water $= \rho V g$.
+SKA: **ფორმულა:** $p = \rho g h$, $\ F = p S = \rho g h S = \rho g V$ — ვერტიკალური კედლების შემთხვევაში ეს წყლის წონაა.
+**რიცხვები:** $p = 1000 \cdot 10 \cdot 0{,}4 = 4000\ \text{პა}$
+$S = 0{,}5 \cdot 0{,}3 = 0{,}15\ \text{მ}^2$, $\ F = 4000 \cdot 0{,}15 = 600\ \text{ნ}$
+წყალი: $V = 0{,}15 \cdot 0{,}4 = 0{,}06\ \text{მ}^3$, $\ m = 60\ \text{კგ}$, წონა $600\ \text{ნ}$ — ტოლია ✓
+SEN: **Formula:** $p = \rho g h$, $\ F = p S = \rho g h S = \rho g V$ — for vertical walls this is the water's weight.
+**Numbers:** $p = 1000 \cdot 10 \cdot 0.4 = 4000\ \text{Pa}$
+$S = 0.5 \cdot 0.3 = 0.15\ \text{m}^2$, $\ F = 4000 \cdot 0.15 = 600\ \text{N}$
+Water: $V = 0.15 \cdot 0.4 = 0.06\ \text{m}^3$, $\ m = 60\ \text{kg}$, weight $600\ \text{N}$ — equal ✓
+AKA: $4\ \text{კპა}$; $600\ \text{ნ}$ — წყლის წონის ტოლია
+AEN: $4\ \text{kPa}$; $600\ \text{N}$ — equal to the water's weight
+
+--- hard fluids
+KA: რა ძალით აწვება ატმოსფერო $1{,}2\ \text{მ} \times 0{,}6\ \text{მ}$ ზომის მაგიდის ზედაპირს? რატომ არ ტყდება მაგიდა?
+EN: With what force does the atmosphere push on a table top measuring $1.2\ \text{m} \times 0.6\ \text{m}$? Why doesn't the table break?
+HKA: $F = p_0 S$. იფიქრეთ, მოქმედებს თუ არა ჰაერი მაგიდას ქვემოდანაც.
+HEN: $F = p_0 S$. Think about whether air also pushes on the table from below.
+SKA: **ფორმულა:** $F = p_0\, S$
+**რიცხვები:** $S = 1{,}2 \cdot 0{,}6 = 0{,}72\ \text{მ}^2$
+$F = 100\,000\ \text{პა} \cdot 0{,}72\ \text{მ}^2 = 72\,000\ \text{ნ}$ — დაახლოებით $7{,}2$ ტონის წონა!
+მაგიდა არ ტყდება, რადგან ჰაერი თითქმის იგივე წნევით ქვემოდანაც აწვება — ძალები აწონასწორებს ერთმანეთს.
+SEN: **Formula:** $F = p_0\, S$
+**Numbers:** $S = 1.2 \cdot 0.6 = 0.72\ \text{m}^2$
+$F = 100\,000\ \text{Pa} \cdot 0.72\ \text{m}^2 = 72\,000\ \text{N}$ — about the weight of $7.2$ tonnes!
+The table doesn't break because air pushes from below with almost the same pressure — the forces balance.
+AKA: $72\ \text{კნ}$; ქვემოდან იგივე ძალა მოქმედებს
+AEN: $72\ \text{kN}$; the same force acts from below
+
+--- hard archimedes
+KA: $2\ \text{მ}^2$ ფართობისა და $30\ \text{სმ}$ სისქის ყინულის ლოდი წყალში ცურავს. რა მაქსიმალური მასის ადამიანი შეიძლება დადგეს მასზე ისე, რომ ლოდი მთლიანად არ ჩაიძიროს? ($\rho_{\text{ყ}} = 900\ \text{კგ/მ}^3$)
+EN: An ice floe of area $2\ \text{m}^2$ and thickness $30\ \text{cm}$ floats in water. What is the largest mass of a person who can stand on it without the floe going completely under? ($\rho_{\text{ice}} = 900\ \text{kg/m}^3$)
+HKA: ზღვრულ შემთხვევაში ლოდი მთლიანადაა ჩაძირული და არქიმედეს ძალა ყინულისა და ადამიანის წონების ჯამს უდრის.
+HEN: In the limiting case the floe is fully submerged and the buoyant force equals the weight of ice plus person.
+SKA: **ფორმულა:** $\rho_{\text{წყ}}\, g\, V = \rho_{\text{ყ}}\, g\, V + M g \Rightarrow M = (\rho_{\text{წყ}} - \rho_{\text{ყ}})\, V$
+**რიცხვები:** $V = 2 \cdot 0{,}3 = 0{,}6\ \text{მ}^3$
+$M = (1000 - 900) \cdot 0{,}6 = 60\ \text{კგ}$
+SEN: **Formula:** $\rho_{\text{w}}\, g\, V = \rho_{\text{ice}}\, g\, V + M g \Rightarrow M = (\rho_{\text{w}} - \rho_{\text{ice}})\, V$
+**Numbers:** $V = 2 \cdot 0.3 = 0.6\ \text{m}^3$
+$M = (1000 - 900) \cdot 0.6 = 60\ \text{kg}$
+AKA: $60\ \text{კგ}$
+AEN: $60\ \text{kg}$
+
+--- hard machines
+KA: $40\ \text{კგ}$ ტვირთს ერთი მოძრავი ჭოჭონაქით სწევენ. რა ძალით უნდა მოქაჩონ თოკი (ჭოჭონაქის მასა და ხახუნი უგულებელყავით)? რა სიგრძის თოკი უნდა გამოქაჩონ, რომ ტვირთი $1\ \text{მ}$-ით ავიდეს?
+EN: A $40\ \text{kg}$ load is lifted with one movable pulley. What force must be applied to the rope (ignore the pulley's mass and friction)? How much rope must be pulled to raise the load by $1\ \text{m}$?
+HKA: მოძრავ ჭოჭონაქს ორი თოკის ნაწილი იჭერს — თითოეული ტვირთის წონის ნახევარს. ოქროს წესი: $F\,s = P\,h$.
+HEN: The movable pulley hangs on two rope segments — each carries half the load. Golden rule: $F\,s = P\,h$.
+SKA: **ფორმულა:** $2F = m g \Rightarrow F = \dfrac{m g}{2}$; $\ F\,s = m g\,h \Rightarrow s = 2h$
+**რიცხვები:** $F = \dfrac{40 \cdot 10}{2} = 200\ \text{ნ}$
+$s = 2 \cdot 1\ \text{მ} = 2\ \text{მ}$
+SEN: **Formula:** $2F = m g \Rightarrow F = \dfrac{m g}{2}$; $\ F\,s = m g\,h \Rightarrow s = 2h$
+**Numbers:** $F = \dfrac{40 \cdot 10}{2} = 200\ \text{N}$
+$s = 2 \cdot 1\ \text{m} = 2\ \text{m}$
+AKA: $200\ \text{ნ}$; $2\ \text{მ}$
+AEN: $200\ \text{N}$; $2\ \text{m}$
+
+--- hard speed olympiad
+KA: ორი მატარებელი, რომელთა შორის მანძილი $60\ \text{კმ}$-ია, ერთმანეთის შემხვედრად მოძრაობს, თითოეული $30\ \text{კმ/სთ}$ სიჩქარით. ერთი მატარებლის ცხვირიდან მეორისკენ $80\ \text{კმ/სთ}$ სიჩქარით გაფრინდა ბუზი; მეორე მატარებელთან მისვლისთანავე უკან ბრუნდება და ასე დაფრინავს წინ და უკან, სანამ მატარებლები არ შეხვდებიან. რა მთლიანი მანძილი გაიფრინა ბუზმა?
+EN: Two trains $60\ \text{km}$ apart move towards each other, each at $30\ \text{km/h}$. A fly starts from the front of one train and flies towards the other at $80\ \text{km/h}$; on reaching it, it turns back at once, and keeps flying back and forth until the trains meet. What total distance does the fly cover?
+HKA: არ დაითვალოთ ბუზის ცალკეული ფრენები (მათი რიცხვი უსასრულოა!). ჯერ იპოვეთ, რამდენ ხანს ფრენდა ის.
+HEN: Don't add up the individual legs (there are infinitely many!). First find how long the fly was flying.
+SKA: ბუზი ფრენს ზუსტად იმდენ ხანს, რამდენიც მატარებლებს შეხვედრამდე სჭირდებათ.
+**ფორმულა:** $t = \dfrac{L}{v_1 + v_2}$, $\ s_{\text{ბ}} = u\, t = \dfrac{u L}{v_1 + v_2}$
+**რიცხვები:** $t = \dfrac{60\ \text{კმ}}{30 + 30\ \text{კმ/სთ}} = 1\ \text{სთ}$
+$s_{\text{ბ}} = 80\ \text{კმ/სთ} \cdot 1\ \text{სთ} = 80\ \text{კმ}$
+SEN: The fly flies for exactly as long as the trains take to meet.
+**Formula:** $t = \dfrac{L}{v_1 + v_2}$, $\ s_{\text{fly}} = u\, t = \dfrac{u L}{v_1 + v_2}$
+**Numbers:** $t = \dfrac{60\ \text{km}}{30 + 30\ \text{km/h}} = 1\ \text{h}$
+$s_{\text{fly}} = 80\ \text{km/h} \cdot 1\ \text{h} = 80\ \text{km}$
+AKA: $80\ \text{კმ}$
+AEN: $80\ \text{km}$
+
+--- hard machines olympiad
+KA: სასწორს მხრები არატოლი აქვს. როცა სხეულს მარცხენა თეფშზე დებენ, მას აწონასწორებს $4\ \text{კგ}$ საწონები მარჯვენა თეფშზე; როცა მარჯვენაზე — $9\ \text{კგ}$ საწონები მარცხენაზე. რას უდრის სხეულის ნამდვილი მასა?
+EN: A balance has unequal arms. When a body is placed on the left pan, it is balanced by $4\ \text{kg}$ of weights on the right pan; when placed on the right pan, it is balanced by $9\ \text{kg}$ on the left. What is the true mass of the body?
+HKA: აღნიშნეთ მხრები $l_1$ და $l_2$, დაწერეთ ბერკეტის წონასწორობის პირობა ორივე აწონვისთვის და ორივედან გამოსახეთ შეფარდება $l_1/l_2$.
+HEN: Call the arms $l_1$ and $l_2$, write the lever balance condition for both weighings, and express the ratio $l_1/l_2$ from each.
+SKA: **ფორმულა:** $M l_1 = m_1 l_2$ და $m_2 l_1 = M l_2$.
+პირველიდან $\dfrac{l_1}{l_2} = \dfrac{m_1}{M}$, მეორიდან $\dfrac{l_1}{l_2} = \dfrac{M}{m_2}$.
+$\dfrac{m_1}{M} = \dfrac{M}{m_2} \Rightarrow M^2 = m_1 m_2 \Rightarrow M = \sqrt{m_1 m_2}$
+**რიცხვები:** $M = \sqrt{4 \cdot 9}\ \text{კგ} = 6\ \text{კგ}$ (და არა $6{,}5\ \text{კგ}$ — არითმეტიკული საშუალო!)
+მხრების შეფარდება: $\dfrac{l_1}{l_2} = \dfrac{4}{6} = \dfrac{2}{3}$.
+SEN: **Formula:** $M l_1 = m_1 l_2$ and $m_2 l_1 = M l_2$.
+From the first $\dfrac{l_1}{l_2} = \dfrac{m_1}{M}$, from the second $\dfrac{l_1}{l_2} = \dfrac{M}{m_2}$.
+$\dfrac{m_1}{M} = \dfrac{M}{m_2} \Rightarrow M^2 = m_1 m_2 \Rightarrow M = \sqrt{m_1 m_2}$
+**Numbers:** $M = \sqrt{4 \cdot 9}\ \text{kg} = 6\ \text{kg}$ (not $6.5\ \text{kg}$, the arithmetic mean!)
+Ratio of the arms: $\dfrac{l_1}{l_2} = \dfrac{4}{6} = \dfrac{2}{3}$.
+AKA: $6\ \text{კგ}$
+AEN: $6\ \text{kg}$
+
+--- hard archimedes olympiad
+KA: ჭიქაში წყალი ასხია და მასში ყინულის ნატეხი ცურავს. ა) შეიცვლება თუ არა წყლის დონე, როცა ყინული დნება? ბ) როგორ შეიცვლება დონე, თუ ყინულში პატარა კენჭია ჩაყინული (ყინული კენჭთან ერთად ცურავს)?
+EN: A piece of ice floats in a glass of water. a) Does the water level change when the ice melts? b) How does the level change if a small pebble is frozen inside the ice (the ice still floats with the pebble)?
+HKA: შეადარეთ გამოდევნილი წყლის მოცულობა დნობამდე და დნობის შემდეგ. ცურვისას გამოდევნილი წყლის მასა მცურავი სხეულის მასის ტოლია.
+HEN: Compare the volume of displaced water before and after melting. A floating body displaces its own mass of water.
+SKA: **ა) ფორმულა:** ცურვის პირობა $\rho_{\text{წყ}}\, V_{\text{გამ}} = m_{\text{ყ}} \Rightarrow V_{\text{გამ}} = \dfrac{m_{\text{ყ}}}{\rho_{\text{წყ}}}$.
+დნობის შემდეგ ყინული იქცევა იმავე მასის წყლად, რომლის მოცულობაა $V_{\text{დნ}} = \dfrac{m_{\text{ყ}}}{\rho_{\text{წყ}}} = V_{\text{გამ}}$.
+ნადნობი წყალი ზუსტად ავსებს „ორმოს“, რომელსაც ყინული იკავებდა — დონე **არ იცვლება**.
+**ბ) ფორმულა:** დნობამდე: $V_{\text{გამ}} = \dfrac{m_{\text{ყ}} + m_{\text{კ}}}{\rho_{\text{წყ}}}$. დნობის შემდეგ კენჭი ფსკერზეა და იკავებს $V_{\text{კ}} = \dfrac{m_{\text{კ}}}{\rho_{\text{კ}}}$; ჯამური მოცულობა $V' = \dfrac{m_{\text{ყ}}}{\rho_{\text{წყ}}} + \dfrac{m_{\text{კ}}}{\rho_{\text{კ}}}$.
+$V_{\text{გამ}} - V' = m_{\text{კ}}\left(\dfrac{1}{\rho_{\text{წყ}}} - \dfrac{1}{\rho_{\text{კ}}}\right) > 0$, რადგან $\rho_{\text{კ}} > \rho_{\text{წყ}}$.
+**რიცხვითი მაგალითი:** $m_{\text{კ}} = 10\ \text{გ}$, $\rho_{\text{კ}} = 2{,}5\ \text{გ/სმ}^3$: $\ \Delta V = 10\left(1 - \dfrac{1}{2{,}5}\right) = 6\ \text{სმ}^3$ — დონე **დაიწევს**.
+SEN: **a) Formula:** floating condition $\rho_{\text{w}}\, V_{\text{disp}} = m_{\text{ice}} \Rightarrow V_{\text{disp}} = \dfrac{m_{\text{ice}}}{\rho_{\text{w}}}$.
+After melting, the ice becomes water of the same mass, with volume $V_{\text{melt}} = \dfrac{m_{\text{ice}}}{\rho_{\text{w}}} = V_{\text{disp}}$.
+The meltwater exactly fills the "hole" the ice was occupying — the level **does not change**.
+**b) Formula:** before: $V_{\text{disp}} = \dfrac{m_{\text{ice}} + m_{\text{p}}}{\rho_{\text{w}}}$. After melting the pebble lies on the bottom, occupying $V_{\text{p}} = \dfrac{m_{\text{p}}}{\rho_{\text{p}}}$; total $V' = \dfrac{m_{\text{ice}}}{\rho_{\text{w}}} + \dfrac{m_{\text{p}}}{\rho_{\text{p}}}$.
+$V_{\text{disp}} - V' = m_{\text{p}}\left(\dfrac{1}{\rho_{\text{w}}} - \dfrac{1}{\rho_{\text{p}}}\right) > 0$, because $\rho_{\text{p}} > \rho_{\text{w}}$.
+**Numerical example:** $m_{\text{p}} = 10\ \text{g}$, $\rho_{\text{p}} = 2.5\ \text{g/cm}^3$: $\ \Delta V = 10\left(1 - \dfrac{1}{2.5}\right) = 6\ \text{cm}^3$ — the level **drops**.
+AKA: ა) არ იცვლება; ბ) დაიწევს
+AEN: a) it does not change; b) it drops
+
+--- hard archimedes olympiad
+KA: თქვენ გაქვთ მხოლოდ დინამომეტრი, ძაფი, ტვირთი (რომელიც წყალში იძირება), ჭიქა წყალი და ჭიქა უცნობი სითხე. როგორ იპოვით სითხის სიმკვრივეს? გამოთვალეთ, თუ ტვირთი ჰაერში $5\ \text{ნ}$-ს იწონის, წყალში — $3\ \text{ნ}$-ს, სითხეში კი — $3{,}4\ \text{ნ}$-ს.
+EN: You have only a dynamometer, a thread, a weight (which sinks in water), a glass of water and a glass of an unknown liquid. How can you find the density of the liquid? Calculate it if the weight reads $5\ \text{N}$ in air, $3\ \text{N}$ in water and $3.4\ \text{N}$ in the liquid.
+HKA: ტვირთის მოცულობა ორივე სითხეში ერთი და იგივეა. არქიმედეს ძალები სითხეების სიმკვრივეების პროპორციულია.
+HEN: The weight's volume is the same in both liquids. The buoyant forces are proportional to the liquids' densities.
+SKA: **ფორმულა:** $F_{A1} = P - P_1 = \rho_{\text{წყ}}\, g V$, $\ F_{A2} = P - P_2 = \rho_{\text{x}}\, g V$
+გავყოთ: $\dfrac{\rho_{\text{x}}}{\rho_{\text{წყ}}} = \dfrac{P - P_2}{P - P_1} \Rightarrow \rho_{\text{x}} = \rho_{\text{წყ}} \dfrac{P - P_2}{P - P_1}$ — $g$ და $V$ შეიკვეცა.
+**რიცხვები:** $\rho_{\text{x}} = 1000 \cdot \dfrac{5 - 3{,}4}{5 - 3} = 1000 \cdot \dfrac{1{,}6}{2} = 800\ \text{კგ/მ}^3$
+SEN: **Formula:** $F_{A1} = P - P_1 = \rho_{\text{w}}\, g V$, $\ F_{A2} = P - P_2 = \rho_{\text{x}}\, g V$
+Divide: $\dfrac{\rho_{\text{x}}}{\rho_{\text{w}}} = \dfrac{P - P_2}{P - P_1} \Rightarrow \rho_{\text{x}} = \rho_{\text{w}} \dfrac{P - P_2}{P - P_1}$ — $g$ and $V$ cancel.
+**Numbers:** $\rho_{\text{x}} = 1000 \cdot \dfrac{5 - 3.4}{5 - 3} = 1000 \cdot \dfrac{1.6}{2} = 800\ \text{kg/m}^3$
+AKA: $800\ \text{კგ/მ}^3$
+AEN: $800\ \text{kg/m}^3$
+
+--- hard fluids olympiad
+KA: ცილინდრულ ჭიქაში, რომლის ფსკერის ფართობია $50\ \text{სმ}^2$, წყალი ასხია (წყალი არ გადმოდის). ჭიქაში ჩადეს $100\ \text{გ}$ მასის ხის ნაჭერი, რომელიც ცურავს. რამდენით გაიზრდება წყლის წნევა ჭიქის ფსკერზე?
+EN: A cylindrical glass with base area $50\ \text{cm}^2$ contains water (none spills). A $100\ \text{g}$ piece of wood is put in and floats. By how much does the water pressure on the bottom of the glass increase?
+HKA: ხე წყალს გამოდევნის მისივე მასის ტოლი რაოდენობით; წყლის დონე ისე აიწევს, თითქოს $100\ \text{გ}$ წყალი დაემატა.
+HEN: The wood displaces its own mass of water, so the level rises as if $100\ \text{g}$ of water had been added.
+SKA: **ფორმულა:** ცურვის პირობა: $\rho_{\text{წყ}} g\, S\, \Delta h = m g \Rightarrow \Delta h = \dfrac{m}{\rho_{\text{წყ}} S}$
+$\Delta p = \rho_{\text{წყ}}\, g\, \Delta h = \dfrac{m g}{S}$ — ფსკერზე დამატებით აწვება ხის მთელი წონა.
+**რიცხვები:** $S = 50\ \text{სმ}^2 = 0{,}005\ \text{მ}^2$, $\ m g = 0{,}1 \cdot 10 = 1\ \text{ნ}$
+$\Delta p = \dfrac{1\ \text{ნ}}{0{,}005\ \text{მ}^2} = 200\ \text{პა}$ (დონე აიწევს $\Delta h = 2\ \text{სმ}$-ით)
+SEN: **Formula:** floating condition: $\rho_{\text{w}} g\, S\, \Delta h = m g \Rightarrow \Delta h = \dfrac{m}{\rho_{\text{w}} S}$
+$\Delta p = \rho_{\text{w}}\, g\, \Delta h = \dfrac{m g}{S}$ — the whole weight of the wood is passed on to the bottom.
+**Numbers:** $S = 50\ \text{cm}^2 = 0.005\ \text{m}^2$, $\ m g = 0.1 \cdot 10 = 1\ \text{N}$
+$\Delta p = \dfrac{1\ \text{N}}{0.005\ \text{m}^2} = 200\ \text{Pa}$ (the level rises by $\Delta h = 2\ \text{cm}$)
+AKA: $200\ \text{პა}$-ით
+AEN: by $200\ \text{Pa}$
+</script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<title>ფიზიკის ტრაექტორია</title>
+<meta name="description" content="VII კლასის ფიზიკის 36-კვირიანი თემატური გეგმა, აგებული ეროვნული სასწავლო გეგმის ფიზიკის შინაარსზე.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@400;600;700&family=Noto+Sans+Georgian:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#f6f3ec;
+    --paper:#fffdf8;
+    --ink:#1e2433;
+    --ink-soft:#565f75;
+    --ink-faint:#8a90a3;
+    --line:#ded6c4;
+    --line-soft:#eae4d4;
+    --accent:#2c6e6a;
+    --accent-soft:#dfeeec;
+    --accent-ink:#173f3d;
+    --amber:#a8631f;
+    --amber-soft:#f3e6d3;
+    --sem1:#2c5f8a;
+    --sem1-soft:#e2ecf4;
+    --sem2:#7a4a9c;
+    --sem2-soft:#ede2f4;
+    --shadow: 0 1px 2px rgba(30,36,51,.05), 0 6px 20px -8px rgba(30,36,51,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14171f;
+      --paper:#1b1f2a;
+      --ink:#eceef3;
+      --ink-soft:#a9afc2;
+      --ink-faint:#767d94;
+      --line:#333a4d;
+      --line-soft:#262c3b;
+      --accent:#5fbdb5;
+      --accent-soft:#1c3634;
+      --accent-ink:#a9e6df;
+      --amber:#d99a52;
+      --amber-soft:#3a2c1a;
+      --sem1:#7fa8d4;
+      --sem1-soft:#1c2c3d;
+      --sem2:#b98fd9;
+      --sem2-soft:#2c2038;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -10px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14171f;
+    --paper:#1b1f2a;
+    --ink:#eceef3;
+    --ink-soft:#a9afc2;
+    --ink-faint:#767d94;
+    --line:#333a4d;
+    --line-soft:#262c3b;
+    --accent:#5fbdb5;
+    --accent-soft:#1c3634;
+    --accent-ink:#a9e6df;
+    --amber:#d99a52;
+    --amber-soft:#3a2c1a;
+    --sem1:#7fa8d4;
+    --sem1-soft:#1c2c3d;
+    --sem2:#b98fd9;
+    --sem2-soft:#2c2038;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -10px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans Georgian','Noto Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:56px 24px 96px;}
+
+  /* ---------- header ---------- */
+  .masthead{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding-bottom:34px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:8px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow svg{flex:none;}
+  h1{
+    font-family:'Noto Serif Georgian',serif;
+    font-weight:700;
+    font-size:clamp(32px,5vw,46px);
+    line-height:1.08;
+    margin:0;
+    text-wrap:balance;
+    letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:60ch;
+    line-height:1.55;
+    margin:0;
+  }
+  .meta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:10px;
+  }
+  .meta-chip{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:99px;
+    padding:5px 12px;
+  }
+
+  /* ---------- notice ---------- */
+  .notice{
+    margin:28px 0 44px;
+    background:var(--amber-soft);
+    border:1px solid color-mix(in srgb, var(--amber) 35%, var(--line));
+    border-radius:10px;
+    padding:16px 18px;
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--ink);
+  }
+  .notice b{color:var(--amber);}
+
+  /* ---------- semester divider ---------- */
+  .sem-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin:56px 0 22px;
+  }
+  .sem-head:first-of-type{margin-top:20px;}
+  .sem-num{
+    font-family:'Noto Serif Georgian',serif;
+    font-weight:700;
+    font-size:26px;
+  }
+  .sem-head.s1 .sem-num{color:var(--sem1);}
+  .sem-head.s2 .sem-num{color:var(--sem2);}
+  .sem-range{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+  .sem-head::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ---------- trajectory + units ---------- */
+  .track{position:relative;}
+  .track::before{
+    content:"";
+    position:absolute;
+    left:19px;
+    top:8px;
+    bottom:8px;
+    width:2px;
+    background:repeating-linear-gradient(to bottom, var(--line) 0 6px, transparent 6px 11px);
+  }
+  .unit{
+    position:relative;
+    padding-left:52px;
+    margin-bottom:26px;
+  }
+  .unit-dot{
+    position:absolute;
+    left:9px;
+    top:6px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--accent);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    font-weight:600;
+    color:var(--accent-ink);
+  }
+  .s2 .unit-dot{border-color:var(--sem2);}
+  .s2 .unit-card{--u-accent:var(--sem2); --u-accent-soft:var(--sem2-soft);}
+  .s1 .unit-card{--u-accent:var(--sem1); --u-accent-soft:var(--sem1-soft);}
+
+  .unit-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .unit-card-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 20px;
+    background:var(--u-accent-soft, var(--accent-soft));
+    border-bottom:1px solid var(--line);
+  }
+  .unit-weeks{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.04em;
+    color:var(--u-accent, var(--accent));
+    white-space:nowrap;
+  }
+  .unit-title{
+    font-family:'Noto Serif Georgian',serif;
+    font-weight:600;
+    font-size:16.5px;
+    line-height:1.3;
+    text-align:right;
+  }
+
+  .unit-body{padding:18px 20px 20px;}
+  .field-grid{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:9px 16px;
+    font-size:14px;
+    line-height:1.55;
+  }
+  .field-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink-faint);
+    padding-top:2px;
+  }
+  .field-value{color:var(--ink);}
+  .field-value.lex{color:var(--ink-soft);font-size:13.5px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{
+    font-size:12px;
+    background:var(--line-soft);
+    color:var(--ink-soft);
+    border-radius:6px;
+    padding:2.5px 8px;
+  }
+
+  .week-list{
+    margin-top:16px;
+    border-top:1px dashed var(--line);
+    padding-top:14px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .week-row{
+    display:grid;
+    grid-template-columns:44px 1fr;
+    gap:14px;
+  }
+  .week-num{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size:13px;
+    color:var(--u-accent, var(--accent));
+    padding-top:1px;
+  }
+  .week-topic{
+    font-size:14.5px;
+    font-weight:600;
+    line-height:1.4;
+    margin:0 0 3px;
+  }
+  .week-activity{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0;
+  }
+  .week-activity::before{
+    content:"აქტ · ";
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    color:var(--ink-faint);
+  }
+  .week-assess{
+    display:inline-block;
+    margin-top:5px;
+    font-size:11.5px;
+    color:var(--accent-ink);
+    background:var(--accent-soft);
+    border-radius:6px;
+    padding:2px 7px;
+  }
+  .week-comment{
+    margin-top:6px;
+    font-size:12.5px;
+    color:var(--amber);
+    font-style:italic;
+  }
+
+  /* ---------- footer ---------- */
+  .howto{
+    margin-top:58px;
+    padding-top:30px;
+    border-top:1px solid var(--line);
+  }
+  .howto h2{
+    font-family:'Noto Serif Georgian',serif;
+    font-size:20px;
+    margin:0 0 14px;
+  }
+  .howto ol{
+    padding-left:22px;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--ink-soft);
+  }
+  .howto code{
+    font-family:'IBM Plex Mono',monospace;
+    background:var(--line-soft);
+    padding:1.5px 6px;
+    border-radius:5px;
+    font-size:.92em;
+    color:var(--ink);
+  }
+  .foot-note{
+    margin-top:22px;
+    font-size:12.5px;
+    color:var(--ink-faint);
+    line-height:1.6;
+  }
+
+  @media (max-width:640px){
+    .field-grid{grid-template-columns:1fr;gap:3px 0;}
+    .field-label{padding-top:8px;}
+    .unit-card-head{flex-direction:column;align-items:flex-start;}
+    .unit-title{text-align:left;}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.4" fill="currentColor"/><ellipse cx="8" cy="8" rx="7" ry="3" stroke="currentColor" stroke-width="1.1"/><ellipse cx="8" cy="8" rx="7" ry="3" stroke="currentColor" stroke-width="1.1" transform="rotate(60 8 8)"/><ellipse cx="8" cy="8" rx="7" ry="3" stroke="currentColor" stroke-width="1.1" transform="rotate(120 8 8)"/></svg>
+      ფიზიკა · საბაზო საფეხური
+    </div>
+    <h1>VII კლასის თემატური გეგმა</h1>
+    <p class="subtitle">36 კვირა, ორ სემესტრად გადანაწილებული — მოძრაობიდან და ძალიდან მასამდე, სიმკვრივემდე, წნევამდე და მარტივ მექანიზმებამდე. სვეტები იმეორებს თქვენი ცხრილის რვა კატეგორიას.</p>
+    <div class="meta-row">
+      <span class="meta-chip">14 თემატური ბლოკი</span>
+      <span class="meta-chip">36 კვირა · I–XXXVI</span>
+      <span class="meta-chip">2 შემაჯამებელი გამოცდა</span>
+    </div>
+  </header>
+
+  <div class="notice">
+    <b>როგორ არის აგებული ეს გეგმა.</b> თემების თანმიმდევრობა (გაზომვა → მოძრაობა → ურთიერთქმედება/ძალა → მასა/სიმკვრივე → აგრეგატული მდგომარეობები → წნევა → არქიმედეს კანონი → მარტივი მექანიზმები) შეესაბამება ეროვნული სასწავლო გეგმის ფიზიკის საბაზისო შინაარსს VII კლასისთვის. კვირა-კვირად განაწილება საორიენტაციოა — ავტორისეული სამუშაო ვერსია, არა ბრძანებულების ციტატა — და თავისუფლად შეგიძლიათ შეცვალოთ თანმიმდევრობა თქვენი სახელმძღვანელოსა და სასკოლო კალენდრის მიხედვით. „კავშირი სასკოლო მიზნებთან" მაგალითებია — ჩაანაცვლეთ თქვენი სკოლის კონკრეტული მიზნების ჩამონათვალით.
+  </div>
+
+  <section id="s1"></section>
+  <section id="s2"></section>
+
+  <div class="howto">
+    <h2>გადატანა Google Sheets-ში</h2>
+    <ol>
+      <li>გახსენით მიღებული <code>fizika_VII_klasi.csv</code> ფაილი და მონიშნეთ მთელი შიგთავსი (<code>Ctrl+A</code>, <code>Ctrl+C</code>).</li>
+      <li>Google Sheets-ში, <b>ფიზიკა</b> ტაბზე, დააჭირეთ იმ უჯრედს, საიდანაც იწყება „VII კლასი — კურიკულუმის ფორმის" კატეგორიების სვეტი (რიგი, სადაც წერია „სტანდარტით გათვალისწინებული მიზანი/შედეგი").</li>
+      <li>ჩასვით (<code>Ctrl+V</code>) — Google Sheets ავტომატურად გახლეჩს მონაცემებს სვეტებად კვირების მიხედვით.</li>
+      <li>საჭიროებისამებრ დაარეგულირეთ სვეტების სიგანე და გადაამოწმეთ, რომ კვირების ნუმერაცია (I–XXXVI) ემთხვევა თქვენს არსებულ თავსართს.</li>
+    </ol>
+    <p class="foot-note">შენიშვნა: ამ სესიას არ აქვს Google Sheets-ში პირდაპირი ჩაწერის წვდომა, ამიტომ ცხრილი მოწოდებულია საიმპორტოდ მზა ფაილის სახით. კონტენტი აგებულია ეროვნული სასწავლო გეგმის (მაწნე.გოვ.გე, mes.gov.ge) ფიზიკის საბაზო საფეხურის სტანდარტის ზოგადი შინაარსობრივი ხაზების მიხედვით — სასურველია პედაგოგმა გადაამოწმოს ზუსტი მისაღწევი შედეგების კოდები უშუალოდ ncp.ge-ს სტანდარტში მისი გამოქვეყნებამდე.</p>
+  </div>
+
+</div>
+
+<script>
+const WEEKS = [
+  {n:"I",   topic:"შესავალი ფიზიკაში. ფიზიკა, როგორც საბუნებისმეტყველო მეცნიერება", act:"მასწავლებლის ახსნა-განმარტება, დისკუსია „რას სწავლობს ფიზიკა“, დემონსტრაციები", assess:"ზეპირი გამოკითხვა", comment:"თემატური გეგმა საორიენტაციოა და საჭიროებისამებრ შესაძლებელია კვირების თანმიმდევრობის კორექტირება."},
+  {n:"II",  topic:"ფიზიკური სიდიდეები. ერთეულთა საერთაშორისო სისტემა (სი)", act:"ჯგუფური სამუშაო სი ერთეულებზე, სავარჯიშოები ერთეულთა გადაყვანაზე", assess:"ზეპირი გამოკითხვა, საკლასო აქტივობა"},
+  {n:"III", topic:"გაზომვის ხელსაწყოები და ცდომილება. ლაბ. სამუშაო: სიგრძის, დროისა და ტემპერატურის გაზომვა", act:"ლაბორატორიული სამუშაო ჯგუფებში: სიგრძის, დროისა და ტემპერატურის გაზომვა სხვადასხვა ხელსაწყოთი", assess:"ლაბორატორიული ანგარიშის შეფასება რუბრიკით"},
+  {n:"IV",  topic:"მექანიკური მოძრაობა. ტრაექტორია და განვლილი გზა", act:"დემონსტრაციული ცდა მოძრაობაზე, ტრაექტორიის დახატვა რვეულში", assess:"საშინაო დავალება"},
+  {n:"V",   topic:"მოძრაობის სახეები (წრფივი, მრუდწირული, ბრუნვითი)", act:"მუშაობა სახელმძღვანელოსთან, მოძრაობის სახეების კლასიფიკაცია სქემაზე", assess:"საკლასო აქტივობის დაკვირვება"},
+  {n:"VI",  topic:"ფარდობითობა მექანიკურ მოძრაობაში. მოსვენება და მოძრაობა", act:"დისკუსია მაგალითებზე (მოძრაობა ტრანსპორტში და გარეთ), წყვილური სამუშაო", assess:"საშინაო დავალება"},
+  {n:"VII", topic:"სიჩქარე. თანაბარი წრფივი მოძრაობა", act:"სამუშაო ფურცელი: ამოცანების ამოხსნა სიჩქარეზე", assess:"წერითი სამუშაო ფურცელი"},
+  {n:"VIII",topic:"არათანაბარი მოძრაობა. საშუალო სიჩქარე", act:"ჯგუფური სამუშაო — საშუალო სიჩქარის გამოთვლა რეალურ მაგალითებზე", assess:"წერითი სამუშაო ფურცელი"},
+  {n:"IX",  topic:"ამოცანები მოძრაობაზე. გრაფიკები s(t), v(t)", act:"გრაფიკების აგება-ანალიზი (s-t, v-t), ონლაინ სიმულაცია", assess:"საკლასო აქტივობის დაკვირვება"},
+  {n:"X",   topic:"განმეორება-განზოგადება. I შუალედური საკონტროლო სამუშაო „მოძრაობა“", act:"განმეორებითი სავარჯიშოები, წერითი საკონტროლო სამუშაო", assess:"წერითი საკონტროლო სამუშაო „მოძრაობა“", comment:"შუალედური შეფასების კვირა — დამატებითი დროის რეზერვი საჭიროების შემთხვევაში."},
+  {n:"XI",  topic:"ურთიერთქმედება სხეულებს შორის. ძალა, როგორც ურთიერთქმედების საზომი", act:"დემონსტრაცია (სხეულთა ურთიერთქმედება), ძალის აღნიშვნა ვექტორით", assess:"ზეპირი გამოკითხვა"},
+  {n:"XII", topic:"სიმძიმის ძალა. თავისუფალი ვარდნა", act:"ცდა თავისუფალ ვარდნაზე, დისკუსია სიმძიმის აჩქარებაზე", assess:"საკლასო აქტივობის დაკვირვება"},
+  {n:"XIII",topic:"ძალის გამოსახვა. ძალთა შედეგი ერთი წრფის გასწვრივ", act:"სამუშაო ფურცელი: ძალთა შედეგის გამოთვლა ერთ წრფეზე", assess:"წერითი სამუშაო ფურცელი"},
+  {n:"XIV", topic:"დრეკადობის ძალა. ჰუკის კანონი. დინამომეტრი", act:"ჰუკის კანონის დემონსტრირება ზამბარაზე, ფორმულის გამოყვანა", assess:"ზეპირი გამოკითხვა"},
+  {n:"XV",  topic:"ლაბ. სამუშაო: ძალის გაზომვა დინამომეტრით", act:"ლაბორატორიული სამუშაო ჯგუფებში: ძალის გაზომვა დინამომეტრით", assess:"ლაბორატორიული ანგარიშის შეფასება რუბრიკით"},
+  {n:"XVI", topic:"ხახუნის ძალა. ხახუნის სახეები და მისი როლი ბუნებასა და ტექნიკაში", act:"ცდები ხახუნზე სხვადასხვა ზედაპირზე, ყოფითი მაგალითების განხილვა", assess:"საკლასო აქტივობის დაკვირვება"},
+  {n:"XVII",topic:"განმეორება. თემა „ურთიერთქმედება და ძალა“", act:"განმეორებითი სავარჯიშოები, ჯგუფური ვიქტორინა", assess:"განმეორებითი სამუშაოს შეფასება"},
+  {n:"XVIII",topic:"I სემესტრის შემაჯამებელი (საგამოცდო) შეფასება", act:"წერითი შემაჯამებელი გამოცდა", assess:"წერითი შემაჯამებელი (სემესტრული) გამოცდა", comment:"სემესტრის დასასრული — რეზერვის კვირა შესაძლო გადავადებული საკითხებისთვის."},
+  {n:"XIX", topic:"მასა, როგორც სხეულის ინერტულობის საზომი. მასის გაზომვა", act:"მასის გაზომვა სასწორზე, დისკუსია მასასა და წონას შორის განსხვავებაზე", assess:"ზეპირი გამოკითხვა"},
+  {n:"XX",  topic:"სიმკვრივე. ფორმულა და ერთეულები", act:"ფორმულის გამოყვანა და გამოყენება, სამუშაო ფურცელი", assess:"საშინაო დავალება"},
+  {n:"XXI", topic:"ლაბ. სამუშაო: სხეულის სიმკვრივის განსაზღვრა", act:"ლაბორატორიული სამუშაო ჯგუფებში: სიმკვრივის განსაზღვრა მოცულობისა და მასის გაზომვით", assess:"ლაბორატორიული ანგარიშის შეფასება რუბრიკით"},
+  {n:"XXII",topic:"ნივთიერების აგრეგატული მდგომარეობები", act:"დემონსტრაცია აგრეგატულ მდგომარეობებზე (ყინული-წყალი-ორთქლი)", assess:"საკლასო აქტივობის დაკვირვება"},
+  {n:"XXIII",topic:"მოლეკულურ-კინეტიკური თეორიის ელემენტები. დიფუზია", act:"ცდა დიფუზიაზე (საღებავი წყალში, სუნამო ჰაერში)", assess:"საკლასო აქტივობის დაკვირვება"},
+  {n:"XXIV",topic:"გამოყენებითი ამოცანები მასა-სიმკვრივეზე. მცირე შეჯამება", act:"შერეული სამუშაო ფურცელი მასა-სიმკვრივეზე, მცირე ტესტი", assess:"მცირე წერითი ტესტი"},
+  {n:"XXV", topic:"წნევა. მყარი სხეულების წნევა. ფორმულა", act:"ცდა წნევაზე (ზეწოლა სხვადასხვა ფართობზე), ფორმულის გამოყვანა", assess:"ლაბორატორიული ანგარიშის შეფასება რუბრიკით"},
+  {n:"XXVI",topic:"წნევის შეცვლის ხერხები ყოფასა და ტექნიკაში", act:"პრაქტიკული მაგალითების განხილვა (თხილამურები, დანა, ლურსმანი)", assess:"საშინაო დავალება"},
+  {n:"XXVII",topic:"ლაბ. სამუშაო: წნევის გამოთვლა სხვადასხვა პირობებში", act:"ლაბორატორიული სამუშაო ჯგუფებში: წნევის გამოთვლა სხვადასხვა პირობებში", assess:"სამუშაო ფურცლის შეფასება"},
+  {n:"XXVIII",topic:"სითხის წნევა. პასკალის კანონი", act:"ცდა პასკალის კანონზე (ჰიდრავლიკური მოწყობილობის მოდელი/ვიდეო)", assess:"ზეპირი გამოკითხვა"},
+  {n:"XXIX",topic:"ატმოსფერული წნევა. ტორიჩელის ცდა", act:"ტორიჩელის ცდის ვიდეო/სიმულაცია, დისკუსია ატმოსფერულ წნევაზე", assess:"საკლასო აქტივობის დაკვირვება"},
+  {n:"XXX", topic:"ატმოსფერული წნევის გაზომვა. ბარომეტრი", act:"ბარომეტრის მუშაობის პრინციპის განხილვა, სამუშაო ფურცელი", assess:"სამუშაო ფურცლის შეფასება"},
+  {n:"XXXI",topic:"არქიმედეს ძალა. არქიმედეს კანონი", act:"ლაბორატორიული სამუშაო ჯგუფებში: არქიმედეს ძალის გაზომვა დინამომეტრით წყალში", assess:"ლაბორატორიული ანგარიშის შეფასება რუბრიკით"},
+  {n:"XXXII",topic:"ლაბ. სამუშაო: არქიმედეს ძალის გაზომვა", act:"ცდები ცურვასა და ჩაძირვაზე სხვადასხვა სხეულით", assess:"საკლასო აქტივობის დაკვირვება"},
+  {n:"XXXIII",topic:"სხეულთა ცურვის პირობები. ცურვა ბუნებასა და ტექნიკაში", act:"მინი-პროექტი/პრეზენტაცია: ცურვა ბუნებასა და ტექნიკაში", assess:"პროექტის/პრეზენტაციის შეფასება რუბრიკით"},
+  {n:"XXXIV",topic:"მარტივი მექანიზმები. ბერკეტი და წონასწორობის პირობა", act:"ცდა ბერკეტის მოდელთან, წონასწორობის პირობის გამოყვანა", assess:"საკლასო აქტივობის დაკვირვება"},
+  {n:"XXXV",topic:"სხვა მარტივი მექანიზმები (ხრახნი, დახრილი სიბრტყე). ოქროს წესი", act:"დემონსტრაცია — მარტივი მექანიზმები, ყოფითი მაგალითების ძიება", assess:"სამუშაო ფურცლის შეფასება"},
+  {n:"XXXVI",topic:"წლიური განმეორება-განზოგადება. წლიური შემაჯამებელი შეფასება", act:"წლიური გამეორება, ვიქტორინა/პროექტების პრეზენტაცია, საკონტროლო", assess:"წლიური შემაჯამებელი (საგამოცდო) წერითი სამუშაო", comment:"წლის ბოლო — რეზერვის კვირა, საჭიროებისამებრ."},
+];
+
+const UNITS = [
+  {range:"I–III", weeks:[0,1,2], sem:1,
+   goal:"მოსწავლეს შეუძლია ახსნას ფიზიკის, როგორც საბუნებისმეტყველო მეცნიერების როლი სამყაროს შემეცნებაში; გაზომოს ფიზიკური სიდიდეები სი-ერთეულებში და შეაფასოს გაზომვის სიზუსტე.",
+   lex:["ფიზიკური სიდიდე","ერთეული","სი","ხელსაწყო","ცდომილება","გაზომვა"],
+   school:"მეცნიერული წიგნიერება და კვლევითი უნარები",
+   resources:"სახელმძღვანელო „ფიზიკა-7“; საზომი ხელსაწყოები (სახაზავი, წამზომი, თერმომეტრი); ლაბორატორიული ინსტრუქციები"},
+  {range:"IV–VI", weeks:[3,4,5], sem:1,
+   goal:"მოსწავლეს შეუძლია დაახასიათოს სხეულის მექანიკური მოძრაობა (ტრაექტორია, გზა), განასხვავოს მოძრაობის სახეები და ახსნას მოძრაობის ფარდობითობა.",
+   lex:["ტრაექტორია","გზა","მოძრაობის სახე","მოსვენება","ფარდობითობა"],
+   school:"დაკვირვებისა და აღწერის უნარი",
+   resources:"სახელმძღვანელო; დაფა/სქემები; ვიდეო მასალა მოძრაობაზე"},
+  {range:"VII–IX", weeks:[6,7,8], sem:1,
+   goal:"მოსწავლეს შეუძლია გამოთვალოს და შეადაროს სხეულთა სიჩქარეები, ამოხსნას თანაბარ და არათანაბარ მოძრაობაზე ამოცანები და აღწეროს მოძრაობა გრაფიკულად.",
+   lex:["სიჩქარე","თანაბარი მოძრაობა","არათანაბარი მოძრაობა","საშუალო სიჩქარე","გრაფიკი"],
+   school:"ანალიტიკური აზროვნება და მათემატიკური წიგნიერება",
+   resources:"სამუშაო ფურცლები; კალკულატორი; ონლაინ სიმულაცია (გრაფიკები); მილიმეტრიანი ქაღალდი"},
+  {range:"X", weeks:[9], sem:1,
+   goal:"მოსწავლე აჯამებს და იყენებს თემა „მოძრაობის“ ფარგლებში მიღებულ ცოდნასა და უნარებს ახალ სიტუაციებში.",
+   lex:["განზოგადება","საკონტროლო სამუშაო"],
+   school:"თვითშეფასების უნარი",
+   resources:"წინა თემების სამუშაო ფურცლები; საკონტროლოს ვარიანტები"},
+  {range:"XI–XIII", weeks:[10,11,12], sem:1,
+   goal:"მოსწავლეს შეუძლია ახსნას სხეულთა ურთიერთქმედება ძალის ცნების მეშვეობით და დაახასიათოს სიმძიმის ძალა.",
+   lex:["ურთიერთქმედება","ძალა","სიმძიმის ძალა","თავისუფალი ვარდნა"],
+   school:"მიზეზ-შედეგობრივი აზროვნება",
+   resources:"სახელმძღვანელო; დემონსტრაციული მასალა (ბურთულები, მაგნიტები); მილიმეტრიანი ქაღალდი"},
+  {range:"XIV–XVI", weeks:[13,14,15], sem:1,
+   goal:"მოსწავლეს შეუძლია გაზომოს ძალა დინამომეტრით, ჩამოაყალიბოს ჰუკის კანონი და ახსნას ხახუნის ძალის გავლენა ყოფასა და ტექნიკაზე.",
+   lex:["დრეკადობის ძალა","ჰუკის კანონი","დინამომეტრი","ხახუნის ძალა"],
+   school:"პრაქტიკული უნარები და უსაფრთხოების კულტურა",
+   resources:"დინამომეტრები; ზამბარები; დასაწონი სხეულები; სხვადასხვა ზედაპირის ნიმუშები"},
+  {range:"XVII–XVIII", weeks:[16,17], sem:1,
+   goal:"მოსწავლე აჯამებს სემესტრში მიღებულ ცოდნას მოძრაობისა და ძალის შესახებ და იყენებს მას პრობლემის გადასაჭრელად.",
+   lex:["შემაჯამებელი შეფასება"],
+   school:"თვითშეფასება და რეფლექსია",
+   resources:"წლის სამუშაო ფურცლები; დაფა; საგამოცდო ვარიანტები"},
+  {range:"XIX–XXI", weeks:[18,19,20], sem:2,
+   goal:"მოსწავლეს შეუძლია განასხვაოს მასა და წონა, გამოთვალოს სხეულის სიმკვრივე და გამოიყენოს იგი ნივთიერების ამოცნობისთვის.",
+   lex:["მასა","ინერტულობა","სიმკვრივე"],
+   school:"სიზუსტე და სისწორე გაზომვებში",
+   resources:"ლაბორატორიული სასწორები; საზომი ცილინდრები; ცხრილი „ნივთიერებათა სიმკვრივეები“; კალკულატორი"},
+  {range:"XXII–XXIV", weeks:[21,22,23], sem:2,
+   goal:"მოსწავლეს შეუძლია ახსნას აგრეგატული მდგომარეობები მოლეკულურ-კინეტიკური თეორიის საფუძველზე და დაუკავშიროს დიფუზიის მოვლენას.",
+   lex:["აგრეგატული მდგომარეობა","მოლეკულა","დიფუზია"],
+   school:"მოვლენებს შორის კავშირების დანახვის უნარი",
+   resources:"დემონსტრაციული მასალა (ყინული, წყალი, თბობის წყარო); საღებავი/სუნამო დიფუზიის ცდისთვის; სამუშაო ფურცლები"},
+  {range:"XXV–XXVII", weeks:[24,25,26], sem:2,
+   goal:"მოსწავლეს შეუძლია ახსნას წნევის ცნება, გამოთვალოს მყარი სხეულის წნევა და შესთავაზოს წნევის ცვლილების ხერხები.",
+   lex:["წნევა","პასკალი (ერთეული)"],
+   school:"პრობლემის გადაჭრის უნარი ყოფით სიტუაციებში",
+   resources:"ნიმუშები სხვადასხვა ფართობით (ლურსმანი, დანა); სურათები/ვიდეო ყოფითი მაგალითებით; საზომი ხელსაწყოები"},
+  {range:"XXVIII–XXX", weeks:[27,28,29], sem:2,
+   goal:"მოსწავლეს შეუძლია ჩამოაყალიბოს პასკალის კანონი და ახსნას ატმოსფერული წნევის არსებობა და გაზომვის პრინციპი.",
+   lex:["პასკალის კანონი","ატმოსფერული წნევა","ბარომეტრი","ტორიჩელის ცდა"],
+   school:"მეცნიერული ახსნის უნარი",
+   resources:"ჰიდრავლიკური მოწყობილობის მოდელი ან ვიდეო; ტორიჩელის ცდის სიმულაცია; ბარომეტრის სურათი/მოდელი"},
+  {range:"XXXI–XXXIII", weeks:[30,31,32], sem:2,
+   goal:"მოსწავლეს შეუძლია ჩამოაყალიბოს არქიმედეს კანონი და ახსნას სხეულთა ცურვის პირობები.",
+   lex:["არქიმედეს ძალა","ამომგდები ძალა","ცურვის პირობა"],
+   school:"კვლევითი და თანამშრომლობითი უნარები",
+   resources:"დინამომეტრი; სხვადასხვა სიმკვრივის სხეულები; ჭურჭელი წყლით; მასალები პრეზენტაციისთვის"},
+  {range:"XXXIV–XXXV", weeks:[33,34], sem:2,
+   goal:"მოსწავლეს შეუძლია ახსნას მარტივი მექანიზმების მოქმედების პრინციპი და გამოთვალოს ბერკეტის წონასწორობის პირობა.",
+   lex:["ბერკეტი","ძალის მხარი","ბრუნვის მომენტი","ოქროს წესი"],
+   school:"ტექნოლოგიური წიგნიერება, შემოქმედებითობა",
+   resources:"ბერკეტის ლაბორატორიული ნაკრები; მარტივი მექანიზმების ნიმუშები/სურათები"},
+  {range:"XXXVI", weeks:[35], sem:2,
+   goal:"მოსწავლე აჯამებს წლის განმავლობაში მიღწეულ შედეგებს და აყალიბებს მთლიან წარმოდგენას ფიზიკური მოვლენების შესახებ.",
+   lex:["წლიური განზოგადება"],
+   school:"მთლიანი სურათის დანახვისა და განზოგადების უნარი",
+   resources:"წლის განმავლობაში შედგენილი მასალები; წლიური საკონტროლოს ვარიანტები"},
+];
+
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function renderUnit(u, idx){
+  const weeksHtml = u.weeks.map(wi=>{
+    const w = WEEKS[wi];
+    const comment = w.comment ? `<div class="week-comment">${esc(w.comment)}</div>` : "";
+    return `<div class="week-row">
+      <div class="week-num">${w.n}</div>
+      <div>
+        <p class="week-topic">${esc(w.topic)}</p>
+        <p class="week-activity">${esc(w.act)}</p>
+        <span class="week-assess">${esc(w.assess)}</span>
+        ${comment}
+      </div>
+    </div>`;
+  }).join("");
+
+  const lexHtml = u.lex.map(l=>`<span class="tag">${esc(l)}</span>`).join("");
+
+  return `<div class="unit s${u.sem}">
+    <div class="unit-dot">${idx+1}</div>
+    <div class="unit-card">
+      <div class="unit-card-head">
+        <span class="unit-weeks">კვირა ${u.range}</span>
+        <span class="unit-title">${esc(u.lex[0])}</span>
+      </div>
+      <div class="unit-body">
+        <div class="field-grid">
+          <div class="field-label">მიზანი/შედეგი</div>
+          <div class="field-value">${esc(u.goal)}</div>
+          <div class="field-label">ლექსიკა</div>
+          <div class="field-value lex tag-row">${lexHtml}</div>
+          <div class="field-label">სასკ. მიზანი</div>
+          <div class="field-value">${esc(u.school)}</div>
+          <div class="field-label">რესურსები</div>
+          <div class="field-value lex">${esc(u.resources)}</div>
+        </div>
+        <div class="week-list">${weeksHtml}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+const s1units = UNITS.filter(u=>u.sem===1);
+const s2units = UNITS.filter(u=>u.sem===2);
+
+document.getElementById("s1").outerHTML = `
+  <section>
+    <div class="sem-head s1"><span class="sem-num">I სემესტრი</span><span class="sem-range">კვირა I–XVIII</span></div>
+    <div class="track">${s1units.map((u,i)=>renderUnit(u,i)).join("")}</div>
+  </section>`;
+
+document.getElementById("s2").outerHTML = `
+  <section>
+    <div class="sem-head s2"><span class="sem-num">II სემესტრი</span><span class="sem-range">კვირა XIX–XXXVI</span></div>
+    <div class="track">${s2units.map((u,i)=>renderUnit(u,i)).join("")}</div>
+  </section>`;
+</script>
