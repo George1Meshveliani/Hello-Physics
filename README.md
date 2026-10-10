@@ -2,7 +2,7 @@ Click the topic and Enjoy!
 ### - School Problem Collections (ქართული / English) -
 
 #### [`Collection of Physics Problems`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/) — ფიზიკის ამოცანების კრებული
-Problems for grades VII–XII following the national curriculum: easy, medium and hard (last 5 olympiad-style), with hidden hints and step-by-step solutions.
+Problems for grades VII–XII following the national curriculum: easy, medium and hard (last 10 olympiad-style), with hidden hints and step-by-step solutions.
 - [`Grade VII`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/VII) — measurement, motion, forces, density, pressure, Archimedes, simple machines
 - [`Grade VIII`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/VIII) — work, power and energy, simple machines, heat, melting and boiling, heat engines
 - [`Grade IX`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/IX) — kinematics, Newton's laws, circular motion, momentum, energy, statics
@@ -10,7 +10,7 @@ Problems for grades VII–XII following the national curriculum: easy, medium an
 - [`Grade XI`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/XI) — magnetism, induction, oscillations and waves, AC, optics and lenses
 
 #### [`Collection of Mathematics Problems`](https://george1meshveliani.github.io/Hello-Physics/problems/math/) — მათემატიკის ამოცანების კრებული
-Problems for grades VII–XII following the national curriculum: easy, medium and hard (last 5 olympiad-style), with hidden hints and step-by-step solutions.
+Problems for grades VII–XII following the national curriculum: easy, medium and hard (last 10 olympiad-style), with hidden hints and step-by-step solutions.
 - [`Grade VII`](https://george1meshveliani.github.io/Hello-Physics/problems/math/VII) — numbers, proportion, percent, linear equations and systems, triangles, statistics, probability
 - [`Grade VIII`](https://george1meshveliani.github.io/Hello-Physics/problems/math/VIII) — powers and roots, special products, algebraic fractions, Pythagoras, quadrilaterals, linear functions
 - [`Grade IX`](https://george1meshveliani.github.io/Hello-Physics/problems/math/IX) — quadratics, parabolas, progressions, circles, similarity, trigonometry, solids, combinatorics

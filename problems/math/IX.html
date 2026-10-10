@@ -897,6 +897,782 @@ $C_7^3 = \dfrac{7 \cdot 6 \cdot 5}{3 \cdot 2 \cdot 1} = 35$
 (Check another way: the number of paths to each grid point = the sum for its left and lower neighbours — Pascal's triangle.)
 AKA: $35$
 AEN: $35$
+
+// ===================================================================== SET 2
+
+--- easy review
+KA: გამოთვალეთ: $(\sqrt{7})^2 - \sqrt{81}$ და $\sqrt{0{,}16} \cdot \sqrt{25}$.
+EN: Calculate: $(\sqrt{7})^2 - \sqrt{81}$ and $\sqrt{0.16} \cdot \sqrt{25}$.
+HKA: $(\sqrt{a})^2 = a$.
+HEN: $(\sqrt{a})^2 = a$.
+SKA: $(\sqrt{7})^2 - \sqrt{81} = 7 - 9 = -2$
+$\sqrt{0{,}16} \cdot \sqrt{25} = 0{,}4 \cdot 5 = 2$
+SEN: $(\sqrt{7})^2 - \sqrt{81} = 7 - 9 = -2$
+$\sqrt{0.16} \cdot \sqrt{25} = 0.4 \cdot 5 = 2$
+AKA: $-2$; $2$
+AEN: $-2$; $2$
+
+--- easy finance
+KA: $500$ ლარი შეიტანეს ანაბარზე წლიური $20\%$-ით (რთული პროცენტი). რამდენი იქნება ანაბარზე $2$ წლის შემდეგ?
+EN: $500$ lari is deposited at $20\%$ per year compound interest. How much is there after $2$ years?
+HKA: $S = S_0 (1 + r)^n$.
+HEN: $S = S_0 (1 + r)^n$.
+SKA: $S = 500 \cdot 1{,}2^2 = 500 \cdot 1{,}44 = 720\ ₾$
+SEN: $S = 500 \cdot 1.2^2 = 500 \cdot 1.44 = 720\ ₾$
+AKA: $720\ ₾$
+AEN: $720\ ₾$
+
+--- easy finance
+KA: ტელეფონი $2400$ ლარად განვადებით იყიდეს $12$ თვით, სარგებლის გარეშე. რამდენია ყოველთვიური შენატანი?
+EN: A phone costing $2400$ lari is bought in $12$ monthly instalments with no interest. What is the monthly payment?
+HKA: თანხა თანაბრად იყოფა თვეებზე.
+HEN: The amount is split equally across the months.
+SKA: $2400 : 12 = 200\ ₾$
+SEN: $2400 \div 12 = 200\ ₾$
+AKA: $200\ ₾$
+AEN: $200\ ₾$
+
+--- easy factor
+KA: დაშალეთ მამრავლებად: $x^2 + 7x + 12$.
+EN: Factorise: $x^2 + 7x + 12$.
+HKA: ორი რიცხვი, რომელთა ნამრავლია $12$, ჯამი — $7$.
+HEN: Two numbers with product $12$ and sum $7$.
+SKA: $3 \cdot 4 = 12$, $3 + 4 = 7$
+$x^2 + 7x + 12 = (x + 3)(x + 4)$
+SEN: $3 \cdot 4 = 12$, $3 + 4 = 7$
+$x^2 + 7x + 12 = (x + 3)(x + 4)$
+AKA: $(x + 3)(x + 4)$
+AEN: $(x + 3)(x + 4)$
+
+--- easy factor
+KA: დაშალეთ მამრავლებად: $x^2 - x - 20$.
+EN: Factorise: $x^2 - x - 20$.
+HKA: ნამრავლი $-20$, ჯამი $1$ (ფესვების).
+HEN: The roots multiply to $-20$ and add to $1$.
+SKA: ფესვები: $5$ და $-4$ ($5 \cdot (-4) = -20$, $5 + (-4) = 1$)
+$x^2 - x - 20 = (x - 5)(x + 4)$
+SEN: Roots: $5$ and $-4$ ($5 \cdot (-4) = -20$, $5 + (-4) = 1$)
+$x^2 - x - 20 = (x - 5)(x + 4)$
+AKA: $(x - 5)(x + 4)$
+AEN: $(x - 5)(x + 4)$
+
+--- easy quadratic
+KA: ამოხსენით არასრული კვადრატული განტოლებები: $x^2 - 16 = 0$ და $x^2 - 5x = 0$.
+EN: Solve the incomplete quadratics: $x^2 - 16 = 0$ and $x^2 - 5x = 0$.
+HKA: პირველში — კვადრატების სხვაობა; მეორეში $x$ გამოიტანეთ.
+HEN: The first is a difference of squares; in the second take out $x$.
+SKA: $x^2 = 16 \Rightarrow x = \pm 4$
+$x(x - 5) = 0 \Rightarrow x = 0$ ან $x = 5$
+SEN: $x^2 = 16 \Rightarrow x = \pm 4$
+$x(x - 5) = 0 \Rightarrow x = 0$ or $x = 5$
+AKA: $\pm 4$; $0$ და $5$
+AEN: $\pm 4$; $0$ and $5$
+
+--- easy quadratic
+KA: იპოვეთ $x^2 - 6x + 9 = 0$ განტოლების დისკრიმინანტი და ფესვები.
+EN: Find the discriminant and roots of $x^2 - 6x + 9 = 0$.
+HKA: $D = 0$ — ერთი (ორჯერადი) ფესვი.
+HEN: $D = 0$ — one (double) root.
+SKA: $D = 36 - 36 = 0$
+$x = \dfrac{6}{2} = 3$ (ანუ $(x - 3)^2 = 0$)
+SEN: $D = 36 - 36 = 0$
+$x = \dfrac{6}{2} = 3$ (i.e. $(x - 3)^2 = 0$)
+AKA: $D = 0$; $x = 3$
+AEN: $D = 0$; $x = 3$
+
+--- easy quadratic
+KA: $x^2 - 7x + c = 0$ განტოლების ერთი ფესვია $2$. იპოვეთ მეორე ფესვი და $c$.
+EN: One root of $x^2 - 7x + c = 0$ is $2$. Find the other root and $c$.
+HKA: ვიეტი: $x_1 + x_2 = 7$, $x_1 x_2 = c$.
+HEN: Vieta: $x_1 + x_2 = 7$, $x_1 x_2 = c$.
+SKA: $x_2 = 7 - 2 = 5$, $\ c = 2 \cdot 5 = 10$
+SEN: $x_2 = 7 - 2 = 5$, $\ c = 2 \cdot 5 = 10$
+AKA: $5$; $c = 10$
+AEN: $5$; $c = 10$
+
+--- easy rational
+KA: ამოხსენით განტოლებები: $\dfrac{6}{x} = 3$ და $\dfrac{x - 3}{x + 2} = 0$.
+EN: Solve: $\dfrac{6}{x} = 3$ and $\dfrac{x - 3}{x + 2} = 0$.
+HKA: წილადი ნულია, როცა მრიცხველი ნულია, მნიშვნელი კი — არა.
+HEN: A fraction is zero when the numerator is zero and the denominator isn't.
+SKA: $6 = 3x \Rightarrow x = 2$
+$x - 3 = 0 \Rightarrow x = 3$ ($3 + 2 \ne 0$ ✓)
+SEN: $6 = 3x \Rightarrow x = 2$
+$x - 3 = 0 \Rightarrow x = 3$ ($3 + 2 \ne 0$ ✓)
+AKA: $2$; $3$
+AEN: $2$; $3$
+
+--- easy quadineq
+KA: ამოხსენით უტოლობა: $x^2 \ge 25$.
+EN: Solve: $x^2 \ge 25$.
+HKA: $(x - 5)(x + 5) \ge 0$.
+HEN: $(x - 5)(x + 5) \ge 0$.
+SKA: ფესვები $\pm 5$; პარაბოლა ზემოთაა მიმართული — დადებითია ფესვების გარეთ.
+$x \le -5$ ან $x \ge 5$
+SEN: Roots $\pm 5$; the parabola opens up — positive outside the roots.
+$x \le -5$ or $x \ge 5$
+AKA: $(-\infty;\ -5] \cup [5;\ +\infty)$
+AEN: $(-\infty,\ -5] \cup [5,\ +\infty)$
+
+--- easy parabola
+KA: იპოვეთ $y = (x - 3)^2 + 2$ პარაბოლის წვერო და სიმეტრიის ღერძი. როგორ მიიღება ის $y = x^2$-დან?
+EN: Find the vertex and axis of symmetry of $y = (x - 3)^2 + 2$. How is it obtained from $y = x^2$?
+HKA: $y = (x - m)^2 + n$: წვერო $(m;\ n)$.
+HEN: $y = (x - m)^2 + n$: vertex $(m,\ n)$.
+SKA: წვერო $(3;\ 2)$, ღერძი $x = 3$.
+$y = x^2$ გადაიტანება $3$-ით მარჯვნივ და $2$-ით ზემოთ.
+SEN: Vertex $(3,\ 2)$, axis $x = 3$.
+$y = x^2$ is shifted $3$ right and $2$ up.
+AKA: $(3;\ 2)$; $x = 3$
+AEN: $(3,\ 2)$; $x = 3$
+
+--- easy progressions
+KA: არითმეტიკული პროგრესია: $7,\ 4,\ 1,\ \dots$ იპოვეთ სხვაობა და მეათე წევრი.
+EN: Arithmetic progression: $7,\ 4,\ 1,\ \dots$ Find the common difference and the tenth term.
+HKA: $a_n = a_1 + (n - 1)d$.
+HEN: $a_n = a_1 + (n - 1)d$.
+SKA: $d = 4 - 7 = -3$
+$a_{10} = 7 + 9 \cdot (-3) = -20$
+SEN: $d = 4 - 7 = -3$
+$a_{10} = 7 + 9 \cdot (-3) = -20$
+AKA: $d = -3$; $a_{10} = -20$
+AEN: $d = -3$; $a_{10} = -20$
+
+--- easy progressions
+KA: გეომეტრიული პროგრესია: $81,\ 27,\ 9,\ \dots$ იპოვეთ მნიშვნელი და მეექვსე წევრი.
+EN: Geometric progression: $81,\ 27,\ 9,\ \dots$ Find the common ratio and the sixth term.
+HKA: $b_n = b_1 q^{n-1}$.
+HEN: $b_n = b_1 q^{n-1}$.
+SKA: $q = \dfrac{27}{81} = \dfrac{1}{3}$
+$b_6 = 81 \cdot \left(\dfrac{1}{3}\right)^5 = \dfrac{81}{243} = \dfrac{1}{3}$
+SEN: $q = \dfrac{27}{81} = \dfrac{1}{3}$
+$b_6 = 81 \cdot \left(\dfrac{1}{3}\right)^5 = \dfrac{81}{243} = \dfrac{1}{3}$
+AKA: $q = \dfrac{1}{3}$; $b_6 = \dfrac{1}{3}$
+AEN: $q = \dfrac{1}{3}$; $b_6 = \dfrac{1}{3}$
+
+--- easy circle
+KA: წრეწირის გარეთ მდებარე წერტილიდან ორი მხებია გავლებული, ერთი მხების მონაკვეთი $7\ \text{სმ}$-ია. რას უდრის მეორე? რა კუთხეს ადგენს მხები შეხების წერტილში გავლებულ რადიუსთან?
+EN: Two tangents are drawn from a point outside a circle; one tangent segment is $7\ \text{cm}$. What is the other? What angle does a tangent make with the radius at the point of contact?
+HKA: ერთი წერტილიდან გავლებული მხების მონაკვეთები ტოლია.
+HEN: Tangent segments from one point are equal.
+SKA: მეორე მხების მონაკვეთიც $7\ \text{სმ}$-ია.
+მხები შეხების წერტილში რადიუსის მართობულია — $90^\circ$.
+SEN: The other tangent segment is also $7\ \text{cm}$.
+A tangent is perpendicular to the radius at the point of contact — $90^\circ$.
+AKA: $7\ \text{სმ}$; $90^\circ$
+AEN: $7\ \text{cm}$; $90^\circ$
+
+--- easy circle
+KA: $6$ რადიუსიან წრეში ცენტრალური კუთხე $120^\circ$-ია. იპოვეთ რკალის სიგრძე და სექტორის ფართობი.
+EN: In a circle of radius $6$ a central angle is $120^\circ$. Find the arc length and the sector area.
+HKA: $120^\circ$ — მთელი წრის $\dfrac{1}{3}$.
+HEN: $120^\circ$ is $\dfrac{1}{3}$ of the full circle.
+SKA: $l = 2\pi \cdot 6 \cdot \dfrac{1}{3} = 4\pi \approx 12{,}6$
+$S = \pi \cdot 36 \cdot \dfrac{1}{3} = 12\pi \approx 37{,}7$
+SEN: $l = 2\pi \cdot 6 \cdot \dfrac{1}{3} = 4\pi \approx 12.6$
+$S = \pi \cdot 36 \cdot \dfrac{1}{3} = 12\pi \approx 37.7$
+AKA: $4\pi$; $12\pi$
+AEN: $4\pi$; $12\pi$
+
+--- easy similarity
+KA: სამკუთხედის გვერდებია $3$, $4$, $5$. მისი მსგავსი სამკუთხედის უმცირესი გვერდი $9$-ია. იპოვეთ დანარჩენი გვერდები.
+EN: A triangle has sides $3$, $4$, $5$. A similar triangle has shortest side $9$. Find its other sides.
+HKA: მსგავსების კოეფიციენტი $k = \dfrac{9}{3}$.
+HEN: The scale factor is $k = \dfrac{9}{3}$.
+SKA: $k = 3$: $\ 4 \cdot 3 = 12$, $\ 5 \cdot 3 = 15$
+SEN: $k = 3$: $\ 4 \cdot 3 = 12$, $\ 5 \cdot 3 = 15$
+AKA: $12$ და $15$
+AEN: $12$ and $15$
+
+--- easy trig
+KA: მართკუთხა სამკუთხედის ჰიპოტენუზაა $8$, ერთი მახვილი კუთხე — $60^\circ$. იპოვეთ ამ კუთხის მოპირდაპირე და მიმდებარე კათეტები.
+EN: A right triangle has hypotenuse $8$ and an acute angle of $60^\circ$. Find the legs opposite and adjacent to this angle.
+HKA: $\sin 60^\circ = \dfrac{\sqrt{3}}{2}$, $\cos 60^\circ = \dfrac{1}{2}$.
+HEN: $\sin 60^\circ = \dfrac{\sqrt{3}}{2}$, $\cos 60^\circ = \dfrac{1}{2}$.
+SKA: მოპირდაპირე: $8 \sin 60^\circ = 4\sqrt{3} \approx 6{,}93$
+მიმდებარე: $8 \cos 60^\circ = 4$
+SEN: Opposite: $8 \sin 60^\circ = 4\sqrt{3} \approx 6.93$
+Adjacent: $8 \cos 60^\circ = 4$
+AKA: $4\sqrt{3}$; $4$
+AEN: $4\sqrt{3}$; $4$
+
+--- easy solids
+KA: იპოვეთ $2$ რადიუსიანი ბირთვის მოცულობა და კონუსის მოცულობა, რომლის ფუძის რადიუსია $3$, სიმაღლე — $5$.
+EN: Find the volume of a ball of radius $2$, and of a cone with base radius $3$ and height $5$.
+HKA: $V_{\text{ბ}} = \dfrac{4}{3}\pi R^3$, $V_{\text{კ}} = \dfrac{1}{3}\pi r^2 h$.
+HEN: $V_{\text{ball}} = \dfrac{4}{3}\pi R^3$, $V_{\text{cone}} = \dfrac{1}{3}\pi r^2 h$.
+SKA: $V_{\text{ბ}} = \dfrac{4}{3}\pi \cdot 8 = \dfrac{32\pi}{3} \approx 33{,}5$
+$V_{\text{კ}} = \dfrac{1}{3}\pi \cdot 9 \cdot 5 = 15\pi \approx 47{,}1$
+SEN: $V_{\text{ball}} = \dfrac{4}{3}\pi \cdot 8 = \dfrac{32\pi}{3} \approx 33.5$
+$V_{\text{cone}} = \dfrac{1}{3}\pi \cdot 9 \cdot 5 = 15\pi \approx 47.1$
+AKA: $\dfrac{32\pi}{3}$; $15\pi$
+AEN: $\dfrac{32\pi}{3}$; $15\pi$
+
+--- easy vectors
+KA: მოცემულია $\vec{a}(3;\ 4)$. იპოვეთ $|\vec{a}|$ და $-2\vec{a}$.
+EN: Given $\vec{a}(3,\ 4)$, find $|\vec{a}|$ and $-2\vec{a}$.
+HKA: რიცხვზე გამრავლება — თითოეული კოორდინატის გამრავლება.
+HEN: Multiplying by a number multiplies each coordinate.
+SKA: $|\vec{a}| = \sqrt{9 + 16} = 5$
+$-2\vec{a} = (-6;\ -8)$ — საწინააღმდეგოდ მიმართული, ორჯერ გრძელი.
+SEN: $|\vec{a}| = \sqrt{9 + 16} = 5$
+$-2\vec{a} = (-6,\ -8)$ — opposite direction, twice as long.
+AKA: $5$; $(-6;\ -8)$
+AEN: $5$; $(-6,\ -8)$
+
+--- easy combinatorics
+KA: $5$ სხვადასხვა ასოდან რამდენი ორასოიანი კოდის შედგენა შეიძლება, თუ ასოები არ მეორდება?
+EN: How many two-letter codes can be made from $5$ different letters without repetition?
+HKA: რიგს მნიშვნელობა აქვს — წყობები: $A_5^2$.
+HEN: Order matters — arrangements: $A_5^2$.
+SKA: $A_5^2 = 5 \cdot 4 = 20$
+SEN: $A_5^2 = 5 \cdot 4 = 20$
+AKA: $20$
+AEN: $20$
+
+--- easy combinatorics
+KA: $36$-კარტიანი დასტიდან შემთხვევით იღებენ ერთ კარტს. რას უდრის ტუზის ამოღების ალბათობა?
+EN: One card is drawn at random from a $36$-card deck. What is the probability of an ace?
+HKA: დასტაში $4$ ტუზია.
+HEN: The deck has $4$ aces.
+SKA: $P = \dfrac{4}{36} = \dfrac{1}{9}$
+SEN: $P = \dfrac{4}{36} = \dfrac{1}{9}$
+AKA: $\dfrac{1}{9}$
+AEN: $\dfrac{1}{9}$
+
+--- medium review
+KA: გამოთვალეთ: $(\sqrt{12} - \sqrt{3})^2$.
+EN: Calculate: $(\sqrt{12} - \sqrt{3})^2$.
+HKA: ჯერ გაამარტივეთ $\sqrt{12} = 2\sqrt{3}$.
+HEN: First simplify $\sqrt{12} = 2\sqrt{3}$.
+SKA: $\sqrt{12} - \sqrt{3} = 2\sqrt{3} - \sqrt{3} = \sqrt{3}$
+$(\sqrt{3})^2 = 3$
+SEN: $\sqrt{12} - \sqrt{3} = 2\sqrt{3} - \sqrt{3} = \sqrt{3}$
+$(\sqrt{3})^2 = 3$
+AKA: $3$
+AEN: $3$
+
+--- medium finance
+KA: $10\,000$ ლარი შეიტანეს ანაბარზე წლიური $6\%$-ით (რთული პროცენტი). რამდენი იქნება $3$ წლის შემდეგ?
+EN: $10\,000$ lari is deposited at $6\%$ per year compound interest. How much is there after $3$ years?
+HKA: $1{,}06^3 = 1{,}191016$.
+HEN: $1.06^3 = 1.191016$.
+SKA: $S = 10\,000 \cdot 1{,}06^3 = 10\,000 \cdot 1{,}191016 \approx 11\,910{,}16\ ₾$
+SEN: $S = 10\,000 \cdot 1.06^3 = 10\,000 \cdot 1.191016 \approx 11\,910.16\ ₾$
+AKA: $\approx 11\,910\ ₾$
+AEN: $\approx 11\,910\ ₾$
+
+--- medium factor
+KA: დაშალეთ მამრავლებად: $3x^2 - 10x + 3$.
+EN: Factorise: $3x^2 - 10x + 3$.
+HKA: იპოვეთ ფესვები და გამოიყენეთ $a(x - x_1)(x - x_2)$.
+HEN: Find the roots and use $a(x - x_1)(x - x_2)$.
+SKA: $D = 100 - 36 = 64$, $\ x = \dfrac{10 \pm 8}{6} \Rightarrow 3$ და $\dfrac{1}{3}$
+$3x^2 - 10x + 3 = 3(x - 3)\left(x - \dfrac{1}{3}\right) = (x - 3)(3x - 1)$
+SEN: $D = 100 - 36 = 64$, $\ x = \dfrac{10 \pm 8}{6} \Rightarrow 3$ and $\dfrac{1}{3}$
+$3x^2 - 10x + 3 = 3(x - 3)\left(x - \dfrac{1}{3}\right) = (x - 3)(3x - 1)$
+AKA: $(x - 3)(3x - 1)$
+AEN: $(x - 3)(3x - 1)$
+
+--- medium quadratic
+KA: ამოხსენით განტოლება: $2x^2 + x - 6 = 0$.
+EN: Solve: $2x^2 + x - 6 = 0$.
+HKA: $D = b^2 - 4ac$.
+HEN: $D = b^2 - 4ac$.
+SKA: $D = 1 + 48 = 49$
+$x = \dfrac{-1 \pm 7}{4} \Rightarrow x_1 = 1{,}5$, $x_2 = -2$
+SEN: $D = 1 + 48 = 49$
+$x = \dfrac{-1 \pm 7}{4} \Rightarrow x_1 = 1.5$, $x_2 = -2$
+AKA: $1{,}5$; $-2$
+AEN: $1.5$; $-2$
+
+--- medium quadratic
+KA: შეადგინეთ დაყვანილი კვადრატული განტოლება, რომლის ფესვებია $3$ და $-5$.
+EN: Write a monic quadratic equation with roots $3$ and $-5$.
+HKA: $x^2 - (x_1 + x_2)x + x_1 x_2 = 0$.
+HEN: $x^2 - (x_1 + x_2)x + x_1 x_2 = 0$.
+SKA: $x_1 + x_2 = -2$, $\ x_1 x_2 = -15$
+$x^2 + 2x - 15 = 0$
+SEN: $x_1 + x_2 = -2$, $\ x_1 x_2 = -15$
+$x^2 + 2x - 15 = 0$
+AKA: $x^2 + 2x - 15 = 0$
+AEN: $x^2 + 2x - 15 = 0$
+
+--- medium quadratic
+KA: $x_1$ და $x_2$ — $x^2 - 3x - 1 = 0$ განტოლების ფესვებია. გამოთვალეთ $\dfrac{1}{x_1} + \dfrac{1}{x_2}$.
+EN: $x_1$ and $x_2$ are the roots of $x^2 - 3x - 1 = 0$. Compute $\dfrac{1}{x_1} + \dfrac{1}{x_2}$.
+HKA: $\dfrac{1}{x_1} + \dfrac{1}{x_2} = \dfrac{x_1 + x_2}{x_1 x_2}$.
+HEN: $\dfrac{1}{x_1} + \dfrac{1}{x_2} = \dfrac{x_1 + x_2}{x_1 x_2}$.
+SKA: ვიეტი: $x_1 + x_2 = 3$, $x_1 x_2 = -1$
+$\dfrac{3}{-1} = -3$
+SEN: Vieta: $x_1 + x_2 = 3$, $x_1 x_2 = -1$
+$\dfrac{3}{-1} = -3$
+AKA: $-3$
+AEN: $-3$
+
+--- medium rational
+KA: ამოხსენით განტოლება: $\dfrac{x + 1}{x - 2} = \dfrac{x - 1}{x - 3}$.
+EN: Solve: $\dfrac{x + 1}{x - 2} = \dfrac{x - 1}{x - 3}$.
+HKA: ჯვარედინი გამრავლება; დასაშვები $x \ne 2;\ 3$.
+HEN: Cross-multiply; allowed $x \ne 2,\ 3$.
+SKA: $(x + 1)(x - 3) = (x - 1)(x - 2)$
+$x^2 - 2x - 3 = x^2 - 3x + 2 \Rightarrow x = 5$ ✓
+SEN: $(x + 1)(x - 3) = (x - 1)(x - 2)$
+$x^2 - 2x - 3 = x^2 - 3x + 2 \Rightarrow x = 5$ ✓
+AKA: $x = 5$
+AEN: $x = 5$
+
+--- medium rational
+KA: ამოხსენით სისტემა: $\begin{cases} x - y = 1 \\ x^2 + y^2 = 13 \end{cases}$
+EN: Solve: $\begin{cases} x - y = 1 \\ x^2 + y^2 = 13 \end{cases}$
+HKA: $y = x - 1$ ჩასვით მეორეში.
+HEN: Substitute $y = x - 1$ into the second.
+SKA: $x^2 + (x - 1)^2 = 13 \Rightarrow 2x^2 - 2x - 12 = 0 \Rightarrow x^2 - x - 6 = 0$
+$x = 3 \Rightarrow y = 2$; $\ x = -2 \Rightarrow y = -3$
+SEN: $x^2 + (x - 1)^2 = 13 \Rightarrow 2x^2 - 2x - 12 = 0 \Rightarrow x^2 - x - 6 = 0$
+$x = 3 \Rightarrow y = 2$; $\ x = -2 \Rightarrow y = -3$
+AKA: $(3;\ 2)$, $(-2;\ -3)$
+AEN: $(3,\ 2)$, $(-2,\ -3)$
+
+--- medium quadineq
+KA: ამოხსენით უტოლობა: $-x^2 + 4x > 0$.
+EN: Solve: $-x^2 + 4x > 0$.
+HKA: გაამრავლეთ $-1$-ზე და შეცვალეთ ნიშანი: $x^2 - 4x < 0$.
+HEN: Multiply by $-1$ and reverse the sign: $x^2 - 4x < 0$.
+SKA: $x(x - 4) < 0$ — ფესვებს შორის: $0 < x < 4$
+SEN: $x(x - 4) < 0$ — between the roots: $0 < x < 4$
+AKA: $(0;\ 4)$
+AEN: $(0,\ 4)$
+
+--- medium quadineq
+KA: დაამტკიცეთ, რომ $x^2 + 2x + 5 > 0$ ნებისმიერი $x$-ისთვის.
+EN: Prove that $x^2 + 2x + 5 > 0$ for every $x$.
+HKA: გამოყავით სრული კვადრატი ან შეამოწმეთ დისკრიმინანტი.
+HEN: Complete the square or check the discriminant.
+SKA: $x^2 + 2x + 5 = (x + 1)^2 + 4 \ge 4 > 0$ ∎
+(ან: $D = 4 - 20 < 0$ და $a > 0$ — პარაბოლა მთლიანად ღერძის ზემოთაა.)
+SEN: $x^2 + 2x + 5 = (x + 1)^2 + 4 \ge 4 > 0$ ∎
+(Or: $D = 4 - 20 < 0$ and $a > 0$ — the parabola lies entirely above the axis.)
+AKA: დამტკიცებულია
+AEN: proved
+
+--- medium wordquad
+KA: ორი მომდევნო ლუწი რიცხვის ნამრავლი $168$-ია. იპოვეთ ეს რიცხვები.
+EN: The product of two consecutive even numbers is $168$. Find them.
+HKA: რიცხვები $x$ და $x + 2$.
+HEN: The numbers are $x$ and $x + 2$.
+SKA: $x(x + 2) = 168 \Rightarrow x^2 + 2x - 168 = 0$
+$D = 4 + 672 = 676 = 26^2 \Rightarrow x = \dfrac{-2 \pm 26}{2} = 12$ ან $-14$
+რიცხვები: $12$ და $14$ (ან $-14$ და $-12$)
+SEN: $x(x + 2) = 168 \Rightarrow x^2 + 2x - 168 = 0$
+$D = 4 + 672 = 676 = 26^2 \Rightarrow x = \dfrac{-2 \pm 26}{2} = 12$ or $-14$
+The numbers: $12$ and $14$ (or $-14$ and $-12$)
+AKA: $12$ და $14$ (ან $-14$ და $-12$)
+AEN: $12$ and $14$ (or $-14$ and $-12$)
+
+--- medium wordquad
+KA: $20 \times 30\ \text{მ}$ ზომის ბაღის შიგნით, კიდეების გასწვრივ, ერთნაირი სიგანის ბილიკია. ბილიკის გარდა დარჩენილი ფართობი $336\ \text{მ}^2$-ია. იპოვეთ ბილიკის სიგანე.
+EN: A $20 \times 30\ \text{m}$ garden has a path of uniform width running round the inside edge. The area left inside the path is $336\ \text{m}^2$. Find the width of the path.
+HKA: შიგა მართკუთხედის ზომებია $(20 - 2x)$ და $(30 - 2x)$.
+HEN: The inner rectangle measures $(20 - 2x)$ by $(30 - 2x)$.
+SKA: $(20 - 2x)(30 - 2x) = 336 \Rightarrow 4x^2 - 100x + 264 = 0 \Rightarrow x^2 - 25x + 66 = 0$
+$x = 3$ ან $x = 22$ ($22$ არ გამოდგება — $20 - 44 < 0$)
+ბილიკის სიგანე $3\ \text{მ}$ (შემოწმება: $14 \cdot 24 = 336$ ✓)
+SEN: $(20 - 2x)(30 - 2x) = 336 \Rightarrow 4x^2 - 100x + 264 = 0 \Rightarrow x^2 - 25x + 66 = 0$
+$x = 3$ or $x = 22$ ($22$ is rejected — $20 - 44 < 0$)
+The path is $3\ \text{m}$ wide (check: $14 \cdot 24 = 336$ ✓)
+AKA: $3\ \text{მ}$
+AEN: $3\ \text{m}$
+
+--- medium parabola
+KA: $y = x^2 - 2x - 8$. იპოვეთ ნულები, წვერო და $Oy$ ღერძთან გადაკვეთის წერტილი. დახაზეთ ესკიზი.
+EN: $y = x^2 - 2x - 8$. Find the zeros, the vertex and the $y$-intercept. Sketch the graph.
+HKA: წვერო ნულების შუაშია.
+HEN: The vertex is midway between the zeros.
+SKA: $x^2 - 2x - 8 = (x - 4)(x + 2) = 0 \Rightarrow x = -2;\ 4$
+წვერო: $x_0 = 1$, $y_0 = 1 - 2 - 8 = -9$ — $(1;\ -9)$
+$Oy$: $(0;\ -8)$
+SEN: $x^2 - 2x - 8 = (x - 4)(x + 2) = 0 \Rightarrow x = -2,\ 4$
+Vertex: $x_0 = 1$, $y_0 = 1 - 2 - 8 = -9$ — $(1,\ -9)$
+$y$-intercept: $(0,\ -8)$
+AKA: $-2$, $4$; $(1;\ -9)$; $(0;\ -8)$
+AEN: $-2$, $4$; $(1,\ -9)$; $(0,\ -8)$
+
+--- medium parabola
+KA: $c$-ს რა მნიშვნელობისთვის ეხება $y = x^2 - 6x + c$ პარაბოლა აბსცისთა ღერძს?
+EN: For which $c$ does the parabola $y = x^2 - 6x + c$ touch the $x$-axis?
+HKA: ეხება $\iff D = 0$.
+HEN: Touches $\iff D = 0$.
+SKA: $D = 36 - 4c = 0 \Rightarrow c = 9$
+$y = (x - 3)^2$ — შეხების წერტილი $(3;\ 0)$.
+SEN: $D = 36 - 4c = 0 \Rightarrow c = 9$
+$y = (x - 3)^2$ — it touches at $(3,\ 0)$.
+AKA: $c = 9$
+AEN: $c = 9$
+
+--- medium progressions
+KA: იპოვეთ $1$-დან $100$-მდე ყველა ნატურალური რიცხვის ჯამი და $2$-დან $100$-მდე ყველა ლუწი რიცხვის ჯამი.
+EN: Find the sum of all natural numbers from $1$ to $100$, and of all even numbers from $2$ to $100$.
+HKA: $S_n = \dfrac{(a_1 + a_n) n}{2}$.
+HEN: $S_n = \dfrac{(a_1 + a_n) n}{2}$.
+SKA: $1 + \dots + 100 = \dfrac{(1 + 100) \cdot 100}{2} = 5050$
+$2 + 4 + \dots + 100 = \dfrac{(2 + 100) \cdot 50}{2} = 2550$
+SEN: $1 + \dots + 100 = \dfrac{(1 + 100) \cdot 100}{2} = 5050$
+$2 + 4 + \dots + 100 = \dfrac{(2 + 100) \cdot 50}{2} = 2550$
+AKA: $5050$; $2550$
+AEN: $5050$; $2550$
+
+--- medium progressions
+KA: პირველ უჯრაზე $1$ მარცვალია, ყოველ მომდევნოზე — ორჯერ მეტი. რამდენი მარცვალია სულ პირველ $10$ უჯრაზე?
+EN: The first square has $1$ grain, each next one twice as many. How many grains are on the first $10$ squares in total?
+HKA: გეომეტრიული პროგრესია: $b_1 = 1$, $q = 2$.
+HEN: Geometric progression: $b_1 = 1$, $q = 2$.
+SKA: $S_{10} = \dfrac{1 \cdot (2^{10} - 1)}{2 - 1} = 1023$
+SEN: $S_{10} = \dfrac{1 \cdot (2^{10} - 1)}{2 - 1} = 1023$
+AKA: $1023$
+AEN: $1023$
+
+--- medium circle
+KA: სამკუთხედი ჩახაზულია წრეწირში, მისი ერთი გვერდი დიამეტრია ($10$), მეორე გვერდი — $6$. იპოვეთ მესამე გვერდი.
+EN: A triangle is inscribed in a circle with one side a diameter ($10$); another side is $6$. Find the third side.
+HKA: დიამეტრზე დაყრდნობილი ჩახაზული კუთხე მართია.
+HEN: An inscribed angle standing on a diameter is a right angle.
+SKA: სამკუთხედი მართკუთხაა, დიამეტრი — ჰიპოტენუზა.
+$\sqrt{10^2 - 6^2} = 8$
+SEN: The triangle is right-angled with the diameter as hypotenuse.
+$\sqrt{10^2 - 6^2} = 8$
+AKA: $8$
+AEN: $8$
+
+--- medium circle
+KA: წერტილიდან $5$ რადიუსიანი წრეწირისადმი გავლებულ მხებებს შორის კუთხე $60^\circ$-ია. იპოვეთ მანძილი წერტილიდან ცენტრამდე და მხების მონაკვეთის სიგრძე.
+EN: The tangents from a point to a circle of radius $5$ make an angle of $60^\circ$. Find the distance from the point to the centre and the tangent length.
+HKA: ცენტრთან შეერთება კუთხეს შუაზე ყოფს: მართკუთხა სამკუთხედი $30^\circ$ კუთხით.
+HEN: The line to the centre bisects the angle: a right triangle with a $30^\circ$ angle.
+SKA: $30^\circ$-ის მოპირდაპირე კათეტი — რადიუსი $5$, ჰიპოტენუზა $d = 2 \cdot 5 = 10$.
+მხები: $\sqrt{10^2 - 5^2} = 5\sqrt{3} \approx 8{,}66$
+SEN: The leg opposite $30^\circ$ is the radius $5$, so the hypotenuse is $d = 2 \cdot 5 = 10$.
+Tangent: $\sqrt{10^2 - 5^2} = 5\sqrt{3} \approx 8.66$
+AKA: $10$; $5\sqrt{3}$
+AEN: $10$; $5\sqrt{3}$
+
+--- medium similarity
+KA: ორი მსგავსი სამკუთხედის ფართობებია $16$ და $36$. იპოვეთ მსგავსების კოეფიციენტი. რას უდრის დიდის პერიმეტრი, თუ პატარისა $20$-ია?
+EN: Two similar triangles have areas $16$ and $36$. Find the scale factor. What is the larger one's perimeter if the smaller's is $20$?
+HKA: ფართობები შეეფარდება როგორც $k^2$, პერიმეტრები — როგორც $k$.
+HEN: Areas are in ratio $k^2$, perimeters in ratio $k$.
+SKA: $k^2 = \dfrac{36}{16} \Rightarrow k = \dfrac{3}{2}$
+$P = 20 \cdot \dfrac{3}{2} = 30$
+SEN: $k^2 = \dfrac{36}{16} \Rightarrow k = \dfrac{3}{2}$
+$P = 20 \cdot \dfrac{3}{2} = 30$
+AKA: $\dfrac{3}{2}$; $30$
+AEN: $\dfrac{3}{2}$; $30$
+
+--- medium solids
+KA: ცილინდრის მოცულობაა $100\pi$, ფუძის რადიუსი — $5$. იპოვეთ სიმაღლე და გვერდითი ზედაპირის ფართობი.
+EN: A cylinder has volume $100\pi$ and base radius $5$. Find its height and lateral surface area.
+HKA: $V = \pi r^2 h$, $S_{\text{გვ}} = 2\pi r h$.
+HEN: $V = \pi r^2 h$, $S_{\text{lat}} = 2\pi r h$.
+SKA: $25\pi h = 100\pi \Rightarrow h = 4$
+$S_{\text{გვ}} = 2\pi \cdot 5 \cdot 4 = 40\pi \approx 125{,}6$
+SEN: $25\pi h = 100\pi \Rightarrow h = 4$
+$S_{\text{lat}} = 2\pi \cdot 5 \cdot 4 = 40\pi \approx 125.6$
+AKA: $4$; $40\pi$
+AEN: $4$; $40\pi$
+
+--- medium vectors
+KA: $A(1;\ 2)$, $B(4;\ 6)$. იპოვეთ $\overrightarrow{AB}$, მისი სიგრძე და $AB$ მონაკვეთის შუაწერტილი.
+EN: $A(1,\ 2)$, $B(4,\ 6)$. Find $\overrightarrow{AB}$, its length and the midpoint of $AB$.
+HKA: $\overrightarrow{AB} = (x_B - x_A;\ y_B - y_A)$.
+HEN: $\overrightarrow{AB} = (x_B - x_A,\ y_B - y_A)$.
+SKA: $\overrightarrow{AB} = (3;\ 4)$, $\ |\overrightarrow{AB}| = 5$
+შუაწერტილი: $\left(\dfrac{1 + 4}{2};\ \dfrac{2 + 6}{2}\right) = (2{,}5;\ 4)$
+SEN: $\overrightarrow{AB} = (3,\ 4)$, $\ |\overrightarrow{AB}| = 5$
+Midpoint: $\left(\dfrac{1 + 4}{2},\ \dfrac{2 + 6}{2}\right) = (2.5,\ 4)$
+AKA: $(3;\ 4)$; $5$; $(2{,}5;\ 4)$
+AEN: $(3,\ 4)$; $5$; $(2.5,\ 4)$
+
+--- medium combinatorics
+KA: რამდენი გზით შეიძლება სიტყვა „MATH“-ის ასოების გადანაცვლება? რამდენი გზით შეიძლება $7$ მოსწავლიდან $2$ მორიგის არჩევა?
+EN: In how many ways can the letters of "MATH" be rearranged? In how many ways can $2$ monitors be chosen from $7$ students?
+HKA: პირველი — გადანაცვლებები, მეორე — შეჯგუფებები (რიგს მნიშვნელობა არ აქვს).
+HEN: The first is permutations, the second combinations (order doesn't matter).
+SKA: $P_4 = 4! = 24$
+$C_7^2 = \dfrac{7 \cdot 6}{2} = 21$
+SEN: $P_4 = 4! = 24$
+$C_7^2 = \dfrac{7 \cdot 6}{2} = 21$
+AKA: $24$; $21$
+AEN: $24$; $21$
+
+--- hard review
+KA: გაამარტივეთ: $\dfrac{a - b}{\sqrt{a} - \sqrt{b}}$ ($a, b > 0$, $a \ne b$).
+EN: Simplify: $\dfrac{a - b}{\sqrt{a} - \sqrt{b}}$ ($a, b > 0$, $a \ne b$).
+HKA: $a - b = (\sqrt{a})^2 - (\sqrt{b})^2$.
+HEN: $a - b = (\sqrt{a})^2 - (\sqrt{b})^2$.
+SKA: $\dfrac{(\sqrt{a} - \sqrt{b})(\sqrt{a} + \sqrt{b})}{\sqrt{a} - \sqrt{b}} = \sqrt{a} + \sqrt{b}$
+SEN: $\dfrac{(\sqrt{a} - \sqrt{b})(\sqrt{a} + \sqrt{b})}{\sqrt{a} - \sqrt{b}} = \sqrt{a} + \sqrt{b}$
+AKA: $\sqrt{a} + \sqrt{b}$
+AEN: $\sqrt{a} + \sqrt{b}$
+
+--- hard finance
+KA: რა წლიური საპროცენტო განაკვეთისას (რთული პროცენტი) გაორმაგდება თანხა $2$ წელიწადში?
+EN: At what annual compound interest rate does money double in $2$ years?
+HKA: $(1 + r)^2 = 2$.
+HEN: $(1 + r)^2 = 2$.
+SKA: $1 + r = \sqrt{2} \approx 1{,}414 \Rightarrow r \approx 0{,}414 = 41{,}4\%$
+SEN: $1 + r = \sqrt{2} \approx 1.414 \Rightarrow r \approx 0.414 = 41.4\%$
+AKA: $\approx 41{,}4\%$
+AEN: $\approx 41.4\%$
+
+--- hard quadratic
+KA: ამოხსენით განტოლება: $x^2 - |x| - 6 = 0$.
+EN: Solve: $x^2 - |x| - 6 = 0$.
+HKA: $x^2 = |x|^2$; შემოიღეთ $t = |x| \ge 0$.
+HEN: $x^2 = |x|^2$; let $t = |x| \ge 0$.
+SKA: $t^2 - t - 6 = 0 \Rightarrow t = 3$ ან $t = -2$ ($t \ge 0$, ამიტომ $-2$ არ გამოდგება)
+$|x| = 3 \Rightarrow x = \pm 3$
+SEN: $t^2 - t - 6 = 0 \Rightarrow t = 3$ or $t = -2$ ($t \ge 0$, so $-2$ is rejected)
+$|x| = 3 \Rightarrow x = \pm 3$
+AKA: $\pm 3$
+AEN: $\pm 3$
+
+--- hard quadratic
+KA: $m$-ის რა მნიშვნელობებისთვის აქვს განტოლებას $m x^2 - 4x + 1 = 0$ ორი განსხვავებული ფესვი?
+EN: For which values of $m$ does $m x^2 - 4x + 1 = 0$ have two distinct roots?
+HKA: ყურადღება: $m = 0$-ისას განტოლება წრფივია!
+HEN: Careful: for $m = 0$ the equation is linear!
+SKA: $m = 0$: $-4x + 1 = 0$ — ერთი ფესვი.
+$m \ne 0$: $D = 16 - 4m > 0 \Rightarrow m < 4$.
+პასუხი: $m < 4$ და $m \ne 0$.
+SEN: $m = 0$: $-4x + 1 = 0$ — one root.
+$m \ne 0$: $D = 16 - 4m > 0 \Rightarrow m < 4$.
+Answer: $m < 4$ and $m \ne 0$.
+AKA: $m \in (-\infty;\ 0) \cup (0;\ 4)$
+AEN: $m \in (-\infty,\ 0) \cup (0,\ 4)$
+
+--- hard quadratic
+KA: $x^2 + px + 15 = 0$ განტოლების ფესვები ერთმანეთისგან $2$-ით განსხვავდება. იპოვეთ $p$.
+EN: The roots of $x^2 + px + 15 = 0$ differ by $2$. Find $p$.
+HKA: $(x_1 - x_2)^2 = (x_1 + x_2)^2 - 4x_1 x_2$.
+HEN: $(x_1 - x_2)^2 = (x_1 + x_2)^2 - 4x_1 x_2$.
+SKA: $4 = p^2 - 60 \Rightarrow p^2 = 64 \Rightarrow p = \pm 8$
+$p = -8$: ფესვები $3$ და $5$; $\ p = 8$: $-3$ და $-5$.
+SEN: $4 = p^2 - 60 \Rightarrow p^2 = 64 \Rightarrow p = \pm 8$
+$p = -8$: roots $3$ and $5$; $\ p = 8$: $-3$ and $-5$.
+AKA: $p = \pm 8$
+AEN: $p = \pm 8$
+
+--- hard rational
+KA: ამოხსენით განტოლება: $\dfrac{x^2 - 4}{x - 2} = 3x - 2$.
+EN: Solve: $\dfrac{x^2 - 4}{x - 2} = 3x - 2$.
+HKA: შეკვეცამდე ჩაწერეთ დასაშვები მნიშვნელობები.
+HEN: Note the allowed values before cancelling.
+SKA: დასაშვები: $x \ne 2$. შეკვეცით: $x + 2 = 3x - 2 \Rightarrow x = 2$.
+$x = 2$ დაუშვებელია $\Rightarrow$ ამონახსნი **არ არის**.
+SEN: Allowed: $x \ne 2$. Cancelling: $x + 2 = 3x - 2 \Rightarrow x = 2$.
+$x = 2$ is not allowed $\Rightarrow$ there is **no solution**.
+AKA: ამონახსნი არ აქვს
+AEN: no solution
+
+--- hard quadineq
+KA: ამოხსენით უტოლობა: $(x - 1)(x + 2)(x - 3) < 0$.
+EN: Solve: $(x - 1)(x + 2)(x - 3) < 0$.
+HKA: ინტერვალთა მეთოდი: კრიტიკული წერტილები $-2$, $1$, $3$.
+HEN: The interval method: critical points $-2$, $1$, $3$.
+SKA: ნიშნები: $(3;\ +\infty)$: $+$; $(1;\ 3)$: $-$; $(-2;\ 1)$: $+$; $(-\infty;\ -2)$: $-$.
+$x < -2$ ან $1 < x < 3$
+SEN: Signs: $(3,\ +\infty)$: $+$; $(1,\ 3)$: $-$; $(-2,\ 1)$: $+$; $(-\infty,\ -2)$: $-$.
+$x < -2$ or $1 < x < 3$
+AKA: $(-\infty;\ -2) \cup (1;\ 3)$
+AEN: $(-\infty,\ -2) \cup (1,\ 3)$
+
+--- hard wordquad
+KA: მატარებელი $20$ წუთით დააგვიანდა. დაგვიანების ასანაზღაურებლად მან $120\ \text{კმ}$-იან მონაკვეთზე სიჩქარე $12\ \text{კმ/სთ}$-ით გაზარდა და დროულად ჩავიდა. იპოვეთ მატარებლის საწყისი სიჩქარე.
+EN: A train was delayed $20$ minutes. To make up the time it increased its speed by $12\ \text{km/h}$ over a $120\ \text{km}$ stretch and arrived on time. Find its original speed.
+HKA: დროების სხვაობა $\dfrac{1}{3}$ საათია.
+HEN: The difference in times is $\dfrac{1}{3}$ hour.
+SKA: $\dfrac{120}{v} - \dfrac{120}{v + 12} = \dfrac{1}{3}$
+$360 \cdot 12 = v(v + 12) \Rightarrow v^2 + 12v - 4320 = 0$
+$D = 144 + 17\,280 = 17\,424 = 132^2 \Rightarrow v = \dfrac{-12 + 132}{2} = 60\ \text{კმ/სთ}$
+შემოწმება: $2\ \text{სთ} - 1\dfrac{2}{3}\ \text{სთ} = \dfrac{1}{3}\ \text{სთ}$ ✓
+SEN: $\dfrac{120}{v} - \dfrac{120}{v + 12} = \dfrac{1}{3}$
+$360 \cdot 12 = v(v + 12) \Rightarrow v^2 + 12v - 4320 = 0$
+$D = 144 + 17\,280 = 17\,424 = 132^2 \Rightarrow v = \dfrac{-12 + 132}{2} = 60\ \text{km/h}$
+Check: $2\ \text{h} - 1\tfrac{2}{3}\ \text{h} = \dfrac{1}{3}\ \text{h}$ ✓
+AKA: $60\ \text{კმ/სთ}$
+AEN: $60\ \text{km/h}$
+
+--- hard parabola
+KA: მართკუთხა სამკუთხედში (კათეტებით $6$ და $8$) ჩახაზულია მართკუთხედი, რომლის ორი გვერდი კათეტებზე დევს, ერთი წვერო კი ჰიპოტენუზაზეა. რა მაქსიმალური ფართობი შეიძლება ჰქონდეს მართკუთხედს?
+EN: A rectangle is inscribed in a right triangle with legs $6$ and $8$, two of its sides on the legs and one vertex on the hypotenuse. What is the largest possible area of the rectangle?
+HKA: თუ მართკუთხედის გვერდია $x$ ($6$-იან კათეტზე), მსგავსებით მეორე გვერდია $8\left(1 - \dfrac{x}{6}\right)$.
+HEN: If one side is $x$ (along the $6$ leg), by similarity the other is $8\left(1 - \dfrac{x}{6}\right)$.
+SKA: $S(x) = x \cdot 8\left(1 - \dfrac{x}{6}\right) = 8x - \dfrac{4}{3}x^2$
+წვერო: $x_0 = \dfrac{8}{2 \cdot 4/3} = 3$, მეორე გვერდი $8 \cdot \dfrac{1}{2} = 4$
+$S_{\max} = 3 \cdot 4 = 12$ — სამკუთხედის ფართობის ($24$) ნახევარი.
+SEN: $S(x) = x \cdot 8\left(1 - \dfrac{x}{6}\right) = 8x - \dfrac{4}{3}x^2$
+Vertex: $x_0 = \dfrac{8}{2 \cdot 4/3} = 3$, other side $8 \cdot \dfrac{1}{2} = 4$
+$S_{\max} = 3 \cdot 4 = 12$ — half the triangle's area ($24$).
+AKA: $12$
+AEN: $12$
+
+--- hard progressions
+KA: არითმეტიკული პროგრესიის პირველი $n$ წევრის ჯამია $S_n = n^2 + 2n$. იპოვეთ $n$-ური წევრის ფორმულა და $a_{10}$.
+EN: The sum of the first $n$ terms of an arithmetic progression is $S_n = n^2 + 2n$. Find a formula for the $n$-th term and $a_{10}$.
+HKA: $a_n = S_n - S_{n-1}$.
+HEN: $a_n = S_n - S_{n-1}$.
+SKA: $a_n = (n^2 + 2n) - \big((n - 1)^2 + 2(n - 1)\big) = 2n + 1$
+$a_1 = 3$ (შემოწმება: $S_1 = 3$ ✓), $\ d = 2$, $\ a_{10} = 21$
+SEN: $a_n = (n^2 + 2n) - \big((n - 1)^2 + 2(n - 1)\big) = 2n + 1$
+$a_1 = 3$ (check: $S_1 = 3$ ✓), $\ d = 2$, $\ a_{10} = 21$
+AKA: $a_n = 2n + 1$; $21$
+AEN: $a_n = 2n + 1$; $21$
+
+--- hard progressions
+KA: ორი სამსახურის შეთავაზება: A — $1000$ ლარი, ყოველ წელს $+100$ ლარი; B — $1000$ ლარი, ყოველ წელს $+8\%$. რომელი ხელფასია მეტი მე-$5$ წელს? სულ რამდენს მიიღებთ $5$ წელიწადში თითოეულში (თვიური ხელფასი, $12$ თვე წელიწადში)?
+EN: Two job offers: A — $1000$ lari a month, rising $100$ lari each year; B — $1000$ lari, rising $8\%$ each year. Which monthly salary is higher in year $5$? How much is earned in total over $5$ years with each ($12$ months a year)?
+HKA: A — არითმეტიკული პროგრესია, B — გეომეტრიული.
+HEN: A is arithmetic, B is geometric.
+SKA: მე-$5$ წელს: A: $1000 + 4 \cdot 100 = 1400\ ₾$; B: $1000 \cdot 1{,}08^4 \approx 1360{,}5\ ₾$ — A მეტია.
+$5$ წელიწადში (თვიური ხელფასების ჯამი × $12$):
+A: $12 \cdot \dfrac{(1000 + 1400) \cdot 5}{2} = 72\,000\ ₾$
+B: $12 \cdot \dfrac{1000(1{,}08^5 - 1)}{0{,}08} \approx 12 \cdot 5866{,}6 \approx 70\,400\ ₾$
+(ხანგრძლივ პერიოდში B-ს პროცენტული ზრდა A-ს გადაასწრებს.)
+SEN: In year $5$: A: $1000 + 4 \cdot 100 = 1400\ ₾$; B: $1000 \cdot 1.08^4 \approx 1360.5\ ₾$ — A is higher.
+Over $5$ years (sum of monthly salaries × $12$):
+A: $12 \cdot \dfrac{(1000 + 1400) \cdot 5}{2} = 72\,000\ ₾$
+B: $12 \cdot \dfrac{1000(1.08^5 - 1)}{0.08} \approx 12 \cdot 5866.6 \approx 70\,400\ ₾$
+(Over a longer period B's percentage growth overtakes A.)
+AKA: A ($1400$ vs $\approx 1360$); $72\,000$ და $\approx 70\,400\ ₾$
+AEN: A ($1400$ vs $\approx 1360$); $72\,000$ and $\approx 70\,400\ ₾$
+
+--- hard circle
+KA: $P$ წერტილიდან წრეწირისადმი გავლებულია მხები $PT = 6$ და მკვეთი, რომლის გარე ნაწილია $PA = 4$. იპოვეთ მკვეთის მთელი სიგრძე $PB$ და ქორდა $AB$.
+EN: From point $P$ a tangent $PT = 6$ and a secant are drawn to a circle; the external part of the secant is $PA = 4$. Find the whole secant $PB$ and the chord $AB$.
+HKA: მხებისა და მკვეთის თეორემა: $PT^2 = PA \cdot PB$.
+HEN: Tangent–secant theorem: $PT^2 = PA \cdot PB$.
+SKA: $36 = 4 \cdot PB \Rightarrow PB = 9$
+$AB = PB - PA = 9 - 4 = 5$
+SEN: $36 = 4 \cdot PB \Rightarrow PB = 9$
+$AB = PB - PA = 9 - 4 = 5$
+AKA: $9$; $5$
+AEN: $9$; $5$
+
+--- hard similarity
+KA: ტრაპეციის ფუძეებია $6$ და $10$. დიაგონალები $O$ წერტილში იკვეთება. რა შეფარდებით ყოფს $O$ დიაგონალებს? როგორ შეეფარდება ფუძეებთან მდებარე სამკუთხედების ($O$ წვეროთი) ფართობები?
+EN: A trapezium has bases $6$ and $10$. Its diagonals meet at $O$. In what ratio does $O$ divide the diagonals? How do the areas of the triangles on the bases (with vertex $O$) compare?
+HKA: ფუძეებთან მდებარე სამკუთხედები მსგავსია (ჯვარედინი კუთხეები პარალელურ წრფეებთან).
+HEN: The triangles on the bases are similar (alternate angles with parallel lines).
+SKA: მსგავსების კოეფიციენტი $k = \dfrac{6}{10} = \dfrac{3}{5}$ — $O$ თითოეულ დიაგონალს $3 : 5$ შეფარდებით ყოფს.
+ფართობები: $k^2 = \dfrac{9}{25}$.
+SEN: The scale factor is $k = \dfrac{6}{10} = \dfrac{3}{5}$ — $O$ divides each diagonal in the ratio $3 : 5$.
+Areas: $k^2 = \dfrac{9}{25}$.
+AKA: $3 : 5$; $9 : 25$
+AEN: $3 : 5$; $9 : 25$
+
+--- hard trig
+KA: სამკუთხედის ორი გვერდია $8$ და $10$, მათ შორის კუთხე — $30^\circ$. იპოვეთ სამკუთხედის ფართობი.
+EN: Two sides of a triangle are $8$ and $10$ with a $30^\circ$ angle between them. Find the area.
+HKA: დაუშვით სიმაღლე: $h = 8\sin 30^\circ$. ან $S = \dfrac{1}{2}ab\sin C$.
+HEN: Drop a height: $h = 8\sin 30^\circ$. Or use $S = \dfrac{1}{2}ab\sin C$.
+SKA: $h = 8 \cdot \dfrac{1}{2} = 4$ ($10$-იან გვერდზე)
+$S = \dfrac{10 \cdot 4}{2} = 20$ ($= \dfrac{1}{2} \cdot 8 \cdot 10 \cdot \sin 30^\circ$)
+SEN: $h = 8 \cdot \dfrac{1}{2} = 4$ (onto the side of length $10$)
+$S = \dfrac{10 \cdot 4}{2} = 20$ ($= \dfrac{1}{2} \cdot 8 \cdot 10 \cdot \sin 30^\circ$)
+AKA: $20$
+AEN: $20$
+
+--- hard solids
+KA: $1$ რადიუსიანი $8$ ტყვიის ბურთულა გადაადნეს და ერთი დიდი ბურთულა ჩამოასხეს. იპოვეთ მისი რადიუსი. როგორ შეიცვალა ზედაპირის ჯამური ფართობი?
+EN: $8$ lead balls of radius $1$ are melted and recast into one big ball. Find its radius. How does the total surface area change?
+HKA: მოცულობა ინახება: $8 \cdot \dfrac{4}{3}\pi \cdot 1^3 = \dfrac{4}{3}\pi R^3$.
+HEN: The volume is conserved: $8 \cdot \dfrac{4}{3}\pi \cdot 1^3 = \dfrac{4}{3}\pi R^3$.
+SKA: $R^3 = 8 \Rightarrow R = 2$
+ზედაპირი: თავიდან $8 \cdot 4\pi = 32\pi$, შემდეგ $4\pi \cdot 4 = 16\pi$ — ორჯერ შემცირდა.
+SEN: $R^3 = 8 \Rightarrow R = 2$
+Surface: before $8 \cdot 4\pi = 32\pi$, after $4\pi \cdot 4 = 16\pi$ — halved.
+AKA: $R = 2$; ორჯერ შემცირდა
+AEN: $R = 2$; it halves
+
+--- hard combinatorics
+KA: კამათელს ორჯერ აგდებენ. რას უდრის ალბათობა, რომ ერთხელ მაინც მოვა $6$?
+EN: A die is rolled twice. What is the probability of getting at least one $6$?
+HKA: საწინააღმდეგო ხდომილობა: არცერთხელ $6$.
+HEN: The complement: no $6$ at all.
+SKA: $P(\text{არცერთი } 6) = \dfrac{5}{6} \cdot \dfrac{5}{6} = \dfrac{25}{36}$
+$P = 1 - \dfrac{25}{36} = \dfrac{11}{36} \approx 0{,}31$ (და არა $\dfrac{2}{6}$!)
+SEN: $P(\text{no } 6) = \dfrac{5}{6} \cdot \dfrac{5}{6} = \dfrac{25}{36}$
+$P = 1 - \dfrac{25}{36} = \dfrac{11}{36} \approx 0.31$ (not $\dfrac{2}{6}$!)
+AKA: $\dfrac{11}{36}$
+AEN: $\dfrac{11}{36}$
+
+--- hard quadratic olympiad
+KA: იპოვეთ ყველა მთელი $x$ და $y$, რომლებისთვისაც $xy = x + y$.
+EN: Find all integers $x$ and $y$ such that $xy = x + y$.
+HKA: გადაიტანეთ ყველაფერი ერთ მხარეს და დაამატეთ $1$: $xy - x - y + 1 = 1$.
+HEN: Move everything to one side and add $1$: $xy - x - y + 1 = 1$.
+SKA: $(x - 1)(y - 1) = 1$
+ორი მთელის ნამრავლი $1$-ია: ან ორივე $1$-ია, ან ორივე $-1$.
+$x - 1 = y - 1 = 1 \Rightarrow (2;\ 2)$; $\ x - 1 = y - 1 = -1 \Rightarrow (0;\ 0)$
+SEN: $(x - 1)(y - 1) = 1$
+Two integers multiply to $1$: both are $1$ or both are $-1$.
+$x - 1 = y - 1 = 1 \Rightarrow (2,\ 2)$; $\ x - 1 = y - 1 = -1 \Rightarrow (0,\ 0)$
+AKA: $(2;\ 2)$ და $(0;\ 0)$
+AEN: $(2,\ 2)$ and $(0,\ 0)$
+
+--- hard progressions olympiad
+KA: ლეგენდის თანახმად, ჭადრაკის გამომგონებელმა სთხოვა: პირველ უჯრაზე $1$ ხორბლის მარცვალი, მეორეზე $2$, მესამეზე $4$ და ა.შ. — $64$ უჯრაზე. რამდენი მარცვალია სულ? შეაფასეთ მისი მასა ($1$ მარცვალი $\approx 0{,}05\ \text{გ}$).
+EN: Legend says the inventor of chess asked for $1$ grain of wheat on the first square, $2$ on the second, $4$ on the third and so on — for all $64$ squares. How many grains in total? Estimate their mass ($1$ grain $\approx 0.05\ \text{g}$).
+HKA: $1 + 2 + 4 + \dots + 2^{n-1} = 2^n - 1$. $2^{10} \approx 10^3$.
+HEN: $1 + 2 + 4 + \dots + 2^{n-1} = 2^n - 1$. $2^{10} \approx 10^3$.
+SKA: $S = 2^{64} - 1 \approx 1{,}8 \cdot 10^{19}$ მარცვალი
+მასა: $1{,}8 \cdot 10^{19} \cdot 5 \cdot 10^{-5}\ \text{კგ} \approx 9 \cdot 10^{14}\ \text{კგ} \approx 10^{12}$ ტონა — მსოფლიოს ხორბლის წლიურ მოსავალზე ათასობითჯერ მეტი!
+SEN: $S = 2^{64} - 1 \approx 1.8 \times 10^{19}$ grains
+Mass: $1.8 \times 10^{19} \cdot 5 \times 10^{-5}\ \text{kg} \approx 9 \times 10^{14}\ \text{kg} \approx 10^{12}$ tonnes — thousands of times the world's yearly wheat harvest!
+AKA: $2^{64} - 1 \approx 1{,}8 \cdot 10^{19}$
+AEN: $2^{64} - 1 \approx 1.8 \times 10^{19}$
+
+--- hard circle olympiad
+KA: დაამტკიცეთ, რომ წრეწირში ჩახაზული ოთხკუთხედის მოპირდაპირე კუთხეების ჯამი $180^\circ$-ია.
+EN: Prove that the opposite angles of a quadrilateral inscribed in a circle add up to $180^\circ$.
+HKA: ჩახაზული კუთხე მისი რკალის ნახევარია. $\angle A$ და $\angle C$ ეყრდნობა რკალებს, რომლებიც ერთად მთელ წრეწირს ქმნის.
+HEN: An inscribed angle is half its arc. $\angle A$ and $\angle C$ stand on arcs that together make the whole circle.
+SKA: ვთქვათ $ABCD$ ჩახაზულია. $\angle A$ ეყრდნობა $BCD$ რკალს, $\angle C$ — $DAB$ რკალს.
+$\angle A = \dfrac{\overset{\frown}{BCD}}{2}$, $\ \angle C = \dfrac{\overset{\frown}{DAB}}{2}$
+$\angle A + \angle C = \dfrac{\overset{\frown}{BCD} + \overset{\frown}{DAB}}{2} = \dfrac{360^\circ}{2} = 180^\circ$ ∎ (ანალოგიურად $\angle B + \angle D$)
+SEN: Let $ABCD$ be inscribed. $\angle A$ stands on arc $BCD$, $\angle C$ on arc $DAB$.
+$\angle A = \dfrac{\overset{\frown}{BCD}}{2}$, $\ \angle C = \dfrac{\overset{\frown}{DAB}}{2}$
+$\angle A + \angle C = \dfrac{\overset{\frown}{BCD} + \overset{\frown}{DAB}}{2} = \dfrac{360^\circ}{2} = 180^\circ$ ∎ (likewise $\angle B + \angle D$)
+AKA: დამტკიცებულია
+AEN: proved
+
+--- hard trig olympiad
+KA: გამოთვალეთ: $\tan 1^\circ \cdot \tan 2^\circ \cdot \tan 3^\circ \cdot \ldots \cdot \tan 89^\circ$.
+EN: Calculate: $\tan 1^\circ \cdot \tan 2^\circ \cdot \tan 3^\circ \cdot \ldots \cdot \tan 89^\circ$.
+HKA: მართკუთხა სამკუთხედში $\tan\alpha \cdot \tan(90^\circ - \alpha) = 1$.
+HEN: In a right triangle $\tan\alpha \cdot \tan(90^\circ - \alpha) = 1$.
+SKA: მართკუთხა სამკუთხედში ორი მახვილი კუთხის ტანგენსები შებრუნებულია: $\tan\alpha = \dfrac{a}{b}$, $\tan(90^\circ - \alpha) = \dfrac{b}{a}$.
+დავაწყვილოთ: $(\tan 1^\circ \tan 89^\circ)(\tan 2^\circ \tan 88^\circ)\cdots(\tan 44^\circ \tan 46^\circ) \cdot \tan 45^\circ$
+$= 1 \cdot 1 \cdots 1 \cdot 1 = 1$
+SEN: In a right triangle the tangents of the two acute angles are reciprocal: $\tan\alpha = \dfrac{a}{b}$, $\tan(90^\circ - \alpha) = \dfrac{b}{a}$.
+Pair them up: $(\tan 1^\circ \tan 89^\circ)(\tan 2^\circ \tan 88^\circ)\cdots(\tan 44^\circ \tan 46^\circ) \cdot \tan 45^\circ$
+$= 1 \cdot 1 \cdots 1 \cdot 1 = 1$
+AKA: $1$
+AEN: $1$
+
+--- hard combinatorics olympiad
+KA: რამდენი დიაგონალი აქვს ამოზნექილ $n$-კუთხედს? გამოიყვანეთ ფორმულა და გამოთვალეთ $10$-კუთხედისთვის.
+EN: How many diagonals does a convex $n$-gon have? Derive the formula and compute it for a $10$-gon.
+HKA: თითოეული წვეროდან დიაგონალი გადის ყველა წვეროსკენ, გარდა თავისა და ორი მეზობლისა.
+HEN: From each vertex a diagonal goes to every vertex except itself and its two neighbours.
+SKA: ერთი წვეროდან: $n - 3$ დიაგონალი; სულ $n(n - 3)$, მაგრამ ყოველი დიაგონალი ორჯერ ითვლება.
+**ფორმულა:** $D = \dfrac{n(n - 3)}{2}$
+$n = 10$: $D = \dfrac{10 \cdot 7}{2} = 35$ (შემოწმება: ოთხკუთხედი — $2$, ხუთკუთხედი — $5$ ✓)
+SEN: From one vertex: $n - 3$ diagonals; $n(n - 3)$ in all, but each diagonal is counted twice.
+**Formula:** $D = \dfrac{n(n - 3)}{2}$
+$n = 10$: $D = \dfrac{10 \cdot 7}{2} = 35$ (check: quadrilateral — $2$, pentagon — $5$ ✓)
+AKA: $\dfrac{n(n - 3)}{2}$; $35$
+AEN: $\dfrac{n(n - 3)}{2}$; $35$
 </script>
 </body>
 </html>

@@ -877,6 +877,758 @@ $S = \sqrt{21 \cdot 8 \cdot 7 \cdot 6} = \sqrt{7056} = 84$
 $h = \dfrac{2S}{14} = \dfrac{168}{14} = 12$ (the height splits the base into $5$ and $9$: $5^2 + 12^2 = 13^2$, $9^2 + 12^2 = 15^2$ ✓)
 AKA: $84$; $12$
 AEN: $84$; $12$
+
+// ===================================================================== SET 2
+
+--- easy sets
+KA: $A$ — $10$-მდე (ჩათვლით) ლუწი ნატურალური რიცხვების სიმრავლეა, $B$ — $10$-მდე $3$-ის ჯერადების. იპოვეთ $A \cap B$ და $A \cup B$.
+EN: $A$ is the set of even natural numbers up to $10$ (inclusive), $B$ the multiples of $3$ up to $10$. Find $A \cap B$ and $A \cup B$.
+HKA: ჯერ ჩამოწერეთ ორივე სიმრავლე.
+HEN: First list both sets.
+SKA: $A = \{2, 4, 6, 8, 10\}$, $\ B = \{3, 6, 9\}$
+$A \cap B = \{6\}$, $\ A \cup B = \{2, 3, 4, 6, 8, 9, 10\}$
+SEN: $A = \{2, 4, 6, 8, 10\}$, $\ B = \{3, 6, 9\}$
+$A \cap B = \{6\}$, $\ A \cup B = \{2, 3, 4, 6, 8, 9, 10\}$
+AKA: $\{6\}$; $\{2, 3, 4, 6, 8, 9, 10\}$
+AEN: $\{6\}$; $\{2, 3, 4, 6, 8, 9, 10\}$
+
+--- easy sets
+KA: რამდენი ქვესიმრავლე აქვს $4$-ელემენტიან სიმრავლეს? არის თუ არა ცარიელი სიმრავლე ნებისმიერი სიმრავლის ქვესიმრავლე?
+EN: How many subsets does a $4$-element set have? Is the empty set a subset of every set?
+HKA: ყოველი ელემენტი ან შედის ქვესიმრავლეში, ან არა.
+HEN: Each element is either in the subset or not.
+SKA: $2^4 = 16$ ქვესიმრავლე.
+დიახ — ცარიელ სიმრავლეში არ არის ელემენტი, რომელიც მოცემულ სიმრავლეს არ ეკუთვნის.
+SEN: $2^4 = 16$ subsets.
+Yes — the empty set has no element that is outside the given set.
+AKA: $16$; დიახ
+AEN: $16$; yes
+
+--- easy sets
+KA: უნივერსალური სიმრავლეა $U = \{1, 2, \dots, 8\}$, $A = \{1, 3, 5, 7\}$. იპოვეთ $A$-ს დამატება $\overline{A}$.
+EN: The universal set is $U = \{1, 2, \dots, 8\}$ and $A = \{1, 3, 5, 7\}$. Find the complement $\overline{A}$.
+HKA: დამატება — $U$-ს ის ელემენტები, რომლებიც $A$-ში არ შედის.
+HEN: The complement is the elements of $U$ not in $A$.
+SKA: $\overline{A} = U \setminus A = \{2, 4, 6, 8\}$
+SEN: $\overline{A} = U \setminus A = \{2, 4, 6, 8\}$
+AKA: $\{2, 4, 6, 8\}$
+AEN: $\{2, 4, 6, 8\}$
+
+--- easy logic
+KA: დაადგინეთ ჭეშმარიტობა: ა) „თუ $5 > 3$, მაშინ $2 + 2 = 5$“; ბ) „თუ $2 > 3$, მაშინ $2 + 2 = 5$“.
+EN: Decide whether true: a) "If $5 > 3$, then $2 + 2 = 5$"; b) "If $2 > 3$, then $2 + 2 = 5$".
+HKA: „თუ $p$, მაშინ $q$“ მცდარია მხოლოდ მაშინ, როცა $p$ ჭეშმარიტია, $q$ კი — მცდარი.
+HEN: "If $p$ then $q$" is false only when $p$ is true and $q$ is false.
+SKA: ა) $p$ ჭეშმარიტია, $q$ — მცდარი $\Rightarrow$ **მცდარი**.
+ბ) $p$ მცდარია $\Rightarrow$ გამონათქვამი **ჭეშმარიტია** (მცდარი წანამძღვრიდან ნებისმიერი დასკვნა „გამოდის“).
+SEN: a) $p$ true, $q$ false $\Rightarrow$ **false**.
+b) $p$ is false $\Rightarrow$ the statement is **true** (anything "follows" from a false premise).
+AKA: ა) მცდარი; ბ) ჭეშმარიტი
+AEN: a) false; b) true
+
+--- easy logic
+KA: მოიყვანეთ კონტრმაგალითი დებულებისთვის: „ყველა მარტივი რიცხვი კენტია“.
+EN: Give a counterexample to the statement "every prime number is odd".
+HKA: კონტრმაგალითი — ერთი ობიექტი, რომლისთვისაც დებულება არ სრულდება.
+HEN: A counterexample is one object for which the statement fails.
+SKA: $2$ მარტივია (მხოლოდ $1$-ზე და თავის თავზე იყოფა), მაგრამ ლუწია — დებულება მცდარია.
+SEN: $2$ is prime (divisible only by $1$ and itself) but even — the statement is false.
+AKA: $2$
+AEN: $2$
+
+--- easy numbers
+KA: $240$ ლარი გაყავით $3 : 4 : 5$ შეფარდებით.
+EN: Divide $240$ lari in the ratio $3 : 4 : 5$.
+HKA: სულ $12$ ნაწილია.
+HEN: There are $12$ parts in total.
+SKA: ერთი ნაწილი: $240 : 12 = 20$
+$60\ ₾$, $80\ ₾$, $100\ ₾$
+SEN: One part: $240 \div 12 = 20$
+$60\ ₾$, $80\ ₾$, $100\ ₾$
+AKA: $60$, $80$, $100\ ₾$
+AEN: $60$, $80$, $100\ ₾$
+
+--- easy numbers
+KA: $80$ ლარიან ჩანთაზე $15\%$-იანი ფასდაკლებაა. რა ღირს ჩანთა ფასდაკლებით?
+EN: An $80$-lari bag is $15\%$ off. What does it cost with the discount?
+HKA: დარჩება ფასის $85\%$.
+HEN: $85\%$ of the price remains.
+SKA: $80 \cdot 0{,}85 = 68\ ₾$
+SEN: $80 \cdot 0.85 = 68\ ₾$
+AKA: $68\ ₾$
+AEN: $68\ ₾$
+
+--- easy stats
+KA: იპოვეთ მონაცემების $2, 3, 3, 5, 7, 10$ საშუალო, მედიანა და მოდა.
+EN: Find the mean, median and mode of $2, 3, 3, 5, 7, 10$.
+HKA: ლუწი რაოდენობა — მედიანა ორი შუა რიცხვის საშუალოა.
+HEN: An even count — the median is the mean of the two middle values.
+SKA: საშუალო: $\dfrac{30}{6} = 5$; მედიანა: $\dfrac{3 + 5}{2} = 4$; მოდა: $3$
+SEN: Mean: $\dfrac{30}{6} = 5$; median: $\dfrac{3 + 5}{2} = 4$; mode: $3$
+AKA: $5$; $4$; $3$
+AEN: $5$; $4$; $3$
+
+--- easy stats
+KA: $52$-კარტიანი დასტიდან შემთხვევით იღებენ ერთ კარტს. რას უდრის გულის ფერის (♥) კარტის ამოღების თეორიული ალბათობა?
+EN: One card is drawn at random from a $52$-card deck. What is the theoretical probability that it is a heart (♥)?
+HKA: დასტაში $13$ გულია.
+HEN: The deck has $13$ hearts.
+SKA: $P = \dfrac{13}{52} = \dfrac{1}{4}$
+SEN: $P = \dfrac{13}{52} = \dfrac{1}{4}$
+AKA: $\dfrac{1}{4}$
+AEN: $\dfrac{1}{4}$
+
+--- easy polynomials
+KA: გაამრავლეთ და ჩაწერეთ სტანდარტული სახით: $(x^2 - 3x) \cdot 2x$. რა ხარისხისაა მრავალწევრი?
+EN: Multiply and write in standard form: $(x^2 - 3x) \cdot 2x$. What is its degree?
+HKA: ყოველი წევრი გაამრავლეთ $2x$-ზე.
+HEN: Multiply each term by $2x$.
+SKA: $2x^3 - 6x^2$ — მესამე ხარისხის.
+SEN: $2x^3 - 6x^2$ — degree $3$.
+AKA: $2x^3 - 6x^2$; $3$
+AEN: $2x^3 - 6x^2$; $3$
+
+--- easy polynomials
+KA: გაამარტივეთ: $(x - 3)^2 - (x + 3)^2$.
+EN: Simplify: $(x - 3)^2 - (x + 3)^2$.
+HKA: კვადრატების სხვაობა: $a^2 - b^2 = (a - b)(a + b)$.
+HEN: Difference of squares: $a^2 - b^2 = (a - b)(a + b)$.
+SKA: $\big((x - 3) - (x + 3)\big)\big((x - 3) + (x + 3)\big) = (-6)(2x) = -12x$
+SEN: $\big((x - 3) - (x + 3)\big)\big((x - 3) + (x + 3)\big) = (-6)(2x) = -12x$
+AKA: $-12x$
+AEN: $-12x$
+
+--- easy equations
+KA: ამოხსენით განტოლება: $5x - 2(x - 1) = 14$.
+EN: Solve: $5x - 2(x - 1) = 14$.
+HKA: $-2(x - 1) = -2x + 2$.
+HEN: $-2(x - 1) = -2x + 2$.
+SKA: $5x - 2x + 2 = 14 \Rightarrow 3x = 12 \Rightarrow x = 4$
+SEN: $5x - 2x + 2 = 14 \Rightarrow 3x = 12 \Rightarrow x = 4$
+AKA: $x = 4$
+AEN: $x = 4$
+
+--- easy equations
+KA: ამოხსენით განტოლება $x^2 = 2x$. რატომ არ შეიძლება ორივე მხარის $x$-ზე გაყოფა?
+EN: Solve $x^2 = 2x$. Why can't you just divide both sides by $x$?
+HKA: გადაიტანეთ ყველაფერი ერთ მხარეს.
+HEN: Move everything to one side.
+SKA: $x^2 - 2x = 0 \Rightarrow x(x - 2) = 0 \Rightarrow x = 0$ ან $x = 2$
+$x$-ზე გაყოფისას ფესვი $x = 0$ დაიკარგებოდა (ნულზე გაყოფა არ შეიძლება).
+SEN: $x^2 - 2x = 0 \Rightarrow x(x - 2) = 0 \Rightarrow x = 0$ or $x = 2$
+Dividing by $x$ would lose the root $x = 0$ (you can't divide by zero).
+AKA: $0$; $2$
+AEN: $0$; $2$
+
+--- easy equations
+KA: ამოხსენით უტოლობა: $2 - 3x \ge 8$.
+EN: Solve: $2 - 3x \ge 8$.
+HKA: უარყოფით რიცხვზე გაყოფისას ნიშანი იცვლება.
+HEN: Dividing by a negative number reverses the sign.
+SKA: $-3x \ge 6 \Rightarrow x \le -2$
+SEN: $-3x \ge 6 \Rightarrow x \le -2$
+AKA: $x \le -2$
+AEN: $x \le -2$
+
+--- easy functions
+KA: $f(x) = x^2 - 3$. იპოვეთ $f(-2)$ და $f(a + 1)$.
+EN: $f(x) = x^2 - 3$. Find $f(-2)$ and $f(a + 1)$.
+HKA: $x$-ის ნაცვლად ჩასვით მოცემული გამოსახულება.
+HEN: Replace $x$ by the given expression.
+SKA: $f(-2) = 4 - 3 = 1$
+$f(a + 1) = (a + 1)^2 - 3 = a^2 + 2a - 2$
+SEN: $f(-2) = 4 - 3 = 1$
+$f(a + 1) = (a + 1)^2 - 3 = a^2 + 2a - 2$
+AKA: $1$; $a^2 + 2a - 2$
+AEN: $1$; $a^2 + 2a - 2$
+
+--- easy functions
+KA: იპოვეთ $f(x) = \dfrac{1}{x^2 - 9}$ ფუნქციის განსაზღვრის არე.
+EN: Find the domain of $f(x) = \dfrac{1}{x^2 - 9}$.
+HKA: მნიშვნელი ნული არ უნდა იყოს.
+HEN: The denominator must not be zero.
+SKA: $x^2 - 9 \ne 0 \Rightarrow x \ne \pm 3$
+$D(f) = (-\infty;\ -3) \cup (-3;\ 3) \cup (3;\ +\infty)$
+SEN: $x^2 - 9 \ne 0 \Rightarrow x \ne \pm 3$
+$D(f) = (-\infty,\ -3) \cup (-3,\ 3) \cup (3,\ +\infty)$
+AKA: $x \ne \pm 3$
+AEN: $x \ne \pm 3$
+
+--- easy functions
+KA: არის თუ არა ფუნქცია $f(x) = 2x - 5$ ზრდადი? იპოვეთ მისი ნული.
+EN: Is $f(x) = 2x - 5$ increasing? Find its zero.
+HKA: წრფივი ფუნქცია ზრდადია, როცა კუთხური კოეფიციენტი დადებითია.
+HEN: A linear function increases when its slope is positive.
+SKA: $k = 2 > 0$ — ზრდადია.
+$2x - 5 = 0 \Rightarrow x = 2{,}5$
+SEN: $k = 2 > 0$ — increasing.
+$2x - 5 = 0 \Rightarrow x = 2.5$
+AKA: დიახ; $2{,}5$
+AEN: yes; $2.5$
+
+--- easy geometry
+KA: წრეწირის სიგრძეა $20\pi$. იპოვეთ რადიუსი და წრის ფართობი.
+EN: A circle has circumference $20\pi$. Find the radius and the area.
+HKA: $C = 2\pi r$.
+HEN: $C = 2\pi r$.
+SKA: $2\pi r = 20\pi \Rightarrow r = 10$
+$S = \pi \cdot 100 = 100\pi \approx 314$
+SEN: $2\pi r = 20\pi \Rightarrow r = 10$
+$S = \pi \cdot 100 = 100\pi \approx 314$
+AKA: $10$; $100\pi$
+AEN: $10$; $100\pi$
+
+--- easy geometry
+KA: მართკუთხა სამკუთხედის კათეტებია $5$ და $12$. იპოვეთ უმცირესი კუთხის სინუსი, კოსინუსი და ტანგენსი.
+EN: A right triangle has legs $5$ and $12$. Find the sine, cosine and tangent of its smallest angle.
+HKA: უმცირესი კუთხე უმცირესი გვერდის მოპირდაპირეა. ჰიპოტენუზა $13$.
+HEN: The smallest angle is opposite the shortest side. Hypotenuse $13$.
+SKA: $\sin\alpha = \dfrac{5}{13}$, $\ \cos\alpha = \dfrac{12}{13}$, $\ \tan\alpha = \dfrac{5}{12}$
+SEN: $\sin\alpha = \dfrac{5}{13}$, $\ \cos\alpha = \dfrac{12}{13}$, $\ \tan\alpha = \dfrac{5}{12}$
+AKA: $\dfrac{5}{13}$; $\dfrac{12}{13}$; $\dfrac{5}{12}$
+AEN: $\dfrac{5}{13}$; $\dfrac{12}{13}$; $\dfrac{5}{12}$
+
+--- easy transformations
+KA: იპოვეთ $A(2;\ 5)$ წერტილის სიმეტრიული წერტილი $y = x$ წრფის მიმართ.
+EN: Find the reflection of $A(2,\ 5)$ in the line $y = x$.
+HKA: $y = x$ წრფის მიმართ სიმეტრიისას კოორდინატები ადგილს იცვლის.
+HEN: Reflecting in $y = x$ swaps the coordinates.
+SKA: $(x;\ y) \to (y;\ x)$: $\ A'(5;\ 2)$
+SEN: $(x,\ y) \to (y,\ x)$: $\ A'(5,\ 2)$
+AKA: $(5;\ 2)$
+AEN: $(5,\ 2)$
+
+--- easy transformations
+KA: იპოვეთ $B(3;\ 1)$ წერტილის სახე სათავის გარშემო $90^\circ$-ით საათის ისრის საწინააღმდეგოდ მობრუნებისას.
+EN: Find the image of $B(3,\ 1)$ under a $90^\circ$ anticlockwise rotation about the origin.
+HKA: $(x;\ y) \to (-y;\ x)$.
+HEN: $(x,\ y) \to (-y,\ x)$.
+SKA: $B'(-1;\ 3)$ (შემოწმება: მანძილი სათავემდე იგივეა, $\sqrt{10}$)
+SEN: $B'(-1,\ 3)$ (check: the distance to the origin is unchanged, $\sqrt{10}$)
+AKA: $(-1;\ 3)$
+AEN: $(-1,\ 3)$
+
+--- medium sets
+KA: $40$ ტურისტიდან $25$ ლაპარაკობს ინგლისურად, $18$ — ფრანგულად, $7$ — ორივე ენაზე. რამდენი ლაპარაკობს მხოლოდ ინგლისურად? რამდენი — არცერთ ენაზე?
+EN: Of $40$ tourists, $25$ speak English, $18$ French and $7$ both. How many speak only English? How many speak neither?
+HKA: დახატეთ ვენის დიაგრამა; საერთო ნაწილი ორჯერ არ ჩათვალოთ.
+HEN: Draw a Venn diagram; don't count the overlap twice.
+SKA: მხოლოდ ინგლისური: $25 - 7 = 18$
+ერთ ენაზე მაინც: $25 + 18 - 7 = 36$; არცერთზე: $40 - 36 = 4$
+SEN: Only English: $25 - 7 = 18$
+At least one language: $25 + 18 - 7 = 36$; neither: $40 - 36 = 4$
+AKA: $18$; $4$
+AEN: $18$; $4$
+
+--- medium sets
+KA: $A = (-\infty;\ 3]$, $B = (0;\ 5)$. იპოვეთ $A \cap B$, $A \cup B$ და $A \setminus B$.
+EN: $A = (-\infty,\ 3]$, $B = (0,\ 5)$. Find $A \cap B$, $A \cup B$ and $A \setminus B$.
+HKA: დახაზეთ შუალედები რიცხვით ღერძზე.
+HEN: Draw the intervals on a number line.
+SKA: $A \cap B = (0;\ 3]$
+$A \cup B = (-\infty;\ 5)$
+$A \setminus B = (-\infty;\ 0]$
+SEN: $A \cap B = (0,\ 3]$
+$A \cup B = (-\infty,\ 5)$
+$A \setminus B = (-\infty,\ 0]$
+AKA: $(0;\ 3]$; $(-\infty;\ 5)$; $(-\infty;\ 0]$
+AEN: $(0,\ 3]$; $(-\infty,\ 5)$; $(-\infty,\ 0]$
+
+--- medium logic
+KA: ჩაწერეთ გამონათქვამის უარყოფა: „$x > 2$ და $y < 5$“.
+EN: Write the negation of the statement "$x > 2$ and $y < 5$".
+HKA: დე მორგანის კანონი: „და“-ს უარყოფა — „ან“ უარყოფებით.
+HEN: De Morgan's law: the negation of "and" is "or" of the negations.
+SKA: $\neg(p \wedge q) = \neg p \vee \neg q$
+უარყოფა: „$x \le 2$ ან $y \ge 5$“
+SEN: $\neg(p \wedge q) = \neg p \vee \neg q$
+Negation: "$x \le 2$ or $y \ge 5$"
+AKA: $x \le 2$ ან $y \ge 5$
+AEN: $x \le 2$ or $y \ge 5$
+
+--- medium logic
+KA: ჩამოაყალიბეთ დებულების „თუ სამკუთხედი ტოლგვერდაა, მაშინ ის ტოლფერდაა“ შებრუნებული და კონტრაპოზიცია. რომელია ჭეშმარიტი?
+EN: State the converse and the contrapositive of "If a triangle is equilateral, then it is isosceles." Which are true?
+HKA: კონტრაპოზიცია: „თუ არა $q$, მაშინ არა $p$“ — ის ყოველთვის ტოლფასია საწყისისა.
+HEN: The contrapositive "if not $q$ then not $p$" is always equivalent to the original.
+SKA: საწყისი — ჭეშმარიტია.
+შებრუნებული: „თუ ტოლფერდაა, მაშინ ტოლგვერდაა“ — მცდარია (მაგ., გვერდები $5, 5, 3$).
+კონტრაპოზიცია: „თუ ტოლფერდა არ არის, მაშინ ტოლგვერდა არ არის“ — ჭეშმარიტია.
+SEN: The original is true.
+Converse: "If it is isosceles, then it is equilateral" — false (e.g. sides $5, 5, 3$).
+Contrapositive: "If it is not isosceles, then it is not equilateral" — true.
+AKA: შებრუნებული — მცდარი; კონტრაპოზიცია — ჭეშმარიტი
+AEN: converse — false; contrapositive — true
+
+--- medium numbers
+KA: საქონლის ფასი ჯერ $25\%$-ით გაიზარდა, შემდეგ $20\%$-ით შემცირდა. როგორ შეიცვალა ფასი საბოლოოდ?
+EN: A price rises $25\%$ and then falls $20\%$. What is the overall change?
+HKA: გაამრავლეთ კოეფიციენტები.
+HEN: Multiply the factors.
+SKA: $1{,}25 \cdot 0{,}8 = 1$ — ფასი საწყისს დაუბრუნდა.
+SEN: $1.25 \cdot 0.8 = 1$ — the price is back where it started.
+AKA: არ შეცვლილა
+AEN: no change
+
+--- medium numbers
+KA: $1000$ ლარის ანაბარი: ა) წლიური $12\%$, დარიცხვა წელიწადში ერთხელ; ბ) თვიური $1\%$, დარიცხვა ყოველთვიურად (რთული პროცენტი). რამდენი იქნება ანაბარზე წლის ბოლოს თითოეულ შემთხვევაში? ($1{,}01^{12} \approx 1{,}1268$)
+EN: A $1000$-lari deposit: a) $12\%$ a year, credited once a year; b) $1\%$ a month, credited monthly (compound). How much is there after a year in each case? ($1.01^{12} \approx 1.1268$)
+HKA: ყოველთვიური დარიცხვისას პროცენტი პროცენტზეც ერიცხება.
+HEN: With monthly crediting, interest earns interest too.
+SKA: ა) $1000 \cdot 1{,}12 = 1120\ ₾$
+ბ) $1000 \cdot 1{,}01^{12} \approx 1126{,}8\ ₾$ — ცოტა მეტი.
+SEN: a) $1000 \cdot 1.12 = 1120\ ₾$
+b) $1000 \cdot 1.01^{12} \approx 1126.8\ ₾$ — slightly more.
+AKA: $1120\ ₾$; $\approx 1126{,}8\ ₾$
+AEN: $1120\ ₾$; $\approx 1126.8\ ₾$
+
+--- medium stats
+KA: საბოლოო ქულაში საკონტროლოები $60\%$-ს შეადგენს, საშინაო დავალებები — $40\%$-ს. მოსწავლის საშუალო საკონტროლოებში $8$-ია, დავალებებში — $9$. რას უდრის საბოლოო ქულა?
+EN: Tests make up $60\%$ of the final grade and homework $40\%$. A student averages $8$ on tests and $9$ on homework. What is the final grade?
+HKA: შეწონილი საშუალო: $\sum w_i x_i$.
+HEN: Weighted mean: $\sum w_i x_i$.
+SKA: $0{,}6 \cdot 8 + 0{,}4 \cdot 9 = 4{,}8 + 3{,}6 = 8{,}4$
+SEN: $0.6 \cdot 8 + 0.4 \cdot 9 = 4.8 + 3.6 = 8.4$
+AKA: $8{,}4$
+AEN: $8.4$
+
+--- medium stats
+KA: მონეტას სამჯერ აგდებენ. რას უდრის ალბათობა, რომ ზუსტად ორჯერ მოვა გერბი?
+EN: A coin is tossed three times. What is the probability of exactly two heads?
+HKA: სულ $2^3 = 8$ შედეგია.
+HEN: There are $2^3 = 8$ outcomes.
+SKA: ხელშემწყობი: გგს, გსგ, სგგ — $3$.
+$P = \dfrac{3}{8}$
+SEN: Favourable: HHT, HTH, THH — $3$.
+$P = \dfrac{3}{8}$
+AKA: $\dfrac{3}{8}$
+AEN: $\dfrac{3}{8}$
+
+--- medium stats
+KA: ნოემბერში ყოველ დღეს წვიმის ალბათობა $0{,}3$-ია. დაახლოებით რამდენი წვიმიანი დღეა მოსალოდნელი ამ თვეში ($30$ დღე)?
+EN: In November the chance of rain each day is $0.3$. About how many rainy days are expected in the month ($30$ days)?
+HKA: მოსალოდნელი რაოდენობა = ალბათობა × ცდების რიცხვი.
+HEN: Expected number = probability × number of trials.
+SKA: $0{,}3 \cdot 30 = 9$ დღე (ეს პროგნოზია — რეალურად შეიძლება ცოტა მეტი ან ნაკლები იყოს).
+SEN: $0.3 \cdot 30 = 9$ days (a prediction — the real number may be a bit more or less).
+AKA: $\approx 9$ დღე
+AEN: $\approx 9$ days
+
+--- medium polynomials
+KA: $P(x) = 2x^3 - x + 4$. იპოვეთ $P(-1)$ და $P(2)$.
+EN: $P(x) = 2x^3 - x + 4$. Find $P(-1)$ and $P(2)$.
+HKA: ჩასვით რიცხვები ფრჩხილებში.
+HEN: Substitute the numbers in brackets.
+SKA: $P(-1) = -2 + 1 + 4 = 3$
+$P(2) = 16 - 2 + 4 = 18$
+SEN: $P(-1) = -2 + 1 + 4 = 3$
+$P(2) = 16 - 2 + 4 = 18$
+AKA: $3$; $18$
+AEN: $3$; $18$
+
+--- medium polynomials
+KA: დაშალეთ მამრავლებად: $x^3 - 2x^2 - x + 2$.
+EN: Factorise: $x^3 - 2x^2 - x + 2$.
+HKA: დააჯგუფეთ: $x^2(x - 2) - (x - 2)$.
+HEN: Group: $x^2(x - 2) - (x - 2)$.
+SKA: $x^2(x - 2) - 1 \cdot (x - 2) = (x - 2)(x^2 - 1) = (x - 2)(x - 1)(x + 1)$
+SEN: $x^2(x - 2) - 1 \cdot (x - 2) = (x - 2)(x^2 - 1) = (x - 2)(x - 1)(x + 1)$
+AKA: $(x - 2)(x - 1)(x + 1)$
+AEN: $(x - 2)(x - 1)(x + 1)$
+
+--- medium equations
+KA: ამოხსენით განტოლება: $\dfrac{2x - 1}{3} - \dfrac{x + 2}{4} = 1$.
+EN: Solve: $\dfrac{2x - 1}{3} - \dfrac{x + 2}{4} = 1$.
+HKA: გაამრავლეთ $12$-ზე.
+HEN: Multiply by $12$.
+SKA: $4(2x - 1) - 3(x + 2) = 12$
+$8x - 4 - 3x - 6 = 12 \Rightarrow 5x = 22 \Rightarrow x = 4{,}4$
+SEN: $4(2x - 1) - 3(x + 2) = 12$
+$8x - 4 - 3x - 6 = 12 \Rightarrow 5x = 22 \Rightarrow x = 4.4$
+AKA: $x = 4{,}4$
+AEN: $x = 4.4$
+
+--- medium equations
+KA: ამოხსენით უტოლობა: $x^2 - 7x + 10 \le 0$.
+EN: Solve: $x^2 - 7x + 10 \le 0$.
+HKA: ფესვები და პარაბოლის ესკიზი.
+HEN: Roots and a sketch of the parabola.
+SKA: $(x - 2)(x - 5) \le 0 \Rightarrow 2 \le x \le 5$
+SEN: $(x - 2)(x - 5) \le 0 \Rightarrow 2 \le x \le 5$
+AKA: $[2;\ 5]$
+AEN: $[2,\ 5]$
+
+--- medium equations
+KA: ამოხსენით სისტემა: $\begin{cases} 4x - 3y = 1 \\ 2x + y = 3 \end{cases}$
+EN: Solve: $\begin{cases} 4x - 3y = 1 \\ 2x + y = 3 \end{cases}$
+HKA: მეორიდან $y = 3 - 2x$.
+HEN: From the second, $y = 3 - 2x$.
+SKA: $4x - 3(3 - 2x) = 1 \Rightarrow 10x - 9 = 1 \Rightarrow x = 1$
+$y = 3 - 2 = 1$
+SEN: $4x - 3(3 - 2x) = 1 \Rightarrow 10x - 9 = 1 \Rightarrow x = 1$
+$y = 3 - 2 = 1$
+AKA: $x = 1,\ y = 1$
+AEN: $x = 1,\ y = 1$
+
+--- medium functions
+KA: ააგეთ $f(x) = |x - 2|$ ფუნქციის გრაფიკი (აღწერეთ). იპოვეთ ნული, უმცირესი მნიშვნელობა და კლებადობის შუალედი.
+EN: Describe the graph of $f(x) = |x - 2|$. Find its zero, minimum value and where it decreases.
+HKA: $y = |x|$-ის გრაფიკი („V“) $2$-ით მარჯვნივ გადაიტანეთ.
+HEN: Shift the "V" of $y = |x|$ by $2$ to the right.
+SKA: გრაფიკი — „V“ წვეროთი $(2;\ 0)$.
+ნული: $x = 2$; უმცირესი მნიშვნელობა $0$; კლებადია $(-\infty;\ 2]$-ზე, ზრდადი — $[2;\ +\infty)$-ზე.
+SEN: The graph is a "V" with vertex $(2,\ 0)$.
+Zero: $x = 2$; minimum $0$; decreasing on $(-\infty,\ 2]$, increasing on $[2,\ +\infty)$.
+AKA: $x = 2$; $0$; $(-\infty;\ 2]$
+AEN: $x = 2$; $0$; $(-\infty,\ 2]$
+
+--- medium functions
+KA: პარაბოლის წვეროა $(2;\ -1)$ და ის გადის $(0;\ 3)$ წერტილზე. ჩაწერეთ ფუნქცია.
+EN: A parabola has vertex $(2,\ -1)$ and passes through $(0,\ 3)$. Write its equation.
+HKA: $y = a(x - 2)^2 - 1$; იპოვეთ $a$.
+HEN: $y = a(x - 2)^2 - 1$; find $a$.
+SKA: $3 = a(0 - 2)^2 - 1 \Rightarrow 4a = 4 \Rightarrow a = 1$
+$y = (x - 2)^2 - 1 = x^2 - 4x + 3$
+SEN: $3 = a(0 - 2)^2 - 1 \Rightarrow 4a = 4 \Rightarrow a = 1$
+$y = (x - 2)^2 - 1 = x^2 - 4x + 3$
+AKA: $y = (x - 2)^2 - 1$
+AEN: $y = (x - 2)^2 - 1$
+
+--- medium functions
+KA: ტელეფონის ბატარეა $100\%$-დან საათში $8\%$-ით იცლება. ჩაწერეთ დამუხტვის ფუნქცია და იპოვეთ, როდის დაიცლება სრულად. როდის დარჩება $20\%$?
+EN: A phone battery drains $8\%$ per hour from $100\%$. Write the charge as a function of time and find when it is empty. When is $20\%$ left?
+HKA: წრფივი მოდელი: $B(t) = 100 - 8t$.
+HEN: Linear model: $B(t) = 100 - 8t$.
+SKA: $B(t) = 100 - 8t$
+$B = 0 \Rightarrow t = 12{,}5\ \text{სთ}$; $\ B = 20 \Rightarrow t = 10\ \text{სთ}$
+SEN: $B(t) = 100 - 8t$
+$B = 0 \Rightarrow t = 12.5\ \text{h}$; $\ B = 20 \Rightarrow t = 10\ \text{h}$
+AKA: $12{,}5\ \text{სთ}$; $10\ \text{სთ}$
+AEN: $12.5\ \text{h}$; $10\ \text{h}$
+
+--- medium geometry
+KA: $10$ რადიუსიან წრეში სექტორის კუთხე $72^\circ$-ია. იპოვეთ სექტორის ფართობი და რკალის სიგრძე.
+EN: A sector of a circle of radius $10$ has angle $72^\circ$. Find its area and arc length.
+HKA: $72^\circ$ — წრის $\dfrac{1}{5}$.
+HEN: $72^\circ$ is $\dfrac{1}{5}$ of the circle.
+SKA: $S = \dfrac{100\pi}{5} = 20\pi \approx 62{,}8$
+$l = \dfrac{20\pi}{5} = 4\pi \approx 12{,}6$
+SEN: $S = \dfrac{100\pi}{5} = 20\pi \approx 62.8$
+$l = \dfrac{20\pi}{5} = 4\pi \approx 12.6$
+AKA: $20\pi$; $4\pi$
+AEN: $20\pi$; $4\pi$
+
+--- medium geometry
+KA: იპოვეთ წესიერი რვაკუთხედის შიგა კუთხე და შიგა კუთხეების ჯამი.
+EN: Find the interior angle and the sum of the interior angles of a regular octagon.
+HKA: $S = 180^\circ (n - 2)$.
+HEN: $S = 180^\circ (n - 2)$.
+SKA: $S = 180^\circ \cdot 6 = 1080^\circ$
+კუთხე: $\dfrac{1080^\circ}{8} = 135^\circ$
+SEN: $S = 180^\circ \cdot 6 = 1080^\circ$
+Angle: $\dfrac{1080^\circ}{8} = 135^\circ$
+AKA: $135^\circ$; $1080^\circ$
+AEN: $135^\circ$; $1080^\circ$
+
+--- medium transformations
+KA: იპოვეთ $A(4;\ -6)$ წერტილის სახე სათავეზე ცენტრიანი ჰომოთეტიისას $k = -\dfrac{1}{2}$ კოეფიციენტით.
+EN: Find the image of $A(4,\ -6)$ under a homothety centred at the origin with $k = -\dfrac{1}{2}$.
+HKA: $(x;\ y) \to (kx;\ ky)$; უარყოფითი $k$ — წერტილი ცენტრის მეორე მხარეს გადადის.
+HEN: $(x,\ y) \to (kx,\ ky)$; a negative $k$ puts the point on the other side of the centre.
+SKA: $A' = \left(-\dfrac{1}{2} \cdot 4;\ -\dfrac{1}{2} \cdot (-6)\right) = (-2;\ 3)$
+SEN: $A' = \left(-\dfrac{1}{2} \cdot 4,\ -\dfrac{1}{2} \cdot (-6)\right) = (-2,\ 3)$
+AKA: $(-2;\ 3)$
+AEN: $(-2,\ 3)$
+
+--- medium transformations
+KA: პარალელური გადატანა $A(1;\ 2)$ წერტილს $A'(4;\ -1)$-ში გადაიყვანს. იპოვეთ გადატანის ვექტორი და $B(0;\ 5)$ წერტილის სახე.
+EN: A translation takes $A(1,\ 2)$ to $A'(4,\ -1)$. Find the translation vector and the image of $B(0,\ 5)$.
+HKA: $\vec{v} = A' - A$.
+HEN: $\vec{v} = A' - A$.
+SKA: $\vec{v} = (4 - 1;\ -1 - 2) = (3;\ -3)$
+$B' = (0 + 3;\ 5 - 3) = (3;\ 2)$
+SEN: $\vec{v} = (4 - 1,\ -1 - 2) = (3,\ -3)$
+$B' = (0 + 3,\ 5 - 3) = (3,\ 2)$
+AKA: $(3;\ -3)$; $(3;\ 2)$
+AEN: $(3,\ -3)$; $(3,\ 2)$
+
+--- hard sets
+KA: $1$-დან $100$-მდე რამდენი რიცხვი იყოფა $3$-ზე ან $5$-ზე?
+EN: How many numbers from $1$ to $100$ are divisible by $3$ or by $5$?
+HKA: ჩართვა-გამორიცხვა: $3$-ზეც და $5$-ზეც მხოლოდ $15$-ის ჯერადები იყოფა.
+HEN: Inclusion–exclusion: numbers divisible by both are the multiples of $15$.
+SKA: $3$-ის ჯერადები: $\left\lfloor \dfrac{100}{3} \right\rfloor = 33$; $5$-ის: $20$; $15$-ის: $6$
+$33 + 20 - 6 = 47$
+SEN: Multiples of $3$: $\left\lfloor \dfrac{100}{3} \right\rfloor = 33$; of $5$: $20$; of $15$: $6$
+$33 + 20 - 6 = 47$
+AKA: $47$
+AEN: $47$
+
+--- hard logic
+KA: დაამტკიცეთ, რომ მარტივი რიცხვები უსასრულოდ ბევრია (ევკლიდე).
+EN: Prove that there are infinitely many primes (Euclid).
+HKA: დაუშვით, რომ ისინი სასრულია: $p_1, \dots, p_n$, და განიხილეთ $N = p_1 p_2 \cdots p_n + 1$.
+HEN: Suppose there are finitely many, $p_1, \dots, p_n$, and consider $N = p_1 p_2 \cdots p_n + 1$.
+SKA: დავუშვათ, მარტივი რიცხვები მხოლოდ $p_1, p_2, \dots, p_n$-ია.
+$N = p_1 p_2 \cdots p_n + 1$ რომელიმე $p_i$-ზე გაყოფისას ნაშთში $1$-ს იძლევა — არცერთზე არ იყოფა.
+მაშინ $N$-ს მარტივი გამყოფი სიაში არ არის (ან თავად $N$ მარტივია) — წინააღმდეგობა ∎
+SEN: Suppose the only primes are $p_1, p_2, \dots, p_n$.
+$N = p_1 p_2 \cdots p_n + 1$ leaves remainder $1$ on division by each $p_i$ — it is divisible by none of them.
+So $N$ has a prime factor not in the list (or $N$ itself is prime) — a contradiction ∎
+AKA: დამტკიცებულია
+AEN: proved
+
+--- hard logic
+KA: დაამტკიცეთ: მთელი რიცხვი $n$ ლუწია მაშინ და მხოლოდ მაშინ, როცა $n^2$ ლუწია.
+EN: Prove: an integer $n$ is even if and only if $n^2$ is even.
+HKA: „მაშინ და მხოლოდ მაშინ“ — ორი მიმართულება დაამტკიცეთ. მეორისთვის გამოიყენეთ კონტრაპოზიცია.
+HEN: "If and only if" — prove both directions. For the second use the contrapositive.
+SKA: $\Rightarrow$: $n = 2k \Rightarrow n^2 = 4k^2 = 2(2k^2)$ — ლუწია.
+$\Leftarrow$ (კონტრაპოზიციით): თუ $n$ კენტია, $n = 2k + 1 \Rightarrow n^2 = 4k^2 + 4k + 1$ — კენტია. ე.ი. თუ $n^2$ ლუწია, $n$ კენტი ვერ იქნება ∎
+SEN: $\Rightarrow$: $n = 2k \Rightarrow n^2 = 4k^2 = 2(2k^2)$ — even.
+$\Leftarrow$ (by contrapositive): if $n$ is odd, $n = 2k + 1 \Rightarrow n^2 = 4k^2 + 4k + 1$ — odd. So if $n^2$ is even, $n$ cannot be odd ∎
+AKA: დამტკიცებულია
+AEN: proved
+
+--- hard numbers
+KA: $2$ წლის განმავლობაში ყოველწლიური ინფლაცია $10\%$ იყო, ხელფასი კი ამ ხნის განმავლობაში $15\%$-ით გაიზარდა. როგორ შეიცვალა რეალური ხელფასი (მსყიდველობითი უნარი)?
+EN: Over $2$ years inflation was $10\%$ per year, while a salary rose $15\%$ in total. How did the real salary (purchasing power) change?
+HKA: ფასები $1{,}1^2$-ჯერ გაიზარდა.
+HEN: Prices rose by a factor of $1.1^2$.
+SKA: ფასები: $1{,}1^2 = 1{,}21$; ხელფასი: $1{,}15$
+რეალური: $\dfrac{1{,}15}{1{,}21} \approx 0{,}95$ — დაახლოებით $5\%$-ით **შემცირდა**.
+SEN: Prices: $1.1^2 = 1.21$; salary: $1.15$
+Real: $\dfrac{1.15}{1.21} \approx 0.95$ — it **fell** by about $5\%$.
+AKA: $\approx 5\%$-ით შემცირდა
+AEN: fell by $\approx 5\%$
+
+--- hard numbers
+KA: კუბის წიბო $1\%$ ფარდობითი ცდომილებით გაზომეს. შეაფასეთ კუბის მოცულობის ფარდობითი ცდომილება.
+EN: The edge of a cube is measured with a $1\%$ relative error. Estimate the relative error of its volume.
+HKA: შეადარეთ $1{,}01^3$ და $1$.
+HEN: Compare $1.01^3$ with $1$.
+SKA: $V = a^3$; $\ 1{,}01^3 \approx 1{,}0303$ — $\approx 3\%$.
+ზოგადად: $n$-ურ ხარისხში აყვანისას ფარდობითი ცდომილება $\approx n$-ჯერ იზრდება.
+SEN: $V = a^3$; $\ 1.01^3 \approx 1.0303$ — $\approx 3\%$.
+In general raising to the $n$-th power multiplies the relative error by about $n$.
+AKA: $\approx 3\%$
+AEN: $\approx 3\%$
+
+--- hard stats
+KA: მონაცემებია $3, 4, 5, 6, 7$. იპოვეთ საშუალო და მედიანა. შემდეგ დაამატეთ „ამოვარდნილი“ მნიშვნელობა $35$ და ხელახლა იპოვეთ. რომელი საზომია უფრო მდგრადი?
+EN: The data are $3, 4, 5, 6, 7$. Find the mean and median. Then add the outlier $35$ and find them again. Which measure is more robust?
+HKA: ამოვარდნილი მნიშვნელობა საშუალოს ძლიერ ცვლის.
+HEN: An outlier changes the mean a lot.
+SKA: თავიდან: საშუალო $5$, მედიანა $5$.
+$35$-ის დამატებით: საშუალო $\dfrac{25 + 35}{6} = 10$, მედიანა $\dfrac{5 + 6}{2} = 5{,}5$.
+მედიანა თითქმის არ შეიცვალა — ის უფრო მდგრადია.
+SEN: At first: mean $5$, median $5$.
+With $35$ added: mean $\dfrac{25 + 35}{6} = 10$, median $\dfrac{5 + 6}{2} = 5.5$.
+The median barely changed — it is more robust.
+AKA: $5$, $5$ $\to$ $10$, $5{,}5$; მედიანა
+AEN: $5$, $5$ $\to$ $10$, $5.5$; the median
+
+--- hard stats
+KA: $3$ ბიჭიდან და $2$ გოგონადან შემთხვევით ირჩევენ $2$ მოსწავლეს. რას უდრის ალბათობა, რომ არჩეული იქნება ერთი ბიჭი და ერთი გოგონა?
+EN: $2$ students are chosen at random from $3$ boys and $2$ girls. What is the probability of one boy and one girl?
+HKA: ყველა წყვილი: $C_5^2$; ხელშემწყობი: $3 \cdot 2$.
+HEN: All pairs: $C_5^2$; favourable: $3 \cdot 2$.
+SKA: $C_5^2 = 10$; ხელშემწყობი $3 \cdot 2 = 6$
+$P = \dfrac{6}{10} = 0{,}6$
+SEN: $C_5^2 = 10$; favourable $3 \cdot 2 = 6$
+$P = \dfrac{6}{10} = 0.6$
+AKA: $0{,}6$
+AEN: $0.6$
+
+--- hard polynomials
+KA: იპოვეთ $a$ და $b$, თუ $x^2 + ax + b$ უნაშთოდ იყოფა $(x - 1)$-ზეც და $(x + 3)$-ზეც.
+EN: Find $a$ and $b$ if $x^2 + ax + b$ is divisible by both $(x - 1)$ and $(x + 3)$.
+HKA: $1$ და $-3$ მრავალწევრის ფესვებია.
+HEN: $1$ and $-3$ are roots of the polynomial.
+SKA: $x^2 + ax + b = (x - 1)(x + 3) = x^2 + 2x - 3$
+$a = 2$, $b = -3$
+SEN: $x^2 + ax + b = (x - 1)(x + 3) = x^2 + 2x - 3$
+$a = 2$, $b = -3$
+AKA: $a = 2$, $b = -3$
+AEN: $a = 2$, $b = -3$
+
+--- hard polynomials
+KA: იპოვეთ $P(x) = x^{100}$ მრავალწევრის ნაშთი $(x - 1)$-ზე და $(x + 1)$-ზე გაყოფისას.
+EN: Find the remainder when $P(x) = x^{100}$ is divided by $(x - 1)$ and by $(x + 1)$.
+HKA: ბეზუს თეორემა: ნაშთი $P(a)$-ს ტოლია.
+HEN: Bézout's theorem: the remainder is $P(a)$.
+SKA: $P(1) = 1^{100} = 1$
+$P(-1) = (-1)^{100} = 1$
+SEN: $P(1) = 1^{100} = 1$
+$P(-1) = (-1)^{100} = 1$
+AKA: $1$ და $1$
+AEN: $1$ and $1$
+
+--- hard equations
+KA: ამოხსენით განტოლება: $|x^2 - 4| = 3x$.
+EN: Solve: $|x^2 - 4| = 3x$.
+HKA: მარჯვენა მხარე $\ge 0$ უნდა იყოს, ე.ი. $x \ge 0$. განიხილეთ ორი შემთხვევა.
+HEN: The right side must be $\ge 0$, so $x \ge 0$. Consider two cases.
+SKA: $x^2 - 4 = 3x \Rightarrow x^2 - 3x - 4 = 0 \Rightarrow x = 4$ ან $x = -1$ ($-1$ არ გამოდგება).
+$x^2 - 4 = -3x \Rightarrow x^2 + 3x - 4 = 0 \Rightarrow x = 1$ ან $x = -4$ ($-4$ არ გამოდგება).
+შემოწმება: $x = 1$: $|-3| = 3$ ✓; $\ x = 4$: $12 = 12$ ✓
+SEN: $x^2 - 4 = 3x \Rightarrow x^2 - 3x - 4 = 0 \Rightarrow x = 4$ or $x = -1$ ($-1$ is rejected).
+$x^2 - 4 = -3x \Rightarrow x^2 + 3x - 4 = 0 \Rightarrow x = 1$ or $x = -4$ ($-4$ is rejected).
+Check: $x = 1$: $|-3| = 3$ ✓; $\ x = 4$: $12 = 12$ ✓
+AKA: $1$; $4$
+AEN: $1$; $4$
+
+--- hard equations
+KA: ამოხსენით უტოლობა: $\dfrac{1}{x} < 1$.
+EN: Solve: $\dfrac{1}{x} < 1$.
+HKA: არ გაამრავლოთ $x$-ზე (მისი ნიშანი უცნობია)! გადაიტანეთ $1$ მარცხნივ.
+HEN: Don't multiply by $x$ (its sign is unknown)! Move $1$ to the left.
+SKA: $\dfrac{1}{x} - 1 < 0 \Rightarrow \dfrac{1 - x}{x} < 0$
+კრიტიკული წერტილები $0$ და $1$: ნიშნები $(-\infty;\ 0)$: $-$; $(0;\ 1)$: $+$; $(1;\ +\infty)$: $-$.
+$x < 0$ ან $x > 1$
+SEN: $\dfrac{1}{x} - 1 < 0 \Rightarrow \dfrac{1 - x}{x} < 0$
+Critical points $0$ and $1$: signs $(-\infty,\ 0)$: $-$; $(0,\ 1)$: $+$; $(1,\ +\infty)$: $-$.
+$x < 0$ or $x > 1$
+AKA: $(-\infty;\ 0) \cup (1;\ +\infty)$
+AEN: $(-\infty,\ 0) \cup (1,\ +\infty)$
+
+--- hard functions
+KA: რამდენი ამონახსნი აქვს განტოლებას $x^2 - 4x + 3 = a$, $a$-ს მნიშვნელობის მიხედვით?
+EN: How many solutions does $x^2 - 4x + 3 = a$ have, depending on $a$?
+HKA: ამონახსნების რიცხვი — $y = x^2 - 4x + 3$ პარაბოლისა და $y = a$ ჰორიზონტალური წრფის გადაკვეთის წერტილების რიცხვი. წვერო $(2;\ -1)$.
+HEN: The number of solutions is the number of intersections of the parabola $y = x^2 - 4x + 3$ with the horizontal line $y = a$. Vertex $(2,\ -1)$.
+SKA: პარაბოლის უმცირესი მნიშვნელობა $-1$-ია.
+$a < -1$: ამონახსნი არ არის; $\ a = -1$: ერთი ($x = 2$); $\ a > -1$: ორი.
+SEN: The parabola's minimum value is $-1$.
+$a < -1$: no solutions; $\ a = -1$: one ($x = 2$); $\ a > -1$: two.
+AKA: $a < -1$ — $0$; $a = -1$ — $1$; $a > -1$ — $2$
+AEN: $a < -1$ — $0$; $a = -1$ — $1$; $a > -1$ — $2$
+
+--- hard functions
+KA: საწარმოს მოგება (ათას ლარებში) $x$ ასეული ნაწარმის გაყიდვისას არის $P(x) = -2x^2 + 40x - 150$. რამდენი ნაწარმისას არის მოგება მაქსიმალური? რა მოცულობისას არის საწარმო ზარალის გარეშე?
+EN: A firm's profit (in thousands of lari) from selling $x$ hundred items is $P(x) = -2x^2 + 40x - 150$. For how many items is the profit largest? For what range is the firm not losing money?
+HKA: მაქსიმუმი — წვეროში; ზარალი არ არის, როცა $P(x) \ge 0$.
+HEN: The maximum is at the vertex; no loss when $P(x) \ge 0$.
+SKA: $x_0 = -\dfrac{40}{2 \cdot (-2)} = 10$ ($1000$ ნაწარმი), $\ P(10) = -200 + 400 - 150 = 50$ ათასი ₾
+$P \ge 0 \iff x^2 - 20x + 75 \le 0 \iff 5 \le x \le 15$ ($500$-დან $1500$ ნაწარმამდე)
+SEN: $x_0 = -\dfrac{40}{2 \cdot (-2)} = 10$ ($1000$ items), $\ P(10) = -200 + 400 - 150 = 50$ thousand ₾
+$P \ge 0 \iff x^2 - 20x + 75 \le 0 \iff 5 \le x \le 15$ ($500$ to $1500$ items)
+AKA: $1000$ ნაწარმი; $50$ ათ. ₾; $500$–$1500$
+AEN: $1000$ items; $50$ thousand ₾; $500$–$1500$
+
+--- hard geometry
+KA: $6$ გვერდიან ტოლგვერდა სამკუთხედში იპოვეთ ჩახაზული და შემოხაზული წრეწირების რადიუსები. რა შეფარდებაა მათ შორის?
+EN: In an equilateral triangle of side $6$ find the radii of the inscribed and circumscribed circles. What is their ratio?
+HKA: ტოლგვერდა სამკუთხედში ცენტრი სიმაღლეს $1 : 2$ შეფარდებით ყოფს.
+HEN: In an equilateral triangle the centre divides each height in the ratio $1 : 2$.
+SKA: სიმაღლე: $h = \dfrac{6\sqrt{3}}{2} = 3\sqrt{3}$
+$r = \dfrac{h}{3} = \sqrt{3} \approx 1{,}73$, $\ R = \dfrac{2h}{3} = 2\sqrt{3} \approx 3{,}46$
+$r : R = 1 : 2$
+SEN: Height: $h = \dfrac{6\sqrt{3}}{2} = 3\sqrt{3}$
+$r = \dfrac{h}{3} = \sqrt{3} \approx 1.73$, $\ R = \dfrac{2h}{3} = 2\sqrt{3} \approx 3.46$
+$r : R = 1 : 2$
+AKA: $\sqrt{3}$; $2\sqrt{3}$; $1 : 2$
+AEN: $\sqrt{3}$; $2\sqrt{3}$; $1 : 2$
+
+--- hard geometry
+KA: $ABC$ სამკუთხედში $\angle A = 45^\circ$, $\angle B = 60^\circ$, $C$ წვეროდან დაშვებული სიმაღლე $CH = 6$. იპოვეთ $AB$.
+EN: In triangle $ABC$, $\angle A = 45^\circ$, $\angle B = 60^\circ$ and the height from $C$ is $CH = 6$. Find $AB$.
+HKA: სიმაღლე სამკუთხედს ორ მართკუთხა სამკუთხედად ყოფს: $AH = \dfrac{CH}{\tan 45^\circ}$, $HB = \dfrac{CH}{\tan 60^\circ}$.
+HEN: The height splits the triangle into two right triangles: $AH = \dfrac{CH}{\tan 45^\circ}$, $HB = \dfrac{CH}{\tan 60^\circ}$.
+SKA: $AH = \dfrac{6}{1} = 6$, $\ HB = \dfrac{6}{\sqrt{3}} = 2\sqrt{3}$
+$AB = 6 + 2\sqrt{3} \approx 9{,}46$
+SEN: $AH = \dfrac{6}{1} = 6$, $\ HB = \dfrac{6}{\sqrt{3}} = 2\sqrt{3}$
+$AB = 6 + 2\sqrt{3} \approx 9.46$
+AKA: $6 + 2\sqrt{3} \approx 9{,}46$
+AEN: $6 + 2\sqrt{3} \approx 9.46$
+
+--- hard transformations
+KA: დაამტკიცეთ, რომ ორი პარალელური წრფის ($x = 1$ და $x = 4$) მიმართ თანმიმდევრული სიმეტრიები პარალელური გადატანის ტოლფასია. იპოვეთ გადატანის ვექტორი.
+EN: Prove that reflecting in two parallel lines ($x = 1$ and then $x = 4$) is equivalent to a translation. Find the translation vector.
+HKA: $x = c$ წრფის მიმართ სიმეტრია: $(x;\ y) \to (2c - x;\ y)$.
+HEN: Reflection in the line $x = c$: $(x,\ y) \to (2c - x,\ y)$.
+SKA: $x = 1$: $(x;\ y) \to (2 - x;\ y)$
+$x = 4$: $(2 - x;\ y) \to (8 - (2 - x);\ y) = (x + 6;\ y)$
+შედეგი: პარალელური გადატანა $\vec{v}(6;\ 0)$ — წრფეებს შორის მანძილის ($3$) გაორმაგებული ∎
+SEN: $x = 1$: $(x,\ y) \to (2 - x,\ y)$
+$x = 4$: $(2 - x,\ y) \to (8 - (2 - x),\ y) = (x + 6,\ y)$
+The result is a translation by $\vec{v}(6,\ 0)$ — twice the distance ($3$) between the lines ∎
+AKA: $\vec{v}(6;\ 0)$
+AEN: $\vec{v}(6,\ 0)$
+
+--- hard logic olympiad
+KA: კუნძულზე რაინდები ყოველთვის სიმართლეს ამბობენ, მატყუარები — ყოველთვის ტყუიან. $A$ ამბობს: „$B$ მატყუარაა“. $B$ ამბობს: „$C$ მატყუარაა“. $C$ ამბობს: „$A$ და $B$ ორივე მატყუარაა“. ვინ ვინ არის?
+EN: On an island knights always tell the truth and knaves always lie. $A$ says: "$B$ is a knave." $B$ says: "$C$ is a knave." $C$ says: "$A$ and $B$ are both knaves." Who is who?
+HKA: დაიწყეთ $C$-თი: დაუშვით, რომ ის რაინდია, და შეამოწმეთ შედეგები.
+HEN: Start with $C$: suppose they are a knight and check the consequences.
+SKA: თუ $C$ რაინდია: $A$ და $B$ მატყუარებია. მაშინ $A$-ს სიტყვები („$B$ მატყუარაა“) ჭეშმარიტი გამოდის — მაგრამ $A$ მატყუარაა. წინააღმდეგობა.
+ე.ი. $C$ მატყუარაა. მაშინ $B$-ს სიტყვები ჭეშმარიტია $\Rightarrow B$ რაინდია.
+$A$ ამბობს „$B$ მატყუარაა“ — მცდარია $\Rightarrow A$ მატყუარაა.
+შემოწმება: $C$-ს სიტყვები („ორივე მატყუარაა“) მცდარია, რადგან $B$ რაინდია ✓
+SEN: If $C$ were a knight: $A$ and $B$ are knaves. Then $A$'s statement ("$B$ is a knave") would be true — but $A$ is a knave. Contradiction.
+So $C$ is a knave. Then $B$'s statement is true $\Rightarrow B$ is a knight.
+$A$ says "$B$ is a knave" — false $\Rightarrow A$ is a knave.
+Check: $C$'s statement ("both are knaves") is false since $B$ is a knight ✓
+AKA: $B$ — რაინდი; $A$ და $C$ — მატყუარები
+AEN: $B$ — knight; $A$ and $C$ — knaves
+
+--- hard numbers olympiad
+KA: $11$-ზე გაყოფადობის ნიშანი: რიცხვი იყოფა $11$-ზე, თუ ციფრების ნიშანმონაცვლე ჯამი იყოფა $11$-ზე. იყოფა თუ არა $918\,082$ $11$-ზე? დაასაბუთეთ ნიშანი ორნიშნა და სამნიშნა რიცხვებისთვის.
+EN: The test for $11$: a number is divisible by $11$ if the alternating sum of its digits is. Is $918\,082$ divisible by $11$? Justify the test for two- and three-digit numbers.
+HKA: $10 \equiv -1 \pmod{11}$, $100 \equiv 1$.
+HEN: $10 \equiv -1 \pmod{11}$, $100 \equiv 1$.
+SKA: $9 - 1 + 8 - 0 + 8 - 2 = 22$ — იყოფა $11$-ზე $\Rightarrow 918\,082$ იყოფა ($918\,082 = 11 \cdot 83\,462$).
+დასაბუთება: $\overline{abc} = 100a + 10b + c = 99a + 11b + (a - b + c)$; პირველი ორი წევრი $11$-ის ჯერადია, ამიტომ ყველაფერი $a - b + c$-ზეა დამოკიდებული ∎
+SEN: $9 - 1 + 8 - 0 + 8 - 2 = 22$ — divisible by $11$ $\Rightarrow 918\,082$ is ($918\,082 = 11 \cdot 83\,462$).
+Justification: $\overline{abc} = 100a + 10b + c = 99a + 11b + (a - b + c)$; the first two terms are multiples of $11$, so it all depends on $a - b + c$ ∎
+AKA: დიახ
+AEN: yes
+
+--- hard polynomials olympiad
+KA: $x$ აკმაყოფილებს განტოლებას $x^2 = x + 1$. გამოსახეთ $x^3$, $x^4$ და $x^5$ სახით $ax + b$. რა კანონზომიერებას ამჩნევთ კოეფიციენტებში?
+EN: $x$ satisfies $x^2 = x + 1$. Express $x^3$, $x^4$ and $x^5$ in the form $ax + b$. What pattern do you notice in the coefficients?
+HKA: ყოველ ჯერზე გაამრავლეთ $x$-ზე და შეცვალეთ $x^2 = x + 1$-ით.
+HEN: Each time multiply by $x$ and replace $x^2$ by $x + 1$.
+SKA: $x^3 = x \cdot x^2 = x^2 + x = 2x + 1$
+$x^4 = 2x^2 + x = 3x + 2$
+$x^5 = 3x^2 + 2x = 5x + 3$
+კოეფიციენტები $1, 1, 2, 3, 5, \dots$ — ფიბონაჩის რიცხვებია! ($x^n = F_n x + F_{n-1}$)
+SEN: $x^3 = x \cdot x^2 = x^2 + x = 2x + 1$
+$x^4 = 2x^2 + x = 3x + 2$
+$x^5 = 3x^2 + 2x = 5x + 3$
+The coefficients $1, 1, 2, 3, 5, \dots$ are the Fibonacci numbers! ($x^n = F_n x + F_{n-1}$)
+AKA: $2x + 1$; $3x + 2$; $5x + 3$ — ფიბონაჩი
+AEN: $2x + 1$; $3x + 2$; $5x + 3$ — Fibonacci
+
+--- hard functions olympiad
+KA: იპოვეთ $f(x) = |x - 1| + |x - 2| + |x - 3|$ ფუნქციის უმცირესი მნიშვნელობა.
+EN: Find the smallest value of $f(x) = |x - 1| + |x - 2| + |x - 3|$.
+HKA: $f(x)$ — მანძილების ჯამი $1$, $2$ და $3$ წერტილებამდე. სად არის ის უმცირესი?
+HEN: $f(x)$ is the sum of distances to the points $1$, $2$ and $3$. Where is it smallest?
+SKA: $|x - 1| + |x - 3| \ge 2$ (ტოლობა, როცა $1 \le x \le 3$), $\ |x - 2| \ge 0$ (ტოლობა $x = 2$-ზე).
+ორივე ერთდროულად სრულდება $x = 2$-ზე: $f(2) = 1 + 0 + 1 = 2$.
+(მანძილების ჯამი მინიმალურია მედიანაზე.)
+SEN: $|x - 1| + |x - 3| \ge 2$ (equality for $1 \le x \le 3$), $\ |x - 2| \ge 0$ (equality at $x = 2$).
+Both hold at once at $x = 2$: $f(2) = 1 + 0 + 1 = 2$.
+(The sum of distances is smallest at the median.)
+AKA: $2$ ($x = 2$-ზე)
+AEN: $2$ (at $x = 2$)
+
+--- hard geometry olympiad
+KA: იპოვეთ სამკუთხედის ფართობი, რომლის წვეროებია $(0;\ 0)$, $(4;\ 1)$ და $(1;\ 3)$.
+EN: Find the area of the triangle with vertices $(0,\ 0)$, $(4,\ 1)$ and $(1,\ 3)$.
+HKA: ჩასვით სამკუთხედი $4 \times 3$ მართკუთხედში და გამოაკელით სამი მართკუთხა სამკუთხედი.
+HEN: Put the triangle inside a $4 \times 3$ rectangle and subtract three right triangles.
+SKA: მართკუთხედი: $4 \cdot 3 = 12$.
+გამოსაკლები სამკუთხედები: $\dfrac{4 \cdot 1}{2} = 2$, $\ \dfrac{3 \cdot 2}{2} = 3$, $\ \dfrac{1 \cdot 3}{2} = 1{,}5$
+$S = 12 - 6{,}5 = 5{,}5$
+(შემოწმება „თასმის“ ფორმულით: $\dfrac{|4 \cdot 3 - 1 \cdot 1|}{2} = \dfrac{11}{2}$ ✓)
+SEN: Rectangle: $4 \cdot 3 = 12$.
+Triangles to subtract: $\dfrac{4 \cdot 1}{2} = 2$, $\ \dfrac{3 \cdot 2}{2} = 3$, $\ \dfrac{1 \cdot 3}{2} = 1.5$
+$S = 12 - 6.5 = 5.5$
+(Check with the shoelace formula: $\dfrac{|4 \cdot 3 - 1 \cdot 1|}{2} = \dfrac{11}{2}$ ✓)
+AKA: $5{,}5$
+AEN: $5.5$
 </script>
 </body>
 </html>

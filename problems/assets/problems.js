@@ -34,20 +34,20 @@
       },
       gradeWord: "კლასი",
       gradeTitle: function (g, s) { return s + " · " + g + " კლასი"; },
-      gradeSub: "მთელი სასწავლო წლის თემები: მარტივი, საშუალო და რთული ამოცანები. რთული დონის ბოლო 5 ამოცანა ოლიმპიადურია.",
+      gradeSub: "მთელი სასწავლო წლის თემები: მარტივი, საშუალო და რთული ამოცანები. რთული დონის ბოლო 10 ამოცანა ოლიმპიურია.",
       soon: "მალე",
       problemsN: function (n) { return n + " ამოცანა"; },
       topicsN: function (n) { return n + " თემა"; },
-      oly: "ოლიმპიადური",
+      oly: "ოლიმპიური",
       levels: { easy: "მარტივი", medium: "საშუალო", hard: "რთული" },
       topicLabel: "თემა:",
       allTopics: "ყველა თემა",
-      weeks: "კვირები",
+      weeks: "კვირა",
       hint: "მინიშნება", solution: "ამოხსნა", answer: "პასუხი",
       showHint: "💡 მინიშნება", hideHint: "💡 მინიშნების დამალვა",
       showSol: "✅ ამოხსნა", hideSol: "✅ ამოხსნის დამალვა",
       empty: "ამ თემაზე ამ დონის ამოცანა ჯერ არ არის. აირჩიეთ სხვა თემა ან დონე.",
-      olyDivider: "🏆 ოლიმპიადური ამოცანები",
+      olyDivider: "🏆 ოლიმპიური ამოცანები",
       otherCollection: { physics: "მათემატიკის ამოცანების კრებული →", math: "ფიზიკის ამოცანების კრებული →" },
       notes: "შენიშვნა"
     },
@@ -61,7 +61,7 @@
       },
       gradeWord: "Grade",
       gradeTitle: function (g, s) { return s + " · Grade " + g; },
-      gradeSub: "Topics of the whole school year: easy, medium and hard problems. The last 5 hard problems are olympiad-style.",
+      gradeSub: "Topics of the whole school year: easy, medium and hard problems. The last 10 hard problems are olympiad-style.",
       soon: "coming soon",
       problemsN: function (n) { return n + " problems"; },
       topicsN: function (n) { return n + " topics"; },
@@ -182,7 +182,16 @@
       if (k[0] === "s") slot[k[1]].push(line);
       else slot[k[1]] = slot[k[1]] ? slot[k[1]] + "\n" + line : line;
     });
-    // Number problems inside each level and give them stable ids.
+    // Show problems in curriculum order (topic declaration order), olympiad problems last,
+    // so new problems can simply be appended to the end of a page. Then number them per level.
+    var topicIndex = {};
+    topics.forEach(function (tp, i) { topicIndex[tp.id] = i; });
+    problems.forEach(function (p, i) { p.order = i; });
+    problems.sort(function (a, b) {
+      return (a.oly - b.oly) ||
+        ((topicIndex[a.topic] || 0) - (topicIndex[b.topic] || 0)) ||
+        (a.order - b.order);
+    });
     var counters = { easy: 0, medium: 0, hard: 0 };
     problems.forEach(function (p) {
       p.no = ++counters[p.level];
