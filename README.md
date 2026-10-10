@@ -8,6 +8,7 @@ Problems for grades VII–XII following the national curriculum: easy, medium an
 - [`Grade IX`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/IX) — kinematics, Newton's laws, circular motion, momentum, energy, statics
 - [`Grade X`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/X) — electric charge, Coulomb's law, fields, capacitors, Ohm's law, circuits
 - [`Grade XI`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/XI) — magnetism, induction, oscillations and waves, AC, optics and lenses
+- [`Grade XII`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/XII) — gas laws, thermodynamics, photoelectric effect, atoms and nuclei, radioactivity, astrophysics
 
 #### [`Collection of Mathematics Problems`](https://george1meshveliani.github.io/Hello-Physics/problems/math/) — მათემატიკის ამოცანების კრებული
 Problems for grades VII–XII following the national curriculum: easy, medium and hard (last 10 olympiad-style), with hidden hints and step-by-step solutions.
@@ -16,6 +17,7 @@ Problems for grades VII–XII following the national curriculum: easy, medium an
 - [`Grade IX`](https://george1meshveliani.github.io/Hello-Physics/problems/math/IX) — quadratics, parabolas, progressions, circles, similarity, trigonometry, solids, combinatorics
 - [`Grade X`](https://george1meshveliani.github.io/Hello-Physics/problems/math/X) — sets and logic, statistics, polynomials, functions, geometry, transformations
 - [`Grade XI`](https://george1meshveliani.github.io/Hello-Physics/problems/math/XI) — logarithms, trigonometry, progressions, solid geometry, vectors in space, statistics
+- [`Grade XII`](https://george1meshveliani.github.io/Hello-Physics/problems/math/XII) — laws of sines and cosines, solids, linear programming, probability, combinatorics, final review
 
 ### - Beginner Level -
 

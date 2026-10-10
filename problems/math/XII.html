@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mathematics · Grade XII</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css?v=2">
+  <script defer src="../assets/problems.js?v=2"></script>
+</head>
+<body data-page="grade" data-subject="math" data-grade="XII">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic trig          | I–II | მართკუთხა სამკუთხედის ტრიგონომეტრია (გამეორება) | Right-triangle trigonometry (review)
+# topic sines         | IV | სინუსების თეორემა | The law of sines
+# topic cosines       | V–VI | კოსინუსების თეორემა. სამკუთხედების ამოხსნა | The law of cosines. Solving triangles
+# topic circles       | VII | ჩახაზული და შემოხაზული წრეწირები. წრეწირების ურთიერთმდებარეობა | Inscribed and circumscribed circles. Relative position of circles
+# topic solids        | III, VIII–IX, XI | სივრცული სხეულები: ზედაპირი, მოცულობა, კვეთები, მოდელები | Solids: surface area, volume, sections, models
+# topic linprog       | XIII–XIV | წრფივი დაპროგრამება. ოპტიმიზაცია | Linear programming. Optimisation
+# topic modeling      | XIX–XXI | მოდელირება ფუნქციით. საუკეთესო მიახლოების წრფე | Modelling with functions. The line of best fit
+# topic events        | XXII | დამოკიდებული და დამოუკიდებელი ხდომილობები | Dependent and independent events
+# topic geoprob       | XXIII | გეომეტრიული ალბათობა | Geometric probability
+# topic combinatorics | XXIV–XXV | კომბინატორიკა. ქვესიმრავლეთა რაოდენობა | Combinatorics. Counting subsets
+# topic statprob      | XXVI | თეორიული და სტატისტიკური ალბათობა | Theoretical and statistical probability
+# topic algebra       | XXVIII | განმეორება: რიცხვები, განტოლებები, უტოლობები | Review: numbers, equations, inequalities
+# topic functions     | XXIX | განმეორება: ფუნქციები და გრაფიკები | Review: functions and graphs
+# topic logic         | XXXII | განმეორება: სიმრავლეები და ლოგიკა | Review: sets and logic
+# note ამოხსნებში ჯერ მოცემულია ფორმულა ან წესი, შემდეგ — ნაბიჯ-ნაბიჯ გამოთვლა. $C_n^k$ — ჯუფთებათა, $A_n^k$ — წყობათა რიცხვი. | Each solution first states the formula or rule, then computes step by step. $C_n^k$ is the number of combinations, $A_n^k$ the number of arrangements.
+
+// ===================================================================== EASY
+
+--- easy trig
+KA: მართკუთხა სამკუთხედის ჰიპოტენუზაა $10$, ერთ-ერთი მახვილი კუთხე — $30^\circ$. იპოვეთ კათეტები.
+EN: A right triangle has hypotenuse $10$ and one acute angle $30^\circ$. Find the legs.
+HKA: მოპირდაპირე კათეტი $= c\sin\alpha$, მიმდებარე $= c\cos\alpha$.
+HEN: Opposite leg $= c\sin\alpha$, adjacent leg $= c\cos\alpha$.
+SKA: $a = 10\sin 30^\circ = 5$
+$b = 10\cos 30^\circ = 5\sqrt{3} \approx 8{,}66$
+SEN: $a = 10\sin 30^\circ = 5$
+$b = 10\cos 30^\circ = 5\sqrt{3} \approx 8.66$
+AKA: $5$ და $5\sqrt{3}$
+AEN: $5$ and $5\sqrt{3}$
+
+--- easy trig
+KA: $5\ \text{მ}$ სიგრძის კიბე კედელს ეყრდნობა და მიწასთან $60^\circ$-იან კუთხეს ქმნის. რა სიმაღლეზე ეხება კიბე კედელს? რა მანძილითაა მისი ქვედა ბოლო კედლიდან?
+EN: A $5\ \text{m}$ ladder leans against a wall at $60^\circ$ to the ground. How high up the wall does it reach? How far is its foot from the wall?
+HKA: კიბე — ჰიპოტენუზა.
+HEN: The ladder is the hypotenuse.
+SKA: $h = 5\sin 60^\circ = \dfrac{5\sqrt{3}}{2} \approx 4{,}33\ \text{მ}$
+$d = 5\cos 60^\circ = 2{,}5\ \text{მ}$
+SEN: $h = 5\sin 60^\circ = \dfrac{5\sqrt{3}}{2} \approx 4.33\ \text{m}$
+$d = 5\cos 60^\circ = 2.5\ \text{m}$
+AKA: $\approx 4{,}33\ \text{მ}$; $2{,}5\ \text{მ}$
+AEN: $\approx 4.33\ \text{m}$; $2.5\ \text{m}$
+
+--- easy trig
+KA: მახვილი კუთხისთვის $\tan\alpha = \dfrac{3}{4}$. იპოვეთ $\sin\alpha$ და $\cos\alpha$.
+EN: For an acute angle $\tan\alpha = \dfrac{3}{4}$. Find $\sin\alpha$ and $\cos\alpha$.
+HKA: დახაზეთ მართკუთხა სამკუთხედი კათეტებით $3$ და $4$.
+HEN: Draw a right triangle with legs $3$ and $4$.
+SKA: ჰიპოტენუზა: $\sqrt{9 + 16} = 5$
+$\sin\alpha = \dfrac{3}{5}$, $\ \cos\alpha = \dfrac{4}{5}$
+SEN: Hypotenuse: $\sqrt{9 + 16} = 5$
+$\sin\alpha = \dfrac{3}{5}$, $\ \cos\alpha = \dfrac{4}{5}$
+AKA: $\dfrac{3}{5}$; $\dfrac{4}{5}$
+AEN: $\dfrac{3}{5}$; $\dfrac{4}{5}$
+
+--- easy sines
+KA: $ABC$ სამკუთხედში $a = 10$, $\angle A = 30^\circ$, $\angle B = 45^\circ$. იპოვეთ $b$.
+EN: In triangle $ABC$, $a = 10$, $\angle A = 30^\circ$, $\angle B = 45^\circ$. Find $b$.
+HKA: სინუსების თეორემა: $\dfrac{a}{\sin A} = \dfrac{b}{\sin B}$.
+HEN: Law of sines: $\dfrac{a}{\sin A} = \dfrac{b}{\sin B}$.
+SKA: $b = \dfrac{a\sin B}{\sin A} = \dfrac{10 \cdot \frac{\sqrt{2}}{2}}{\frac{1}{2}} = 10\sqrt{2} \approx 14{,}1$
+SEN: $b = \dfrac{a\sin B}{\sin A} = \dfrac{10 \cdot \frac{\sqrt{2}}{2}}{\frac{1}{2}} = 10\sqrt{2} \approx 14.1$
+AKA: $10\sqrt{2}$
+AEN: $10\sqrt{2}$
+
+--- easy sines
+KA: სამკუთხედში $a = 6$, $\angle A = 30^\circ$. იპოვეთ შემოხაზული წრეწირის რადიუსი.
+EN: In a triangle $a = 6$ and $\angle A = 30^\circ$. Find the circumradius.
+HKA: $\dfrac{a}{\sin A} = 2R$.
+HEN: $\dfrac{a}{\sin A} = 2R$.
+SKA: $2R = \dfrac{6}{0{,}5} = 12 \Rightarrow R = 6$
+SEN: $2R = \dfrac{6}{0.5} = 12 \Rightarrow R = 6$
+AKA: $6$
+AEN: $6$
+
+--- easy sines
+KA: სამკუთხედის კუთხეებია $\angle A = 40^\circ$, $\angle B = 75^\circ$. იპოვეთ $\angle C$. რომელი გვერდია ყველაზე გრძელი?
+EN: A triangle has $\angle A = 40^\circ$ and $\angle B = 75^\circ$. Find $\angle C$. Which side is the longest?
+HKA: სინუსების თეორემით დიდ კუთხეს დიდი გვერდი შეესაბამება.
+HEN: By the law of sines, the larger angle faces the longer side.
+SKA: $\angle C = 180^\circ - 40^\circ - 75^\circ = 65^\circ$
+უდიდესი კუთხე $B$ $\Rightarrow$ უგრძესი გვერდი $b = AC$.
+SEN: $\angle C = 180^\circ - 40^\circ - 75^\circ = 65^\circ$
+The largest angle is $B$ $\Rightarrow$ the longest side is $b = AC$.
+AKA: $65^\circ$; $AC$
+AEN: $65^\circ$; $AC$
+
+--- easy cosines
+KA: სამკუთხედში $b = 5$, $c = 8$, $\angle A = 60^\circ$. იპოვეთ $a$.
+EN: In a triangle $b = 5$, $c = 8$ and $\angle A = 60^\circ$. Find $a$.
+HKA: კოსინუსების თეორემა: $a^2 = b^2 + c^2 - 2bc\cos A$.
+HEN: Law of cosines: $a^2 = b^2 + c^2 - 2bc\cos A$.
+SKA: $a^2 = 25 + 64 - 2 \cdot 5 \cdot 8 \cdot \dfrac{1}{2} = 49$
+$a = 7$
+SEN: $a^2 = 25 + 64 - 2 \cdot 5 \cdot 8 \cdot \dfrac{1}{2} = 49$
+$a = 7$
+AKA: $7$
+AEN: $7$
+
+--- easy cosines
+KA: სამკუთხედის გვერდებია $3$, $5$ და $7$. იპოვეთ უდიდესი კუთხე.
+EN: A triangle has sides $3$, $5$ and $7$. Find its largest angle.
+HKA: უდიდესი კუთხე უდიდესი გვერდის მოპირდაპირეა.
+HEN: The largest angle is opposite the longest side.
+SKA: $\cos C = \dfrac{9 + 25 - 49}{2 \cdot 3 \cdot 5} = -\dfrac{1}{2}$
+$C = 120^\circ$
+SEN: $\cos C = \dfrac{9 + 25 - 49}{2 \cdot 3 \cdot 5} = -\dfrac{1}{2}$
+$C = 120^\circ$
+AKA: $120^\circ$
+AEN: $120^\circ$
+
+--- easy cosines
+KA: მახვილკუთხაა, მართკუთხა თუ ბლაგვკუთხა სამკუთხედი გვერდებით $6$, $8$ და $11$?
+EN: Is a triangle with sides $6$, $8$ and $11$ acute, right or obtuse?
+HKA: შეადარეთ $c^2$ და $a^2 + b^2$ (კოსინუსის ნიშანი).
+HEN: Compare $c^2$ with $a^2 + b^2$ (the sign of the cosine).
+SKA: $11^2 = 121$, $\ 6^2 + 8^2 = 100$
+$121 > 100 \Rightarrow \cos C < 0$ — ბლაგვკუთხაა.
+SEN: $11^2 = 121$, $\ 6^2 + 8^2 = 100$
+$121 > 100 \Rightarrow \cos C < 0$ — obtuse.
+AKA: ბლაგვკუთხა
+AEN: obtuse
+
+--- easy circles
+KA: იპოვეთ $3$, $4$, $5$ გვერდებიანი სამკუთხედის ჩახაზული და შემოხაზული წრეწირების რადიუსები.
+EN: Find the inradius and circumradius of the triangle with sides $3$, $4$, $5$.
+HKA: მართკუთხა სამკუთხედში $r = \dfrac{a + b - c}{2}$, $R = \dfrac{c}{2}$.
+HEN: In a right triangle $r = \dfrac{a + b - c}{2}$ and $R = \dfrac{c}{2}$.
+SKA: $3^2 + 4^2 = 5^2$ — მართკუთხაა.
+$r = \dfrac{3 + 4 - 5}{2} = 1$, $\ R = \dfrac{5}{2} = 2{,}5$
+SEN: $3^2 + 4^2 = 5^2$ — it is a right triangle.
+$r = \dfrac{3 + 4 - 5}{2} = 1$, $\ R = \dfrac{5}{2} = 2.5$
+AKA: $1$; $2{,}5$
+AEN: $1$; $2.5$
+
+--- easy circles
+KA: კვადრატის გვერდია $8$. იპოვეთ ჩახაზული და შემოხაზული წრეწირების რადიუსები.
+EN: A square has side $8$. Find the radii of its inscribed and circumscribed circles.
+HKA: ჩახაზულის დიამეტრი — გვერდი, შემოხაზულისა — დიაგონალი.
+HEN: The inscribed circle's diameter is the side; the circumscribed circle's is the diagonal.
+SKA: $r = \dfrac{8}{2} = 4$
+$R = \dfrac{8\sqrt{2}}{2} = 4\sqrt{2} \approx 5{,}66$
+SEN: $r = \dfrac{8}{2} = 4$
+$R = \dfrac{8\sqrt{2}}{2} = 4\sqrt{2} \approx 5.66$
+AKA: $4$; $4\sqrt{2}$
+AEN: $4$; $4\sqrt{2}$
+
+--- easy circles
+KA: ორი წრეწირის რადიუსებია $5$ და $3$. როგორია მათი ურთიერთმდებარეობა, თუ ცენტრებს შორის მანძილია: ა) $10$; ბ) $8$; გ) $2$?
+EN: Two circles have radii $5$ and $3$. How are they positioned if the distance between the centres is: a) $10$; b) $8$; c) $2$?
+HKA: შეადარეთ $d$ რიცხვებს $R + r = 8$ და $R - r = 2$.
+HEN: Compare $d$ with $R + r = 8$ and $R - r = 2$.
+SKA: ა) $10 > 8$ — ერთმანეთის გარეთ, საერთო წერტილი არ აქვთ.
+ბ) $d = R + r$ — გარედან ეხებიან.
+გ) $d = R - r$ — შიგნიდან ეხებიან.
+SEN: a) $10 > 8$ — outside each other, no common points.
+b) $d = R + r$ — touching externally.
+c) $d = R - r$ — touching internally.
+AKA: ა) არ იკვეთება; ბ) გარე შეხება; გ) შიგა შეხება
+AEN: a) separate; b) external tangency; c) internal tangency
+
+--- easy solids
+KA: კუბის სრული ზედაპირის ფართობია $150$. იპოვეთ წიბო და მოცულობა.
+EN: A cube has total surface area $150$. Find its edge and volume.
+HKA: $S = 6a^2$.
+HEN: $S = 6a^2$.
+SKA: $6a^2 = 150 \Rightarrow a^2 = 25 \Rightarrow a = 5$
+$V = a^3 = 125$
+SEN: $6a^2 = 150 \Rightarrow a^2 = 25 \Rightarrow a = 5$
+$V = a^3 = 125$
+AKA: $5$; $125$
+AEN: $5$; $125$
+
+--- easy solids
+KA: ცილინდრის რადიუსია $3$, სიმაღლე — $10$. იპოვეთ მოცულობა და გვერდითი ზედაპირის ფართობი.
+EN: A cylinder has radius $3$ and height $10$. Find its volume and lateral surface area.
+HKA: $V = \pi r^2 h$, $\ S_{\text{გვ}} = 2\pi r h$.
+HEN: $V = \pi r^2 h$, $\ S_{\text{lat}} = 2\pi r h$.
+SKA: $V = \pi \cdot 9 \cdot 10 = 90\pi \approx 283$
+$S_{\text{გვ}} = 2\pi \cdot 3 \cdot 10 = 60\pi \approx 188$
+SEN: $V = \pi \cdot 9 \cdot 10 = 90\pi \approx 283$
+$S_{\text{lat}} = 2\pi \cdot 3 \cdot 10 = 60\pi \approx 188$
+AKA: $90\pi$; $60\pi$
+AEN: $90\pi$; $60\pi$
+
+--- easy solids
+KA: სფეროს რადიუსია $6$. იპოვეთ მისი ზედაპირის ფართობი და მოცულობა.
+EN: A sphere has radius $6$. Find its surface area and volume.
+HKA: $S = 4\pi R^2$, $\ V = \dfrac{4}{3}\pi R^3$.
+HEN: $S = 4\pi R^2$, $\ V = \dfrac{4}{3}\pi R^3$.
+SKA: $S = 4\pi \cdot 36 = 144\pi$
+$V = \dfrac{4}{3}\pi \cdot 216 = 288\pi$
+SEN: $S = 4\pi \cdot 36 = 144\pi$
+$V = \dfrac{4}{3}\pi \cdot 216 = 288\pi$
+AKA: $144\pi$; $288\pi$
+AEN: $144\pi$; $288\pi$
+
+--- easy solids
+KA: კონუსის ფუძის რადიუსია $3$, სიმაღლე — $4$. იპოვეთ მსახველი და მოცულობა.
+EN: A cone has base radius $3$ and height $4$. Find its slant height and volume.
+HKA: $l = \sqrt{r^2 + h^2}$, $\ V = \dfrac{1}{3}\pi r^2 h$.
+HEN: $l = \sqrt{r^2 + h^2}$, $\ V = \dfrac{1}{3}\pi r^2 h$.
+SKA: $l = \sqrt{9 + 16} = 5$
+$V = \dfrac{1}{3}\pi \cdot 9 \cdot 4 = 12\pi$
+SEN: $l = \sqrt{9 + 16} = 5$
+$V = \dfrac{1}{3}\pi \cdot 9 \cdot 4 = 12\pi$
+AKA: $5$; $12\pi$
+AEN: $5$; $12\pi$
+
+--- easy linprog
+KA: ეკუთვნის თუ არა წერტილი $(2;\ 3)$ არეს, რომელიც მოცემულია უტოლობებით $x + y \le 6$, $y \le 2x$, $x \ge 0$, $y \ge 0$?
+EN: Does the point $(2,\ 3)$ belong to the region given by $x + y \le 6$, $y \le 2x$, $x \ge 0$, $y \ge 0$?
+HKA: ჩასვით კოორდინატები ყველა უტოლობაში.
+HEN: Substitute the coordinates into every inequality.
+SKA: $2 + 3 = 5 \le 6$ ✓; $\ 3 \le 4$ ✓; $\ 2 \ge 0$, $3 \ge 0$ ✓
+ეკუთვნის.
+SEN: $2 + 3 = 5 \le 6$ ✓; $\ 3 \le 4$ ✓; $\ 2 \ge 0$, $3 \ge 0$ ✓
+Yes, it does.
+AKA: დიახ
+AEN: yes
+
+--- easy linprog
+KA: დასაშვები არის წვეროებია $(0;\ 0)$, $(4;\ 0)$, $(2;\ 4)$, $(0;\ 5)$. იპოვეთ $z = 3x + 2y$-ის უდიდესი მნიშვნელობა.
+EN: The feasible region has vertices $(0,\ 0)$, $(4,\ 0)$, $(2,\ 4)$, $(0,\ 5)$. Find the largest value of $z = 3x + 2y$.
+HKA: წრფივი ფუნქცია უდიდეს მნიშვნელობას არის წვეროში იღებს.
+HEN: A linear function takes its largest value at a vertex of the region.
+SKA: $z(0;\ 0) = 0$, $\ z(4;\ 0) = 12$, $\ z(2;\ 4) = 14$, $\ z(0;\ 5) = 10$
+$z_{\max} = 14$, წერტილში $(2;\ 4)$
+SEN: $z(0,\ 0) = 0$, $\ z(4,\ 0) = 12$, $\ z(2,\ 4) = 14$, $\ z(0,\ 5) = 10$
+$z_{\max} = 14$, at $(2,\ 4)$
+AKA: $14$
+AEN: $14$
+
+--- easy linprog
+KA: სახელოსნოში სკამს $2$ საათი სჭირდება, მაგიდას — $3$ საათი; დღეში სულ $12$ საათია. $x$ — სკამები, $y$ — მაგიდები. ჩაწერეთ შეზღუდვები და ჩამოთვალეთ ორი დასაშვები ვარიანტი.
+EN: In a workshop a chair takes $2$ hours and a table $3$ hours; there are $12$ hours a day. Let $x$ be chairs and $y$ tables. Write the constraints and list two feasible options.
+HKA: სულ დახარჯული დრო არ უნდა აღემატებოდეს $12$-ს.
+HEN: The total time must not exceed $12$.
+SKA: $2x + 3y \le 12$, $\ x \ge 0$, $\ y \ge 0$ (მთელი რიცხვები)
+მაგ.: $(6;\ 0)$ — $12$ სთ; $(3;\ 2)$ — $12$ სთ; $(0;\ 4)$ — $12$ სთ
+SEN: $2x + 3y \le 12$, $\ x \ge 0$, $\ y \ge 0$ (whole numbers)
+E.g. $(6,\ 0)$ — $12$ h; $(3,\ 2)$ — $12$ h; $(0,\ 4)$ — $12$ h
+AKA: $2x + 3y \le 12$
+AEN: $2x + 3y \le 12$
+
+--- easy modeling
+KA: მცენარის სიმაღლე $5\ \text{სმ}$-ია და კვირაში $2\ \text{სმ}$-ით იზრდება. ჩაწერეთ მოდელი და იპოვეთ სიმაღლე $6$ კვირის შემდეგ.
+EN: A plant is $5\ \text{cm}$ tall and grows $2\ \text{cm}$ a week. Write a model and find its height after $6$ weeks.
+HKA: წრფივი მოდელი: $h(t) = h_0 + vt$.
+HEN: A linear model: $h(t) = h_0 + vt$.
+SKA: $h(t) = 5 + 2t$
+$h(6) = 5 + 12 = 17\ \text{სმ}$
+SEN: $h(t) = 5 + 2t$
+$h(6) = 5 + 12 = 17\ \text{cm}$
+AKA: $17\ \text{სმ}$
+AEN: $17\ \text{cm}$
+
+--- easy modeling
+KA: წერტილები $(1;\ 3)$, $(2;\ 5)$, $(3;\ 7)$ ერთ წრფეზე მდებარეობს. იპოვეთ წრფის განტოლება და პროგნოზი $x = 10$-ისთვის.
+EN: The points $(1,\ 3)$, $(2,\ 5)$, $(3,\ 7)$ lie on one line. Find its equation and the prediction for $x = 10$.
+HKA: $x$-ის $1$-ით ზრდისას $y$ $2$-ით იზრდება.
+HEN: When $x$ goes up by $1$, $y$ goes up by $2$.
+SKA: $k = 2$, $\ b = 3 - 2 = 1 \Rightarrow y = 2x + 1$
+$y(10) = 21$
+SEN: $k = 2$, $\ b = 3 - 2 = 1 \Rightarrow y = 2x + 1$
+$y(10) = 21$
+AKA: $y = 2x + 1$; $21$
+AEN: $y = 2x + 1$; $21$
+
+--- easy events
+KA: ორ კამათელს აგდებენ. რას უდრის ალბათობა, რომ ორივეზე $6$ მოვა?
+EN: Two dice are rolled. What is the probability that both show $6$?
+HKA: დამოუკიდებელი ხდომილობებისთვის $P(A \cap B) = P(A) \cdot P(B)$.
+HEN: For independent events $P(A \cap B) = P(A) \cdot P(B)$.
+SKA: $P = \dfrac{1}{6} \cdot \dfrac{1}{6} = \dfrac{1}{36}$
+SEN: $P = \dfrac{1}{6} \cdot \dfrac{1}{6} = \dfrac{1}{36}$
+AKA: $\dfrac{1}{36}$
+AEN: $\dfrac{1}{36}$
+
+--- easy events
+KA: ყუთში $3$ წითელი და $2$ ლურჯი ბურთია. დაბრუნების გარეშე ამოიღებენ ორს. რას უდრის ალბათობა, რომ ორივე წითელია?
+EN: A box has $3$ red and $2$ blue balls. Two are drawn without replacement. What is the probability that both are red?
+HKA: მეორე ამოღება პირველზეა დამოკიდებული.
+HEN: The second draw depends on the first.
+SKA: $P = \dfrac{3}{5} \cdot \dfrac{2}{4} = \dfrac{6}{20} = \dfrac{3}{10}$
+SEN: $P = \dfrac{3}{5} \cdot \dfrac{2}{4} = \dfrac{6}{20} = \dfrac{3}{10}$
+AKA: $\dfrac{3}{10}$
+AEN: $\dfrac{3}{10}$
+
+--- easy events
+KA: $A$ და $B$ უთავსებადი ხდომილობებია, $P(A) = 0{,}3$, $P(B) = 0{,}5$. იპოვეთ $P(A \cup B)$ და $P(A \cap B)$.
+EN: $A$ and $B$ are mutually exclusive, $P(A) = 0.3$, $P(B) = 0.5$. Find $P(A \cup B)$ and $P(A \cap B)$.
+HKA: უთავსებადი — ერთდროულად ვერ მოხდება.
+HEN: Mutually exclusive — they cannot happen together.
+SKA: $P(A \cap B) = 0$
+$P(A \cup B) = 0{,}3 + 0{,}5 = 0{,}8$
+SEN: $P(A \cap B) = 0$
+$P(A \cup B) = 0.3 + 0.5 = 0.8$
+AKA: $0{,}8$; $0$
+AEN: $0.8$; $0$
+
+--- easy geoprob
+KA: $[0;\ 10]$ მონაკვეთზე შემთხვევით ირჩევენ წერტილს $x$. რას უდრის ალბათობა, რომ $x < 3$?
+EN: A point $x$ is chosen at random on $[0,\ 10]$. What is the probability that $x < 3$?
+HKA: გეომეტრიული ალბათობა — სიგრძეების შეფარდება.
+HEN: Geometric probability is a ratio of lengths.
+SKA: $P = \dfrac{3}{10} = 0{,}3$
+SEN: $P = \dfrac{3}{10} = 0.3$
+AKA: $0{,}3$
+AEN: $0.3$
+
+--- easy geoprob
+KA: $2$ გვერდიან კვადრატში ჩახაზულია წრე. კვადრატში შემთხვევით ისვრიან ისარს. რას უდრის ალბათობა, რომ ის წრეში მოხვდება?
+EN: A circle is inscribed in a square of side $2$. A dart lands at a random point of the square. What is the probability it lands in the circle?
+HKA: ფართობების შეფარდება.
+HEN: A ratio of areas.
+SKA: $P = \dfrac{\pi \cdot 1^2}{2^2} = \dfrac{\pi}{4} \approx 0{,}785$
+SEN: $P = \dfrac{\pi \cdot 1^2}{2^2} = \dfrac{\pi}{4} \approx 0.785$
+AKA: $\dfrac{\pi}{4}$
+AEN: $\dfrac{\pi}{4}$
+
+--- easy combinatorics
+KA: რამდენი სხვადასხვა გზით შეიძლება $5$ წიგნის თაროზე დალაგება?
+EN: In how many ways can $5$ books be arranged on a shelf?
+HKA: გადანაცვლებათა რიცხვი: $P_n = n!$.
+HEN: Number of permutations: $P_n = n!$.
+SKA: $P_5 = 5! = 120$
+SEN: $P_5 = 5! = 120$
+AKA: $120$
+AEN: $120$
+
+--- easy combinatorics
+KA: რამდენი გზით შეიძლება $10$ მოსწავლიდან $3$-ის არჩევა ექსკურსიაზე წასაყვანად?
+EN: In how many ways can $3$ students out of $10$ be chosen for a trip?
+HKA: რიგს მნიშვნელობა არ აქვს — ჯუფთებები: $C_n^k = \dfrac{n!}{k!(n - k)!}$.
+HEN: Order doesn't matter — combinations: $C_n^k = \dfrac{n!}{k!(n - k)!}$.
+SKA: $C_{10}^3 = \dfrac{10 \cdot 9 \cdot 8}{3 \cdot 2 \cdot 1} = 120$
+SEN: $C_{10}^3 = \dfrac{10 \cdot 9 \cdot 8}{3 \cdot 2 \cdot 1} = 120$
+AKA: $120$
+AEN: $120$
+
+--- easy combinatorics
+KA: $8$ წევრიან კლუბში ირჩევენ თავმჯდომარეს და მდივანს. რამდენი ვარიანტია?
+EN: A club of $8$ members elects a president and a secretary. How many options are there?
+HKA: რიგს მნიშვნელობა აქვს — წყობები: $A_n^k = \dfrac{n!}{(n - k)!}$.
+HEN: Order matters — arrangements: $A_n^k = \dfrac{n!}{(n - k)!}$.
+SKA: $A_8^2 = 8 \cdot 7 = 56$
+SEN: $A_8^2 = 8 \cdot 7 = 56$
+AKA: $56$
+AEN: $56$
+
+--- easy combinatorics
+KA: რამდენი ქვესიმრავლე აქვს $\{a, b, c, d, e\}$ სიმრავლეს? რამდენია მათ შორის არაცარიელი?
+EN: How many subsets does $\{a, b, c, d, e\}$ have? How many of them are non-empty?
+HKA: $n$-ელემენტიან სიმრავლეს $2^n$ ქვესიმრავლე აქვს.
+HEN: An $n$-element set has $2^n$ subsets.
+SKA: $2^5 = 32$
+არაცარიელი: $32 - 1 = 31$
+SEN: $2^5 = 32$
+Non-empty: $32 - 1 = 31$
+AKA: $32$; $31$
+AEN: $32$; $31$
+
+--- easy statprob
+KA: მონეტა $200$-ჯერ ააგდეს, გერბი $112$-ჯერ მოვიდა. იპოვეთ გერბის ფარდობითი სიხშირე და შეადარეთ თეორიულ ალბათობას.
+EN: A coin was tossed $200$ times and showed heads $112$ times. Find the relative frequency of heads and compare it with the theoretical probability.
+HKA: ფარდობითი სიხშირე $= \dfrac{m}{n}$.
+HEN: Relative frequency $= \dfrac{m}{n}$.
+SKA: $\dfrac{112}{200} = 0{,}56$; თეორიული ალბათობა $0{,}5$
+განსხვავება $0{,}06$ — ცდების მატებასთან ერთად სიხშირე $0{,}5$-ს მიუახლოვდება.
+SEN: $\dfrac{112}{200} = 0.56$; the theoretical probability is $0.5$
+The difference is $0.06$ — with more trials the frequency approaches $0.5$.
+AKA: $0{,}56$; $0{,}5$
+AEN: $0.56$; $0.5$
+
+--- easy statprob
+KA: კამათელს აგდებენ. იპოვეთ ალბათობები: ა) ლუწი რიცხვი; ბ) მარტივი რიცხვი; გ) $7$.
+EN: A die is rolled. Find the probabilities: a) an even number; b) a prime number; c) a $7$.
+HKA: ხელსაყრელი შედეგები / ყველა შედეგი ($6$).
+HEN: Favourable outcomes / all outcomes ($6$).
+SKA: ა) $\{2, 4, 6\}$: $\dfrac{3}{6} = \dfrac{1}{2}$
+ბ) $\{2, 3, 5\}$: $\dfrac{1}{2}$
+გ) შეუძლებელი ხდომილობა: $0$
+SEN: a) $\{2, 4, 6\}$: $\dfrac{3}{6} = \dfrac{1}{2}$
+b) $\{2, 3, 5\}$: $\dfrac{1}{2}$
+c) an impossible event: $0$
+AKA: $\dfrac{1}{2}$; $\dfrac{1}{2}$; $0$
+AEN: $\dfrac{1}{2}$; $\dfrac{1}{2}$; $0$
+
+--- easy algebra
+KA: ამოხსენით სისტემა: $\begin{cases} x + y = 10 \\ x - y = 4 \end{cases}$
+EN: Solve: $\begin{cases} x + y = 10 \\ x - y = 4 \end{cases}$
+HKA: შეკრიბეთ განტოლებები.
+HEN: Add the equations.
+SKA: $2x = 14 \Rightarrow x = 7$, $\ y = 3$
+SEN: $2x = 14 \Rightarrow x = 7$, $\ y = 3$
+AKA: $x = 7,\ y = 3$
+AEN: $x = 7,\ y = 3$
+
+--- easy algebra
+KA: გამოთვალეთ: $\dfrac{\sqrt{12} + \sqrt{27}}{\sqrt{3}}$.
+EN: Evaluate: $\dfrac{\sqrt{12} + \sqrt{27}}{\sqrt{3}}$.
+HKA: $\sqrt{12} = 2\sqrt{3}$, $\ \sqrt{27} = 3\sqrt{3}$.
+HEN: $\sqrt{12} = 2\sqrt{3}$, $\ \sqrt{27} = 3\sqrt{3}$.
+SKA: $\dfrac{2\sqrt{3} + 3\sqrt{3}}{\sqrt{3}} = \dfrac{5\sqrt{3}}{\sqrt{3}} = 5$
+SEN: $\dfrac{2\sqrt{3} + 3\sqrt{3}}{\sqrt{3}} = \dfrac{5\sqrt{3}}{\sqrt{3}} = 5$
+AKA: $5$
+AEN: $5$
+
+--- easy algebra
+KA: ამოხსენით უტოლობა: $x^2 - 5x + 6 < 0$.
+EN: Solve: $x^2 - 5x + 6 < 0$.
+HKA: $x^2 - 5x + 6 = (x - 2)(x - 3)$.
+HEN: $x^2 - 5x + 6 = (x - 2)(x - 3)$.
+SKA: $(x - 2)(x - 3) < 0 \Rightarrow 2 < x < 3$
+SEN: $(x - 2)(x - 3) < 0 \Rightarrow 2 < x < 3$
+AKA: $(2;\ 3)$
+AEN: $(2,\ 3)$
+
+--- easy functions
+KA: $f(x) = 2^x$. იპოვეთ $f(3)$, $f(0)$ და $f(-1)$. ზრდადია თუ კლებადი?
+EN: $f(x) = 2^x$. Find $f(3)$, $f(0)$ and $f(-1)$. Is it increasing or decreasing?
+HKA: $a > 1$-ისთვის $a^x$ ზრდადია.
+HEN: For $a > 1$, $a^x$ is increasing.
+SKA: $f(3) = 8$, $\ f(0) = 1$, $\ f(-1) = \dfrac{1}{2}$
+ფუძე $2 > 1$ — ზრდადია.
+SEN: $f(3) = 8$, $\ f(0) = 1$, $\ f(-1) = \dfrac{1}{2}$
+The base $2 > 1$ — increasing.
+AKA: $8$; $1$; $\dfrac{1}{2}$; ზრდადი
+AEN: $8$; $1$; $\dfrac{1}{2}$; increasing
+
+--- easy functions
+KA: წრფივი ფუნქციის გრაფიკი გადის $(0;\ 2)$ და $(3;\ 8)$ წერტილებზე. ჩაწერეთ ფუნქცია.
+EN: The graph of a linear function passes through $(0,\ 2)$ and $(3,\ 8)$. Write the function.
+HKA: $k = \dfrac{y_2 - y_1}{x_2 - x_1}$, $b$ — $y$-ღერძთან გადაკვეთა.
+HEN: $k = \dfrac{y_2 - y_1}{x_2 - x_1}$; $b$ is the $y$-intercept.
+SKA: $k = \dfrac{8 - 2}{3 - 0} = 2$, $\ b = 2$
+$y = 2x + 2$
+SEN: $k = \dfrac{8 - 2}{3 - 0} = 2$, $\ b = 2$
+$y = 2x + 2$
+AKA: $y = 2x + 2$
+AEN: $y = 2x + 2$
+
+--- easy functions
+KA: იპოვეთ $y = 3\sin x$ ფუნქციის მნიშვნელობათა სიმრავლე და პერიოდი.
+EN: Find the range and period of $y = 3\sin x$.
+HKA: $-1 \le \sin x \le 1$.
+HEN: $-1 \le \sin x \le 1$.
+SKA: $-3 \le 3\sin x \le 3$ $\Rightarrow$ $E(y) = [-3;\ 3]$
+პერიოდი $2\pi$ (ამპლიტუდა პერიოდს არ ცვლის).
+SEN: $-3 \le 3\sin x \le 3$ $\Rightarrow$ range $[-3,\ 3]$
+Period $2\pi$ (the amplitude doesn't change the period).
+AKA: $[-3;\ 3]$; $2\pi$
+AEN: $[-3,\ 3]$; $2\pi$
+
+--- easy logic
+KA: $A = \{1, 2, 3, 4\}$, $B = \{3, 4, 5\}$. იპოვეთ $A \cap B$, $A \cup B$, $A \setminus B$.
+EN: $A = \{1, 2, 3, 4\}$, $B = \{3, 4, 5\}$. Find $A \cap B$, $A \cup B$, $A \setminus B$.
+HKA: თანაკვეთა — საერთო ელემენტები; სხვაობა — $A$-ს ელემენტები, რომლებიც $B$-ში არ არის.
+HEN: The intersection is the common elements; the difference is the elements of $A$ not in $B$.
+SKA: $A \cap B = \{3, 4\}$
+$A \cup B = \{1, 2, 3, 4, 5\}$
+$A \setminus B = \{1, 2\}$
+SEN: $A \cap B = \{3, 4\}$
+$A \cup B = \{1, 2, 3, 4, 5\}$
+$A \setminus B = \{1, 2\}$
+AKA: $\{3, 4\}$; $\{1, 2, 3, 4, 5\}$; $\{1, 2\}$
+AEN: $\{3, 4\}$; $\{1, 2, 3, 4, 5\}$; $\{1, 2\}$
+
+--- easy logic
+KA: ჩამოაყალიბეთ უარყოფა: „კლასის ყველა მოსწავლემ ჩააბარა გამოცდა“.
+EN: Write the negation of: "Every student in the class passed the exam."
+HKA: „ყველა“-ს უარყოფა — „არსებობს ერთი მაინც, რომელიც არა…“.
+HEN: The negation of "every" is "there is at least one who does not…".
+SKA: უარყოფა: „კლასში არის ერთი მოსწავლე მაინც, რომელმაც გამოცდა ვერ ჩააბარა“.
+(არა „ყველამ ჩაიჭრა“!)
+SEN: Negation: "At least one student in the class did not pass the exam."
+(Not "everyone failed"!)
+AKA: ერთმა მაინც ვერ ჩააბარა
+AEN: at least one student failed
+
+--- easy logic
+KA: $p$ ჭეშმარიტია, $q$ — მცდარი. იპოვეთ $p \wedge q$, $p \vee q$, $p \Rightarrow q$ და $\neg p \Rightarrow q$-ის ჭეშმარიტობა.
+EN: $p$ is true and $q$ is false. Find the truth values of $p \wedge q$, $p \vee q$, $p \Rightarrow q$ and $\neg p \Rightarrow q$.
+HKA: იმპლიკაცია მცდარია მხოლოდ „ჭეშმარიტი $\Rightarrow$ მცდარი“ შემთხვევაში.
+HEN: An implication is false only for "true $\Rightarrow$ false".
+SKA: $p \wedge q$ — მცდარი; $\ p \vee q$ — ჭეშმარიტი
+$p \Rightarrow q$ — მცდარი; $\ \neg p \Rightarrow q$: მცდარი $\Rightarrow$ მცდარი — ჭეშმარიტი
+SEN: $p \wedge q$ — false; $\ p \vee q$ — true
+$p \Rightarrow q$ — false; $\ \neg p \Rightarrow q$: false $\Rightarrow$ false — true
+AKA: მ; ჭ; მ; ჭ
+AEN: F; T; F; T
+
+--- easy logic
+KA: კლასში $20$ მოსწავლე სწავლობს ინგლისურს, $15$ — გერმანულს, $7$ — ორივეს. რამდენი სწავლობს ერთ ენას მაინც?
+EN: In a class $20$ students study English, $15$ study German and $7$ study both. How many study at least one of these languages?
+HKA: $n(A \cup B) = n(A) + n(B) - n(A \cap B)$.
+HEN: $n(A \cup B) = n(A) + n(B) - n(A \cap B)$.
+SKA: $n(A \cup B) = 20 + 15 - 7 = 28$
+SEN: $n(A \cup B) = 20 + 15 - 7 = 28$
+AKA: $28$
+AEN: $28$
+
+// ===================================================================== MEDIUM
+
+--- medium trig
+KA: შენობიდან $50\ \text{მ}$-ის დაშორებით მისი სახურავი $35^\circ$-იანი კუთხით ჩანს. იპოვეთ შენობის სიმაღლე ($\tan 35^\circ \approx 0{,}700$).
+EN: From $50\ \text{m}$ away, the top of a building is seen at an elevation of $35^\circ$. Find the height of the building ($\tan 35^\circ \approx 0.700$).
+HKA: $\tan\alpha = \dfrac{h}{d}$.
+HEN: $\tan\alpha = \dfrac{h}{d}$.
+SKA: $h = d\tan 35^\circ = 50 \cdot 0{,}700 = 35\ \text{მ}$
+SEN: $h = d\tan 35^\circ = 50 \times 0.700 = 35\ \text{m}$
+AKA: $\approx 35\ \text{მ}$
+AEN: $\approx 35\ \text{m}$
+
+--- medium trig
+KA: გზის ნიშანზე წერია „აღმართი $8\%$“ (ყოველ $100\ \text{მ}$ ჰორიზონტალურ მანძილზე $8\ \text{მ}$ აწევა). იპოვეთ დახრის კუთხე და აწევა $1\ \text{კმ}$ ჰორიზონტალურ მანძილზე.
+EN: A road sign says "$8\%$ gradient" (an $8\ \text{m}$ rise per $100\ \text{m}$ horizontally). Find the angle of incline and the rise over $1\ \text{km}$ horizontally.
+HKA: $\tan\alpha = 0{,}08$.
+HEN: $\tan\alpha = 0.08$.
+SKA: $\alpha = \arctan 0{,}08 \approx 4{,}6^\circ$
+აწევა: $1000 \cdot 0{,}08 = 80\ \text{მ}$
+SEN: $\alpha = \arctan 0.08 \approx 4.6^\circ$
+Rise: $1000 \times 0.08 = 80\ \text{m}$
+AKA: $\approx 4{,}6^\circ$; $80\ \text{მ}$
+AEN: $\approx 4.6^\circ$; $80\ \text{m}$
+
+--- medium sines
+KA: სამკუთხედში $a = 6$, $b = 8$, $\angle A = 30^\circ$. რამდენი სამკუთხედი აკმაყოფილებს ამ პირობას? იპოვეთ $\angle B$-ს შესაძლო მნიშვნელობები.
+EN: In a triangle $a = 6$, $b = 8$, $\angle A = 30^\circ$. How many triangles satisfy these conditions? Find the possible values of $\angle B$.
+HKA: $\sin B = \dfrac{b\sin A}{a}$; სინუსს ორი კუთხე შეესაბამება — $B$ და $180^\circ - B$.
+HEN: $\sin B = \dfrac{b\sin A}{a}$; a sine value matches two angles — $B$ and $180^\circ - B$.
+SKA: $\sin B = \dfrac{8 \cdot 0{,}5}{6} \approx 0{,}667$
+$B_1 \approx 41{,}8^\circ$ ან $B_2 \approx 138{,}2^\circ$
+შემოწმება: $30^\circ + 138{,}2^\circ < 180^\circ$ — ორივე შესაძლებელია $\Rightarrow$ ორი სამკუთხედი.
+SEN: $\sin B = \dfrac{8 \times 0.5}{6} \approx 0.667$
+$B_1 \approx 41.8^\circ$ or $B_2 \approx 138.2^\circ$
+Check: $30^\circ + 138.2^\circ < 180^\circ$ — both work $\Rightarrow$ two triangles.
+AKA: ორი; $\approx 41{,}8^\circ$ ან $138{,}2^\circ$
+AEN: two; $\approx 41.8^\circ$ or $138.2^\circ$
+
+--- medium sines
+KA: ნაპირზე $A$ და $B$ პუნქტები ერთმანეთისგან $10\ \text{კმ}$-ითაა დაშორებული. შუქურა $C$ ჩანს კუთხეებით $\angle A = 50^\circ$ და $\angle B = 70^\circ$. იპოვეთ $AC$.
+EN: Points $A$ and $B$ on a shore are $10\ \text{km}$ apart. A lighthouse $C$ is seen at angles $\angle A = 50^\circ$ and $\angle B = 70^\circ$. Find $AC$.
+HKA: $\angle C = 60^\circ$; $AC$ მდებარეობს $\angle B$-ს მოპირდაპირედ.
+HEN: $\angle C = 60^\circ$; $AC$ is opposite $\angle B$.
+SKA: $\angle C = 180^\circ - 50^\circ - 70^\circ = 60^\circ$
+$AC = \dfrac{AB\sin B}{\sin C} = \dfrac{10 \cdot 0{,}940}{0{,}866} \approx 10{,}85\ \text{კმ}$
+SEN: $\angle C = 180^\circ - 50^\circ - 70^\circ = 60^\circ$
+$AC = \dfrac{AB\sin B}{\sin C} = \dfrac{10 \times 0.940}{0.866} \approx 10.85\ \text{km}$
+AKA: $\approx 10{,}85\ \text{კმ}$
+AEN: $\approx 10.85\ \text{km}$
+
+--- medium sines
+KA: სამკუთხედის ორი გვერდია $8$ და $10$, მათ შორის კუთხე — $30^\circ$. იპოვეთ ფართობი.
+EN: Two sides of a triangle are $8$ and $10$ with a $30^\circ$ angle between them. Find the area.
+HKA: $S = \dfrac{1}{2}ab\sin C$.
+HEN: $S = \dfrac{1}{2}ab\sin C$.
+SKA: $S = \dfrac{1}{2} \cdot 8 \cdot 10 \cdot \dfrac{1}{2} = 20$
+SEN: $S = \dfrac{1}{2} \cdot 8 \cdot 10 \cdot \dfrac{1}{2} = 20$
+AKA: $20$
+AEN: $20$
+
+--- medium cosines
+KA: ორი გემი ერთდროულად გამოდის ნავსადგურიდან $60^\circ$-იანი კუთხით, სიჩქარეებით $20$ და $30\ \text{კმ/სთ}$. რა მანძილი იქნება მათ შორის $2$ საათის შემდეგ?
+EN: Two ships leave port at the same time on courses $60^\circ$ apart, at $20$ and $30\ \text{km/h}$. How far apart are they after $2$ hours?
+HKA: $2$ საათში გავლილი მანძილები: $40$ და $60\ \text{კმ}$.
+HEN: Distances after $2$ hours: $40$ and $60\ \text{km}$.
+SKA: $d^2 = 40^2 + 60^2 - 2 \cdot 40 \cdot 60 \cdot \cos 60^\circ = 1600 + 3600 - 2400 = 2800$
+$d = \sqrt{2800} \approx 52{,}9\ \text{კმ}$
+SEN: $d^2 = 40^2 + 60^2 - 2 \cdot 40 \cdot 60 \cdot \cos 60^\circ = 1600 + 3600 - 2400 = 2800$
+$d = \sqrt{2800} \approx 52.9\ \text{km}$
+AKA: $\approx 52{,}9\ \text{კმ}$
+AEN: $\approx 52.9\ \text{km}$
+
+--- medium cosines
+KA: პარალელოგრამის გვერდებია $5$ და $8$, კუთხე — $60^\circ$. იპოვეთ დიაგონალები.
+EN: A parallelogram has sides $5$ and $8$ and an angle of $60^\circ$. Find its diagonals.
+HKA: მეორე კუთხე $120^\circ$-ია; $\cos 120^\circ = -\dfrac{1}{2}$.
+HEN: The other angle is $120^\circ$; $\cos 120^\circ = -\dfrac{1}{2}$.
+SKA: $d_1^2 = 25 + 64 - 2 \cdot 5 \cdot 8 \cdot \dfrac{1}{2} = 49 \Rightarrow d_1 = 7$
+$d_2^2 = 25 + 64 + 40 = 129 \Rightarrow d_2 = \sqrt{129} \approx 11{,}4$
+SEN: $d_1^2 = 25 + 64 - 2 \cdot 5 \cdot 8 \cdot \dfrac{1}{2} = 49 \Rightarrow d_1 = 7$
+$d_2^2 = 25 + 64 + 40 = 129 \Rightarrow d_2 = \sqrt{129} \approx 11.4$
+AKA: $7$; $\sqrt{129}$
+AEN: $7$; $\sqrt{129}$
+
+--- medium cosines
+KA: იპოვეთ $5$, $6$, $7$ გვერდებიანი სამკუთხედის ფართობი ჰერონის ფორმულით და მისი უმცირესი კუთხე.
+EN: Find the area of the triangle with sides $5$, $6$, $7$ by Heron's formula, and its smallest angle.
+HKA: $S = \sqrt{p(p - a)(p - b)(p - c)}$; უმცირესი კუთხე $5$-ის მოპირდაპირეა.
+HEN: $S = \sqrt{p(p - a)(p - b)(p - c)}$; the smallest angle is opposite $5$.
+SKA: $p = 9$: $\ S = \sqrt{9 \cdot 4 \cdot 3 \cdot 2} = \sqrt{216} = 6\sqrt{6} \approx 14{,}7$
+$\cos A = \dfrac{36 + 49 - 25}{2 \cdot 6 \cdot 7} = \dfrac{60}{84} \approx 0{,}714 \Rightarrow A \approx 44{,}4^\circ$
+SEN: $p = 9$: $\ S = \sqrt{9 \cdot 4 \cdot 3 \cdot 2} = \sqrt{216} = 6\sqrt{6} \approx 14.7$
+$\cos A = \dfrac{36 + 49 - 25}{2 \cdot 6 \cdot 7} = \dfrac{60}{84} \approx 0.714 \Rightarrow A \approx 44.4^\circ$
+AKA: $6\sqrt{6}$; $\approx 44{,}4^\circ$
+AEN: $6\sqrt{6}$; $\approx 44.4^\circ$
+
+--- medium cosines
+KA: $ABC$ სამკუთხედში $AB = 5$, $AC = 8$, $BC = 7$. იპოვეთ $A$ წვეროდან გავლებული მედიანა.
+EN: In triangle $ABC$, $AB = 5$, $AC = 8$, $BC = 7$. Find the median from vertex $A$.
+HKA: მედიანის ფორმულა: $m_a = \dfrac{1}{2}\sqrt{2b^2 + 2c^2 - a^2}$.
+HEN: Median formula: $m_a = \dfrac{1}{2}\sqrt{2b^2 + 2c^2 - a^2}$.
+SKA: $m_a = \dfrac{1}{2}\sqrt{2 \cdot 64 + 2 \cdot 25 - 49} = \dfrac{1}{2}\sqrt{129} \approx 5{,}68$
+SEN: $m_a = \dfrac{1}{2}\sqrt{2 \cdot 64 + 2 \cdot 25 - 49} = \dfrac{1}{2}\sqrt{129} \approx 5.68$
+AKA: $\dfrac{\sqrt{129}}{2}$
+AEN: $\dfrac{\sqrt{129}}{2}$
+
+--- medium circles
+KA: იპოვეთ $13$, $14$, $15$ გვერდებიანი სამკუთხედის ჩახაზული და შემოხაზული წრეწირების რადიუსები, თუ მისი ფართობია $84$.
+EN: Find the inradius and circumradius of the triangle with sides $13$, $14$, $15$, given that its area is $84$.
+HKA: $r = \dfrac{S}{p}$, $\ R = \dfrac{abc}{4S}$.
+HEN: $r = \dfrac{S}{p}$, $\ R = \dfrac{abc}{4S}$.
+SKA: $p = 21$: $\ r = \dfrac{84}{21} = 4$
+$R = \dfrac{13 \cdot 14 \cdot 15}{4 \cdot 84} = \dfrac{2730}{336} = 8{,}125$
+SEN: $p = 21$: $\ r = \dfrac{84}{21} = 4$
+$R = \dfrac{13 \cdot 14 \cdot 15}{4 \cdot 84} = \dfrac{2730}{336} = 8.125$
+AKA: $4$; $8{,}125$
+AEN: $4$; $8.125$
+
+--- medium circles
+KA: $10$ რადიუსიან წრეწირში ქორდა ცენტრიდან $6$-ითაა დაშორებული. იპოვეთ ქორდის სიგრძე.
+EN: In a circle of radius $10$, a chord is $6$ from the centre. Find the length of the chord.
+HKA: ცენტრიდან ქორდაზე დაშვებული პერპენდიკულარი ქორდას შუაზე ყოფს.
+HEN: The perpendicular from the centre bisects the chord.
+SKA: ნახევარი ქორდა: $\sqrt{10^2 - 6^2} = 8$
+ქორდა: $16$
+SEN: Half the chord: $\sqrt{10^2 - 6^2} = 8$
+Chord: $16$
+AKA: $16$
+AEN: $16$
+
+--- medium circles
+KA: $ABCD$ ოთხკუთხედი წრეწირშია ჩახაზული, $\angle A = 70^\circ$, $\angle B = 95^\circ$. იპოვეთ $\angle C$ და $\angle D$.
+EN: Quadrilateral $ABCD$ is inscribed in a circle, $\angle A = 70^\circ$, $\angle B = 95^\circ$. Find $\angle C$ and $\angle D$.
+HKA: ჩახაზულ ოთხკუთხედში მოპირდაპირე კუთხეების ჯამი $180^\circ$-ია.
+HEN: In a cyclic quadrilateral opposite angles add up to $180^\circ$.
+SKA: $\angle C = 180^\circ - 70^\circ = 110^\circ$
+$\angle D = 180^\circ - 95^\circ = 85^\circ$
+SEN: $\angle C = 180^\circ - 70^\circ = 110^\circ$
+$\angle D = 180^\circ - 95^\circ = 85^\circ$
+AKA: $110^\circ$; $85^\circ$
+AEN: $110^\circ$; $85^\circ$
+
+--- medium solids
+KA: $2$ წიბოიანი კუბი სფეროშია ჩახაზული. იპოვეთ სფეროს რადიუსი და კუბისა და სფეროს მოცულობების შეფარდება.
+EN: A cube of edge $2$ is inscribed in a sphere. Find the sphere's radius and the ratio of the volumes of the cube and the sphere.
+HKA: სფეროს დიამეტრი — კუბის დიაგონალი $a\sqrt{3}$.
+HEN: The sphere's diameter is the cube's diagonal $a\sqrt{3}$.
+SKA: $2R = 2\sqrt{3} \Rightarrow R = \sqrt{3}$
+$\dfrac{V_{\text{კ}}}{V_{\text{ს}}} = \dfrac{8}{\frac{4}{3}\pi \cdot 3\sqrt{3}} = \dfrac{2}{\pi\sqrt{3}} \approx 0{,}37$
+SEN: $2R = 2\sqrt{3} \Rightarrow R = \sqrt{3}$
+$\dfrac{V_{\text{cube}}}{V_{\text{sph}}} = \dfrac{8}{\frac{4}{3}\pi \cdot 3\sqrt{3}} = \dfrac{2}{\pi\sqrt{3}} \approx 0.37$
+AKA: $\sqrt{3}$; $\approx 0{,}37$
+AEN: $\sqrt{3}$; $\approx 0.37$
+
+--- medium solids
+KA: $3$ რადიუსიანი ლითონის ბურთი გადაადნეს და $3$ რადიუსიანი ცილინდრი ჩამოასხეს. იპოვეთ ცილინდრის სიმაღლე.
+EN: A metal ball of radius $3$ is melted and recast as a cylinder of radius $3$. Find the height of the cylinder.
+HKA: მოცულობა არ იცვლება.
+HEN: The volume stays the same.
+SKA: $\dfrac{4}{3}\pi \cdot 27 = \pi \cdot 9 \cdot h$
+$36\pi = 9\pi h \Rightarrow h = 4$
+SEN: $\dfrac{4}{3}\pi \cdot 27 = \pi \cdot 9 \cdot h$
+$36\pi = 9\pi h \Rightarrow h = 4$
+AKA: $4$
+AEN: $4$
+
+--- medium solids
+KA: წესიერი ოთხკუთხა პირამიდის ფუძის გვერდია $6$, გვერდითი წიბო — $5$. იპოვეთ სიმაღლე და მოცულობა.
+EN: A regular square pyramid has base side $6$ and lateral edge $5$. Find its height and volume.
+HKA: სიმაღლის ფუძე — კვადრატის ცენტრი; ნახევარდიაგონალი $3\sqrt{2}$.
+HEN: The foot of the height is the centre of the square; the half-diagonal is $3\sqrt{2}$.
+SKA: $h = \sqrt{25 - 18} = \sqrt{7} \approx 2{,}65$
+$V = \dfrac{1}{3} \cdot 36 \cdot \sqrt{7} = 12\sqrt{7} \approx 31{,}7$
+SEN: $h = \sqrt{25 - 18} = \sqrt{7} \approx 2.65$
+$V = \dfrac{1}{3} \cdot 36 \cdot \sqrt{7} = 12\sqrt{7} \approx 31.7$
+AKA: $\sqrt{7}$; $12\sqrt{7}$
+AEN: $\sqrt{7}$; $12\sqrt{7}$
+
+--- medium solids
+KA: ცილინდრს ($r = 5$, $h = 10$) კვეთენ ღერძის პარალელური სიბრტყით, ღერძიდან $3$-ის დაშორებით. იპოვეთ კვეთის ფორმა და ფართობი.
+EN: A cylinder ($r = 5$, $h = 10$) is cut by a plane parallel to its axis at distance $3$ from the axis. Find the shape and area of the cross-section.
+HKA: კვეთა მართკუთხედია; მისი ერთი გვერდი ფუძის ქორდაა.
+HEN: The section is a rectangle; one side is a chord of the base.
+SKA: ქორდა: $2\sqrt{25 - 9} = 8$
+კვეთა — $8 \times 10$ მართკუთხედი, $S = 80$
+SEN: Chord: $2\sqrt{25 - 9} = 8$
+The section is an $8 \times 10$ rectangle, $S = 80$
+AKA: მართკუთხედი; $80$
+AEN: a rectangle; $80$
+
+--- medium linprog
+KA: იპოვეთ $z = x + y$-ის მაქსიმუმი, თუ $x + 2y \le 8$, $3x + y \le 9$, $x \ge 0$, $y \ge 0$.
+EN: Maximise $z = x + y$ subject to $x + 2y \le 8$, $3x + y \le 9$, $x \ge 0$, $y \ge 0$.
+HKA: იპოვეთ არის წვეროები, მათ შორის წრფეების გადაკვეთა.
+HEN: Find the vertices of the region, including where the lines cross.
+SKA: წვეროები: $(0;\ 0)$, $(3;\ 0)$, $(0;\ 4)$ და $\begin{cases} x + 2y = 8 \\ 3x + y = 9 \end{cases} \Rightarrow (2;\ 3)$
+$z$: $0$, $3$, $4$, $5$ $\Rightarrow z_{\max} = 5$ წერტილში $(2;\ 3)$
+SEN: Vertices: $(0,\ 0)$, $(3,\ 0)$, $(0,\ 4)$ and $\begin{cases} x + 2y = 8 \\ 3x + y = 9 \end{cases} \Rightarrow (2,\ 3)$
+$z$: $0$, $3$, $4$, $5$ $\Rightarrow z_{\max} = 5$ at $(2,\ 3)$
+AKA: $5$, $(2;\ 3)$-ში
+AEN: $5$, at $(2,\ 3)$
+
+--- medium linprog
+KA: საკვები $A$ ღირს $2$ ₾, საკვები $B$ — $3$ ₾ (ერთეულზე). ვიტამინების მოთხოვნა: $x + y \ge 6$, $x + 3y \ge 12$, $x, y \ge 0$. იპოვეთ უმცირესი ღირებულება $z = 2x + 3y$.
+EN: Food $A$ costs $2$ ₾ and food $B$ $3$ ₾ per unit. The vitamin requirements are $x + y \ge 6$, $x + 3y \ge 12$, $x, y \ge 0$. Find the minimum cost $z = 2x + 3y$.
+HKA: არე შემოუსაზღვრელია; წვეროებია $(0;\ 6)$, $(12;\ 0)$ და წრფეების გადაკვეთა.
+HEN: The region is unbounded; its vertices are $(0,\ 6)$, $(12,\ 0)$ and where the lines cross.
+SKA: $\begin{cases} x + y = 6 \\ x + 3y = 12 \end{cases} \Rightarrow (3;\ 3)$
+$z(0;\ 6) = 18$, $\ z(3;\ 3) = 15$, $\ z(12;\ 0) = 24$
+$z_{\min} = 15$ ₾ — $3$ ერთეული $A$ და $3$ ერთეული $B$
+SEN: $\begin{cases} x + y = 6 \\ x + 3y = 12 \end{cases} \Rightarrow (3,\ 3)$
+$z(0,\ 6) = 18$, $\ z(3,\ 3) = 15$, $\ z(12,\ 0) = 24$
+$z_{\min} = 15$ ₾ — $3$ units of $A$ and $3$ units of $B$
+AKA: $15$ ₾
+AEN: $15$ ₾
+
+--- medium linprog
+KA: ავეჯის ფაბრიკა სკამზე იღებს $30$ ₾ მოგებას, მაგიდაზე — $50$ ₾-ს. სკამი: $2$ სთ დურგლობა, $1$ სთ შეღებვა; მაგიდა: $3$ სთ და $2$ სთ. კვირაში დურგლობისთვის $120$ სთ-ია, შეღებვისთვის — $70$ სთ. რამდენი სკამი და მაგიდა უნდა დამზადდეს მაქსიმალური მოგებისთვის?
+EN: A furniture factory makes $30$ ₾ profit per chair and $50$ ₾ per table. A chair needs $2$ h of carpentry and $1$ h of painting; a table $3$ h and $2$ h. Each week there are $120$ h of carpentry and $70$ h of painting. How many chairs and tables give the maximum profit?
+HKA: $2x + 3y \le 120$, $x + 2y \le 70$; $z = 30x + 50y$.
+HEN: $2x + 3y \le 120$, $x + 2y \le 70$; $z = 30x + 50y$.
+SKA: წვეროები: $(0;\ 0)$, $(60;\ 0)$, $(0;\ 35)$, გადაკვეთა: $2x + 3y = 120$, $2x + 4y = 140 \Rightarrow y = 20$, $x = 30$
+$z$: $0$; $1800$; $1750$; $30 \cdot 30 + 50 \cdot 20 = 1900$
+$30$ სკამი და $20$ მაგიდა — $1900$ ₾
+SEN: Vertices: $(0,\ 0)$, $(60,\ 0)$, $(0,\ 35)$, intersection: $2x + 3y = 120$, $2x + 4y = 140 \Rightarrow y = 20$, $x = 30$
+$z$: $0$; $1800$; $1750$; $30 \cdot 30 + 50 \cdot 20 = 1900$
+$30$ chairs and $20$ tables — $1900$ ₾
+AKA: $30$ სკამი, $20$ მაგიდა; $1900$ ₾
+AEN: $30$ chairs, $20$ tables; $1900$ ₾
+
+--- medium modeling
+KA: მონაცემები: $(1;\ 2)$, $(2;\ 3)$, $(3;\ 5)$, $(4;\ 6)$. იპოვეთ საუკეთესო მიახლოების წრფე (უმცირეს კვადრატთა მეთოდით): $k = \dfrac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}$, $b = \bar{y} - k\bar{x}$.
+EN: Data: $(1,\ 2)$, $(2,\ 3)$, $(3,\ 5)$, $(4,\ 6)$. Find the line of best fit (least squares): $k = \dfrac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}$, $b = \bar{y} - k\bar{x}$.
+HKA: $\bar{x} = 2{,}5$, $\bar{y} = 4$.
+HEN: $\bar{x} = 2.5$, $\bar{y} = 4$.
+SKA: $x_i - \bar{x}$: $-1{,}5;\ -0{,}5;\ 0{,}5;\ 1{,}5$; $\ y_i - \bar{y}$: $-2;\ -1;\ 1;\ 2$
+$\sum = 3 + 0{,}5 + 0{,}5 + 3 = 7$, $\ \sum (x_i - \bar{x})^2 = 5 \Rightarrow k = 1{,}4$
+$b = 4 - 1{,}4 \cdot 2{,}5 = 0{,}5$; $\ y = 1{,}4x + 0{,}5$
+SEN: $x_i - \bar{x}$: $-1.5,\ -0.5,\ 0.5,\ 1.5$; $\ y_i - \bar{y}$: $-2,\ -1,\ 1,\ 2$
+$\sum = 3 + 0.5 + 0.5 + 3 = 7$, $\ \sum (x_i - \bar{x})^2 = 5 \Rightarrow k = 1.4$
+$b = 4 - 1.4 \times 2.5 = 0.5$; $\ y = 1.4x + 0.5$
+AKA: $y = 1{,}4x + 0{,}5$
+AEN: $y = 1.4x + 0.5$
+
+--- medium modeling
+KA: ქალაქის მოსახლეობა $50\,000$-ია და ყოველწლიურად $2\%$-ით იზრდება. ჩაწერეთ მოდელი და იპოვეთ მოსახლეობა $10$ წლის შემდეგ ($1{,}02^{10} \approx 1{,}219$).
+EN: A town has $50\,000$ people and grows by $2\%$ a year. Write a model and find the population after $10$ years ($1.02^{10} \approx 1.219$).
+HKA: მაჩვენებლიანი მოდელი: $P(t) = P_0(1 + r)^t$.
+HEN: An exponential model: $P(t) = P_0(1 + r)^t$.
+SKA: $P(t) = 50\,000 \cdot 1{,}02^t$
+$P(10) \approx 50\,000 \cdot 1{,}219 \approx 60\,950$
+SEN: $P(t) = 50\,000 \cdot 1.02^t$
+$P(10) \approx 50\,000 \times 1.219 \approx 60\,950$
+AKA: $\approx 60\,950$
+AEN: $\approx 60\,950$
+
+--- medium modeling
+KA: ტელევიზორის ყურების საათებსა და ნიშნებს შორის კორელაციის კოეფიციენტია $r = -0{,}9$. რას ნიშნავს ეს? შეიძლება თუ არა დავასკვნათ, რომ ტელევიზორი ნიშნებს აუარესებს?
+EN: The correlation coefficient between hours of TV and school grades is $r = -0.9$. What does this mean? Can we conclude that TV makes grades worse?
+HKA: კორელაცია $\ne$ მიზეზ-შედეგობრიობა.
+HEN: Correlation $\ne$ causation.
+SKA: $|r|$ ახლოსაა $1$-თან, ნიშანი უარყოფითია — ძლიერი უარყოფითი წრფივი კავშირი: მეტი ტელევიზორი — როგორც წესი, დაბალი ნიშნები.
+მიზეზს კორელაცია არ ამტკიცებს: შეიძლება ორივეზე მესამე ფაქტორი მოქმედებდეს (მაგ., სწავლის მოტივაცია, თავისუფალი დროის განაწილება).
+SEN: $|r|$ is close to $1$ and negative — a strong negative linear relationship: more TV usually goes with lower grades.
+Correlation does not prove cause: a third factor may affect both (e.g. motivation, how free time is spent).
+AKA: ძლიერი უარყოფითი კავშირი; მიზეზს არ ამტკიცებს
+AEN: strong negative relationship; it does not prove cause
+
+--- medium events
+KA: კლასში $18$ გოგონა და $12$ ბიჭია; სათვალეს ატარებს $6$ გოგონა და $4$ ბიჭი. შემთხვევით არჩეული მოსწავლე გოგონაა — რა ალბათობით ატარებს სათვალეს? თუ ცნობილია, რომ სათვალიანია — რა ალბათობით არის გოგონა?
+EN: A class has $18$ girls and $12$ boys; $6$ girls and $4$ boys wear glasses. A randomly chosen student is a girl — what is the probability she wears glasses? If the student is known to wear glasses — what is the probability it is a girl?
+HKA: პირობითი ალბათობა: $P(A \mid B) = \dfrac{P(A \cap B)}{P(B)}$.
+HEN: Conditional probability: $P(A \mid B) = \dfrac{P(A \cap B)}{P(B)}$.
+SKA: $P(\text{სათვ.} \mid \text{გოგ.}) = \dfrac{6}{18} = \dfrac{1}{3}$
+$P(\text{გოგ.} \mid \text{სათვ.}) = \dfrac{6}{10} = 0{,}6$
+SEN: $P(\text{glasses} \mid \text{girl}) = \dfrac{6}{18} = \dfrac{1}{3}$
+$P(\text{girl} \mid \text{glasses}) = \dfrac{6}{10} = 0.6$
+AKA: $\dfrac{1}{3}$; $0{,}6$
+AEN: $\dfrac{1}{3}$; $0.6$
+
+--- medium events
+KA: კამათელს $4$-ჯერ აგდებენ. რას უდრის ალბათობა, რომ $6$ ერთხელ მაინც მოვა?
+EN: A die is rolled $4$ times. What is the probability of at least one $6$?
+HKA: საწინააღმდეგო ხდომილობა: არცერთხელ $6$.
+HEN: The complementary event: no $6$ at all.
+SKA: $P = 1 - \left(\dfrac{5}{6}\right)^4 = 1 - \dfrac{625}{1296} \approx 0{,}518$
+SEN: $P = 1 - \left(\dfrac{5}{6}\right)^4 = 1 - \dfrac{625}{1296} \approx 0.518$
+AKA: $\approx 0{,}518$
+AEN: $\approx 0.518$
+
+--- medium events
+KA: $P(A) = 0{,}4$, $P(B) = 0{,}5$, $P(A \cap B) = 0{,}2$. დამოუკიდებელია თუ არა $A$ და $B$? იპოვეთ $P(A \cup B)$.
+EN: $P(A) = 0.4$, $P(B) = 0.5$, $P(A \cap B) = 0.2$. Are $A$ and $B$ independent? Find $P(A \cup B)$.
+HKA: დამოუკიდებლობა: $P(A \cap B) = P(A)P(B)$.
+HEN: Independence: $P(A \cap B) = P(A)P(B)$.
+SKA: $P(A)P(B) = 0{,}4 \cdot 0{,}5 = 0{,}2 = P(A \cap B)$ — დამოუკიდებელია.
+$P(A \cup B) = 0{,}4 + 0{,}5 - 0{,}2 = 0{,}7$
+SEN: $P(A)P(B) = 0.4 \times 0.5 = 0.2 = P(A \cap B)$ — independent.
+$P(A \cup B) = 0.4 + 0.5 - 0.2 = 0.7$
+AKA: დიახ; $0{,}7$
+AEN: yes; $0.7$
+
+--- medium geoprob
+KA: $1$ გვერდიან კვადრატში ($0 \le x, y \le 1$) შემთხვევით ირჩევენ წერტილს. იპოვეთ ალბათობები: ა) $x + y < 1$; ბ) $y > 2x$.
+EN: A point is chosen at random in the unit square ($0 \le x, y \le 1$). Find the probabilities: a) $x + y < 1$; b) $y > 2x$.
+HKA: დახაზეთ წრფეები და იპოვეთ შესაბამისი ფართობები.
+HEN: Draw the lines and find the corresponding areas.
+SKA: ა) სამკუთხედი $(0;\ 0)$, $(1;\ 0)$, $(0;\ 1)$: $P = \dfrac{1}{2}$
+ბ) სამკუთხედი $(0;\ 0)$, $(0;\ 1)$, $(0{,}5;\ 1)$: $P = \dfrac{1}{2} \cdot 1 \cdot 0{,}5 = \dfrac{1}{4}$
+SEN: a) triangle $(0,\ 0)$, $(1,\ 0)$, $(0,\ 1)$: $P = \dfrac{1}{2}$
+b) triangle $(0,\ 0)$, $(0,\ 1)$, $(0.5,\ 1)$: $P = \dfrac{1}{2} \cdot 1 \cdot 0.5 = \dfrac{1}{4}$
+AKA: $\dfrac{1}{2}$; $\dfrac{1}{4}$
+AEN: $\dfrac{1}{2}$; $\dfrac{1}{4}$
+
+--- medium geoprob
+KA: $1\ \text{მ}$ სიგრძის ჯოხს შემთხვევით წერტილში ტეხენ. რას უდრის ალბათობა, რომ დიდი ნაწილი პატარაზე ორჯერ მაინც გრძელი იქნება?
+EN: A $1\ \text{m}$ stick is broken at a random point. What is the probability that the longer piece is at least twice as long as the shorter?
+HKA: პირობა ნიშნავს, რომ პატარა ნაწილი $\le \dfrac{1}{3}$.
+HEN: The condition means the shorter piece is $\le \dfrac{1}{3}$.
+SKA: გატეხვის წერტილი $x$: $x \le \dfrac{1}{3}$ ან $x \ge \dfrac{2}{3}$
+$P = \dfrac{1}{3} + \dfrac{1}{3} = \dfrac{2}{3}$
+SEN: Break point $x$: $x \le \dfrac{1}{3}$ or $x \ge \dfrac{2}{3}$
+$P = \dfrac{1}{3} + \dfrac{1}{3} = \dfrac{2}{3}$
+AKA: $\dfrac{2}{3}$
+AEN: $\dfrac{2}{3}$
+
+--- medium geoprob
+KA: ავტობუსი ყოველ $15$ წუთში მოდის. მგზავრი გაჩერებაზე შემთხვევით დროს მიდის. რას უდრის ალბათობა, რომ $5$ წუთზე ნაკლებს დაელოდება? რამდენია საშუალო ლოდინი?
+EN: A bus comes every $15$ minutes. A passenger arrives at the stop at a random time. What is the probability of waiting less than $5$ minutes? What is the average wait?
+HKA: ლოდინის დრო თანაბრადაა განაწილებული $[0;\ 15]$-ზე.
+HEN: The waiting time is uniformly spread over $[0,\ 15]$.
+SKA: $P = \dfrac{5}{15} = \dfrac{1}{3}$
+საშუალო ლოდინი: $\dfrac{0 + 15}{2} = 7{,}5$ წთ
+SEN: $P = \dfrac{5}{15} = \dfrac{1}{3}$
+Average wait: $\dfrac{0 + 15}{2} = 7.5$ min
+AKA: $\dfrac{1}{3}$; $7{,}5$ წთ
+AEN: $\dfrac{1}{3}$; $7.5$ min
+
+--- medium combinatorics
+KA: $6$ ბიჭიდან და $4$ გოგონადან ირჩევენ $3$-კაციან კომიტეტს. რამდენ კომიტეტშია ზუსტად $2$ გოგონა?
+EN: A committee of $3$ is chosen from $6$ boys and $4$ girls. How many committees have exactly $2$ girls?
+HKA: ცალ-ცალკე აირჩიეთ გოგონები და ბიჭები და გაამრავლეთ.
+HEN: Choose the girls and the boys separately and multiply.
+SKA: $C_4^2 \cdot C_6^1 = 6 \cdot 6 = 36$
+SEN: $C_4^2 \cdot C_6^1 = 6 \cdot 6 = 36$
+AKA: $36$
+AEN: $36$
+
+--- medium combinatorics
+KA: რამდენი ოთხნიშნა რიცხვი არსებობს, რომლის ყველა ციფრი განსხვავებულია?
+EN: How many four-digit numbers have all digits different?
+HKA: პირველი ციფრი $0$ არ შეიძლება იყოს.
+HEN: The first digit cannot be $0$.
+SKA: $9 \cdot 9 \cdot 8 \cdot 7 = 4536$
+SEN: $9 \cdot 9 \cdot 8 \cdot 7 = 4536$
+AKA: $4536$
+AEN: $4536$
+
+--- medium combinatorics
+KA: შეხვედრაზე $12$ ადამიანი ყველა ყველას ერთხელ ჩამოართვა ხელი. რამდენი ხელის ჩამორთმევა იყო?
+EN: At a meeting $12$ people each shake hands once with everyone else. How many handshakes are there?
+HKA: ყოველი ხელის ჩამორთმევა — $2$-ელემენტიანი ქვესიმრავლე.
+HEN: Each handshake is a $2$-element subset.
+SKA: $C_{12}^2 = \dfrac{12 \cdot 11}{2} = 66$
+SEN: $C_{12}^2 = \dfrac{12 \cdot 11}{2} = 66$
+AKA: $66$
+AEN: $66$
+
+--- medium combinatorics
+KA: იპოვეთ $a^2b^3$-ის კოეფიციენტი $(a + b)^5$-ის გაშლაში. შეამოწმეთ პასკალის სამკუთხედით.
+EN: Find the coefficient of $a^2b^3$ in the expansion of $(a + b)^5$. Check with Pascal's triangle.
+HKA: ნიუტონის ბინომი: კოეფიციენტი $C_5^3$.
+HEN: Binomial theorem: the coefficient is $C_5^3$.
+SKA: $C_5^3 = \dfrac{5 \cdot 4 \cdot 3}{3 \cdot 2 \cdot 1} = 10$
+პასკალის სამკუთხედის მე-$5$ სტრიქონი: $1,\ 5,\ 10,\ 10,\ 5,\ 1$ ✓
+SEN: $C_5^3 = \dfrac{5 \cdot 4 \cdot 3}{3 \cdot 2 \cdot 1} = 10$
+Row $5$ of Pascal's triangle: $1,\ 5,\ 10,\ 10,\ 5,\ 1$ ✓
+AKA: $10$
+AEN: $10$
+
+--- medium statprob
+KA: ტბაში თევზების რაოდენობის შესაფასებლად $50$ თევზი დაიჭირეს, მონიშნეს და გაუშვეს. მოგვიანებით დაიჭირეს $40$, მათგან $5$ მონიშნული იყო. შეაფასეთ თევზების რაოდენობა.
+EN: To estimate the fish in a lake, $50$ fish were caught, tagged and released. Later $40$ were caught, $5$ of them tagged. Estimate the number of fish.
+HKA: მონიშნულების წილი დაჭერილებში ≈ წილს მთელ ტბაში.
+HEN: The share of tagged fish in the catch ≈ their share in the whole lake.
+SKA: $\dfrac{5}{40} \approx \dfrac{50}{N}$
+$N \approx \dfrac{50 \cdot 40}{5} = 400$
+SEN: $\dfrac{5}{40} \approx \dfrac{50}{N}$
+$N \approx \dfrac{50 \cdot 40}{5} = 400$
+AKA: $\approx 400$
+AEN: $\approx 400$
+
+--- medium statprob
+KA: კამათელი $600$-ჯერ ააგდეს, $6$ მოვიდა $130$-ჯერ. რამდენჯერ იყო მოსალოდნელი? იპოვეთ ფარდობითი სიხშირე. რა შეიძლება ვივარაუდოთ კამათელზე?
+EN: A die was rolled $600$ times and $6$ came up $130$ times. How many times was expected? Find the relative frequency. What might we suspect about the die?
+HKA: მოსალოდნელი რაოდენობა $= np$.
+HEN: Expected count $= np$.
+SKA: მოსალოდნელი: $600 \cdot \dfrac{1}{6} = 100$
+ფარდობითი სიხშირე: $\dfrac{130}{600} \approx 0{,}217$ (თეორიული $\approx 0{,}167$)
+გადახრა $30\%$-ია — დიდი $600$ ცდისთვის; შესაძლოა კამათელი არათანაბარია (შემდგომი შემოწმება საჭიროა).
+SEN: Expected: $600 \times \dfrac{1}{6} = 100$
+Relative frequency: $\dfrac{130}{600} \approx 0.217$ (theoretical $\approx 0.167$)
+A $30\%$ excess is large for $600$ rolls; the die may be biased (further testing needed).
+AKA: $100$; $\approx 0{,}217$; შესაძლოა არათანაბარია
+AEN: $100$; $\approx 0.217$; possibly biased
+
+--- medium algebra
+KA: ამოხსენით განტოლება: $\sqrt{x + 3} = x - 3$.
+EN: Solve: $\sqrt{x + 3} = x - 3$.
+HKA: აიყვანეთ კვადრატში და შეამოწმეთ ფესვები (მარჯვენა მხარე $\ge 0$).
+HEN: Square both sides and check the roots (the right side must be $\ge 0$).
+SKA: $x + 3 = x^2 - 6x + 9 \Rightarrow x^2 - 7x + 6 = 0 \Rightarrow x = 1$ ან $x = 6$
+$x = 1$: $\sqrt{4} = 2 \ne -2$ — უცხო ფესვი; $\ x = 6$: $3 = 3$ ✓
+SEN: $x + 3 = x^2 - 6x + 9 \Rightarrow x^2 - 7x + 6 = 0 \Rightarrow x = 1$ or $x = 6$
+$x = 1$: $\sqrt{4} = 2 \ne -2$ — extraneous; $\ x = 6$: $3 = 3$ ✓
+AKA: $x = 6$
+AEN: $x = 6$
+
+--- medium algebra
+KA: ამოხსენით უტოლობა: $|2x - 1| \le 5$.
+EN: Solve: $|2x - 1| \le 5$.
+HKA: $|t| \le a \iff -a \le t \le a$.
+HEN: $|t| \le a \iff -a \le t \le a$.
+SKA: $-5 \le 2x - 1 \le 5 \Rightarrow -4 \le 2x \le 6 \Rightarrow -2 \le x \le 3$
+SEN: $-5 \le 2x - 1 \le 5 \Rightarrow -4 \le 2x \le 6 \Rightarrow -2 \le x \le 3$
+AKA: $[-2;\ 3]$
+AEN: $[-2,\ 3]$
+
+--- medium algebra
+KA: ამოხსენით: $4^x - 5 \cdot 2^x + 4 = 0$.
+EN: Solve: $4^x - 5 \cdot 2^x + 4 = 0$.
+HKA: $t = 2^x > 0$.
+HEN: $t = 2^x > 0$.
+SKA: $t^2 - 5t + 4 = 0 \Rightarrow t = 1$ ან $t = 4$
+$2^x = 1 \Rightarrow x = 0$; $\ 2^x = 4 \Rightarrow x = 2$
+SEN: $t^2 - 5t + 4 = 0 \Rightarrow t = 1$ or $t = 4$
+$2^x = 1 \Rightarrow x = 0$; $\ 2^x = 4 \Rightarrow x = 2$
+AKA: $0$; $2$
+AEN: $0$; $2$
+
+--- medium functions
+KA: იპოვეთ $f(x) = \dfrac{2x + 1}{3}$ ფუნქციის შექცეული ფუნქცია და შეამოწმეთ $f(f^{-1}(x)) = x$.
+EN: Find the inverse of $f(x) = \dfrac{2x + 1}{3}$ and check that $f(f^{-1}(x)) = x$.
+HKA: ამოხსენით $y = \dfrac{2x + 1}{3}$ $x$-ის მიმართ.
+HEN: Solve $y = \dfrac{2x + 1}{3}$ for $x$.
+SKA: $3y = 2x + 1 \Rightarrow x = \dfrac{3y - 1}{2}$ $\Rightarrow f^{-1}(x) = \dfrac{3x - 1}{2}$
+$f\left(\dfrac{3x - 1}{2}\right) = \dfrac{(3x - 1) + 1}{3} = x$ ✓
+SEN: $3y = 2x + 1 \Rightarrow x = \dfrac{3y - 1}{2}$ $\Rightarrow f^{-1}(x) = \dfrac{3x - 1}{2}$
+$f\left(\dfrac{3x - 1}{2}\right) = \dfrac{(3x - 1) + 1}{3} = x$ ✓
+AKA: $f^{-1}(x) = \dfrac{3x - 1}{2}$
+AEN: $f^{-1}(x) = \dfrac{3x - 1}{2}$
+
+--- medium functions
+KA: როგორ მიიღება $y = (x - 2)^2 + 1$-ის გრაფიკი $y = x^2$-ის გრაფიკიდან? იპოვეთ წვერო და მნიშვნელობათა სიმრავლე.
+EN: How is the graph of $y = (x - 2)^2 + 1$ obtained from that of $y = x^2$? Find the vertex and the range.
+HKA: $f(x - a) + b$ — $a$-თი მარჯვნივ, $b$-თი ზემოთ.
+HEN: $f(x - a) + b$ — $a$ to the right, $b$ up.
+SKA: $2$-ით მარჯვნივ და $1$-ით ზემოთ გადატანა.
+წვერო $(2;\ 1)$; $E(y) = [1;\ +\infty)$
+SEN: Shift $2$ to the right and $1$ up.
+Vertex $(2,\ 1)$; range $[1,\ +\infty)$
+AKA: $(2;\ 1)$; $[1;\ +\infty)$
+AEN: $(2,\ 1)$; $[1,\ +\infty)$
+
+--- medium functions
+KA: $f(x) = x^2$, $g(x) = x + 3$. იპოვეთ $f(g(1))$, $g(f(1))$ და $f(g(x))$. ტოლია თუ არა $f(g(x))$ და $g(f(x))$?
+EN: $f(x) = x^2$, $g(x) = x + 3$. Find $f(g(1))$, $g(f(1))$ and $f(g(x))$. Are $f(g(x))$ and $g(f(x))$ equal?
+HKA: კომპოზიციაში ჯერ შიგა ფუნქცია გამოითვლება.
+HEN: In a composition the inner function is evaluated first.
+SKA: $f(g(1)) = f(4) = 16$, $\ g(f(1)) = g(1) = 4$
+$f(g(x)) = (x + 3)^2$, $\ g(f(x)) = x^2 + 3$ — ზოგადად არ არის ტოლი.
+SEN: $f(g(1)) = f(4) = 16$, $\ g(f(1)) = g(1) = 4$
+$f(g(x)) = (x + 3)^2$, $\ g(f(x)) = x^2 + 3$ — in general not equal.
+AKA: $16$; $4$; $(x + 3)^2$; არა
+AEN: $16$; $4$; $(x + 3)^2$; no
+
+--- medium logic
+KA: დებულება: „თუ $n$ იყოფა $6$-ზე, მაშინ $n$ იყოფა $3$-ზე“. ჩამოაყალიბეთ შებრუნებული და კონტრაპოზიცია და დაადგინეთ მათი ჭეშმარიტობა.
+EN: Statement: "If $n$ is divisible by $6$, then $n$ is divisible by $3$." Write the converse and the contrapositive and decide whether they are true.
+HKA: კონტრაპოზიცია საწყისის ტოლფასია.
+HEN: The contrapositive is equivalent to the original.
+SKA: შებრუნებული: „თუ $n$ იყოფა $3$-ზე, მაშინ იყოფა $6$-ზე“ — მცდარია ($n = 9$).
+კონტრაპოზიცია: „თუ $n$ არ იყოფა $3$-ზე, მაშინ არ იყოფა $6$-ზე“ — ჭეშმარიტია.
+SEN: Converse: "If $n$ is divisible by $3$, then it is divisible by $6$" — false ($n = 9$).
+Contrapositive: "If $n$ is not divisible by $3$, then it is not divisible by $6$" — true.
+AKA: შებრუნებული — მცდარი; კონტრაპოზიცია — ჭეშმარიტი
+AEN: converse — false; contrapositive — true
+
+--- medium logic
+KA: $100$ გამოკითხულიდან $60$-ს უყვარს ჩაი, $50$-ს — ყავა, $20$-ს არცერთი. რამდენს უყვარს ორივე?
+EN: Of $100$ people surveyed, $60$ like tea, $50$ like coffee and $20$ like neither. How many like both?
+HKA: ერთი მაინც უყვარს $100 - 20 = 80$-ს.
+HEN: $100 - 20 = 80$ like at least one.
+SKA: $n(A \cup B) = 80 = 60 + 50 - n(A \cap B)$
+$n(A \cap B) = 30$
+SEN: $n(A \cup B) = 80 = 60 + 50 - n(A \cap B)$
+$n(A \cap B) = 30$
+AKA: $30$
+AEN: $30$
+
+// ===================================================================== HARD
+
+--- hard trig
+KA: მთის მწვერვალი ერთი წერტილიდან ჩანს $30^\circ$-იანი კუთხით, ხოლო მთისკენ $1\ \text{კმ}$-ის გავლის შემდეგ — $45^\circ$-იანი კუთხით. იპოვეთ მთის სიმაღლე.
+EN: The top of a mountain is seen at an elevation of $30^\circ$, and after walking $1\ \text{km}$ towards it, at $45^\circ$. Find the height of the mountain.
+HKA: აღნიშნეთ $x$ — მანძილი მეორე წერტილიდან; $h = x\tan 45^\circ = (x + 1)\tan 30^\circ$.
+HEN: Let $x$ be the distance from the second point; $h = x\tan 45^\circ = (x + 1)\tan 30^\circ$.
+SKA: $h = x$ და $h = \dfrac{x + 1}{\sqrt{3}}$ $\Rightarrow \sqrt{3}x = x + 1 \Rightarrow x = \dfrac{1}{\sqrt{3} - 1} = \dfrac{\sqrt{3} + 1}{2}$
+$h = \dfrac{\sqrt{3} + 1}{2} \approx 1{,}37\ \text{კმ}$
+SEN: $h = x$ and $h = \dfrac{x + 1}{\sqrt{3}}$ $\Rightarrow \sqrt{3}x = x + 1 \Rightarrow x = \dfrac{1}{\sqrt{3} - 1} = \dfrac{\sqrt{3} + 1}{2}$
+$h = \dfrac{\sqrt{3} + 1}{2} \approx 1.37\ \text{km}$
+AKA: $\dfrac{\sqrt{3} + 1}{2} \approx 1{,}37\ \text{კმ}$
+AEN: $\dfrac{\sqrt{3} + 1}{2} \approx 1.37\ \text{km}$
+
+--- hard trig
+KA: დაამტკიცეთ, რომ ნებისმიერ მახვილკუთხა სამკუთხედში $a = b\cos C + c\cos B$ (გეგმილების თეორემა).
+EN: Prove that in any acute triangle $a = b\cos C + c\cos B$ (the projection formula).
+HKA: დაუშვით სიმაღლე $A$ წვეროდან $BC$-ზე.
+HEN: Drop the height from $A$ to $BC$.
+SKA: $AH \perp BC$, $H \in BC$.
+$\triangle ABH$-ში $BH = c\cos B$, $\ \triangle ACH$-ში $CH = b\cos C$.
+$a = BH + HC = c\cos B + b\cos C$ ∎ (ბლაგვკუთხა შემთხვევაშიც სამართლიანია, თუ ბლაგვი კუთხის კოსინუსი უარყოფითია.)
+SEN: $AH \perp BC$, $H \in BC$.
+In $\triangle ABH$, $BH = c\cos B$; in $\triangle ACH$, $CH = b\cos C$.
+$a = BH + HC = c\cos B + b\cos C$ ∎ (It also holds for obtuse triangles, since the cosine of the obtuse angle is negative.)
+AKA: დამტკიცებულია
+AEN: proved
+
+--- hard sines
+KA: ამოხსენით სამკუთხედი: $\angle A = 45^\circ$, $\angle B = 60^\circ$, $a = 10$ ($\sin 75^\circ \approx 0{,}966$).
+EN: Solve the triangle: $\angle A = 45^\circ$, $\angle B = 60^\circ$, $a = 10$ ($\sin 75^\circ \approx 0.966$).
+HKA: ჯერ $\angle C$, შემდეგ სინუსების თეორემა.
+HEN: First $\angle C$, then the law of sines.
+SKA: $\angle C = 75^\circ$
+$b = \dfrac{10\sin 60^\circ}{\sin 45^\circ} = \dfrac{10 \cdot \frac{\sqrt{3}}{2}}{\frac{\sqrt{2}}{2}} = 5\sqrt{6} \approx 12{,}25$
+$c = \dfrac{10\sin 75^\circ}{\sin 45^\circ} \approx \dfrac{9{,}66}{0{,}707} \approx 13{,}66$
+SEN: $\angle C = 75^\circ$
+$b = \dfrac{10\sin 60^\circ}{\sin 45^\circ} = \dfrac{10 \cdot \frac{\sqrt{3}}{2}}{\frac{\sqrt{2}}{2}} = 5\sqrt{6} \approx 12.25$
+$c = \dfrac{10\sin 75^\circ}{\sin 45^\circ} \approx \dfrac{9.66}{0.707} \approx 13.66$
+AKA: $75^\circ$; $5\sqrt{6}$; $\approx 13{,}66$
+AEN: $75^\circ$; $5\sqrt{6}$; $\approx 13.66$
+
+--- hard sines
+KA: დაამტკიცეთ სინუსების თეორემა გაფართოებული სახით: $\dfrac{a}{\sin A} = 2R$.
+EN: Prove the extended law of sines: $\dfrac{a}{\sin A} = 2R$.
+HKA: გაავლეთ დიამეტრი $BD$ და გამოიყენეთ ჩახაზული კუთხეები.
+HEN: Draw the diameter $BD$ and use inscribed angles.
+SKA: $BD$ — შემოხაზული წრეწირის დიამეტრი, $BD = 2R$.
+$\angle BDC = \angle A$ (ერთსა და იმავე რკალს ეყრდნობა), $\ \angle BCD = 90^\circ$ (დიამეტრს ეყრდნობა).
+$\triangle BCD$-ში: $BC = BD\sin\angle BDC \Rightarrow a = 2R\sin A$ ∎ (ბლაგვი $A$-სთვის $\angle BDC = 180^\circ - A$, სინუსი იგივეა.)
+SEN: $BD$ is a diameter of the circumcircle, $BD = 2R$.
+$\angle BDC = \angle A$ (they stand on the same arc), $\ \angle BCD = 90^\circ$ (it stands on a diameter).
+In $\triangle BCD$: $BC = BD\sin\angle BDC \Rightarrow a = 2R\sin A$ ∎ (For obtuse $A$, $\angle BDC = 180^\circ - A$, which has the same sine.)
+AKA: დამტკიცებულია
+AEN: proved
+
+--- hard cosines
+KA: ტბის ორ ნაპირზე მდებარე $A$ და $B$ წერტილებს შორის მანძილის გასაზომად აირჩიეს წერტილი $C$: $CA = 300\ \text{მ}$, $CB = 400\ \text{მ}$, $\angle ACB = 120^\circ$. იპოვეთ $AB$.
+EN: To measure the distance between points $A$ and $B$ on opposite shores of a lake, a point $C$ is chosen: $CA = 300\ \text{m}$, $CB = 400\ \text{m}$, $\angle ACB = 120^\circ$. Find $AB$.
+HKA: $\cos 120^\circ = -\dfrac{1}{2}$.
+HEN: $\cos 120^\circ = -\dfrac{1}{2}$.
+SKA: $AB^2 = 300^2 + 400^2 - 2 \cdot 300 \cdot 400 \cdot \left(-\dfrac{1}{2}\right) = 90\,000 + 160\,000 + 120\,000 = 370\,000$
+$AB \approx 608\ \text{მ}$
+SEN: $AB^2 = 300^2 + 400^2 - 2 \cdot 300 \cdot 400 \cdot \left(-\dfrac{1}{2}\right) = 90\,000 + 160\,000 + 120\,000 = 370\,000$
+$AB \approx 608\ \text{m}$
+AKA: $\approx 608\ \text{მ}$
+AEN: $\approx 608\ \text{m}$
+
+--- hard cosines
+KA: იპოვეთ $7$, $8$, $13$ გვერდებიანი სამკუთხედის ყველა კუთხე.
+EN: Find all the angles of the triangle with sides $7$, $8$, $13$.
+HKA: დაიწყეთ უდიდესი კუთხით (კოსინუსების თეორემა), შემდეგ — სინუსების თეორემა.
+HEN: Start with the largest angle (law of cosines), then use the law of sines.
+SKA: $\cos C = \dfrac{49 + 64 - 169}{2 \cdot 7 \cdot 8} = -\dfrac{1}{2} \Rightarrow C = 120^\circ$
+$\sin A = \dfrac{7\sin 120^\circ}{13} \approx 0{,}466 \Rightarrow A \approx 27{,}8^\circ$
+$B \approx 180^\circ - 120^\circ - 27{,}8^\circ = 32{,}2^\circ$
+SEN: $\cos C = \dfrac{49 + 64 - 169}{2 \cdot 7 \cdot 8} = -\dfrac{1}{2} \Rightarrow C = 120^\circ$
+$\sin A = \dfrac{7\sin 120^\circ}{13} \approx 0.466 \Rightarrow A \approx 27.8^\circ$
+$B \approx 180^\circ - 120^\circ - 27.8^\circ = 32.2^\circ$
+AKA: $\approx 27{,}8^\circ$; $\approx 32{,}2^\circ$; $120^\circ$
+AEN: $\approx 27.8^\circ$; $\approx 32.2^\circ$; $120^\circ$
+
+--- hard cosines
+KA: დაამტკიცეთ, რომ პარალელოგრამის დიაგონალების კვადრატების ჯამი მისი გვერდების კვადრატების ჯამის ტოლია: $d_1^2 + d_2^2 = 2(a^2 + b^2)$.
+EN: Prove that the sum of the squares of a parallelogram's diagonals equals the sum of the squares of its sides: $d_1^2 + d_2^2 = 2(a^2 + b^2)$.
+HKA: მეზობელი კუთხეებია $\alpha$ და $180^\circ - \alpha$; $\cos(180^\circ - \alpha) = -\cos\alpha$.
+HEN: Adjacent angles are $\alpha$ and $180^\circ - \alpha$; $\cos(180^\circ - \alpha) = -\cos\alpha$.
+SKA: $d_1^2 = a^2 + b^2 - 2ab\cos\alpha$
+$d_2^2 = a^2 + b^2 - 2ab\cos(180^\circ - \alpha) = a^2 + b^2 + 2ab\cos\alpha$
+შეკრებით: $d_1^2 + d_2^2 = 2(a^2 + b^2)$ ∎
+SEN: $d_1^2 = a^2 + b^2 - 2ab\cos\alpha$
+$d_2^2 = a^2 + b^2 - 2ab\cos(180^\circ - \alpha) = a^2 + b^2 + 2ab\cos\alpha$
+Adding: $d_1^2 + d_2^2 = 2(a^2 + b^2)$ ∎
+AKA: დამტკიცებულია
+AEN: proved
+
+--- hard circles
+KA: $4$ და $9$ რადიუსიანი წრეწირები გარედან ეხება ერთმანეთს. იპოვეთ საერთო გარე მხების მონაკვეთის სიგრძე შეხების წერტილებს შორის.
+EN: Circles of radii $4$ and $9$ touch externally. Find the length of the common external tangent between the points of tangency.
+HKA: ცენტრებს შორის $13$; მხებზე დაშვებული რადიუსები პარალელურია — მიიღება მართკუთხა ტრაპეცია.
+HEN: The centres are $13$ apart; the radii to the tangent are parallel — you get a right trapezoid.
+SKA: $l^2 = (R + r)^2 - (R - r)^2 = 13^2 - 5^2 = 144$
+$l = 12$ (ზოგადად $l = 2\sqrt{Rr}$)
+SEN: $l^2 = (R + r)^2 - (R - r)^2 = 13^2 - 5^2 = 144$
+$l = 12$ (in general $l = 2\sqrt{Rr}$)
+AKA: $12$
+AEN: $12$
+
+--- hard circles
+KA: ტოლფერდა სამკუთხედის გვერდებია $10$, $10$, $12$. იპოვეთ ჩახაზული და შემოხაზული წრეწირების რადიუსები.
+EN: An isosceles triangle has sides $10$, $10$, $12$. Find its inradius and circumradius.
+HKA: ფუძეზე დაშვებული სიმაღლე $\sqrt{100 - 36} = 8$.
+HEN: The height to the base is $\sqrt{100 - 36} = 8$.
+SKA: $S = \dfrac{12 \cdot 8}{2} = 48$, $\ p = 16$
+$r = \dfrac{S}{p} = 3$, $\ R = \dfrac{abc}{4S} = \dfrac{1200}{192} = 6{,}25$
+SEN: $S = \dfrac{12 \cdot 8}{2} = 48$, $\ p = 16$
+$r = \dfrac{S}{p} = 3$, $\ R = \dfrac{abc}{4S} = \dfrac{1200}{192} = 6.25$
+AKA: $3$; $6{,}25$
+AEN: $3$; $6.25$
+
+--- hard circles
+KA: $ABCD$ ოთხკუთხედში ჩახაზულია $3$ რადიუსიანი წრეწირი; $AB = 5$, $BC = 7$, $CD = 9$. იპოვეთ $DA$ და ოთხკუთხედის ფართობი.
+EN: A circle of radius $3$ is inscribed in quadrilateral $ABCD$; $AB = 5$, $BC = 7$, $CD = 9$. Find $DA$ and the area of the quadrilateral.
+HKA: მხებ ოთხკუთხედში $AB + CD = BC + DA$; $S = rp$.
+HEN: In a tangential quadrilateral $AB + CD = BC + DA$; $S = rp$.
+SKA: $DA = AB + CD - BC = 5 + 9 - 7 = 7$
+$p = \dfrac{5 + 7 + 9 + 7}{2} = 14$, $\ S = 3 \cdot 14 = 42$
+SEN: $DA = AB + CD - BC = 5 + 9 - 7 = 7$
+$p = \dfrac{5 + 7 + 9 + 7}{2} = 14$, $\ S = 3 \cdot 14 = 42$
+AKA: $7$; $42$
+AEN: $7$; $42$
+
+--- hard solids
+KA: კონუსში ($r = 3$, $h = 4$) ჩახაზულია სფერო. იპოვეთ სფეროს რადიუსი.
+EN: A sphere is inscribed in a cone ($r = 3$, $h = 4$). Find the sphere's radius.
+HKA: ღერძული კვეთა — სამკუთხედი $5$, $5$, $6$; სფეროს რადიუსი — მასში ჩახაზული წრის რადიუსი.
+HEN: The axial section is a triangle $5$, $5$, $6$; the sphere's radius is the inradius of that triangle.
+SKA: $S = \dfrac{6 \cdot 4}{2} = 12$, $\ p = \dfrac{5 + 5 + 6}{2} = 8$
+$\rho = \dfrac{S}{p} = 1{,}5$
+SEN: $S = \dfrac{6 \cdot 4}{2} = 12$, $\ p = \dfrac{5 + 5 + 6}{2} = 8$
+$\rho = \dfrac{S}{p} = 1.5$
+AKA: $1{,}5$
+AEN: $1.5$
+
+--- hard solids
+KA: იპოვეთ წესიერი ტეტრაედრის მოცულობა, თუ მისი წიბოა $6$.
+EN: Find the volume of a regular tetrahedron with edge $6$.
+HKA: სიმაღლის ფუძე — ფუძის ცენტრი; $R_{\text{ფ}} = \dfrac{a}{\sqrt{3}}$, $h = \sqrt{a^2 - R_{\text{ფ}}^2}$.
+HEN: The foot of the height is the centre of the base; $R_{\text{base}} = \dfrac{a}{\sqrt{3}}$, $h = \sqrt{a^2 - R_{\text{base}}^2}$.
+SKA: $R_{\text{ფ}} = \dfrac{6}{\sqrt{3}} = 2\sqrt{3}$, $\ h = \sqrt{36 - 12} = 2\sqrt{6}$
+$S_{\text{ფ}} = \dfrac{\sqrt{3}}{4} \cdot 36 = 9\sqrt{3}$
+$V = \dfrac{1}{3} \cdot 9\sqrt{3} \cdot 2\sqrt{6} = 6\sqrt{18} = 18\sqrt{2} \approx 25{,}5$
+SEN: $R_{\text{base}} = \dfrac{6}{\sqrt{3}} = 2\sqrt{3}$, $\ h = \sqrt{36 - 12} = 2\sqrt{6}$
+$S_{\text{base}} = \dfrac{\sqrt{3}}{4} \cdot 36 = 9\sqrt{3}$
+$V = \dfrac{1}{3} \cdot 9\sqrt{3} \cdot 2\sqrt{6} = 6\sqrt{18} = 18\sqrt{2} \approx 25.5$
+AKA: $18\sqrt{2}$
+AEN: $18\sqrt{2}$
+
+--- hard solids
+KA: $4$ წიბოიან კუბს კვეთენ სიბრტყით, რომელიც გადის ერთი წვეროს მოსაზღვრე სამ წვეროზე. იპოვეთ კვეთის ფორმა და ფართობი.
+EN: A cube of edge $4$ is cut by the plane through the three vertices adjacent to one vertex. Find the shape and area of the section.
+HKA: კვეთის გვერდები წახნაგების დიაგონალებია.
+HEN: The sides of the section are face diagonals.
+SKA: კვეთა — ტოლგვერდა სამკუთხედი გვერდით $4\sqrt{2}$.
+$S = \dfrac{\sqrt{3}}{4}(4\sqrt{2})^2 = \dfrac{\sqrt{3}}{4} \cdot 32 = 8\sqrt{3} \approx 13{,}9$
+SEN: The section is an equilateral triangle with side $4\sqrt{2}$.
+$S = \dfrac{\sqrt{3}}{4}(4\sqrt{2})^2 = \dfrac{\sqrt{3}}{4} \cdot 32 = 8\sqrt{3} \approx 13.9$
+AKA: ტოლგვერდა სამკუთხედი; $8\sqrt{3}$
+AEN: an equilateral triangle; $8\sqrt{3}$
+
+--- hard solids
+KA: შენობის მაკეტი $1 : 100$ მასშტაბითაა. მაკეტის მოცულობაა $2\ \text{დმ}^3$, ფასადის ფართობი — $0{,}06\ \text{მ}^2$. იპოვეთ შენობის ნამდვილი მოცულობა და ფასადის ფართობი. რამდენჯერ მეტი საღებავი დასჭირდება ფასადს, ვიდრე მაკეტს?
+EN: A model of a building is at a scale of $1 : 100$. The model's volume is $2\ \text{dm}^3$ and its facade area is $0.06\ \text{m}^2$. Find the real volume and facade area. How many times more paint does the real facade need than the model's?
+HKA: სიგრძეები $k$-ჯერ $\Rightarrow$ ფართობები $k^2$-ჯერ, მოცულობები $k^3$-ჯერ.
+HEN: Lengths $\times k$ $\Rightarrow$ areas $\times k^2$, volumes $\times k^3$.
+SKA: $V = 2 \cdot 10^{-3} \cdot 100^3 = 2000\ \text{მ}^3$
+$S = 0{,}06 \cdot 100^2 = 600\ \text{მ}^2$
+საღებავი ფართობის პროპორციულია: $100^2 = 10\,000$-ჯერ მეტი.
+SEN: $V = 2 \times 10^{-3} \times 100^3 = 2000\ \text{m}^3$
+$S = 0.06 \times 100^2 = 600\ \text{m}^2$
+Paint is proportional to area: $100^2 = 10\,000$ times more.
+AKA: $2000\ \text{მ}^3$; $600\ \text{მ}^2$; $10\,000$-ჯერ
+AEN: $2000\ \text{m}^3$; $600\ \text{m}^2$; $10\,000$ times
+
+--- hard linprog
+KA: $400$ ადამიანის გადასაყვანად ქირაობენ ავტობუსებს: დიდი — $50$ ადგილი, $800$ ₾; პატარა — $30$ ადგილი, $600$ ₾. ხელმისაწვდომია მაქსიმუმ $10$ მძღოლი. რამდენი დიდი და რამდენი პატარა ავტობუსი უნდა დაიქირაონ, რომ ხარჯი მინიმალური იყოს?
+EN: Buses are hired to carry $400$ people: a large bus has $50$ seats and costs $800$ ₾; a small one has $30$ seats and costs $600$ ₾. At most $10$ drivers are available. How many large and small buses minimise the cost?
+HKA: $50x + 30y \ge 400$, $x + y \le 10$; $z = 800x + 600y \to \min$; $x, y$ — მთელი.
+HEN: $50x + 30y \ge 400$, $x + y \le 10$; $z = 800x + 600y \to \min$; $x, y$ whole numbers.
+SKA: არის წვეროები: $(8;\ 0)$, $(10;\ 0)$ და $\begin{cases} 50x + 30y = 400 \\ x + y = 10 \end{cases} \Rightarrow (5;\ 5)$
+$z(8;\ 0) = 6400$, $\ z(10;\ 0) = 8000$, $\ z(5;\ 5) = 7000$
+მინიმუმი: $8$ დიდი ავტობუსი, $6400$ ₾ (დიდში ერთი ადგილი იაფია: $16$ ₾ $< 20$ ₾)
+SEN: Vertices: $(8,\ 0)$, $(10,\ 0)$ and $\begin{cases} 50x + 30y = 400 \\ x + y = 10 \end{cases} \Rightarrow (5,\ 5)$
+$z(8,\ 0) = 6400$, $\ z(10,\ 0) = 8000$, $\ z(5,\ 5) = 7000$
+Minimum: $8$ large buses, $6400$ ₾ (a seat is cheaper in a large bus: $16$ ₾ $< 20$ ₾)
+AKA: $8$ დიდი, $0$ პატარა; $6400$ ₾
+AEN: $8$ large, $0$ small; $6400$ ₾
+
+--- hard linprog
+KA: არე მოცემულია უტოლობებით $x + 2y \le 8$, $3x + y \le 9$, $x, y \ge 0$. $c$-ს რა მნიშვნელობებისთვის აღწევს $z = cx + y$ მაქსიმუმს $(2;\ 3)$ წვეროში?
+EN: The region is given by $x + 2y \le 8$, $3x + y \le 9$, $x, y \ge 0$. For which values of $c$ does $z = cx + y$ reach its maximum at the vertex $(2,\ 3)$?
+HKA: დონის წრფის $y = -cx + z$ დახრა უნდა იყოს ორი გვერდის დახრებს შორის.
+HEN: The slope of the level line $y = -cx + z$ must lie between the slopes of the two edges.
+SKA: გვერდების დახრები: $x + 2y = 8$ — $-\dfrac{1}{2}$; $\ 3x + y = 9$ — $-3$
+$-3 \le -c \le -\dfrac{1}{2} \Rightarrow \dfrac{1}{2} \le c \le 3$
+SEN: Edge slopes: $x + 2y = 8$ — $-\dfrac{1}{2}$; $\ 3x + y = 9$ — $-3$
+$-3 \le -c \le -\dfrac{1}{2} \Rightarrow \dfrac{1}{2} \le c \le 3$
+AKA: $\dfrac{1}{2} \le c \le 3$
+AEN: $\dfrac{1}{2} \le c \le 3$
+
+--- hard modeling
+KA: ბაქტერიების რაოდენობა $t = 0$-ზე $200$-ია, $9$ საათის შემდეგ — $1600$. ააგეთ მაჩვენებლიანი მოდელი და იპოვეთ, როდის გახდება $10\,000$ ($\log_2 50 \approx 5{,}64$).
+EN: There are $200$ bacteria at $t = 0$ and $1600$ after $9$ hours. Build an exponential model and find when there will be $10\,000$ ($\log_2 50 \approx 5.64$).
+HKA: $\dfrac{1600}{200} = 8 = 2^3$ — $9$ საათში სამჯერ გაორმაგდა.
+HEN: $\dfrac{1600}{200} = 8 = 2^3$ — it doubled three times in $9$ hours.
+SKA: გაორმაგების დრო $3$ სთ: $\ N(t) = 200 \cdot 2^{\frac{t}{3}}$
+$200 \cdot 2^{\frac{t}{3}} = 10\,000 \Rightarrow 2^{\frac{t}{3}} = 50 \Rightarrow t = 3\log_2 50 \approx 16{,}9$ სთ
+SEN: Doubling time $3$ h: $\ N(t) = 200 \cdot 2^{\frac{t}{3}}$
+$200 \cdot 2^{\frac{t}{3}} = 10\,000 \Rightarrow 2^{\frac{t}{3}} = 50 \Rightarrow t = 3\log_2 50 \approx 16.9$ h
+AKA: $N = 200 \cdot 2^{t/3}$; $\approx 16{,}9$ სთ
+AEN: $N = 200 \cdot 2^{t/3}$; $\approx 16.9$ h
+
+--- hard modeling
+KA: მონაცემებისთვის $(1;\ 3{,}5)$, $(2;\ 4{,}5)$, $(3;\ 7{,}5)$, $(4;\ 8{,}5)$ შემოთავაზებულია მოდელი $y = 2x + 1$. იპოვეთ ნაშთები, მათი ჯამი და კვადრატების ჯამი. კარგია მოდელი?
+EN: For the data $(1,\ 3.5)$, $(2,\ 4.5)$, $(3,\ 7.5)$, $(4,\ 8.5)$ the model $y = 2x + 1$ is proposed. Find the residuals, their sum and the sum of their squares. Is the model good?
+HKA: ნაშთი $= y_{\text{ფაქტ.}} - y_{\text{მოდ.}}$.
+HEN: Residual $= y_{\text{actual}} - y_{\text{model}}$.
+SKA: მოდელი: $3,\ 5,\ 7,\ 9$; ნაშთები: $0{,}5;\ -0{,}5;\ 0{,}5;\ -0{,}5$
+ჯამი $0$, კვადრატების ჯამი $4 \cdot 0{,}25 = 1$
+ნაშთები მცირეა და სისტემატური ტენდენციის გარეშე (ნიშანი მონაცვლეობს) — მოდელი კარგია.
+SEN: Model: $3,\ 5,\ 7,\ 9$; residuals: $0.5,\ -0.5,\ 0.5,\ -0.5$
+Sum $0$, sum of squares $4 \times 0.25 = 1$
+The residuals are small with no systematic trend (alternating signs) — the model is good.
+AKA: $\pm 0{,}5$; $0$; $1$; კარგია
+AEN: $\pm 0.5$; $0$; $1$; good
+
+--- hard events
+KA: დაავადება მოსახლეობის $1\%$-ს აქვს. ტესტი ავადმყოფს $99\%$-ში აღმოაჩენს, ჯანმრთელს კი $5\%$-ში შეცდომით აჩვენებს დადებით პასუხს. ადამიანის ტესტი დადებითია. რა ალბათობით არის ის ავად?
+EN: A disease affects $1\%$ of people. A test detects it in $99\%$ of sick people but wrongly gives a positive result for $5\%$ of healthy people. A person tests positive. What is the probability that they are sick?
+HKA: ბაიესის ფორმულა: $P(\text{ავ.} \mid +) = \dfrac{P(+ \mid \text{ავ.})P(\text{ავ.})}{P(+)}$.
+HEN: Bayes' formula: $P(\text{sick} \mid +) = \dfrac{P(+ \mid \text{sick})P(\text{sick})}{P(+)}$.
+SKA: $P(+) = 0{,}01 \cdot 0{,}99 + 0{,}99 \cdot 0{,}05 = 0{,}0099 + 0{,}0495 = 0{,}0594$
+$P(\text{ავ.} \mid +) = \dfrac{0{,}0099}{0{,}0594} \approx 0{,}17$ — მხოლოდ $\approx 17\%$!
+SEN: $P(+) = 0.01 \times 0.99 + 0.99 \times 0.05 = 0.0099 + 0.0495 = 0.0594$
+$P(\text{sick} \mid +) = \dfrac{0.0099}{0.0594} \approx 0.17$ — only $\approx 17\%$!
+AKA: $\approx 17\%$
+AEN: $\approx 17\%$
+
+--- hard events
+KA: მოწყობილობა ორი დამოუკიდებელი ელემენტისგან შედგება, თითოეულის საიმედოობაა $0{,}9$. რას უდრის მოწყობილობის საიმედოობა, თუ ელემენტები ჩართულია: ა) მიმდევრობით (ორივე უნდა მუშაობდეს); ბ) პარალელურად (საკმარისია ერთი)?
+EN: A device consists of two independent components, each working with probability $0.9$. What is the device's reliability if they are connected: a) in series (both must work); b) in parallel (one is enough)?
+HKA: პარალელურისთვის გამოიყენეთ საწინააღმდეგო ხდომილობა.
+HEN: For parallel, use the complementary event.
+SKA: ა) $0{,}9 \cdot 0{,}9 = 0{,}81$
+ბ) $1 - 0{,}1 \cdot 0{,}1 = 0{,}99$
+SEN: a) $0.9 \times 0.9 = 0.81$
+b) $1 - 0.1 \times 0.1 = 0.99$
+AKA: $0{,}81$; $0{,}99$
+AEN: $0.81$; $0.99$
+
+--- hard events
+KA: $5$ ადამიანი შემთხვევით ირჩევს კვირის დღეს. რას უდრის ალბათობა, რომ ორი მაინც ერთსა და იმავე დღეს აირჩევს?
+EN: $5$ people each pick a day of the week at random. What is the probability that at least two pick the same day?
+HKA: საწინააღმდეგო: ყველა დღე განსხვავებულია.
+HEN: Complement: all days are different.
+SKA: $P(\text{ყველა განსხვ.}) = \dfrac{7 \cdot 6 \cdot 5 \cdot 4 \cdot 3}{7^5} = \dfrac{2520}{16\,807} \approx 0{,}15$
+$P = 1 - 0{,}15 \approx 0{,}85$
+SEN: $P(\text{all different}) = \dfrac{7 \cdot 6 \cdot 5 \cdot 4 \cdot 3}{7^5} = \dfrac{2520}{16\,807} \approx 0.15$
+$P = 1 - 0.15 \approx 0.85$
+AKA: $\approx 0{,}85$
+AEN: $\approx 0.85$
+
+--- hard geoprob
+KA: ორი მეგობარი შეთანხმდა, რომ $12{:}00$-დან $13{:}00$-მდე შეხვდებიან; თითოეული შემთხვევით დროს მოდის და $20$ წუთს ელოდება. რას უდრის შეხვედრის ალბათობა?
+EN: Two friends agree to meet between $12{:}00$ and $13{:}00$; each arrives at a random time and waits $20$ minutes. What is the probability that they meet?
+HKA: $(x;\ y) \in [0;\ 60]^2$, შეხვედრა: $|x - y| \le 20$.
+HEN: $(x,\ y) \in [0,\ 60]^2$; they meet if $|x - y| \le 20$.
+SKA: არახელსაყრელი — ორი კუთხის სამკუთხედი, თითოეული კათეტით $40$: $\ 2 \cdot \dfrac{40^2}{2} = 1600$
+$P = 1 - \dfrac{1600}{3600} = \dfrac{5}{9} \approx 0{,}56$
+SEN: Unfavourable: two corner triangles with legs $40$: $\ 2 \cdot \dfrac{40^2}{2} = 1600$
+$P = 1 - \dfrac{1600}{3600} = \dfrac{5}{9} \approx 0.56$
+AKA: $\dfrac{5}{9}$
+AEN: $\dfrac{5}{9}$
+
+--- hard geoprob
+KA: სამიზნე $1$ რადიუსიანი წრეა, ისარი მის შემთხვევით წერტილში ხვდება. რას უდრის ალბათობა, რომ ცენტრამდე მანძილი: ა) $\dfrac{1}{2}$-ზე ნაკლები იქნება; ბ) $0{,}5$-სა და $0{,}8$-ს შორის? რატომ არ არის პასუხი ა)-ში $\dfrac{1}{2}$?
+EN: A target is a disc of radius $1$, and a dart hits a random point of it. What is the probability that the distance to the centre is: a) less than $\dfrac{1}{2}$; b) between $0.5$ and $0.8$? Why is the answer to a) not $\dfrac{1}{2}$?
+HKA: ფართობი რადიუსის კვადრატის პროპორციულია.
+HEN: Area is proportional to the square of the radius.
+SKA: ა) $P = \dfrac{\pi \cdot 0{,}25}{\pi} = \dfrac{1}{4}$
+ბ) $P = 0{,}8^2 - 0{,}5^2 = 0{,}64 - 0{,}25 = 0{,}39$
+წერტილი თანაბრადაა განაწილებული ფართობზე და არა რადიუსზე — გარე რგოლები უფრო დიდია.
+SEN: a) $P = \dfrac{\pi \times 0.25}{\pi} = \dfrac{1}{4}$
+b) $P = 0.8^2 - 0.5^2 = 0.64 - 0.25 = 0.39$
+The point is uniform over area, not over radius — the outer rings are bigger.
+AKA: $\dfrac{1}{4}$; $0{,}39$
+AEN: $\dfrac{1}{4}$; $0.39$
+
+--- hard combinatorics
+KA: ქალაქის ქუჩები $4 \times 3$ კვადრატულ ბადეს ქმნის. რამდენი უმოკლესი გზაა ერთი კუთხიდან მოპირდაპირემდე (მხოლოდ მარჯვნივ და ზემოთ მოძრაობით)?
+EN: City streets form a $4 \times 3$ grid of blocks. How many shortest routes are there from one corner to the opposite one (moving only right and up)?
+HKA: ყოველი გზა — $4$ „მარჯვნივ“ და $3$ „ზემოთ“ ნაბიჯის მიმდევრობა.
+HEN: Each route is a sequence of $4$ "right" and $3$ "up" steps.
+SKA: $C_7^3 = \dfrac{7 \cdot 6 \cdot 5}{3 \cdot 2 \cdot 1} = 35$
+SEN: $C_7^3 = \dfrac{7 \cdot 6 \cdot 5}{3 \cdot 2 \cdot 1} = 35$
+AKA: $35$
+AEN: $35$
+
+--- hard combinatorics
+KA: მონეტას $5$-ჯერ აგდებენ. რას უდრის ალბათობა, რომ გერბი ზუსტად $3$-ჯერ მოვა? $3$-ჯერ მაინც?
+EN: A coin is tossed $5$ times. What is the probability of exactly $3$ heads? Of at least $3$?
+HKA: ბერნულის ფორმულა: $P = C_n^k p^k (1 - p)^{n - k}$.
+HEN: Bernoulli's formula: $P = C_n^k p^k (1 - p)^{n - k}$.
+SKA: $P(3) = \dfrac{C_5^3}{2^5} = \dfrac{10}{32} = \dfrac{5}{16}$
+$P(\ge 3) = \dfrac{C_5^3 + C_5^4 + C_5^5}{32} = \dfrac{10 + 5 + 1}{32} = \dfrac{1}{2}$
+SEN: $P(3) = \dfrac{C_5^3}{2^5} = \dfrac{10}{32} = \dfrac{5}{16}$
+$P(\ge 3) = \dfrac{C_5^3 + C_5^4 + C_5^5}{32} = \dfrac{10 + 5 + 1}{32} = \dfrac{1}{2}$
+AKA: $\dfrac{5}{16}$; $\dfrac{1}{2}$
+AEN: $\dfrac{5}{16}$; $\dfrac{1}{2}$
+
+--- hard combinatorics
+KA: ლატარიაში $49$ რიცხვიდან $6$-ს ირჩევენ. რას უდრის ჯეკპოტის (ექვსივე რიცხვის გამოცნობის) ალბათობა ერთი ბილეთით?
+EN: In a lottery $6$ numbers are drawn from $49$. What is the probability of winning the jackpot (guessing all six) with one ticket?
+HKA: ყველა შესაძლო ბილეთი: $C_{49}^6$.
+HEN: All possible tickets: $C_{49}^6$.
+SKA: $C_{49}^6 = \dfrac{49 \cdot 48 \cdot 47 \cdot 46 \cdot 45 \cdot 44}{720} = 13\,983\,816$
+$P = \dfrac{1}{13\,983\,816} \approx 7 \cdot 10^{-8}$
+SEN: $C_{49}^6 = \dfrac{49 \cdot 48 \cdot 47 \cdot 46 \cdot 45 \cdot 44}{720} = 13\,983\,816$
+$P = \dfrac{1}{13\,983\,816} \approx 7 \times 10^{-8}$
+AKA: $\dfrac{1}{13\,983\,816}$
+AEN: $\dfrac{1}{13\,983\,816}$
+
+--- hard combinatorics
+KA: $10$ ერთნაირი კანფეტი $3$ ბავშვს უნდა გაუნაწილდეს. რამდენი გზით შეიძლება ეს? რამდენი გზით, თუ თითოეულმა ერთი მაინც უნდა მიიღოს?
+EN: $10$ identical sweets are shared among $3$ children. In how many ways? In how many ways if each child gets at least one?
+HKA: „ვარსკვლავები და ჯოხები“: $10$ კანფეტი და $2$ გამყოფი.
+HEN: "Stars and bars": $10$ sweets and $2$ dividers.
+SKA: $C_{12}^2 = \dfrac{12 \cdot 11}{2} = 66$
+ერთი მაინც: ჯერ თითოს ვაძლევთ, დარჩენილ $7$-ს ვანაწილებთ: $C_9^2 = 36$
+SEN: $C_{12}^2 = \dfrac{12 \cdot 11}{2} = 66$
+At least one each: first give one to each, then share the other $7$: $C_9^2 = 36$
+AKA: $66$; $36$
+AEN: $66$; $36$
+
+--- hard statprob
+KA: თამაშში მონაწილეობა $1$ ₾ ღირს. კამათელს აგდებთ; თუ $6$ მოვა, იღებთ $5$ ₾-ს. იპოვეთ მოგების მათემატიკური ლოდინი. სამართლიანია თამაში? რა პრიზი იქნებოდა სამართლიანი?
+EN: A game costs $1$ ₾ to play. You roll a die; if it shows $6$ you win $5$ ₾. Find the expected gain. Is the game fair? What prize would make it fair?
+HKA: $E = \sum x_i p_i$.
+HEN: $E = \sum x_i p_i$.
+SKA: $E = 5 \cdot \dfrac{1}{6} - 1 = -\dfrac{1}{6} \approx -0{,}17$ ₾ — უსამართლოა (საშუალოდ წააგებთ).
+სამართლიანი: $X \cdot \dfrac{1}{6} = 1 \Rightarrow X = 6$ ₾
+SEN: $E = 5 \cdot \dfrac{1}{6} - 1 = -\dfrac{1}{6} \approx -0.17$ ₾ — not fair (you lose on average).
+Fair: $X \cdot \dfrac{1}{6} = 1 \Rightarrow X = 6$ ₾
+AKA: $-\dfrac{1}{6}$ ₾; არა; $6$ ₾
+AEN: $-\dfrac{1}{6}$ ₾; no; $6$ ₾
+
+--- hard statprob
+KA: მონეტას $100$-ჯერ აგდებენ. გერბების რაოდენობის საშუალოა $np$, სტანდარტული გადახრა — $\sqrt{np(1 - p)}$. იპოვეთ ისინი. რა შუალედში მოხვდება გერბების რიცხვი დაახლოებით $95\%$ ალბათობით?
+EN: A coin is tossed $100$ times. The number of heads has mean $np$ and standard deviation $\sqrt{np(1 - p)}$. Find them. In what range will the number of heads fall with about $95\%$ probability?
+HKA: $95\%$ — დაახლოებით $\mu \pm 2\sigma$.
+HEN: $95\%$ is about $\mu \pm 2\sigma$.
+SKA: $\mu = 100 \cdot 0{,}5 = 50$, $\ \sigma = \sqrt{100 \cdot 0{,}25} = 5$
+$[\mu - 2\sigma;\ \mu + 2\sigma] = [40;\ 60]$
+SEN: $\mu = 100 \times 0.5 = 50$, $\ \sigma = \sqrt{100 \times 0.25} = 5$
+$[\mu - 2\sigma,\ \mu + 2\sigma] = [40,\ 60]$
+AKA: $50$; $5$; $[40;\ 60]$
+AEN: $50$; $5$; $[40,\ 60]$
+
+--- hard algebra
+KA: ამოხსენით სისტემა: $\begin{cases} x^2 + y^2 = 25 \\ x + y = 7 \end{cases}$
+EN: Solve: $\begin{cases} x^2 + y^2 = 25 \\ x + y = 7 \end{cases}$
+HKA: $(x + y)^2 = x^2 + y^2 + 2xy$ — იპოვეთ $xy$.
+HEN: $(x + y)^2 = x^2 + y^2 + 2xy$ — find $xy$.
+SKA: $49 = 25 + 2xy \Rightarrow xy = 12$
+$x, y$ — $t^2 - 7t + 12 = 0$-ის ფესვები: $3$ და $4$
+$(3;\ 4)$ და $(4;\ 3)$
+SEN: $49 = 25 + 2xy \Rightarrow xy = 12$
+$x, y$ are the roots of $t^2 - 7t + 12 = 0$: $3$ and $4$
+$(3,\ 4)$ and $(4,\ 3)$
+AKA: $(3;\ 4)$, $(4;\ 3)$
+AEN: $(3,\ 4)$, $(4,\ 3)$
+
+--- hard algebra
+KA: დაამტკიცეთ, რომ ნებისმიერი დადებითი $x$-ისთვის $x + \dfrac{1}{x} \ge 2$. როდის სრულდება ტოლობა?
+EN: Prove that $x + \dfrac{1}{x} \ge 2$ for every positive $x$. When does equality hold?
+HKA: $\left(\sqrt{x} - \dfrac{1}{\sqrt{x}}\right)^2 \ge 0$.
+HEN: $\left(\sqrt{x} - \dfrac{1}{\sqrt{x}}\right)^2 \ge 0$.
+SKA: $\left(\sqrt{x} - \dfrac{1}{\sqrt{x}}\right)^2 = x - 2 + \dfrac{1}{x} \ge 0 \Rightarrow x + \dfrac{1}{x} \ge 2$ ∎
+ტოლობა: $\sqrt{x} = \dfrac{1}{\sqrt{x}} \iff x = 1$
+SEN: $\left(\sqrt{x} - \dfrac{1}{\sqrt{x}}\right)^2 = x - 2 + \dfrac{1}{x} \ge 0 \Rightarrow x + \dfrac{1}{x} \ge 2$ ∎
+Equality: $\sqrt{x} = \dfrac{1}{\sqrt{x}} \iff x = 1$
+AKA: $x = 1$-ზე
+AEN: at $x = 1$
+
+--- hard functions
+KA: $a$-ს რა მნიშვნელობებისთვის აქვს განტოლებას $x^2 - 2ax + a + 6 = 0$ ორი განსხვავებული დადებითი ფესვი?
+EN: For which $a$ does $x^2 - 2ax + a + 6 = 0$ have two distinct positive roots?
+HKA: $D > 0$, ჯამი $> 0$, ნამრავლი $> 0$ (ვიეტის თეორემა).
+HEN: $D > 0$, sum $> 0$, product $> 0$ (Vieta's formulas).
+SKA: $\dfrac{D}{4} = a^2 - a - 6 > 0 \Rightarrow (a - 3)(a + 2) > 0 \Rightarrow a < -2$ ან $a > 3$
+$x_1 + x_2 = 2a > 0$, $\ x_1x_2 = a + 6 > 0$
+თანაკვეთა: $a > 3$
+SEN: $\dfrac{D}{4} = a^2 - a - 6 > 0 \Rightarrow (a - 3)(a + 2) > 0 \Rightarrow a < -2$ or $a > 3$
+$x_1 + x_2 = 2a > 0$, $\ x_1x_2 = a + 6 > 0$
+Together: $a > 3$
+AKA: $a > 3$
+AEN: $a > 3$
+
+--- hard functions
+KA: რამდენი ამონახსნი აქვს განტოლებას $|x^2 - 4| = a$, $a$-ს მიხედვით?
+EN: How many solutions does $|x^2 - 4| = a$ have, depending on $a$?
+HKA: ააგეთ $y = |x^2 - 4|$: პარაბოლის $x$-ღერძის ქვემოთა ნაწილი აირეკლეთ. „W“-ს ფორმაა, შუა მაქსიმუმი $(0;\ 4)$.
+HEN: Sketch $y = |x^2 - 4|$: reflect the part of the parabola below the $x$-axis. It is "W"-shaped with a middle peak at $(0,\ 4)$.
+SKA: $a < 0$: $0$; $\ a = 0$: $2$ ($\pm 2$); $\ 0 < a < 4$: $4$
+$a = 4$: $3$ ($0$, $\pm 2\sqrt{2}$); $\ a > 4$: $2$
+SEN: $a < 0$: $0$; $\ a = 0$: $2$ ($\pm 2$); $\ 0 < a < 4$: $4$
+$a = 4$: $3$ ($0$, $\pm 2\sqrt{2}$); $\ a > 4$: $2$
+AKA: $0;\ 2;\ 4;\ 3;\ 2$
+AEN: $0;\ 2;\ 4;\ 3;\ 2$
+
+--- hard logic
+KA: მათემატიკური ინდუქციით დაამტკიცეთ: $1 + 3 + 5 + \dots + (2n - 1) = n^2$.
+EN: Prove by induction: $1 + 3 + 5 + \dots + (2n - 1) = n^2$.
+HKA: ბაზა $n = 1$; ბიჯი: დაუმატეთ $(2n + 1)$.
+HEN: Base $n = 1$; step: add $(2n + 1)$.
+SKA: ბაზა: $n = 1$: $1 = 1^2$ ✓
+ბიჯი: დავუშვათ, $1 + 3 + \dots + (2n - 1) = n^2$. მაშინ $n^2 + (2n + 1) = (n + 1)^2$ ✓
+ინდუქციის პრინციპით ტოლობა სრულდება ყველა ნატურალური $n$-ისთვის ∎
+SEN: Base: $n = 1$: $1 = 1^2$ ✓
+Step: suppose $1 + 3 + \dots + (2n - 1) = n^2$. Then $n^2 + (2n + 1) = (n + 1)^2$ ✓
+By induction the identity holds for every natural $n$ ∎
+AKA: დამტკიცებულია
+AEN: proved
+
+--- hard logic
+KA: სკოლაში $367$ მოსწავლეა. დაამტკიცეთ, რომ ორს მაინც ერთსა და იმავე დღეს აქვს დაბადების დღე. რა მინიმალური რაოდენობა იძლევა ამის გარანტიას?
+EN: A school has $367$ students. Prove that at least two share a birthday. What is the smallest number that guarantees this?
+HKA: დირიხლეს პრინციპი: $n + 1$ კურდღელი $n$ გალიაში.
+HEN: The pigeonhole principle: $n + 1$ pigeons in $n$ holes.
+SKA: სულ $366$ შესაძლო თარიღია (მათ შორის $29$ თებერვალი) — „გალიები“.
+$367 > 366$ $\Rightarrow$ ერთ გალიაში ორი მაინც ხვდება ∎
+მინიმალური რაოდენობა $367$ ($366$ შეიძლება ყველა განსხვავებული იყოს).
+SEN: There are $366$ possible dates (including $29$ February) — the "holes".
+$367 > 366$ $\Rightarrow$ some hole gets at least two ∎
+The smallest number is $367$ ($366$ could all be different).
+AKA: $367$
+AEN: $367$
+
+// ===================================================================== OLYMPIAD
+
+--- hard sines olympiad
+KA: $ABC$ სამკუთხედში $a\cos A = b\cos B$. დაამტკიცეთ, რომ სამკუთხედი ან ტოლფერდაა, ან მართკუთხა.
+EN: In triangle $ABC$, $a\cos A = b\cos B$. Prove that the triangle is either isosceles or right-angled.
+HKA: სინუსების თეორემით $a = 2R\sin A$, $b = 2R\sin B$; შემდეგ $\sin 2\alpha$.
+HEN: By the law of sines $a = 2R\sin A$, $b = 2R\sin B$; then use $\sin 2\alpha$.
+SKA: $2R\sin A\cos A = 2R\sin B\cos B \Rightarrow \sin 2A = \sin 2B$
+$2A = 2B$ ან $2A = 180^\circ - 2B$
+$A = B$ (ტოლფერდა) ან $A + B = 90^\circ \Rightarrow C = 90^\circ$ (მართკუთხა) ∎
+SEN: $2R\sin A\cos A = 2R\sin B\cos B \Rightarrow \sin 2A = \sin 2B$
+$2A = 2B$ or $2A = 180^\circ - 2B$
+$A = B$ (isosceles) or $A + B = 90^\circ \Rightarrow C = 90^\circ$ (right-angled) ∎
+AKA: დამტკიცებულია
+AEN: proved
+
+--- hard cosines olympiad
+KA: სამკუთხედის გვერდებია $b = 5$, $c = 6$, $a = 7$. იპოვეთ $A$ კუთხის ბისექტრისის სიგრძე.
+EN: A triangle has sides $b = 5$, $c = 6$, $a = 7$. Find the length of the bisector of angle $A$.
+HKA: ბისექტრისა $a$-ს ყოფს $\dfrac{c}{b}$ შეფარდებით; შემდეგ კოსინუსების თეორემა (ან სტიუარტის თეორემა).
+HEN: The bisector divides $a$ in the ratio $\dfrac{c}{b}$; then use the law of cosines (or Stewart's theorem).
+SKA: $BD = \dfrac{6}{11} \cdot 7 = \dfrac{42}{11}$, $\ \cos B = \dfrac{49 + 36 - 25}{2 \cdot 7 \cdot 6} = \dfrac{60}{84} = \dfrac{5}{7}$
+$l^2 = 36 + \left(\dfrac{42}{11}\right)^2 - 2 \cdot 6 \cdot \dfrac{42}{11} \cdot \dfrac{5}{7} = 36 + \dfrac{1764}{121} - \dfrac{360}{11} = \dfrac{4356 + 1764 - 3960}{121} = \dfrac{2160}{121}$
+$l = \dfrac{\sqrt{2160}}{11} = \dfrac{12\sqrt{15}}{11} \approx 4{,}23$
+SEN: $BD = \dfrac{6}{11} \cdot 7 = \dfrac{42}{11}$, $\ \cos B = \dfrac{49 + 36 - 25}{2 \cdot 7 \cdot 6} = \dfrac{60}{84} = \dfrac{5}{7}$
+$l^2 = 36 + \left(\dfrac{42}{11}\right)^2 - 2 \cdot 6 \cdot \dfrac{42}{11} \cdot \dfrac{5}{7} = 36 + \dfrac{1764}{121} - \dfrac{360}{11} = \dfrac{4356 + 1764 - 3960}{121} = \dfrac{2160}{121}$
+$l = \dfrac{\sqrt{2160}}{11} = \dfrac{12\sqrt{15}}{11} \approx 4.23$
+AKA: $\dfrac{12\sqrt{15}}{11} \approx 4{,}23$
+AEN: $\dfrac{12\sqrt{15}}{11} \approx 4.23$
+
+--- hard circles olympiad
+KA: ეილერის ფორმულით ჩახაზული და შემოხაზული წრეწირების ცენტრებს შორის მანძილია $d^2 = R^2 - 2Rr$. იპოვეთ $d$ $13$, $14$, $15$ გვერდებიანი სამკუთხედისთვის. რა გამომდინარეობს ამ ფორმულიდან $R$-სა და $r$-ზე?
+EN: By Euler's formula the distance between the incentre and circumcentre is $d^2 = R^2 - 2Rr$. Find $d$ for the triangle with sides $13$, $14$, $15$. What does the formula imply about $R$ and $r$?
+HKA: ამ სამკუთხედისთვის $r = 4$, $R = \dfrac{65}{8}$.
+HEN: For this triangle $r = 4$ and $R = \dfrac{65}{8}$.
+SKA: $d^2 = \dfrac{4225}{64} - 2 \cdot \dfrac{65}{8} \cdot 4 = \dfrac{4225 - 4160}{64} = \dfrac{65}{64}$
+$d = \dfrac{\sqrt{65}}{8} \approx 1{,}01$
+$d^2 \ge 0 \Rightarrow R(R - 2r) \ge 0 \Rightarrow R \ge 2r$ — ეილერის უტოლობა (ტოლობა მხოლოდ ტოლგვერდა სამკუთხედისთვის).
+SEN: $d^2 = \dfrac{4225}{64} - 2 \cdot \dfrac{65}{8} \cdot 4 = \dfrac{4225 - 4160}{64} = \dfrac{65}{64}$
+$d = \dfrac{\sqrt{65}}{8} \approx 1.01$
+$d^2 \ge 0 \Rightarrow R(R - 2r) \ge 0 \Rightarrow R \ge 2r$ — Euler's inequality (equality only for an equilateral triangle).
+AKA: $\dfrac{\sqrt{65}}{8}$; $R \ge 2r$
+AEN: $\dfrac{\sqrt{65}}{8}$; $R \ge 2r$
+
+--- hard solids olympiad
+KA: $R$ რადიუსიან და $H$ სიმაღლის კონუსში ჩახაზულია ცილინდრი (ფუძე კონუსის ფუძეზეა). იპოვეთ ცილინდრის უდიდესი მოცულობა და მისი შეფარდება კონუსის მოცულობასთან.
+EN: A cylinder is inscribed in a cone of radius $R$ and height $H$ (its base on the cone's base). Find the largest volume of the cylinder and its ratio to the volume of the cone.
+HKA: ცილინდრის რადიუსი $x$-ისთვის სიმაღლეა $H\left(1 - \dfrac{x}{R}\right)$. გამოიყენეთ საშუალოების უტოლობა სამი მამრავლისთვის $\dfrac{x}{2R}$, $\dfrac{x}{2R}$, $1 - \dfrac{x}{R}$.
+HEN: For cylinder radius $x$ the height is $H\left(1 - \dfrac{x}{R}\right)$. Use the AM–GM inequality for the three factors $\dfrac{x}{2R}$, $\dfrac{x}{2R}$, $1 - \dfrac{x}{R}$.
+SKA: $V = \pi x^2 H\left(1 - \dfrac{x}{R}\right) = 4\pi R^2 H \cdot \dfrac{x}{2R} \cdot \dfrac{x}{2R} \cdot \left(1 - \dfrac{x}{R}\right)$
+სამი მამრავლის ჯამი $1$-ია $\Rightarrow$ ნამრავლი $\le \left(\dfrac{1}{3}\right)^3$, ტოლობა როცა $\dfrac{x}{2R} = 1 - \dfrac{x}{R} \Rightarrow x = \dfrac{2R}{3}$
+$V_{\max} = \dfrac{4}{27}\pi R^2 H$; $\ \dfrac{V_{\max}}{V_{\text{კონ}}} = \dfrac{4/27}{1/3} = \dfrac{4}{9}$
+SEN: $V = \pi x^2 H\left(1 - \dfrac{x}{R}\right) = 4\pi R^2 H \cdot \dfrac{x}{2R} \cdot \dfrac{x}{2R} \cdot \left(1 - \dfrac{x}{R}\right)$
+The three factors add up to $1$ $\Rightarrow$ their product is $\le \left(\dfrac{1}{3}\right)^3$, with equality when $\dfrac{x}{2R} = 1 - \dfrac{x}{R} \Rightarrow x = \dfrac{2R}{3}$
+$V_{\max} = \dfrac{4}{27}\pi R^2 H$; $\ \dfrac{V_{\max}}{V_{\text{cone}}} = \dfrac{4/27}{1/3} = \dfrac{4}{9}$
+AKA: $\dfrac{4}{27}\pi R^2 H$; $\dfrac{4}{9}$
+AEN: $\dfrac{4}{27}\pi R^2 H$; $\dfrac{4}{9}$
+
+--- hard linprog olympiad
+KA: საწყობ $A$-ში $20$ ტ ტვირთია, $B$-ში — $30$ ტ. მაღაზია $X$-ს სჭირდება $25$ ტ, $Y$-ს — $25$ ტ. ერთი ტონის გადაზიდვის ფასი (₾): $A \to X$ — $3$, $A \to Y$ — $5$, $B \to X$ — $4$, $B \to Y$ — $2$. როგორ დავგეგმოთ გადაზიდვა მინიმალური ხარჯით?
+EN: Warehouse $A$ has $20$ t of goods and $B$ has $30$ t. Shop $X$ needs $25$ t and shop $Y$ $25$ t. The cost per tonne (₾): $A \to X$ — $3$, $A \to Y$ — $5$, $B \to X$ — $4$, $B \to Y$ — $2$. How should the transport be planned at minimum cost?
+HKA: აღნიშნეთ $x$ — $A \to X$; დანარჩენი სამი რაოდენობა $x$-ით გამოისახება.
+HEN: Let $x$ be $A \to X$; the other three amounts are expressed in terms of $x$.
+SKA: $A \to Y = 20 - x$, $\ B \to X = 25 - x$, $\ B \to Y = 5 + x$; $\ 0 \le x \le 20$
+$z = 3x + 5(20 - x) + 4(25 - x) + 2(5 + x) = 210 - 4x$
+$z$ კლებადია $\Rightarrow x = 20$: $\ z_{\min} = 130$ ₾
+$A \to X$: $20$ ტ, $\ B \to X$: $5$ ტ, $\ B \to Y$: $25$ ტ
+SEN: $A \to Y = 20 - x$, $\ B \to X = 25 - x$, $\ B \to Y = 5 + x$; $\ 0 \le x \le 20$
+$z = 3x + 5(20 - x) + 4(25 - x) + 2(5 + x) = 210 - 4x$
+$z$ decreases $\Rightarrow x = 20$: $\ z_{\min} = 130$ ₾
+$A \to X$: $20$ t, $\ B \to X$: $5$ t, $\ B \to Y$: $25$ t
+AKA: $130$ ₾
+AEN: $130$ ₾
+
+--- hard events olympiad
+KA: (მონტი ჰოლის ამოცანა.) სამი კარიდან ერთის მიღმა მანქანაა, ორის მიღმა — თხები. თქვენ ირჩევთ კარს; წამყვანმა, რომელმაც იცის, სად არის მანქანა, გააღო სხვა კარი თხით და შემოგთავაზათ არჩევანის შეცვლა. ღირს შეცვლა?
+EN: (The Monty Hall problem.) Behind one of three doors is a car, behind the other two goats. You pick a door; the host, who knows where the car is, opens another door showing a goat and offers you a switch. Should you switch?
+HKA: რა ალბათობით აირჩიეთ თავიდანვე მანქანა?
+HEN: What is the probability that you picked the car at the start?
+SKA: თავიდან მანქანას ირჩევთ ალბათობით $\dfrac{1}{3}$ — მაშინ შეცვლა წაგებაა.
+ალბათობით $\dfrac{2}{3}$ თხა აირჩიეთ — წამყვანი მეორე თხას აჩვენებს და დარჩენილ კარს მიღმა აუცილებლად მანქანაა.
+შეცვლით მოგების ალბათობა $\dfrac{2}{3}$, დარჩენით — $\dfrac{1}{3}$. ღირს შეცვლა.
+SEN: You pick the car at first with probability $\dfrac{1}{3}$ — then switching loses.
+With probability $\dfrac{2}{3}$ you picked a goat — the host shows the other goat, and the remaining door must hide the car.
+Switching wins with probability $\dfrac{2}{3}$, staying with $\dfrac{1}{3}$. You should switch.
+AKA: დიახ; $\dfrac{2}{3}$
+AEN: yes; $\dfrac{2}{3}$
+
+--- hard geoprob olympiad
+KA: $1$ სიგრძის ჯოხს ორ შემთხვევით წერტილში ტეხენ. რას უდრის ალბათობა, რომ სამი ნაწილიდან სამკუთხედი აიწყობა?
+EN: A stick of length $1$ is broken at two random points. What is the probability that the three pieces form a triangle?
+HKA: სამკუთხედი აიწყობა, თუ ყოველი ნაწილი $< \dfrac{1}{2}$. გამოიყენეთ $(x;\ y)$ კვადრატი.
+HEN: A triangle is possible if every piece is $< \dfrac{1}{2}$. Use the square of $(x,\ y)$.
+SKA: $x < y$ შემთხვევაში ნაწილები: $x$, $y - x$, $1 - y$; პირობები: $x < \dfrac{1}{2}$, $y - x < \dfrac{1}{2}$, $y > \dfrac{1}{2}$
+ეს სამკუთხედი $(0;\ 0{,}5)$, $(0{,}5;\ 0{,}5)$, $(0{,}5;\ 1)$-ით — ფართობი $\dfrac{1}{8}$; $x > y$ — სიმეტრიულად კიდევ $\dfrac{1}{8}$.
+$P = \dfrac{1}{8} + \dfrac{1}{8} = \dfrac{1}{4}$
+SEN: For $x < y$ the pieces are $x$, $y - x$, $1 - y$; conditions: $x < \dfrac{1}{2}$, $y - x < \dfrac{1}{2}$, $y > \dfrac{1}{2}$
+This is the triangle $(0,\ 0.5)$, $(0.5,\ 0.5)$, $(0.5,\ 1)$ — area $\dfrac{1}{8}$; for $x > y$, symmetrically another $\dfrac{1}{8}$.
+$P = \dfrac{1}{8} + \dfrac{1}{8} = \dfrac{1}{4}$
+AKA: $\dfrac{1}{4}$
+AEN: $\dfrac{1}{4}$
+
+--- hard combinatorics olympiad
+KA: რამდენი ქვესიმრავლე აქვს $\{1, 2, \dots, 10\}$ სიმრავლეს, რომელიც არ შეიცავს ორ მომდევნო რიცხვს? (ცარიელი სიმრავლეც ითვლება)
+EN: How many subsets of $\{1, 2, \dots, 10\}$ contain no two consecutive numbers? (The empty set counts.)
+HKA: აღნიშნეთ $a_n$ — პასუხი $\{1, \dots, n\}$-ისთვის. შეიცავს თუ არა ქვესიმრავლე $n$-ს?
+HEN: Let $a_n$ be the answer for $\{1, \dots, n\}$. Does the subset contain $n$ or not?
+SKA: არ შეიცავს $n$-ს: $a_{n-1}$ ვარიანტი; შეიცავს $n$-ს $\Rightarrow$ არ შეიცავს $n - 1$-ს: $a_{n-2}$ ვარიანტი.
+$a_n = a_{n-1} + a_{n-2}$, $\ a_1 = 2$, $a_2 = 3$ — ფიბონაჩის რიცხვები!
+$2, 3, 5, 8, 13, 21, 34, 55, 89, 144$ $\Rightarrow a_{10} = 144$
+SEN: Without $n$: $a_{n-1}$ options; with $n$ $\Rightarrow$ without $n - 1$: $a_{n-2}$ options.
+$a_n = a_{n-1} + a_{n-2}$, $\ a_1 = 2$, $a_2 = 3$ — Fibonacci numbers!
+$2, 3, 5, 8, 13, 21, 34, 55, 89, 144$ $\Rightarrow a_{10} = 144$
+AKA: $144$
+AEN: $144$
+
+--- hard algebra olympiad
+KA: ამოხსენით განტოლება: $4^x + 6^x = 9^x$.
+EN: Solve: $4^x + 6^x = 9^x$.
+HKA: გაყავით $9^x$-ზე და აღნიშნეთ $t = \left(\dfrac{2}{3}\right)^x$.
+HEN: Divide by $9^x$ and let $t = \left(\dfrac{2}{3}\right)^x$.
+SKA: $\left(\dfrac{4}{9}\right)^x + \left(\dfrac{6}{9}\right)^x = 1 \Rightarrow t^2 + t - 1 = 0$
+$t > 0 \Rightarrow t = \dfrac{\sqrt{5} - 1}{2} \approx 0{,}618$ (ოქროს კვეთის შებრუნებული!)
+$x = \log_{\frac{2}{3}} \dfrac{\sqrt{5} - 1}{2} = \dfrac{\lg 0{,}618}{\lg \frac{2}{3}} \approx 1{,}19$
+SEN: $\left(\dfrac{4}{9}\right)^x + \left(\dfrac{6}{9}\right)^x = 1 \Rightarrow t^2 + t - 1 = 0$
+$t > 0 \Rightarrow t = \dfrac{\sqrt{5} - 1}{2} \approx 0.618$ (the reciprocal of the golden ratio!)
+$x = \log_{\frac{2}{3}} \dfrac{\sqrt{5} - 1}{2} = \dfrac{\lg 0.618}{\lg \frac{2}{3}} \approx 1.19$
+AKA: $x = \log_{2/3} \dfrac{\sqrt{5} - 1}{2} \approx 1{,}19$
+AEN: $x = \log_{2/3} \dfrac{\sqrt{5} - 1}{2} \approx 1.19$
+
+--- hard logic olympiad
+KA: $2$ გვერდიან კვადრატში $5$ წერტილია მოთავსებული. დაამტკიცეთ, რომ რომელიღაც ორს შორის მანძილი $\sqrt{2}$-ს არ აღემატება.
+EN: Five points are placed in a square of side $2$. Prove that some two of them are at most $\sqrt{2}$ apart.
+HKA: დაყავით კვადრატი ოთხ $1 \times 1$ კვადრატად.
+HEN: Divide the square into four $1 \times 1$ squares.
+SKA: $4$ პატარა კვადრატი — „გალიები“, $5$ წერტილი — „კურდღლები“.
+დირიხლეს პრინციპით ორი წერტილი ერთ $1 \times 1$ კვადრატში ხვდება.
+მათ შორის მანძილი $\le$ პატარა კვადრატის დიაგონალი $= \sqrt{2}$ ∎
+SEN: The $4$ small squares are the "holes", the $5$ points the "pigeons".
+By the pigeonhole principle two points land in the same $1 \times 1$ square.
+Their distance is $\le$ the small square's diagonal $= \sqrt{2}$ ∎
+AKA: დამტკიცებულია
+AEN: proved
+</script>
+</body>
+</html>

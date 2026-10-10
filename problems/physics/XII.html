@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Physics · Grade XII</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css?v=2">
+  <script defer src="../assets/problems.js?v=2"></script>
+</head>
+<body data-page="grade" data-subject="physics" data-grade="XII">
+<div id="app"></div>
+<!-- Problem format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# topic mkt       | I–II | მოლეკულურ-კინეტიკური თეორია. ტემპერატურა | Kinetic theory. Temperature
+# topic gaslaw    | III | იდეალური აირის მდგომარეობის განტოლება | The ideal gas equation
+# topic isoproc   | IV–VI | იზოპროცესები | Isoprocesses
+# topic internal  | VII | იდეალური აირის შინაგანი ენერგია | Internal energy of an ideal gas
+# topic gaswork   | VIII–IX | აირის მუშაობა | Work done by a gas
+# topic thermo1   | XI–XII | თერმოდინამიკის პირველი კანონი | The first law of thermodynamics
+# topic engines   | XIII | სითბური ძრავები. მქკ. კარნოს ციკლი | Heat engines. Efficiency. The Carnot cycle
+# topic humidity  | XIV | ჰაერის ტენიანობა | Humidity
+# topic liquids   | XV | ზედაპირული დაჭიმულობა. კაპილარობა | Surface tension. Capillarity
+# topic quantum   | XIX–XXII | კვანტი. ფოტონი. ფოტოეფექტი | Quanta. Photons. The photoelectric effect
+# topic atom      | XXIII–XXIV | ატომის აგებულება. ბორის თეორია | Atomic structure. Bohr's theory
+# topic nucleus   | XXV, XXVIII | ატომის ბირთვი. ბმის ენერგია. დაშლა და სინთეზი | The nucleus. Binding energy. Fission and fusion
+# topic radio     | XXVI–XXVII | რადიოაქტივობა. ნახევარდაშლის პერიოდი | Radioactivity. Half-life
+# topic particles | XXIX | ელემენტარული ნაწილაკები. ამაჩქარებლები | Elementary particles. Accelerators
+# topic astro     | XXXI–XXXV | სამყარო: ვარსკვლავები, შავი ხვრელები, გაფართოება | The Universe: stars, black holes, expansion
+# note მუდმივები: $k = 1{,}38 \cdot 10^{-23}\ \text{ჯ/K}$, $R = 8{,}31\ \text{ჯ/(მოლი}\cdot\text{K)}$, $N_A = 6{,}02 \cdot 10^{23}\ \text{მოლი}^{-1}$, $h = 6{,}63 \cdot 10^{-34}\ \text{ჯ}\cdot\text{წმ}$, $c = 3 \cdot 10^8\ \text{მ/წმ}$, $e = 1{,}6 \cdot 10^{-19}\ \text{კ}$, $m_e = 9{,}1 \cdot 10^{-31}\ \text{კგ}$, $m_p = 1{,}67 \cdot 10^{-27}\ \text{კგ}$, $1\ \text{ევ} = 1{,}6 \cdot 10^{-19}\ \text{ჯ}$, $1\ \text{მ.ა.ე.} \to 931{,}5\ \text{მევ}$, $G = 6{,}67 \cdot 10^{-11}\ \text{ნ}\cdot\text{მ}^2\text{/კგ}^2$, $g = 10\ \text{მ/წმ}^2$. | Constants: $k = 1.38 \times 10^{-23}\ \text{J/K}$, $R = 8.31\ \text{J/(mol}\cdot\text{K)}$, $N_A = 6.02 \times 10^{23}\ \text{mol}^{-1}$, $h = 6.63 \times 10^{-34}\ \text{J}\cdot\text{s}$, $c = 3 \times 10^8\ \text{m/s}$, $e = 1.6 \times 10^{-19}\ \text{C}$, $m_e = 9.1 \times 10^{-31}\ \text{kg}$, $m_p = 1.67 \times 10^{-27}\ \text{kg}$, $1\ \text{eV} = 1.6 \times 10^{-19}\ \text{J}$, $1\ \text{u} \to 931.5\ \text{MeV}$, $G = 6.67 \times 10^{-11}\ \text{N}\cdot\text{m}^2\text{/kg}^2$, $g = 10\ \text{m/s}^2$.
+
+// ===================================================================== EASY
+
+--- easy mkt
+KA: რამდენი მოლეკულაა $2$ მოლ ნივთიერებაში?
+EN: How many molecules are there in $2$ mol of a substance?
+HKA: $N = \nu N_A$.
+HEN: $N = \nu N_A$.
+SKA: $N = \nu N_A$
+$N = 2 \cdot 6{,}02 \cdot 10^{23} = 1{,}204 \cdot 10^{24}$
+SEN: $N = \nu N_A$
+$N = 2 \times 6.02 \times 10^{23} = 1.204 \times 10^{24}$
+AKA: $\approx 1{,}2 \cdot 10^{24}$
+AEN: $\approx 1.2 \times 10^{24}$
+
+--- easy mkt
+KA: წყლის მოლური მასაა $M = 18\ \text{გ/მოლი}$. რამდენი მოლი და რამდენი მოლეკულაა $90\ \text{გ}$ წყალში?
+EN: Water has molar mass $M = 18\ \text{g/mol}$. How many moles and how many molecules are in $90\ \text{g}$ of water?
+HKA: $\nu = \dfrac{m}{M}$, $\ N = \nu N_A$.
+HEN: $\nu = \dfrac{m}{M}$, $\ N = \nu N_A$.
+SKA: $\nu = \dfrac{m}{M} = \dfrac{90}{18} = 5\ \text{მოლი}$
+$N = \nu N_A = 5 \cdot 6{,}02 \cdot 10^{23} = 3{,}01 \cdot 10^{24}$
+SEN: $\nu = \dfrac{m}{M} = \dfrac{90}{18} = 5\ \text{mol}$
+$N = \nu N_A = 5 \times 6.02 \times 10^{23} = 3.01 \times 10^{24}$
+AKA: $5\ \text{მოლი}$; $3{,}01 \cdot 10^{24}$
+AEN: $5\ \text{mol}$; $3.01 \times 10^{24}$
+
+--- easy mkt
+KA: იპოვეთ წყლის ერთი მოლეკულის მასა ($M = 0{,}018\ \text{კგ/მოლი}$).
+EN: Find the mass of one water molecule ($M = 0.018\ \text{kg/mol}$).
+HKA: $m_0 = \dfrac{M}{N_A}$.
+HEN: $m_0 = \dfrac{M}{N_A}$.
+SKA: $m_0 = \dfrac{M}{N_A}$
+$m_0 = \dfrac{0{,}018}{6{,}02 \cdot 10^{23}} \approx 3 \cdot 10^{-26}\ \text{კგ}$
+SEN: $m_0 = \dfrac{M}{N_A}$
+$m_0 = \dfrac{0.018}{6.02 \times 10^{23}} \approx 3 \times 10^{-26}\ \text{kg}$
+AKA: $\approx 3 \cdot 10^{-26}\ \text{კგ}$
+AEN: $\approx 3 \times 10^{-26}\ \text{kg}$
+
+--- easy mkt
+KA: გადაიყვანეთ: $27\ \text{°C}$ კელვინებში და $100\ \text{K}$ ცელსიუსის გრადუსებში.
+EN: Convert $27\ \text{°C}$ to kelvin and $100\ \text{K}$ to degrees Celsius.
+HKA: $T = t + 273$.
+HEN: $T = t + 273$.
+SKA: $T = t + 273 = 27 + 273 = 300\ \text{K}$
+$t = T - 273 = 100 - 273 = -173\ \text{°C}$
+SEN: $T = t + 273 = 27 + 273 = 300\ \text{K}$
+$t = T - 273 = 100 - 273 = -173\ \text{°C}$
+AKA: $300\ \text{K}$; $-173\ \text{°C}$
+AEN: $300\ \text{K}$; $-173\ \text{°C}$
+
+--- easy mkt
+KA: იპოვეთ აირის მოლეკულის გადატანითი მოძრაობის საშუალო კინეტიკური ენერგია $300\ \text{K}$ ტემპერატურაზე.
+EN: Find the mean translational kinetic energy of a gas molecule at $300\ \text{K}$.
+HKA: $\bar{E} = \dfrac{3}{2}kT$.
+HEN: $\bar{E} = \dfrac{3}{2}kT$.
+SKA: $\bar{E} = \dfrac{3}{2}kT$
+$\bar{E} = 1{,}5 \cdot 1{,}38 \cdot 10^{-23} \cdot 300 \approx 6{,}2 \cdot 10^{-21}\ \text{ჯ}$
+SEN: $\bar{E} = \dfrac{3}{2}kT$
+$\bar{E} = 1.5 \times 1.38 \times 10^{-23} \times 300 \approx 6.2 \times 10^{-21}\ \text{J}$
+AKA: $\approx 6{,}2 \cdot 10^{-21}\ \text{ჯ}$
+AEN: $\approx 6.2 \times 10^{-21}\ \text{J}$
+
+--- easy gaslaw
+KA: $2$ მოლი იდეალური აირი $300\ \text{K}$ ტემპერატურაზე იკავებს $0{,}05\ \text{მ}^3$-ს. იპოვეთ აირის წნევა.
+EN: $2$ mol of an ideal gas at $300\ \text{K}$ occupies $0.05\ \text{m}^3$. Find its pressure.
+HKA: მენდელეევ-კლაპეირონის განტოლება: $pV = \nu RT$.
+HEN: The ideal gas equation: $pV = \nu RT$.
+SKA: $pV = \nu RT \Rightarrow p = \dfrac{\nu RT}{V}$
+$p = \dfrac{2 \cdot 8{,}31 \cdot 300}{0{,}05} \approx 1 \cdot 10^5\ \text{პა}$
+SEN: $pV = \nu RT \Rightarrow p = \dfrac{\nu RT}{V}$
+$p = \dfrac{2 \times 8.31 \times 300}{0.05} \approx 1 \times 10^5\ \text{Pa}$
+AKA: $\approx 10^5\ \text{პა}$
+AEN: $\approx 10^5\ \text{Pa}$
+
+--- easy gaslaw
+KA: რამდენი მოლი აირია $8{,}31\ \text{ლ}$ მოცულობის ჭურჭელში, თუ წნევაა $10^5\ \text{პა}$, ტემპერატურა კი $400\ \text{K}$?
+EN: How many moles of gas are in an $8.31\ \text{L}$ vessel at $10^5\ \text{Pa}$ and $400\ \text{K}$?
+HKA: $\nu = \dfrac{pV}{RT}$; $1\ \text{ლ} = 10^{-3}\ \text{მ}^3$.
+HEN: $\nu = \dfrac{pV}{RT}$; $1\ \text{L} = 10^{-3}\ \text{m}^3$.
+SKA: $\nu = \dfrac{pV}{RT}$
+$\nu = \dfrac{10^5 \cdot 8{,}31 \cdot 10^{-3}}{8{,}31 \cdot 400} = 0{,}25\ \text{მოლი}$
+SEN: $\nu = \dfrac{pV}{RT}$
+$\nu = \dfrac{10^5 \times 8.31 \times 10^{-3}}{8.31 \times 400} = 0.25\ \text{mol}$
+AKA: $0{,}25\ \text{მოლი}$
+AEN: $0.25\ \text{mol}$
+
+--- easy gaslaw
+KA: აირის წნევაა $p = 1{,}38 \cdot 10^5\ \text{პა}$, ტემპერატურა $T = 250\ \text{K}$. იპოვეთ მოლეკულების კონცენტრაცია $n$.
+EN: A gas has pressure $p = 1.38 \times 10^5\ \text{Pa}$ and temperature $T = 250\ \text{K}$. Find the number density $n$ of molecules.
+HKA: $p = nkT$.
+HEN: $p = nkT$.
+SKA: $p = nkT \Rightarrow n = \dfrac{p}{kT}$
+$n = \dfrac{1{,}38 \cdot 10^5}{1{,}38 \cdot 10^{-23} \cdot 250} = 4 \cdot 10^{25}\ \text{მ}^{-3}$
+SEN: $p = nkT \Rightarrow n = \dfrac{p}{kT}$
+$n = \dfrac{1.38 \times 10^5}{1.38 \times 10^{-23} \times 250} = 4 \times 10^{25}\ \text{m}^{-3}$
+AKA: $4 \cdot 10^{25}\ \text{მ}^{-3}$
+AEN: $4 \times 10^{25}\ \text{m}^{-3}$
+
+--- easy isoproc
+KA: აირს იზოთერმულად კუმშავენ $6\ \text{ლ}$-დან $2\ \text{ლ}$-მდე. საწყისი წნევაა $10^5\ \text{პა}$. იპოვეთ საბოლოო წნევა.
+EN: A gas is compressed isothermally from $6\ \text{L}$ to $2\ \text{L}$. The initial pressure is $10^5\ \text{Pa}$. Find the final pressure.
+HKA: ბოილ-მარიოტის კანონი: $p_1V_1 = p_2V_2$.
+HEN: Boyle's law: $p_1V_1 = p_2V_2$.
+SKA: $p_1V_1 = p_2V_2 \Rightarrow p_2 = \dfrac{p_1V_1}{V_2}$
+$p_2 = \dfrac{10^5 \cdot 6}{2} = 3 \cdot 10^5\ \text{პა}$
+SEN: $p_1V_1 = p_2V_2 \Rightarrow p_2 = \dfrac{p_1V_1}{V_2}$
+$p_2 = \dfrac{10^5 \times 6}{2} = 3 \times 10^5\ \text{Pa}$
+AKA: $3 \cdot 10^5\ \text{პა}$
+AEN: $3 \times 10^5\ \text{Pa}$
+
+--- easy isoproc
+KA: დახურულ ჭურჭელში აირის წნევაა $2 \cdot 10^5\ \text{პა}$ $300\ \text{K}$-ზე. რა იქნება წნევა $450\ \text{K}$-ზე?
+EN: In a closed vessel a gas is at $2 \times 10^5\ \text{Pa}$ at $300\ \text{K}$. What is the pressure at $450\ \text{K}$?
+HKA: იზოქორული პროცესი (შარლის კანონი): $\dfrac{p_1}{T_1} = \dfrac{p_2}{T_2}$.
+HEN: An isochoric process (Gay-Lussac's pressure law): $\dfrac{p_1}{T_1} = \dfrac{p_2}{T_2}$.
+SKA: $\dfrac{p_1}{T_1} = \dfrac{p_2}{T_2} \Rightarrow p_2 = p_1 \dfrac{T_2}{T_1}$
+$p_2 = 2 \cdot 10^5 \cdot \dfrac{450}{300} = 3 \cdot 10^5\ \text{პა}$
+SEN: $\dfrac{p_1}{T_1} = \dfrac{p_2}{T_2} \Rightarrow p_2 = p_1 \dfrac{T_2}{T_1}$
+$p_2 = 2 \times 10^5 \times \dfrac{450}{300} = 3 \times 10^5\ \text{Pa}$
+AKA: $3 \cdot 10^5\ \text{პა}$
+AEN: $3 \times 10^5\ \text{Pa}$
+
+--- easy isoproc
+KA: აირი მუდმივი წნევისას $300\ \text{K}$-ზე იკავებს $3\ \text{ლ}$-ს. რა მოცულობას დაიკავებს $400\ \text{K}$-ზე?
+EN: At constant pressure a gas occupies $3\ \text{L}$ at $300\ \text{K}$. What volume does it occupy at $400\ \text{K}$?
+HKA: იზობარული პროცესი: $\dfrac{V_1}{T_1} = \dfrac{V_2}{T_2}$.
+HEN: An isobaric process: $\dfrac{V_1}{T_1} = \dfrac{V_2}{T_2}$.
+SKA: $V_2 = V_1 \dfrac{T_2}{T_1}$
+$V_2 = 3 \cdot \dfrac{400}{300} = 4\ \text{ლ}$
+SEN: $V_2 = V_1 \dfrac{T_2}{T_1}$
+$V_2 = 3 \times \dfrac{400}{300} = 4\ \text{L}$
+AKA: $4\ \text{ლ}$
+AEN: $4\ \text{L}$
+
+--- easy internal
+KA: იპოვეთ $2$ მოლი ერთატომიანი იდეალური აირის შინაგანი ენერგია $300\ \text{K}$-ზე.
+EN: Find the internal energy of $2$ mol of a monatomic ideal gas at $300\ \text{K}$.
+HKA: $U = \dfrac{3}{2}\nu RT$.
+HEN: $U = \dfrac{3}{2}\nu RT$.
+SKA: $U = \dfrac{3}{2}\nu RT$
+$U = 1{,}5 \cdot 2 \cdot 8{,}31 \cdot 300 \approx 7479\ \text{ჯ} \approx 7{,}5\ \text{კჯ}$
+SEN: $U = \dfrac{3}{2}\nu RT$
+$U = 1.5 \times 2 \times 8.31 \times 300 \approx 7479\ \text{J} \approx 7.5\ \text{kJ}$
+AKA: $\approx 7{,}5\ \text{კჯ}$
+AEN: $\approx 7.5\ \text{kJ}$
+
+--- easy internal
+KA: $1$ მოლი ერთატომიანი აირი $100\ \text{K}$-ით გაათბეს. რამდენით შეიცვალა მისი შინაგანი ენერგია?
+EN: $1$ mol of a monatomic gas is heated by $100\ \text{K}$. By how much does its internal energy change?
+HKA: $\Delta U = \dfrac{3}{2}\nu R \Delta T$.
+HEN: $\Delta U = \dfrac{3}{2}\nu R \Delta T$.
+SKA: $\Delta U = \dfrac{3}{2}\nu R \Delta T$
+$\Delta U = 1{,}5 \cdot 1 \cdot 8{,}31 \cdot 100 \approx 1246\ \text{ჯ}$
+SEN: $\Delta U = \dfrac{3}{2}\nu R \Delta T$
+$\Delta U = 1.5 \times 1 \times 8.31 \times 100 \approx 1246\ \text{J}$
+AKA: $\approx 1{,}25\ \text{კჯ}$-ით გაიზარდა
+AEN: increases by $\approx 1.25\ \text{kJ}$
+
+--- easy gaswork
+KA: აირი $2 \cdot 10^5\ \text{პა}$ მუდმივი წნევისას $3\ \text{ლ}$-ით გაფართოვდა. რა მუშაობა შეასრულა აირმა?
+EN: A gas expands by $3\ \text{L}$ at a constant pressure of $2 \times 10^5\ \text{Pa}$. How much work does it do?
+HKA: $A = p\Delta V$.
+HEN: $A = p\Delta V$.
+SKA: $A = p\Delta V$
+$A = 2 \cdot 10^5 \cdot 3 \cdot 10^{-3} = 600\ \text{ჯ}$
+SEN: $A = p\Delta V$
+$A = 2 \times 10^5 \times 3 \times 10^{-3} = 600\ \text{J}$
+AKA: $600\ \text{ჯ}$
+AEN: $600\ \text{J}$
+
+--- easy gaswork
+KA: აირს ათბობენ ხისტ დახურულ ბალონში. რა მუშაობას ასრულებს აირი? სად მიდის მიღებული სითბო?
+EN: A gas is heated in a rigid closed cylinder. How much work does the gas do? Where does the heat go?
+HKA: მუშაობა მოითხოვს მოცულობის ცვლილებას.
+HEN: Work requires a change of volume.
+SKA: $V = \text{const} \Rightarrow \Delta V = 0 \Rightarrow A = p\Delta V = 0$
+$Q = \Delta U$ — მთელი სითბო შინაგანი ენერგიის გაზრდაზე (ტემპერატურის აწევაზე) იხარჯება.
+SEN: $V = \text{const} \Rightarrow \Delta V = 0 \Rightarrow A = p\Delta V = 0$
+$Q = \Delta U$ — all the heat goes into internal energy (raising the temperature).
+AKA: $A = 0$; შინაგან ენერგიაზე
+AEN: $A = 0$; into internal energy
+
+--- easy gaswork
+KA: აირი $10^5\ \text{პა}$ წნევისას $0{,}01\ \text{მ}^3$-დან $0{,}004\ \text{მ}^3$-მდე შეკუმშეს. რა მუშაობა შეასრულეს გარე ძალებმა აირზე?
+EN: A gas at $10^5\ \text{Pa}$ is compressed from $0.01\ \text{m}^3$ to $0.004\ \text{m}^3$. How much work do external forces do on the gas?
+HKA: შეკუმშვისას აირის მუშაობა უარყოფითია, გარე ძალებისა — დადებითი.
+HEN: During compression the gas does negative work; external forces do positive work.
+SKA: $A_{\text{აირი}} = p(V_2 - V_1) = 10^5 \cdot (-0{,}006) = -600\ \text{ჯ}$
+$A_{\text{გარე}} = -A_{\text{აირი}} = 600\ \text{ჯ}$
+SEN: $A_{\text{gas}} = p(V_2 - V_1) = 10^5 \times (-0.006) = -600\ \text{J}$
+$A_{\text{ext}} = -A_{\text{gas}} = 600\ \text{J}$
+AKA: $600\ \text{ჯ}$
+AEN: $600\ \text{J}$
+
+--- easy thermo1
+KA: აირმა მიიღო $500\ \text{ჯ}$ სითბო და შეასრულა $200\ \text{ჯ}$ მუშაობა. როგორ შეიცვალა მისი შინაგანი ენერგია?
+EN: A gas receives $500\ \text{J}$ of heat and does $200\ \text{J}$ of work. How does its internal energy change?
+HKA: თერმოდინამიკის I კანონი: $Q = \Delta U + A$.
+HEN: The first law of thermodynamics: $Q = \Delta U + A$.
+SKA: $Q = \Delta U + A \Rightarrow \Delta U = Q - A$
+$\Delta U = 500 - 200 = 300\ \text{ჯ}$
+SEN: $Q = \Delta U + A \Rightarrow \Delta U = Q - A$
+$\Delta U = 500 - 200 = 300\ \text{J}$
+AKA: $300\ \text{ჯ}$-ით გაიზარდა
+AEN: increases by $300\ \text{J}$
+
+--- easy thermo1
+KA: აირი სწრაფად (თბოცვლის გარეშე) შეკუმშეს, გარე ძალებმა შეასრულეს $300\ \text{ჯ}$ მუშაობა. როგორ შეიცვალა შინაგანი ენერგია და ტემპერატურა?
+EN: A gas is compressed quickly (without heat exchange); external forces do $300\ \text{J}$ of work. How do its internal energy and temperature change?
+HKA: ადიაბატური პროცესი: $Q = 0$.
+HEN: An adiabatic process: $Q = 0$.
+SKA: $Q = 0 \Rightarrow \Delta U = A_{\text{გარე}} = 300\ \text{ჯ}$
+შინაგანი ენერგია გაიზარდა $\Rightarrow$ ტემპერატურა მოიმატა (ასე თბება ტუმბო ბორბლის გაბერვისას).
+SEN: $Q = 0 \Rightarrow \Delta U = A_{\text{ext}} = 300\ \text{J}$
+Internal energy increases $\Rightarrow$ the temperature rises (this is why a bicycle pump warms up).
+AKA: $+300\ \text{ჯ}$; ტემპერატურა იზრდება
+AEN: $+300\ \text{J}$; the temperature rises
+
+--- easy engines
+KA: სითბურმა ძრავამ გამაცხელებლისგან მიიღო $1000\ \text{ჯ}$, მაცივარს გადასცა $700\ \text{ჯ}$. იპოვეთ შესრულებული მუშაობა და მქკ.
+EN: A heat engine takes $1000\ \text{J}$ from the hot reservoir and gives $700\ \text{J}$ to the cold one. Find the work done and the efficiency.
+HKA: $A = Q_1 - Q_2$, $\ \eta = \dfrac{A}{Q_1}$.
+HEN: $A = Q_1 - Q_2$, $\ \eta = \dfrac{A}{Q_1}$.
+SKA: $A = Q_1 - Q_2 = 1000 - 700 = 300\ \text{ჯ}$
+$\eta = \dfrac{A}{Q_1} = \dfrac{300}{1000} = 30\%$
+SEN: $A = Q_1 - Q_2 = 1000 - 700 = 300\ \text{J}$
+$\eta = \dfrac{A}{Q_1} = \dfrac{300}{1000} = 30\%$
+AKA: $300\ \text{ჯ}$; $30\%$
+AEN: $300\ \text{J}$; $30\%$
+
+--- easy engines
+KA: კარნოს იდეალური ძრავის გამაცხელებლის ტემპერატურაა $500\ \text{K}$, მაცივრისა — $300\ \text{K}$. იპოვეთ მქკ.
+EN: An ideal Carnot engine works between $500\ \text{K}$ and $300\ \text{K}$. Find its efficiency.
+HKA: $\eta = \dfrac{T_1 - T_2}{T_1}$.
+HEN: $\eta = \dfrac{T_1 - T_2}{T_1}$.
+SKA: $\eta = \dfrac{T_1 - T_2}{T_1}$
+$\eta = \dfrac{500 - 300}{500} = 0{,}4 = 40\%$
+SEN: $\eta = \dfrac{T_1 - T_2}{T_1}$
+$\eta = \dfrac{500 - 300}{500} = 0.4 = 40\%$
+AKA: $40\%$
+AEN: $40\%$
+
+--- easy humidity
+KA: ჰაერში წყლის ორთქლის სიმკვრივეა $8{,}65\ \text{გ/მ}^3$, ხოლო ნაჯერი ორთქლის სიმკვრივე ამ ტემპერატურაზე — $17{,}3\ \text{გ/მ}^3$. იპოვეთ ფარდობითი ტენიანობა.
+EN: The water-vapour density in air is $8.65\ \text{g/m}^3$, and the saturated vapour density at this temperature is $17.3\ \text{g/m}^3$. Find the relative humidity.
+HKA: $\varphi = \dfrac{\rho}{\rho_{\text{ნ}}} \cdot 100\%$.
+HEN: $\varphi = \dfrac{\rho}{\rho_{\text{sat}}} \times 100\%$.
+SKA: $\varphi = \dfrac{\rho}{\rho_{\text{ნ}}} \cdot 100\%$
+$\varphi = \dfrac{8{,}65}{17{,}3} \cdot 100\% = 50\%$
+SEN: $\varphi = \dfrac{\rho}{\rho_{\text{sat}}} \times 100\%$
+$\varphi = \dfrac{8.65}{17.3} \times 100\% = 50\%$
+AKA: $50\%$
+AEN: $50\%$
+
+--- easy humidity
+KA: $50\ \text{მ}^3$ მოცულობის ოთახის ჰაერში $600\ \text{გ}$ წყლის ორთქლია. იპოვეთ აბსოლუტური ტენიანობა.
+EN: The air in a $50\ \text{m}^3$ room contains $600\ \text{g}$ of water vapour. Find the absolute humidity.
+HKA: აბსოლუტური ტენიანობა — ორთქლის სიმკვრივე: $\rho = \dfrac{m}{V}$.
+HEN: Absolute humidity is the vapour density: $\rho = \dfrac{m}{V}$.
+SKA: $\rho = \dfrac{m}{V} = \dfrac{600}{50} = 12\ \text{გ/მ}^3$
+SEN: $\rho = \dfrac{m}{V} = \dfrac{600}{50} = 12\ \text{g/m}^3$
+AKA: $12\ \text{გ/მ}^3$
+AEN: $12\ \text{g/m}^3$
+
+--- easy liquids
+KA: რა ძალით მოქმედებს წყლის ზედაპირული დაჭიმულობა $5\ \text{სმ}$ სიგრძის საზღვარზე? ($\sigma = 0{,}073\ \text{ნ/მ}$)
+EN: What surface-tension force acts along a $5\ \text{cm}$ boundary of water? ($\sigma = 0.073\ \text{N/m}$)
+HKA: $F = \sigma l$.
+HEN: $F = \sigma l$.
+SKA: $F = \sigma l$
+$F = 0{,}073 \cdot 0{,}05 \approx 3{,}7 \cdot 10^{-3}\ \text{ნ}$
+SEN: $F = \sigma l$
+$F = 0.073 \times 0.05 \approx 3.7 \times 10^{-3}\ \text{N}$
+AKA: $\approx 3{,}7\ \text{მნ}$
+AEN: $\approx 3.7\ \text{mN}$
+
+--- easy liquids
+KA: რა სიმაღლეზე ავა წყალი $0{,}5\ \text{მმ}$ რადიუსიან კაპილარში? ($\sigma = 0{,}073\ \text{ნ/მ}$, სრული დასველება)
+EN: How high does water rise in a capillary of radius $0.5\ \text{mm}$? ($\sigma = 0.073\ \text{N/m}$, complete wetting)
+HKA: $h = \dfrac{2\sigma}{\rho g r}$.
+HEN: $h = \dfrac{2\sigma}{\rho g r}$.
+SKA: $h = \dfrac{2\sigma}{\rho g r}$
+$h = \dfrac{2 \cdot 0{,}073}{1000 \cdot 10 \cdot 5 \cdot 10^{-4}} \approx 0{,}029\ \text{მ} = 2{,}9\ \text{სმ}$
+SEN: $h = \dfrac{2\sigma}{\rho g r}$
+$h = \dfrac{2 \times 0.073}{1000 \times 10 \times 5 \times 10^{-4}} \approx 0.029\ \text{m} = 2.9\ \text{cm}$
+AKA: $\approx 2{,}9\ \text{სმ}$
+AEN: $\approx 2.9\ \text{cm}$
+
+--- easy quantum
+KA: იპოვეთ $500\ \text{ნმ}$ ტალღის სიგრძის (მწვანე) სინათლის ფოტონის ენერგია ჯოულებში და ელექტრონვოლტებში.
+EN: Find the energy of a photon of $500\ \text{nm}$ (green) light in joules and electronvolts.
+HKA: $E = h\nu = \dfrac{hc}{\lambda}$.
+HEN: $E = h\nu = \dfrac{hc}{\lambda}$.
+SKA: $E = \dfrac{hc}{\lambda}$
+$E = \dfrac{6{,}63 \cdot 10^{-34} \cdot 3 \cdot 10^8}{5 \cdot 10^{-7}} \approx 4 \cdot 10^{-19}\ \text{ჯ}$
+$E = \dfrac{3{,}98 \cdot 10^{-19}}{1{,}6 \cdot 10^{-19}} \approx 2{,}5\ \text{ევ}$
+SEN: $E = \dfrac{hc}{\lambda}$
+$E = \dfrac{6.63 \times 10^{-34} \times 3 \times 10^8}{5 \times 10^{-7}} \approx 4 \times 10^{-19}\ \text{J}$
+$E = \dfrac{3.98 \times 10^{-19}}{1.6 \times 10^{-19}} \approx 2.5\ \text{eV}$
+AKA: $\approx 4 \cdot 10^{-19}\ \text{ჯ} \approx 2{,}5\ \text{ევ}$
+AEN: $\approx 4 \times 10^{-19}\ \text{J} \approx 2.5\ \text{eV}$
+
+--- easy quantum
+KA: ფოტონის სიხშირეა $10^{15}\ \text{ჰც}$. იპოვეთ მისი ენერგია.
+EN: A photon has frequency $10^{15}\ \text{Hz}$. Find its energy.
+HKA: $E = h\nu$.
+HEN: $E = h\nu$.
+SKA: $E = h\nu = 6{,}63 \cdot 10^{-34} \cdot 10^{15} = 6{,}63 \cdot 10^{-19}\ \text{ჯ} \approx 4{,}1\ \text{ევ}$
+SEN: $E = h\nu = 6.63 \times 10^{-34} \times 10^{15} = 6.63 \times 10^{-19}\ \text{J} \approx 4.1\ \text{eV}$
+AKA: $6{,}63 \cdot 10^{-19}\ \text{ჯ}$
+AEN: $6.63 \times 10^{-19}\ \text{J}$
+
+--- easy quantum
+KA: ლითონზე ეცემა $5\ \text{ევ}$ ენერგიის ფოტონები. გამოსვლის მუშაობაა $2\ \text{ევ}$. იპოვეთ ამოტყორცნილი ელექტრონების მაქსიმალური კინეტიკური ენერგია.
+EN: Photons of energy $5\ \text{eV}$ fall on a metal with work function $2\ \text{eV}$. Find the maximum kinetic energy of the emitted electrons.
+HKA: აინშტაინის განტოლება: $h\nu = A + E_k$.
+HEN: Einstein's equation: $h\nu = A + E_k$.
+SKA: $h\nu = A + E_k \Rightarrow E_k = h\nu - A$
+$E_k = 5 - 2 = 3\ \text{ევ} = 4{,}8 \cdot 10^{-19}\ \text{ჯ}$
+SEN: $h\nu = A + E_k \Rightarrow E_k = h\nu - A$
+$E_k = 5 - 2 = 3\ \text{eV} = 4.8 \times 10^{-19}\ \text{J}$
+AKA: $3\ \text{ევ}$
+AEN: $3\ \text{eV}$
+
+--- easy quantum
+KA: ლითონიდან ელექტრონის გამოსვლის მუშაობაა $2\ \text{ევ}$. იპოვეთ ფოტოეფექტის წითელი საზღვარი (მაქსიმალური ტალღის სიგრძე).
+EN: The work function of a metal is $2\ \text{eV}$. Find the photoelectric threshold (the longest wavelength).
+HKA: საზღვარზე $E_k = 0$: $\dfrac{hc}{\lambda_{\max}} = A$.
+HEN: At the threshold $E_k = 0$: $\dfrac{hc}{\lambda_{\max}} = A$.
+SKA: $\lambda_{\max} = \dfrac{hc}{A}$
+$\lambda_{\max} = \dfrac{6{,}63 \cdot 10^{-34} \cdot 3 \cdot 10^8}{2 \cdot 1{,}6 \cdot 10^{-19}} \approx 6{,}2 \cdot 10^{-7}\ \text{მ} = 620\ \text{ნმ}$
+SEN: $\lambda_{\max} = \dfrac{hc}{A}$
+$\lambda_{\max} = \dfrac{6.63 \times 10^{-34} \times 3 \times 10^8}{2 \times 1.6 \times 10^{-19}} \approx 6.2 \times 10^{-7}\ \text{m} = 620\ \text{nm}$
+AKA: $\approx 620\ \text{ნმ}$
+AEN: $\approx 620\ \text{nm}$
+
+--- easy atom
+KA: ბორის თეორიით წყალბადის ატომის ენერგეტიკული დონეებია $E_n = -\dfrac{13{,}6}{n^2}\ \text{ევ}$. იპოვეთ $E_2$ და $2 \to 1$ გადასვლისას გამოსხივებული ფოტონის ენერგია.
+EN: In Bohr's theory the hydrogen energy levels are $E_n = -\dfrac{13.6}{n^2}\ \text{eV}$. Find $E_2$ and the energy of the photon emitted in the $2 \to 1$ transition.
+HKA: ბორის II პოსტულატი: $h\nu = E_m - E_n$.
+HEN: Bohr's second postulate: $h\nu = E_m - E_n$.
+SKA: $E_2 = -\dfrac{13{,}6}{4} = -3{,}4\ \text{ევ}$, $\ E_1 = -13{,}6\ \text{ევ}$
+$h\nu = E_2 - E_1 = -3{,}4 + 13{,}6 = 10{,}2\ \text{ევ}$
+SEN: $E_2 = -\dfrac{13.6}{4} = -3.4\ \text{eV}$, $\ E_1 = -13.6\ \text{eV}$
+$h\nu = E_2 - E_1 = -3.4 + 13.6 = 10.2\ \text{eV}$
+AKA: $-3{,}4\ \text{ევ}$; $10{,}2\ \text{ევ}$
+AEN: $-3.4\ \text{eV}$; $10.2\ \text{eV}$
+
+--- easy atom
+KA: რეზერფორდის ცდაში ალფა-ნაწილაკების უმეტესობა ოქროს ფოლგაში თითქმის გადაუხრელად გადის, ძალიან მცირე ნაწილი კი უკან ბრუნდება. რა დასკვნა გამოიტანა რეზერფორდმა?
+EN: In Rutherford's experiment most alpha particles pass through gold foil almost undeflected, but a very few bounce back. What did Rutherford conclude?
+HKA: იფიქრეთ, რას ნიშნავს „თითქმის ყველა გადის“ და „ზოგი უკან ბრუნდება“.
+HEN: Think about what "almost all pass" and "a few bounce back" each mean.
+SKA: უმეტესობა გადის $\Rightarrow$ ატომი ძირითადად „ცარიელია“.
+ზოგი უკან ბრუნდება $\Rightarrow$ დადებითი მუხტი და თითქმის მთელი მასა თავმოყრილია ძალიან პატარა ბირთვში ($\sim 10^{-15}\ \text{მ}$, ატომი კი $\sim 10^{-10}\ \text{მ}$).
+შედეგი — ატომის პლანეტარული მოდელი.
+SEN: Most pass through $\Rightarrow$ the atom is mostly "empty".
+A few bounce back $\Rightarrow$ the positive charge and almost all the mass sit in a tiny nucleus ($\sim 10^{-15}\ \text{m}$, while the atom is $\sim 10^{-10}\ \text{m}$).
+Result: the planetary model of the atom.
+AKA: პატარა, მძიმე, დადებითი ბირთვი
+AEN: a tiny, heavy, positive nucleus
+
+--- easy nucleus
+KA: რამდენი პროტონი და ნეიტრონია ბირთვში $^{235}_{92}\text{U}$? რამდენი ელექტრონია ნეიტრალურ ატომში?
+EN: How many protons and neutrons are in the nucleus $^{235}_{92}\text{U}$? How many electrons does the neutral atom have?
+HKA: $Z$ — პროტონები, $A$ — ნუკლონები, $N = A - Z$.
+HEN: $Z$ is protons, $A$ nucleons, $N = A - Z$.
+SKA: $Z = 92$ პროტონი, $\ N = A - Z = 235 - 92 = 143$ ნეიტრონი
+ნეიტრალურ ატომში $92$ ელექტრონია.
+SEN: $Z = 92$ protons, $\ N = A - Z = 235 - 92 = 143$ neutrons
+The neutral atom has $92$ electrons.
+AKA: $92$; $143$; $92$
+AEN: $92$; $143$; $92$
+
+--- easy nucleus
+KA: რამდენი ენერგიის ექვივალენტურია $1\ \text{გ}$ მასა?
+EN: How much energy is equivalent to $1\ \text{g}$ of mass?
+HKA: $E = mc^2$.
+HEN: $E = mc^2$.
+SKA: $E = mc^2$
+$E = 10^{-3} \cdot (3 \cdot 10^8)^2 = 9 \cdot 10^{13}\ \text{ჯ}$
+SEN: $E = mc^2$
+$E = 10^{-3} \times (3 \times 10^8)^2 = 9 \times 10^{13}\ \text{J}$
+AKA: $9 \cdot 10^{13}\ \text{ჯ}$
+AEN: $9 \times 10^{13}\ \text{J}$
+
+--- easy radio
+KA: დაწერეთ რადიუმის $^{226}_{88}\text{Ra}$ ალფა-დაშლის რეაქცია.
+EN: Write the alpha-decay equation of radium $^{226}_{88}\text{Ra}$.
+HKA: ალფა-ნაწილაკი — $^4_2\text{He}$; $A$ მცირდება $4$-ით, $Z$ — $2$-ით.
+HEN: An alpha particle is $^4_2\text{He}$; $A$ drops by $4$, $Z$ by $2$.
+SKA: $^{226}_{88}\text{Ra} \to {}^{222}_{86}\text{Rn} + {}^4_2\text{He}$
+შემოწმება: $226 = 222 + 4$, $\ 88 = 86 + 2$ ✓
+SEN: $^{226}_{88}\text{Ra} \to {}^{222}_{86}\text{Rn} + {}^4_2\text{He}$
+Check: $226 = 222 + 4$, $\ 88 = 86 + 2$ ✓
+AKA: $^{222}_{86}\text{Rn} + {}^4_2\text{He}$
+AEN: $^{222}_{86}\text{Rn} + {}^4_2\text{He}$
+
+--- easy radio
+KA: დაწერეთ ნახშირბადის $^{14}_{6}\text{C}$ ბეტა-მინუს დაშლის რეაქცია.
+EN: Write the beta-minus decay equation of carbon $^{14}_{6}\text{C}$.
+HKA: ბეტა-დაშლისას ნეიტრონი პროტონად იქცევა: $A$ არ იცვლება, $Z$ იზრდება $1$-ით.
+HEN: In beta decay a neutron turns into a proton: $A$ stays the same, $Z$ rises by $1$.
+SKA: $^{14}_{6}\text{C} \to {}^{14}_{7}\text{N} + {}^{\ 0}_{-1}e + \bar{\nu}$
+SEN: $^{14}_{6}\text{C} \to {}^{14}_{7}\text{N} + {}^{\ 0}_{-1}e + \bar{\nu}$
+AKA: $^{14}_{7}\text{N} + {}^{\ 0}_{-1}e + \bar{\nu}$
+AEN: $^{14}_{7}\text{N} + {}^{\ 0}_{-1}e + \bar{\nu}$
+
+--- easy radio
+KA: იოდი-$131$-ის ნახევარდაშლის პერიოდია $8$ დღე. რამდენი დარჩება $80\ \text{გ}$-დან $24$ დღის შემდეგ?
+EN: Iodine-$131$ has a half-life of $8$ days. How much of $80\ \text{g}$ remains after $24$ days?
+HKA: $m = m_0 \cdot 2^{-\frac{t}{T}}$.
+HEN: $m = m_0 \cdot 2^{-\frac{t}{T}}$.
+SKA: $\dfrac{t}{T} = \dfrac{24}{8} = 3$
+$m = 80 \cdot 2^{-3} = 10\ \text{გ}$
+SEN: $\dfrac{t}{T} = \dfrac{24}{8} = 3$
+$m = 80 \times 2^{-3} = 10\ \text{g}$
+AKA: $10\ \text{გ}$
+AEN: $10\ \text{g}$
+
+--- easy radio
+KA: როგორ იცვლება ბირთვის მასური რიცხვი $A$ და მუხტური რიცხვი $Z$ გამა-გამოსხივებისას? რა არის გამა-სხივი?
+EN: How do the mass number $A$ and atomic number $Z$ change in gamma emission? What is a gamma ray?
+HKA: გამა-კვანტს არც მუხტი აქვს, არც უძრაობის მასა.
+HEN: A gamma quantum has neither charge nor rest mass.
+SKA: გამა-სხივი — მაღალი ენერგიის ფოტონი (ელექტრომაგნიტური ტალღა).
+$A$ და $Z$ არ იცვლება — ბირთვი მხოლოდ აღგზნებული მდგომარეობიდან უფრო დაბალ ენერგეტიკულ დონეზე გადადის.
+SEN: A gamma ray is a high-energy photon (an electromagnetic wave).
+$A$ and $Z$ do not change — the nucleus just drops from an excited state to a lower energy level.
+AKA: არ იცვლება; ფოტონი
+AEN: unchanged; a photon
+
+--- easy particles
+KA: ელექტრონი ($m_ec^2 = 0{,}511\ \text{მევ}$) და პოზიტრონი ანიჰილირდება უძრაობის მდგომარეობაში. რამდენი ენერგია გამოიყოფა?
+EN: An electron ($m_ec^2 = 0.511\ \text{MeV}$) and a positron annihilate at rest. How much energy is released?
+HKA: პოზიტრონი — ელექტრონის ანტინაწილაკი, მასა იგივეა.
+HEN: The positron is the electron's antiparticle and has the same mass.
+SKA: $E = 2m_ec^2$
+$E = 2 \cdot 0{,}511 = 1{,}022\ \text{მევ}$ (ორი გამა-კვანტი, თითო $0{,}511\ \text{მევ}$)
+SEN: $E = 2m_ec^2$
+$E = 2 \times 0.511 = 1.022\ \text{MeV}$ (two gamma quanta of $0.511\ \text{MeV}$ each)
+AKA: $1{,}022\ \text{მევ}$
+AEN: $1.022\ \text{MeV}$
+
+--- easy particles
+KA: პროტონი შედგება კვარკებისგან $uud$, ნეიტრონი — $udd$. $u$-კვარკის მუხტია $+\dfrac{2}{3}e$, $d$-სი — $-\dfrac{1}{3}e$. შეამოწმეთ პროტონისა და ნეიტრონის მუხტები.
+EN: A proton is made of quarks $uud$ and a neutron of $udd$. The $u$ quark has charge $+\dfrac{2}{3}e$ and the $d$ quark $-\dfrac{1}{3}e$. Check the charges of the proton and the neutron.
+HKA: შეკრიბეთ კვარკების მუხტები.
+HEN: Add up the quark charges.
+SKA: პროტონი: $\dfrac{2}{3} + \dfrac{2}{3} - \dfrac{1}{3} = +1 \Rightarrow +e$
+ნეიტრონი: $\dfrac{2}{3} - \dfrac{1}{3} - \dfrac{1}{3} = 0$
+SEN: Proton: $\dfrac{2}{3} + \dfrac{2}{3} - \dfrac{1}{3} = +1 \Rightarrow +e$
+Neutron: $\dfrac{2}{3} - \dfrac{1}{3} - \dfrac{1}{3} = 0$
+AKA: $+e$; $0$
+AEN: $+e$; $0$
+
+--- easy astro
+KA: რამდენ მეტრს უდრის ერთი სინათლის წელიწადი? ($1$ წელი $\approx 3{,}15 \cdot 10^7\ \text{წმ}$)
+EN: How many metres is one light-year? ($1$ year $\approx 3.15 \times 10^7\ \text{s}$)
+HKA: სინათლის წელიწადი — მანძილი, რომელსაც სინათლე ერთ წელიწადში გადის.
+HEN: A light-year is the distance light travels in one year.
+SKA: $s = ct$
+$s = 3 \cdot 10^8 \cdot 3{,}15 \cdot 10^7 \approx 9{,}5 \cdot 10^{15}\ \text{მ}$
+SEN: $s = ct$
+$s = 3 \times 10^8 \times 3.15 \times 10^7 \approx 9.5 \times 10^{15}\ \text{m}$
+AKA: $\approx 9{,}5 \cdot 10^{15}\ \text{მ}$
+AEN: $\approx 9.5 \times 10^{15}\ \text{m}$
+
+--- easy astro
+KA: ჰაბლის კანონით $v = H_0 d$, სადაც $H_0 \approx 70\ \text{კმ/(წმ}\cdot\text{მპკ)}$. რა სიჩქარით შორდება ჩვენგან $100\ \text{მპკ}$-ით დაშორებული გალაქტიკა?
+EN: By Hubble's law $v = H_0 d$, where $H_0 \approx 70\ \text{km/(s}\cdot\text{Mpc)}$. How fast is a galaxy $100\ \text{Mpc}$ away receding from us?
+HKA: ჩასვით ფორმულაში.
+HEN: Substitute into the formula.
+SKA: $v = H_0 d$
+$v = 70 \cdot 100 = 7000\ \text{კმ/წმ}$
+SEN: $v = H_0 d$
+$v = 70 \times 100 = 7000\ \text{km/s}$
+AKA: $7000\ \text{კმ/წმ}$
+AEN: $7000\ \text{km/s}$
+
+--- easy astro
+KA: მზემდე მანძილია $1{,}5 \cdot 10^{11}\ \text{მ}$. რა დროში აღწევს მზის სინათლე დედამიწას?
+EN: The Sun is $1.5 \times 10^{11}\ \text{m}$ away. How long does sunlight take to reach the Earth?
+HKA: $t = \dfrac{s}{c}$.
+HEN: $t = \dfrac{s}{c}$.
+SKA: $t = \dfrac{s}{c}$
+$t = \dfrac{1{,}5 \cdot 10^{11}}{3 \cdot 10^8} = 500\ \text{წმ} \approx 8{,}3\ \text{წთ}$
+SEN: $t = \dfrac{s}{c}$
+$t = \dfrac{1.5 \times 10^{11}}{3 \times 10^8} = 500\ \text{s} \approx 8.3\ \text{min}$
+AKA: $\approx 8{,}3\ \text{წთ}$
+AEN: $\approx 8.3\ \text{min}$
+
+--- easy astro
+KA: შავი ხვრელის მოვლენათა ჰორიზონტის რადიუსია $R = \dfrac{2GM}{c^2}$. რა რადიუსის შავ ხვრელად უნდა შეიკუმშოს მზე ($M = 2 \cdot 10^{30}\ \text{კგ}$)?
+EN: The event-horizon radius of a black hole is $R = \dfrac{2GM}{c^2}$. To what radius would the Sun ($M = 2 \times 10^{30}\ \text{kg}$) have to shrink to become a black hole?
+HKA: $G = 6{,}67 \cdot 10^{-11}\ \text{ნ}\cdot\text{მ}^2\text{/კგ}^2$.
+HEN: $G = 6.67 \times 10^{-11}\ \text{N}\cdot\text{m}^2\text{/kg}^2$.
+SKA: $R = \dfrac{2GM}{c^2}$
+$R = \dfrac{2 \cdot 6{,}67 \cdot 10^{-11} \cdot 2 \cdot 10^{30}}{9 \cdot 10^{16}} \approx 3 \cdot 10^3\ \text{მ} = 3\ \text{კმ}$
+SEN: $R = \dfrac{2GM}{c^2}$
+$R = \dfrac{2 \times 6.67 \times 10^{-11} \times 2 \times 10^{30}}{9 \times 10^{16}} \approx 3 \times 10^3\ \text{m} = 3\ \text{km}$
+AKA: $\approx 3\ \text{კმ}$
+AEN: $\approx 3\ \text{km}$
+
+// ===================================================================== MEDIUM
+
+--- medium mkt
+KA: იპოვეთ აზოტის მოლეკულების საშუალო კვადრატული სიჩქარე $300\ \text{K}$-ზე ($M = 0{,}028\ \text{კგ/მოლი}$).
+EN: Find the root-mean-square speed of nitrogen molecules at $300\ \text{K}$ ($M = 0.028\ \text{kg/mol}$).
+HKA: $v = \sqrt{\dfrac{3RT}{M}}$.
+HEN: $v = \sqrt{\dfrac{3RT}{M}}$.
+SKA: $\dfrac{m_0 v^2}{2} = \dfrac{3}{2}kT \Rightarrow v = \sqrt{\dfrac{3kT}{m_0}} = \sqrt{\dfrac{3RT}{M}}$
+$v = \sqrt{\dfrac{3 \cdot 8{,}31 \cdot 300}{0{,}028}} \approx \sqrt{2{,}67 \cdot 10^5} \approx 517\ \text{მ/წმ}$
+SEN: $\dfrac{m_0 v^2}{2} = \dfrac{3}{2}kT \Rightarrow v = \sqrt{\dfrac{3kT}{m_0}} = \sqrt{\dfrac{3RT}{M}}$
+$v = \sqrt{\dfrac{3 \times 8.31 \times 300}{0.028}} \approx \sqrt{2.67 \times 10^5} \approx 517\ \text{m/s}$
+AKA: $\approx 517\ \text{მ/წმ}$
+AEN: $\approx 517\ \text{m/s}$
+
+--- medium mkt
+KA: აირის ტემპერატურაა $27\ \text{°C}$. რა ტემპერატურამდე უნდა გავათბოთ, რომ მოლეკულების საშუალო კვადრატული სიჩქარე გაორმაგდეს?
+EN: A gas is at $27\ \text{°C}$. To what temperature must it be heated to double the rms speed of its molecules?
+HKA: $v \sim \sqrt{T}$.
+HEN: $v \sim \sqrt{T}$.
+SKA: $\dfrac{v_2}{v_1} = \sqrt{\dfrac{T_2}{T_1}} = 2 \Rightarrow T_2 = 4T_1$
+$T_2 = 4 \cdot 300 = 1200\ \text{K}$ $(927\ \text{°C})$
+SEN: $\dfrac{v_2}{v_1} = \sqrt{\dfrac{T_2}{T_1}} = 2 \Rightarrow T_2 = 4T_1$
+$T_2 = 4 \times 300 = 1200\ \text{K}$ $(927\ \text{°C})$
+AKA: $1200\ \text{K}$
+AEN: $1200\ \text{K}$
+
+--- medium mkt
+KA: რამდენი მოლეკულაა $1\ \text{მ}^3$ აირში ნორმალურ პირობებში ($p = 10^5\ \text{პა}$, $T = 273\ \text{K}$)? (ლოშმიდტის რიცხვი)
+EN: How many molecules are in $1\ \text{m}^3$ of gas at standard conditions ($p = 10^5\ \text{Pa}$, $T = 273\ \text{K}$)? (Loschmidt's number)
+HKA: $p = nkT$.
+HEN: $p = nkT$.
+SKA: $n = \dfrac{p}{kT}$
+$n = \dfrac{10^5}{1{,}38 \cdot 10^{-23} \cdot 273} \approx 2{,}65 \cdot 10^{25}\ \text{მ}^{-3}$
+SEN: $n = \dfrac{p}{kT}$
+$n = \dfrac{10^5}{1.38 \times 10^{-23} \times 273} \approx 2.65 \times 10^{25}\ \text{m}^{-3}$
+AKA: $\approx 2{,}7 \cdot 10^{25}$
+AEN: $\approx 2.7 \times 10^{25}$
+
+--- medium gaslaw
+KA: $20\ \text{ლ}$ ტევადობის ბალონში ჟანგბადია ($M = 0{,}032\ \text{კგ/მოლი}$) $10^7\ \text{პა}$ წნევით და $300\ \text{K}$ ტემპერატურით. იპოვეთ ჟანგბადის მასა.
+EN: A $20\ \text{L}$ cylinder holds oxygen ($M = 0.032\ \text{kg/mol}$) at $10^7\ \text{Pa}$ and $300\ \text{K}$. Find the mass of the oxygen.
+HKA: $pV = \dfrac{m}{M}RT$.
+HEN: $pV = \dfrac{m}{M}RT$.
+SKA: $pV = \dfrac{m}{M}RT \Rightarrow m = \dfrac{pVM}{RT}$
+$m = \dfrac{10^7 \cdot 0{,}02 \cdot 0{,}032}{8{,}31 \cdot 300} \approx 2{,}57\ \text{კგ}$
+SEN: $pV = \dfrac{m}{M}RT \Rightarrow m = \dfrac{pVM}{RT}$
+$m = \dfrac{10^7 \times 0.02 \times 0.032}{8.31 \times 300} \approx 2.57\ \text{kg}$
+AKA: $\approx 2{,}6\ \text{კგ}$
+AEN: $\approx 2.6\ \text{kg}$
+
+--- medium gaslaw
+KA: იპოვეთ ჰაერის სიმკვრივე $10^5\ \text{პა}$ წნევასა და $290\ \text{K}$ ტემპერატურაზე ($M = 0{,}029\ \text{კგ/მოლი}$).
+EN: Find the density of air at $10^5\ \text{Pa}$ and $290\ \text{K}$ ($M = 0.029\ \text{kg/mol}$).
+HKA: $\rho = \dfrac{m}{V} = \dfrac{pM}{RT}$.
+HEN: $\rho = \dfrac{m}{V} = \dfrac{pM}{RT}$.
+SKA: $pV = \dfrac{m}{M}RT \Rightarrow \rho = \dfrac{pM}{RT}$
+$\rho = \dfrac{10^5 \cdot 0{,}029}{8{,}31 \cdot 290} \approx 1{,}2\ \text{კგ/მ}^3$
+SEN: $pV = \dfrac{m}{M}RT \Rightarrow \rho = \dfrac{pM}{RT}$
+$\rho = \dfrac{10^5 \times 0.029}{8.31 \times 290} \approx 1.2\ \text{kg/m}^3$
+AKA: $\approx 1{,}2\ \text{კგ/მ}^3$
+AEN: $\approx 1.2\ \text{kg/m}^3$
+
+--- medium gaslaw
+KA: აირი $10^5\ \text{პა}$-ზე და $300\ \text{K}$-ზე იკავებს $2\ \text{ლ}$-ს. რა მოცულობას დაიკავებს $2 \cdot 10^5\ \text{პა}$-ზე და $450\ \text{K}$-ზე?
+EN: A gas occupies $2\ \text{L}$ at $10^5\ \text{Pa}$ and $300\ \text{K}$. What volume does it occupy at $2 \times 10^5\ \text{Pa}$ and $450\ \text{K}$?
+HKA: კლაპეირონის განტოლება: $\dfrac{p_1V_1}{T_1} = \dfrac{p_2V_2}{T_2}$.
+HEN: The combined gas law: $\dfrac{p_1V_1}{T_1} = \dfrac{p_2V_2}{T_2}$.
+SKA: $V_2 = \dfrac{p_1V_1T_2}{p_2T_1}$
+$V_2 = \dfrac{10^5 \cdot 2 \cdot 450}{2 \cdot 10^5 \cdot 300} = 1{,}5\ \text{ლ}$
+SEN: $V_2 = \dfrac{p_1V_1T_2}{p_2T_1}$
+$V_2 = \dfrac{10^5 \times 2 \times 450}{2 \times 10^5 \times 300} = 1.5\ \text{L}$
+AKA: $1{,}5\ \text{ლ}$
+AEN: $1.5\ \text{L}$
+
+--- medium gaslaw
+KA: $1{,}6\ \text{გ}$ უცნობი აირი $10^5\ \text{პა}$-ზე და $300\ \text{K}$-ზე იკავებს $9{,}97\ \text{ლ}$-ს. იპოვეთ მოლური მასა. რომელი აირია?
+EN: $1.6\ \text{g}$ of an unknown gas occupies $9.97\ \text{L}$ at $10^5\ \text{Pa}$ and $300\ \text{K}$. Find its molar mass. Which gas is it?
+HKA: $M = \dfrac{mRT}{pV}$.
+HEN: $M = \dfrac{mRT}{pV}$.
+SKA: $M = \dfrac{mRT}{pV}$
+$M = \dfrac{1{,}6 \cdot 10^{-3} \cdot 8{,}31 \cdot 300}{10^5 \cdot 9{,}97 \cdot 10^{-3}} \approx 0{,}004\ \text{კგ/მოლი}$ — ჰელიუმი.
+SEN: $M = \dfrac{mRT}{pV}$
+$M = \dfrac{1.6 \times 10^{-3} \times 8.31 \times 300}{10^5 \times 9.97 \times 10^{-3}} \approx 0.004\ \text{kg/mol}$ — helium.
+AKA: $4\ \text{გ/მოლი}$; ჰელიუმი
+AEN: $4\ \text{g/mol}$; helium
+
+--- medium isoproc
+KA: ჰაერის ბუშტუკი $20\ \text{მ}$ სიღრმიდან ამოდის წყლის ზედაპირზე. რამდენჯერ გაიზრდება მისი მოცულობა? (ტემპერატურა მუდმივია, $p_0 = 10^5\ \text{პა}$)
+EN: An air bubble rises from a depth of $20\ \text{m}$ to the water surface. By what factor does its volume increase? (Constant temperature, $p_0 = 10^5\ \text{Pa}$)
+HKA: სიღრმეზე წნევა $p_1 = p_0 + \rho g h$.
+HEN: At depth the pressure is $p_1 = p_0 + \rho g h$.
+SKA: $p_1 = p_0 + \rho g h = 10^5 + 1000 \cdot 10 \cdot 20 = 3 \cdot 10^5\ \text{პა}$
+$p_1V_1 = p_0V_2 \Rightarrow \dfrac{V_2}{V_1} = \dfrac{p_1}{p_0} = 3$
+SEN: $p_1 = p_0 + \rho g h = 10^5 + 1000 \times 10 \times 20 = 3 \times 10^5\ \text{Pa}$
+$p_1V_1 = p_0V_2 \Rightarrow \dfrac{V_2}{V_1} = \dfrac{p_1}{p_0} = 3$
+AKA: $3$-ჯერ
+AEN: $3$ times
+
+--- medium isoproc
+KA: საბურავში წნევაა $2{,}5 \cdot 10^5\ \text{პა}$ $7\ \text{°C}$-ზე. სვლისას საბურავი $42\ \text{°C}$-მდე გათბა. იპოვეთ წნევა (მოცულობა მუდმივია).
+EN: A tyre is at $2.5 \times 10^5\ \text{Pa}$ at $7\ \text{°C}$. While driving it warms to $42\ \text{°C}$. Find the pressure (constant volume).
+HKA: გადაიყვანეთ კელვინებში: $280\ \text{K}$ და $315\ \text{K}$.
+HEN: Convert to kelvin: $280\ \text{K}$ and $315\ \text{K}$.
+SKA: $\dfrac{p_1}{T_1} = \dfrac{p_2}{T_2} \Rightarrow p_2 = p_1\dfrac{T_2}{T_1}$
+$p_2 = 2{,}5 \cdot 10^5 \cdot \dfrac{315}{280} \approx 2{,}81 \cdot 10^5\ \text{პა}$
+SEN: $\dfrac{p_1}{T_1} = \dfrac{p_2}{T_2} \Rightarrow p_2 = p_1\dfrac{T_2}{T_1}$
+$p_2 = 2.5 \times 10^5 \times \dfrac{315}{280} \approx 2.81 \times 10^5\ \text{Pa}$
+AKA: $\approx 2{,}8 \cdot 10^5\ \text{პა}$
+AEN: $\approx 2.8 \times 10^5\ \text{Pa}$
+
+--- medium isoproc
+KA: აირს მუდმივი წნევისას $0\ \text{°C}$-დან $273\ \text{°C}$-მდე ათბობენ. რამდენჯერ გაიზრდება მოცულობა? რატომ არა „უსასრულოდ“, თუმცა ცელსიუსის ტემპერატურა $0$-დან იზრდება?
+EN: A gas is heated at constant pressure from $0\ \text{°C}$ to $273\ \text{°C}$. By what factor does its volume increase? Why not "infinitely", even though the Celsius temperature grows from $0$?
+HKA: გეი-ლუსაკის კანონში აბსოლუტური ტემპერატურა მონაწილეობს.
+HEN: Charles's law uses absolute temperature.
+SKA: $T_1 = 273\ \text{K}$, $\ T_2 = 546\ \text{K}$
+$\dfrac{V_2}{V_1} = \dfrac{T_2}{T_1} = 2$
+პროპორციულობა აბსოლუტურ ტემპერატურასთანაა, არა ცელსიუსისთან.
+SEN: $T_1 = 273\ \text{K}$, $\ T_2 = 546\ \text{K}$
+$\dfrac{V_2}{V_1} = \dfrac{T_2}{T_1} = 2$
+The proportionality is to absolute temperature, not Celsius.
+AKA: $2$-ჯერ
+AEN: $2$ times
+
+--- medium internal
+KA: ერთატომიანი აირი $10\ \text{ლ}$ მოცულობის ჭურჭელში $2 \cdot 10^5\ \text{პა}$ წნევის ქვეშაა. იპოვეთ მისი შინაგანი ენერგია.
+EN: A monatomic gas in a $10\ \text{L}$ vessel is at $2 \times 10^5\ \text{Pa}$. Find its internal energy.
+HKA: $U = \dfrac{3}{2}\nu RT = \dfrac{3}{2}pV$.
+HEN: $U = \dfrac{3}{2}\nu RT = \dfrac{3}{2}pV$.
+SKA: $U = \dfrac{3}{2}\nu RT$, $\ \nu RT = pV \Rightarrow U = \dfrac{3}{2}pV$
+$U = 1{,}5 \cdot 2 \cdot 10^5 \cdot 0{,}01 = 3000\ \text{ჯ}$
+SEN: $U = \dfrac{3}{2}\nu RT$, $\ \nu RT = pV \Rightarrow U = \dfrac{3}{2}pV$
+$U = 1.5 \times 2 \times 10^5 \times 0.01 = 3000\ \text{J}$
+AKA: $3\ \text{კჯ}$
+AEN: $3\ \text{kJ}$
+
+--- medium internal
+KA: რამდენი კელვინით უნდა გაიზარდოს $2$ მოლი ერთატომიანი აირის ტემპერატურა, რომ შინაგანი ენერგია $1662\ \text{ჯ}$-ით გაიზარდოს?
+EN: By how many kelvin must the temperature of $2$ mol of a monatomic gas rise for its internal energy to increase by $1662\ \text{J}$?
+HKA: $\Delta T = \dfrac{2\Delta U}{3\nu R}$.
+HEN: $\Delta T = \dfrac{2\Delta U}{3\nu R}$.
+SKA: $\Delta U = \dfrac{3}{2}\nu R\Delta T \Rightarrow \Delta T = \dfrac{2\Delta U}{3\nu R}$
+$\Delta T = \dfrac{2 \cdot 1662}{3 \cdot 2 \cdot 8{,}31} \approx 66{,}7\ \text{K}$
+SEN: $\Delta U = \dfrac{3}{2}\nu R\Delta T \Rightarrow \Delta T = \dfrac{2\Delta U}{3\nu R}$
+$\Delta T = \dfrac{2 \times 1662}{3 \times 2 \times 8.31} \approx 66.7\ \text{K}$
+AKA: $\approx 67\ \text{K}$
+AEN: $\approx 67\ \text{K}$
+
+--- medium gaswork
+KA: $2$ მოლი იდეალური აირი მუდმივი წნევისას $50\ \text{K}$-ით გაათბეს. რა მუშაობა შეასრულა აირმა?
+EN: $2$ mol of an ideal gas is heated by $50\ \text{K}$ at constant pressure. How much work does it do?
+HKA: $A = p\Delta V = \nu R \Delta T$.
+HEN: $A = p\Delta V = \nu R \Delta T$.
+SKA: $p = \text{const}$: $\ A = p\Delta V = \nu R\Delta T$
+$A = 2 \cdot 8{,}31 \cdot 50 = 831\ \text{ჯ}$
+SEN: $p = \text{const}$: $\ A = p\Delta V = \nu R\Delta T$
+$A = 2 \times 8.31 \times 50 = 831\ \text{J}$
+AKA: $831\ \text{ჯ}$
+AEN: $831\ \text{J}$
+
+--- medium gaswork
+KA: $p$–$V$ დიაგრამაზე აირის პროცესი ჰორიზონტალური მონაკვეთია: $p = 3 \cdot 10^5\ \text{პა}$, $V$ იცვლება $1\ \text{ლ}$-დან $4\ \text{ლ}$-მდე. იპოვეთ მუშაობა. რას შეესაბამება ის გრაფიკზე?
+EN: On a $p$–$V$ diagram a gas process is a horizontal segment: $p = 3 \times 10^5\ \text{Pa}$, $V$ goes from $1\ \text{L}$ to $4\ \text{L}$. Find the work. What does it correspond to on the graph?
+HKA: მუშაობა — გრაფიკის ქვეშ მოთავსებული ფართობი.
+HEN: The work is the area under the graph.
+SKA: $A = p\Delta V = 3 \cdot 10^5 \cdot 3 \cdot 10^{-3} = 900\ \text{ჯ}$
+ეს არის მართკუთხედის ფართობი გრაფიკის ქვეშ.
+SEN: $A = p\Delta V = 3 \times 10^5 \times 3 \times 10^{-3} = 900\ \text{J}$
+This is the area of the rectangle under the graph.
+AKA: $900\ \text{ჯ}$
+AEN: $900\ \text{J}$
+
+--- medium gaswork
+KA: აირის წნევა წრფივად იზრდება $10^5\ \text{პა}$-დან $3 \cdot 10^5\ \text{პა}$-მდე, ხოლო მოცულობა — $2\ \text{ლ}$-დან $6\ \text{ლ}$-მდე. იპოვეთ აირის მუშაობა.
+EN: A gas's pressure rises linearly from $10^5\ \text{Pa}$ to $3 \times 10^5\ \text{Pa}$ while its volume goes from $2\ \text{L}$ to $6\ \text{L}$. Find the work done by the gas.
+HKA: გრაფიკის ქვეშ ტრაპეციაა: $A = \dfrac{p_1 + p_2}{2}\Delta V$.
+HEN: The area under the graph is a trapezoid: $A = \dfrac{p_1 + p_2}{2}\Delta V$.
+SKA: $A = \dfrac{p_1 + p_2}{2}(V_2 - V_1)$
+$A = \dfrac{10^5 + 3 \cdot 10^5}{2} \cdot 4 \cdot 10^{-3} = 800\ \text{ჯ}$
+SEN: $A = \dfrac{p_1 + p_2}{2}(V_2 - V_1)$
+$A = \dfrac{10^5 + 3 \times 10^5}{2} \times 4 \times 10^{-3} = 800\ \text{J}$
+AKA: $800\ \text{ჯ}$
+AEN: $800\ \text{J}$
+
+--- medium thermo1
+KA: იდეალური აირი იზოთერმულად ფართოვდება და იღებს $400\ \text{ჯ}$ სითბოს. იპოვეთ შინაგანი ენერგიის ცვლილება და აირის მუშაობა.
+EN: An ideal gas expands isothermally and receives $400\ \text{J}$ of heat. Find the change in internal energy and the work done by the gas.
+HKA: იდეალური აირის შინაგანი ენერგია მხოლოდ ტემპერატურაზეა დამოკიდებული.
+HEN: An ideal gas's internal energy depends only on temperature.
+SKA: $T = \text{const} \Rightarrow \Delta U = 0$
+$Q = \Delta U + A \Rightarrow A = Q = 400\ \text{ჯ}$
+SEN: $T = \text{const} \Rightarrow \Delta U = 0$
+$Q = \Delta U + A \Rightarrow A = Q = 400\ \text{J}$
+AKA: $\Delta U = 0$; $A = 400\ \text{ჯ}$
+AEN: $\Delta U = 0$; $A = 400\ \text{J}$
+
+--- medium thermo1
+KA: $1$ მოლი ერთატომიანი აირი მუდმივი წნევისას $100\ \text{K}$-ით გაათბეს. იპოვეთ $\Delta U$, $A$ და $Q$.
+EN: $1$ mol of a monatomic gas is heated by $100\ \text{K}$ at constant pressure. Find $\Delta U$, $A$ and $Q$.
+HKA: $\Delta U = \dfrac{3}{2}\nu R\Delta T$, $\ A = \nu R \Delta T$, $\ Q = \Delta U + A = \dfrac{5}{2}\nu R\Delta T$.
+HEN: $\Delta U = \dfrac{3}{2}\nu R\Delta T$, $\ A = \nu R \Delta T$, $\ Q = \Delta U + A = \dfrac{5}{2}\nu R\Delta T$.
+SKA: $\Delta U = 1{,}5 \cdot 8{,}31 \cdot 100 \approx 1246\ \text{ჯ}$
+$A = 8{,}31 \cdot 100 = 831\ \text{ჯ}$
+$Q = 1246 + 831 \approx 2077\ \text{ჯ}$
+SEN: $\Delta U = 1.5 \times 8.31 \times 100 \approx 1246\ \text{J}$
+$A = 8.31 \times 100 = 831\ \text{J}$
+$Q = 1246 + 831 \approx 2077\ \text{J}$
+AKA: $1246\ \text{ჯ}$; $831\ \text{ჯ}$; $2077\ \text{ჯ}$
+AEN: $1246\ \text{J}$; $831\ \text{J}$; $2077\ \text{J}$
+
+--- medium thermo1
+KA: $2$ მოლი ერთატომიანი აირი დახურულ ჭურჭელში $300\ \text{K}$-დან $400\ \text{K}$-მდე გაათბეს. რამდენი სითბო გადაეცა?
+EN: $2$ mol of a monatomic gas in a closed vessel is heated from $300\ \text{K}$ to $400\ \text{K}$. How much heat is supplied?
+HKA: იზოქორული პროცესი: $A = 0$, $Q = \Delta U$.
+HEN: An isochoric process: $A = 0$, $Q = \Delta U$.
+SKA: $Q = \Delta U = \dfrac{3}{2}\nu R\Delta T$
+$Q = 1{,}5 \cdot 2 \cdot 8{,}31 \cdot 100 \approx 2493\ \text{ჯ}$
+SEN: $Q = \Delta U = \dfrac{3}{2}\nu R\Delta T$
+$Q = 1.5 \times 2 \times 8.31 \times 100 \approx 2493\ \text{J}$
+AKA: $\approx 2{,}5\ \text{კჯ}$
+AEN: $\approx 2.5\ \text{kJ}$
+
+--- medium thermo1
+KA: ერთატომიან აირს მუდმივი წნევისას გადასცეს სითბო. მიღებული სითბოს რა ნაწილი იხარჯება მუშაობაზე და რა ნაწილი — შინაგან ენერგიაზე?
+EN: Heat is supplied to a monatomic gas at constant pressure. What fraction of the heat goes into work, and what fraction into internal energy?
+HKA: $A = \nu R\Delta T$, $\ Q = \dfrac{5}{2}\nu R\Delta T$.
+HEN: $A = \nu R\Delta T$, $\ Q = \dfrac{5}{2}\nu R\Delta T$.
+SKA: $\dfrac{A}{Q} = \dfrac{\nu R\Delta T}{\frac{5}{2}\nu R\Delta T} = \dfrac{2}{5} = 40\%$
+$\dfrac{\Delta U}{Q} = \dfrac{3}{5} = 60\%$
+SEN: $\dfrac{A}{Q} = \dfrac{\nu R\Delta T}{\frac{5}{2}\nu R\Delta T} = \dfrac{2}{5} = 40\%$
+$\dfrac{\Delta U}{Q} = \dfrac{3}{5} = 60\%$
+AKA: $40\%$ მუშაობაზე, $60\%$ შინაგან ენერგიაზე
+AEN: $40\%$ to work, $60\%$ to internal energy
+
+--- medium engines
+KA: ავტომობილის ძრავის სიმძლავრეა $50\ \text{კვტ}$, მქკ — $25\%$. რამდენი ბენზინი ($q = 4{,}6 \cdot 10^7\ \text{ჯ/კგ}$) იხარჯება ერთ საათში?
+EN: A car engine has power $50\ \text{kW}$ and efficiency $25\%$. How much petrol ($q = 4.6 \times 10^7\ \text{J/kg}$) does it burn in one hour?
+HKA: $\eta = \dfrac{Pt}{qm}$.
+HEN: $\eta = \dfrac{Pt}{qm}$.
+SKA: $\eta = \dfrac{Pt}{qm} \Rightarrow m = \dfrac{Pt}{\eta q}$
+$m = \dfrac{5 \cdot 10^4 \cdot 3600}{0{,}25 \cdot 4{,}6 \cdot 10^7} \approx 15{,}7\ \text{კგ}$
+SEN: $\eta = \dfrac{Pt}{qm} \Rightarrow m = \dfrac{Pt}{\eta q}$
+$m = \dfrac{5 \times 10^4 \times 3600}{0.25 \times 4.6 \times 10^7} \approx 15.7\ \text{kg}$
+AKA: $\approx 15{,}7\ \text{კგ}$
+AEN: $\approx 15.7\ \text{kg}$
+
+--- medium engines
+KA: კარნოს ძრავის მაცივრის ტემპერატურაა $300\ \text{K}$, მქკ — $40\%$. რამდენით უნდა გაიზარდოს გამაცხელებლის ტემპერატურა, რომ მქკ $50\%$ გახდეს?
+EN: A Carnot engine has a cold reservoir at $300\ \text{K}$ and efficiency $40\%$. By how much must the hot reservoir temperature rise for the efficiency to become $50\%$?
+HKA: $T_1 = \dfrac{T_2}{1 - \eta}$.
+HEN: $T_1 = \dfrac{T_2}{1 - \eta}$.
+SKA: $\eta = 1 - \dfrac{T_2}{T_1} \Rightarrow T_1 = \dfrac{T_2}{1 - \eta}$
+$T_1 = \dfrac{300}{0{,}6} = 500\ \text{K}$, $\ T_1' = \dfrac{300}{0{,}5} = 600\ \text{K}$
+$\Delta T = 100\ \text{K}$
+SEN: $\eta = 1 - \dfrac{T_2}{T_1} \Rightarrow T_1 = \dfrac{T_2}{1 - \eta}$
+$T_1 = \dfrac{300}{0.6} = 500\ \text{K}$, $\ T_1' = \dfrac{300}{0.5} = 600\ \text{K}$
+$\Delta T = 100\ \text{K}$
+AKA: $100\ \text{K}$-ით
+AEN: by $100\ \text{K}$
+
+--- medium engines
+KA: მაცივარი საკვებს ართმევს $600\ \text{ჯ}$ სითბოს, ქსელიდან კი მოიხმარს $200\ \text{ჯ}$ ენერგიას. რამდენ სითბოს გადასცემს ოთახს? იპოვეთ მაცივრის ეფექტურობის კოეფიციენტი $\varepsilon = \dfrac{Q_2}{A}$.
+EN: A refrigerator removes $600\ \text{J}$ of heat from the food and uses $200\ \text{J}$ of electrical energy. How much heat does it give to the room? Find its coefficient of performance $\varepsilon = \dfrac{Q_2}{A}$.
+HKA: ენერგიის შენახვა: $Q_1 = Q_2 + A$.
+HEN: Energy conservation: $Q_1 = Q_2 + A$.
+SKA: $Q_1 = Q_2 + A = 600 + 200 = 800\ \text{ჯ}$
+$\varepsilon = \dfrac{Q_2}{A} = \dfrac{600}{200} = 3$
+SEN: $Q_1 = Q_2 + A = 600 + 200 = 800\ \text{J}$
+$\varepsilon = \dfrac{Q_2}{A} = \dfrac{600}{200} = 3$
+AKA: $800\ \text{ჯ}$; $3$
+AEN: $800\ \text{J}$; $3$
+
+--- medium humidity
+KA: ნაჯერი ორთქლის სიმკვრივე: $10\ \text{°C}$ — $9{,}4$, $13\ \text{°C}$ — $11{,}4$, $25\ \text{°C}$ — $23{,}0\ \text{გ/მ}^3$. $25\ \text{°C}$-ზე ჰაერში ორთქლის სიმკვრივეა $11{,}5\ \text{გ/მ}^3$. იპოვეთ ფარდობითი ტენიანობა და ნამის წერტილი.
+EN: Saturated vapour density: $10\ \text{°C}$ — $9.4$, $13\ \text{°C}$ — $11.4$, $25\ \text{°C}$ — $23.0\ \text{g/m}^3$. At $25\ \text{°C}$ the air holds $11.5\ \text{g/m}^3$ of vapour. Find the relative humidity and the dew point.
+HKA: ნამის წერტილი — ტემპერატურა, რომელზეც არსებული ორთქლი ნაჯერი ხდება.
+HEN: The dew point is the temperature at which the existing vapour becomes saturated.
+SKA: $\varphi = \dfrac{11{,}5}{23{,}0} \cdot 100\% = 50\%$
+$\rho_{\text{ნ}} = 11{,}5\ \text{გ/მ}^3$ დაახლოებით $13\ \text{°C}$-ზეა $\Rightarrow$ ნამის წერტილი $\approx 13\ \text{°C}$
+SEN: $\varphi = \dfrac{11.5}{23.0} \times 100\% = 50\%$
+$\rho_{\text{sat}} = 11.5\ \text{g/m}^3$ at about $13\ \text{°C}$ $\Rightarrow$ the dew point is $\approx 13\ \text{°C}$
+AKA: $50\%$; $\approx 13\ \text{°C}$
+AEN: $50\%$; $\approx 13\ \text{°C}$
+
+--- medium humidity
+KA: $50\ \text{მ}^3$ ოთახში $20\ \text{°C}$-ზე ფარდობითი ტენიანობა $60\%$-ია ($\rho_{\text{ნ}}(20\ \text{°C}) = 17{,}3$, $\rho_{\text{ნ}}(10\ \text{°C}) = 9{,}4\ \text{გ/მ}^3$). ტემპერატურა $10\ \text{°C}$-მდე დაეცა. რამდენი წყალი კონდენსირდება?
+EN: In a $50\ \text{m}^3$ room at $20\ \text{°C}$ the relative humidity is $60\%$ ($\rho_{\text{sat}}(20\ \text{°C}) = 17.3$, $\rho_{\text{sat}}(10\ \text{°C}) = 9.4\ \text{g/m}^3$). The temperature drops to $10\ \text{°C}$. How much water condenses?
+HKA: $10\ \text{°C}$-ზე ჰაერი მაქსიმუმ $9{,}4\ \text{გ/მ}^3$-ს დაიჭერს.
+HEN: At $10\ \text{°C}$ the air can hold at most $9.4\ \text{g/m}^3$.
+SKA: $\rho = 0{,}6 \cdot 17{,}3 \approx 10{,}4\ \text{გ/მ}^3 > 9{,}4$
+$\Delta m = (10{,}4 - 9{,}4) \cdot 50 \approx 49\ \text{გ}$
+SEN: $\rho = 0.6 \times 17.3 \approx 10.4\ \text{g/m}^3 > 9.4$
+$\Delta m = (10.4 - 9.4) \times 50 \approx 49\ \text{g}$
+AKA: $\approx 49\ \text{გ}$
+AEN: $\approx 49\ \text{g}$
+
+--- medium liquids
+KA: პიპეტის ბოლოს რადიუსია $1\ \text{მმ}$. იპოვეთ მოწყვეტისას წყლის წვეთის მასა ($\sigma = 0{,}073\ \text{ნ/მ}$).
+EN: The tip of a pipette has radius $1\ \text{mm}$. Find the mass of a water drop as it breaks off ($\sigma = 0.073\ \text{N/m}$).
+HKA: მოწყვეტის მომენტში $mg = \sigma \cdot 2\pi r$.
+HEN: At the moment of detachment $mg = \sigma \cdot 2\pi r$.
+SKA: $mg = 2\pi r\sigma \Rightarrow m = \dfrac{2\pi r\sigma}{g}$
+$m = \dfrac{2 \cdot 3{,}14 \cdot 10^{-3} \cdot 0{,}073}{10} \approx 4{,}6 \cdot 10^{-5}\ \text{კგ} = 46\ \text{მგ}$
+SEN: $mg = 2\pi r\sigma \Rightarrow m = \dfrac{2\pi r\sigma}{g}$
+$m = \dfrac{2 \times 3.14 \times 10^{-3} \times 0.073}{10} \approx 4.6 \times 10^{-5}\ \text{kg} = 46\ \text{mg}$
+AKA: $\approx 46\ \text{მგ}$
+AEN: $\approx 46\ \text{mg}$
+
+--- medium liquids
+KA: ერთსა და იმავე კაპილარში წყალი ($\sigma = 0{,}073\ \text{ნ/მ}$, $\rho = 1000\ \text{კგ/მ}^3$) და ნავთი ($\sigma = 0{,}024\ \text{ნ/მ}$, $\rho = 800\ \text{კგ/მ}^3$) ადის. რამდენჯერ მაღლა ავა წყალი?
+EN: Water ($\sigma = 0.073\ \text{N/m}$, $\rho = 1000\ \text{kg/m}^3$) and kerosene ($\sigma = 0.024\ \text{N/m}$, $\rho = 800\ \text{kg/m}^3$) rise in the same capillary. How many times higher does the water rise?
+HKA: $h \sim \dfrac{\sigma}{\rho}$.
+HEN: $h \sim \dfrac{\sigma}{\rho}$.
+SKA: $\dfrac{h_{\text{წ}}}{h_{\text{ნ}}} = \dfrac{\sigma_{\text{წ}}\rho_{\text{ნ}}}{\sigma_{\text{ნ}}\rho_{\text{წ}}}$
+$\dfrac{0{,}073 \cdot 800}{0{,}024 \cdot 1000} \approx 2{,}4$
+SEN: $\dfrac{h_{\text{w}}}{h_{\text{k}}} = \dfrac{\sigma_{\text{w}}\rho_{\text{k}}}{\sigma_{\text{k}}\rho_{\text{w}}}$
+$\dfrac{0.073 \times 800}{0.024 \times 1000} \approx 2.4$
+AKA: $\approx 2{,}4$-ჯერ
+AEN: $\approx 2.4$ times
+
+--- medium liquids
+KA: მავთულის ჩარჩოზე საპნის აპკია; მოძრავი გვერდის სიგრძეა $4\ \text{სმ}$, $\sigma = 0{,}04\ \text{ნ/მ}$. რა ძალა სჭირდება გვერდის შეკავებას და რა მუშაობა სრულდება მისი $3\ \text{სმ}$-ით გადაადგილებისას?
+EN: A soap film is stretched on a wire frame; the movable side is $4\ \text{cm}$ long, $\sigma = 0.04\ \text{N/m}$. What force holds the side in place, and how much work is done moving it $3\ \text{cm}$?
+HKA: აპკს ორი ზედაპირი აქვს: $F = 2\sigma l$.
+HEN: The film has two surfaces: $F = 2\sigma l$.
+SKA: $F = 2\sigma l = 2 \cdot 0{,}04 \cdot 0{,}04 = 3{,}2 \cdot 10^{-3}\ \text{ნ}$
+$A = Fs = 3{,}2 \cdot 10^{-3} \cdot 0{,}03 = 9{,}6 \cdot 10^{-5}\ \text{ჯ}$
+SEN: $F = 2\sigma l = 2 \times 0.04 \times 0.04 = 3.2 \times 10^{-3}\ \text{N}$
+$A = Fs = 3.2 \times 10^{-3} \times 0.03 = 9.6 \times 10^{-5}\ \text{J}$
+AKA: $3{,}2\ \text{მნ}$; $9{,}6 \cdot 10^{-5}\ \text{ჯ}$
+AEN: $3.2\ \text{mN}$; $9.6 \times 10^{-5}\ \text{J}$
+
+--- medium quantum
+KA: ფოტონების ენერგიაა $4{,}5\ \text{ევ}$, გამოსვლის მუშაობა — $2{,}3\ \text{ევ}$. იპოვეთ შემაკავებელი ძაბვა.
+EN: Photons have energy $4.5\ \text{eV}$ and the work function is $2.3\ \text{eV}$. Find the stopping voltage.
+HKA: $eU_{\text{შ}} = E_k$.
+HEN: $eU_{\text{s}} = E_k$.
+SKA: $E_k = h\nu - A = 4{,}5 - 2{,}3 = 2{,}2\ \text{ევ}$
+$eU_{\text{შ}} = E_k \Rightarrow U_{\text{შ}} = 2{,}2\ \text{ვ}$
+SEN: $E_k = h\nu - A = 4.5 - 2.3 = 2.2\ \text{eV}$
+$eU_{\text{s}} = E_k \Rightarrow U_{\text{s}} = 2.2\ \text{V}$
+AKA: $2{,}2\ \text{ვ}$
+AEN: $2.2\ \text{V}$
+
+--- medium quantum
+KA: ფოტოელექტრონების მაქსიმალური კინეტიკური ენერგიაა $2{,}2\ \text{ევ}$. იპოვეთ მათი მაქსიმალური სიჩქარე.
+EN: The maximum kinetic energy of photoelectrons is $2.2\ \text{eV}$. Find their maximum speed.
+HKA: $E_k = \dfrac{m_e v^2}{2}$.
+HEN: $E_k = \dfrac{m_e v^2}{2}$.
+SKA: $v = \sqrt{\dfrac{2E_k}{m_e}}$
+$E_k = 2{,}2 \cdot 1{,}6 \cdot 10^{-19} = 3{,}52 \cdot 10^{-19}\ \text{ჯ}$
+$v = \sqrt{\dfrac{2 \cdot 3{,}52 \cdot 10^{-19}}{9{,}1 \cdot 10^{-31}}} \approx 8{,}8 \cdot 10^5\ \text{მ/წმ}$
+SEN: $v = \sqrt{\dfrac{2E_k}{m_e}}$
+$E_k = 2.2 \times 1.6 \times 10^{-19} = 3.52 \times 10^{-19}\ \text{J}$
+$v = \sqrt{\dfrac{2 \times 3.52 \times 10^{-19}}{9.1 \times 10^{-31}}} \approx 8.8 \times 10^5\ \text{m/s}$
+AKA: $\approx 8{,}8 \cdot 10^5\ \text{მ/წმ}$
+AEN: $\approx 8.8 \times 10^5\ \text{m/s}$
+
+--- medium quantum
+KA: $1\ \text{მვტ}$ სიმძლავრის ლაზერი ასხივებს $630\ \text{ნმ}$ ტალღის სიგრძის სინათლეს. რამდენ ფოტონს ასხივებს წამში?
+EN: A $1\ \text{mW}$ laser emits light of wavelength $630\ \text{nm}$. How many photons does it emit per second?
+HKA: $N = \dfrac{Pt}{E_{\text{ფ}}}$, $E_{\text{ფ}} = \dfrac{hc}{\lambda}$.
+HEN: $N = \dfrac{Pt}{E_{\text{ph}}}$, $E_{\text{ph}} = \dfrac{hc}{\lambda}$.
+SKA: $E_{\text{ფ}} = \dfrac{6{,}63 \cdot 10^{-34} \cdot 3 \cdot 10^8}{6{,}3 \cdot 10^{-7}} \approx 3{,}16 \cdot 10^{-19}\ \text{ჯ}$
+$N = \dfrac{P}{E_{\text{ფ}}} = \dfrac{10^{-3}}{3{,}16 \cdot 10^{-19}} \approx 3{,}2 \cdot 10^{15}$ წამში
+SEN: $E_{\text{ph}} = \dfrac{6.63 \times 10^{-34} \times 3 \times 10^8}{6.3 \times 10^{-7}} \approx 3.16 \times 10^{-19}\ \text{J}$
+$N = \dfrac{P}{E_{\text{ph}}} = \dfrac{10^{-3}}{3.16 \times 10^{-19}} \approx 3.2 \times 10^{15}$ per second
+AKA: $\approx 3{,}2 \cdot 10^{15}$
+AEN: $\approx 3.2 \times 10^{15}$
+
+--- medium quantum
+KA: იპოვეთ $10^6\ \text{მ/წმ}$ სიჩქარით მოძრავი ელექტრონის დე ბროილის ტალღის სიგრძე.
+EN: Find the de Broglie wavelength of an electron moving at $10^6\ \text{m/s}$.
+HKA: $\lambda = \dfrac{h}{mv}$ — ნაწილაკსაც აქვს ტალღური თვისებები (დუალიზმი).
+HEN: $\lambda = \dfrac{h}{mv}$ — particles have wave properties too (duality).
+SKA: $\lambda = \dfrac{h}{mv}$
+$\lambda = \dfrac{6{,}63 \cdot 10^{-34}}{9{,}1 \cdot 10^{-31} \cdot 10^6} \approx 7{,}3 \cdot 10^{-10}\ \text{მ}$ — ატომის ზომის რიგის.
+SEN: $\lambda = \dfrac{h}{mv}$
+$\lambda = \dfrac{6.63 \times 10^{-34}}{9.1 \times 10^{-31} \times 10^6} \approx 7.3 \times 10^{-10}\ \text{m}$ — about the size of an atom.
+AKA: $\approx 0{,}73\ \text{ნმ}$
+AEN: $\approx 0.73\ \text{nm}$
+
+--- medium atom
+KA: იპოვეთ წყალბადის ატომის $3 \to 2$ გადასვლისას გამოსხივებული ფოტონის ტალღის სიგრძე. რა ფერისაა ეს სინათლე?
+EN: Find the wavelength of the photon emitted by hydrogen in the $3 \to 2$ transition. What colour is it?
+HKA: $E = 13{,}6\left(\dfrac{1}{4} - \dfrac{1}{9}\right)\ \text{ევ}$, $\ \lambda = \dfrac{hc}{E}$.
+HEN: $E = 13.6\left(\dfrac{1}{4} - \dfrac{1}{9}\right)\ \text{eV}$, $\ \lambda = \dfrac{hc}{E}$.
+SKA: $E = 13{,}6 \cdot \dfrac{5}{36} \approx 1{,}89\ \text{ევ} \approx 3{,}02 \cdot 10^{-19}\ \text{ჯ}$
+$\lambda = \dfrac{hc}{E} = \dfrac{1{,}99 \cdot 10^{-25}}{3{,}02 \cdot 10^{-19}} \approx 6{,}6 \cdot 10^{-7}\ \text{მ} = 660\ \text{ნმ}$ — წითელი ($H_\alpha$ ხაზი).
+SEN: $E = 13.6 \times \dfrac{5}{36} \approx 1.89\ \text{eV} \approx 3.02 \times 10^{-19}\ \text{J}$
+$\lambda = \dfrac{hc}{E} = \dfrac{1.99 \times 10^{-25}}{3.02 \times 10^{-19}} \approx 6.6 \times 10^{-7}\ \text{m} = 660\ \text{nm}$ — red (the $H_\alpha$ line).
+AKA: $\approx 660\ \text{ნმ}$; წითელი
+AEN: $\approx 660\ \text{nm}$; red
+
+--- medium atom
+KA: რა მინიმალური სიხშირის ფოტონი შეძლებს წყალბადის ატომის იონიზაციას, თუ ელექტრონი $n = 2$ დონეზეა?
+EN: What is the minimum photon frequency that can ionise a hydrogen atom whose electron is at level $n = 2$?
+HKA: იონიზაციისთვის საჭიროა $E_\infty - E_2 = 3{,}4\ \text{ევ}$.
+HEN: Ionisation needs $E_\infty - E_2 = 3.4\ \text{eV}$.
+SKA: $h\nu = 0 - E_2 = 3{,}4\ \text{ევ} = 5{,}44 \cdot 10^{-19}\ \text{ჯ}$
+$\nu = \dfrac{5{,}44 \cdot 10^{-19}}{6{,}63 \cdot 10^{-34}} \approx 8{,}2 \cdot 10^{14}\ \text{ჰც}$
+SEN: $h\nu = 0 - E_2 = 3.4\ \text{eV} = 5.44 \times 10^{-19}\ \text{J}$
+$\nu = \dfrac{5.44 \times 10^{-19}}{6.63 \times 10^{-34}} \approx 8.2 \times 10^{14}\ \text{Hz}$
+AKA: $\approx 8{,}2 \cdot 10^{14}\ \text{ჰც}$
+AEN: $\approx 8.2 \times 10^{14}\ \text{Hz}$
+
+--- medium atom
+KA: წყალბადის ატომები აღგზნებულია $n = 4$ დონემდე. რამდენი სხვადასხვა სპექტრული ხაზი შეიძლება გამოჩნდეს ელექტრონების ძირითად მდგომარეობაში დაბრუნებისას?
+EN: Hydrogen atoms are excited to level $n = 4$. How many different spectral lines can appear as the electrons return to the ground state?
+HKA: ყოველი წყვილი დონე ერთ ხაზს იძლევა.
+HEN: Each pair of levels gives one line.
+SKA: ხაზები: $4 \to 3,\ 4 \to 2,\ 4 \to 1,\ 3 \to 2,\ 3 \to 1,\ 2 \to 1$
+$C_4^2 = \dfrac{4 \cdot 3}{2} = 6$
+SEN: Lines: $4 \to 3,\ 4 \to 2,\ 4 \to 1,\ 3 \to 2,\ 3 \to 1,\ 2 \to 1$
+$C_4^2 = \dfrac{4 \cdot 3}{2} = 6$
+AKA: $6$
+AEN: $6$
+
+--- medium nucleus
+KA: იპოვეთ ჰელიუმ-$4$-ის ბირთვის მასის დეფექტი და ბმის ენერგია. $m_p = 1{,}00728$, $m_n = 1{,}00866$, $m_{\text{ბ}} = 4{,}00151$ მ.ა.ე.
+EN: Find the mass defect and binding energy of the helium-$4$ nucleus. $m_p = 1.00728$, $m_n = 1.00866$, $m_{\text{nucl}} = 4.00151$ u.
+HKA: $\Delta m = Zm_p + Nm_n - m_{\text{ბ}}$, $\ E = \Delta m \cdot 931{,}5\ \text{მევ}$.
+HEN: $\Delta m = Zm_p + Nm_n - m_{\text{nucl}}$, $\ E = \Delta m \times 931.5\ \text{MeV}$.
+SKA: $\Delta m = 2 \cdot 1{,}00728 + 2 \cdot 1{,}00866 - 4{,}00151 = 0{,}03037\ \text{მ.ა.ე.}$
+$E = 0{,}03037 \cdot 931{,}5 \approx 28{,}3\ \text{მევ}$, $\ $ ერთ ნუკლონზე $\approx 7{,}1\ \text{მევ}$
+SEN: $\Delta m = 2 \times 1.00728 + 2 \times 1.00866 - 4.00151 = 0.03037\ \text{u}$
+$E = 0.03037 \times 931.5 \approx 28.3\ \text{MeV}$, $\ $ per nucleon $\approx 7.1\ \text{MeV}$
+AKA: $0{,}0304\ \text{მ.ა.ე.}$; $\approx 28{,}3\ \text{მევ}$
+AEN: $0.0304\ \text{u}$; $\approx 28.3\ \text{MeV}$
+
+--- medium nucleus
+KA: ურან-$235$-ის ერთი ბირთვის დაშლისას გამოიყოფა $\approx 200\ \text{მევ}$. რამდენი ენერგია გამოიყოფა $1\ \text{გ}$ ურანის სრული დაშლისას? ($1\ \text{მევ} = 1{,}6 \cdot 10^{-13}\ \text{ჯ}$)
+EN: Each fission of a uranium-$235$ nucleus releases $\approx 200\ \text{MeV}$. How much energy is released by the complete fission of $1\ \text{g}$ of uranium? ($1\ \text{MeV} = 1.6 \times 10^{-13}\ \text{J}$)
+HKA: ბირთვების რიცხვი $N = \dfrac{m}{M}N_A$.
+HEN: Number of nuclei $N = \dfrac{m}{M}N_A$.
+SKA: $N = \dfrac{1}{235} \cdot 6{,}02 \cdot 10^{23} \approx 2{,}56 \cdot 10^{21}$
+$E = N \cdot 200 \cdot 1{,}6 \cdot 10^{-13} \approx 8{,}2 \cdot 10^{10}\ \text{ჯ}$ (≈ $2$ ტონა ნავთობის წვის სითბო)
+SEN: $N = \dfrac{1}{235} \times 6.02 \times 10^{23} \approx 2.56 \times 10^{21}$
+$E = N \times 200 \times 1.6 \times 10^{-13} \approx 8.2 \times 10^{10}\ \text{J}$ (≈ the heat from burning $2$ tonnes of oil)
+AKA: $\approx 8{,}2 \cdot 10^{10}\ \text{ჯ}$
+AEN: $\approx 8.2 \times 10^{10}\ \text{J}$
+
+--- medium nucleus
+KA: თერმობირთვული რეაქცია: $^2_1\text{H} + {}^3_1\text{H} \to {}^4_2\text{He} + X$. გაარკვიეთ $X$ და იპოვეთ გამოყოფილი ენერგია. მასები (მ.ა.ე.): $2{,}01410$; $3{,}01605$; $4{,}00260$; $n$: $1{,}00866$.
+EN: Fusion reaction: $^2_1\text{H} + {}^3_1\text{H} \to {}^4_2\text{He} + X$. Identify $X$ and find the energy released. Masses (u): $2.01410$; $3.01605$; $4.00260$; $n$: $1.00866$.
+HKA: შეინახება მასური და მუხტური რიცხვები.
+HEN: Mass and charge numbers are conserved.
+SKA: $A$: $2 + 3 = 4 + 1$; $\ Z$: $1 + 1 = 2 + 0$ $\Rightarrow X = {}^1_0n$ (ნეიტრონი)
+$\Delta m = 5{,}03015 - 5{,}01126 = 0{,}01889\ \text{მ.ა.ე.}$
+$E = 0{,}01889 \cdot 931{,}5 \approx 17{,}6\ \text{მევ}$
+SEN: $A$: $2 + 3 = 4 + 1$; $\ Z$: $1 + 1 = 2 + 0$ $\Rightarrow X = {}^1_0n$ (a neutron)
+$\Delta m = 5.03015 - 5.01126 = 0.01889\ \text{u}$
+$E = 0.01889 \times 931.5 \approx 17.6\ \text{MeV}$
+AKA: ნეიტრონი; $\approx 17{,}6\ \text{მევ}$
+AEN: a neutron; $\approx 17.6\ \text{MeV}$
+
+--- medium radio
+KA: $30$ დღის შემდეგ რადიოაქტიური ნიმუშის $\dfrac{1}{8}$ დარჩა. იპოვეთ ნახევარდაშლის პერიოდი.
+EN: After $30$ days, $\dfrac{1}{8}$ of a radioactive sample remains. Find the half-life.
+HKA: $\dfrac{1}{8} = 2^{-3}$.
+HEN: $\dfrac{1}{8} = 2^{-3}$.
+SKA: $2^{-\frac{t}{T}} = 2^{-3} \Rightarrow \dfrac{t}{T} = 3$
+$T = \dfrac{30}{3} = 10$ დღე
+SEN: $2^{-\frac{t}{T}} = 2^{-3} \Rightarrow \dfrac{t}{T} = 3$
+$T = \dfrac{30}{3} = 10$ days
+AKA: $10$ დღე
+AEN: $10$ days
+
+--- medium radio
+KA: ძველ ხის ნიმუშში ნახშირბად-$14$-ის შემცველობა ცოცხალი ხისას $25\%$-ს შეადგენს. რამდენი წლისაა ნიმუში? ($T = 5730$ წელი)
+EN: An old wood sample contains $25\%$ of the carbon-$14$ found in living wood. How old is it? ($T = 5730$ years)
+HKA: $25\% = \dfrac{1}{4} = 2^{-2}$.
+HEN: $25\% = \dfrac{1}{4} = 2^{-2}$.
+SKA: $\dfrac{N}{N_0} = 2^{-\frac{t}{T}} = 2^{-2} \Rightarrow t = 2T$
+$t = 2 \cdot 5730 = 11\,460$ წელი
+SEN: $\dfrac{N}{N_0} = 2^{-\frac{t}{T}} = 2^{-2} \Rightarrow t = 2T$
+$t = 2 \times 5730 = 11\,460$ years
+AKA: $11\,460$ წელი
+AEN: $11\,460$ years
+
+--- medium radio
+KA: ურანი $^{238}_{92}\text{U}$ დაშლების ჯაჭვით ტყვიად $^{206}_{82}\text{Pb}$ იქცევა. რამდენი ალფა- და რამდენი ბეტა-დაშლა ხდება?
+EN: Uranium $^{238}_{92}\text{U}$ turns into lead $^{206}_{82}\text{Pb}$ through a decay chain. How many alpha and how many beta decays occur?
+HKA: $A$-ს მხოლოდ ალფა-დაშლა ცვლის ($-4$); შემდეგ დაითვალეთ $Z$.
+HEN: Only alpha decay changes $A$ ($-4$); then count $Z$.
+SKA: ალფა: $\dfrac{238 - 206}{4} = 8$ $\Rightarrow Z = 92 - 2 \cdot 8 = 76$
+ბეტა ($Z$ იზრდება $1$-ით): $82 - 76 = 6$
+SEN: Alpha: $\dfrac{238 - 206}{4} = 8$ $\Rightarrow Z = 92 - 2 \times 8 = 76$
+Beta ($Z$ increases by $1$): $82 - 76 = 6$
+AKA: $8$ ალფა, $6$ ბეტა
+AEN: $8$ alpha, $6$ beta
+
+--- medium particles
+KA: ელექტრონი $1\ \text{კვ}$ ძაბვით აჩქარდა. იპოვეთ მისი ენერგია ევ-ებში და სიჩქარე.
+EN: An electron is accelerated through $1\ \text{kV}$. Find its energy in eV and its speed.
+HKA: $E_k = eU$.
+HEN: $E_k = eU$.
+SKA: $E_k = eU = 1000\ \text{ევ} = 1{,}6 \cdot 10^{-16}\ \text{ჯ}$
+$v = \sqrt{\dfrac{2E_k}{m_e}} = \sqrt{\dfrac{3{,}2 \cdot 10^{-16}}{9{,}1 \cdot 10^{-31}}} \approx 1{,}9 \cdot 10^7\ \text{მ/წმ}$ ($\approx 6\%$ სინათლის სიჩქარის)
+SEN: $E_k = eU = 1000\ \text{eV} = 1.6 \times 10^{-16}\ \text{J}$
+$v = \sqrt{\dfrac{2E_k}{m_e}} = \sqrt{\dfrac{3.2 \times 10^{-16}}{9.1 \times 10^{-31}}} \approx 1.9 \times 10^7\ \text{m/s}$ ($\approx 6\%$ of the speed of light)
+AKA: $1\ \text{კევ}$; $\approx 1{,}9 \cdot 10^7\ \text{მ/წმ}$
+AEN: $1\ \text{keV}$; $\approx 1.9 \times 10^7\ \text{m/s}$
+
+--- medium particles
+KA: რა მინიმალური ენერგია და რა მაქსიმალური ტალღის სიგრძე უნდა ჰქონდეს გამა-კვანტს, რომ ელექტრონ-პოზიტრონის წყვილი შექმნას? ($m_ec^2 = 0{,}511\ \text{მევ}$)
+EN: What minimum energy and maximum wavelength must a gamma quantum have to create an electron–positron pair? ($m_ec^2 = 0.511\ \text{MeV}$)
+HKA: ფოტონის ენერგია უნდა დაიხარჯოს ორი ნაწილაკის უძრაობის ენერგიაზე.
+HEN: The photon's energy must cover the rest energies of two particles.
+SKA: $E_{\min} = 2m_ec^2 = 1{,}022\ \text{მევ} \approx 1{,}64 \cdot 10^{-13}\ \text{ჯ}$
+$\lambda_{\max} = \dfrac{hc}{E_{\min}} = \dfrac{1{,}99 \cdot 10^{-25}}{1{,}64 \cdot 10^{-13}} \approx 1{,}2 \cdot 10^{-12}\ \text{მ}$
+SEN: $E_{\min} = 2m_ec^2 = 1.022\ \text{MeV} \approx 1.64 \times 10^{-13}\ \text{J}$
+$\lambda_{\max} = \dfrac{hc}{E_{\min}} = \dfrac{1.99 \times 10^{-25}}{1.64 \times 10^{-13}} \approx 1.2 \times 10^{-12}\ \text{m}$
+AKA: $1{,}022\ \text{მევ}$; $\approx 1{,}2 \cdot 10^{-12}\ \text{მ}$
+AEN: $1.022\ \text{MeV}$; $\approx 1.2 \times 10^{-12}\ \text{m}$
+
+--- medium astro
+KA: შეაფასეთ სამყაროს ასაკი ჰაბლის მუდმივით: $t \approx \dfrac{1}{H_0}$, $H_0 = 70\ \text{კმ/(წმ}\cdot\text{მპკ)}$, $1\ \text{მპკ} = 3{,}09 \cdot 10^{22}\ \text{მ}$.
+EN: Estimate the age of the Universe from the Hubble constant: $t \approx \dfrac{1}{H_0}$, $H_0 = 70\ \text{km/(s}\cdot\text{Mpc)}$, $1\ \text{Mpc} = 3.09 \times 10^{22}\ \text{m}$.
+HKA: გადაიყვანეთ $H_0$ წმ$^{-1}$-ში.
+HEN: Convert $H_0$ to s$^{-1}$.
+SKA: $H_0 = \dfrac{7 \cdot 10^4}{3{,}09 \cdot 10^{22}} \approx 2{,}27 \cdot 10^{-18}\ \text{წმ}^{-1}$
+$t = \dfrac{1}{H_0} \approx 4{,}4 \cdot 10^{17}\ \text{წმ} \approx \dfrac{4{,}4 \cdot 10^{17}}{3{,}15 \cdot 10^7} \approx 1{,}4 \cdot 10^{10}$ წელი
+SEN: $H_0 = \dfrac{7 \times 10^4}{3.09 \times 10^{22}} \approx 2.27 \times 10^{-18}\ \text{s}^{-1}$
+$t = \dfrac{1}{H_0} \approx 4.4 \times 10^{17}\ \text{s} \approx \dfrac{4.4 \times 10^{17}}{3.15 \times 10^7} \approx 1.4 \times 10^{10}$ years
+AKA: $\approx 14$ მლრდ წელი
+AEN: $\approx 14$ billion years
+
+--- medium astro
+KA: გალაქტიკის სპექტრის ხაზები წითლად არის წანაცვლებული და მისი დაშორების სიჩქარე $6000\ \text{კმ/წმ}$-ია. იპოვეთ წითელი წანაცვლება $z \approx \dfrac{v}{c}$ და მანძილი ($H_0 = 70\ \text{კმ/(წმ}\cdot\text{მპკ)}$).
+EN: A galaxy's spectral lines are redshifted and it recedes at $6000\ \text{km/s}$. Find the redshift $z \approx \dfrac{v}{c}$ and the distance ($H_0 = 70\ \text{km/(s}\cdot\text{Mpc)}$).
+HKA: $d = \dfrac{v}{H_0}$.
+HEN: $d = \dfrac{v}{H_0}$.
+SKA: $z \approx \dfrac{6000}{300\,000} = 0{,}02$
+$d = \dfrac{v}{H_0} = \dfrac{6000}{70} \approx 86\ \text{მპკ}$
+SEN: $z \approx \dfrac{6000}{300\,000} = 0.02$
+$d = \dfrac{v}{H_0} = \dfrac{6000}{70} \approx 86\ \text{Mpc}$
+AKA: $0{,}02$; $\approx 86\ \text{მპკ}$
+AEN: $0.02$; $\approx 86\ \text{Mpc}$
+
+--- medium astro
+KA: რა რადიუსამდე უნდა შეიკუმშოს დედამიწა ($M = 6 \cdot 10^{24}\ \text{კგ}$), რომ შავ ხვრელად იქცეს? შეადარეთ მის ახლანდელ რადიუსს ($6400\ \text{კმ}$).
+EN: To what radius would the Earth ($M = 6 \times 10^{24}\ \text{kg}$) have to shrink to become a black hole? Compare with its present radius ($6400\ \text{km}$).
+HKA: $R = \dfrac{2GM}{c^2}$.
+HEN: $R = \dfrac{2GM}{c^2}$.
+SKA: $R = \dfrac{2GM}{c^2} = \dfrac{2 \cdot 6{,}67 \cdot 10^{-11} \cdot 6 \cdot 10^{24}}{9 \cdot 10^{16}} \approx 8{,}9 \cdot 10^{-3}\ \text{მ}$
+$\approx 9\ \text{მმ}$ — დაახლოებით $7 \cdot 10^8$-ჯერ ნაკლები ახლანდელ რადიუსზე.
+SEN: $R = \dfrac{2GM}{c^2} = \dfrac{2 \times 6.67 \times 10^{-11} \times 6 \times 10^{24}}{9 \times 10^{16}} \approx 8.9 \times 10^{-3}\ \text{m}$
+$\approx 9\ \text{mm}$ — about $7 \times 10^8$ times smaller than its present radius.
+AKA: $\approx 9\ \text{მმ}$
+AEN: $\approx 9\ \text{mm}$
+
+// ===================================================================== HARD
+
+--- hard mkt
+KA: ერთსა და იმავე ტემპერატურაზე რამდენჯერ მეტია წყალბადის ($M = 2\ \text{გ/მოლი}$) მოლეკულების საშუალო კვადრატული სიჩქარე ჟანგბადისაზე ($M = 32\ \text{გ/მოლი}$)? რატომ არ შეიცავს დედამიწის ატმოსფერო თითქმის წყალბადს?
+EN: At the same temperature, how many times greater is the rms speed of hydrogen ($M = 2\ \text{g/mol}$) than that of oxygen ($M = 32\ \text{g/mol}$)? Why does Earth's atmosphere contain almost no hydrogen?
+HKA: $v = \sqrt{\dfrac{3RT}{M}}$; შეადარეთ მეორე კოსმოსურ სიჩქარეს ($11{,}2\ \text{კმ/წმ}$).
+HEN: $v = \sqrt{\dfrac{3RT}{M}}$; compare with the escape speed ($11.2\ \text{km/s}$).
+SKA: $\dfrac{v_{\text{H}_2}}{v_{\text{O}_2}} = \sqrt{\dfrac{M_{\text{O}_2}}{M_{\text{H}_2}}} = \sqrt{\dfrac{32}{2}} = 4$
+წყალბადის მოლეკულები უფრო სწრაფია; სიჩქარეების განაწილების „კუდში“ მათი მნიშვნელოვანი ნაწილი აღწევს გაქცევის სიჩქარეს და მილიარდობით წლის განმავლობაში ატმოსფეროდან „გაიპარა“.
+SEN: $\dfrac{v_{\text{H}_2}}{v_{\text{O}_2}} = \sqrt{\dfrac{M_{\text{O}_2}}{M_{\text{H}_2}}} = \sqrt{\dfrac{32}{2}} = 4$
+Hydrogen molecules are faster; a significant share in the "tail" of the speed distribution reaches escape speed, and over billions of years hydrogen leaked away.
+AKA: $4$-ჯერ
+AEN: $4$ times
+
+--- hard mkt
+KA: მოლეკულურ-კინეტიკური თეორიის ძირითადი განტოლებაა $p = \dfrac{1}{3}\rho \overline{v^2}$. იპოვეთ ჰაერის მოლეკულების საშუალო კვადრატული სიჩქარე, თუ $p = 10^5\ \text{პა}$, $\rho = 1{,}29\ \text{კგ/მ}^3$.
+EN: The basic equation of kinetic theory is $p = \dfrac{1}{3}\rho \overline{v^2}$. Find the rms speed of air molecules if $p = 10^5\ \text{Pa}$ and $\rho = 1.29\ \text{kg/m}^3$.
+HKA: $v = \sqrt{\dfrac{3p}{\rho}}$.
+HEN: $v = \sqrt{\dfrac{3p}{\rho}}$.
+SKA: $p = \dfrac{1}{3}\rho \overline{v^2} \Rightarrow v = \sqrt{\dfrac{3p}{\rho}}$
+$v = \sqrt{\dfrac{3 \cdot 10^5}{1{,}29}} \approx 482\ \text{მ/წმ}$ — ბგერის სიჩქარის რიგისაა.
+SEN: $p = \dfrac{1}{3}\rho \overline{v^2} \Rightarrow v = \sqrt{\dfrac{3p}{\rho}}$
+$v = \sqrt{\dfrac{3 \times 10^5}{1.29}} \approx 482\ \text{m/s}$ — of the order of the speed of sound.
+AKA: $\approx 480\ \text{მ/წმ}$
+AEN: $\approx 480\ \text{m/s}$
+
+--- hard gaslaw
+KA: $40\ \text{ლ}$ ბალონში ჟანგბადი იყო $1{,}5 \cdot 10^7\ \text{პა}$ წნევით $27\ \text{°C}$-ზე. ნაწილის გამოყენების შემდეგ წნევა $5 \cdot 10^6\ \text{პა}$-მდე დაეცა, ტემპერატურა — $17\ \text{°C}$-მდე. რამდენი ჟანგბადი გამოიყენეს? ($M = 0{,}032\ \text{კგ/მოლი}$)
+EN: A $40\ \text{L}$ cylinder held oxygen at $1.5 \times 10^7\ \text{Pa}$ and $27\ \text{°C}$. After some was used, the pressure fell to $5 \times 10^6\ \text{Pa}$ and the temperature to $17\ \text{°C}$. How much oxygen was used? ($M = 0.032\ \text{kg/mol}$)
+HKA: $m = \dfrac{pVM}{RT}$ — ორივე მდგომარეობისთვის.
+HEN: $m = \dfrac{pVM}{RT}$ — for both states.
+SKA: $\Delta m = \dfrac{VM}{R}\left(\dfrac{p_1}{T_1} - \dfrac{p_2}{T_2}\right)$
+$\dfrac{p_1}{T_1} = \dfrac{1{,}5 \cdot 10^7}{300} = 5 \cdot 10^4$, $\ \dfrac{p_2}{T_2} = \dfrac{5 \cdot 10^6}{290} \approx 1{,}72 \cdot 10^4$
+$\Delta m = \dfrac{0{,}04 \cdot 0{,}032}{8{,}31} \cdot 3{,}28 \cdot 10^4 \approx 5{,}05\ \text{კგ}$
+SEN: $\Delta m = \dfrac{VM}{R}\left(\dfrac{p_1}{T_1} - \dfrac{p_2}{T_2}\right)$
+$\dfrac{p_1}{T_1} = \dfrac{1.5 \times 10^7}{300} = 5 \times 10^4$, $\ \dfrac{p_2}{T_2} = \dfrac{5 \times 10^6}{290} \approx 1.72 \times 10^4$
+$\Delta m = \dfrac{0.04 \times 0.032}{8.31} \times 3.28 \times 10^4 \approx 5.05\ \text{kg}$
+AKA: $\approx 5\ \text{კგ}$
+AEN: $\approx 5\ \text{kg}$
+
+--- hard gaslaw
+KA: $2\ \text{ლ}$ ჭურჭელში აირია $3 \cdot 10^5\ \text{პა}$ წნევით, $4\ \text{ლ}$ ჭურჭელში — იგივე აირი $1{,}5 \cdot 10^5\ \text{პა}$ წნევით. ჭურჭლებს აერთებენ (ტემპერატურა იგივეა). იპოვეთ დამყარებული წნევა.
+EN: A $2\ \text{L}$ vessel holds gas at $3 \times 10^5\ \text{Pa}$, and a $4\ \text{L}$ vessel holds the same gas at $1.5 \times 10^5\ \text{Pa}$. The vessels are connected (same temperature). Find the final pressure.
+HKA: მოლების რიცხვი იკრიბება: $p_1V_1 + p_2V_2 = p(V_1 + V_2)$ (დალტონის კანონი).
+HEN: The moles add up: $p_1V_1 + p_2V_2 = p(V_1 + V_2)$ (Dalton's law).
+SKA: $p = \dfrac{p_1V_1 + p_2V_2}{V_1 + V_2}$
+$p = \dfrac{3 \cdot 10^5 \cdot 2 + 1{,}5 \cdot 10^5 \cdot 4}{6} = 2 \cdot 10^5\ \text{პა}$
+SEN: $p = \dfrac{p_1V_1 + p_2V_2}{V_1 + V_2}$
+$p = \dfrac{3 \times 10^5 \times 2 + 1.5 \times 10^5 \times 4}{6} = 2 \times 10^5\ \text{Pa}$
+AKA: $2 \cdot 10^5\ \text{პა}$
+AEN: $2 \times 10^5\ \text{Pa}$
+
+--- hard gaslaw
+KA: ჰაერბურთის მოცულობაა $500\ \text{მ}^3$. გარე ჰაერის სიმკვრივეა $1{,}2\ \text{კგ/მ}^3$ $290\ \text{K}$-ზე, შიგნით ჰაერი $360\ \text{K}$-მდეა გამთბარი (წნევა იგივეა). რა მასის ტვირთის (გარსის ჩათვლით) აწევა შეუძლია?
+EN: A hot-air balloon has volume $500\ \text{m}^3$. Outside air has density $1.2\ \text{kg/m}^3$ at $290\ \text{K}$; the air inside is heated to $360\ \text{K}$ (same pressure). What mass (including the envelope) can it lift?
+HKA: მუდმივი წნევისას $\rho \sim \dfrac{1}{T}$.
+HEN: At constant pressure $\rho \sim \dfrac{1}{T}$.
+SKA: $\rho_{\text{შ}} = \rho_0\dfrac{T_0}{T} = 1{,}2 \cdot \dfrac{290}{360} \approx 0{,}967\ \text{კგ/მ}^3$
+$m = (\rho_0 - \rho_{\text{შ}})V = (1{,}2 - 0{,}967) \cdot 500 \approx 117\ \text{კგ}$
+SEN: $\rho_{\text{in}} = \rho_0\dfrac{T_0}{T} = 1.2 \times \dfrac{290}{360} \approx 0.967\ \text{kg/m}^3$
+$m = (\rho_0 - \rho_{\text{in}})V = (1.2 - 0.967) \times 500 \approx 117\ \text{kg}$
+AKA: $\approx 117\ \text{კგ}$
+AEN: $\approx 117\ \text{kg}$
+
+--- hard isoproc
+KA: ვიწრო მილში, რომლის ღია ბოლო ზემოთაა მიმართული, $10\ \text{სმ}$ სიგრძის ვერცხლისწყლის სვეტი კეტავს $30\ \text{სმ}$ სიგრძის ჰაერის სვეტს. მილს ღია ბოლოთი ქვემოთ აბრუნებენ. რა სიგრძის გახდება ჰაერის სვეტი? ($p_0 = 76\ \text{სმ ვწყ. სვ.}$, $T = \text{const}$)
+EN: In a narrow tube with its open end up, a $10\ \text{cm}$ column of mercury traps a $30\ \text{cm}$ column of air. The tube is turned open end down. How long does the air column become? ($p_0 = 76\ \text{cmHg}$, $T = \text{const}$)
+HKA: ღია ბოლო ზემოთ: $p_1 = p_0 + h$; ქვემოთ: $p_2 = p_0 - h$.
+HEN: Open end up: $p_1 = p_0 + h$; open end down: $p_2 = p_0 - h$.
+SKA: $p_1 = 76 + 10 = 86$, $\ p_2 = 76 - 10 = 66\ \text{სმ ვწყ. სვ.}$
+$p_1L_1 = p_2L_2 \Rightarrow L_2 = \dfrac{86 \cdot 30}{66} \approx 39{,}1\ \text{სმ}$
+SEN: $p_1 = 76 + 10 = 86$, $\ p_2 = 76 - 10 = 66\ \text{cmHg}$
+$p_1L_1 = p_2L_2 \Rightarrow L_2 = \dfrac{86 \times 30}{66} \approx 39.1\ \text{cm}$
+AKA: $\approx 39\ \text{სმ}$
+AEN: $\approx 39\ \text{cm}$
+
+--- hard isoproc
+KA: აირი ($p_1 = 10^5\ \text{პა}$, $V_1 = 1\ \text{ლ}$, $T_1 = 300\ \text{K}$) ჯერ იზოქორულად თბება, სანამ წნევა $3 \cdot 10^5\ \text{პა}$ არ გახდება, შემდეგ იზობარულად ფართოვდება $2\ \text{ლ}$-მდე. იპოვეთ შუალედური და საბოლოო ტემპერატურები და აირის მუშაობა.
+EN: A gas ($p_1 = 10^5\ \text{Pa}$, $V_1 = 1\ \text{L}$, $T_1 = 300\ \text{K}$) is first heated isochorically until its pressure is $3 \times 10^5\ \text{Pa}$, then expands isobarically to $2\ \text{L}$. Find the intermediate and final temperatures and the work done by the gas.
+HKA: იზოქორულ ნაწილში მუშაობა $0$-ია.
+HEN: There is no work in the isochoric part.
+SKA: $T_2 = T_1\dfrac{p_2}{p_1} = 300 \cdot 3 = 900\ \text{K}$
+$T_3 = T_2\dfrac{V_3}{V_2} = 900 \cdot 2 = 1800\ \text{K}$
+$A = p_2(V_3 - V_2) = 3 \cdot 10^5 \cdot 10^{-3} = 300\ \text{ჯ}$
+SEN: $T_2 = T_1\dfrac{p_2}{p_1} = 300 \times 3 = 900\ \text{K}$
+$T_3 = T_2\dfrac{V_3}{V_2} = 900 \times 2 = 1800\ \text{K}$
+$A = p_2(V_3 - V_2) = 3 \times 10^5 \times 10^{-3} = 300\ \text{J}$
+AKA: $900\ \text{K}$; $1800\ \text{K}$; $300\ \text{ჯ}$
+AEN: $900\ \text{K}$; $1800\ \text{K}$; $300\ \text{J}$
+
+--- hard isoproc
+KA: ვერტიკალურ ცილინდრში აირს კეტავს $10\ \text{კგ}$ მასის დგუში, ფართობით $50\ \text{სმ}^2$; $p_0 = 10^5\ \text{პა}$. აირს $300\ \text{K}$-დან $360\ \text{K}$-მდე ათბობენ, დგუშის საწყისი სიმაღლეა $20\ \text{სმ}$. იპოვეთ აირის წნევა, დგუშის აწევა და აირის მუშაობა.
+EN: In a vertical cylinder a gas is held by a $10\ \text{kg}$ piston of area $50\ \text{cm}^2$; $p_0 = 10^5\ \text{Pa}$. The gas is heated from $300\ \text{K}$ to $360\ \text{K}$; the piston starts at a height of $20\ \text{cm}$. Find the gas pressure, the rise of the piston and the work done by the gas.
+HKA: დგუშის წონასწორობა: $p = p_0 + \dfrac{mg}{S}$ — პროცესი იზობარულია.
+HEN: Piston equilibrium: $p = p_0 + \dfrac{mg}{S}$ — the process is isobaric.
+SKA: $p = 10^5 + \dfrac{100}{5 \cdot 10^{-3}} = 1{,}2 \cdot 10^5\ \text{პა}$
+$h_2 = h_1\dfrac{T_2}{T_1} = 20 \cdot 1{,}2 = 24\ \text{სმ}$, $\ \Delta h = 4\ \text{სმ}$
+$A = pS\Delta h = 1{,}2 \cdot 10^5 \cdot 5 \cdot 10^{-3} \cdot 0{,}04 = 24\ \text{ჯ}$
+SEN: $p = 10^5 + \dfrac{100}{5 \times 10^{-3}} = 1.2 \times 10^5\ \text{Pa}$
+$h_2 = h_1\dfrac{T_2}{T_1} = 20 \times 1.2 = 24\ \text{cm}$, $\ \Delta h = 4\ \text{cm}$
+$A = pS\Delta h = 1.2 \times 10^5 \times 5 \times 10^{-3} \times 0.04 = 24\ \text{J}$
+AKA: $1{,}2 \cdot 10^5\ \text{პა}$; $4\ \text{სმ}$; $24\ \text{ჯ}$
+AEN: $1.2 \times 10^5\ \text{Pa}$; $4\ \text{cm}$; $24\ \text{J}$
+
+--- hard internal
+KA: თბოიზოლირებულ ჭურჭელში ერევა $1$ მოლი ჰელიუმი $300\ \text{K}$-ზე და $2$ მოლი ჰელიუმი $600\ \text{K}$-ზე. იპოვეთ ნარევის ტემპერატურა.
+EN: In an insulated vessel, $1$ mol of helium at $300\ \text{K}$ mixes with $2$ mol of helium at $600\ \text{K}$. Find the temperature of the mixture.
+HKA: შინაგანი ენერგიების ჯამი შენარჩუნდება.
+HEN: The total internal energy is conserved.
+SKA: $\dfrac{3}{2}R(\nu_1T_1 + \nu_2T_2) = \dfrac{3}{2}R(\nu_1 + \nu_2)T$
+$T = \dfrac{\nu_1T_1 + \nu_2T_2}{\nu_1 + \nu_2} = \dfrac{300 + 1200}{3} = 500\ \text{K}$
+SEN: $\dfrac{3}{2}R(\nu_1T_1 + \nu_2T_2) = \dfrac{3}{2}R(\nu_1 + \nu_2)T$
+$T = \dfrac{\nu_1T_1 + \nu_2T_2}{\nu_1 + \nu_2} = \dfrac{300 + 1200}{3} = 500\ \text{K}$
+AKA: $500\ \text{K}$
+AEN: $500\ \text{K}$
+
+--- hard internal
+KA: იპოვეთ ერთატომიანი იდეალური აირის მოლური სითბოტევადობები მუდმივი მოცულობისა ($C_V$) და მუდმივი წნევისას ($C_p$). დაამტკიცეთ მაიერის თანაფარდობა $C_p - C_V = R$.
+EN: Find the molar heat capacities of a monatomic ideal gas at constant volume ($C_V$) and at constant pressure ($C_p$). Prove Mayer's relation $C_p - C_V = R$.
+HKA: $C = \dfrac{Q}{\nu\Delta T}$; იზობარულად $Q = \Delta U + \nu R\Delta T$.
+HEN: $C = \dfrac{Q}{\nu\Delta T}$; at constant pressure $Q = \Delta U + \nu R\Delta T$.
+SKA: $V = \text{const}$: $Q = \Delta U = \dfrac{3}{2}\nu R\Delta T \Rightarrow C_V = \dfrac{3}{2}R \approx 12{,}5\ \text{ჯ/(მოლი}\cdot\text{K)}$
+$p = \text{const}$: $Q = \dfrac{3}{2}\nu R\Delta T + \nu R\Delta T \Rightarrow C_p = \dfrac{5}{2}R \approx 20{,}8\ \text{ჯ/(მოლი}\cdot\text{K)}$
+$C_p - C_V = R$ — სხვაობა აირის მიერ შესრულებული მუშაობაა ∎
+SEN: $V = \text{const}$: $Q = \Delta U = \dfrac{3}{2}\nu R\Delta T \Rightarrow C_V = \dfrac{3}{2}R \approx 12.5\ \text{J/(mol}\cdot\text{K)}$
+$p = \text{const}$: $Q = \dfrac{3}{2}\nu R\Delta T + \nu R\Delta T \Rightarrow C_p = \dfrac{5}{2}R \approx 20.8\ \text{J/(mol}\cdot\text{K)}$
+$C_p - C_V = R$ — the difference is the work done by the gas ∎
+AKA: $12{,}5$ და $20{,}8\ \text{ჯ/(მოლი}\cdot\text{K)}$
+AEN: $12.5$ and $20.8\ \text{J/(mol}\cdot\text{K)}$
+
+--- hard gaswork
+KA: $1$ მოლი იდეალური აირი $300\ \text{K}$-ზე იზოთერმულად ფართოვდება და მოცულობა ორმაგდება. იპოვეთ მუშაობა, თუ იზოთერმული მუშაობა $A = \nu RT\ln\dfrac{V_2}{V_1}$. რატომ არ შეიძლება აქ $A = p\Delta V$-ის გამოყენება?
+EN: $1$ mol of an ideal gas at $300\ \text{K}$ expands isothermally to double its volume. Find the work, given that isothermal work is $A = \nu RT\ln\dfrac{V_2}{V_1}$. Why can't you use $A = p\Delta V$ here?
+HKA: $\ln 2 \approx 0{,}693$.
+HEN: $\ln 2 \approx 0.693$.
+SKA: $A = \nu RT\ln\dfrac{V_2}{V_1} = 8{,}31 \cdot 300 \cdot 0{,}693 \approx 1728\ \text{ჯ}$
+$p$ იზოთერმულად მცირდება ($p \sim \dfrac{1}{V}$), ამიტომ $A$ — ჰიპერბოლის ქვეშ მოთავსებული ფართობია და არა მართკუთხედის.
+SEN: $A = \nu RT\ln\dfrac{V_2}{V_1} = 8.31 \times 300 \times 0.693 \approx 1728\ \text{J}$
+$p$ falls during the isothermal expansion ($p \sim \dfrac{1}{V}$), so $A$ is the area under a hyperbola, not a rectangle.
+AKA: $\approx 1{,}73\ \text{კჯ}$
+AEN: $\approx 1.73\ \text{kJ}$
+
+--- hard gaswork
+KA: ერთატომიანი აირი $p$–$V$ დიაგრამაზე სწორხაზოვნად გადადის $(10^5\ \text{პა};\ 1\ \text{ლ})$ მდგომარეობიდან $(3 \cdot 10^5\ \text{პა};\ 3\ \text{ლ})$ მდგომარეობაში. იპოვეთ $A$, $\Delta U$ და $Q$.
+EN: A monatomic gas goes along a straight line on the $p$–$V$ diagram from $(10^5\ \text{Pa},\ 1\ \text{L})$ to $(3 \times 10^5\ \text{Pa},\ 3\ \text{L})$. Find $A$, $\Delta U$ and $Q$.
+HKA: $\Delta U = \dfrac{3}{2}(p_2V_2 - p_1V_1)$.
+HEN: $\Delta U = \dfrac{3}{2}(p_2V_2 - p_1V_1)$.
+SKA: $A = \dfrac{p_1 + p_2}{2}(V_2 - V_1) = 2 \cdot 10^5 \cdot 2 \cdot 10^{-3} = 400\ \text{ჯ}$
+$\Delta U = \dfrac{3}{2}(900 - 100) = 1200\ \text{ჯ}$
+$Q = \Delta U + A = 1600\ \text{ჯ}$
+SEN: $A = \dfrac{p_1 + p_2}{2}(V_2 - V_1) = 2 \times 10^5 \times 2 \times 10^{-3} = 400\ \text{J}$
+$\Delta U = \dfrac{3}{2}(900 - 100) = 1200\ \text{J}$
+$Q = \Delta U + A = 1600\ \text{J}$
+AKA: $400\ \text{ჯ}$; $1200\ \text{ჯ}$; $1600\ \text{ჯ}$
+AEN: $400\ \text{J}$; $1200\ \text{J}$; $1600\ \text{J}$
+
+--- hard thermo1
+KA: ერთატომიან აირს მუდმივი წნევისას $1000\ \text{ჯ}$ სითბო გადასცეს. იპოვეთ აირის მუშაობა და შინაგანი ენერგიის ცვლილება.
+EN: $1000\ \text{J}$ of heat is supplied to a monatomic gas at constant pressure. Find the work done by the gas and the change in internal energy.
+HKA: იზობარულად $A : \Delta U : Q = 2 : 3 : 5$.
+HEN: At constant pressure $A : \Delta U : Q = 2 : 3 : 5$.
+SKA: $Q = \dfrac{5}{2}\nu R\Delta T$, $\ A = \nu R\Delta T = \dfrac{2}{5}Q$
+$A = 0{,}4 \cdot 1000 = 400\ \text{ჯ}$, $\ \Delta U = 600\ \text{ჯ}$
+SEN: $Q = \dfrac{5}{2}\nu R\Delta T$, $\ A = \nu R\Delta T = \dfrac{2}{5}Q$
+$A = 0.4 \times 1000 = 400\ \text{J}$, $\ \Delta U = 600\ \text{J}$
+AKA: $400\ \text{ჯ}$; $600\ \text{ჯ}$
+AEN: $400\ \text{J}$; $600\ \text{J}$
+
+--- hard thermo1
+KA: ერთატომიანი აირის ციკლი $p$–$V$ დიაგრამაზე მართკუთხედია: $p_1 = 10^5$, $p_2 = 2 \cdot 10^5\ \text{პა}$; $V_1 = 1$, $V_2 = 3\ \text{ლ}$ (იზოქორული გათბობა $V_1$-ზე, იზობარული გაფართოება $p_2$-ზე, …). იპოვეთ ციკლის მქკ და შეადარეთ კარნოს ციკლს იმავე უკიდურეს ტემპერატურებს შორის.
+EN: A monatomic gas cycle is a rectangle on the $p$–$V$ diagram: $p_1 = 10^5$, $p_2 = 2 \times 10^5\ \text{Pa}$; $V_1 = 1$, $V_2 = 3\ \text{L}$ (isochoric heating at $V_1$, isobaric expansion at $p_2$, …). Find the cycle's efficiency and compare it with a Carnot cycle between the same extreme temperatures.
+HKA: სითბოს იღებს მხოლოდ პირველ ორ ეტაპზე. $T \sim pV$.
+HEN: Heat is taken in only during the first two stages. $T \sim pV$.
+SKA: $A = (p_2 - p_1)(V_2 - V_1) = 10^5 \cdot 2 \cdot 10^{-3} = 200\ \text{ჯ}$
+$Q_{12} = \dfrac{3}{2}V_1(p_2 - p_1) = 150\ \text{ჯ}$, $\ Q_{23} = \dfrac{5}{2}p_2(V_2 - V_1) = 1000\ \text{ჯ}$
+$\eta = \dfrac{200}{1150} \approx 17\%$
+$\dfrac{T_{\max}}{T_{\min}} = \dfrac{p_2V_2}{p_1V_1} = 6 \Rightarrow \eta_{\text{კ}} = 1 - \dfrac{1}{6} \approx 83\%$
+SEN: $A = (p_2 - p_1)(V_2 - V_1) = 10^5 \times 2 \times 10^{-3} = 200\ \text{J}$
+$Q_{12} = \dfrac{3}{2}V_1(p_2 - p_1) = 150\ \text{J}$, $\ Q_{23} = \dfrac{5}{2}p_2(V_2 - V_1) = 1000\ \text{J}$
+$\eta = \dfrac{200}{1150} \approx 17\%$
+$\dfrac{T_{\max}}{T_{\min}} = \dfrac{p_2V_2}{p_1V_1} = 6 \Rightarrow \eta_{\text{C}} = 1 - \dfrac{1}{6} \approx 83\%$
+AKA: $\approx 17\%$; კარნო — $\approx 83\%$
+AEN: $\approx 17\%$; Carnot $\approx 83\%$
+
+--- hard engines
+KA: გამომგონებელი აცხადებს, რომ მისი ძრავა $800\ \text{K}$-სა და $300\ \text{K}$-ს შორის მუშაობს და ყოველ $10\ \text{კჯ}$ სითბოზე $7\ \text{კჯ}$ მუშაობას ასრულებს. შესაძლებელია ეს?
+EN: An inventor claims his engine works between $800\ \text{K}$ and $300\ \text{K}$ and does $7\ \text{kJ}$ of work for every $10\ \text{kJ}$ of heat. Is this possible?
+HKA: არცერთი ძრავის მქკ არ აღემატება კარნოს მქკ-ს.
+HEN: No engine is more efficient than a Carnot engine.
+SKA: $\eta_{\text{კ}} = 1 - \dfrac{300}{800} = 62{,}5\%$
+$\eta_{\text{განც.}} = \dfrac{7}{10} = 70\% > 62{,}5\%$ — შეუძლებელია (ეწინააღმდეგება თერმოდინამიკის II კანონს).
+SEN: $\eta_{\text{C}} = 1 - \dfrac{300}{800} = 62.5\%$
+$\eta_{\text{claimed}} = \dfrac{7}{10} = 70\% > 62.5\%$ — impossible (it violates the second law of thermodynamics).
+AKA: შეუძლებელია
+AEN: impossible
+
+--- hard engines
+KA: ელექტროსადგურის ელექტრული სიმძლავრეა $1\ \text{გვტ}$, მქკ — $35\%$. ნარჩენ სითბოს მდინარე წაიღებს, რომლის ხარჯია $10^5\ \text{კგ/წმ}$. რამდენი გრადუსით თბება მდინარე?
+EN: A power station delivers $1\ \text{GW}$ of electrical power at $35\%$ efficiency. A river carries away the waste heat with a flow of $10^5\ \text{kg/s}$. By how many degrees does the river warm?
+HKA: ნარჩენი სიმძლავრე: $P_2 = P\left(\dfrac{1}{\eta} - 1\right)$.
+HEN: Waste power: $P_2 = P\left(\dfrac{1}{\eta} - 1\right)$.
+SKA: $P_2 = 10^9 \cdot \left(\dfrac{1}{0{,}35} - 1\right) \approx 1{,}86 \cdot 10^9\ \text{ვტ}$
+$P_2 = c\,\dfrac{m}{t}\,\Delta T \Rightarrow \Delta T = \dfrac{1{,}86 \cdot 10^9}{4200 \cdot 10^5} \approx 4{,}4\ \text{°C}$
+SEN: $P_2 = 10^9 \times \left(\dfrac{1}{0.35} - 1\right) \approx 1.86 \times 10^9\ \text{W}$
+$P_2 = c\,\dfrac{m}{t}\,\Delta T \Rightarrow \Delta T = \dfrac{1.86 \times 10^9}{4200 \times 10^5} \approx 4.4\ \text{°C}$
+AKA: $\approx 4{,}4\ \text{°C}$
+AEN: $\approx 4.4\ \text{°C}$
+
+--- hard engines
+KA: იდეალური მაცივრის კამერაში $-3\ \text{°C}$-ია, ოთახში — $27\ \text{°C}$. იპოვეთ მაქსიმალური ეფექტურობის კოეფიციენტი. რამდენ სითბოს ამოიღებს კამერიდან $1\ \text{კვტ}\cdot\text{სთ}$ ელექტროენერგიით?
+EN: An ideal refrigerator keeps its compartment at $-3\ \text{°C}$ in a $27\ \text{°C}$ room. Find its maximum coefficient of performance. How much heat can it remove from the compartment using $1\ \text{kW}\cdot\text{h}$ of electricity?
+HKA: $\varepsilon_{\max} = \dfrac{T_2}{T_1 - T_2}$.
+HEN: $\varepsilon_{\max} = \dfrac{T_2}{T_1 - T_2}$.
+SKA: $\varepsilon_{\max} = \dfrac{270}{300 - 270} = 9$
+$Q_2 = \varepsilon A = 9 \cdot 3{,}6 \cdot 10^6 \approx 3{,}2 \cdot 10^7\ \text{ჯ}$
+SEN: $\varepsilon_{\max} = \dfrac{270}{300 - 270} = 9$
+$Q_2 = \varepsilon A = 9 \times 3.6 \times 10^6 \approx 3.2 \times 10^7\ \text{J}$
+AKA: $9$; $\approx 3{,}2 \cdot 10^7\ \text{ჯ}$
+AEN: $9$; $\approx 3.2 \times 10^7\ \text{J}$
+
+--- hard humidity
+KA: დღისით $25\ \text{°C}$-ზე ფარდობითი ტენიანობა $60\%$-ია. ღამით ტემპერატურა $15\ \text{°C}$-მდე ეცემა. იქნება ნამი? თუ კი, რამდენი წყალი გამოიყოფა $1\ \text{მ}^3$-დან? ($\rho_{\text{ნ}}$: $15\ \text{°C}$ — $12{,}8$; $16\ \text{°C}$ — $13{,}6$; $17\ \text{°C}$ — $14{,}5$; $25\ \text{°C}$ — $23{,}0\ \text{გ/მ}^3$)
+EN: In the daytime at $25\ \text{°C}$ the relative humidity is $60\%$. At night the temperature falls to $15\ \text{°C}$. Will there be dew? If so, how much water condenses from each $1\ \text{m}^3$? ($\rho_{\text{sat}}$: $15\ \text{°C}$ — $12.8$; $16\ \text{°C}$ — $13.6$; $17\ \text{°C}$ — $14.5$; $25\ \text{°C}$ — $23.0\ \text{g/m}^3$)
+HKA: იპოვეთ ორთქლის სიმკვრივე და შეადარეთ ნაჯერს $15\ \text{°C}$-ზე.
+HEN: Find the vapour density and compare it with the saturated value at $15\ \text{°C}$.
+SKA: $\rho = 0{,}6 \cdot 23{,}0 = 13{,}8\ \text{გ/მ}^3$ — ნამის წერტილი $\approx 16\ \text{°C}$
+$15\ \text{°C} < 16\ \text{°C}$ $\Rightarrow$ ნამი იქნება.
+$\Delta\rho = 13{,}8 - 12{,}8 = 1{,}0\ \text{გ}$ ყოველი $\text{მ}^3$-დან
+SEN: $\rho = 0.6 \times 23.0 = 13.8\ \text{g/m}^3$ — dew point $\approx 16\ \text{°C}$
+$15\ \text{°C} < 16\ \text{°C}$ $\Rightarrow$ there will be dew.
+$\Delta\rho = 13.8 - 12.8 = 1.0\ \text{g}$ from each $\text{m}^3$
+AKA: დიახ; $\approx 1\ \text{გ}$
+AEN: yes; $\approx 1\ \text{g}$
+
+--- hard humidity
+KA: $40\%$ ფარდობითი ტენიანობის ჰაერს იზოთერმულად $3$-ჯერ კუმშავენ. რა იქნება ფარდობითი ტენიანობა? ორთქლის რა ნაწილი კონდენსირდება?
+EN: Air at $40\%$ relative humidity is compressed isothermally to a third of its volume. What is the relative humidity then? What fraction of the vapour condenses?
+HKA: ორთქლის სიმკვრივე $3$-ჯერ გაიზრდებოდა, მაგრამ $\varphi$ ვერ გადააჭარბებს $100\%$-ს.
+HEN: The vapour density would triple, but $\varphi$ cannot exceed $100\%$.
+SKA: „ვირტუალურად“: $\varphi = 3 \cdot 40\% = 120\% > 100\%$ $\Rightarrow$ ორთქლი ნაჯერი ხდება, $\varphi = 100\%$.
+დარჩენილი წილი: $\dfrac{100}{120} = \dfrac{5}{6}$, $\ $ კონდენსირდება $\dfrac{1}{6}$
+SEN: "Virtually": $\varphi = 3 \times 40\% = 120\% > 100\%$ $\Rightarrow$ the vapour becomes saturated, $\varphi = 100\%$.
+Fraction remaining: $\dfrac{100}{120} = \dfrac{5}{6}$, $\ $ so $\dfrac{1}{6}$ condenses
+AKA: $100\%$; $\dfrac{1}{6}$
+AEN: $100\%$; $\dfrac{1}{6}$
+
+--- hard liquids
+KA: იპოვეთ $2\ \text{სმ}$ რადიუსიანი საპნის ბუშტის შიგნით ჭარბი წნევა და ბუშტის გაბერვისთვის საჭირო მინიმალური მუშაობა ($\sigma = 0{,}04\ \text{ნ/მ}$).
+EN: Find the excess pressure inside a soap bubble of radius $2\ \text{cm}$ and the minimum work needed to blow it ($\sigma = 0.04\ \text{N/m}$).
+HKA: ბუშტს ორი ზედაპირი აქვს: $\Delta p = \dfrac{4\sigma}{r}$, $\ A = \sigma \cdot 2 \cdot 4\pi r^2$.
+HEN: A bubble has two surfaces: $\Delta p = \dfrac{4\sigma}{r}$, $\ A = \sigma \times 2 \times 4\pi r^2$.
+SKA: $\Delta p = \dfrac{4 \cdot 0{,}04}{0{,}02} = 8\ \text{პა}$
+$A = 8\pi r^2\sigma = 8 \cdot 3{,}14 \cdot 4 \cdot 10^{-4} \cdot 0{,}04 \approx 4 \cdot 10^{-4}\ \text{ჯ}$
+SEN: $\Delta p = \dfrac{4 \times 0.04}{0.02} = 8\ \text{Pa}$
+$A = 8\pi r^2\sigma = 8 \times 3.14 \times 4 \times 10^{-4} \times 0.04 \approx 4 \times 10^{-4}\ \text{J}$
+AKA: $8\ \text{პა}$; $\approx 4 \cdot 10^{-4}\ \text{ჯ}$
+AEN: $8\ \text{Pa}$; $\approx 4 \times 10^{-4}\ \text{J}$
+
+--- hard liquids
+KA: $0{,}2\ \text{მმ}$ რადიუსიანი კაპილარი წყალში ისეა ჩაშვებული, რომ მისი ზედა ბოლო წყლის დონიდან $5\ \text{სმ}$-ზეა. გადმოიღვრება თუ არა წყალი კაპილარიდან (უწყვეტი „შადრევანი“)? ($\sigma = 0{,}073\ \text{ნ/მ}$)
+EN: A capillary of radius $0.2\ \text{mm}$ is dipped in water so that its top end is $5\ \text{cm}$ above the water level. Will water overflow from it (a perpetual "fountain")? ($\sigma = 0.073\ \text{N/m}$)
+HKA: შეადარეთ თავისუფალი აწევის სიმაღლე $5\ \text{სმ}$-ს და იფიქრეთ მენისკის ფორმაზე.
+HEN: Compare the free rise height with $5\ \text{cm}$ and think about the meniscus shape.
+SKA: $h = \dfrac{2\sigma}{\rho g r} = \dfrac{2 \cdot 0{,}073}{1000 \cdot 10 \cdot 2 \cdot 10^{-4}} = 7{,}3\ \text{სმ} > 5\ \text{სმ}$
+წყალი ზედა ბოლომდე ავა და გაჩერდება: მენისკი უფრო ბრტყელი გახდება (სიმრუდის რადიუსი გაიზრდება) ისე, რომ $\dfrac{2\sigma}{R} = \rho g \cdot 0{,}05$. გადმოღვრა არ მოხდება — სხვაგვარად მუდმივი ძრავა გამოგვივიდოდა.
+SEN: $h = \dfrac{2\sigma}{\rho g r} = \dfrac{2 \times 0.073}{1000 \times 10 \times 2 \times 10^{-4}} = 7.3\ \text{cm} > 5\ \text{cm}$
+Water rises to the top and stops: the meniscus flattens (its radius of curvature grows) until $\dfrac{2\sigma}{R} = \rho g \times 0.05$. No overflow — otherwise we would have a perpetual-motion machine.
+AKA: არა
+AEN: no
+
+--- hard quantum
+KA: ფოტოეფექტის ცდაში $\nu_1 = 6 \cdot 10^{14}\ \text{ჰც}$ სიხშირისთვის შემაკავებელი ძაბვაა $0{,}5\ \text{ვ}$, $\nu_2 = 10^{15}\ \text{ჰც}$-სთვის — $2{,}16\ \text{ვ}$. ამ მონაცემებით იპოვეთ პლანკის მუდმივა და გამოსვლის მუშაობა.
+EN: In a photoelectric experiment the stopping voltage is $0.5\ \text{V}$ at $\nu_1 = 6 \times 10^{14}\ \text{Hz}$ and $2.16\ \text{V}$ at $\nu_2 = 10^{15}\ \text{Hz}$. Use these data to find Planck's constant and the work function.
+HKA: $eU = h\nu - A$; გამოაკელით განტოლებები.
+HEN: $eU = h\nu - A$; subtract the equations.
+SKA: $e(U_2 - U_1) = h(\nu_2 - \nu_1) \Rightarrow h = \dfrac{e(U_2 - U_1)}{\nu_2 - \nu_1}$
+$h = \dfrac{1{,}6 \cdot 10^{-19} \cdot 1{,}66}{4 \cdot 10^{14}} \approx 6{,}64 \cdot 10^{-34}\ \text{ჯ}\cdot\text{წმ}$
+$A = h\nu_1 - eU_1 \approx 3{,}98 \cdot 10^{-19} - 0{,}8 \cdot 10^{-19} \approx 3{,}2 \cdot 10^{-19}\ \text{ჯ} \approx 2\ \text{ევ}$
+SEN: $e(U_2 - U_1) = h(\nu_2 - \nu_1) \Rightarrow h = \dfrac{e(U_2 - U_1)}{\nu_2 - \nu_1}$
+$h = \dfrac{1.6 \times 10^{-19} \times 1.66}{4 \times 10^{14}} \approx 6.64 \times 10^{-34}\ \text{J}\cdot\text{s}$
+$A = h\nu_1 - eU_1 \approx 3.98 \times 10^{-19} - 0.8 \times 10^{-19} \approx 3.2 \times 10^{-19}\ \text{J} \approx 2\ \text{eV}$
+AKA: $\approx 6{,}6 \cdot 10^{-34}\ \text{ჯ}\cdot\text{წმ}$; $\approx 2\ \text{ევ}$
+AEN: $\approx 6.6 \times 10^{-34}\ \text{J}\cdot\text{s}$; $\approx 2\ \text{eV}$
+
+--- hard quantum
+KA: ლითონს ჯერ $350\ \text{ნმ}$, შემდეგ $540\ \text{ნმ}$ სინათლით ასხივებენ. ფოტოელექტრონების მაქსიმალური სიჩქარე პირველ შემთხვევაში $2$-ჯერ მეტია. იპოვეთ გამოსვლის მუშაობა.
+EN: A metal is illuminated first with $350\ \text{nm}$ light and then with $540\ \text{nm}$ light. The maximum photoelectron speed is $2$ times greater in the first case. Find the work function.
+HKA: სიჩქარე $2$-ჯერ $\Rightarrow$ კინეტიკური ენერგია $4$-ჯერ: $E_1 - A = 4(E_2 - A)$.
+HEN: Speed $\times 2$ $\Rightarrow$ kinetic energy $\times 4$: $E_1 - A = 4(E_2 - A)$.
+SKA: $E_1 = \dfrac{hc}{\lambda_1} = \dfrac{1{,}99 \cdot 10^{-25}}{3{,}5 \cdot 10^{-7}} \approx 5{,}68 \cdot 10^{-19}\ \text{ჯ}$, $\ E_2 \approx 3{,}68 \cdot 10^{-19}\ \text{ჯ}$
+$A = \dfrac{4E_2 - E_1}{3} = \dfrac{14{,}73 - 5{,}68}{3} \cdot 10^{-19} \approx 3{,}0 \cdot 10^{-19}\ \text{ჯ} \approx 1{,}9\ \text{ევ}$
+SEN: $E_1 = \dfrac{hc}{\lambda_1} = \dfrac{1.99 \times 10^{-25}}{3.5 \times 10^{-7}} \approx 5.68 \times 10^{-19}\ \text{J}$, $\ E_2 \approx 3.68 \times 10^{-19}\ \text{J}$
+$A = \dfrac{4E_2 - E_1}{3} = \dfrac{14.73 - 5.68}{3} \times 10^{-19} \approx 3.0 \times 10^{-19}\ \text{J} \approx 1.9\ \text{eV}$
+AKA: $\approx 1{,}9\ \text{ევ}$
+AEN: $\approx 1.9\ \text{eV}$
+
+--- hard quantum
+KA: $1\ \text{ვტ}$ სიმძლავრის ლაზერის სხივი სრულად შთაინთქმება ზედაპირზე. რა ძალით აწვება სინათლე ზედაპირს? რა იქნება სრული არეკვლისას?
+EN: The beam of a $1\ \text{W}$ laser is completely absorbed by a surface. What force does the light exert? What if it is completely reflected?
+HKA: ფოტონის იმპულსი $p = \dfrac{E}{c}$, ამიტომ წამში გადაცემული იმპულსი $\dfrac{P}{c}$.
+HEN: A photon's momentum is $p = \dfrac{E}{c}$, so the momentum delivered per second is $\dfrac{P}{c}$.
+SKA: შთანთქმა: $F = \dfrac{P}{c} = \dfrac{1}{3 \cdot 10^8} \approx 3{,}3 \cdot 10^{-9}\ \text{ნ}$
+არეკვლა (იმპულსი იცვლის ნიშანს): $F = \dfrac{2P}{c} \approx 6{,}7 \cdot 10^{-9}\ \text{ნ}$
+SEN: Absorption: $F = \dfrac{P}{c} = \dfrac{1}{3 \times 10^8} \approx 3.3 \times 10^{-9}\ \text{N}$
+Reflection (momentum reverses): $F = \dfrac{2P}{c} \approx 6.7 \times 10^{-9}\ \text{N}$
+AKA: $3{,}3 \cdot 10^{-9}\ \text{ნ}$; $6{,}7 \cdot 10^{-9}\ \text{ნ}$
+AEN: $3.3 \times 10^{-9}\ \text{N}$; $6.7 \times 10^{-9}\ \text{N}$
+
+--- hard atom
+KA: ბორის თეორიით $r_n = n^2 r_1$, $v_n = \dfrac{v_1}{n}$, სადაც $r_1 = 0{,}53 \cdot 10^{-10}\ \text{მ}$, $v_1 = 2{,}19 \cdot 10^6\ \text{მ/წმ}$. იპოვეთ ორბიტის რადიუსი და ელექტრონის სიჩქარე $n = 3$-ზე, ასევე ბრუნვის პერიოდი.
+EN: In Bohr's theory $r_n = n^2 r_1$ and $v_n = \dfrac{v_1}{n}$, where $r_1 = 0.53 \times 10^{-10}\ \text{m}$ and $v_1 = 2.19 \times 10^6\ \text{m/s}$. Find the orbit radius and electron speed for $n = 3$, and the period of revolution.
+HKA: $T = \dfrac{2\pi r}{v}$.
+HEN: $T = \dfrac{2\pi r}{v}$.
+SKA: $r_3 = 9 \cdot 0{,}53 \cdot 10^{-10} \approx 4{,}8 \cdot 10^{-10}\ \text{მ}$
+$v_3 = \dfrac{2{,}19 \cdot 10^6}{3} = 7{,}3 \cdot 10^5\ \text{მ/წმ}$
+$T = \dfrac{2\pi r_3}{v_3} = \dfrac{6{,}28 \cdot 4{,}77 \cdot 10^{-10}}{7{,}3 \cdot 10^5} \approx 4{,}1 \cdot 10^{-15}\ \text{წმ}$
+SEN: $r_3 = 9 \times 0.53 \times 10^{-10} \approx 4.8 \times 10^{-10}\ \text{m}$
+$v_3 = \dfrac{2.19 \times 10^6}{3} = 7.3 \times 10^5\ \text{m/s}$
+$T = \dfrac{2\pi r_3}{v_3} = \dfrac{6.28 \times 4.77 \times 10^{-10}}{7.3 \times 10^5} \approx 4.1 \times 10^{-15}\ \text{s}$
+AKA: $\approx 4{,}8 \cdot 10^{-10}\ \text{მ}$; $7{,}3 \cdot 10^5\ \text{მ/წმ}$; $\approx 4 \cdot 10^{-15}\ \text{წმ}$
+AEN: $\approx 4.8 \times 10^{-10}\ \text{m}$; $7.3 \times 10^5\ \text{m/s}$; $\approx 4 \times 10^{-15}\ \text{s}$
+
+--- hard atom
+KA: ძირითად მდგომარეობაში მყოფ წყალბადის ატომებს $12{,}5\ \text{ევ}$ ენერგიის ელექტრონები ეჯახებიან. რომელ დონემდე შეიძლება აღიგზნოს ატომი და რამდენი სპექტრული ხაზი გამოჩნდება?
+EN: Electrons of energy $12.5\ \text{eV}$ collide with hydrogen atoms in the ground state. Up to which level can the atoms be excited, and how many spectral lines appear?
+HKA: $E_n - E_1 = 13{,}6\left(1 - \dfrac{1}{n^2}\right) \le 12{,}5$.
+HEN: $E_n - E_1 = 13.6\left(1 - \dfrac{1}{n^2}\right) \le 12.5$.
+SKA: $n = 3$: $13{,}6 \cdot \dfrac{8}{9} \approx 12{,}09\ \text{ევ} \le 12{,}5$ ✓; $\ n = 4$: $13{,}6 \cdot \dfrac{15}{16} = 12{,}75\ \text{ევ} > 12{,}5$ ✗
+მაქსიმუმ $n = 3$; ხაზები: $3 \to 2$, $3 \to 1$, $2 \to 1$ — სულ $3$.
+SEN: $n = 3$: $13.6 \times \dfrac{8}{9} \approx 12.09\ \text{eV} \le 12.5$ ✓; $\ n = 4$: $13.6 \times \dfrac{15}{16} = 12.75\ \text{eV} > 12.5$ ✗
+At most $n = 3$; lines: $3 \to 2$, $3 \to 1$, $2 \to 1$ — $3$ in total.
+AKA: $n = 3$; $3$ ხაზი
+AEN: $n = 3$; $3$ lines
+
+--- hard nucleus
+KA: ურანის ($A = 235$) ბმის ენერგია ერთ ნუკლონზე $\approx 7{,}6\ \text{მევ}$-ია, დაშლის ნამსხვრევებისა ($A \approx 90$–$145$) — $\approx 8{,}5\ \text{მევ}$. შეაფასეთ ერთ დაშლაზე გამოყოფილი ენერგია. რატომ გამოყოფს ენერგიას როგორც მძიმე ბირთვების დაშლა, ისე მსუბუქების სინთეზი?
+EN: The binding energy per nucleon of uranium ($A = 235$) is $\approx 7.6\ \text{MeV}$, and of the fission fragments ($A \approx 90$–$145$) $\approx 8.5\ \text{MeV}$. Estimate the energy released per fission. Why do both the fission of heavy nuclei and the fusion of light ones release energy?
+HKA: გამოყოფილი ენერგია = ბმის ენერგიის ზრდა.
+HEN: Energy released = increase in binding energy.
+SKA: $\Delta E \approx 235 \cdot (8{,}5 - 7{,}6) \approx 210\ \text{მევ}$
+ერთ ნუკლონზე ბმის ენერგია მაქსიმალურია რკინის მახლობლად ($A \approx 56$). ორივე პროცესი ბირთვებს ამ მაქსიმუმისკენ „უბიძგებს“ — ბმის ენერგია იზრდება, მასა მცირდება და სხვაობა ენერგიად გამოიყოფა.
+SEN: $\Delta E \approx 235 \times (8.5 - 7.6) \approx 210\ \text{MeV}$
+The binding energy per nucleon peaks near iron ($A \approx 56$). Both processes move nuclei towards this peak — the binding energy grows, the mass drops, and the difference is released as energy.
+AKA: $\approx 210\ \text{მევ}$
+AEN: $\approx 210\ \text{MeV}$
+
+--- hard nucleus
+KA: ატომური ელექტროსადგურის რეაქტორის სითბური სიმძლავრეა $1\ \text{გვტ}$. ერთ დაშლაზე გამოიყოფა $200\ \text{მევ}$. რამდენი ურან-$235$ იხარჯება დღეში?
+EN: A nuclear reactor has a thermal power of $1\ \text{GW}$. Each fission releases $200\ \text{MeV}$. How much uranium-$235$ is used per day?
+HKA: დაშლების რიცხვი წამში $= \dfrac{P}{E_1}$.
+HEN: Fissions per second $= \dfrac{P}{E_1}$.
+SKA: $E_1 = 200 \cdot 1{,}6 \cdot 10^{-13} = 3{,}2 \cdot 10^{-11}\ \text{ჯ}$, $\ \dfrac{N}{t} = \dfrac{10^9}{3{,}2 \cdot 10^{-11}} \approx 3{,}1 \cdot 10^{19}\ \text{წმ}^{-1}$
+დღეში: $N = 3{,}1 \cdot 10^{19} \cdot 86\,400 \approx 2{,}7 \cdot 10^{24}$
+$m = \dfrac{N}{N_A}M = \dfrac{2{,}7 \cdot 10^{24}}{6{,}02 \cdot 10^{23}} \cdot 0{,}235 \approx 1{,}05\ \text{კგ}$
+SEN: $E_1 = 200 \times 1.6 \times 10^{-13} = 3.2 \times 10^{-11}\ \text{J}$, $\ \dfrac{N}{t} = \dfrac{10^9}{3.2 \times 10^{-11}} \approx 3.1 \times 10^{19}\ \text{s}^{-1}$
+Per day: $N = 3.1 \times 10^{19} \times 86\,400 \approx 2.7 \times 10^{24}$
+$m = \dfrac{N}{N_A}M = \dfrac{2.7 \times 10^{24}}{6.02 \times 10^{23}} \times 0.235 \approx 1.05\ \text{kg}$
+AKA: $\approx 1\ \text{კგ}$
+AEN: $\approx 1\ \text{kg}$
+
+--- hard nucleus
+KA: მზის გამოსხივების სიმძლავრეა $3{,}8 \cdot 10^{26}\ \text{ვტ}$. რამდენ მასას კარგავს მზე წამში? რა ნაწილს დაკარგავს $10^{10}$ წელიწადში ($M = 2 \cdot 10^{30}\ \text{კგ}$)?
+EN: The Sun radiates $3.8 \times 10^{26}\ \text{W}$. How much mass does it lose per second? What fraction will it lose in $10^{10}$ years ($M = 2 \times 10^{30}\ \text{kg}$)?
+HKA: $\dfrac{\Delta m}{\Delta t} = \dfrac{P}{c^2}$.
+HEN: $\dfrac{\Delta m}{\Delta t} = \dfrac{P}{c^2}$.
+SKA: $\dfrac{\Delta m}{\Delta t} = \dfrac{3{,}8 \cdot 10^{26}}{9 \cdot 10^{16}} \approx 4{,}2 \cdot 10^9\ \text{კგ/წმ}$
+$10^{10}$ წელი $\approx 3{,}15 \cdot 10^{17}\ \text{წმ}$: $\ \Delta m \approx 1{,}3 \cdot 10^{27}\ \text{კგ}$
+$\dfrac{\Delta m}{M} \approx \dfrac{1{,}3 \cdot 10^{27}}{2 \cdot 10^{30}} \approx 0{,}07\%$
+SEN: $\dfrac{\Delta m}{\Delta t} = \dfrac{3.8 \times 10^{26}}{9 \times 10^{16}} \approx 4.2 \times 10^9\ \text{kg/s}$
+$10^{10}$ years $\approx 3.15 \times 10^{17}\ \text{s}$: $\ \Delta m \approx 1.3 \times 10^{27}\ \text{kg}$
+$\dfrac{\Delta m}{M} \approx \dfrac{1.3 \times 10^{27}}{2 \times 10^{30}} \approx 0.07\%$
+AKA: $\approx 4{,}2 \cdot 10^9\ \text{კგ/წმ}$; $\approx 0{,}07\%$
+AEN: $\approx 4.2 \times 10^9\ \text{kg/s}$; $\approx 0.07\%$
+
+--- hard radio
+KA: ნიმუშში $10^{20}$ რადიოაქტიური ბირთვია, ნახევარდაშლის პერიოდი $1$ დღეა. იპოვეთ აქტივობა $A = \lambda N$, სადაც $\lambda = \dfrac{\ln 2}{T}$.
+EN: A sample contains $10^{20}$ radioactive nuclei with a half-life of $1$ day. Find its activity $A = \lambda N$, where $\lambda = \dfrac{\ln 2}{T}$.
+HKA: $T = 86\,400\ \text{წმ}$; $1\ \text{ბკ}$ = $1$ დაშლა წამში.
+HEN: $T = 86\,400\ \text{s}$; $1\ \text{Bq}$ = $1$ decay per second.
+SKA: $\lambda = \dfrac{0{,}693}{86\,400} \approx 8{,}0 \cdot 10^{-6}\ \text{წმ}^{-1}$
+$A = \lambda N = 8{,}0 \cdot 10^{-6} \cdot 10^{20} = 8{,}0 \cdot 10^{14}\ \text{ბკ}$
+SEN: $\lambda = \dfrac{0.693}{86\,400} \approx 8.0 \times 10^{-6}\ \text{s}^{-1}$
+$A = \lambda N = 8.0 \times 10^{-6} \times 10^{20} = 8.0 \times 10^{14}\ \text{Bq}$
+AKA: $\approx 8 \cdot 10^{14}\ \text{ბკ}$
+AEN: $\approx 8 \times 10^{14}\ \text{Bq}$
+
+--- hard radio
+KA: იზოტოპის ნახევარდაშლის პერიოდია $2$ წელი. ბირთვების რა ნაწილი დაიშლება $1$ წელიწადში? რატომ არ არის პასუხი $25\%$?
+EN: An isotope has a half-life of $2$ years. What fraction of the nuclei decays in $1$ year? Why isn't the answer $25\%$?
+HKA: $\dfrac{N}{N_0} = 2^{-\frac{t}{T}} = 2^{-0{,}5}$.
+HEN: $\dfrac{N}{N_0} = 2^{-\frac{t}{T}} = 2^{-0.5}$.
+SKA: დარჩება $2^{-0{,}5} = \dfrac{1}{\sqrt{2}} \approx 0{,}707$
+დაიშლება $1 - 0{,}707 \approx 29\%$
+დაშლა მაჩვენებლიანია და არა წრფივი: პირველ წელს მეტი ბირთვია, ამიტომ მეტიც იშლება.
+SEN: Remaining: $2^{-0.5} = \dfrac{1}{\sqrt{2}} \approx 0.707$
+Decayed: $1 - 0.707 \approx 29\%$
+Decay is exponential, not linear: in the first year there are more nuclei, so more decay.
+AKA: $\approx 29\%$
+AEN: $\approx 29\%$
+
+--- hard particles
+KA: ციკლოტრონის მაგნიტური ინდუქციაა $1\ \text{ტლ}$, დუანტების რადიუსი — $0{,}5\ \text{მ}$. რა მაქსიმალურ სიჩქარესა და ენერგიას (მევ-ში) იძენს პროტონი?
+EN: A cyclotron has magnetic field $1\ \text{T}$ and dee radius $0.5\ \text{m}$. What maximum speed and energy (in MeV) does a proton gain?
+HKA: $qvB = \dfrac{mv^2}{R} \Rightarrow v = \dfrac{qBR}{m}$.
+HEN: $qvB = \dfrac{mv^2}{R} \Rightarrow v = \dfrac{qBR}{m}$.
+SKA: $v = \dfrac{qBR}{m} = \dfrac{1{,}6 \cdot 10^{-19} \cdot 1 \cdot 0{,}5}{1{,}67 \cdot 10^{-27}} \approx 4{,}8 \cdot 10^7\ \text{მ/წმ}$
+$E = \dfrac{mv^2}{2} = \dfrac{1{,}67 \cdot 10^{-27} \cdot (4{,}8 \cdot 10^7)^2}{2} \approx 1{,}9 \cdot 10^{-12}\ \text{ჯ} \approx 12\ \text{მევ}$
+SEN: $v = \dfrac{qBR}{m} = \dfrac{1.6 \times 10^{-19} \times 1 \times 0.5}{1.67 \times 10^{-27}} \approx 4.8 \times 10^7\ \text{m/s}$
+$E = \dfrac{mv^2}{2} = \dfrac{1.67 \times 10^{-27} \times (4.8 \times 10^7)^2}{2} \approx 1.9 \times 10^{-12}\ \text{J} \approx 12\ \text{MeV}$
+AKA: $\approx 4{,}8 \cdot 10^7\ \text{მ/წმ}$; $\approx 12\ \text{მევ}$
+AEN: $\approx 4.8 \times 10^7\ \text{m/s}$; $\approx 12\ \text{MeV}$
+
+--- hard particles
+KA: ჩადვიკის ცდაში: $^9_4\text{Be} + {}^4_2\text{He} \to {}^{12}_6\text{C} + X$. რა არის $X$? რატომ იყო ძნელი მისი აღმოჩენა?
+EN: In Chadwick's experiment: $^9_4\text{Be} + {}^4_2\text{He} \to {}^{12}_6\text{C} + X$. What is $X$? Why was it hard to detect?
+HKA: შეამოწმეთ $A$ და $Z$-ის ბალანსი.
+HEN: Check the balance of $A$ and $Z$.
+SKA: $A$: $9 + 4 = 12 + 1$; $\ Z$: $4 + 2 = 6 + 0$ $\Rightarrow X = {}^1_0n$ — ნეიტრონი.
+მუხტი არ აქვს — არ აიონებს ნივთიერებას და არ გადაიხრება ველებში; მისი აღმოჩენა მხოლოდ მის მიერ ამოგდებული პროტონებით მოხერხდა.
+SEN: $A$: $9 + 4 = 12 + 1$; $\ Z$: $4 + 2 = 6 + 0$ $\Rightarrow X = {}^1_0n$ — the neutron.
+It has no charge — it does not ionise matter or bend in fields; it was detected only through the protons it knocked out.
+AKA: ნეიტრონი
+AEN: the neutron
+
+--- hard astro
+KA: ვარსკვლავი გალაქტიკის ცენტრიდან $2{,}5 \cdot 10^{20}\ \text{მ}$-ზე $220\ \text{კმ/წმ}$ სიჩქარით ბრუნავს. შეაფასეთ ორბიტის შიგნით მოთავსებული მასა. ხილული მასა ბევრად ნაკლებია — რას ნიშნავს ეს?
+EN: A star orbits $2.5 \times 10^{20}\ \text{m}$ from the centre of its galaxy at $220\ \text{km/s}$. Estimate the mass inside its orbit. The visible mass is much smaller — what does this mean?
+HKA: $\dfrac{GMm}{r^2} = \dfrac{mv^2}{r} \Rightarrow M = \dfrac{v^2 r}{G}$.
+HEN: $\dfrac{GMm}{r^2} = \dfrac{mv^2}{r} \Rightarrow M = \dfrac{v^2 r}{G}$.
+SKA: $M = \dfrac{v^2 r}{G} = \dfrac{(2{,}2 \cdot 10^5)^2 \cdot 2{,}5 \cdot 10^{20}}{6{,}67 \cdot 10^{-11}} \approx 1{,}8 \cdot 10^{41}\ \text{კგ}$ ($\approx 9 \cdot 10^{10}$ მზის მასა)
+ხილული მატერია ამას ვერ ხსნის $\Rightarrow$ არსებობს უხილავი, გრავიტაციულად მოქმედი ბნელი მატერია.
+SEN: $M = \dfrac{v^2 r}{G} = \dfrac{(2.2 \times 10^5)^2 \times 2.5 \times 10^{20}}{6.67 \times 10^{-11}} \approx 1.8 \times 10^{41}\ \text{kg}$ ($\approx 9 \times 10^{10}$ solar masses)
+Visible matter cannot account for this $\Rightarrow$ there is invisible, gravitating dark matter.
+AKA: $\approx 1{,}8 \cdot 10^{41}\ \text{კგ}$; ბნელი მატერია
+AEN: $\approx 1.8 \times 10^{41}\ \text{kg}$; dark matter
+
+--- hard astro
+KA: ვინის კანონი: $\lambda_{\max}T = 2{,}9 \cdot 10^{-3}\ \text{მ}\cdot\text{K}$. მზის გამოსხივების მაქსიმუმი $500\ \text{ნმ}$-ზეა, რიგელისა — $290\ \text{ნმ}$-ზე. იპოვეთ მათი ზედაპირის ტემპერატურები. რა ფერისაა რიგელი?
+EN: Wien's law: $\lambda_{\max}T = 2.9 \times 10^{-3}\ \text{m}\cdot\text{K}$. The Sun's emission peaks at $500\ \text{nm}$ and Rigel's at $290\ \text{nm}$. Find their surface temperatures. What colour is Rigel?
+HKA: $T = \dfrac{b}{\lambda_{\max}}$.
+HEN: $T = \dfrac{b}{\lambda_{\max}}$.
+SKA: მზე: $T = \dfrac{2{,}9 \cdot 10^{-3}}{5 \cdot 10^{-7}} = 5800\ \text{K}$
+რიგელი: $T = \dfrac{2{,}9 \cdot 10^{-3}}{2{,}9 \cdot 10^{-7}} = 10\,000\ \text{K}$ — მოლურჯო-თეთრი (ცხელი).
+SEN: Sun: $T = \dfrac{2.9 \times 10^{-3}}{5 \times 10^{-7}} = 5800\ \text{K}$
+Rigel: $T = \dfrac{2.9 \times 10^{-3}}{2.9 \times 10^{-7}} = 10\,000\ \text{K}$ — bluish-white (hot).
+AKA: $5800\ \text{K}$; $10\,000\ \text{K}$; მოლურჯო
+AEN: $5800\ \text{K}$; $10\,000\ \text{K}$; bluish
+
+// ===================================================================== OLYMPIAD
+
+--- hard mkt olympiad
+KA: შეაფასეთ საშუალო მანძილი მოლეკულებს შორის აირში ნორმალურ პირობებში ($n \approx 2{,}7 \cdot 10^{25}\ \text{მ}^{-3}$) და თხევად წყალში. რამდენჯერ განსხვავდება ისინი?
+EN: Estimate the average distance between molecules in a gas at standard conditions ($n \approx 2.7 \times 10^{25}\ \text{m}^{-3}$) and in liquid water. By what factor do they differ?
+HKA: თითო მოლეკულაზე მოდის მოცულობა $\dfrac{1}{n}$; მანძილი $d \approx \sqrt[3]{\dfrac{1}{n}}$. წყლის მოლეკულის მასა $3 \cdot 10^{-26}\ \text{კგ}$.
+HEN: Each molecule has a volume $\dfrac{1}{n}$; the spacing is $d \approx \sqrt[3]{\dfrac{1}{n}}$. A water molecule has mass $3 \times 10^{-26}\ \text{kg}$.
+SKA: აირი: $d \approx \sqrt[3]{\dfrac{1}{2{,}7 \cdot 10^{25}}} \approx 3{,}3 \cdot 10^{-9}\ \text{მ}$
+წყალი: $V_0 = \dfrac{m_0}{\rho} = \dfrac{3 \cdot 10^{-26}}{1000} = 3 \cdot 10^{-29}\ \text{მ}^3$, $\ d \approx \sqrt[3]{3 \cdot 10^{-29}} \approx 3{,}1 \cdot 10^{-10}\ \text{მ}$
+შეფარდება $\approx 10$ — აირში მოლეკულები თავიანთ ზომაზე $\sim 10$-ჯერ უფრო შორს არიან ერთმანეთისგან (ამიტომ იკუმშება აირი ადვილად).
+SEN: Gas: $d \approx \sqrt[3]{\dfrac{1}{2.7 \times 10^{25}}} \approx 3.3 \times 10^{-9}\ \text{m}$
+Water: $V_0 = \dfrac{m_0}{\rho} = \dfrac{3 \times 10^{-26}}{1000} = 3 \times 10^{-29}\ \text{m}^3$, $\ d \approx \sqrt[3]{3 \times 10^{-29}} \approx 3.1 \times 10^{-10}\ \text{m}$
+Ratio $\approx 10$ — in a gas the molecules are $\sim 10$ times their own size apart (which is why gases compress easily).
+AKA: $\approx 3 \cdot 10^{-9}$ და $3 \cdot 10^{-10}\ \text{მ}$; $\approx 10$-ჯერ
+AEN: $\approx 3 \times 10^{-9}$ and $3 \times 10^{-10}\ \text{m}$; $\approx 10$ times
+
+--- hard gaslaw olympiad
+KA: იზოთერმულ ატმოსფეროში ($T = 290\ \text{K}$) ჰაერის წნევა სიმაღლესთან ერთად იცვლება როგორც $p = p_0 e^{-\frac{Mgh}{RT}}$. რა სიმაღლეზე ნახევრდება წნევა? ($M = 0{,}029\ \text{კგ/მოლი}$)
+EN: In an isothermal atmosphere ($T = 290\ \text{K}$) the air pressure varies with height as $p = p_0 e^{-\frac{Mgh}{RT}}$. At what height does the pressure halve? ($M = 0.029\ \text{kg/mol}$)
+HKA: $e^{-x} = \dfrac{1}{2} \Rightarrow x = \ln 2$.
+HEN: $e^{-x} = \dfrac{1}{2} \Rightarrow x = \ln 2$.
+SKA: $\dfrac{Mgh}{RT} = \ln 2 \Rightarrow h = \dfrac{RT}{Mg}\ln 2$
+$\dfrac{RT}{Mg} = \dfrac{8{,}31 \cdot 290}{0{,}029 \cdot 10} = 8310\ \text{მ}$
+$h = 8310 \cdot 0{,}693 \approx 5{,}8\ \text{კმ}$ (რეალურად $\approx 5{,}5\ \text{კმ}$, რადგან ზემოთ ცივა)
+SEN: $\dfrac{Mgh}{RT} = \ln 2 \Rightarrow h = \dfrac{RT}{Mg}\ln 2$
+$\dfrac{RT}{Mg} = \dfrac{8.31 \times 290}{0.029 \times 10} = 8310\ \text{m}$
+$h = 8310 \times 0.693 \approx 5.8\ \text{km}$ (really $\approx 5.5\ \text{km}$, since it is colder higher up)
+AKA: $\approx 5{,}8\ \text{კმ}$
+AEN: $\approx 5.8\ \text{km}$
+
+--- hard isoproc olympiad
+KA: ჰორიზონტალურ თბოგაუმტარ ცილინდრს თავისუფლად მოძრავი დგუში ყოფს ორ ტოლ ნაწილად (თითო $20\ \text{სმ}$), ორივეში აირია $300\ \text{K}$-ზე. ერთ ნაწილს $400\ \text{K}$-მდე ათბობენ, მეორეს $300\ \text{K}$-ზე ინარჩუნებენ. რამდენით გადაადგილდება დგუში?
+EN: A horizontal cylinder is divided into two equal parts ($20\ \text{cm}$ each) by a freely moving piston; both parts hold gas at $300\ \text{K}$. One part is heated to $400\ \text{K}$ while the other is kept at $300\ \text{K}$. How far does the piston move?
+HKA: წონასწორობაში წნევები ტოლია; მოლების რიცხვები ტოლია $\Rightarrow \dfrac{V_1}{T_1} = \dfrac{V_2}{T_2}$.
+HEN: At equilibrium the pressures are equal; the mole numbers are equal $\Rightarrow \dfrac{V_1}{T_1} = \dfrac{V_2}{T_2}$.
+SKA: $\dfrac{x}{400} = \dfrac{40 - x}{300} \Rightarrow 300x = 16\,000 - 400x \Rightarrow x = \dfrac{160}{7} \approx 22{,}86\ \text{სმ}$
+გადაადგილება: $22{,}86 - 20 \approx 2{,}9\ \text{სმ}$ (ცივი ნაწილისკენ)
+SEN: $\dfrac{x}{400} = \dfrac{40 - x}{300} \Rightarrow 300x = 16\,000 - 400x \Rightarrow x = \dfrac{160}{7} \approx 22.86\ \text{cm}$
+Displacement: $22.86 - 20 \approx 2.9\ \text{cm}$ (towards the cold side)
+AKA: $\approx 2{,}9\ \text{სმ}$
+AEN: $\approx 2.9\ \text{cm}$
+
+--- hard engines olympiad
+KA: სითბური ტუმბო ზამთარში სახლს ათბობს: გარეთ $-3\ \text{°C}$-ია, შიგნით — $27\ \text{°C}$. იდეალურ შემთხვევაში რამდენ სითბოს მიაწვდის სახლს $1\ \text{კვტ}$ ელექტრული სიმძლავრით? რატომ არ ეწინააღმდეგება ეს ენერგიის შენახვას?
+EN: A heat pump warms a house in winter: $-3\ \text{°C}$ outside, $27\ \text{°C}$ inside. Ideally, how much heating power does it deliver for $1\ \text{kW}$ of electrical power? Why doesn't this violate energy conservation?
+HKA: გათბობის კოეფიციენტი: $\dfrac{Q_1}{A} = \dfrac{T_1}{T_1 - T_2}$.
+HEN: Heating coefficient: $\dfrac{Q_1}{A} = \dfrac{T_1}{T_1 - T_2}$.
+SKA: $\dfrac{Q_1}{A} = \dfrac{300}{300 - 270} = 10$
+$P_{\text{სითბო}} = 10 \cdot 1 = 10\ \text{კვტ}$
+$Q_1 = A + Q_2$: $1\ \text{კვტ}$ ელექტროენერგიაა, დანარჩენი $9\ \text{კვტ}$ — გარე ცივი ჰაერიდან „ამოტუმბული“ სითბო. ენერგია არ იქმნება, მხოლოდ გადაიტანება.
+SEN: $\dfrac{Q_1}{A} = \dfrac{300}{300 - 270} = 10$
+$P_{\text{heat}} = 10 \times 1 = 10\ \text{kW}$
+$Q_1 = A + Q_2$: $1\ \text{kW}$ is electrical, the other $9\ \text{kW}$ is heat "pumped" from the cold outside air. No energy is created, only moved.
+AKA: $10\ \text{კვტ}$-მდე
+AEN: up to $10\ \text{kW}$
+
+--- hard gaswork olympiad
+KA: ერთატომიანი იდეალური აირი გადის პროცესს, რომელშიც $p = \alpha V$ ($\alpha = \text{const}$). იპოვეთ აირის მოლური სითბოტევადობა ამ პროცესში.
+EN: A monatomic ideal gas undergoes a process in which $p = \alpha V$ ($\alpha = \text{const}$). Find the molar heat capacity of the gas in this process.
+HKA: $p$–$V$ გრაფიკი სათავეზე გამავალი წრფეა; მუშაობა — სამკუთხედების ფართობების სხვაობა: $A = \dfrac{1}{2}(p_2V_2 - p_1V_1)$.
+HEN: The $p$–$V$ graph is a line through the origin; the work is a difference of triangle areas: $A = \dfrac{1}{2}(p_2V_2 - p_1V_1)$.
+SKA: $A = \dfrac{1}{2}\Delta(pV) = \dfrac{1}{2}\nu R\Delta T$
+$\Delta U = \dfrac{3}{2}\nu R\Delta T$
+$Q = \Delta U + A = 2\nu R\Delta T \Rightarrow C = \dfrac{Q}{\nu\Delta T} = 2R \approx 16{,}6\ \text{ჯ/(მოლი}\cdot\text{K)}$
+SEN: $A = \dfrac{1}{2}\Delta(pV) = \dfrac{1}{2}\nu R\Delta T$
+$\Delta U = \dfrac{3}{2}\nu R\Delta T$
+$Q = \Delta U + A = 2\nu R\Delta T \Rightarrow C = \dfrac{Q}{\nu\Delta T} = 2R \approx 16.6\ \text{J/(mol}\cdot\text{K)}$
+AKA: $C = 2R$
+AEN: $C = 2R$
+
+--- hard liquids olympiad
+KA: ორი საპნის ბუშტი, რადიუსებით $1\ \text{სმ}$ და $3\ \text{სმ}$, მილით შეაერთეს. რა მოხდება? ($\sigma = 0{,}04\ \text{ნ/მ}$)
+EN: Two soap bubbles, of radii $1\ \text{cm}$ and $3\ \text{cm}$, are connected by a tube. What happens? ($\sigma = 0.04\ \text{N/m}$)
+HKA: $\Delta p = \dfrac{4\sigma}{r}$ — რომელ ბუშტშია მეტი წნევა?
+HEN: $\Delta p = \dfrac{4\sigma}{r}$ — which bubble has the higher pressure?
+SKA: $\Delta p_1 = \dfrac{4 \cdot 0{,}04}{0{,}01} = 16\ \text{პა}$, $\ \Delta p_2 = \dfrac{4 \cdot 0{,}04}{0{,}03} \approx 5{,}3\ \text{პა}$
+პატარა ბუშტში წნევა მეტია $\Rightarrow$ ჰაერი დიდში გადადის; პატარა კიდევ უფრო პატარავდება (წნევა კიდევ იზრდება) — პროცესი თავისით ჩქარდება, სანამ პატარა ბუშტი მილის ბოლოზე არ დარჩება ისეთი სიმრუდით, როგორიც დიდისაა.
+SEN: $\Delta p_1 = \dfrac{4 \times 0.04}{0.01} = 16\ \text{Pa}$, $\ \Delta p_2 = \dfrac{4 \times 0.04}{0.03} \approx 5.3\ \text{Pa}$
+The small bubble has the higher pressure $\Rightarrow$ air flows into the large one; the small one shrinks further (its pressure rises even more) — the process runs away until only a cap with the large bubble's curvature is left on the tube end.
+AKA: პატარა ბუშტი იფუშება, დიდი იზრდება
+AEN: the small bubble collapses into the large one
+
+--- hard quantum olympiad
+KA: მზის იალქნიანი ზონდის იალქნის ფართობია $1000\ \text{მ}^2$, მზის გამოსხივების ინტენსივობა დედამიწის ორბიტაზე — $1360\ \text{ვტ/მ}^2$. იალქანი სრულად ირეკლავს სინათლეს. იპოვეთ ძალა და ზონდის აჩქარება, თუ მისი მასაა $10\ \text{კგ}$.
+EN: A solar-sail probe has a sail of area $1000\ \text{m}^2$; sunlight intensity at Earth's orbit is $1360\ \text{W/m}^2$. The sail reflects all the light. Find the force and the probe's acceleration if its mass is $10\ \text{kg}$.
+HKA: არეკვლისას $F = \dfrac{2IS}{c}$.
+HEN: For reflection $F = \dfrac{2IS}{c}$.
+SKA: $F = \dfrac{2IS}{c} = \dfrac{2 \cdot 1360 \cdot 1000}{3 \cdot 10^8} \approx 9{,}1 \cdot 10^{-3}\ \text{ნ}$
+$a = \dfrac{F}{m} \approx 9{,}1 \cdot 10^{-4}\ \text{მ/წმ}^2$ — მცირეა, მაგრამ ერთ წელიწადში სიჩქარე $\approx 9{,}1 \cdot 10^{-4} \cdot 3{,}15 \cdot 10^7 \approx 29\ \text{კმ/წმ}$-ით გაიზრდებოდა.
+SEN: $F = \dfrac{2IS}{c} = \dfrac{2 \times 1360 \times 1000}{3 \times 10^8} \approx 9.1 \times 10^{-3}\ \text{N}$
+$a = \dfrac{F}{m} \approx 9.1 \times 10^{-4}\ \text{m/s}^2$ — small, but over a year the speed would grow by $\approx 9.1 \times 10^{-4} \times 3.15 \times 10^7 \approx 29\ \text{km/s}$.
+AKA: $\approx 9 \cdot 10^{-3}\ \text{ნ}$; $\approx 9 \cdot 10^{-4}\ \text{მ/წმ}^2$
+AEN: $\approx 9 \times 10^{-3}\ \text{N}$; $\approx 9 \times 10^{-4}\ \text{m/s}^2$
+
+--- hard atom olympiad
+KA: უძრავი წყალბადის ატომი $2 \to 1$ გადასვლისას ასხივებს $10{,}2\ \text{ევ}$ ფოტონს. რა სიჩქარეს იძენს ატომი უკუცემით? რა ნაწილია უკუცემის ენერგია ფოტონის ენერგიისა?
+EN: A hydrogen atom at rest emits a $10.2\ \text{eV}$ photon in the $2 \to 1$ transition. What recoil speed does the atom gain? What fraction of the photon energy is the recoil energy?
+HKA: იმპულსის შენახვა: $m_pv = \dfrac{E}{c}$.
+HEN: Momentum conservation: $m_pv = \dfrac{E}{c}$.
+SKA: $v = \dfrac{E}{m_pc} = \dfrac{10{,}2 \cdot 1{,}6 \cdot 10^{-19}}{1{,}67 \cdot 10^{-27} \cdot 3 \cdot 10^8} \approx 3{,}3\ \text{მ/წმ}$
+$\dfrac{E_{\text{უკ}}}{E} = \dfrac{m_pv^2/2}{E} = \dfrac{E}{2m_pc^2} = \dfrac{10{,}2}{2 \cdot 938 \cdot 10^6} \approx 5 \cdot 10^{-9}$ — უმნიშვნელოა.
+SEN: $v = \dfrac{E}{m_pc} = \dfrac{10.2 \times 1.6 \times 10^{-19}}{1.67 \times 10^{-27} \times 3 \times 10^8} \approx 3.3\ \text{m/s}$
+$\dfrac{E_{\text{rec}}}{E} = \dfrac{m_pv^2/2}{E} = \dfrac{E}{2m_pc^2} = \dfrac{10.2}{2 \times 938 \times 10^6} \approx 5 \times 10^{-9}$ — negligible.
+AKA: $\approx 3{,}3\ \text{მ/წმ}$; $\approx 5 \cdot 10^{-9}$
+AEN: $\approx 3.3\ \text{m/s}$; $\approx 5 \times 10^{-9}$
+
+--- hard radio olympiad
+KA: დღეს ბუნებრივ ურანში $^{235}\text{U}$-ის წილი $0{,}72\%$-ია ($T_{235} = 0{,}7$ მლრდ წ., $T_{238} = 4{,}5$ მლრდ წ.). რამდენი ხნის წინ იყო ეს წილი $3\%$ — საკმარისი ბუნებრივი ბირთვული რეაქტორისთვის (ოკლო, გაბონი)?
+EN: Today $^{235}\text{U}$ makes up $0.72\%$ of natural uranium ($T_{235} = 0.7$ Gyr, $T_{238} = 4.5$ Gyr). How long ago was this share $3\%$ — enough for a natural nuclear reactor (Oklo, Gabon)?
+HKA: შეფარდება $r = \dfrac{N_{235}}{N_{238}}$ იცვლება როგორც $r = r_0 \cdot 2^{-t\left(\frac{1}{T_{235}} - \frac{1}{T_{238}}\right)}$.
+HEN: The ratio $r = \dfrac{N_{235}}{N_{238}}$ changes as $r = r_0 \times 2^{-t\left(\frac{1}{T_{235}} - \frac{1}{T_{238}}\right)}$.
+SKA: $\dfrac{r_0}{r} \approx \dfrac{3}{0{,}72} \approx 4{,}17 = 2^{t\left(\frac{1}{0{,}7} - \frac{1}{4{,}5}\right)}$
+$\dfrac{1}{0{,}7} - \dfrac{1}{4{,}5} \approx 1{,}206$ (მლრდ წ.)$^{-1}$; $\ \log_2 4{,}17 \approx 2{,}06$
+$t \approx \dfrac{2{,}06}{1{,}206} \approx 1{,}7$ მლრდ წლის წინ (ოკლოს რეაქტორი $\approx 2$ მლრდ წლის წინ მუშაობდა)
+SEN: $\dfrac{r_0}{r} \approx \dfrac{3}{0.72} \approx 4.17 = 2^{t\left(\frac{1}{0.7} - \frac{1}{4.5}\right)}$
+$\dfrac{1}{0.7} - \dfrac{1}{4.5} \approx 1.206$ Gyr$^{-1}$; $\ \log_2 4.17 \approx 2.06$
+$t \approx \dfrac{2.06}{1.206} \approx 1.7$ billion years ago (the Oklo reactor ran $\approx 2$ billion years ago)
+AKA: $\approx 1{,}7$ მლრდ წლის წინ
+AEN: $\approx 1.7$ billion years ago
+
+--- hard astro olympiad
+KA: შავი ხვრელის „საშუალო სიმკვრივე“ $\rho = \dfrac{M}{\frac{4}{3}\pi R^3}$, სადაც $R = \dfrac{2GM}{c^2}$. იპოვეთ ის მზის მასის შავი ხვრელისთვის ($R \approx 3\ \text{კმ}$). დაამტკიცეთ, რომ $\rho \sim \dfrac{1}{M^2}$, და შეაფასეთ რა მასის შავ ხვრელს აქვს წყლის სიმკვრივე.
+EN: The "mean density" of a black hole is $\rho = \dfrac{M}{\frac{4}{3}\pi R^3}$, where $R = \dfrac{2GM}{c^2}$. Find it for a solar-mass black hole ($R \approx 3\ \text{km}$). Prove that $\rho \sim \dfrac{1}{M^2}$, and estimate the mass of a black hole with the density of water.
+HKA: ჩასვით $R$ სიმკვრივის ფორმულაში.
+HEN: Substitute $R$ into the density formula.
+SKA: მზე: $\rho = \dfrac{2 \cdot 10^{30}}{4{,}19 \cdot (3 \cdot 10^3)^3} \approx 1{,}8 \cdot 10^{19}\ \text{კგ/მ}^3$
+$\rho = \dfrac{3M}{4\pi}\cdot\dfrac{c^6}{8G^3M^3} = \dfrac{3c^6}{32\pi G^3M^2} \sim \dfrac{1}{M^2}$ ∎
+$\rho = 1000$: $\ \dfrac{M}{M_\odot} = \sqrt{\dfrac{1{,}8 \cdot 10^{19}}{10^3}} \approx 1{,}3 \cdot 10^8$ — დაახლოებით $10^8$ მზის მასა (ასეთები გალაქტიკების ცენტრებშია!).
+SEN: Sun: $\rho = \dfrac{2 \times 10^{30}}{4.19 \times (3 \times 10^3)^3} \approx 1.8 \times 10^{19}\ \text{kg/m}^3$
+$\rho = \dfrac{3M}{4\pi}\cdot\dfrac{c^6}{8G^3M^3} = \dfrac{3c^6}{32\pi G^3M^2} \sim \dfrac{1}{M^2}$ ∎
+$\rho = 1000$: $\ \dfrac{M}{M_\odot} = \sqrt{\dfrac{1.8 \times 10^{19}}{10^3}} \approx 1.3 \times 10^8$ — about $10^8$ solar masses (such black holes sit at the centres of galaxies!).
+AKA: $\approx 1{,}8 \cdot 10^{19}\ \text{კგ/მ}^3$; $\sim 10^8$ მზის მასა
+AEN: $\approx 1.8 \times 10^{19}\ \text{kg/m}^3$; $\sim 10^8$ solar masses
+</script>
+</body>
+</html>
