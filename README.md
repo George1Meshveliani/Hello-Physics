@@ -18,6 +18,7 @@ Problems for grades VII–XII following the national curriculum: easy, medium an
 - [`Grade X`](https://george1meshveliani.github.io/Hello-Physics/problems/math/X) — sets and logic, statistics, polynomials, functions, geometry, transformations
 - [`Grade XI`](https://george1meshveliani.github.io/Hello-Physics/problems/math/XI) — logarithms, trigonometry, progressions, solid geometry, vectors in space, statistics
 - [`Grade XII`](https://george1meshveliani.github.io/Hello-Physics/problems/math/XII) — laws of sines and cosines, solids, linear programming, probability, combinatorics, final review
+- [`National Exam Tests`](https://george1meshveliani.github.io/Hello-Physics/problems/math/tests) — ეროვნული გამოცდების ტესტები: 4 past Unified National Exam papers (2022, 2023, 2024, 2026) and 6 similar practice tests, with scoring, answers and step-by-step solutions
 
 ### - Beginner Level -
 
