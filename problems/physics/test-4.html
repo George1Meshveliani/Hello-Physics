@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>სავარჯიშო ტესტი № 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="../assets/problems.css?v=4">
+  <script defer src="../assets/problems.js?v=5"></script>
+</head>
+<body data-page="test" data-subject="physics">
+<div id="app"></div>
+<!-- Test format is documented at the top of ../assets/problems.js -->
+<script type="text/x-problems" id="problems">
+# title სავარჯიშო ტესტი № 2 | Practice test no. 2
+# sub ეროვნული გამოცდის ფორმატის სავარჯიშო ტესტი. 41 დავალება: 1–35 — აირჩიეთ ერთი სწორი პასუხი, 36–37 — შესაბამისობა, 38–41 — ჩაწერეთ ამოხსნის სრული გზა. სადაც საჭიროა, $g = 10$ მ/წმ². | A practice test in the national exam format. 41 tasks: 1–35 — choose the one correct answer, 36–37 — matching, 38–41 — write out the full solution. Where needed, $g = 10$ m/s².
+# time 180
+
+--- 1
+KA: თერმომეტრის შკალაზე 20°C-სა და 30°C-ის ნიშნულებს შორის 5 დანაყოფია. რისი ტოლია დანაყოფის ფასი?
+EN: On a thermometer scale there are 5 divisions between the 20°C and 30°C marks. What is the value of one division?
+O: $2$°C
+$2{,}5$°C
+$4$°C
+$5$°C
+$10$°C
+OEN: $2$°C
+$2.5$°C
+$4$°C
+$5$°C
+$10$°C
+C: 1
+SKA: დანაყოფის ფასი $= \dfrac{30 - 20}{5} = 2$°C
+SEN: Division value $= \dfrac{30 - 20}{5} = 2$°C
+
+--- 1
+KA: ავტომობილმა 2 სთ-ში გაიარა 30 კმ ჩრდილოეთით, შემდეგ კი 40 კმ აღმოსავლეთით. რისი ტოლია მისი საშუალო სიჩქარის ვექტორის მოდული (გადაადგილება გაყოფილი დროზე)?
+EN: In 2 h a car drove 30 km north and then 40 km east. What is the magnitude of its average velocity (displacement divided by time)?
+OKA: $12{,}5$ კმ/სთ
+$25$ კმ/სთ
+$35$ კმ/სთ
+$50$ კმ/სთ
+$70$ კმ/სთ
+OEN: $12.5$ km/h
+$25$ km/h
+$35$ km/h
+$50$ km/h
+$70$ km/h
+C: 2
+SKA: გადაადგილება: $\sqrt{30^2 + 40^2} = 50$ კმ.
+$v_{\text{საშ}} = \dfrac{50}{2} = 25$ კმ/სთ (საშუალო სამგზავრო სიჩქარე კი $\dfrac{70}{2} = 35$ კმ/სთ იქნებოდა).
+SEN: Displacement: $\sqrt{30^2 + 40^2} = 50$ km.
+$v_{avg} = \dfrac{50}{2} = 25$ km/h (the average speed would be $\dfrac{70}{2} = 35$ km/h).
+
+--- 1
+KA: ჩამოთვლილთაგან რომელი სიდიდე იზომება ნიუტონებში?
+EN: Which of these quantities is measured in newtons?
+OKA: მასა
+სიმკვრივე
+მუშაობა
+სიმძლავრე
+წონა
+OEN: mass
+density
+work
+power
+weight
+C: 5
+SKA: წონა ძალაა — ძალით, რომლითაც სხეული აწვება საყრდენს ან ჭიმავს საკიდს. ძალა ნიუტონებში იზომება.
+მასა — კგ, სიმკვრივე — კგ/მ³, მუშაობა — ჯ, სიმძლავრე — ვტ.
+SEN: Weight is a force — the force with which a body presses on a support or pulls on a hanger. Forces are measured in newtons.
+Mass — kg, density — kg/m³, work — J, power — W.
+
+--- 1
+KA: რომელია სიმძლავრის ერთეული SI სისტემაში?
+EN: Which is the SI unit of power?
+OKA: ჯოული
+ვატი
+ნიუტონი
+პასკალი
+ჯოული·წამი
+OEN: joule
+watt
+newton
+pascal
+joule·second
+C: 2
+SKA: $P = \dfrac At$: $1$ ვტ $= 1$ ჯ/წმ.
+SEN: $P = \dfrac At$: $1$ W $= 1$ J/s.
+
+--- 1
+KA: ნახატზე გამოსახულია $x$ ღერძზე მოძრავი სხეულის კოორდინატის დროზე დამოკიდებულების გრაფიკი. რისი ტოლია სხეულის სიჩქარის გეგმილი?
+EN: The graph shows the coordinate of a body moving along the $x$ axis versus time. What is the body's velocity component?
+FIG: <svg viewBox="0 0 230 165" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="26" y1="80" x2="220" y2="80" stroke-width="1.2"/><path d="M214.4 82.2L220 80L214.4 77.8Z" fill="currentColor" stroke-width="1"/><line x1="30" y1="84" x2="30" y2="8" stroke-width="1.2"/><path d="M32.2 13.6L30 8L27.8 13.6Z" fill="currentColor" stroke-width="1"/><text x="218" y="73" stroke="none" font-size="13" text-anchor="end" style="font-style:normal">t, წმ</text><text x="36" y="16" stroke="none" font-size="13" style="font-style:normal">x, მ</text><text x="26" y="84" stroke="none" font-size="11" text-anchor="end" style="font-style:normal;font-family:inherit">0</text><line x1="30" y1="25" x2="214" y2="151.5" stroke-width="1.9"/><line x1="30" y1="135" x2="190" y2="135" stroke-width="0.9" stroke-dasharray="4 3"/><line x1="190" y1="80" x2="190" y2="135" stroke-width="0.9" stroke-dasharray="4 3"/><text x="26" y="29" stroke="none" font-size="11" text-anchor="end" style="font-style:normal;font-family:inherit">10</text><text x="26" y="139" stroke="none" font-size="11" text-anchor="end" style="font-style:normal;font-family:inherit">−10</text><line x1="70" y1="77" x2="70" y2="83" stroke-width="1"/><text x="67" y="95" stroke="none" font-size="11" text-anchor="end" style="font-style:normal;font-family:inherit">1</text><line x1="110" y1="77" x2="110" y2="83" stroke-width="1"/><text x="107" y="74" stroke="none" font-size="11" text-anchor="end" style="font-style:normal;font-family:inherit">2</text><line x1="150" y1="77" x2="150" y2="83" stroke-width="1"/><text x="147" y="74" stroke="none" font-size="11" text-anchor="end" style="font-style:normal;font-family:inherit">3</text><line x1="190" y1="77" x2="190" y2="83" stroke-width="1"/><text x="187" y="74" stroke="none" font-size="11" text-anchor="end" style="font-style:normal;font-family:inherit">4</text><line x1="30" y1="150" x2="30" y2="80" stroke-width="1.2"/></svg>
+OKA: $-5$ მ/წმ
+$5$ მ/წმ
+$-2{,}5$ მ/წმ
+$2{,}5$ მ/წმ
+$0$
+OEN: $-5$ m/s
+$5$ m/s
+$-2.5$ m/s
+$2.5$ m/s
+$0$
+C: 1
+SKA: გრაფიკი წრფეა — მოძრაობა თანაბარია. $4$ წმ-ში კოორდინატი $10$ მ-დან $-10$ მ-მდე შეიცვალა.
+$v_x = \dfrac{\Delta x}{\Delta t} = \dfrac{-10 - 10}{4} = -5$ მ/წმ
+SEN: The graph is a straight line, so the motion is uniform. In $4$ s the coordinate changed from $10$ m to $-10$ m.
+$v_x = \dfrac{\Delta x}{\Delta t} = \dfrac{-10 - 10}{4} = -5$ m/s
+
+--- 1
+KA: სხეული თანაბარაჩქარებულად მოძრაობს. 50 მ მანძილზე მისი სიჩქარე 5 მ/წმ-დან 15 მ/წმ-მდე გაიზარდა. რისი ტოლია აჩქარება?
+EN: A body moves with uniform acceleration. Over 50 m its speed increased from 5 m/s to 15 m/s. What is the acceleration?
+OKA: $0{,}2$ მ/წმ²
+$0{,}5$ მ/წმ²
+$1$ მ/წმ²
+$1{,}5$ მ/წმ²
+$2$ მ/წმ²
+OEN: $0.2$ m/s²
+$0.5$ m/s²
+$1$ m/s²
+$1.5$ m/s²
+$2$ m/s²
+C: 5
+SKA: $v^2 - v_0^2 = 2as \Rightarrow a = \dfrac{225 - 25}{2 \cdot 50} = 2$ მ/წმ²
+SEN: $v^2 - v_0^2 = 2as \Rightarrow a = \dfrac{225 - 25}{2 \cdot 50} = 2$ m/s²
+
+--- 1
+KA: სხეული წრეწირზე მოძრაობს მუდმივი მოდულის სიჩქარით. ჩამოთვლილთაგან რომელია მართებული?
+I. სხეულის აჩქარება ნულის ტოლია;
+II. სხეულის აჩქარება წრეწირის ცენტრისკენაა მიმართული;
+III. სხეულის სიჩქარის ვექტორი მუდმივია.
+EN: A body moves on a circle with a speed of constant magnitude. Which statements are correct?
+I. the body's acceleration is zero;
+II. the body's acceleration points to the centre of the circle;
+III. the body's velocity vector is constant.
+OKA: მხოლოდ I
+მხოლოდ II
+მხოლოდ III
+I და III
+II და III
+OEN: only I
+only II
+only III
+I and III
+II and III
+C: 2
+SKA: სიჩქარის მიმართულება მუდმივად იცვლება, ამიტომ სიჩქარის ვექტორი მუდმივი არ არის (III მცდარია) და აჩქარება ნული არ არის (I მცდარია).
+თანაბარი წრიული მოძრაობისას აჩქარება ცენტრისკენულია: $a = \dfrac{v^2}{R}$ (II სწორია).
+SEN: The direction of the velocity keeps changing, so the velocity vector is not constant (III is false) and the acceleration is not zero (I is false).
+In uniform circular motion the acceleration is centripetal: $a = \dfrac{v^2}{R}$ (II is true).
+
+--- 1
+KA: რკინის ძელაკის მოცულობაა 2 დმ³. რკინის სიმკვრივეა 7800 კგ/მ³. რისი ტოლია ძელაკის მასა?
+EN: An iron bar has a volume of 2 dm³. The density of iron is 7800 kg/m³. What is the mass of the bar?
+OKA: $15{,}6$ კგ
+$39$ კგ
+$156$ კგ
+$1560$ კგ
+$3900$ კგ
+OEN: $15.6$ kg
+$39$ kg
+$156$ kg
+$1560$ kg
+$3900$ kg
+C: 1
+SKA: $V = 2$ დმ³ $= 0{,}002$ მ³.
+$m = \rho V = 7800 \cdot 0{,}002 = 15{,}6$ კგ
+SEN: $V = 2$ dm³ $= 0.002$ m³.
+$m = \rho V = 7800 \cdot 0.002 = 15.6$ kg
+
+--- 1
+KA: 2 კგ მასის სხეულზე მოქმედებს ორი ურთიერთმართობული ძალა: 6 ნ და 8 ნ. რისი ტოლია სხეულის აჩქარება?
+EN: Two perpendicular forces of 6 N and 8 N act on a 2 kg body. What is its acceleration?
+OKA: $1$ მ/წმ²
+$3{,}5$ მ/წმ²
+$5$ მ/წმ²
+$7$ მ/წმ²
+$14$ მ/წმ²
+OEN: $1$ m/s²
+$3.5$ m/s²
+$5$ m/s²
+$7$ m/s²
+$14$ m/s²
+C: 3
+SKA: ტოლქმედი: $F = \sqrt{6^2 + 8^2} = 10$ ნ.
+$a = \dfrac Fm = \dfrac{10}{2} = 5$ მ/წმ²
+SEN: Resultant: $F = \sqrt{6^2 + 8^2} = 10$ N.
+$a = \dfrac Fm = \dfrac{10}{2} = 5$ m/s²
+
+--- 1
+KA: სხეული დედამიწის ზედაპირიდან ისეთ სიმაღლეზე აიყვანეს, რომ დედამიწის ცენტრამდე მანძილი 2-ჯერ გაიზარდა. როგორ შეიცვალა სხეულზე მოქმედი სიმძიმის ძალა?
+EN: A body was raised so high that its distance from the Earth's centre doubled. How did the gravitational force on it change?
+OKA: შემცირდა 4-ჯერ
+არ შეიცვალა
+შემცირდა 2-ჯერ
+გაიზარდა 2-ჯერ
+შემცირდა 8-ჯერ
+OEN: it decreased 4 times
+it did not change
+it halved
+it doubled
+it decreased 8 times
+C: 1
+SKA: მსოფლიო მიზიდულობის კანონი: $F = G\dfrac{Mm}{r^2}$.
+$r$ 2-ჯერ $\Rightarrow F$ $2^2 = 4$-ჯერ მცირდება.
+SEN: The law of gravitation: $F = G\dfrac{Mm}{r^2}$.
+Doubling $r$ $\Rightarrow F$ decreases $2^2 = 4$ times.
+
+--- 1
+KA: საქანელაზე 30 კგ მასის ბავშვი ზის საყრდენიდან 2 მ-ზე. საყრდენის მეორე მხარეს რა მანძილზე უნდა დაჯდეს 20 კგ მასის ბავშვი, რომ საქანელა წონასწორობაში იყოს? საქანელის მასა უგულებელყავით.
+EN: A 30 kg child sits 2 m from the pivot of a seesaw. How far from the pivot on the other side must a 20 kg child sit for the seesaw to balance? Ignore the seesaw's mass.
+OKA: $1{,}33$ მ
+$2$ მ
+$2{,}5$ მ
+$3$ მ
+$4{,}5$ მ
+OEN: $1.33$ m
+$2$ m
+$2.5$ m
+$3$ m
+$4.5$ m
+C: 4
+SKA: $30g \cdot 2 = 20g \cdot x \Rightarrow x = 3$ მ
+SEN: $30g \cdot 2 = 20g \cdot x \Rightarrow x = 3$ m
+
+--- 1
+KA: 4 კგ მასის ძელაკს ჰორიზონტალურ ზედაპირზე თანაბრად ექაჩებიან 12 ნ ჰორიზონტალური ძალით. რისი ტოლია ხახუნის კოეფიციენტი?
+EN: A 4 kg block is pulled at constant speed across a horizontal surface by a horizontal force of 12 N. What is the coefficient of friction?
+OKA: $0{,}03$
+$0{,}12$
+$0{,}3$
+$0{,}4$
+$3$
+OEN: $0.03$
+$0.12$
+$0.3$
+$0.4$
+$3$
+C: 3
+SKA: თანაბარი მოძრაობა: $F = F_{\text{ხ}} = \mu mg$.
+$\mu = \dfrac{12}{4 \cdot 10} = 0{,}3$
+SEN: Constant speed: $F = F_f = \mu mg$.
+$\mu = \dfrac{12}{4 \cdot 10} = 0.3$
+
+--- 1
+KA: 4 კგ მასის თოფიდან ისროლეს 10 გ მასის ტყვია 800 მ/წმ სიჩქარით. რისი ტოლია თოფის უკუცემის სიჩქარე?
+EN: A 10 g bullet is fired at 800 m/s from a 4 kg rifle. What is the rifle's recoil speed?
+OKA: $2$ მ/წმ
+$4$ მ/წმ
+$8$ მ/წმ
+$16$ მ/წმ
+$32$ მ/წმ
+OEN: $2$ m/s
+$4$ m/s
+$8$ m/s
+$16$ m/s
+$32$ m/s
+C: 1
+SKA: სისტემის საწყისი იმპულსი ნულია: $m_{\text{ტ}}v_{\text{ტ}} = Mu$.
+$u = \dfrac{0{,}01 \cdot 800}{4} = 2$ მ/წმ
+SEN: The system's initial momentum is zero: $m_b v_b = Mu$.
+$u = \dfrac{0.01 \cdot 800}{4} = 2$ m/s
+
+--- 1
+KA: ამწემ 500 კგ მასის ტვირთი 20 წმ-ში თანაბრად აიტანა 12 მ სიმაღლეზე. რისი ტოლია ამწის სასარგებლო სიმძლავრე?
+EN: A crane lifted a 500 kg load at constant speed to a height of 12 m in 20 s. What is the crane's useful power?
+OKA: $300$ ვტ
+$600$ ვტ
+$3$ კვტ
+$6$ კვტ
+$120$ კვტ
+OEN: $300$ W
+$600$ W
+$3$ kW
+$6$ kW
+$120$ kW
+C: 3
+SKA: $A = mgh = 500 \cdot 10 \cdot 12 = 60\,000$ ჯ.
+$P = \dfrac At = \dfrac{60\,000}{20} = 3000$ ვტ $= 3$ კვტ
+SEN: $A = mgh = 500 \cdot 10 \cdot 12 = 60\,000$ J.
+$P = \dfrac At = \dfrac{60\,000}{20} = 3000$ W $= 3$ kW
+
+--- 1
+KA: ძაფზე ჩამოკიდებული ბურთულა გადახარეს ისე, რომ ის ქვედა წერტილზე 0,8 მ-ით მაღლა ავიდა, და გაუშვეს. რისი ტოლია ბურთულას სიჩქარე ქვედა წერტილში? ჰაერის წინააღმდეგობა უგულებელყავით.
+EN: A ball on a thread was pulled aside so that it rose 0.8 m above its lowest point, and released. What is its speed at the lowest point? Ignore air resistance.
+OKA: $0{,}8$ მ/წმ
+$2$ მ/წმ
+$4$ მ/წმ
+$8$ მ/წმ
+$16$ მ/წმ
+OEN: $0.8$ m/s
+$2$ m/s
+$4$ m/s
+$8$ m/s
+$16$ m/s
+C: 3
+SKA: $mgh = \dfrac{mv^2}{2} \Rightarrow v = \sqrt{2gh} = \sqrt{2 \cdot 10 \cdot 0{,}8} = 4$ მ/წმ
+SEN: $mgh = \dfrac{mv^2}{2} \Rightarrow v = \sqrt{2gh} = \sqrt{2 \cdot 10 \cdot 0.8} = 4$ m/s
+
+--- 1
+KA: ტვირთი ზამბარას 3 სმ-ით ჭიმავს. რამდენით გაიჭიმება ორი ასეთი მიმდევრობით შეერთებული ზამბარა იმავე ტვირთით?
+EN: A load stretches a spring by 3 cm. By how much will two such springs connected in series stretch under the same load?
+OKA: $1{,}5$ სმ
+$3$ სმ
+$4{,}5$ სმ
+$6$ სმ
+$12$ სმ
+OEN: $1.5$ cm
+$3$ cm
+$4.5$ cm
+$6$ cm
+$12$ cm
+C: 4
+SKA: მიმდევრობით შეერთებისას ორივე ზამბარაზე მოქმედებს ერთი და იგივე ძალა — თითოეული 3 სმ-ით გაიჭიმება.
+სულ: $3 + 3 = 6$ სმ (სისტემის სიხისტე $\dfrac k2$-ია).
+SEN: In series both springs carry the same force, so each stretches by 3 cm.
+Total: $3 + 3 = 6$ cm (the combined stiffness is $\dfrac k2$).
+
+--- 1
+KA: ჰიდრავლიკური წნეხის მცირე დგუშის ფართობია 2 სმ², დიდისა — 200 სმ². მცირე დგუშზე მოქმედებს 50 ნ ძალა. რა ძალით მოქმედებს სითხე დიდ დგუშზე?
+EN: The small piston of a hydraulic press has an area of 2 cm² and the large one 200 cm². A force of 50 N acts on the small piston. What force does the liquid exert on the large piston?
+OKA: $0{,}5$ ნ
+$100$ ნ
+$500$ ნ
+$5000$ ნ
+$10\,000$ ნ
+OEN: $0.5$ N
+$100$ N
+$500$ N
+$5000$ N
+$10\,000$ N
+C: 4
+SKA: პასკალის კანონი: წნევა ორივე დგუშზე ერთნაირია: $\dfrac{F_1}{S_1} = \dfrac{F_2}{S_2}$.
+$F_2 = 50 \cdot \dfrac{200}{2} = 5000$ ნ
+SEN: Pascal's law: the pressure on both pistons is the same: $\dfrac{F_1}{S_1} = \dfrac{F_2}{S_2}$.
+$F_2 = 50 \cdot \dfrac{200}{2} = 5000$ N
+
+--- 1
+KA: სხეულის წონა ჰაერში 10 ნ-ია, წყალში სრულად ჩაძირულისა — 6 ნ. წყლის სიმკვრივეა 1000 კგ/მ³. რისი ტოლია სხეულის სიმკვრივე?
+EN: A body weighs 10 N in air and 6 N when fully submerged in water. The density of water is 1000 kg/m³. What is the body's density?
+OKA: $400$ კგ/მ³
+$1500$ კგ/მ³
+$1667$ კგ/მ³
+$2500$ კგ/მ³
+$4000$ კგ/მ³
+OEN: $400$ kg/m³
+$1500$ kg/m³
+$1667$ kg/m³
+$2500$ kg/m³
+$4000$ kg/m³
+C: 4
+SKA: ამომგდები ძალა: $10 - 6 = 4$ ნ $= \rho_{\text{წყ}} gV$.
+$\dfrac{\rho}{\rho_{\text{წყ}}} = \dfrac{mg}{F_A} = \dfrac{10}{4} \Rightarrow \rho = 2500$ კგ/მ³
+SEN: Buoyant force: $10 - 6 = 4$ N $= \rho_{water} gV$.
+$\dfrac{\rho}{\rho_{water}} = \dfrac{mg}{F_A} = \dfrac{10}{4} \Rightarrow \rho = 2500$ kg/m³
+
+--- 1
+KA: რისი ტოლია 2,5 მ სიგრძის მათემატიკური ქანქარის რხევის პერიოდი? $\pi \approx 3{,}14$.
+EN: What is the period of a simple pendulum 2.5 m long? Take $\pi \approx 3.14$.
+OKA: $0{,}5$ წმ
+$1$ წმ
+$1{,}57$ წმ
+$3{,}14$ წმ
+$6{,}28$ წმ
+OEN: $0.5$ s
+$1$ s
+$1.57$ s
+$3.14$ s
+$6.28$ s
+C: 4
+SKA: $T = 2\pi\sqrt{\dfrac lg} = 2\pi\sqrt{0{,}25} = 2\pi \cdot 0{,}5 = \pi \approx 3{,}14$ წმ
+SEN: $T = 2\pi\sqrt{\dfrac lg} = 2\pi\sqrt{0.25} = 2\pi \cdot 0.5 = \pi \approx 3.14$ s
+
+--- 1
+KA: ტალღის პერიოდია 0,02 წმ, ტალღის სიგრძე — 4 მ. რისი ტოლია ტალღის გავრცელების სიჩქარე?
+EN: A wave has a period of 0.02 s and a wavelength of 4 m. What is its speed?
+OKA: $0{,}08$ მ/წმ
+$2$ მ/წმ
+$8$ მ/წმ
+$50$ მ/წმ
+$200$ მ/წმ
+OEN: $0.08$ m/s
+$2$ m/s
+$8$ m/s
+$50$ m/s
+$200$ m/s
+C: 5
+SKA: $v = \dfrac{\lambda}{T} = \dfrac{4}{0{,}02} = 200$ მ/წმ
+SEN: $v = \dfrac{\lambda}{T} = \dfrac{4}{0.02} = 200$ m/s
+
+--- 1
+KA: რა სითბოს რაოდენობაა საჭირო 2 კგ წყლის 20°C-დან 100°C-მდე გასათბობად? წყლის კუთრი სითბოტევადობაა 4200 ჯ/(კგ·°C).
+EN: How much heat is needed to warm 2 kg of water from 20°C to 100°C? The specific heat of water is 4200 J/(kg·°C).
+OKA: $168$ კჯ
+$336$ კჯ
+$672$ კჯ
+$840$ კჯ
+$1680$ კჯ
+OEN: $168$ kJ
+$336$ kJ
+$672$ kJ
+$840$ kJ
+$1680$ kJ
+C: 3
+SKA: $Q = cm\Delta t = 4200 \cdot 2 \cdot 80 = 672\,000$ ჯ $= 672$ კჯ
+SEN: $Q = cm\Delta t = 4200 \cdot 2 \cdot 80 = 672\,000$ J $= 672$ kJ
+
+--- 1
+KA: იდეალური აირი იზოთერმულად გაფართოვდა და შეასრულა 300 ჯ მუშაობა. რა სითბოს რაოდენობა მიიღო აირმა?
+EN: An ideal gas expanded isothermally and did 300 J of work. How much heat did it receive?
+OKA: $-300$ ჯ
+$0$
+$100$ ჯ
+$150$ ჯ
+$300$ ჯ
+OEN: $-300$ J
+$0$
+$100$ J
+$150$ J
+$300$ J
+C: 5
+SKA: იზოთერმულ პროცესში $T$ არ იცვლება, ამიტომ $\Delta U = 0$.
+$Q = \Delta U + A = 0 + 300 = 300$ ჯ
+SEN: In an isothermal process $T$ is constant, so $\Delta U = 0$.
+$Q = \Delta U + A = 0 + 300 = 300$ J
+
+--- 1
+KA: სინათლე მინიდან (გარდატეხის მაჩვენებელი 1,5) გადადის ჰაერში. რისი ტოლია სრული შინაგანი არეკვლის ზღვრული კუთხის სინუსი?
+EN: Light passes from glass (refractive index 1.5) into air. What is the sine of the critical angle for total internal reflection?
+OKA: $1/3$
+$1/2$
+$2/3$
+$3/4$
+$1{,}5$
+OEN: $1/3$
+$1/2$
+$2/3$
+$3/4$
+$1.5$
+C: 3
+SKA: ზღვრულ კუთხეზე გარდატეხის კუთხე $90^\circ$-ია: $n\sin\alpha_0 = 1 \cdot \sin 90^\circ$.
+$\sin\alpha_0 = \dfrac1n = \dfrac{1}{1{,}5} = \dfrac23$
+SEN: At the critical angle the refracted ray grazes the surface ($90^\circ$): $n\sin\alpha_0 = 1 \cdot \sin 90^\circ$.
+$\sin\alpha_0 = \dfrac1n = \dfrac{1}{1.5} = \dfrac23$
+
+--- 1
+KA: შემკრები ლინზის ფოკუსური მანძილია 25 სმ. რისი ტოლია მისი ოპტიკური ძალა?
+EN: A converging lens has a focal length of 25 cm. What is its optical power?
+OKA: $0{,}04$ დპტ
+$0{,}25$ დპტ
+$2{,}5$ დპტ
+$4$ დპტ
+$25$ დპტ
+OEN: $0.04$ D
+$0.25$ D
+$2.5$ D
+$4$ D
+$25$ D
+C: 4
+SKA: $D = \dfrac1F = \dfrac{1}{0{,}25 \text{ მ}} = 4$ დპტ
+SEN: $D = \dfrac1F = \dfrac{1}{0.25 \text{ m}} = 4$ D
+
+--- 1
+KA: ბრტყელი კონდენსატორის ფირფიტებს შორის ძაბვაა 200 ვ, მანძილი — 4 მმ. რისი ტოლია ველის დაძაბულობა ფირფიტებს შორის?
+EN: The voltage between the plates of a parallel-plate capacitor is 200 V and the gap is 4 mm. What is the field strength between the plates?
+OKA: $50$ ვ/მ
+$800$ ვ/მ
+$5 \cdot 10^{3}$ ვ/მ
+$5 \cdot 10^{4}$ ვ/მ
+$8 \cdot 10^{5}$ ვ/მ
+OEN: $50$ V/m
+$800$ V/m
+$5 \cdot 10^{3}$ V/m
+$5 \cdot 10^{4}$ V/m
+$8 \cdot 10^{5}$ V/m
+C: 4
+SKA: ერთგვაროვანი ველი: $E = \dfrac Ud = \dfrac{200}{0{,}004} = 5 \cdot 10^4$ ვ/მ
+SEN: Uniform field: $E = \dfrac Ud = \dfrac{200}{0.004} = 5 \cdot 10^4$ V/m
+
+--- 1
+KA: ოთხი 4-ომიანი რეზისტორიდან ორი მიმდევრობით შეაერთეს, დანარჩენი ორიც მიმდევრობით, ხოლო მიღებული ორი წყვილი — პარალელურად. რისი ტოლია მიღებული უბნის წინაღობა?
+EN: Of four 4 Ω resistors, two are joined in series, the other two also in series, and the two pairs are then joined in parallel. What is the resistance of the combination?
+OKA: $1$ ომი
+$2$ ომი
+$4$ ომი
+$8$ ომი
+$16$ ომი
+OEN: $1$ Ω
+$2$ Ω
+$4$ Ω
+$8$ Ω
+$16$ Ω
+C: 3
+SKA: თითოეული წყვილი: $4 + 4 = 8$ ომი.
+ორი $8$ ომი პარალელურად: $\dfrac82 = 4$ ომი
+SEN: Each pair: $4 + 4 = 8$ Ω.
+Two $8$ Ω in parallel: $\dfrac82 = 4$ Ω
+
+--- 1
+KA: სადენის სიგრძეც და განივკვეთის ფართობიც 2-ჯერ გაზარდეს. როგორ შეიცვალა მისი წინაღობა?
+EN: Both the length and the cross-sectional area of a wire were doubled. How did its resistance change?
+OKA: გაიზარდა 4-ჯერ
+გაიზარდა 2-ჯერ
+შემცირდა 2-ჯერ
+შემცირდა 4-ჯერ
+არ შეიცვალა
+OEN: it increased 4 times
+it doubled
+it halved
+it decreased 4 times
+it did not change
+C: 5
+SKA: $R = \rho\dfrac lS$: $\dfrac{R'}{R} = \dfrac{2}{2} = 1$ — წინაღობა არ შეიცვალა.
+SEN: $R = \rho\dfrac lS$: $\dfrac{R'}{R} = \dfrac{2}{2} = 1$ — the resistance is unchanged.
+
+--- 1
+KA: ნათურაზე წერია: „220 ვ, 100 ვტ". რისი ტოლია ნათურის წინაღობა მუშა რეჟიმში?
+EN: A lamp is marked "220 V, 100 W". What is its resistance in normal operation?
+OKA: $0{,}45$ ომი
+$2{,}2$ ომი
+$22$ ომი
+$220$ ომი
+$484$ ომი
+OEN: $0.45$ Ω
+$2.2$ Ω
+$22$ Ω
+$220$ Ω
+$484$ Ω
+C: 5
+SKA: $P = \dfrac{U^2}{R} \Rightarrow R = \dfrac{U^2}{P} = \dfrac{220^2}{100} = 484$ ომი
+SEN: $P = \dfrac{U^2}{R} \Rightarrow R = \dfrac{U^2}{P} = \dfrac{220^2}{100} = 484$ Ω
+
+--- 1
+KA: 2 მკფ და 3 მკფ ტევადობის კონდენსატორები მიმდევრობით შეაერთეს. რისი ტოლია ბატარეის ტევადობა?
+EN: Capacitors of 2 μF and 3 μF are connected in series. What is the total capacitance?
+OKA: $1{,}2$ მკფ
+$2{,}5$ მკფ
+$5$ მკფ
+$6$ მკფ
+$0{,}83$ მკფ
+OEN: $1.2$ μF
+$2.5$ μF
+$5$ μF
+$6$ μF
+$0.83$ μF
+C: 1
+SKA: მიმდევრობით: $\dfrac1C = \dfrac12 + \dfrac13 = \dfrac56 \Rightarrow C = 1{,}2$ მკფ
+SEN: In series: $\dfrac1C = \dfrac12 + \dfrac13 = \dfrac56 \Rightarrow C = 1.2$ μF
+
+--- 1
+KA: გამტარის განივკვეთში 1 წუთში გაიარა 30 კ მუხტმა. რისი ტოლია დენის ძალა?
+EN: A charge of 30 C passed through the cross-section of a conductor in 1 minute. What is the current?
+OKA: $0{,}5$ ა
+$2$ ა
+$30$ ა
+$1800$ ა
+$0{,}03$ ა
+OEN: $0.5$ A
+$2$ A
+$30$ A
+$1800$ A
+$0.03$ A
+C: 1
+SKA: $I = \dfrac qt = \dfrac{30}{60} = 0{,}5$ ა
+SEN: $I = \dfrac qt = \dfrac{30}{60} = 0.5$ A
+
+--- 1
+KA: პროტონი მოძრაობს ერთგვაროვან მაგნიტურ ველში ინდუქციის ხაზების მართობულად, წრეწირზე. როგორ შეიცვლება ბრუნვის პერიოდი, თუ პროტონის სიჩქარე 2-ჯერ გაიზრდება?
+EN: A proton moves on a circle in a uniform magnetic field, perpendicular to the field lines. How does its period change if its speed doubles?
+OKA: გაიზრდება 2-ჯერ
+შემცირდება 2-ჯერ
+გაიზრდება 4-ჯერ
+შემცირდება 4-ჯერ
+არ შეიცვლება
+OEN: it doubles
+it halves
+it increases 4 times
+it decreases 4 times
+it does not change
+C: 5
+SKA: $R = \dfrac{mv}{qB}$, $T = \dfrac{2\pi R}{v} = \dfrac{2\pi m}{qB}$ — სიჩქარეზე არ არის დამოკიდებული.
+(სიჩქარის გაზრდისას რადიუსიც იმავე რაოდენობით იზრდება.)
+SEN: $R = \dfrac{mv}{qB}$, $T = \dfrac{2\pi R}{v} = \dfrac{2\pi m}{qB}$ — independent of the speed.
+(When the speed grows, the radius grows by the same factor.)
+
+--- 1
+KA: ძაფზე ჩამოკიდებულ მსუბუქ ალუმინის რგოლს მაგნიტის ჩრდილოეთ პოლუსით სწრაფად უახლოვებენ. რა მოუვა რგოლს?
+EN: The north pole of a magnet is brought quickly toward a light aluminium ring hanging on a thread. What happens to the ring?
+OKA: მიიზიდება მაგნიტისკენ
+განიზიდება მაგნიტისგან
+უძრავი დარჩება
+დაიწყებს ბრუნვას ძაფის გარშემო
+ჯერ მიიზიდება, მერე განიზიდება
+OEN: it is attracted toward the magnet
+it is pushed away from the magnet
+it stays still
+it starts to spin around the thread
+it is first attracted, then repelled
+C: 2
+SKA: რგოლში მაგნიტური ნაკადი იზრდება და აღიძვრება ინდუქციის დენი.
+ლენცის წესით ეს დენი ეწინააღმდეგება ნაკადის ზრდას — რგოლის წინა მხარე ჩრდილოეთ პოლუსად იქცევა და მაგნიტისგან განიზიდება.
+SEN: The flux through the ring grows, so an induced current appears.
+By Lenz's rule the current opposes the growth of the flux: the near face of the ring becomes a north pole and is pushed away from the magnet.
+
+--- 1
+KA: რხევით კონტურში კონდენსატორის ტევადობა 4-ჯერ გაზარდეს. როგორ შეიცვალა თავისუფალი რხევების პერიოდი?
+EN: The capacitance in an LC circuit was increased 4 times. How did the period of free oscillations change?
+OKA: გაიზარდა 4-ჯერ
+გაიზარდა 2-ჯერ
+არ შეიცვალა
+შემცირდა 2-ჯერ
+შემცირდა 4-ჯერ
+OEN: it increased 4 times
+it doubled
+it did not change
+it halved
+it decreased 4 times
+C: 2
+SKA: ტომსონის ფორმულა: $T = 2\pi\sqrt{LC}$.
+$C$ 4-ჯერ $\Rightarrow T$ $\sqrt4 = 2$-ჯერ იზრდება.
+SEN: Thomson's formula: $T = 2\pi\sqrt{LC}$.
+4 times $C$ $\Rightarrow T$ grows $\sqrt4 = 2$ times.
+
+--- 1
+KA: რადიოსადგური მუშაობს 100 მჰც სიხშირეზე. რისი ტოლია რადიოტალღის სიგრძე? სინათლის სიჩქარეა $3 \cdot 10^8$ მ/წმ.
+EN: A radio station broadcasts at 100 MHz. What is the wavelength of its radio waves? The speed of light is $3 \cdot 10^8$ m/s.
+OKA: $0{,}3$ მ
+$3$ მ
+$30$ მ
+$300$ მ
+$3000$ მ
+OEN: $0.3$ m
+$3$ m
+$30$ m
+$300$ m
+$3000$ m
+C: 2
+SKA: $\lambda = \dfrac c\nu = \dfrac{3 \cdot 10^8}{10^8} = 3$ მ
+SEN: $\lambda = \dfrac c\nu = \dfrac{3 \cdot 10^8}{10^8} = 3$ m
+
+--- 1
+KA: რამდენი ნეიტრონია ურანის $^{235}_{92}\mathrm{U}$ ბირთვში?
+EN: How many neutrons are in the uranium nucleus $^{235}_{92}\mathrm{U}$?
+O: $92$
+$143$
+$235$
+$327$
+$184$
+C: 2
+SKA: მასური რიცხვი $A = 235$ — ნუკლონების რიცხვია, მუხტური რიცხვი $Z = 92$ — პროტონებისა.
+$N = A - Z = 235 - 92 = 143$
+SEN: The mass number $A = 235$ is the number of nucleons, the charge number $Z = 92$ the number of protons.
+$N = A - Z = 235 - 92 = 143$
+
+--- 5
+KA: შეუსაბამეთ ციფრებით დანომრილ ფიზიკურ სიდიდეებს ასოებით დანომრილი ფორმულები.
+EN: Match the numbered physical quantities with the lettered formulas.
+LKA: კინეტიკური ენერგია
+იმპულსი
+დენის სიმძლავრე
+წნევა
+აირის მუშაობა მუდმივი წნევისას
+ორ წერტილოვან მუხტს შორის ურთიერთქმედების ძალა
+LEN: kinetic energy
+momentum
+power of an electric current
+pressure
+work done by a gas at constant pressure
+force between two point charges
+R: $mv$
+$\dfrac{mv^2}{2}$
+$UI$
+$\dfrac FS$
+$p\Delta V$
+$I^2R$
+M: 2 1 3,6 4 5 -
+SKA: $E_{\text{კ}} = \dfrac{mv^2}{2}$ (ბ); $p = mv$ (ა); $P = UI = I^2R$ — ორივე ფორმულა სწორია (გ და ვ); $p = \dfrac FS$ (დ); $A = p\Delta V$ (ე).
+კულონის ძალა $F = \dfrac{kq_1q_2}{r^2}$ სიაში არ არის — მე-6 სტრიქონი ცარიელი რჩება.
+SEN: $E_k = \dfrac{mv^2}{2}$ (B); $p = mv$ (A); $P = UI = I^2R$ — both formulas are correct (C and F); $p = \dfrac FS$ (D); $A = p\Delta V$ (E).
+The Coulomb force $F = \dfrac{kq_1q_2}{r^2}$ is not in the list, so row 6 stays empty.
+AKA: 1 – ბ; 2 – ა; 3 – გ, ვ; 4 – დ; 5 – ე; 6 – არც ერთი
+AEN: 1 – B; 2 – A; 3 – C, F; 4 – D; 5 – E; 6 – none
+
+--- 5
+KA: შეუსაბამეთ საგნის მდებარეობას ლინზის მიმართ მისი გამოსახულების თვისებები ($d$ — მანძილი საგნიდან ლინზამდე, $F$ — ფოკუსური მანძილი).
+EN: Match the position of an object relative to a lens with the properties of its image ($d$ is the object distance, $F$ the focal length).
+LKA: შემკრები ლინზა, $d > 2F$
+შემკრები ლინზა, $d = 2F$
+შემკრები ლინზა, $F < d < 2F$
+შემკრები ლინზა, $d = F$
+შემკრები ლინზა, $d < F$
+გამბნევი ლინზა, ნებისმიერი $d$
+LEN: converging lens, $d > 2F$
+converging lens, $d = 2F$
+converging lens, $F < d < 2F$
+converging lens, $d = F$
+converging lens, $d < F$
+diverging lens, any $d$
+RKA: ნამდვილი, შემცირებული
+ნამდვილი, საგნის ტოლი
+ნამდვილი, გადიდებული
+წარმოსახვითი, გადიდებული
+წარმოსახვითი, შემცირებული
+გამოსახულება არ მიიღება
+REN: real, reduced
+real, same size
+real, magnified
+virtual, magnified
+virtual, reduced
+no image is formed
+M: 1 2 3 6 4 5
+SKA: შემკრები ლინზა: $d > 2F$ — ნამდვილი, შემცირებული (ა); $d = 2F$ — ნამდვილი, ტოლი (ბ); $F < d < 2F$ — ნამდვილი, გადიდებული (გ).
+$d = F$ — სხივები ლინზის შემდეგ პარალელურია, გამოსახულება არ მიიღება (ვ); $d < F$ — წარმოსახვითი, გადიდებული (დ).
+გამბნევი ლინზა ყოველთვის იძლევა წარმოსახვით, შემცირებულ, პირდაპირ გამოსახულებას (ე).
+SEN: Converging lens: $d > 2F$ — real, reduced (A); $d = 2F$ — real, same size (B); $F < d < 2F$ — real, magnified (C).
+$d = F$ — the rays leave the lens parallel, no image (F); $d < F$ — virtual, magnified (D).
+A diverging lens always gives a virtual, reduced, upright image (E).
+AKA: 1 – ა; 2 – ბ; 3 – გ; 4 – ვ; 5 – დ; 6 – ე
+AEN: 1 – A; 2 – B; 3 – C; 4 – F; 5 – D; 6 – E
+
+--- 3
+KA: 1000 კგ მასის ავტომობილი 20 მ/წმ სიჩქარით მოძრაობდა და მძღოლმა მკვეთრად დაამუხრუჭა (ბორბლები აღარ ბრუნავს). ბორბლებსა და გზას შორის ხახუნის კოეფიციენტია 0,5. განსაზღვრეთ დამუხრუჭების მანძილი და დრო.
+EN: A 1000 kg car moving at 20 m/s brakes hard (the wheels lock). The coefficient of friction between the tyres and the road is 0.5. Find the braking distance and time.
+SKA: ერთადერთი ჰორიზონტალური ძალა ხახუნია: $ma = \mu mg \Rightarrow a = \mu g = 5$ მ/წმ² (მასა არ მონაწილეობს).
+$t = \dfrac{v_0}{a} = \dfrac{20}{5} = 4$ წმ.
+$s = \dfrac{v_0^2}{2a} = \dfrac{400}{10} = 40$ მ.
+SEN: The only horizontal force is friction: $ma = \mu mg \Rightarrow a = \mu g = 5$ m/s² (the mass cancels).
+$t = \dfrac{v_0}{a} = \dfrac{20}{5} = 4$ s.
+$s = \dfrac{v_0^2}{2a} = \dfrac{400}{10} = 40$ m.
+AKA: $s = 40$ მ, $t = 4$ წმ
+AEN: $s = 40$ m, $t = 4$ s
+
+--- 5
+KA: 0,5 კგ მასის ბურთულა მიბმულია 1 მ სიგრძის ძაფზე და ვერტიკალურ სიბრტყეში წრეწირზე ბრუნავს. ქვედა წერტილში ბურთულას სიჩქარეა 8 მ/წმ. ჰაერის წინააღმდეგობა უგულებელყავით. განსაზღვრეთ:
+1) ბურთულას ცენტრისკენული აჩქარება ქვედა წერტილში;
+2) ძაფის დაჭიმულობის ძალა ქვედა წერტილში;
+3) ბურთულას სიჩქარის კვადრატი ზედა წერტილში;
+4) ძაფის დაჭიმულობის ძალა ზედა წერტილში;
+5) ქვედა წერტილში მინიმალური სიჩქარე, რომლის დროსაც ბურთულა ჯერ კიდევ გაივლის მთელ წრეწირს (ძაფი დაჭიმული დარჩება).
+EN: A 0.5 kg ball tied to a 1 m thread moves on a circle in a vertical plane. At the lowest point its speed is 8 m/s. Ignore air resistance. Find:
+1) the ball's centripetal acceleration at the lowest point;
+2) the tension in the thread at the lowest point;
+3) the square of the ball's speed at the top;
+4) the tension in the thread at the top;
+5) the minimum speed at the lowest point for which the ball still goes all the way round (the thread stays taut).
+SKA: 1) $a = \dfrac{v^2}{R} = \dfrac{64}{1} = 64$ მ/წმ².
+2) $T_1 - mg = ma \Rightarrow T_1 = 0{,}5(10 + 64) = 37$ ნ.
+3) ენერგიის შენახვა (სიმაღლის სხვაობა $2R$): $v_2^2 = v_1^2 - 4gR = 64 - 40 = 24$ მ²/წმ².
+4) $T_2 + mg = \dfrac{mv_2^2}{R} \Rightarrow T_2 = 0{,}5 \cdot 24 - 5 = 7$ ნ.
+5) ზედა წერტილში ძაფი დაჭიმულია, თუ $\dfrac{mv_2^2}{R} \ge mg$, ანუ $v_2^2 \ge gR$. მაშინ $v_1^2 = v_2^2 + 4gR \ge 5gR \Rightarrow v_{1\,min} = \sqrt{5gR} = \sqrt{50} \approx 7{,}1$ მ/წმ.
+SEN: 1) $a = \dfrac{v^2}{R} = \dfrac{64}{1} = 64$ m/s².
+2) $T_1 - mg = ma \Rightarrow T_1 = 0.5(10 + 64) = 37$ N.
+3) Energy conservation (height difference $2R$): $v_2^2 = v_1^2 - 4gR = 64 - 40 = 24$ m²/s².
+4) $T_2 + mg = \dfrac{mv_2^2}{R} \Rightarrow T_2 = 0.5 \cdot 24 - 5 = 7$ N.
+5) At the top the thread stays taut if $\dfrac{mv_2^2}{R} \ge mg$, i.e. $v_2^2 \ge gR$. Then $v_1^2 = v_2^2 + 4gR \ge 5gR \Rightarrow v_{1\,min} = \sqrt{5gR} = \sqrt{50} \approx 7.1$ m/s.
+AKA: 1) $64$ მ/წმ²; 2) $37$ ნ; 3) $24$ მ²/წმ²; 4) $7$ ნ; 5) $\sqrt{50} \approx 7{,}1$ მ/წმ
+AEN: 1) $64$ m/s²; 2) $37$ N; 3) $24$ m²/s²; 4) $7$ N; 5) $\sqrt{50} \approx 7.1$ m/s
+
+--- 5
+KA: ერთატომიანი იდეალური აირი მუდმივი $2 \cdot 10^5$ პა წნევისას გაფართოვდა 0,01 მ³-დან 0,03 მ³-მდე. აირის საწყისი ტემპერატურაა 300 კ. შინაგანი ენერგია $U = \dfrac32\nu RT$, $R = 8{,}3$ ჯ/(მოლი·კ). განსაზღვრეთ:
+1) აირის მიერ შესრულებული მუშაობა;
+2) აირის შინაგანი ენერგიის ცვლილება;
+3) აირის მიერ მიღებული სითბოს რაოდენობა;
+4) აირის საბოლოო ტემპერატურა;
+5) აირის ნივთიერების რაოდენობა.
+EN: A monatomic ideal gas expanded at a constant pressure of $2 \cdot 10^5$ Pa from 0.01 m³ to 0.03 m³. Its initial temperature is 300 K. The internal energy is $U = \dfrac32\nu RT$, $R = 8.3$ J/(mol·K). Find:
+1) the work done by the gas;
+2) the change in its internal energy;
+3) the heat it received;
+4) its final temperature;
+5) the amount of substance.
+SKA: 1) $A = p\Delta V = 2 \cdot 10^5 \cdot 0{,}02 = 4000$ ჯ.
+2) $\Delta U = \dfrac32\nu R\Delta T = \dfrac32p\Delta V = 6000$ ჯ.
+3) $Q = \Delta U + A = 10\,000$ ჯ.
+4) იზობარა: $\dfrac{V}{T} = \mathrm{const} \Rightarrow T_2 = 300 \cdot \dfrac{0{,}03}{0{,}01} = 900$ კ.
+5) $\nu = \dfrac{pV_1}{RT_1} = \dfrac{2 \cdot 10^5 \cdot 0{,}01}{8{,}3 \cdot 300} \approx 0{,}8$ მოლი.
+SEN: 1) $A = p\Delta V = 2 \cdot 10^5 \cdot 0.02 = 4000$ J.
+2) $\Delta U = \dfrac32\nu R\Delta T = \dfrac32p\Delta V = 6000$ J.
+3) $Q = \Delta U + A = 10\,000$ J.
+4) Isobaric: $\dfrac{V}{T} = \mathrm{const} \Rightarrow T_2 = 300 \cdot \dfrac{0.03}{0.01} = 900$ K.
+5) $\nu = \dfrac{pV_1}{RT_1} = \dfrac{2 \cdot 10^5 \cdot 0.01}{8.3 \cdot 300} \approx 0.8$ mol.
+AKA: 1) $4$ კჯ; 2) $6$ კჯ; 3) $10$ კჯ; 4) $900$ კ; 5) $\approx 0{,}8$ მოლი
+AEN: 1) $4$ kJ; 2) $6$ kJ; 3) $10$ kJ; 4) $900$ K; 5) $\approx 0.8$ mol
+
+--- 5
+KA: ჰორიზონტალურ ლითონის რელსებზე, რომლებიც ერთმანეთისგან 0,5 მ-ითაა დაშორებული, მუდმივი 4 მ/წმ სიჩქარით სრიალებს გამტარი ღერო. რელსები ერთ ბოლოში შეერთებულია 0,1 ომი წინაღობის რეზისტორით. სისტემა მოთავსებულია 0,2 ტლ ინდუქციის ვერტიკალურ ერთგვაროვან მაგნიტურ ველში (იხ. ნახ.). ღეროსა და რელსების წინაღობა და ხახუნი უგულებელყავით. განსაზღვრეთ:
+1) ღეროში აღძრული ინდუქციის ემ ძალა;
+2) წრედში დენის ძალა;
+3) ღეროზე მოქმედი ამპერის ძალა;
+4) სიმძლავრე, რომელიც საჭიროა ღეროს თანაბარი მოძრაობის შესანარჩუნებლად;
+5) 10 წმ-ში რეზისტორში გამოყოფილი სითბოს რაოდენობა.
+EN: A conducting rod slides at a constant 4 m/s along horizontal metal rails 0.5 m apart. At one end the rails are joined by a 0.1 Ω resistor. The system is in a vertical uniform magnetic field of 0.2 T (see the figure). Ignore the resistance of the rod and rails and friction. Find:
+1) the EMF induced in the rod;
+2) the current in the circuit;
+3) the Ampère force on the rod;
+4) the power needed to keep the rod moving at constant speed;
+5) the heat released in the resistor in 10 s.
+FIG: <svg viewBox="0 0 290 150" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="20" y1="30" x2="270" y2="30" stroke-width="2.2"/><line x1="20" y1="120" x2="270" y2="120" stroke-width="2.2"/><line x1="30" y1="30" x2="30" y2="120" stroke-width="1.2"/><rect x="22" y="55" width="16" height="40" fill="var(--card, #fff)" stroke-width="1.3"/><text x="46" y="80" stroke="none" font-size="13">R</text><rect x="176" y="22" width="10" height="106" stroke-width="1.4" fill="currentColor" fill-opacity="0.35"/><line x1="195" y1="75" x2="240" y2="75" stroke-width="1.4"/><path d="M234.4 77.2L240 75L234.4 72.8Z" fill="currentColor" stroke-width="1"/><text x="218" y="68" stroke="none" font-size="13" text-anchor="middle">v</text><circle cx="80" cy="52" r="2.2" fill="currentColor" stroke="none"/><circle cx="80" cy="52" r="5" stroke-width="1"/><circle cx="80" cy="98" r="2.2" fill="currentColor" stroke="none"/><circle cx="80" cy="98" r="5" stroke-width="1"/><circle cx="120" cy="52" r="2.2" fill="currentColor" stroke="none"/><circle cx="120" cy="52" r="5" stroke-width="1"/><circle cx="120" cy="98" r="2.2" fill="currentColor" stroke="none"/><circle cx="120" cy="98" r="5" stroke-width="1"/><circle cx="230" cy="52" r="2.2" fill="currentColor" stroke="none"/><circle cx="230" cy="52" r="5" stroke-width="1"/><circle cx="260" cy="52" r="2.2" fill="currentColor" stroke="none"/><circle cx="260" cy="52" r="5" stroke-width="1"/><text x="105" y="82" stroke="none" font-size="14" text-anchor="middle">B</text><line x1="160" y1="30" x2="160" y2="120" stroke-width="1"/><path d="M162.2 35.6L160 30L157.8 35.6Z" fill="currentColor" stroke-width="1"/><path d="M157.8 114.4L160 120L162.2 114.4Z" fill="currentColor" stroke-width="1"/><text x="152" y="80" stroke="none" font-size="13" text-anchor="end" style="font-style:normal;font-family:inherit">l</text></svg>
+SKA: 1) $\mathcal E = Blv = 0{,}2 \cdot 0{,}5 \cdot 4 = 0{,}4$ ვ.
+2) $I = \dfrac{\mathcal E}{R} = \dfrac{0{,}4}{0{,}1} = 4$ ა.
+3) $F = BIl = 0{,}2 \cdot 4 \cdot 0{,}5 = 0{,}4$ ნ (ლენცის წესით ის მოძრაობას ეწინააღმდეგება).
+4) გარე ძალა ამპერის ძალას აწონასწორებს: $P = Fv = 0{,}4 \cdot 4 = 1{,}6$ ვტ (იგივეა, რაც $I^2R$).
+5) $Q = Pt = 1{,}6 \cdot 10 = 16$ ჯ.
+SEN: 1) $\mathcal E = Blv = 0.2 \cdot 0.5 \cdot 4 = 0.4$ V.
+2) $I = \dfrac{\mathcal E}{R} = \dfrac{0.4}{0.1} = 4$ A.
+3) $F = BIl = 0.2 \cdot 4 \cdot 0.5 = 0.4$ N (by Lenz's rule it opposes the motion).
+4) The external force balances the Ampère force: $P = Fv = 0.4 \cdot 4 = 1.6$ W (the same as $I^2R$).
+5) $Q = Pt = 1.6 \cdot 10 = 16$ J.
+AKA: 1) $0{,}4$ ვ; 2) $4$ ა; 3) $0{,}4$ ნ; 4) $1{,}6$ ვტ; 5) $16$ ჯ
+AEN: 1) $0.4$ V; 2) $4$ A; 3) $0.4$ N; 4) $1.6$ W; 5) $16$ J
+</script>
+</body>
+</html>

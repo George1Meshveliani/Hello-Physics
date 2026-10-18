@@ -9,6 +9,7 @@ Problems for grades VII–XII following the national curriculum: easy, medium an
 - [`Grade X`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/X) — electric charge, Coulomb's law, fields, capacitors, Ohm's law, circuits
 - [`Grade XI`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/XI) — magnetism, induction, oscillations and waves, AC, optics and lenses
 - [`Grade XII`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/XII) — gas laws, thermodynamics, photoelectric effect, atoms and nuclei, radioactivity, astrophysics
+- [`National Exam Tests`](https://george1meshveliani.github.io/Hello-Physics/problems/physics/tests) — ეროვნული გამოცდების ტესტები: 2 past Unified National Exam papers (2024, 2025) and 3 similar practice tests, with scoring, matching tasks, answers and step-by-step solutions
 
 #### [`Collection of Mathematics Problems`](https://george1meshveliani.github.io/Hello-Physics/problems/math/) — მათემატიკის ამოცანების კრებული
 Problems for grades VII–XII following the national curriculum: easy, medium and hard (last 30 olympiad-style), with hidden hints and step-by-step solutions.

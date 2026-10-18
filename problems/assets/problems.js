@@ -35,7 +35,11 @@
  *   # time <minutes>
  *   --- <points>                      starts the next problem (numbered in order)
  *   O:   options, one per line        OKA: / OEN: language-specific options
- *   C:   number of the correct option (1–4); problems without options are open-ended
+ *   C:   number of the correct option (1–5); problems without options are open-ended
+ *   L:   left column of a matching task, one item per line   LKA: / LEN: language-specific
+ *   R:   right column of a matching task, one item per line  RKA: / REN: language-specific
+ *   M:   matching key, one entry per left item: right-item numbers joined by "," or "-" for none
+ *        (e.g. "M: 4 5 6 1 2 3"); each row with a mistake costs one point
  *   FIG: inline <svg> figure (may continue over several lines)
  */
 (function () {
@@ -69,13 +73,18 @@
       otherCollection: { physics: "მათემატიკის ამოცანების კრებული →", math: "ფიზიკის ამოცანების კრებული →" },
       notes: "შენიშვნა",
       tests: "ეროვნული გამოცდების ტესტები",
-      testsSub: "ერთიანი ეროვნული გამოცდების ტესტები მათემატიკაში: წინა წლების ტესტები და მათი მსგავსი სავარჯიშო ტესტები — პასუხებითა და ამოხსნებით.",
+      testsSub: {
+        physics: "ერთიანი ეროვნული გამოცდების ტესტები ფიზიკაში: წინა წლების ტესტები და მათი მსგავსი სავარჯიშო ტესტები — პასუხებითა და ამოხსნებით.",
+        math: "ერთიანი ეროვნული გამოცდების ტესტები მათემატიკაში: წინა წლების ტესტები და მათი მსგავსი სავარჯიშო ტესტები — პასუხებითა და ამოხსნებით."
+      },
       testWord: "ტესტი",
       original: "გამოცდის ტესტი", practice: "სავარჯიშო ტესტი",
       pointsN: function (n) { return n + " ქულა"; },
       minutesN: function (n) { return n >= 60 && n % 60 === 0 ? n / 60 + " საათი" : n + " წუთი"; },
       sourcePdf: "📄 ორიგინალი ტესტი (PDF)",
       open: "ღია დავალება — ჩაწერეთ ამოხსნის სრული გზა, შემდეგ შეადარეთ ამოხსნას.",
+      matchNote: "ცხრილში მონიშნეთ შესაბამისი უჯრები (სტრიქონში შეიძლება იყოს ერთი, რამდენიმე ან არც ერთი ნიშანი). ყოველი შეცდომიანი სტრიქონი 1 ქულას აკლებს.",
+      matchScore: "ქულა:",
       check: "✔ შემოწმება", reset: "↺ თავიდან", resetAsk: "წაიშალოს ყველა პასუხი?",
       timerStart: "⏱ დაწყება", timerStop: "⏸ შეჩერება",
       closedPart: "დახურული დავალებები", openPart: "ღია დავალებები (თვითშეფასება)", total: "სულ",
@@ -110,16 +119,21 @@
       otherCollection: { physics: "Collection of Mathematics Problems →", math: "Collection of Physics Problems →" },
       notes: "Note",
       tests: "National Exam Tests",
-      testsSub: "Unified National Exam tests in mathematics: papers from past years and similar practice tests, with answers and solutions.",
+      testsSub: {
+        physics: "Unified National Exam tests in physics: papers from past years and similar practice tests, with answers and solutions.",
+        math: "Unified National Exam tests in mathematics: papers from past years and similar practice tests, with answers and solutions."
+      },
       testWord: "Test",
       original: "Exam paper", practice: "Practice test",
       pointsN: function (n) { return n + (n === 1 ? " point" : " points"); },
       minutesN: function (n) { return n >= 60 && n % 60 === 0 ? n / 60 + (n === 60 ? " hour" : " hours") : n + " minutes"; },
       sourcePdf: "📄 Original paper (PDF)",
       open: "Open-ended task: write out the full solution, then compare it with ours.",
+      matchNote: "Mark the matching cells in the table (a row may have one, several or no marks). Each row with a mistake costs 1 point.",
+      matchScore: "Points:",
       check: "✔ Check", reset: "↺ Start over", resetAsk: "Clear all answers?",
       timerStart: "⏱ Start", timerStop: "⏸ Pause",
-      closedPart: "Multiple-choice tasks", openPart: "Open-ended tasks (self-marked)", total: "Total",
+      closedPart: "Closed tasks", openPart: "Open-ended tasks (self-marked)", total: "Total",
       selfScore: "Your points:",
       answered: function (a, n) { return "Answered: " + a + " / " + n; },
       backToTests: "← All tests"
@@ -530,7 +544,7 @@
         { text: L.collection[subject], href: "./" },
         { text: L.tests }
       ], draw));
-      wrap.appendChild(hero(subject, L.tests, L.testsSub));
+      wrap.appendChild(hero(subject, L.tests, L.testsSub[subject]));
       var grid = h("div", "grades");
       list.forEach(function (it, i) {
         var c = h("a", "grade test-card" + (it.kind === "original" ? " orig" : ""));
@@ -551,8 +565,8 @@
   }
 
   /* ---------- national exam tests: one test ---------- */
-  var LETTERS = { ka: ["ა", "ბ", "გ", "დ", "ე"], en: ["A", "B", "C", "D", "E"] };
-  var TFIELD = /^(KA|EN|HKA|HEN|SKA|SEN|AKA|AEN|OKA|OEN|O|C|FIG)\s*:\s?(.*)$/;
+  var LETTERS = { ka: ["ა", "ბ", "გ", "დ", "ე", "ვ", "ზ", "თ"], en: ["A", "B", "C", "D", "E", "F", "G", "H"] };
+  var TFIELD = /^(KA|EN|HKA|HEN|SKA|SEN|AKA|AEN|OKA|OEN|O|C|M|LKA|LEN|L|RKA|REN|R|FIG)\s*:\s?(.*)$/;
 
   function parseTest(text) {
     var meta = {}, items = [], cur = null, field = null;
@@ -569,7 +583,7 @@
         cur = {
           pts: parseInt(m[1], 10), c: -1, fig: "",
           q: { ka: "", en: "" }, h: { ka: "", en: "" }, s: { ka: [], en: [] }, a: { ka: "", en: "" },
-          o: { all: [], ka: [], en: [] }
+          o: { all: [], ka: [], en: [] }, l: { all: [], ka: [], en: [] }, r: { all: [], ka: [], en: [] }, m: []
         };
         items.push(cur);
         field = null;
@@ -578,6 +592,13 @@
       if (!cur) { console.warn("test: line " + (i + 1) + " is outside a problem:", line); return; }
       if ((m = TFIELD.exec(line))) {
         if (m[1] === "C") { cur.c = parseInt(m[2], 10) - 1; field = null; return; }
+        if (m[1] === "M") {
+          cur.m = m[2].trim().split(/\s+/).map(function (tok) {
+            return tok === "-" ? [] : tok.split(",").map(function (d) { return parseInt(d, 10) - 1; });
+          });
+          field = null;
+          return;
+        }
         field = m[1];
         line = m[2].trim();
         if (!line) return;
@@ -586,6 +607,8 @@
       if (field === "FIG") { cur.fig += raw + "\n"; return; }
       if (field === "O") { cur.o.all.push(line); return; }
       if (field === "OKA" || field === "OEN") { cur.o[field.slice(1).toLowerCase()].push(line); return; }
+      if (field === "L" || field === "R") { cur[field.toLowerCase()].all.push(line); return; }
+      if (/^[LR](KA|EN)$/.test(field)) { cur[field[0].toLowerCase()][field.slice(1).toLowerCase()].push(line); return; }
       var k = FIELD_NAMES[field].split("."), slot = cur[k[0]];
       if (k[0] === "s") slot[k[1]].push(line);
       else slot[k[1]] = slot[k[1]] ? slot[k[1]] + "\n" + line : line;
@@ -595,6 +618,9 @@
       p.fig = p.fig.replace(/^\s*FIG\s*:\s?/, "");
       if (p.o.all.length || p.o.ka.length || p.o.en.length) {
         if (p.c < 0) console.warn("test: problem " + p.no + " has options but no correct answer (C:)");
+      }
+      if (p.m.length && p.m.length !== (p.l.all.length || p.l.ka.length || p.l.en.length)) {
+        console.warn("test: problem " + p.no + " has " + p.m.length + " matching keys for a different number of rows");
       }
     });
     return { meta: meta, items: items };
@@ -610,6 +636,23 @@
     function pick(obj) { return obj[lang] || obj.en || obj.ka || ""; }
     function opts(p) { return p.o[lang].length ? p.o[lang] : (p.o.all.length ? p.o.all : (p.o.en.length ? p.o.en : p.o.ka)); }
     function isMC(p) { return p.c >= 0; }
+    function isMatch(p) { return p.m.length > 0; }
+    function isClosed(p) { return isMC(p) || isMatch(p); }
+    function side(p, k) { var o = p[k]; return o[lang].length ? o[lang] : (o.all.length ? o.all : (o.en.length ? o.en : o.ka)); }
+    function marks(p, row) { var a = state.ans[p.no]; return a && a[row] ? a[row] : []; }
+    function rowOk(p, row) {
+      var got = marks(p, row).slice().sort(), want = p.m[row].slice().sort();
+      return got.length === want.length && got.every(function (v, i) { return v === want[i]; });
+    }
+    function matchPts(p) {
+      var wrong = p.m.filter(function (_, row) { return !rowOk(p, row); }).length;
+      return Math.max(0, p.pts - wrong);
+    }
+    function hasAnswer(p) {
+      var a = state.ans[p.no];
+      if (isMatch(p)) return !!a && a.some(function (r) { return r && r.length; });
+      return a != null;
+    }
 
     var state = { ans: {}, self: {}, checked: false, elapsed: 0, running: false };
     try {
@@ -635,10 +678,11 @@
     function score() {
       var r = { mc: 0, mcMax: 0, open: 0, openMax: 0, answered: 0 };
       items.forEach(function (p) {
-        if (isMC(p)) {
+        if (isClosed(p)) {
           r.mcMax += p.pts;
-          if (state.ans[p.no] != null) r.answered++;
-          if (state.ans[p.no] === p.c) r.mc += p.pts;
+          if (hasAnswer(p)) r.answered++;
+          if (isMatch(p)) r.mc += matchPts(p);
+          else if (state.ans[p.no] === p.c) r.mc += p.pts;
         } else {
           r.openMax += p.pts;
           r.open += state.self[p.no] || 0;
@@ -667,8 +711,8 @@
 
       if (isMC(p)) {
         var list = opts(p);
-        var long = list.some(function (o) { return o.replace(/\$[^$]*\$/g, "xx").length > 22; });
-        var grid = h("div", "opts" + (long ? " long" : ""));
+        var long = list.some(function (o) { return o.replace(/\$[^$]*\$/g, "xx").length > (list.length > 4 ? 12 : 22); });
+        var grid = h("div", "opts" + (long ? " long" : list.length === 5 ? " n5" : ""));
         list.forEach(function (o, i) {
           var b = h("button", "opt");
           b.type = "button";
@@ -691,6 +735,58 @@
           grid.appendChild(b);
         });
         body.appendChild(grid);
+      } else if (isMatch(p)) {
+        var left = side(p, "l"), right = side(p, "r");
+        var lists = h("div", "match-lists");
+        [[left, function (i) { return (i + 1) + "."; }], [right, function (j) { return LETTERS[lang][j] + "."; }]].forEach(function (col) {
+          var ol = h("ol");
+          col[0].forEach(function (s, i) {
+            var li = h("li");
+            li.appendChild(h("span", "let", col[1](i)));
+            li.appendChild(rich(h("span"), s));
+            ol.appendChild(li);
+          });
+          lists.appendChild(ol);
+        });
+        body.appendChild(lists);
+        body.appendChild(h("div", "open-note", L.matchNote));
+        var tw = h("div", "match-wrap"), table = h("table", "match"), head = h("tr");
+        head.appendChild(h("th"));
+        right.forEach(function (_, j) { head.appendChild(h("th", "", LETTERS[lang][j])); });
+        table.appendChild(head);
+        left.forEach(function (_, row) {
+          var tr = h("tr");
+          var th = h("th", state.checked ? (rowOk(p, row) ? "mark-ok" : "mark-bad") : "", String(row + 1));
+          tr.appendChild(th);
+          right.forEach(function (_, j) {
+            var td = h("td"), b = h("button", "cell");
+            b.type = "button";
+            var on = marks(p, row).indexOf(j) >= 0, want = p.m[row].indexOf(j) >= 0;
+            if (on) b.className += " sel";
+            if (state.checked) {
+              if (on) b.className += want ? " ok" : " bad";
+              else if (want) b.className += " miss";
+            }
+            b.textContent = on ? "✕" : "";
+            b.setAttribute("aria-pressed", on ? "true" : "false");
+            b.setAttribute("aria-label", (row + 1) + " – " + LETTERS[lang][j]);
+            b.onclick = function () {
+              var a = state.ans[p.no] || left.map(function () { return []; });
+              var cells = a[row] || (a[row] = []), k = cells.indexOf(j);
+              if (k >= 0) cells.splice(k, 1); else cells.push(j);
+              state.ans[p.no] = a;
+              save();
+              redrawCard(p);
+              updateBar();
+            };
+            td.appendChild(b);
+            tr.appendChild(td);
+          });
+          table.appendChild(tr);
+        });
+        tw.appendChild(table);
+        body.appendChild(tw);
+        if (state.checked) body.appendChild(h("div", "self", L.matchScore + " " + matchPts(p) + " / " + p.pts));
       } else {
         body.appendChild(h("div", "open-note", L.open));
         if (state.checked) {
@@ -753,6 +849,11 @@
         ans.appendChild(document.createTextNode(L.answer + ": "));
         var text = pick(p.a);
         if (isMC(p)) ans.appendChild(document.createTextNode(LETTERS[lang][p.c] + ") "));
+        if (isMatch(p) && !text) {
+          text = p.m.map(function (cols, row) {
+            return (row + 1) + " – " + (cols.length ? cols.map(function (j) { return LETTERS[lang][j]; }).join(", ") : "—");
+          }).join(";  ");
+        }
         ans.appendChild(rich(h("span"), text || (isMC(p) ? opts(p)[p.c] || "" : "")));
         box.appendChild(ans);
         return box;
@@ -770,7 +871,7 @@
       cards[p.no] = fresh;
     }
     function updateBar() {
-      var L = t(), r = score(), mcCount = items.filter(isMC).length;
+      var L = t(), r = score(), mcCount = items.filter(isClosed).length;
       if (bar) bar.textContent = L.answered(r.answered, mcCount);
       if (!result) return;
       result.innerHTML = "";
